@@ -1,0 +1,45 @@
+#!/usr/bin/env python
+
+#--- Option parsing ---#
+"""
+SIPSim: simulate gradient fractionation of microbial community DNA
+
+Usage:
+  SIPSim <command> [<args>...]
+  SIPSim -h | --help
+  SIPSim --version
+
+Options:
+  -h --help     Show this screen.
+  --version     Show version.
+
+Commands:
+  indexGenomes -- index genomes (required for amplicon-fragment simulation)
+  fragGC -- Simulate genome fragments and calc fragment G+C content.
+  gradientComms -- Simulate the original communities for each isopycnic gradient
+  isoIncorp -- Simulate the amount of isotope incorporation for each taxon in each isopycnic gradient
+  fractions -- Simulate taxon abundances in each fraction of each isopycnic gradient
+
+Description:
+  Simulate how taxa would be distributed in isopycnic gradients as assessed by high throughput sequencing.
+"""
+
+import os, sys
+from docopt import docopt
+from subprocess import call
+
+scriptDir = os.path.dirname(__file__)
+subcmdDir = os.path.join(scriptDir, 'bin')
+
+if __name__ == '__main__':
+    args = docopt(__doc__,
+                  version='0.1',
+                  options_first=True)
+
+    # calling subcommand scripts
+    scriptFile = os.path.join(subcmdDir, args['<command>'] + '.py')
+    if os.path.isfile(scriptFile):
+        exit(call(['python', scriptFile] + args['<args>']))    
+    else:
+        exit('"{}" is not a SIPSim command. See "SIPSim -h".'.format(args['<command>']))
+    
