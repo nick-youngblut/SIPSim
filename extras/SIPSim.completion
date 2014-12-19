@@ -1,0 +1,38 @@
+#!/bin/bash
+# General bash setup for command-subcommand autocomplete.
+# Add to your .profile or .bashrc to make permanent.
+
+# edit path to where the SIPdb bin directory is:
+BINDIR='/home/nick/notebook/SIPSim/bin/'
+
+
+#--- do not edit ---#
+subcmds=`find $BINDIR -maxdepth 1 -name '*.py' | perl -pe 's/.+\/|\.py//g'`
+
+_SIPSim ()  
+{          
+  local fileNames dirNames cur prev
+
+  cur=${COMP_WORDS[COMP_CWORD]}
+  prev=${COMP_WORDS[COMP_CWORD-1]}
+
+  COMPREPLY=()   
+
+  fileNames=''
+  dirNames=''
+
+  if [[ ${cur} == * && ${prev} == *SIPSim ]]; then
+      COMPREPLY=( $( compgen -W '$subcmds' ${cur} ) )     
+  else
+      # no hiddne files/directories
+      fileNames=$( compgen -f -X '.*' -- "$cur" )
+      dirNames=$( compgen -d -X '.*' -- "$cur" )
+      
+      COMPREPLY=(
+          $( compgen -W "$fileNames $dirNames" -- ${cur} )
+      )
+  fi
+
+}
+
+complete -o default -F _SIPSim SIPSim

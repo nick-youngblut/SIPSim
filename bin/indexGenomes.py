@@ -63,11 +63,23 @@ def get_os():
 
     return OS
 
+
 def is_file(fileName):
     """Does file exist?"""
     if os.path.isfile(fileName) is False:
         raise IOError('"{}" does not exist'.format(fileName))
-    
+
+        
+def sys_call(cmd):
+    try:
+        proc = subprocess.Popen([cmd], shell=True)
+    except subprocess.CalledProcessError:
+        pass # handle errors in the called executable
+    except OSError:
+        raise OSError('No executable for command: "{}"\n'.format(cmd))
+
+    output, err = proc.communicate()
+
     
 def index_genome(genomeFile, taxonName, chilliDir, faToTwoBitExe, K_value, quiet=False):
     """indexing genome with MFEprimer indexing scripts. Just making system calls.
@@ -87,26 +99,27 @@ def index_genome(genomeFile, taxonName, chilliDir, faToTwoBitExe, K_value, quiet
     formatExe = os.path.join(chilliDir, 'UniFastaFormat.py')
     is_file(formatExe)
     cmd = '{} -i {}'.format(formatExe, genomeFile)
-    subprocess.check_call([cmd], shell=True)    
+    sys_call(cmd)    
     
     # faToTwoBit
     is_file(faToTwoBitExe)
     cmd = '{} {} {}'.format(faToTwoBitExe,genomeFile + '.unifasta',
                             genomeFile + '.2bit')
-    subprocess.check_call([cmd], shell=True)
+    sys_call(cmd)
     
     # index
     indexExe = os.path.join(chilliDir, 'mfe_index_db.py')
     is_file(indexExe)
     cmd = '{} -f {} -k {}'.format(indexExe,
-                                      genomeFile + '.unifasta',
-                                      K_value)
-    subprocess.check_call([cmd], shell=True)
+                                  genomeFile + '.unifasta',
+                                  K_value)
+    sys_call(cmd)
 
     # cleanup
     os.remove(genomeFile + '.unifasta')
 
     return 1
+
     
     
 # main
@@ -128,9 +141,7 @@ if __name__ == '__main__':
     # loading genome list
     genomeList = Utils.parseGenomeList(args['<genomeList>'], filePath=args['--fp'])
 
-    #print genomeList; sys.exit()
-    
-    
+    # setting function for parallel calling
     index_genome_par = functools.partial(index_genome,
                                          chilliDir=chilliDir,
                                          faToTwoBitExe=faToTwoBitExe,
@@ -140,5 +151,7 @@ if __name__ == '__main__':
                                          
 
     # indexing genomes in parallel
-    parmap.starmap(index_genome_par, genomeList, prcesses=args['--np'], chunksize=1)
-    
+    parmap.starmap(index_genome_par, genomeList, processes=int(args['--np']), chunksize=1)
+
+    # status
+    print "#-- All genomes indexed --#"

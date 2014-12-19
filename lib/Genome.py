@@ -9,7 +9,7 @@ import itertools
 
 ## 3rd party
 import pyfasta
-import pydna
+#import pydna
 from Bio import SeqIO
 import pandas as pd
 from intervaltree import Interval, IntervalTree
@@ -65,8 +65,8 @@ class Genome(object):
                          self.get_fileName(),
                          minTemplateLen,
                          maxTemplateLen)
-        ret = subprocess.check_output([cmd], shell=True)
-
+        ret = subprocess.call(cmd, shell=True) #subprocess.check_output([cmd], shell=True)
+        
         # load results as dataframe
         self.MFEprimerRes = pd.read_csv(StringIO(ret), sep='\t')
 
