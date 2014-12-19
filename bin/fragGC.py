@@ -77,7 +77,7 @@ import Utils
 def by_genome(inFile, taxonName, args):
     """All processing conducted per genome.
     Args:
-    inFile -- genome sequence file name
+   inFile -- genome sequence file name
     taxonName -- taxon name of genome
     args -- user-provided args as dict
     Return:
@@ -140,7 +140,7 @@ if __name__ == '__main__':
     args = {k:sp.split(str(v)) if sp.search(str(v)) else v for k,v in args.items()}
 
     # adding to args
-    args['scriptDir'] = scriptDir
+    args['scriptDir'] = libDir
 
     # list of genome files
     genomeList =  Utils.parseGenomeList(args['<genomeList>'], filePath=args['--fp'])

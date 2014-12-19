@@ -65,7 +65,7 @@ class Genome(object):
                          self.get_fileName(),
                          minTemplateLen,
                          maxTemplateLen)
-        ret = subprocess.call(cmd, shell=True) #subprocess.check_output([cmd], shell=True)
+        ret = subprocess.check_output(cmd, shell=True)
         
         # load results as dataframe
         self.MFEprimerRes = pd.read_csv(StringIO(ret), sep='\t')
