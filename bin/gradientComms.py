@@ -13,7 +13,7 @@ Options:
   <genomeList>  A file listing: taxonName<tab>genomeSeqFileName
   --fp=<fp>     Full path to genomeSeqFiles (if not in genomeList file).
   --pf=<pf>     Profile file setting optionsal arguments for grinder. See grinder help for more info.
-  --exe=<exe>   Grinder executable. [Default: './grinderSIP']
+  --exe=<exe>   Grinder executable. [Default: ./bin/grinder.pl]
   -h --help     Show this screen.
   --version     Show version.
   --debug       Debug mode
@@ -70,8 +70,14 @@ def call_grinder(genomeListFile, filePath=None, profileFile=None, exe='grinder')
 if __name__ == '__main__':
     args = docopt(__doc__, version='0.1')
 
+    # grinder exe    
+    grinderExe = str(args['--exe'])
+    if grinderExe.startswith('./'):
+        grinderExe = os.path.join(scriptDir, '.' + grinderExe)
+
+        
     # call grinder; print output
     call_grinder(args['<genomeList>'],
                  filePath=args['--fp'],
                  profileFile=args['--pf'],
-                 exe=args['--exe'])
+                 exe=grinderExe)

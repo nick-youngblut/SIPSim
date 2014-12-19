@@ -131,11 +131,11 @@ if __name__ == '__main__':
     machine = platform.machine()
     
     # dirs
-    chilliDir = os.path.join(scriptDir, 'chilli')
+    chilliDir = os.path.join(libDir, 'chilli')
     if machine.endswith('_64'):
-        faToTwoBitExe = os.path.join(scriptDir, 'bin', OS, '64/faToTwoBit')
+        faToTwoBitExe = os.path.join(libDir, 'bin', OS, '64/faToTwoBit')
     else:
-        faToTwoBitExe = os.path.join(scriptDir, 'bin', OS, '32/faToTwoBit')        
+        faToTwoBitExe = os.path.join(libDir, 'bin', OS, '32/faToTwoBit')        
 
         
     # loading genome list
