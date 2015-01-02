@@ -4,6 +4,8 @@
 ## batteries
 import os,sys
 from pprint import pprint
+## 3rd party
+import pandas as pd
 
 
 def checkExists(f):
@@ -74,3 +76,75 @@ def describe_builtin(obj):
                 
     if args=='':
         yield None
+
+
+        
+class _table(object):
+    """Template class for reading in SIPSim tables"""
+    
+    def __init__(self, df, filename):
+        """
+        Args:
+        df -- pandas dataframe
+        """
+        self.df = df
+        self.tableFileName = filename
+
+        # library as string
+        try:
+            self.df['library'] = self.df['library'].astype(str)
+        except KeyError:
+            raise KeyError('"library" column not found in table: "{}"!'.format(filename))
+
+            
+    # load from csv
+    @classmethod
+    def from_csv(cls, filename, **kwargs):
+        """Read in table file to a pandas dataframe.
+        Args:
+        filename -- Table file name
+        kwargs -- passed to pandas.read_csv
+        """
+        df = pd.read_csv(filename, **kwargs)
+        return cls(df, filename)
+
+        
+    # get/set/iter
+    def iter_uniqueColumnValues(self, columnID):
+        """General iteration of unique column values.
+        """
+        try:
+            for l in self.df[columnID].unique():
+                yield l
+        except KeyError:
+            raise KeyError('Column "{}" not found'.format(columnID))
+            
+    def iter_libraries(self):
+        """iterating through all unique library IDs
+        """
+        for libID in self.iter_uniqueColumnValues('library'):
+            yield libID
+                
+    def iter_taxa(self, libID=None):
+        """Iterating through all unique taxon names.
+        """
+        if libID is None:
+            for taxon_name in self.iter_uniqueColumnValues('taxon_name'):
+                yield taxon_name
+        else:
+            df_lib = self.df.loc[self.df['library'] == libID]
+            for taxon_name in df_lib['taxon_name'].unique():
+                yield taxon_name
+                
+    def iter_taxonRowsInLib(self, libID):
+        """Iterate through all subset dataframes containing just 1 taxon.
+        Args:
+        libID -- str; library ID        
+        """
+        df_lib = self.df.loc[self.df['library'] == libID]
+        for taxon_name in df_lib['taxon_name'].unique():
+            yield (taxon_name, df_lib.loc[df_lib['taxon_name'] == taxon_name])
+                
+    def __repr__(self):
+        return self.df.__repr__()
+        
