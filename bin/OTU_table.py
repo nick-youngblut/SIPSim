@@ -36,14 +36,15 @@ import logging
 from collections import defaultdict
 import time
 ## 3rd party
+import numpy as np
 import pandas as pd
 ## application libraries
 scriptDir = os.path.dirname(__file__)
 libDir = os.path.join(scriptDir, '../lib/')
 sys.path.append(libDir)
 
-
-from SIPSim import FragGC_KDE, CommTable, FracTable, IsoIncorpTable, OTU_table 
+import SIPSim as SS
+#from SIPSim import FragGC_KDE, CommTable, FracTable, IsoIncorpTable, OTU_table 
 
 
 # functinos
@@ -58,16 +59,16 @@ def main(Uargs):
         raise TypeError('"{}" must be float-like'.format(str(Uargs['--abs_abund'])))
     
     
-    # loading fragGC file
-    fragGC_kde = FragGC_KDE(Uargs['<fragGC_file>'])
+    # loading fragGC file as multivariate KDEs
+    fragKDE = SS.Frag_multiKDE(Uargs['<fragGC_file>'])
 
     # loading community file
-    comm = CommTable.from_csv(Uargs['<comm_file>'], sep='\t')
+    comm = SS.CommTable.from_csv(Uargs['<comm_file>'], sep='\t')
     comm.set_abs_abund(Uargs['--abs_abund'])
     
     
     # loading incorp file
-    incorp = IsoIncorpTable.from_csv(Uargs['<incorp_file>'], sep='\t')
+    incorp = SS.IsoIncorpTable.from_csv(Uargs['<incorp_file>'], sep='\t')
 
     # debug
     #for (x,y,z) in incorp.iter_incorpFuncs():
@@ -76,11 +77,11 @@ def main(Uargs):
     
     
     # loading fraction file
-    frac = FracTable.from_csv(Uargs['<frac_file>'], sep='\t')
+    frac = SS.FracTable.from_csv(Uargs['<frac_file>'], sep='\t')
 
     
     # initializing OTU table class
-    OTU = OTU_table(frac,
+    OTU = SS.OTU_table(frac,
                     Uargs['--g_noise'],
                     Uargs['--scale'],
                     Uargs['--a_weight'],                    
@@ -114,30 +115,46 @@ def main(Uargs):
             
             taxonAbsAbund = comm.get_taxonAbund(libID, taxon_name)
 
-            # sampling GC value from taxon KDE
+            # sampling fragment GC & length values from taxon-specific KDE
             t0 = time.time()
-            GC_vals = fragGC_kde.sampleTaxonKDE(taxon_name, n_samples=taxonAbsAbund)
+            GC_len_arr = fragKDE.sampleTaxonKDE(taxon_name, size=taxonAbsAbund)            
 
+#            print GC_len_arr; sys.exit()
+            
             # sampling intra-taxon incorp for taxon; return: iterator
             t1 = time.time()
             incorp_vals = incorp.sample_incorpFunc(libID, taxon_name, n_samples=taxonAbsAbund)
             
             # iter GC value:
             t2 = time.time()
-            for gc_val in GC_vals:
+            for (frag_gc,frag_len) in GC_len_arr:
                 # raw BD based on GC
-                BD = gc_val / 100 * 0.098 + 1.66
+                BD = frag_gc / 100 * 0.098 + 1.66
 
+                print BD
+                
                 # BD + BD shift from isotope incorporation
                 ## TODO: implement abundance-weighting
                 incorp_perc = incorp_vals.next()
                 BD = BD + isotopeMaxBD * (incorp_perc / 100)
 
+                print BD
+                
+                # simulate diffusion
+                BD += np.random.normal(loc=0, scale=44500/frag_len)
+
+                print BD
+                
+                # simulate noise
+                BD += OTU.sample_g_noise_func(0)[0]
+
+                print BD; sys.exit()
+                
                 # simulating gradient noise
-                BD = OTU.sample_g_noise_func(BD)[0]
+                #BD = OTU.sample_g_noise_func(BD)[0]
                 
                 # determine the fraction that would contain the fragment
-                fracID = frac.which_frac(libID, BD)
+                #fracID = frac.which_frac(libID, BD)
 
                 # adding to OTU count table
                 try:

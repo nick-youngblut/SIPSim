@@ -20,6 +20,104 @@ from intervaltree import Interval, IntervalTree
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
 
+class Frag_multiKDE(object):
+    """Multivariate KDE fit to fragment G+C and fragment lengths.
+    Method:
+    * load all fragGC values for a taxon
+    * fit mulit-var KDE to distribution (using gaussian_kde from scipy.stats)
+    """
+    
+    def __init__(self, fragGC_file, bandwidth=0.0001):
+        """Using sklearn.neighbors.kde for distribution fitting. See
+        the doc for that class to get more info on the parameters passed
+        to it. 
+        Args:
+        fragGC_file -- File produced by fragGC subcommand
+        bandwidth -- KDE bandwidth parameter passed to KDE function
+        """
+        self.fragGC_file = fragGC_file
+        self.bandwidth = bandwidth
+
+        # loading values as pandas dataframe
+        self.fragGC_df = pd.read_csv(self.fragGC_file, sep='\t')
+        
+        # iter by taxon to fit kde
+        self._fragKDE = dict()
+        for (taxon_name,taxon_df) in self._iter_df_by_taxon_name():
+            self._fragKDE[taxon_name] = self._fitKDE(taxon_df)
+
+        # delete df
+        self.fragGC_df = None
+
+        
+    def __repr__(self):
+        out = ''        
+        for taxon_name in self.iter_taxon_names():
+            for kde in self.iter_fragGC_kde([taxon_name]):
+                out += '{}\n\t{}\n'.format(taxon_name, kde.__repr__)
+        return out
+
+
+    def iter_taxon_names(self):
+        """Iterate through all taxon names.
+        """
+        for taxon_name in self._fragGC_kde.keys():
+            yield taxon_name
+
+            
+    def iter_fragGC_kde(self, taxon_names):
+        """Getting the kde functions for all taxa-listed.
+        Args:
+        taxon_names -- list of taxon names
+        """
+        assert not isinstance(taxon_names, str), 'Provide a list-like object'
+
+        for taxon_name in taxon_names:
+            try:
+                yield self._fragGC_kde[taxon_name]
+            except KeyError:
+                raise KeyError('No KDE fit for taxon "{}"'.format(taxon_name))
+
+                
+    def sampleTaxonKDE(self, taxon_name, *args, **kwargs):
+        """Sample from the KDE function set for a taxon.
+        Args:
+        taxon_name -- name of taxon
+        args and kwargs -- passed to KDE function
+        Return:
+        2d numpy array -- [[frag_GC,frag_len], ...] 
+        """
+
+        # asserting kde function
+        try:            
+            kde = self._fragKDE[taxon_name]
+        except KeyError:
+            raise KeyError('taxon "{}" does not have a KDE function set'.format(taxon_name))
+
+        # return samples
+        return kde.resample(*args, **kwargs).T
+                
+                                   
+    def _fitKDE(self, taxon_df):
+        """Returns multivariate KernelDensity function fit to fragment GC values and lengths.
+        #Also sets 'kde_element_len', which signifies the number of values returned
+        #as 1 'sample' from the *.sample() method. This is needed because 1 'sample'
+        #can actually return many (100's, 1000's or more) values depending on the
+        #values used to fit the KDE.
+        """
+        vals = np.vstack([taxon_df.GC, abs(taxon_df.fragEnd - taxon_df.fragStart)])                                 
+        return stats.gaussian_kde(vals, bw_method=self.bandwidth)
+
+        
+    def _iter_df_by_taxon_name(self):
+        """Iterate by unique taxon names.
+        """
+        taxon_names = self.fragGC_df['taxon_name'].unique()
+        for taxon_name in taxon_names:
+            yield (taxon_name, self.fragGC_df.loc[self.fragGC_df['taxon_name'] == taxon_name])
+
+        
+
 class FragGC_KDE(object):
     """Distributions fit to the fragment G+C values produced by the fragGC subcommand.
     Method:

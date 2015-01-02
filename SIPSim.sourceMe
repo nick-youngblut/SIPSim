@@ -3,7 +3,9 @@
 # Add to your .profile or .bashrc to make permanent.
 
 # edit path to where the SIPdb bin directory is:
-BINDIR='/home/nick/notebook/SIPSim/bin/'
+BINDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+export PATH="$PATH:$BINDIR"
+BINDIR=$BINDIR'/bin/'
 
 
 #--- do not edit ---#
