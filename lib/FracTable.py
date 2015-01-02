@@ -1,5 +1,6 @@
 # import
 ## batteries
+import sys
 ## 3rd party
 from intervaltree import Interval, IntervalTree
 ## application
@@ -21,9 +22,9 @@ class FracTable(_table):
             assert col in self.df.columns, \
                 'Column "{}" not found in file "{}"'.format(col, self.tableFileName)
 
-        # fraction ID as string
-        self.df['fraction'] = self.df['fraction'].astype(str)
-            
+        # fraction ID as int
+        self.df['fraction'] = self.df['fraction'].astype(int)
+        
         # creating an interval tree of fractions
         self._set_itrees()
 
@@ -35,7 +36,8 @@ class FracTable(_table):
         self.itrees = dict()
 
         def make_frac_interval(x):
-            return Interval(float(x[0]),float(x[1]),x[2])
+            # range start, range end, fraction ID
+            return Interval(float(x[0]),float(x[1]),int(x[2]))
         
         for libID in self.iter_libraries():
             df_sub = self.df.loc[self.df['library'] == libID, ['BD_min','BD_max','fraction']]
@@ -70,18 +72,22 @@ class FracTable(_table):
         else:
             msg = 'BD value "{}" in library "{}" falls into >1 fraction!'
             raise ValueError(msg.format(str(BD_value), libID))
-
-                    
-    def fracID2BDminmax(self, libID, fracIDs):
+        
+            
+    def fracID2BDminmax(self, libID, fracIDs=None):
         """Convert fractionIDs to 'BDmin-BDmax
         Args:
         libID -- str; library ID
-        fracIDs -- iterable; fraction IDs
+        fracIDs -- iterable; fraction IDs, if None: all fracIDs used
         """
         df_sub = self.df.loc[(self.df['library'] == libID)]
         df_sub.index = df_sub['fraction']
-        df_sub = df_sub.reindex(fracIDs)
 
+        if fracIDs is not None:
+            df_sub = df_sub.reindex(fracIDs)
+        else:
+            pass
+            
         
         def catCol(x, sep='-', cols=['BD_min','BD_max']):
             return sep.join([libID] + [str(y) for y in x[cols]])

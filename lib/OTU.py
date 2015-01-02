@@ -128,9 +128,9 @@ class OTU_table(object):
         libList -- list of list of unique libs (each lib list is compared to the others)
         """        
         return len(set(itertools.chain(*libList))) == len(set(libList[0])) 
-
         
-    def make_emptyCountTable(self, taxon_names, fractionIDs):
+        
+    def make_emptyCountTable_OLD(self, taxon_names, fractionIDs):
         """Making a pandas dataframe (taxon x fraction) of zeros.
         Args:
         taxon_names -- iterable; all taxon names
