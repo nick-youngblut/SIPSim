@@ -75,7 +75,6 @@ def main(Uargs):
     OTU = SS.OTU_table(frac,
                     g_noise=Uargs['--g_noise'],
                     gn_scale=Uargs['--gn_scale'],
-                    gn_range=Uargs['--gn_range'],
                     abund_weight=Uargs['--a_weight'],                    
                     isotope=Uargs['--isotope'])
     
@@ -118,13 +117,10 @@ def main(Uargs):
             t2 = time.time()
             for (frag_gc,frag_len) in GC_len_arr:
                 # simulating diffusion on GC
-                frag_gc = OTU.add_diffusion(loc=0, frag_len=frag_len)
-#                frag_gc += np.random.normal(loc=0, scale=44500/frag_len)                
+                frag_gc = OTU.add_diffusion(frag_gc, frag_len, loc=0)
 
                 # simulating noise
                 frag_gc = OTU.sample_g_noise_func(frag_gc, loc=0)
-
-                print frag_gc; sys.exit()
                 
                 # raw BD based on GC
                 BD = frag_gc / 100 * 0.098 + 1.66
@@ -133,24 +129,9 @@ def main(Uargs):
                 ## TODO: implement abundance-weighting
                 incorp_perc = incorp_vals.next()
                 BD = BD + isotopeMaxBD * (incorp_perc / 100)
-
-                
-                # simulate diffusion
-                #BD += np.random.normal(loc=0, scale=44500/frag_len) / 100 * 0.098 + 1.66
-
-#                print BD
-                
-                # simulate noise
-                BD += OTU.sample_g_noise_func(0)[0]
-
- #               print BD;
-                sys.exit()
-                
-                # simulating gradient noise
-                #BD = OTU.sample_g_noise_func(BD)[0]
-                
+                            
                 # determine the fraction that would contain the fragment
-                #fracID = frac.which_frac(libID, BD)
+                fracID = frac.which_frac(libID, BD)
 
                 # adding to OTU count table
                 try:

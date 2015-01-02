@@ -618,13 +618,12 @@ class FracTable(_table):
 class OTU_table(object):
     """Class for the simulated OTU table"""
     
-    def __init__(self, frac, g_noise, gn_scale, gn_range, abund_weight, isotope):
+    def __init__(self, frac, g_noise, gn_scale, abund_weight, isotope):
         """
         Args:
         frac -- Fractions class instance
         g_noise -- str; gradient noise distribution name (from scipy.stats)
         gn_scale -- float; scale parameter for gradient noise distribution
-        gn_range -- comma-separated string or list of floats; min-max values for gradient noise
         abund_weight -- float; isotope incorp abundance-weighting factor
         isotope -- str; name of isotope
         """        
@@ -632,12 +631,6 @@ class OTU_table(object):
         self.gn_scale = float(gn_scale)
         self.abund_weight = abund_weight
         self.isotope = isotope.upper()        
-        gn_range = self._format_gn_range(gn_range)
-        try:
-            self.gn_min = gn_range[0]
-            self.gn_max = gn_range[1]
-        except IndexError:
-            raise IndexError('gn_range must be a list of size >=2')
         
         
         # setting gradient 'noise' function
@@ -646,15 +639,7 @@ class OTU_table(object):
         # set isotope theoretical max BD
         self.isotopeMaxBD = self._set_isotopeMaxBD(self.isotope)
 
-        
-    def _format_gn_range(self, gn_range):
-        """Foratting gn_range in case where it is provided as a list"""
-        if isinstance(gn_range, str):
-            return [float(x) for x in gn_range.split(',')]
-        else:
-            return [float(x) for x in gn_range]
-            
-        
+    
     def _set_g_noise_func(self):
         """Setting the gradient noise function as scipy distribution function.
         Args:
@@ -687,28 +672,59 @@ class OTU_table(object):
             
 
     def sample_g_noise_func(self, gc_val, loc, n_samples=1, max_tries=100):
-        """Sampling the gradient noise distribution function.
-        The resulting GC value (GC + GC_noise) must be between --gn_range.
+        """Sampling the gradient noise distribution function and adding
+        value to the provided GC value
+        Asserts that G+C must be between 0 & 100.
         Args:
         gc_val -- GC value to add noise to
         loc -- loc param of the scipy.stats distribution function
         n_samples -- number of samples to draw from distrubtion
         max_tries -- max number of tries to get value in [gn_range_min,gn_range_max]
         Return:
-        list -- values
+        float -- new GC value
         """
-        loc = float(loc)
+        tries = 0
         while True:
             new_gc = gc_val + self.g_noise_func(loc=loc).rvs(n_samples)[0]
-            if new_gc >= self.gn_min and new_gc <= self.gn_max:
+            if new_gc >= 0 and new_gc <= 100:
                 return new_gc
                 
             tries += 1
             if tries >= max_tries:
                 print "ERROR: exceeded max tries ({}) to get"
-                "g_noise value between {}-{}".foramt(max_tries, self.gn_min, self.gn_max)
+                "G+C value (with noise) between 0 & 100".foramt(max_tries)
                 sys.exit(1)
-            
+
+                
+    def add_diffusion(self, gc_val, frag_len, loc=0,  max_tries=100):
+        """Sampling the diffusion distribution function and adding value
+        to the provided GC value.
+        Asserts that G+C must be between 0 & 100.
+
+        Diffusion equation from: Clay 0, Douady CJ, Carels N, Hughes S, Bucciarelli G, Bernardi G (2003.
+        Using analytical ultracentrifugation to study compositional variation in vertebrate genomes.
+        Eur Biophys J 32:418-426
+        
+        Args:
+        gc_val -- G+C value to add noise to
+        frag_len -- fragment length (fragment associated with provided G+C value)
+        loc -- loc param of the scipy.stats distribution function
+        max_tries -- max number of tries to get value in [gn_range_min,gn_range_max]
+        Return:
+        float -- new GC value
+        """
+        tries = 0
+        while True:
+            new_gc = gc_val + stats.norm(loc=loc, scale=44500/frag_len).rvs()
+            if new_gc >= 0 and new_gc <= 100:
+                return new_gc
+                
+            tries += 1
+            if tries >= max_tries:
+                print "ERROR: exceeded max tries ({}) to get"
+                "G+C value (with diffusion) between 0 & 100".foramt(max_tries)
+                sys.exit(1)
+                
             
     def checkLibOverlap(self, libList):
         """Checking that libraries in dataframes fully overlap
