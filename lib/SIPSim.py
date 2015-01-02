@@ -618,47 +618,61 @@ class FracTable(_table):
 class OTU_table(object):
     """Class for the simulated OTU table"""
     
-    def __init__(self, frac, g_noise, scale, abund_weight, isotope):
+    def __init__(self, frac, g_noise, gn_scale, gn_range, abund_weight, isotope):
         """
         Args:
         frac -- Fractions class instance
         g_noise -- str; gradient noise distribution name (from scipy.stats)
-        scale -- float; scale parameter for gradient noise distribution
+        gn_scale -- float; scale parameter for gradient noise distribution
+        gn_range -- comma-separated string or list of floats; min-max values for gradient noise
         abund_weight -- float; isotope incorp abundance-weighting factor
         isotope -- str; name of isotope
-        """
+        """        
         self.g_noise = g_noise
-        self.scale = scale
+        self.gn_scale = float(gn_scale)
         self.abund_weight = abund_weight
-        self.isotope = isotope.upper()
+        self.isotope = isotope.upper()        
+        gn_range = self._format_gn_range(gn_range)
+        try:
+            self.gn_min = gn_range[0]
+            self.gn_max = gn_range[1]
+        except IndexError:
+            raise IndexError('gn_range must be a list of size >=2')
+        
         
         # setting gradient 'noise' function
-        self.g_noise_func = self._set_g_noise_func(self.g_noise, self.scale)
+        self.g_noise_func = self._set_g_noise_func()
         
         # set isotope theoretical max BD
         self.isotopeMaxBD = self._set_isotopeMaxBD(self.isotope)
 
         
-    def _set_g_noise_func(self, dist_name, scale):
+    def _format_gn_range(self, gn_range):
+        """Foratting gn_range in case where it is provided as a list"""
+        if isinstance(gn_range, str):
+            return [float(x) for x in gn_range.split(',')]
+        else:
+            return [float(x) for x in gn_range]
+            
+        
+    def _set_g_noise_func(self):
         """Setting the gradient noise function as scipy distribution function.
         Args:
-        dist_name -- name of scipy distribution function
-        scale -- scale parameter of distribution
-        """
-        scale = float(scale)
-        
+        #dist_name -- name of scipy distribution function
+        #scale -- scale parameter of distribution
+        """        
         psblFuncs = {'cauchy' : stats.cauchy,
                      'normal' : stats.norm,
                      'uniform' : stats.uniform}
 
         try:
-            func = psblFuncs[dist_name]
+            func = psblFuncs[self.g_noise]
         except KeyError:
-            raise KeyError('Distribution "{}" not supported.'.format(dist_name))
-
-        return functools.partial(func, scale=scale)
-                     
-                     
+            raise KeyError('Distribution "{}" not supported.'.format(self.g_noise))
+        
+        return functools.partial(func, scale=self.gn_scale)            
+        
+        
     def _set_isotopeMaxBD(self, isotope):
         """Setting the theoretical max BD shift of an isotope (if 100% incorporation).
         Args:
@@ -672,15 +686,28 @@ class OTU_table(object):
             raise KeyError('Isotope "{}" not supported.'.format(isotope))
             
 
-    def sample_g_noise_func(self, loc, n_samples=1):
+    def sample_g_noise_func(self, gc_val, loc, n_samples=1, max_tries=100):
         """Sampling the gradient noise distribution function.
+        The resulting GC value (GC + GC_noise) must be between --gn_range.
         Args:
+        gc_val -- GC value to add noise to
         loc -- loc param of the scipy.stats distribution function
         n_samples -- number of samples to draw from distrubtion
+        max_tries -- max number of tries to get value in [gn_range_min,gn_range_max]
         Return:
         list -- values
         """
-        return self.g_noise_func(loc=float(loc)).rvs(n_samples)
+        loc = float(loc)
+        while True:
+            new_gc = gc_val + self.g_noise_func(loc=loc).rvs(n_samples)[0]
+            if new_gc >= self.gn_min and new_gc <= self.gn_max:
+                return new_gc
+                
+            tries += 1
+            if tries >= max_tries:
+                print "ERROR: exceeded max tries ({}) to get"
+                "g_noise value between {}-{}".foramt(max_tries, self.gn_min, self.gn_max)
+                sys.exit(1)
             
             
     def checkLibOverlap(self, libList):

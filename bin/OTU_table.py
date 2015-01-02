@@ -17,7 +17,8 @@ Options:
   <frac_file>         Name of file produced by fractions subcommand.
   --abs_abund=<aa>    Absolute abundance of all taxa in the community. [default: 1e6]
   --g_noise=<gn>      scipy distribution function describing gradient 'noise'. [default: cauchy]
-  --scale=<np>        Scale parameter for noise gradient distribution. [default: 0.0001]
+  --gn_scale=<np>     Scale parameter for the '--g_noise' distribution. [default: 0.0]
+  --gc_range=<gcr>    Min-max possible G+C values post-diffusion or post-noise. [default: 0,100]
   --a_weight=<aw>     Abundance weighting for isotope incorporation.
   --isotope=<is>      Isotope incorporated by taxa (13C or 15N). [default: 13C]
   -h --help           Show this screen.
@@ -44,8 +45,6 @@ libDir = os.path.join(scriptDir, '../lib/')
 sys.path.append(libDir)
 
 import SIPSim as SS
-#from SIPSim import FragGC_KDE, CommTable, FracTable, IsoIncorpTable, OTU_table 
-
 
 # functinos
 def main(Uargs):
@@ -58,7 +57,6 @@ def main(Uargs):
     except TypeError:
         raise TypeError('"{}" must be float-like'.format(str(Uargs['--abs_abund'])))
     
-    
     # loading fragGC file as multivariate KDEs
     fragKDE = SS.Frag_multiKDE(Uargs['<fragGC_file>'])
 
@@ -68,25 +66,18 @@ def main(Uargs):
     
     
     # loading incorp file
-    incorp = SS.IsoIncorpTable.from_csv(Uargs['<incorp_file>'], sep='\t')
-
-    # debug
-    #for (x,y,z) in incorp.iter_incorpFuncs():
-    #    print '{}->{}:\n{}'.format(x,y,z)
-    #sys.exit();
-    
+    incorp = SS.IsoIncorpTable.from_csv(Uargs['<incorp_file>'], sep='\t')    
     
     # loading fraction file
     frac = SS.FracTable.from_csv(Uargs['<frac_file>'], sep='\t')
-
     
     # initializing OTU table class
     OTU = SS.OTU_table(frac,
-                    Uargs['--g_noise'],
-                    Uargs['--scale'],
-                    Uargs['--a_weight'],                    
-                    Uargs['--isotope'])
-
+                    g_noise=Uargs['--g_noise'],
+                    gn_scale=Uargs['--gn_scale'],
+                    gn_range=Uargs['--gn_range'],
+                    abund_weight=Uargs['--a_weight'],                    
+                    isotope=Uargs['--isotope'])
     
     # checking on library overlap
     if not OTU.checkLibOverlap([
@@ -118,8 +109,6 @@ def main(Uargs):
             # sampling fragment GC & length values from taxon-specific KDE
             t0 = time.time()
             GC_len_arr = fragKDE.sampleTaxonKDE(taxon_name, size=taxonAbsAbund)            
-
-#            print GC_len_arr; sys.exit()
             
             # sampling intra-taxon incorp for taxon; return: iterator
             t1 = time.time()
@@ -128,27 +117,34 @@ def main(Uargs):
             # iter GC value:
             t2 = time.time()
             for (frag_gc,frag_len) in GC_len_arr:
+                # simulating diffusion on GC
+                frag_gc = OTU.add_diffusion(loc=0, frag_len=frag_len)
+#                frag_gc += np.random.normal(loc=0, scale=44500/frag_len)                
+
+                # simulating noise
+                frag_gc = OTU.sample_g_noise_func(frag_gc, loc=0)
+
+                print frag_gc; sys.exit()
+                
                 # raw BD based on GC
                 BD = frag_gc / 100 * 0.098 + 1.66
-
-                print BD
                 
                 # BD + BD shift from isotope incorporation
                 ## TODO: implement abundance-weighting
                 incorp_perc = incorp_vals.next()
                 BD = BD + isotopeMaxBD * (incorp_perc / 100)
 
-                print BD
                 
                 # simulate diffusion
-                BD += np.random.normal(loc=0, scale=44500/frag_len)
+                #BD += np.random.normal(loc=0, scale=44500/frag_len) / 100 * 0.098 + 1.66
 
-                print BD
+#                print BD
                 
                 # simulate noise
                 BD += OTU.sample_g_noise_func(0)[0]
 
-                print BD; sys.exit()
+ #               print BD;
+                sys.exit()
                 
                 # simulating gradient noise
                 #BD = OTU.sample_g_noise_func(BD)[0]
