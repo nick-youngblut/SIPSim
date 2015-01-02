@@ -851,3 +851,9 @@ Processing library: "1"
 2015-01-02 11:15:31.972 [NotebookApp] Saving notebook at /bac_genome10.ipynb
 2015-01-02 11:17:31.985 [NotebookApp] Saving notebook at /bac_genome10.ipynb
 2015-01-02 11:19:31.982 [NotebookApp] Saving notebook at /bac_genome10.ipynb
+2015-01-02 13:31:47.670 [NotebookApp] Creating new notebook in /sandbox/
+2015-01-02 13:31:48.415 [NotebookApp] Kernel started: 6e53a24c-2b35-4ff8-8353-dca833569156
+2015-01-02 13:32:42.201 [NotebookApp] Saving notebook at /bac_genome10.ipynb
+2015-01-02 13:33:48.409 [NotebookApp] Saving notebook at /sandbox/optimization.ipynb
+2015-01-02 13:35:48.396 [NotebookApp] Saving notebook at /sandbox/optimization.ipynb
+2015-01-02 13:37:48.398 [NotebookApp] Saving notebook at /sandbox/optimization.ipynb

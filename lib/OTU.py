@@ -110,7 +110,8 @@ class OTU_table(object):
         """
         tries = 0
         while True:
-            new_gc = gc_val + stats.norm(loc=loc, scale=44500/frag_len).rvs()
+            #new_gc = gc_val + stats.norm(loc=loc, scale=44500/frag_len).rvs()
+            new_gc = gc_val + np.random.normal(size=1, loc=loc, scale=44500/frag_len)
             if new_gc >= 0 and new_gc <= 100:
                 return new_gc
                 

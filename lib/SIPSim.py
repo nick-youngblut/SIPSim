@@ -1,7 +1,6 @@
 # import
 ## batteries
 import os,sys
-import math
 import logging
 import time
 ## 3rd party
@@ -114,7 +113,7 @@ def main(Uargs):
                     pass
 
             t3 = time.time()
-            #print [t1 - t0, t2 - t1, t3 - t2]; sys.exit()
+            print [t1 - t0, t2 - t1, t3 - t2]; sys.exit()
                     
         # replace fraction IDs in column names with BD_min-BD_max
         OTU_counts[libID].columns = frac.fracID2BDminmax(libID, OTU_counts[libID].columns)
