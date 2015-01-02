@@ -638,7 +638,7 @@ class OTU_table(object):
         
         # set isotope theoretical max BD
         self.isotopeMaxBD = self._set_isotopeMaxBD(self.isotope)
-
+        
     
     def _set_g_noise_func(self):
         """Setting the gradient noise function as scipy distribution function.
@@ -746,4 +746,7 @@ class OTU_table(object):
         
     def get_isotopeMaxBD(self):
         return self.isotopeMaxBD
-        
+
+    @property
+    def gn_scale_nonzero(self):
+        return self.gn_scale > 0

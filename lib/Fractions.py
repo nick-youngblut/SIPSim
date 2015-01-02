@@ -54,19 +54,19 @@ class Fractions(object):
             raise TypeError(msg.format(self.distribution, ','.join(self.params.keys())))
 
 
-    def simFractions(self, libID):
+    def simFractions(self, libID, max_tries=1000):
         """Simulating the gradient fractions for a library
         Args:
         libID -- library ID (a.k.a. isopycnic gradient ID)
+        max_tries -- max number of tries to get BD values in BD_range
         """
         
         # sample & sum to get up to just past (BD_range - BD_max); use truncated last value if value > frac_min
         BD_sums = 0
         BD_vals = []
         tries = 0
-        max_tries = 1000
         while True:
-            fracSize = self.sample_frac_size(max_tries=1000)
+            fracSize = self.sample_frac_size(max_tries=max_tries)
                     
             BD_sums += fracSize
             BD_vals.append(fracSize)

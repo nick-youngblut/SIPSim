@@ -119,8 +119,9 @@ def main(Uargs):
                 # simulating diffusion on GC
                 frag_gc = OTU.add_diffusion(frag_gc, frag_len, loc=0)
 
-                # simulating noise
-                frag_gc = OTU.sample_g_noise_func(frag_gc, loc=0)
+                # simulating noise (if needed)
+                if OTU.gn_scale_nonzero:
+                    frag_gc = OTU.sample_g_noise_func(frag_gc, loc=0)
                 
                 # raw BD based on GC
                 BD = frag_gc / 100 * 0.098 + 1.66
@@ -137,6 +138,7 @@ def main(Uargs):
                 try:
                     OTU_counts[libID][fracID].loc[taxon_name] += 1
                 except ValueError:
+                    logging.warning('BD value {} does not fall into any fraction'.format(BD))
                     pass
 
             t3 = time.time()

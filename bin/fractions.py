@@ -17,7 +17,7 @@ Options:
   --params=<p>         Params passed to distribution (see pymix.mixture for distribution params).
                        [default: mu:0.004,sigma:0.0015]
   --BD_min=<x>         Minimum BD of any fraction. [default: 1.660]
-  --BD_max=<y>         Maximum BD of any fraction. [default: 1.794]
+  --BD_max=<y>         Maximum BD of any fraction. [default: 1.795]
   --frac_min=<m>       Minimum fraction size. [default: 0.001]
   -h --help            Show this screen.
   --version            Show version.
