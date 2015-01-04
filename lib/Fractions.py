@@ -61,7 +61,8 @@ class Fractions(object):
         max_tries -- max number of tries to get BD values in BD_range
         """
         
-        # sample & sum to get up to just past (BD_range - BD_max); use truncated last value if value > frac_min
+        # sample & sum to get up to just past (BD_range - BD_max)
+        # use truncated last value if value > frac_min
         BD_sums = 0
         BD_vals = []
         tries = 0

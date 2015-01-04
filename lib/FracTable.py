@@ -5,9 +5,13 @@ import sys
 from intervaltree import Interval, IntervalTree
 ## application
 from Utils import _table
+from OrderedSet import OrderedSet
+        
 
 class FracTable(_table):
     """class for fraction table (output of fractions subcommand)"""
+
+    # TODO; assertion that fractions are ordered and not overlapping
     
     def __init__(self, *args, **kwargs):
         _table.__init__(self, *args, **kwargs)
@@ -24,7 +28,7 @@ class FracTable(_table):
 
         # fraction ID as int
         self.df['fraction'] = self.df['fraction'].astype(int)
-        
+
         # creating an interval tree of fractions
         self._set_itrees()
 
@@ -107,6 +111,26 @@ class FracTable(_table):
         return list(df_sub.loc[0][['BD_min','BD_max']])
 
 
+    def BD_bins(self, libID=None):
+        """Return an ordered set of BD min-max bins.
+        Assumptions:
+        * bins do not overlap
+        * bins cover the whole BD range (min[n] == max[n-1])
+        Useful for binning with np.digitize().
+        Args:
+        libID -- select BD values from just 1 library
+        Return:
+        
+        """
+        if libID is not None:
+            df_sub = self.df.loc[self.df['library'] == libID]
+        else:
+            df_sub = self.df
+
+        x = zip(df_sub['BD_min'].tolist(), df_sub['BD_max'].tolist())
+        return OrderedSet([j for i in x for j in i])
+
+        
     def get_fracIDs(self):
         """Return list of library-fractionIDs.
         Format: [libraryID]_[fractionID]_[BD_min]_[BD_max]
