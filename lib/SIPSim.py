@@ -9,7 +9,7 @@ from itertools import starmap, imap
 import pandas as pd
 import numpy as np
 import parmap
-from numba import jit, vectorize
+from numba import jit
 ## application
 import FragGC
 from CommTable import CommTable
@@ -108,7 +108,7 @@ def binNum2ID(frag_BD_bins, libFracBins):
     Return:
     dict of {fractionID : fragment_counts}
     """
-    return {'{}-{}'.format(libFracBins[k-1],libFracBins[k]):v for (k,v) in frag_BD_bins.items()}
+    return {'{0:.3f}-{1:.3f}'.format(libFracBins[k-1],libFracBins[k]):v for (k,v) in frag_BD_bins.items()}
     
     
 
@@ -155,7 +155,7 @@ def main(Uargs):
     # iter by library:
     isotopeMaxBD = OTUt.get_isotopeMaxBD()
     u_taxon_names = comm.get_unique_taxon_names()
-    OTU_counts = makeEmptyCountTable(comm, frac)
+    OTU_counts = []  # list of all library-specific OTU_count dataframes
     
     for libID in comm.iter_libraries():
         sys.stderr.write('Processing library: "{}"\n'.format(libID))
@@ -163,25 +163,30 @@ def main(Uargs):
         # fraction bin list for library
         libFracBins = [x for x in frac.BD_bins(libID)]
         
-        # all values to integers
-        #OTU_counts[libID] = OTU_counts[libID].astype(int)
-
+        # creating a dataframe of fractions
+        fracBins = ['{0:.3f}-{1:.3f}'.format(libFracBins[i-1],libFracBins[i]) for i in xrange(len(libFracBins))]
+        
+        lib_OTU_counts = pd.DataFrame({'fractions':fracBins})
+         
+        
         # iter by taxon:
         for (taxon_name_idx,taxon_name) in enumerate(u_taxon_names):
+            t_start = time.time()
             sys.stderr.write('  Processing taxon: "{}"\n'.format(taxon_name))
-            
+                        
             taxonAbsAbund = comm.get_taxonAbund(libID, taxon_name)
-
+            sys.stderr.write('    N-fragments:   {}\n'.format(taxonAbsAbund))
+            
             # sampling fragment GC & length values from taxon-specific KDE
-            t0 = time.time()
+#            t0 = time.time()
             GC_len_arr = fragKDE.sampleTaxonKDE(taxon_name, size=taxonAbsAbund)            
             
             # sampling intra-taxon incorp for taxon; return: iterator
-            t1 = time.time()
+#            t1 = time.time()
             incorp_val_iter = incorp.sample_incorpFunc(libID, taxon_name, n_samples=taxonAbsAbund)
 
             # GC --> BD
-            t2 = time.time()
+#            t2 = time.time()
 
             # simulating diffusion
 #            frag_gc = np.concatenate([x for x in starmap(OTU.add_diffusion,
@@ -191,7 +196,7 @@ def main(Uargs):
                                                     processes=int(Uargs['--threads']),
                                                     chunksize=10000))
 
-            t3 = time.time()
+#            t3 = time.time()
             
             # simulating general noise in the gradient column
             if OTUt.gn_scale_nonzero:
@@ -200,37 +205,54 @@ def main(Uargs):
             # GC to BD values
             frag_BD = GC2BD(frag_gc)
 
+#            t4 = time.time()            
+            
             # BD + BD shift from isotope incorporation
             ## TODO: implement abundance-weighting
-            t4 = time.time()            
-
             incorp_perc = np.array(list(incorp_val_iter))
             frag_BD = addIncorpBD(frag_BD, incorp_perc, isotopeMaxBD)
 
-            t5 = time.time()
+#            t5 = time.time()
             
             # group by fraction
             frag_BD_bins = Counter(np.digitize(frag_BD, libFracBins))
             frag_BD_bins = binNum2ID(frag_BD_bins, libFracBins)            
-
             
-            t6 = time.time()
-            print [t1 - t0, t2 - t1, t3 - t2, t4 - t3, t5 - t4, t6 - t5]; #sys.exit()
-#            print frag_BD; sys.exit()
-                
-            # TODO:
-            ## convert to pd.DataFrame; combine; write out
+#            t6 = time.time()
+#            print [t1 - t0, t2 - t1, t3 - t2, t4 - t3, t5 - t4, t6 - t5]; #sys.exit()
 
+            # converting to a pandas dataframe
+            frag_BD_bins = frag_BD_bins.items()
+            df = pd.DataFrame(frag_BD_bins)
+            df.columns = ['fractions',taxon_name]
+            df.iloc[:,1] = df.applymap(str).iloc[:,1]   # must convert values to dtype=object
             
-                                
-        # replace fraction IDs in column names with BD_min-BD_max
-#        OTU_counts[libID] = pd.DataFrame(OTU_counts[libID])
-#        OTU_counts[libID].index = u_taxon_names
-#        OTU_counts[libID].columns = frac.fracID2BDminmax(libID)
+            lib_OTU_counts = pd.merge(lib_OTU_counts, df, how='outer', on='fractions') 
 
-                    
-    # combine the dataframes and write
-#    pd.concat(OTU_counts.values(), axis=1).to_csv(sys.stdout, sep='\t')
+            # status
+            t_end = time.time()
+            sys.stderr.write('    Time elapsed:  {0:.1f} sec\n'.format(t_end - t_start))
+            
+            
+
+        # formatting completed dataframe of OTU counts for the library
+        lib_OTU_counts.fillna(0, inplace=True)
+        lib_OTU_counts = pd.melt(lib_OTU_counts, id_vars=['fractions'])
+        lib_OTU_counts.columns = ['fractions', 'taxon', 'count']
+        lib_OTU_counts['library'] = libID
+        lib_OTU_counts = lib_OTU_counts[['library','fractions','taxon','count']]
+        lib_OTU_counts.sort(['fractions'])
+        ## removing end_fract-start_frac bin
+        lib_OTU_counts = lib_OTU_counts.iloc[1:,:]
+
+        # making dict of library-specific dataframes
+        OTU_counts.append(lib_OTU_counts)
+
+        
+    # combining library-specific dataframes and writing out long form of table
+    ## TODO: option for wide form of table
+    pd.concat(OTU_counts, ignore_index=False).to_csv(sys.stdout, sep='\t', index=False)
+            
 
 
 

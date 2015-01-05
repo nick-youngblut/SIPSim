@@ -879,3 +879,15 @@ Processing library: "1"
 2015-01-02 16:17:54.020 [NotebookApp] Saving notebook at /sandbox/optimization.ipynb
 2015-01-03 12:58:59.899 [NotebookApp] Saving notebook at /sandbox/optimization.ipynb
 2015-01-03 13:00:59.847 [NotebookApp] Saving notebook at /sandbox/optimization.ipynb
+^C2015-01-05 07:57:57.446 [NotebookApp] interrupted
+Serving notebooks from local directory: /home/nick/notebook/SIPSim/ipynb
+5 active kernels 
+The IPython Notebook is running at: http://localhost:7702/
+Shutdown this notebook server (y/[n])? y
+2015-01-05 07:57:58.561 [NotebookApp] CRITICAL | Shutdown confirmed
+2015-01-05 07:57:58.618 [NotebookApp] Shutting down kernels
+2015-01-05 07:57:59.455 [NotebookApp] Kernel shutdown: 6e53a24c-2b35-4ff8-8353-dca833569156
+2015-01-05 07:58:00.847 [NotebookApp] Kernel shutdown: becc1886-15a1-4ffe-bed8-7fd31fce139d
+2015-01-05 07:58:01.750 [NotebookApp] Kernel shutdown: 34e433c1-b3f3-45c0-a31d-da68109cd716
+2015-01-05 07:58:02.653 [NotebookApp] Kernel shutdown: c25c64b4-7175-46b2-a329-36b5476ce18d
+2015-01-05 07:58:03.456 [NotebookApp] Kernel shutdown: f58c74fa-5e03-4863-a2af-237442d01600
