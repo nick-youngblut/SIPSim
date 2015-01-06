@@ -21,7 +21,8 @@ Options:
   --gc_range=<gcr>    Min-max possible G+C values post-diffusion or post-noise. [default: 0,100]
   --a_weight=<aw>     Abundance weighting for isotope incorporation.
   --isotope=<is>      Isotope incorporated by taxa (13C or 15N). [default: 13C]
-  --threads=<t>       Number of threads to use for parallel processing. [default: 1]
+  --threads=<th>      Number of threads to use for parallel processing. [default: 1]
+  --chunksize=<cs>    Chunk size used by each thread. [default: 100]
   -h --help           Show this screen.
   --version           Show version.
   --debug             Debug mode

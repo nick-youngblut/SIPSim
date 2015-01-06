@@ -2,6 +2,7 @@
 
 # import
 ## batteries
+import sys
 import math
 import logging 
 ## 3rd party
@@ -74,13 +75,15 @@ class Frag_multiKDE(object):
                 raise KeyError('No KDE fit for taxon "{}"'.format(taxon_name))
 
                 
-    def sampleTaxonKDE(self, taxon_name, *args, **kwargs):
+    def sampleTaxonKDE(self, taxon_name, size=1):
         """Sample from the KDE function set for a taxon.
         Args:
         taxon_name -- name of taxon
-        args and kwargs -- passed to KDE function
+        size -- number of fragments to sample
+        #args and kwargs -- passed to KDE function
         Return:
-        2d numpy array -- [[frag_GC,frag_len], ...] 
+        #2d numpy array -- [[frag_GC,frag_len], ...]
+        generator: 1d numpy array [frag_GC, frag_len]
         """
 
         # asserting kde function
@@ -90,7 +93,9 @@ class Frag_multiKDE(object):
             raise KeyError('taxon "{}" does not have a KDE function set'.format(taxon_name))
 
         # return samples
-        return kde.resample(*args, **kwargs).T
+        #return kde.resample(*args, **kwargs).T
+        # yeild samples
+        return (kde.resample(size=1)[:,0] for x in xrange(size))
                 
                                    
     def _fitKDE(self, taxon_df):

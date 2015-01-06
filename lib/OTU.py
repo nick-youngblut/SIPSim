@@ -10,7 +10,7 @@ import scipy.stats as stats
 from Utils import _table
 
 
-def add_diffusion(gc_val, frag_len, loc=0,  max_tries=100):
+def add_diffusion(frag_gc_len, loc=0,  max_tries=100):
     """Sampling the diffusion distribution function and adding value
     to the provided GC value.
     Asserts that G+C must be between 0 & 100.
@@ -20,18 +20,19 @@ def add_diffusion(gc_val, frag_len, loc=0,  max_tries=100):
     Eur Biophys J 32:418-426
     
     Args:
-    gc_val -- G+C value to add noise to
-    frag_len -- fragment length (fragment associated with provided G+C value)
+    frag_gc_len -- array: [fragment_gc, fragment_len]
+    #gc_val -- G+C value to add noise to
+    #frag_len -- fragment length (fragment associated with provided G+C value)
     loc -- loc param of the scipy.stats distribution function
     max_tries -- max number of tries to get value in [gn_range_min,gn_range_max]
     Return:
-    float -- new GC value
+    generator -- float; new GC value
     """
     loc=0
     max_tries=100
     tries = 0
     while True:
-        new_gc = gc_val + np.random.normal(size=1, loc=loc, scale=44500/frag_len)
+        new_gc = frag_gc_len[0] + np.random.normal(size=1, loc=loc, scale=44500/frag_gc_len[1])
         if new_gc >= 0 and new_gc <= 100:
             return new_gc
             
