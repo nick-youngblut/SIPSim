@@ -33,3 +33,64 @@ INFO:tornado.access:302 GET / (127.0.0.1) 1.06ms
 2015-01-05 10:53:36.724 [NotebookApp] Saving notebook at /ipynb/bac_genome10_v2.ipynb
 2015-01-06 11:07:11.261 [NotebookApp] Saving notebook at /ipynb/bac_genome10_v2.ipynb
 2015-01-06 15:12:08.645 [NotebookApp] Saving notebook at /ipynb/sandbox/optimization.ipynb
+2015-01-08 12:54:10.031 [NotebookApp] Saving notebook at /ipynb/bac_genome10_v2.ipynb
+^C2015-01-08 12:55:57.991 [NotebookApp] interrupted
+Serving notebooks from local directory: /home/nick/notebook/SIPSim
+3 active kernels 
+The IPython Notebook is running at: http://localhost:7702/
+Shutdown this notebook server (y/[n])? y
+2015-01-08 12:55:58.586 [NotebookApp] CRITICAL | Shutdown confirmed
+2015-01-08 12:55:58.587 [NotebookApp] Shutting down kernels
+^[[A2015-01-08 12:55:59.498 [NotebookApp] Kernel shutdown: d6455e04-f352-4156-af66-b77098f1de31
+2015-01-08 12:56:00.521 [NotebookApp] Kernel shutdown: b2ed0a56-0404-4391-b4d8-dc9333b0b8d5
+2015-01-08 12:56:01.424 [NotebookApp] Kernel shutdown: 9eb46335-ce1b-4dd0-8160-6f17323b23fe
+2015-01-08 12:56:40.538 [NotebookApp] Using existing profile dir: u'/home/nick/.ipython/profile_default'
+2015-01-08 12:56:40.543 [NotebookApp] Using MathJax from CDN: https://cdn.mathjax.org/mathjax/latest/MathJax.js
+2015-01-08 12:56:40.555 [NotebookApp] Serving notebooks from local directory: /home/nick/notebook/SIPSim
+2015-01-08 12:56:40.555 [NotebookApp] 0 active kernels 
+2015-01-08 12:56:40.555 [NotebookApp] The IPython Notebook is running at: http://localhost:7702/
+2015-01-08 12:56:40.555 [NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+^C2015-01-08 12:56:53.525 [NotebookApp] interrupted
+Serving notebooks from local directory: /home/nick/notebook/SIPSim
+0 active kernels 
+The IPython Notebook is running at: http://localhost:7702/
+Shutdown this notebook server (y/[n])? y
+2015-01-08 12:56:54.328 [NotebookApp] CRITICAL | Shutdown confirmed
+2015-01-08 12:56:54.328 [NotebookApp] Shutting down kernels
+2015-01-08 12:56:59.825 [NotebookApp] Using existing profile dir: u'/home/nick/.ipython/profile_default'
+2015-01-08 12:56:59.830 [NotebookApp] Using MathJax from CDN: https://cdn.mathjax.org/mathjax/latest/MathJax.js
+2015-01-08 12:56:59.841 [NotebookApp] Serving notebooks from local directory: /home/nick/notebook/SIPSim
+2015-01-08 12:56:59.841 [NotebookApp] 0 active kernels 
+2015-01-08 12:56:59.842 [NotebookApp] The IPython Notebook is running at: http://localhost:7702/
+2015-01-08 12:56:59.842 [NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+INFO:tornado.access:302 GET / (127.0.0.1) 1.99ms
+2015-01-08 12:59:58.617 [NotebookApp] Kernel started: bbd4d57a-466c-451c-b0f0-715118c9dc03
+^C2015-01-08 13:00:35.907 [NotebookApp] interrupted
+Serving notebooks from local directory: /home/nick/notebook/SIPSim
+1 active kernels 
+The IPython Notebook is running at: http://localhost:7702/
+Shutdown this notebook server (y/[n])? y
+2015-01-08 13:00:37.022 [NotebookApp] CRITICAL | Shutdown confirmed
+2015-01-08 13:00:37.022 [NotebookApp] Shutting down kernels
+2015-01-08 13:00:37.524 [NotebookApp] Kernel shutdown: bbd4d57a-466c-451c-b0f0-715118c9dc03
+2015-01-08 13:00:50.773 [NotebookApp] Using existing profile dir: u'/home/nick/.ipython/profile_default'
+2015-01-08 13:00:50.779 [NotebookApp] Using MathJax from CDN: https://cdn.mathjax.org/mathjax/latest/MathJax.js
+2015-01-08 13:00:50.790 [NotebookApp] Serving notebooks from local directory: /home/nick/notebook/SIPSim
+2015-01-08 13:00:50.790 [NotebookApp] 0 active kernels 
+2015-01-08 13:00:50.791 [NotebookApp] The IPython Notebook is running at: http://localhost:7702/
+2015-01-08 13:00:50.791 [NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+ERROR:tornado.application:Uncaught exception in /api/kernels/bbd4d57a-466c-451c-b0f0-715118c9dc03/shell
+Traceback (most recent call last):
+  File "/opt/anaconda/lib/python2.7/site-packages/tornado/websocket.py", line 369, in _run_callback
+    callback(*args, **kwargs)
+  File "/opt/anaconda/lib/python2.7/site-packages/IPython/html/services/kernels/handlers.py", line 122, in on_message
+    self.session.send(self.zmq_stream, msg)
+  File "/opt/anaconda/lib/python2.7/site-packages/IPython/kernel/zmq/session.py", line 655, in send
+    stream.send_multipart(to_send, copy=copy)
+AttributeError: 'NoneType' object has no attribute 'send_multipart'
+2015-01-08 13:01:03.848 [NotebookApp] Saving notebook at /ipynb/bac_genome10_v2.ipynb
+INFO:tornado.access:302 GET / (127.0.0.1) 1.18ms
+2015-01-08 13:01:15.273 [NotebookApp] Kernel started: e94eac09-21b7-47b8-af7f-00f4b7d1261a
+2015-01-08 13:03:15.314 [NotebookApp] Saving notebook at /ipynb/bac_genome10_v2.ipynb
+2015-01-08 13:11:15.291 [NotebookApp] Saving notebook at /ipynb/bac_genome10_v2.ipynb
+2015-01-08 13:29:15.256 [NotebookApp] Saving notebook at /ipynb/bac_genome10_v2.ipynb

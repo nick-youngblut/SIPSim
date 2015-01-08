@@ -168,25 +168,6 @@ def main(Uargs):
             # simulating diffusion
             f = lambda x: SIPSimCpp.add_diffusion(x[0], x[1])
             frag_gc = np.apply_along_axis(f, 0, GC_len_arr)
-
-#            frag_gc = [SIPSimCpp.add_diffusion(x[0],x[1]) for x in GC_len_arr]
-
-            #frag_gc = itertools.imap(RandCpp.add_diffusion, GC_len_arr)
-#            frag_gc = RandCpp.rand_norm_range(0,1,0,1)            
-#            frag_gc = np.concatenate([x for x in starmap(OTU.add_diffusion,
-#                                                       GC_len_arr.tolist())])           
-            #frag_gc = np.concatenate(parmap.map(OTU.add_diffusion,
-            #                                    GC_len_arr,
-            #                                    processes=int(Uargs['--threads']),
-            #                                    chunksize=10000))
-            #frag_gc = parmap.map(OTU.add_diffusion,
-            #                     GC_len_arr,
-            #                     parallel=True,
-            #                     processes=int(Uargs['--threads']),
-            #                     chunksize=100)
-            #frag_gc = mpPool.imap(OTU.add_diffusion,
-            #                      GC_len_arr,
-            #                      chunksize=chunkSize)
             
             t3 = time.time()
             
@@ -208,25 +189,17 @@ def main(Uargs):
             
             # BD + BD shift from isotope incorporation
             ## TODO: implement abundance-weighting
-            #incorp_perc = np.array(list(incorp_val_iter))
-#            frag_BD = addIncorpBD(frag_BD, incorp_perc, isotopeMaxBD)
             
             incorp_vals = np.array(incorp.sample_incorpFunc(libID, taxon_name, n_samples=taxonAbsAbund))
 
             t5 = time.time()
-            
+
             frag_BD = SIPSimCython.addIncorpBD(frag_BD, incorp_vals, isotopeMaxBD)
         
-            
-            #addIncorpBD_p = partial(addIncorpBD,  isotopeMaxBD=isotopeMaxBD)
-            #frag_BD = mpPool.imap(addIncorpBD_p,
-            #                      izip(frag_BD, incorp_val_iter),
-            #                      chunksize=chunkSize)
             
             t6 = time.time()
             
             # group by fraction
-            #frag_BD = np.concatenate([x for x in frag_BD])
             frag_BD_bins = Counter(np.digitize(frag_BD, libFracBins))
             frag_BD_bins = binNum2ID(frag_BD_bins, libFracBins)            
             
