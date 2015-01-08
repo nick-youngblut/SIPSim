@@ -3,6 +3,7 @@
 import os,sys
 import logging
 import time
+from glob import glob
 from collections import defaultdict, Counter
 from itertools import imap, izip
 from functools import partial
@@ -16,6 +17,8 @@ from CommTable import CommTable
 from FracTable import FracTable
 from IsoIncorpTable import IsoIncorpTable
 import OTU
+
+import RandCpp
 
 
 # logging
