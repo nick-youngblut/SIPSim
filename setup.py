@@ -2,11 +2,21 @@
 
 from distutils.core import setup
 from distutils.extension import Extension
+from Cython.Build import cythonize
+import numpy
 
-setup(name="PackageName",
-      ext_modules=[
-          Extension('RandCpp', ['./src/RandCpp.cpp'],
-                    libraries = ["boost_python"])
-      ])
+#setup(name="PackageName",
+#      ext_modules=[
+#          Extension('SIPSimCpp', ['./src/SIPSimCpp.cpp'],
+#                    libraries = ["boost_python"])
+#      ]
+
+
+setup(
+    ext_modules = cythonize('./lib/SIPSimCython.pyx'),
+    include_dirs = [numpy.get_include()]
+    )
+
+
 
 

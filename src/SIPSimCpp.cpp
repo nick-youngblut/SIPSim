@@ -39,10 +39,49 @@ double rand_norm_range(double mean, double stdev, double min, double max){
     }    
   }
 }
+
+double add_diffusion(double frag_gc, double frag_len){
+  int min = 0;
+  int max = 100;
+  int mean = 0;
+  int max_tries = 1000;
+  int tries = 0;
+  double diff_coef = 44500;
+
+  while (1){
+    tries++;
+    
+    double stdev = diff_coef / frag_len;
+    //cout << "stdev: " << stdev << endl;
+    double gc = frag_gc + rand_norm(mean, stdev);
+
+    if ((gc >= min) & (gc <= max)){
+      return gc;
+    }
+    else if (tries >= max_tries){
+      cout << "ERROR: exceeded max tries (n=" << max_tries << ") to find a random variable" << endl;
+      exit(1);
+    }   
+  }
+
+  return 1;
+}
+
+
+double GC2BD(double frag_GC){  
+  return frag_GC / 100.0 * 0.098 + 1.66;
+}
+ 
+double addIncorpBD(double frag_BD, double incorp_perc, double isoMaxBD){
+  return incorp_perc / 100 * isoMaxBD + frag_BD;
+}
  
 
-BOOST_PYTHON_MODULE(RandCpp)
+BOOST_PYTHON_MODULE(SIPSimCpp)
 {
   def("rand_norm", rand_norm);
   def("rand_norm_range", rand_norm_range);
+  def("add_diffusion", add_diffusion);
+  def("GC2BD", GC2BD);
+  def("addIncorpBD", addIncorpBD);
 }

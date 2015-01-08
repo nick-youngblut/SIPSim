@@ -92,10 +92,13 @@ class Frag_multiKDE(object):
         except KeyError:
             raise KeyError('taxon "{}" does not have a KDE function set'.format(taxon_name))
 
+#        print kde.resample(size=10).T; sys.exit()
+            
         # return samples
         #return kde.resample(*args, **kwargs).T
         # yeild samples
-        return (kde.resample(size=1)[:,0] for x in xrange(size))
+        #return (kde.resample(size=1)[:,0] for x in xrange(size))
+        return kde.resample(size=size)
                 
                                    
     def _fitKDE(self, taxon_df):

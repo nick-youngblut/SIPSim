@@ -142,5 +142,6 @@ class IsoIncorpTable(_table):
         except KeyError:
             raise KeyError('Cannot find library-taxon: "{}"-"{}"'.format(libID, taxon_name))
 
-        for i in xrange(n_samples):
-            yield incorpFunc.sample()[0]
+        #for i in xrange(n_samples):
+        #    yield incorpFunc.sample()[0]
+        return incorpFunc.sampleSet(n_samples)

@@ -17,9 +17,8 @@ from CommTable import CommTable
 from FracTable import FracTable
 from IsoIncorpTable import IsoIncorpTable
 import OTU
-
-import RandCpp
-
+import SIPSimCpp
+import SIPSimCython
 
 # logging
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
@@ -162,12 +161,18 @@ def main(Uargs):
             
             # sampling intra-taxon incorp for taxon; return: iterator
             t1 = time.time()
-            incorp_val_iter = incorp.sample_incorpFunc(libID, taxon_name, n_samples=taxonAbsAbund)
 
             # GC --> BD
             t2 = time.time()
 
             # simulating diffusion
+            f = lambda x: SIPSimCpp.add_diffusion(x[0], x[1])
+            frag_gc = np.apply_along_axis(f, 0, GC_len_arr)
+
+#            frag_gc = [SIPSimCpp.add_diffusion(x[0],x[1]) for x in GC_len_arr]
+
+            #frag_gc = itertools.imap(RandCpp.add_diffusion, GC_len_arr)
+#            frag_gc = RandCpp.rand_norm_range(0,1,0,1)            
 #            frag_gc = np.concatenate([x for x in starmap(OTU.add_diffusion,
 #                                                       GC_len_arr.tolist())])           
             #frag_gc = np.concatenate(parmap.map(OTU.add_diffusion,
@@ -179,9 +184,9 @@ def main(Uargs):
             #                     parallel=True,
             #                     processes=int(Uargs['--threads']),
             #                     chunksize=100)
-            frag_gc = mpPool.imap(OTU.add_diffusion,
-                                  GC_len_arr,
-                                  chunksize=chunkSize)
+            #frag_gc = mpPool.imap(OTU.add_diffusion,
+            #                      GC_len_arr,
+            #                      chunksize=chunkSize)
             
             t3 = time.time()
             
@@ -193,32 +198,40 @@ def main(Uargs):
 
                 
             # GC to BD values
-           # frag_BD = GC2BD(frag_gc)
-            frag_BD = mpPool.imap(GC2BD, 
-                                  frag_gc,
-                                  chunksize=chunkSize)
+            GC2BDv = np.vectorize(SIPSimCpp.GC2BD)
+            frag_BD = GC2BDv(frag_gc)
+            frag_gc = None
 
+                        
             t4 = time.time()            
+
             
             # BD + BD shift from isotope incorporation
             ## TODO: implement abundance-weighting
             #incorp_perc = np.array(list(incorp_val_iter))
 #            frag_BD = addIncorpBD(frag_BD, incorp_perc, isotopeMaxBD)
-            addIncorpBD_p = partial(addIncorpBD,  isotopeMaxBD=isotopeMaxBD)
-
-            frag_BD = mpPool.imap(addIncorpBD_p,
-                                  izip(frag_BD, incorp_val_iter),
-                                  chunksize=chunkSize)
+            
+            incorp_vals = np.array(incorp.sample_incorpFunc(libID, taxon_name, n_samples=taxonAbsAbund))
 
             t5 = time.time()
             
+            frag_BD = SIPSimCython.addIncorpBD(frag_BD, incorp_vals, isotopeMaxBD)
+        
+            
+            #addIncorpBD_p = partial(addIncorpBD,  isotopeMaxBD=isotopeMaxBD)
+            #frag_BD = mpPool.imap(addIncorpBD_p,
+            #                      izip(frag_BD, incorp_val_iter),
+            #                      chunksize=chunkSize)
+            
+            t6 = time.time()
+            
             # group by fraction
-            frag_BD = np.concatenate([x for x in frag_BD])
+            #frag_BD = np.concatenate([x for x in frag_BD])
             frag_BD_bins = Counter(np.digitize(frag_BD, libFracBins))
             frag_BD_bins = binNum2ID(frag_BD_bins, libFracBins)            
             
-            t6 = time.time()
-            print [t1 - t0, t2 - t1, t3 - t2, t4 - t3, t5 - t4, t6 - t5]; #sys.exit()
+            t7 = time.time()
+#            print [t1 - t0, t2 - t1, t3 - t2, t4 - t3, t5 - t4, t6 - t5, t7 - t6]; sys.exit()
 
             # converting to a pandas dataframe
             frag_BD_bins = frag_BD_bins.items()
