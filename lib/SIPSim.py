@@ -229,10 +229,12 @@ def main(Uargs):
             # BD + BD shift from isotope incorporation
             ## TODO: implement abundance-weighting            
             incorp_vals = np.array(incorp.sample_incorpFunc(libID, taxon_name, n_samples=taxonAbsAbund))
-            
+
+                        
             t5 = time.time()
 
-            fragBD =  frag_BD * (np.ravel(incorp_vals) / 100 * isotopeMaxBD)
+            
+            frag_BD =  frag_BD + (np.ravel(incorp_vals) / 100.0 * isotopeMaxBD)
             #frag_BD = SIPSimCython.addIncorpBD(frag_BD, incorp_vals, isotopeMaxBD)        
             
             t6 = time.time()
@@ -243,7 +245,6 @@ def main(Uargs):
 
             
             t7 = time.time()
-#            print frag_BD
 #            print [t1 - t0, t2 - t1, t3 - t2, t4 - t3, t5 - t4, t6 - t5, t7 - t6];
  #           sys.exit()
 

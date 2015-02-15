@@ -285,9 +285,9 @@ class Config(ConfigObj):
                                 otherParams['end'] = startParam
                             elif startParam == endParam:  
                                 if startParam >= 100:
-                                    otherParams['start'] -= 1e-10
+                                    otherParams['start'] -= 1e-5
                                 else:
-                                    otherParams['end'] += 1e-10
+                                    otherParams['end'] += 1e-5
 
                         
                         try:

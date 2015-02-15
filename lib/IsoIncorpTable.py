@@ -80,9 +80,9 @@ class IsoIncorpTable(_table):
                     params['end'] = startParam
                 elif startParam == endParam:  
                     if startParam >= 100:
-                        params['start'] -= 1e-10
+                        params['start'] -= 1e-5
                     else:
-                        params['end'] += 1e-10
+                        params['end'] += 1e-5
 
             # getting distribution
             try:
