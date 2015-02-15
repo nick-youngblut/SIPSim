@@ -94,7 +94,7 @@ def populationDistributions(config, comm, percTaxa=100):
             if not comm.taxonInLib(taxon_name, libID[0]):
                 continue
                 
-            # writing out the intra-population distribution(s) for the taxon in the library            
+            # writing out the intra-population distribution(s) for the taxon in the library
             if((float(taxon_idx)+1) / ntaxa * 100 > percTaxa):            
                 set_intraPopDistZero(outTbl, libID[1], taxon_name)
             else:
@@ -161,7 +161,7 @@ def set_intraPopDistZero(outTbl, libID, taxon_name):
     # saving row of values
     l = [libID, taxon_name, '1', 'uniform', '1.0']
     outTbl.loc[outTbl.shape[0]+1] = l + ['start', '0.0']
-    outTbl.loc[outTbl.shape[0]+1] = l + ['end', '1e-10'] 
+    outTbl.loc[outTbl.shape[0]+1] = l + ['end', '0.0'] 
 
 
         
@@ -243,9 +243,9 @@ class Config(ConfigObj):
                                 
                             if startVal >= endVal:
                                 if endVal >= 100:
-                                    val4['start'] = float(val4['start']) - 1e-10
+                                    val4['start'] = float(val4['start']) #- 1e-10
                                 else:
-                                    val4['end'] = float(val4['end']) + 1e-10
+                                    val4['end'] = float(val4['end']) #+ 1e-10
                                     
                                             
 
@@ -261,7 +261,9 @@ class Config(ConfigObj):
         """
         # TODO: add BM distribution
         psblDists = {'normal' : mixture.NormalDistribution,
-                     'uniform' : mixture.UniformDistribution}
+                     'uniform' : mixture.UniformDistribution,
+                     'same_value' : lambda start,end: start
+                 }
 
         for (libID,val1) in self.iteritems():
             for (intraPopDist,val2) in self.iter_configSections(val1):
@@ -270,6 +272,23 @@ class Config(ConfigObj):
                     for (interPopDist,val4) in self.iter_configSections(val3):
                         d = val4['distribution']
                         otherParams = {k:v for k,v in val4.items() if k != 'distribution' and v is not None}
+
+                        try: 
+                            startParam = otherParams['start']
+                            endParam = otherParams['end']
+                        except KeyError:
+                            pass
+                        else:
+                            # assert start <= end
+                            if startParam > endParam:
+                                otherParams['start'] = endParam
+                                otherParams['end'] = startParam
+                            elif startParam == endParam:  
+                                if startParam >= 100:
+                                    otherParams['start'] -= 1e-10
+                                else:
+                                    otherParams['end'] += 1e-10
+
                         
                         try:
                             val4['function'] = psblDists[d](**otherParams)

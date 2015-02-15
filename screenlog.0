@@ -347,3 +347,10 @@ Shutdown this notebook server (y/[n])? y
 2015-02-15 09:33:21.929 [NotebookApp] Saving notebook at /ipynb/bac_genome10_v3.ipynb
 2015-02-15 09:33:42.726 [NotebookApp] Saving notebook at /ipynb/bac_genome10_v3.ipynb
 2015-02-15 09:34:15.808 [NotebookApp] Saving notebook at /ipynb/bac_genome10_v3.ipynb
+2015-02-15 09:39:44.966 [NotebookApp] Creating new notebook in /ipynb/
+2015-02-15 09:39:45.991 [NotebookApp] Kernel started: 425bd485-942f-4b9b-9531-e4c088fbfd29
+2015-02-15 09:41:46.094 [NotebookApp] Saving notebook at /ipynb/truncated_distributions.ipynb
+2015-02-15 09:42:27.468 [NotebookApp] Saving notebook at /ipynb/truncated_distributions.ipynb
+2015-02-15 09:42:37.998 [NotebookApp] Saving notebook at /ipynb/truncated_distributions.ipynb
+2015-02-15 09:43:24.021 [NotebookApp] Saving notebook at /ipynb/truncated_distributions.ipynb
+2015-02-15 10:14:25.243 [NotebookApp] Saving notebook at /ipynb/bac_genome10_v3.ipynb

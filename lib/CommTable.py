@@ -1,4 +1,5 @@
 from Utils import _table
+import re
 
 class CommTable(_table):
     

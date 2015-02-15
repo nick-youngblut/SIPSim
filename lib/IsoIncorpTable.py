@@ -54,6 +54,7 @@ class IsoIncorpTable(_table):
         psblFuncs = {'normal' : mixture.NormalDistribution,
                      'uniform' : mixture.UniformDistribution}
         
+        
         # storing pymix distribution functions & weights for each distribution
         allDistFuncs = []
         allDistWeights = []
@@ -73,10 +74,11 @@ class IsoIncorpTable(_table):
             except KeyError:
                 pass
             else:
+                # assert start <= end
                 if startParam > endParam:
                     params['start'] = endParam
                     params['end'] = startParam
-                elif startParam == endParam:
+                elif startParam == endParam:  
                     if startParam >= 100:
                         params['start'] -= 1e-10
                     else:
