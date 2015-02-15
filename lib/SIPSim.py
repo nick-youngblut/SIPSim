@@ -204,24 +204,24 @@ def main(Uargs):
             # GC --> BD
             t2 = time.time()
 
-            # simulating diffusion
+            # simulating diffusion; calc BD from frag GC
             f = lambda x: SIPSimCpp.add_diffusion(x[0], x[1])
-            frag_gc = np.apply_along_axis(f, 0, GC_len_arr)
+            frag_BD = np.apply_along_axis(f, 0, GC_len_arr) / 100.0 * 0.098 + 1.66
             
             t3 = time.time()
             
             # simulating general noise in the gradient column
-            if OTUt.gn_scale_nonzero:
-                frag_gc = mpPool.imap(OTU.sample_g_noise_func,
-                                      frag_gc,
-                                      chunksize=chunkSize)
+            #if OTUt.gn_scale_nonzero:
+            #    frag_gc = mpPool.imap(OTU.sample_g_noise_func,
+            #                          frag_gc,
+            #                          chunksize=chunkSize)
 
                 
             # GC to BD values
-            GC2BDv = np.vectorize(SIPSimCpp.GC2BD)
-            frag_BD = GC2BDv(frag_gc)
-            frag_gc = None
-
+#            GC2BDv = np.vectorize(SIPSimCpp.GC2BD)
+#            frag_BD = GC2BDv(frag_gc)
+#            frag_BD = frag_gc / 100.0 * 0.098 + 1.66
+#            frag_gc = None
                         
             t4 = time.time()            
 
@@ -245,7 +245,7 @@ def main(Uargs):
             t7 = time.time()
 #            print frag_BD
 #            print [t1 - t0, t2 - t1, t3 - t2, t4 - t3, t5 - t4, t6 - t5, t7 - t6];
-#            sys.exit()
+ #           sys.exit()
 
             # converting to a pandas dataframe
             frag_BD_bins = frag_BD_bins.items()
