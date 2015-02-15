@@ -11,6 +11,7 @@ from functools import partial
 import pandas as pd
 import numpy as np
 import multiprocessing as mp
+from intervaltree import Interval, IntervalTree
 ## application
 import FragGC
 from CommTable import CommTable
@@ -18,7 +19,7 @@ from FracTable import FracTable
 from IsoIncorpTable import IsoIncorpTable
 import OTU
 import SIPSimCpp
-import SIPSimCython
+#import SIPSimCython
 
 # logging
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
@@ -47,7 +48,39 @@ def makeEmptyCountTable(comm, frac):  # depreciated
         
     return countTable
 
-        
+
+def make_diffusion_dists(start=1,end=60001,step=100,maxRange=2000000):
+    """Making interval tree of normal distributions (loc=0, sigma=*see below).
+    Will be used to model the observed G+C variance caused by diffusion.
+    The interval tree is to limit the number of pre-generated distributions that
+    will need to be created.
+    Using equation: sigma = 44500 / L, where L = fragment length.
+    Args:
+    start -- start of sequence
+    end -- end of sequence
+    step -- sequence step
+    maxRange -- last (largest) range added to interval tree for any outlier large fragments
+    Return:
+    interval tree object
+    
+    """
+    # initialize itree
+    itree = IntervalTree()
+    
+    for i in xrange(start,end,step):
+        itree[i:i+step] = partial(np.random.normal, loc=0, scale=44500.0/i)
+
+    # max itree
+    itree[end+1:maxRange] = partial(np.random.normal, loc=0, scale=44500.0/end)
+
+    return itree
+    
+
+#def add_diffusion(frag_GC_len, diffusionDists):    
+#    for x in diffusionDists[frag_GC_len[1]]:
+#        return frag_GC_len[0] + (x.data)()
+    
+    
 def GC2BD(frag_gc):
     """Conversion of G+C (0-100) to buoyant density.
     Args:
@@ -72,7 +105,7 @@ def addIncorpBD(frag_BD_incorp, isotopeMaxBD):
     #    result[i] = frag_BD[i] + isotopeMaxBD * (incorp_perc[i] / 100)
     return frag_BD_incorp[0] + isotopeMaxBD * (frag_BD_incorp[1] / 100)
 
-
+    
 def binNum2ID(frag_BD_bins, libFracBins):
     """Convert Counter(np.digitize()) for frag_BD  to the fraction BD-min-max.
     Args:
@@ -82,10 +115,14 @@ def binNum2ID(frag_BD_bins, libFracBins):
     dict of {fractionID : fragment_counts}
     """
     return {'{0:.3f}-{1:.3f}'.format(libFracBins[k-1],libFracBins[k]):v for (k,v) in frag_BD_bins.items()}
+
+
+
+    
     
     
 
-# main
+#--- main ---#
 #@profile
 def main(Uargs):
     # --abs_abund as int
@@ -96,7 +133,7 @@ def main(Uargs):
     except TypeError:
         raise TypeError('"{}" must be float-like'.format(str(Uargs['--abs_abund'])))
 
-
+        
     # parallel
     chunkSize = int(Uargs['--chunksize'])
     mpPool= mp.Pool(processes=int(Uargs['--threads']))
@@ -107,13 +144,15 @@ def main(Uargs):
     # loading community file
     comm = CommTable.from_csv(Uargs['<comm_file>'], sep='\t')
     comm.set_abs_abund(Uargs['--abs_abund'])
-    
-    
+        
     # loading incorp file
     incorp = IsoIncorpTable.from_csv(Uargs['<incorp_file>'], sep='\t')    
     
     # loading fraction file
     frac = FracTable.from_csv(Uargs['<frac_file>'], sep='\t')
+
+    # creating interval tree of normal distributions to model diffusion
+    diffusionDists = make_diffusion_dists()
     
     # initializing OTU table class
     OTUt = OTU.OTU_table(frac,
@@ -159,7 +198,7 @@ def main(Uargs):
             t0 = time.time()
             GC_len_arr = fragKDE.sampleTaxonKDE(taxon_name, size=taxonAbsAbund)            
             
-            # sampling intra-taxon incorp for taxon; return: iterator
+             # sampling intra-taxon incorp for taxon; return: iterator
             t1 = time.time()
 
             # GC --> BD
@@ -188,23 +227,25 @@ def main(Uargs):
 
             
             # BD + BD shift from isotope incorporation
-            ## TODO: implement abundance-weighting
-            
+            ## TODO: implement abundance-weighting            
             incorp_vals = np.array(incorp.sample_incorpFunc(libID, taxon_name, n_samples=taxonAbsAbund))
-
+            
             t5 = time.time()
 
-            frag_BD = SIPSimCython.addIncorpBD(frag_BD, incorp_vals, isotopeMaxBD)
-        
+            fragBD =  frag_BD * (np.ravel(incorp_vals) / 100 * isotopeMaxBD)
+            #frag_BD = SIPSimCython.addIncorpBD(frag_BD, incorp_vals, isotopeMaxBD)        
             
             t6 = time.time()
             
             # group by fraction
             frag_BD_bins = Counter(np.digitize(frag_BD, libFracBins))
             frag_BD_bins = binNum2ID(frag_BD_bins, libFracBins)            
+
             
             t7 = time.time()
-#            print [t1 - t0, t2 - t1, t3 - t2, t4 - t3, t5 - t4, t6 - t5, t7 - t6]; sys.exit()
+#            print frag_BD
+#            print [t1 - t0, t2 - t1, t3 - t2, t4 - t3, t5 - t4, t6 - t5, t7 - t6];
+#            sys.exit()
 
             # converting to a pandas dataframe
             frag_BD_bins = frag_BD_bins.items()

@@ -40,7 +40,8 @@ double rand_norm_range(double mean, double stdev, double min, double max){
   }
 }
 
-double add_diffusion(double frag_gc, double frag_len){
+
+double add_diffusion_old(double frag_gc, double frag_len){
   int min = 0;
   int max = 100;
   int mean = 0;
@@ -65,6 +66,14 @@ double add_diffusion(double frag_gc, double frag_len){
   }
 
   return 1;
+}
+
+
+double add_diffusion(double frag_gc, double frag_len){
+  double diff_coef = 44500;
+    
+  double stdev = diff_coef / frag_len;
+  return frag_gc + rand_norm(0, stdev);
 }
 
 

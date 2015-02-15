@@ -14,7 +14,8 @@ import configobj
 from configobj import ConfigObj, flatten_errors
 from validate import Validator
 import numpy as np
-import pymix.mixture as mixture
+#import pymix.mixture as mixture
+import mixture
 import pandas as pd
 ## application
 import Utils

@@ -2,7 +2,8 @@
 ## batteries
 import os,sys
 ## 3rd party
-import pymix.mixture as mixture
+#import pymix.mixture as mixture
+import mixture
 import numpy as np
 
 

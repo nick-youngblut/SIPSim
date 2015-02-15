@@ -2,7 +2,8 @@
 ## batteries
 from collections import defaultdict
 ## 3rd party
-import pymix.mixture as mixture
+#import pymix.mixture as mixture
+import mixture
 ## applicaton
 from Utils import _table
 

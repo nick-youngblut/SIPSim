@@ -10,7 +10,8 @@ import numpy as np
 import pandas as pd
 import scipy.stats as stats
 from sklearn.neighbors.kde import KernelDensity
-import pymix.mixture as mixture
+#import pymix.mixture as mixture
+import mixture
 
 # logging
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
