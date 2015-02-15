@@ -121,7 +121,6 @@ def binNum2ID(frag_BD_bins, libFracBins):
     
     
     
-
 #--- main ---#
 #@profile
 def main(Uargs):
@@ -133,6 +132,14 @@ def main(Uargs):
     except TypeError:
         raise TypeError('"{}" must be float-like'.format(str(Uargs['--abs_abund'])))
 
+
+    # fragment info log file
+    if Uargs['--log'] != 'None':
+        logfh = open(Uargs['--log'], 'w')
+        logfh.write("\t".join(['library','taxon','fragment_GC','fragment_length']))
+        logfh.write("\n")
+    else:
+        logfh = None
         
     # parallel
     chunkSize = int(Uargs['--chunksize'])
@@ -196,14 +203,19 @@ def main(Uargs):
             
             # sampling fragment GC & length values from taxon-specific KDE
             t0 = time.time()
-            GC_len_arr = fragKDE.sampleTaxonKDE(taxon_name, size=taxonAbsAbund)            
+            GC_len_arr = fragKDE.sampleTaxonKDE(taxon_name, size=taxonAbsAbund)
+            ## logging if needed
+            if logfh is not None:
+                logfh.write("\n".join( ["\t".join([libID, taxon_name, str(x),str(y)]) for x,y in np.transpose(GC_len_arr)] ))
+                logfh.write("\n")
+                # TODO: write to file
             
              # sampling intra-taxon incorp for taxon; return: iterator
             t1 = time.time()
 
             # GC --> BD
             t2 = time.time()
-
+            
             # simulating diffusion; calc BD from frag GC
             f = lambda x: SIPSimCpp.add_diffusion(x[0], x[1])
             frag_BD = np.apply_along_axis(f, 0, GC_len_arr) / 100.0 * 0.098 + 1.66
@@ -281,5 +293,9 @@ def main(Uargs):
     pd.concat(OTU_counts, ignore_index=False).to_csv(sys.stdout, sep='\t', index=False)
             
 
+    # finish up
+    if logfh is not None:        
+        logfh.close()
+        sys.stderr.write( 'Fragment info written to: {}\n'.format(logfh.name))
 
 

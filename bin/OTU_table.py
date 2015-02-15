@@ -16,13 +16,14 @@ Options:
   <incorp_file>       Name of file produced by isoIncorp subcommand.
   <frac_file>         Name of file produced by fractions subcommand.
   --abs_abund=<aa>    Absolute abundance of all taxa in the community. [default: 1e6]
+  --isotope=<is>      Isotope incorporated by taxa (13C or 15N). [default: 13C]
+  --a_weight=<aw>     Abundance weighting for isotope incorporation (NOT YET IMPLEMENTED).
   --g_noise=<gn>      scipy distribution function describing gradient 'noise'. [default: cauchy]
   --gn_scale=<np>     Scale parameter for the '--g_noise' distribution. [default: 0.0]
   --gc_range=<gcr>    Min-max possible G+C values post-diffusion or post-noise. [default: 0,100]
-  --a_weight=<aw>     Abundance weighting for isotope incorporation.
-  --isotope=<is>      Isotope incorporated by taxa (13C or 15N). [default: 13C]
   --threads=<th>      Number of threads to use for parallel processing. [default: 1]
   --chunksize=<cs>    Chunk size used by each thread. [default: 100]
+  --log=<lg>          File name for log of GC and fragment length values ('None' = no file). [default: None]
   -h --help           Show this screen.
   --version           Show version.
   --debug             Debug mode
