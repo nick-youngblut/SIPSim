@@ -12,23 +12,26 @@ Usage:
 Options:
   <genomeList>  A file listing: taxonName<tab>genomeSeqFileName
   --fp=<fp>     Full path to genomeSeqFiles (if not in genomeList file).
-  --rtr=<rtr>   Read template length range (min,max). [Default: 400,1200]
-  --rtl=<rtl>   Read template length distribution (see Description). [Default: uniform,250,250]
-  --nf=<nf>     Number of fragments to simulate per genome. [Default: 10000]
-  --fld=<ld>    Fragment length distribution (see Description). [Default: skewed-normal,11000,1000,-1000]
-  --flr=<m>     Fragment length range (min,max). [Default: 4000,None]
+  --rtr=<rtr>   Read template length range (min,max).
+                [Default: 400,1200]
+  --rtl=<rtl>   Read template length distribution (see Description).
+                [Default: uniform,250,250]
+  --nf=<nf>     Number of fragments to simulate per genome.
+                [Default: 10000]
+  --fld=<ld>    Fragment length distribution (see Description).
+                [Default: skewed-normal,9000,2500,-5]
+  --flr=<m>     Fragment length range (min,max). 
+                [Default: 4000,None]
   --fr=<fr>     Fasta of forward & reverse primers (if amplicons).
-  --np=<np>     Number of genomes to process in parallel. [Default: 1]  
+  --np=<np>     Number of genomes to process in parallel.
+                [Default: 1]  
   -h --help     Show this screen.
   --version     Show version.
   --debug       Debug mode
 
 Description:
   Simulate the genomic fragments that would be found in an isopycnic gradient.
-  The G+C content is calcualted from each fragment and a fragment G+C distribution
-  is modeled using kernel density estimation (1 per genome).
-  These distributions are then used downstream to simulate the distribution of
-  a high number of fragments in the isopycnic gradient.  
+  The location and G+C of each simulated fragment is written to a table.
 
   Genome sequence file names in the <genomeList> file should either include 
   the full path to the file or the path needs to be provided by the '--fp' flag.
@@ -48,7 +51,23 @@ Description:
     Assumning amplicon lengths of 500-650 bp, use: '--rtr 500,650'.
     This will filter out all in-silico amplicons outside of this range.
 
-  Output:
+
+  **Distributions** 
+
+  normal:
+    Parameters: location (mean), scale (standard deviation)
+
+  uniform:
+    Parameters: low, high
+    
+  skewed-normal:
+    Parameters: location (mean), scale (stardard deviation), shape (skew)
+    Example: --fld  skewed-normal,11000,1000,-1000
+
+  truncated-normal:
+    Parameters: location, scale, low, high
+
+  **Output**
     A tab-delim file written to STDOUT.
 
 """

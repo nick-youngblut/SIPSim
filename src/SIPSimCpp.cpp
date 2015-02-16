@@ -1,4 +1,5 @@
 #include <iostream>
+#include <math.h>
 #include <boost/python/module.hpp>
 #include <boost/python/def.hpp>
 #include <boost/random.hpp>
@@ -41,38 +42,9 @@ double rand_norm_range(double mean, double stdev, double min, double max){
 }
 
 
-double add_diffusion_old(double frag_gc, double frag_len){
-  int min = 0;
-  int max = 100;
-  int mean = 0;
-  int max_tries = 1000;
-  int tries = 0;
-  double diff_coef = 44500;
-
-  while (1){
-    tries++;
-    
-    double stdev = diff_coef / frag_len;
-    //cout << "stdev: " << stdev << endl;
-    double gc = frag_gc + rand_norm(mean, stdev);
-
-    if ((gc >= min) & (gc <= max)){
-      return gc;
-    }
-    else if (tries >= max_tries){
-      cout << "ERROR: exceeded max tries (n=" << max_tries << ") to find a random variable" << endl;
-      exit(1);
-    }   
-  }
-
-  return 1;
-}
-
-
 double add_diffusion(double frag_gc, double frag_len){
-  double diff_coef = 44500;
-    
-  double stdev = diff_coef / frag_len;
+  double diff_coef = 44500;    
+  double stdev = sqrt(diff_coef / frag_len);
   return frag_gc + rand_norm(0, stdev);
 }
 

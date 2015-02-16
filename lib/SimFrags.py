@@ -9,11 +9,25 @@ import functools
 
 ## 3rd party
 import numpy as np
-import pymc.distributions as pymcDist
 import skew_normal
+import scipy.stats as stats
+from rtnorm import rtnorm
 
 
+def truncated_normal(location, scale, low, high, size=1):
+    """Creating a function to randomly sample from a truncated normal distribution.
+    Args:
+    loc -- mean
+    scale -- standard deviation
+    low -- min value that can be sampled from full distribution
+    high -- max value that can be sampled from the full distribution
+    size -- number of random samples to return
+    """
+    nrm=stats.logistic.cdf(high)-stats.logistic.cdf(low)
+    yr = np.random.rand(size)*(nrm)+stats.logistic.cdf(low)
+    return stats.logistic.ppf(yr, loc=location)
 
+    
 class SimFrags(object):
     """Class for genome fragment simulation"""
 
@@ -23,10 +37,16 @@ class SimFrags(object):
         fld -- fragment length distribution (type,moments...)
         flr -- fragment length range (min,max)
         rtl -- read template length distribution (type,moments..)
-        """
-        
-        self.flr = [float('inf') if x.lower() == 'none' or x.lower == 'inf' or x is None else int(x) for x in flr]
+        """        
+        self.flr = [float('inf') if
+                    x.lower() == 'none' or
+                    x.lower == 'inf' or
+                    x is None else
+                    int(x) for x in flr]
+        if self.flr[0] == float('inf'):
+            self.flr[0] = 1
 
+        
         # setting fld distribution function
         self.fld = self._set_user_dist(fld)
         assert self.fld is not None, 'fragment length distribution (fld) should not be None'
@@ -91,7 +111,8 @@ class SimFrags(object):
             fragSize = int(self.fld(size=1))
             #print 'fragSize: {}'.format(str(fragSize))
             if tryCnt >= 1000:
-                raise ValueError('Exceeded {} tries to find frag length in min-max range'.format(str(tryCnt)))
+                raise ValueError('Exceeded {} tries to find'
+                                 ' frag length in min-max range'.format(str(tryCnt)))
             elif fragSize >= self.get_minFragSize() and fragSize <= self.get_maxFragSize():
                 break
             else:
@@ -100,7 +121,8 @@ class SimFrags(object):
                 
 
         # frag start (position upstream from read template)        
-        randPos = int(pymcDist.runiform(0, fragSize - readTempSize, size=1))
+        randPos = np.random.randint(0, fragSize - readTempSize)
+            #int(pymcDist.runiform(0, fragSize - readTempSize, size=1))
         fragStart = readTempPos[2] - randPos
         fragEnd = fragStart + fragSize - 1
         
@@ -108,24 +130,42 @@ class SimFrags(object):
                 
 
     def _set_user_dist(self, userDist):
-        """Setting user defined distribution. Using pymc distribution functions.
+        """Setting user defined distribution. Using numpy distribution functions.
         Args:
         userDist -- User defined distribution with moment info. Example: ['normal',10,1]
         Return:
-        function -- partial pymc function with moment values provided
+        function -- partial numpy distribution function with moment values provided
         """
         userDist[0] = str(userDist[0]).lower()
         userDist[1:] = [int(x) for x in userDist[1:]]
         
         if userDist[0] == 'normal':
-            assert len(userDist) >= 3, 'mu and tau must be provided for "normal" distribution'
-            return functools.partial(np.random.normal, loc=userDist[1], scale=userDist[2])
+            assert len(userDist) >= 3, ('loc and scale must be provided'
+                                        'for "normal" distribution')
+            return functools.partial(np.random.normal,
+                                     loc=userDist[1],
+                                     scale=userDist[2])
         elif userDist[0] == 'uniform':
-            assert len(userDist) >= 3, 'lower,upper must be provided for "uniform" distribution' 
-            return functools.partial(np.random.uniform, low=userDist[1], high=userDist[2])
+            assert len(userDist) >= 3, ('low and high must be provided'
+                                        'for "uniform" distribution')
+            return functools.partial(np.random.uniform,
+                                     low=userDist[1],
+                                     high=userDist[2])
         elif userDist[0] == 'skewed-normal':
-            assert len(userDist) >= 4, 'mu,tau,alpha must be provided for "skewed-normal" distribution'
-            return functools.partial(skew_normal.rnd_skewnormal, location=userDist[1], scale=userDist[2], shape=userDist[3])
+            assert len(userDist) >= 4, ('loc, scale, and shape must be provided'
+                                        'for "skewed-normal" distribution')
+            return functools.partial(skew_normal.rnd_skewnormal,
+                                     location=userDist[1],
+                                     scale=userDist[2],
+                                     shape=userDist[3])
+        elif userDist[0] == 'truncated-normal':
+            assert len(userDist) >= 5, ('loc, scale, low, and high must be provided'
+                                       'for "truncated-normal" distribution')
+            return functools.partial(rtnorm,
+                                     mu=userDist[1],
+                                     sigma=userDist[2],
+                                     a=userDist[3],
+                                     b=userDist[4])
         else:
             raise ValueError('Distribution "{}" is not supported.'.format(userDist[0]))
                         
@@ -141,7 +181,7 @@ class SimFrags(object):
         if nAmps == 1:
             i = 0
         else:
-            i = pymcDist.rdiscrete_uniform(0, nAmps - 1)
+            i = np.random.randint(0, nAmps-1) #pymcDist.rdiscrete_uniform(0, nAmps - 1)
         row = genome.get_MFEprimerRes().iloc[i]
         row = row[['HitID','BindingStart','BindingStop']]
         return [x for x in row]
@@ -163,7 +203,8 @@ class SimFrags(object):
         scaf = genome.fastaIdx[scafName]
 
         # start
-        start = pymcDist.rdiscrete_uniform(scaf.start, scaf.stop)
+        start = np.random.randint(scaf.start, scaf.stop)
+        #pymcDist.rdiscrete_uniform(scaf.start, scaf.stop)
         
         # end        
         mpSize = self.rtl(size=1)

@@ -29,7 +29,17 @@ Options:
   --debug             Debug mode
 
 Description:
+  Create an OTU table for each fraction in >=1 CsCl gradient.
 
+  Basically, the location within the gradient (i.e., buoyant density)
+  of each DNA fragment associated with each taxon is determined, and
+  then binned into simulated gradient fractions that span certain
+  buoyant density ranges.
+
+  The abundance of each OTU in each fraction is based on:
+    1) The absolute abundance of the OTU in the pre-gradient community.
+    2) The G+C content of each simulated fragment of the taxon.
+    3) The fragment length of each simulated fragment (influences diffusion).
 """
 
 # import
