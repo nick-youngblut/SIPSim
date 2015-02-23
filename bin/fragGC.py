@@ -92,6 +92,7 @@ from Genome import Genome
 from SimFrags import SimFrags
 import Utils
 
+
 # functions
 def by_genome(inFile, taxonName, args):
     """All processing conducted per genome.

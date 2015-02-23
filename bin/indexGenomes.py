@@ -70,9 +70,14 @@ def is_file(fileName):
         raise IOError('"{}" does not exist'.format(fileName))
 
         
-def sys_call(cmd):
+def sys_call(cmd, quiet=False):
+    """System call of command."""
     try:
-        proc = subprocess.Popen([cmd], shell=True)
+        if quiet:
+            DEVNULL = open(os.devnull, 'w')
+            proc = subprocess.Popen([cmd], shell=True, stdout=DEVNULL)
+        else:
+            proc = subprocess.Popen([cmd], shell=True)
     except subprocess.CalledProcessError:
         pass # handle errors in the called executable
     except OSError:
@@ -120,12 +125,9 @@ def index_genome(genomeFile, taxonName, chilliDir, faToTwoBitExe, K_value, quiet
 
     return 1
 
-    
-    
-# main
-if __name__ == '__main__':
-    args = docopt(__doc__, version='0.1')
-    
+
+
+def main(Uargs):
     # machine info
     OS = get_os()
     machine = platform.machine()
@@ -139,19 +141,27 @@ if __name__ == '__main__':
 
         
     # loading genome list
-    genomeList = Utils.parseGenomeList(args['<genomeList>'], filePath=args['--fp'])
+    genomeList = Utils.parseGenomeList(Uargs['<genomeList>'], filePath=Uargs['--fp'])
 
     # setting function for parallel calling
     index_genome_par = functools.partial(index_genome,
                                          chilliDir=chilliDir,
                                          faToTwoBitExe=faToTwoBitExe,
-                                         K_value=args['--K_value'],
-                                         quiet=args['--quiet']
+                                         K_value=Uargs['--K_value'],
+                                         quiet=Uargs['--quiet']
                                          )
                                          
 
     # indexing genomes in parallel
-    parmap.starmap(index_genome_par, genomeList, processes=int(args['--np']), chunksize=1)
+    parmap.starmap(index_genome_par, genomeList, processes=int(Uargs['--np']), chunksize=1)
 
     # status
     print "#-- All genomes indexed --#"
+
+    
+    
+# main
+if __name__ == '__main__':
+    Uargs = docopt(__doc__, version='0.1')
+    main(Uargs)
+    
