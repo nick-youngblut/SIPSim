@@ -18,9 +18,7 @@ Options:
                 [Default: uniform,250,250]
   --nf=<nf>     Number of fragments to simulate per genome.
                 If value ends in 'X', then the number of reads needed
-                to obtain that coverage in the largest genome will be used
-                (determined by simulating fragments using the specified
-                fragment length distribution).
+                to obtain that coverage for each genome will be used
                 [Default: 10000]
   --fld=<ld>    Fragment length distribution (see Description).
                 [Default: skewed-normal,9000,2500,-5]
@@ -139,66 +137,44 @@ def by_genome(inFile, taxonName, args):
         if genome.get_nAmplicons == 0:
             return None
 
-            
-    # simulating fragments
+    # simulating fragments    
     simFO = SimFrags(fld=args['--fld'], flr=args['--flr'], rtl=args['--rtl'])
     fragList = []
-    for i in xrange(int(args['--nf'])):
-        (scaf,fragStart,fragEnd,fragSeq) = simFO.simFrag(genome)
+    ## if using coverage
+    if args['--nf'].endswith('X') or args['--nf'].endswith('x'):
+        coverage = float(args['--nf'].rstrip('xX'))
+        genomeLength = genome.length
+        fragLenCov = genomeLength * coverage
+        fragLenTotal = 0
+        while 1:
+            (scaf,fragStart,fragEnd,fragSeq) = simFO.simFrag(genome)
+            fragList.append([genome.get_taxonName(),
+                             scaf,
+                             str(fragStart),
+                             str(fragEnd),
+                             str(genome.calcGC(fragSeq))
+                         ])
+            fragLenTotal += abs(fragEnd - fragStart + 1)
+            if fragLenTotal >= fragLenCov:
+                sys.stderr.write('  Genome length (bp): {}\n'.format(genomeLength))
+                sys.stderr.write('  Number of fragments simulated: '\
+                                 '{}\n'.format(len(fragList)))
+                break
+        
+    ## if using fixed number of fragments
+    else:            
+        for i in xrange(int(args['--nf'])):
+            (scaf,fragStart,fragEnd,fragSeq) = simFO.simFrag(genome)
 
-        fragList.append([genome.get_taxonName(),
-                         scaf,
-                         str(fragStart),
-                         str(fragEnd),
-                         str(genome.calcGC(fragSeq))
-                     ])
-
+            fragList.append([genome.get_taxonName(),
+                             scaf,
+                             str(fragStart),
+                             str(fragEnd),
+                             str(genome.calcGC(fragSeq))
+                         ])
+            
     return fragList
 
-
-def get_NFragsByCoverage(genomeList, coverage, fld, flr, rtl):
-    """Determining the number of fragments to simulate
-    based on the coverage of the largest genome in the provided
-    list.
-    Args:
-    genomeList -- iterable of genome fasta file names
-    coverage -- user-defined coverage
-    fld -- fragment length distribution
-    flr -- fragment length range
-    rtl -- read template length
-    Return:
-    integer of number of fragments to simulate
-    """
-    # input
-    coverage = float(coverage.rstrip('xX'))
-    simFO = SimFrags(fld=fld, flr=flr, rtl=rtl)
-    
-    # making dict of genome lengths; finding max length
-    gl = {taxonName : [Genome(inFile, taxonName).length, inFile]
-          for inFile,taxonName in genomeList}
-    gl_max_taxon = sorted(gl, key=gl.get, reverse=True)[0]
-    gl_max_len = gl[gl_max_taxon][0]
-    gl_max_file = gl[gl_max_taxon][1]
-
-    # determining number of fragments needed based on simulated fragments
-    fragLenCov = gl_max_len * coverage    
-    genome = Genome(gl_max_file, gl_max_taxon)    
-    fragLenTotal = 0
-    nFrags = 0
-    while 1:
-        nFrags += 1
-        (scaf,fragStart,fragEnd,fragSeq) = simFO.simFrag(genome)
-        fragLenTotal += abs(fragEnd - fragStart + 1)
-        if fragLenTotal >= fragLenCov:
-            # status
-            sys.stderr.write('Using user-defined genome coverage of the largest ' \
-                             'genome to determine number of fragments to simulate.\n')
-            sys.stderr.write('  Largest genome: {}\n'.format(gl_max_taxon))
-            sys.stderr.write('  Genome size (bp): {}\n'.format(gl_max_len))    
-            sys.stderr.write('  Number of fragments needed: {}\n'.format(nFrags))    
-
-            # return
-            return nFrags
     
         
 # main
@@ -214,13 +190,6 @@ if __name__ == '__main__':
 
     # list of genome files
     genomeList =  Utils.parseGenomeList(args['<genomeList>'], filePath=args['--fp'])
-
-    # n-fragments: coverage or set number
-    if args['--nf'].endswith('X') or args['--nf'].endswith('x'):
-        args['--nf'] = get_NFragsByCoverage(genomeList, args['--nf'],
-                                            fld=args['--fld'],
-                                            flr=args['--flr'],
-                                            rtl=args['--rtl'])
         
     # analyzing each genome (in parallel)    
     by_genome_part = functools.partial(by_genome, args=args)
@@ -228,7 +197,8 @@ if __name__ == '__main__':
     print '\t'.join(['taxon_name','scaffoldID','fragStart','fragEnd','GC'])            
     if args['--debug']:
         for x in itertools.starmap(by_genome_part,genomeList):
-            pass
+            for y in x:
+                print '\t'.join(y)
     else:
         ret = parmap.starmap(by_genome_part,
                              genomeList,
