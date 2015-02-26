@@ -59,7 +59,8 @@ class Genome(object):
 
             
         # system call
-        cmd = '{} -i {} -d {} --tab --size_start {} --size_stop {} --ppc 70 --tm_start 50 --tm_stop 70'
+        cmd = '{} -i {} -d {} --tab --size_start {} ' \
+              '--size_stop {} --ppc 70 --tm_start 50 --tm_stop 70'
         cmd = cmd.format(MFEprimerExe,
                          self.get_primerFile(),
                          self.get_fileName(),
@@ -86,7 +87,8 @@ class Genome(object):
         MFEprimer table filtered of overlaps
         """
         if self.get_MFEprimerRes() is None:  
-            raise AttributeError('genome object does not have MFEprimerRes attribute. Run MFEprimer() first')
+            raise AttributeError('genome object does not have MFEprimerRes attribute. ' \
+                                 'Run MFEprimer() first')
 
             
         # making interval tree
@@ -135,7 +137,7 @@ class Genome(object):
         iv_idx = [x.data[0] for x in tree2.iter()]
         self.MFEprimerRes = self.MFEprimerRes.iloc[iv_idx]                
                       
-
+        
     @staticmethod
     def _calcPercOverlap(iv1, iv2):
         """Calculating overlap between intervals (iv1, iv2)
@@ -210,7 +212,7 @@ class Genome(object):
     def iter_seqRecs(self):
         """Iterate over sequence records"""
         with open(self.fileName) as inF:
-            for rec in SeqIO.parse(inF, self.get_fileFormat()):
+            for rec in SeqIO.parse(inF, 'fasta'):
                 yield rec
                 
     def get_seq(self, scaffold, start, end):
@@ -226,4 +228,7 @@ class Genome(object):
             raise AttributeError('No fastaIdx attribute for genome object')
         except KeyError:
             raise KeyError('ScaffoldID "{}" not found in genome fasta index'.format(scaffold))
-    
+            
+    @property
+    def length(self):
+        return sum([len(x) for x in self.iter_seqRecs()])
