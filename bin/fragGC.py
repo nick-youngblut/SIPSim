@@ -41,7 +41,8 @@ Description:
   '--rtr' and '--rtl':
     'read template' refers to the template nucleotide molecule from
     which the read originated. Template size is needed to constrain the location and lengths
-    of the simulated genome fragments that contain these templates (G+C calculated from these fragments).
+    of the simulated genome fragments that contain these templates (G+C calculated
+    from these fragments).
     Templates could either be an amplicon (e.g. 16S rRNA sequencing)
     or a genomic fragment (e.g. shotgun metagenomics). '--rtl' constrains
     the size of this template. If primers are provided, the in-silico generated amplicons
@@ -134,9 +135,14 @@ def by_genome(inFile, taxonName, args):
         genome.filterOverlaps()
         
         # skip genome if no amplicons 
-        if genome.get_nAmplicons == 0:
-            return None
-
+        if genome.get_nAmplicons() == 0:
+            return [[genome.get_taxonName(),
+                             "No_amplicons",
+                             'NA',
+                             'NA',
+                             'NA']]
+            
+            
     # simulating fragments    
     simFO = SimFrags(fld=args['--fld'], flr=args['--flr'], rtl=args['--rtl'])
     fragList = []
@@ -154,13 +160,17 @@ def by_genome(inFile, taxonName, args):
                              str(fragEnd),
                              str(genome.calcGC(fragSeq))
                          ])
-            fragLenTotal += abs(fragEnd - fragStart + 1)
-            if fragLenTotal >= fragLenCov:
+            if fragStart == "NA" or fragEnd == "NA":
+                break
+            elif fragLenTotal >= fragLenCov:
+                sys.stderr.write('  Genome name: {}\n'.format(genome.get_taxonName()))                
                 sys.stderr.write('  Genome length (bp): {}\n'.format(genomeLength))
                 sys.stderr.write('  Number of fragments simulated: '\
                                  '{}\n'.format(len(fragList)))
                 break
-        
+            fragLenTotal += abs(fragEnd - fragStart + 1)
+
+                
     ## if using fixed number of fragments
     else:            
         for i in xrange(int(args['--nf'])):
@@ -172,6 +182,8 @@ def by_genome(inFile, taxonName, args):
                              str(fragEnd),
                              str(genome.calcGC(fragSeq))
                          ])
+            if fragStart == "NA" or fragEnd == "NA":
+                break
             
     return fragList
 

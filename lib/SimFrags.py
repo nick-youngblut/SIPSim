@@ -23,7 +23,7 @@ def truncated_normal(location, scale, low, high, size=1):
     high -- max value that can be sampled from the full distribution
     size -- number of random samples to return
     """
-    nrm=stats.logistic.cdf(high)-stats.logistic.cdf(low)
+    nrm = stats.logistic.cdf(high)-stats.logistic.cdf(low)
     yr = np.random.rand(size)*(nrm)+stats.logistic.cdf(low)
     return stats.logistic.ppf(yr, loc=location)
 
@@ -68,10 +68,14 @@ class SimFrags(object):
         while 1:
             # get read template position
             try:
-                readTempPos = self._get_randPos_amp(genome)
+               readTempPos = self._get_randPos_amp(genome)
             except AttributeError:
                 readTempPos = self._get_randPos_shotgun(genome)
             assert len(readTempPos) == 3, 'readTempPos should be: "scaf,start,end"'
+
+            # if no read template position (no amplicon): return None
+            if readTempPos[0] is None:
+                return ["No_amplicons", 'NA', 'NA', '']
             
             # simulating fragment around read template
             fragPos = self._simFragPos(readTempPos)            
@@ -82,7 +86,8 @@ class SimFrags(object):
             
             # checking to see if fragment acutally in range (accounting for edge cases)
             if tryCnt >= 1000:
-                raise ValueError('Exceeded {} tries to find frag length in min-max range'.format(str(tryCnt)))                
+                raise ValueError('Exceeded {} tries to find frag '\
+                                 'length in min-max range'.format(str(tryCnt)))                
             elif (fragSeqLen >= self.get_minFragSize()
                 and fragSeqLen <= self.get_maxFragSize()):
                 break
@@ -103,6 +108,11 @@ class SimFrags(object):
         Return:
         [scafID,fragStart,fragEnd]
         """
+        # assertions
+        if readTempPos[0] is None:
+            return [None] * 3
+
+        # read template size
         readTempSize = readTempPos[2] - readTempPos[1] + 1
         
         # nfrag size
@@ -175,15 +185,17 @@ class SimFrags(object):
         Args:
         genome -- genome-like object
         Return:
-        [start,end] -- read template start-end
+        [scaffold,start,end] -- read template scafoldID,start,end
         """
         nAmps = genome.get_nAmplicons()
-        if nAmps == 1:
+        if nAmps <= 0:
+            return [None] * 3
+        elif nAmps == 1:
             i = 0
         else:
-            i = np.random.randint(0, nAmps-1) #pymcDist.rdiscrete_uniform(0, nAmps - 1)
+            i = np.random.randint(0, nAmps-1)
         row = genome.get_MFEprimerRes().iloc[i]
-        row = row[['HitID','BindingStart','BindingStop']]
+        row = row[['HitID','BindingStart','BindingStop']]        
         return [x for x in row]
         
 

@@ -42,7 +42,7 @@ class Genome(object):
         
         # create fasta index
         self.fastaIdx = pyfasta.Fasta(self.get_fileName())
-            
+        
         
     def callMFEprimer(self, rtr, MFEprimerExe='./MFEprimer.py'):
         """Calling MFEprimer to get amplicons.
@@ -167,8 +167,11 @@ class Genome(object):
         tCount = seq.count('T')        
         cCount = seq.count('C')
         gCount = seq.count('G')
-        
-        return float(cCount + gCount) / float(aCount + tCount + cCount + gCount) * 100.0
+
+        try:
+            return float(cCount + gCount) / float(aCount + tCount + cCount + gCount) * 100.0
+        except ZeroDivisionError:
+            return 'NA'
             
                     
     # getters/setters/iters
