@@ -5,24 +5,40 @@
 gradientComms: simulate communities in the samples used for SIP
 
 Usage:
-  gradientComms [options] <genomeList>
+  gradientComms [options] <taxon_list>
   gradientComms -h | --help
   gradientComms --version
 
 Options:
-  <genomeList>  A file listing: taxonName<tab>genomeSeqFileName
-  --fp=<fp>     Full path to genomeSeqFiles (if not in genomeList file).
-  --pf=<pf>     Profile file setting optionsal arguments for grinder. See grinder help for more info.
-  --exe=<exe>   Grinder executable. [Default: ./bin/grinder.pl]
-  -h --help     Show this screen.
-  --version     Show version.
-  --debug       Debug mode
+  <taxon_list>        A file listing taxon names ('-' if from STDIN). [default: -]
+  --shared_perc=<sp>  The percent of taxa shared in each community.
+                      Percent set by the community with the smallest richness.
+                      Example: if smallest community is 10 taxa, a shared percent of 20% = 2 shared taxa.
+                      The total taxon pool must be large enough to accommodate all un-shared taxa.
+                      [default: 100]
+  --richness=<r>      The number of taxa in each library.
+                      Values of 0-1 will be interpreted as a fraction of the total taxa pool.
+                      [default: 1]
+  --abund_dist=<a>    The statistical distribution used for selecting relative abundances.
+                      Options (format: distribution,param1,param2):
+                        * uniform,start,end
+                        * normal,loc,scale
+                        * exponential,loc,scale
+                      [default: exponential,1,0.5]
+  --perm_perc=<pp>    How much to vary the rank-abundances between communities.
+                      [default: 0]
+  --n_comm=<nc>       Number of communities to simulate.
+                      [default: 1]
+  --config=<c>        Config file for setting community-specific parameters (& global params).
+                      Community-specific parameters can include:
+                        * richness
+                        * abund_dist
+  --debug             Debug mode
+  --version           Show version.
+  -h --help           Show this screen.
 
 Description:
-  Simple wrapper for calling modified version of grinder ('grinderSIP').
-  grinderSIP just outputs a table of taxon abundances and does not actually
-  simulate reads, so options that affect read simulation will have not affect.
-  Options can be provided to grinderSIP with the profile file ('--pf').
+  Simulating the alpha and and beta diversities of >=1 community.
 
   Output:
     A tab-delimited table of taxon abundances for each library is written to STDOUT.
@@ -33,7 +49,7 @@ Description:
 ## batteries
 from docopt import docopt
 import sys,os
-import subprocess
+#import subprocess
 
 ## 3rd party
 #import parmap
@@ -43,6 +59,7 @@ scriptDir = os.path.dirname(__file__)
 libDir = os.path.join(scriptDir, '../lib/')
 sys.path.append(libDir)
 
+from SimComms import SimComms
 
 
 # functions
@@ -54,30 +71,30 @@ def call_grinder(genomeListFile, filePath=None, profileFile=None, exe='grinder')
     exe -- name of grinder executable
     profileFile -- profile file to provide to grinder
     """
-    
+
     cmd = '{exe} -rf {glf} -fp {fp}'.format(exe=exe, glf=genomeListFile, fp=filePath)
     
     if profileFile is not None:
         cmd += ' -pf {}'.format(profileFile)
-
         
-    #print os.system(cmd)
-    print subprocess.check_output([cmd], shell=True)
+#    print subprocess.check_output([cmd], shell=True)
     
 
 
-# main
+def main(uargs):
+
+    sc = SimComms(taxon_list = uargs['<taxon_list>'],
+                  perm_perc = uargs['--perm_perc'],
+                  shared_perc = uargs['--shared_perc'],
+                  richness = uargs['--richness'],
+                  abund_dist = uargs['--abund_dist'],
+                  n_comm = uargs['--n_comm'],
+                  config = uargs['--config'])
+    
+
+    
 if __name__ == '__main__':
-    args = docopt(__doc__, version='0.1')
+    uargs = docopt(__doc__, version='0.1')
+    main(uargs)
 
-    # grinder exe    
-    grinderExe = str(args['--exe'])
-    if grinderExe.startswith('./'):
-        grinderExe = os.path.join(scriptDir, '.' + grinderExe)
-
-        
-    # call grinder; print output
-    call_grinder(args['<genomeList>'],
-                 filePath=args['--fp'],
-                 profileFile=args['--pf'],
-                 exe=grinderExe)
+    
