@@ -134,23 +134,17 @@ def by_genome(inFile, taxonName, args):
         # filtering overlapping in-silico amplicons
         genome.filterOverlaps()
         
-        # skip genome if no amplicons 
-        if genome.get_nAmplicons() == 0:
-            return [[genome.get_taxonName(),
-                             "No_amplicons",
-                             'NA',
-                             'NA',
-                             'NA']]
-            
-            
+        
     # simulating fragments    
     simFO = SimFrags(fld=args['--fld'], flr=args['--flr'], rtl=args['--rtl'])
     fragList = []
+    ## if no amplicons
+    if genome.nAmplicons == 0:
+        pass
     ## if using coverage
-    if args['--nf'].endswith('X') or args['--nf'].endswith('x'):
+    elif args['--nf'].endswith('X') or args['--nf'].endswith('x'):
         coverage = float(args['--nf'].rstrip('xX'))
-        genomeLength = genome.length
-        fragLenCov = genomeLength * coverage
+        fragLenCov = genome.length * coverage
         fragLenTotal = 0
         while 1:
             (scaf,fragStart,fragEnd,fragSeq) = simFO.simFrag(genome)
@@ -163,14 +157,8 @@ def by_genome(inFile, taxonName, args):
             if fragStart == "NA" or fragEnd == "NA":
                 break
             elif fragLenTotal >= fragLenCov:
-                sys.stderr.write('  Genome name: {}\n'.format(genome.get_taxonName()))                
-                sys.stderr.write('  Genome length (bp): {}\n'.format(genomeLength))
-                sys.stderr.write('  Number of fragments simulated: '\
-                                 '{}\n'.format(len(fragList)))
                 break
-            fragLenTotal += abs(fragEnd - fragStart + 1)
-
-                
+            fragLenTotal += abs(fragEnd - fragStart + 1)                
     ## if using fixed number of fragments
     else:            
         for i in xrange(int(args['--nf'])):
@@ -184,7 +172,14 @@ def by_genome(inFile, taxonName, args):
                          ])
             if fragStart == "NA" or fragEnd == "NA":
                 break
-            
+
+    # status
+    sys.stderr.write('  Genome name: {}\n'.format(genome.get_taxonName()))                
+    sys.stderr.write('  Genome length (bp): {}\n'.format(genome.length))
+    sys.stderr.write('  Number of amplicons: {}\n'.format(genome.nAmplicons))
+    sys.stderr.write('  Number of fragments simulated: {}\n'.format(len(fragList)))
+
+                
     return fragList
 
     

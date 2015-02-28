@@ -36,7 +36,9 @@ class Genome(object):
         self.fileName = inFile
         self.taxonName = taxonName
         self.primerFile = primerFile
-
+        self._nAmplicons = None
+        self._length = None
+        
         # checking that the genome files exist
         Utils.checkExists(self.fileName)
         
@@ -192,12 +194,6 @@ class Genome(object):
         
     def get_maxTemplateRange(self):
         return self.rtr[1]
-        
-    def get_nAmplicons(self):
-        try:
-            return self.MFEprimerRes.shape[0]
-        except ValueError:
-            return None
 
     def get_primerFile(self):
         try:
@@ -234,4 +230,15 @@ class Genome(object):
             
     @property
     def length(self):
-        return sum([len(x) for x in self.iter_seqRecs()])
+        if self._length is None:
+            self._length = sum([len(x) for x in self.iter_seqRecs()])
+        return self._length
+
+    @property
+    def nAmplicons(self):
+        if self._nAmplicons is None:
+            try:
+                self._nAmplicons = self.MFEprimerRes.shape[0]
+            except ValueError:
+                self._nAmplicons = None
+        return self._nAmplicons

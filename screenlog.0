@@ -582,3 +582,143 @@ Shutdown this notebook server (y/[n])? y
 2015-02-26 12:32:33.114 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
 2015-02-26 13:50:20.139 [NotebookApp] Kernel interrupted: 668f7b7d-fa36-4fc8-920b-34c71aede14b
 2015-02-26 13:50:32.989 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-26 13:52:32.980 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-26 13:54:32.979 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-26 13:56:32.977 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-26 13:57:03.598 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-26 13:58:32.955 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-26 14:32:32.920 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-26 14:42:32.904 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-26 14:44:32.888 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-26 14:46:32.893 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-26 14:51:05.485 [NotebookApp] Kernel interrupted: 668f7b7d-fa36-4fc8-920b-34c71aede14b
+2015-02-26 14:52:32.883 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-26 14:54:32.862 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-26 14:56:32.872 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-26 14:58:32.854 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-26 14:59:16.929 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-26 15:02:32.861 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-26 15:02:51.942 [NotebookApp] Kernel interrupted: 668f7b7d-fa36-4fc8-920b-34c71aede14b
+2015-02-26 15:04:32.860 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-26 15:06:32.835 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-26 15:08:32.853 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-26 15:08:57.463 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-26 15:10:06.324 [NotebookApp] Creating new notebook in /ipynb/bac_genome/Ecoli/
+2015-02-26 15:10:07.000 [NotebookApp] Kernel started: acbbcb5d-673d-42b2-a844-0eb20c86b600
+2015-02-26 15:10:36.339 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/README.ipynb
+2015-02-26 15:10:39.794 [NotebookApp] Kernel shutdown: acbbcb5d-673d-42b2-a844-0eb20c86b600
+2015-02-26 15:10:44.120 [NotebookApp] Creating new notebook in /ipynb/bac_genome/Ecoli/
+2015-02-26 15:10:44.637 [NotebookApp] Kernel started: 53c0d725-55d0-4b2c-b195-c8f43ac75404
+2015-02-26 15:12:45.031 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/Dataset.ipynb
+2015-02-26 15:14:45.021 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/Dataset.ipynb
+2015-02-27 08:27:56.927 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 08:29:56.919 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 08:31:56.918 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 08:53:56.873 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 08:55:56.864 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 08:57:56.861 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 08:59:56.859 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 10:15:56.725 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 10:17:56.714 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 10:21:56.706 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 10:41:56.660 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 10:43:56.644 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 10:45:56.657 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 10:47:56.645 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 10:49:56.654 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 10:50:33.897 [NotebookApp] Kernel interrupted: 668f7b7d-fa36-4fc8-920b-34c71aede14b
+2015-02-27 10:51:56.645 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 10:52:10.948 [NotebookApp] Kernel interrupted: 668f7b7d-fa36-4fc8-920b-34c71aede14b
+2015-02-27 10:52:25.731 [NotebookApp] Kernel interrupted: 668f7b7d-fa36-4fc8-920b-34c71aede14b
+2015-02-27 10:53:48.487 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 10:55:56.642 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 10:57:56.634 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 10:59:56.630 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 11:07:56.617 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 11:08:59.905 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 11:09:56.610 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 11:11:56.597 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 11:13:54.731 [NotebookApp] Kernel interrupted: 668f7b7d-fa36-4fc8-920b-34c71aede14b
+2015-02-27 11:13:56.598 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 11:14:54.789 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 11:16:33.028 [NotebookApp] Kernel interrupted: 668f7b7d-fa36-4fc8-920b-34c71aede14b
+2015-02-27 11:17:56.584 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 11:19:56.582 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 11:21:56.594 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 11:27:56.582 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 11:29:56.581 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 11:31:56.555 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 11:33:56.554 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 11:34:13.337 [NotebookApp] Creating new notebook in /ipynb/bac_genome/all/nl1/
+2015-02-27 11:34:14.023 [NotebookApp] Kernel started: 9485c5bd-1e55-4e0c-afc8-a488824a13fb
+2015-02-27 11:36:14.018 [NotebookApp] Saving notebook at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+2015-02-27 11:38:14.014 [NotebookApp] Saving notebook at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+2015-02-27 11:40:14.016 [NotebookApp] Saving notebook at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+2015-02-27 11:41:13.802 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 11:42:14.165 [NotebookApp] Saving notebook at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+2015-02-27 11:43:57.187 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 11:45:57.178 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 11:51:12.141 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/Dataset.ipynb
+2015-02-27 11:53:12.134 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/Dataset.ipynb
+2015-02-27 11:55:12.127 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/Dataset.ipynb
+2015-02-27 11:56:57.607 [NotebookApp] Creating new notebook in /ipynb/bac_genome/Ecoli/
+2015-02-27 11:56:58.202 [NotebookApp] Kernel started: 3d86cc7e-c414-4ae8-a0bc-ddb4f33e19e8
+2015-02-27 11:57:12.124 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/Dataset.ipynb
+2015-02-27 11:58:58.874 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-27 12:00:58.862 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-27 12:01:12.111 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/Dataset.ipynb
+2015-02-27 12:01:26.537 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-27 12:02:27.613 [NotebookApp] Kernel interrupted: 3d86cc7e-c414-4ae8-a0bc-ddb4f33e19e8
+2015-02-27 12:02:58.856 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-27 12:03:58.145 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-27 12:04:58.854 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-27 12:06:58.853 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-27 12:08:58.847 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-27 12:10:58.843 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-27 12:12:59.080 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-27 12:14:59.077 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-27 12:16:59.073 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-27 12:17:04.889 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-27 12:18:59.068 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-27 12:20:59.064 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-27 12:21:23.438 [NotebookApp] Saving notebook at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+2015-02-27 12:22:59.063 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-27 12:24:59.060 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-27 12:26:08.548 [NotebookApp] Kernel interrupted: 3d86cc7e-c414-4ae8-a0bc-ddb4f33e19e8
+2015-02-27 12:26:59.053 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-27 12:28:59.049 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-27 12:30:59.048 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-27 12:32:59.043 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-28 07:11:30.364 [NotebookApp] Kernel shutdown: 668f7b7d-fa36-4fc8-920b-34c71aede14b
+2015-02-28 07:14:22.182 [NotebookApp] Saving notebook at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+2015-02-28 07:15:13.609 [NotebookApp] Uploading notebook to /ipynb/bac_genome_all.ipynb
+2015-02-28 07:16:22.133 [NotebookApp] Saving notebook at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+2015-02-28 07:17:08.238 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-28 07:18:09.122 [NotebookApp] Saving notebook at /ipynb/bac_genome_all.ipynb
+2015-02-28 07:18:22.171 [NotebookApp] Saving notebook at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+2015-02-28 07:19:08.526 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-28 07:20:22.202 [NotebookApp] Saving notebook at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+2015-02-28 07:21:08.221 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-28 07:22:22.370 [NotebookApp] Saving notebook at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+2015-02-28 07:22:25.765 [NotebookApp] Kernel interrupted: 9485c5bd-1e55-4e0c-afc8-a488824a13fb
+2015-02-28 07:23:53.696 [NotebookApp] Saving notebook at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+2015-02-28 07:24:28.904 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-28 07:26:33.577 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-28 07:28:33.592 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-28 07:29:56.582 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-28 07:30:29.601 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-28 10:16:42.015 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-28 10:18:41.994 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-28 10:20:41.989 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+2015-02-28 10:22:22.324 [NotebookApp] Saving notebook at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+2015-02-28 10:22:42.332 [NotebookApp] Saving notebook at /ipynb/bac_genome/Ecoli/fragLen.ipynb
+sh: 1: ampFragGC_skewN90-25-n5-nS.txt: not found
+-->interrupted.
+2015-02-28 10:24:07.349 [NotebookApp] Kernel interrupted: 9485c5bd-1e55-4e0c-afc8-a488824a13fb
+2015-02-28 10:24:22.315 [NotebookApp] Saving notebook at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+2015-02-28 10:24:54.091 [NotebookApp] Kernel interrupted: 9485c5bd-1e55-4e0c-afc8-a488824a13fb
+2015-02-28 10:25:47.260 [NotebookApp] Saving notebook at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+2015-02-28 10:25:53.471 [NotebookApp] Kernel restarted: 9485c5bd-1e55-4e0c-afc8-a488824a13fb
+2015-02-28 10:26:22.311 [NotebookApp] Saving notebook at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+2015-02-28 10:28:22.306 [NotebookApp] Saving notebook at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+2015-02-28 10:30:22.300 [NotebookApp] Saving notebook at /ipynb/bac_genome/all/nl1/fragLen.ipynb
