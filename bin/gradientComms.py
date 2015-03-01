@@ -92,8 +92,8 @@ def main(uargs):
                   config = uargs['--config'])
 
     # making communities
-    for i in xrange(SC.n_comm):
-        SC.make_comm(str(i+1))
+    for comm_id in SC.keys():        
+        SC.make_comm(comm_id)
 
     # permuting based on permute perc
     for comm_id, comm in SC.items():

@@ -73,9 +73,8 @@ def str2dict(s):
     """Parsing string (format: 'item:value,item:value')
     to create a dict object
     """
-    if s is None or type(s) is dict:
-        return s
-    elif type(s) is str:
+    
+    if hasattr(s, 'split'):
         l = re.split('[:,]', s)
         try:
             return {k.lower():float(v) for k,v in zip(l[0::2],l[1::2])}
@@ -83,8 +82,9 @@ def str2dict(s):
             msg = 'distribution parameter values must be ints or floats.'
             raise TypeError(msg)
     else:
-        raise TypeError
-
+        return s
+        
+        
 def random_insert_seq(l, seq):
     """Insert seq items at random locations in list.
     Args:
@@ -98,6 +98,7 @@ def random_insert_seq(l, seq):
     inputs = iter(l)
     return [inserts[pos] if pos in inserts else next(inputs)
               for pos in xrange(len(l) + len(seq))]
+
 
     
 class _Comm(object):
@@ -204,28 +205,27 @@ class SimComms(_Comm):
         
     def _set_comm_params(self):
         """Setting community-specific params including applying global params.
-        """        
-        for i in xrange(1, self.n_comm + 1):
-            i = str(i)
-            # setting community
-            try:
-                self.comm_params[i]
-            except:
-                self.comm_params[i] = dict()
+        """
+        # adding to comm params if not enough set by config
+        n_config_comms = len(self.comm_params.keys())
+        n_diff = self.n_comm - n_config_comms
+        
+        for i in xrange(n_diff):
+            self.comm_params[str(n_config_comms + i + 1)] = dict()
+        
+        for k,v in self.comm_params.items():
             # checking for params
-            if ('richness' not in self.comm_params[i].keys() or
-                self.comm_params[i]['richness'] is None):
-                self.comm_params[i]['richness'] = self.richness
-            if ('abund_dist' not in self.comm_params[i].keys() or
-                self.comm_params[i]['abund_dist'] is None):
-                self.comm_params[i]['abund_dist'] = self.abund_dist
-            if ('abund_dist_p' not in self.comm_params[i].keys() or
-                self.comm_params[i]['abund_dist_p'] is None):
-                self.comm_params[i]['abund_dist_p'] = self.abund_dist
-            self.comm_params[i]['abund_dist_p'] = \
-                        str2dict(self.comm_params[i]['abund_dist_p'])
-            
-                
+            if ('richness' not in v.keys() or
+                v['richness'] is None):
+                v['richness'] = self.richness
+            if ('abund_dist' not in v.keys() or
+                v['abund_dist'] is None):
+                v['abund_dist'] = self.abund_dist
+            if ('abund_dist_p' not in v.keys() or
+                v['abund_dist_p'] is None):
+                v['abund_dist_p'] = self.abund_dist_params
+            v['abund_dist_p'] = str2dict(v['abund_dist_p'])
+
                 
     def _set_shared_taxa(self):
         """A list of taxa shared among all communities.
@@ -313,18 +313,25 @@ class SimComms(_Comm):
         perm_idx = sample(range(comm.n_taxa), n_perm)
         perm_ig = itemgetter(perm_idx)
         n_perm_idx = set(range(comm.n_taxa)) - set(perm_idx)
-        n_perm_ig = itemgetter(*n_perm_idx)
-        
-        # altering pandas series of taxa & abundances
-        comm.taxa.index = random_insert_seq(n_perm_ig(comm.taxa.index),
-                                            perm_ig(comm.taxa.index))
-
+        if len(n_perm_idx) > 0:
+            n_perm_ig = itemgetter(*n_perm_idx)        
+            # altering pandas series of taxa & abundances
+            comm.taxa.index = random_insert_seq(n_perm_ig(comm.taxa.index),
+                                                perm_ig(comm.taxa.index))
+        else:
+            # altering pandas series of taxa & abundances
+            comm.taxa.index = random_insert_seq([],
+                                                perm_ig(comm.taxa.index))
+            
         
         
     def items(self):
         return self.comms.items()
     def keys(self):
-        return self.comms.keys()
+        try:
+            return self.comms.keys()
+        except AttributeError:
+            return np.sort(self.comm_params.keys())
     def values(self):
         return self.comms.values()
         
@@ -424,6 +431,7 @@ class Comm(_Comm):
             '  Community richness is set too high! It is > taxon pool.\n'\
             '  There is not enough taxa to make the desired communities.\n' \
             '  You must reduce richness or increase perc_shared.\n'\
+            '  NOTE: shared_perc is based on the community with the min. richness.\n'\
             .format(comm_id))
         
         # selecting additional taxa beyond those shared by all comms
@@ -442,9 +450,7 @@ class Comm(_Comm):
         rel_abunds = np.sort(rel_abunds / sum(rel_abunds))[::-1]
     
         # making a series for the taxa
-        self.taxa = pd.Series(rel_abunds, index=self.taxa)
-
-        
+        self.taxa = pd.Series(rel_abunds, index=self.taxa)        
 
 
     def __repr__(self):
