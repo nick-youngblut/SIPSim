@@ -271,7 +271,8 @@ class Config(ConfigObj):
                     # setting standard distributions
                     for (interPopDist,val4) in self.iter_configSections(val3):
                         d = val4['distribution']
-                        otherParams = {k:v for k,v in val4.items() if k != 'distribution' and v is not None}
+                        otherParams = {k:v for k,v in val4.items() \
+                                       if k != 'distribution' and v is not None}
 
                         try: 
                             startParam = otherParams['start']
