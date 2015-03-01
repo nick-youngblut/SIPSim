@@ -285,13 +285,30 @@ class SimComms(_Comm):
         self.comms[comm_id] = Comm(comm_id, self)
 
         
-    def write_comm_table(self):
+    def write_comm_table(self, Long=True):
         """Joining comm objects into 1 dataframe and printing.
+        Args:
+        Long -- write table in long format
         """
         df =  pd.concat([x.taxa for x in self.values()],
                         axis=1)
+        write_index = True
         df.columns = self.keys()
-        df.to_csv(sys.stdout, sep='\t', na_rep=0, float_format='%.9f')
+        if Long == True:
+            write_index = False
+            # melting
+            val_vars = list(df.columns)
+            df['taxon'] = df.index
+            df = pd.melt(df, id_vars=['taxon'], value_vars=val_vars)
+            # ordering columns
+            df.columns = ['taxon_name', 'community', 'rel_abund_perc']            
+            df = df[['community','taxon_name','rel_abund_perc']]
+            # getting rank by community (grouping by community)
+            ## TODO
+            
+        # writing dataframe
+        df.to_csv(sys.stdout, sep='\t', na_rep=0,
+                  float_format='%.9f', index=write_index)
         
         
     @staticmethod
@@ -447,7 +464,7 @@ class Comm(_Comm):
         abund_dist = self._get_abund_dist(self.params['abund_dist'],
                                           self.params['abund_dist_p'])        
         rel_abunds = abund_dist(size=self.n_taxa)
-        rel_abunds = np.sort(rel_abunds / sum(rel_abunds))[::-1]
+        rel_abunds = np.sort(rel_abunds / sum(rel_abunds) * 100)[::-1]
     
         # making a series for the taxa
         self.taxa = pd.Series(rel_abunds, index=self.taxa)        
