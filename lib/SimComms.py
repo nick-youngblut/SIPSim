@@ -5,10 +5,12 @@ import numpy as np
 import pandas as pd
 import scipy.stats as stats
 from StringIO import StringIO
-import random
+from random import randrange, sample, shuffle
 import re
 from functools import partial
 from itertools import chain
+from operator import itemgetter
+from collections import OrderedDict
 
 ## 3rd party
 from configobj import ConfigObj, flatten_errors
@@ -65,6 +67,8 @@ from validate import Validator
 # class Comm
 ## community of taxa and relative abundances
 
+
+# utility functions
 def str2dict(s):
     """Parsing string (format: 'item:value,item:value')
     to create a dict object
@@ -81,7 +85,21 @@ def str2dict(s):
     else:
         raise TypeError
 
+def random_insert_seq(l, seq):
+    """Insert seq items at random locations in list.
+    Args:
+    l  -- target list 
+    seq -- iterable of items to insert
+    Return:
+    list of with values randomly inserted
+    """
+    insert_locs = sample(xrange(len(l) + len(seq)), len(seq))
+    inserts = dict(zip(insert_locs, seq))
+    inputs = iter(l)
+    return [inserts[pos] if pos in inserts else next(inputs)
+              for pos in xrange(len(l) + len(seq))]
 
+    
 class _Comm(object):
     """Parent class for other classes in the module
     """
@@ -148,6 +166,13 @@ class SimComms(_Comm):
         self._set_shared_taxa()
         
 
+    def old_print(self):
+        out = []
+        for k,v in self.comms.items():
+             out.append('#Community: {}'.format(k))
+             out.append(v.__repr__())
+        return '\n'.join(out)
+        
             
     def _get_configspec(self, strIO=True):
         """Return configspec set for instance.
@@ -222,7 +247,7 @@ class SimComms(_Comm):
             with open(fileName, 'r') as inF:
                 for l in inF.readlines():
                     self._taxon_pool.append(l.rstrip())
-        random.shuffle(self._taxon_pool)
+        shuffle(self._taxon_pool)
 
         
     def _drawFromTaxonPool(self, n):
@@ -248,7 +273,7 @@ class SimComms(_Comm):
         # assertions
         comm_id = str(comm_id)
         if not hasattr(self, 'comms'):
-            self.comms = dict()
+            self.comms = OrderedDict() #dict()
             
         try:
             self.comm_params[comm_id]
@@ -259,6 +284,49 @@ class SimComms(_Comm):
         # init comm objects
         self.comms[comm_id] = Comm(comm_id, self)
 
+        
+    def write_comm_table(self):
+        """Joining comm objects into 1 dataframe and printing.
+        """
+        df =  pd.concat([x.taxa for x in self.values()],
+                        axis=1)
+        df.columns = self.keys()
+        df.to_csv(sys.stdout, sep='\t', na_rep=0, float_format='%.9f')
+        
+        
+    @staticmethod
+    def permute(comm, perm_perc):
+        """Permute a certain percentage of the taxa abundances.
+        Permuting just the indices of the series objects.
+        """
+        # assertions
+        perm_perc = float(perm_perc)
+        assert (perm_perc >= 0 and perm_perc <= 100),\
+            'perm_perc is not in range [0,100]'
+        assert hasattr(comm, 'taxa'), \
+            'No "taxa" attribute for comm {}'.format(comm.comm_id)
+
+        # variables
+        n_perm = int(round(perm_perc / 100 * comm.n_taxa,0))
+        
+        # permuting index of comm
+        perm_idx = sample(range(comm.n_taxa), n_perm)
+        perm_ig = itemgetter(perm_idx)
+        n_perm_idx = set(range(comm.n_taxa)) - set(perm_idx)
+        n_perm_ig = itemgetter(*n_perm_idx)
+        
+        # altering pandas series of taxa & abundances
+        comm.taxa.index = random_insert_seq(n_perm_ig(comm.taxa.index),
+                                            perm_ig(comm.taxa.index))
+
+        
+        
+    def items(self):
+        return self.comms.items()
+    def keys(self):
+        return self.comms.keys()
+    def values(self):
+        return self.comms.values()
         
     # property/setter
     @property
@@ -345,40 +413,42 @@ class Comm(_Comm):
         abund_dist -- taxon abundance distribution
         """
         _Comm.__init__(self, *args, **kwargs)
+        self.comm_id = comm_id                                                     
         self.params = GradientComms.comm_params[comm_id]
         self.n_shared = GradientComms.n_shared
         self.richness = self.params['richness']
                                                        
         # assertions
-        assert self.richness <= self.n_shared + GradientComms.n_taxa_remaining,\
-            'Comm_ID {}: richness is > taxon pool.\n'\
+        if self.richness > self.n_shared + GradientComms.n_taxa_remaining:
+            sys.exit('ERROR: Comm_ID {}\n'\
+            '  Community richness is set too high! It is > taxon pool.\n'\
             '  There is not enough taxa to make the desired communities.\n' \
-            '  You must reduce community richness or increase perc_shared.'
+            '  You must reduce richness or increase perc_shared.\n'\
+            .format(comm_id))
         
         # selecting additional taxa beyond those shared by all comms
-        ## taxa inserted randomly in list
-        ## TODO : finish
+        ## unique taxa inserted randomly in list while perserving shared taxa rank-abund
         n_unique = self.richness - GradientComms.n_shared
         assert n_unique >= 0, 'ERROR: Comm_ID {}: the number ' \
             'of unique taxa is < 0'.format(comm_id)
-        #self.taxa = GradientComms.shared_taxa + \
-        #            GradientComms._drawFromTaxonPool(n_unique)
-        #self.taxa = [0] * richness
-        
+        self.taxa = random_insert_seq(GradientComms.shared_taxa,
+                                      GradientComms._drawFromTaxonPool(n_unique))
 
+        
         # drawing relative abundances from the user-defined distribution
         abund_dist = self._get_abund_dist(self.params['abund_dist'],
                                           self.params['abund_dist_p'])        
         rel_abunds = abund_dist(size=self.n_taxa)
-        rel_abunds = rel_abunds / sum(rel_abunds)
-
-        
+        rel_abunds = np.sort(rel_abunds / sum(rel_abunds))[::-1]
+    
         # making a series for the taxa
         self.taxa = pd.Series(rel_abunds, index=self.taxa)
 
-        # permuting the rank-abundance of taxa
-        ## TODO: finish
         
+
+
+    def __repr__(self):
+        return self.taxa.__repr__()
 
         
     def _get_abund_dist(self, dist, params):

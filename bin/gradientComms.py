@@ -95,7 +95,14 @@ def main(uargs):
     for i in xrange(SC.n_comm):
         SC.make_comm(str(i+1))
 
-    
+    # permuting based on permute perc
+    for comm_id, comm in SC.items():
+        SC.permute(comm, uargs['--perm_perc'])
+
+    # writing out table
+    SC.write_comm_table()
+
+        
 if __name__ == '__main__':
     uargs = docopt(__doc__, version='0.1')
     main(uargs)
