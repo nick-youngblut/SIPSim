@@ -182,6 +182,8 @@ class SimFrags(object):
         
     def _get_randPos_amp(self, genome):
         """Getting the genomic position of a randomly selected amplicon.
+        The amplicon is selected randomly from the list of amplicons.
+        None values are returned if no amplicons exist.
         Args:
         genome -- genome-like object
         Return:
@@ -201,6 +203,7 @@ class SimFrags(object):
 
     def _get_randPos_shotgun(self, genome):
         """Randomly selecting start-end position of read template.
+        The scaffold/chromosome is randomly selected.
         start selected from a uniform distribution.
         end seleded based on read template length distribution.
         Args:

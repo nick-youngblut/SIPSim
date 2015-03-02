@@ -54,9 +54,13 @@ Description:
     Assumning amplicon lengths of 500-650 bp, use: '--rtr 500,650'.
     This will filter out all in-silico amplicons outside of this range.
 
+  ** Selection of scaffold/chromosome **
+  For genoems with multiple scaffolds/chromosomes, the scaffold is chosen randomly
+  if simulating shotgun fragments and selected randomly from the list of amplicons
+  if simulating amplicon fragments.
 
-  **Distributions** 
 
+  ** Distributions ** 
   normal:
     Parameters: location (mean), scale (standard deviation)
 
@@ -70,7 +74,7 @@ Description:
   truncated-normal:
     Parameters: location, scale, low, high
 
-  **Output**
+  ** Output **
     A tab-delim file written to STDOUT.
 
 """
