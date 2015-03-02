@@ -233,10 +233,11 @@ class SimComms(_Comm):
             df = pd.melt(df, id_vars=['taxon'], value_vars=val_vars)
             # ordering columns
             df.columns = ['taxon_name', 'library', 'rel_abund_perc']            
-            df = df[['library','taxon_name','rel_abund_perc']]
             # getting rank by community (grouping by community)
-            ## TODO
-            
+            df['rank'] = df.groupby(['library'])['rel_abund_perc']\
+                           .rank(method='first',ascending=False).astype('int')
+            df = df[['library','taxon_name','rel_abund_perc','rank']]
+                        
         # writing dataframe
         df.to_csv(sys.stdout, sep='\t', na_rep=0,
                   float_format='%.9f', index=write_index)
