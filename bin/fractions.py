@@ -28,6 +28,7 @@ Description:
   community file (created with the gradientComm subcommand).
   Specifically, the sizes (in bouyant density) of each gradient fraction
   is simulated.
+
   The fraction size range and variance is selected from a user-defined distribution.
 """
 

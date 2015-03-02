@@ -17,57 +17,6 @@ from configobj import ConfigObj, flatten_errors
 from validate import Validator
 
 
-#-- workflow --#
-
-## init:
-### load args
-### load list of taxa
-### config file:
-#### global: 
-##### permute percent -- % of rank-abundances permuted in each library
-##### shared percent -- % of taxa shared between libraries
-##### richness -- number of taxa in each library (0-1, min to max possible)
-##### abund distribution -- 
-#### per-library:
-##### richness -- number of taxa in the library
-##### abund distribution 
-
-
-
-#-- community diversity --#
-# shared perc:
-## based on richness (% of community with smallest richness)
-## must have enough taxa in total pool for all unshared taxa
-### total unshared needed = sum(richness_comX - shared) 
-## randomly select shared taxa from taxa pool
-## taxa will have same relative rank-abundance ordering
-
-# community total richness:
-## for each Comm: randomly select (without replacemnt) other, non-shared taxa from pool
-## taxa randomly inserted into current rank-abundance ordering 
-
-# permuted percent
-## for each Comm
-## permute rank-abundances of X% of taxa
-
-# abundance distribution (numpy / scipy)
-## for defined richness, draw from distribution to get abundance for each rank
-
-
-
-#-- OO design --#
-# class GradientComms
-## global params
-## list of taxa
-## (opt) list of taxon abundances
-## creates Comm class objects based on config file
-## for each Comm, either applies global param or sets comm-specific param
-## functions for permuting communties 
-
-# class Comm
-## community of taxa and relative abundances
-
-
 # utility functions
 def str2dict(s):
     """Parsing string (format: 'item:value,item:value')
@@ -115,16 +64,6 @@ class _Comm(object):
     @abund_dist.setter
     def abund_dist(self, x):
         self._abund_dist = str(x)
-    # @property
-    # def abund_dist_params(self):
-    #     return self._abund_dist_params
-    # @abund_dist_params.setter
-    # def abund_dist_params(self, x):
-    #     try:
-    #         x.items()
-    #     except AttributeError:
-    #         msg = 'params must be a dict-like object'
-    #         raise AttributeError(msg)            
     @property
     def richness(self):
         return self._richness
@@ -165,15 +104,7 @@ class SimComms(_Comm):
 
         # shared taxa
         self._set_shared_taxa()
-        
-
-    def old_print(self):
-        out = []
-        for k,v in self.comms.items():
-             out.append('#Community: {}'.format(k))
-             out.append(v.__repr__())
-        return '\n'.join(out)
-        
+                
             
     def _get_configspec(self, strIO=True):
         """Return configspec set for instance.
@@ -301,8 +232,8 @@ class SimComms(_Comm):
             df['taxon'] = df.index
             df = pd.melt(df, id_vars=['taxon'], value_vars=val_vars)
             # ordering columns
-            df.columns = ['taxon_name', 'community', 'rel_abund_perc']            
-            df = df[['community','taxon_name','rel_abund_perc']]
+            df.columns = ['taxon_name', 'library', 'rel_abund_perc']            
+            df = df[['library','taxon_name','rel_abund_perc']]
             # getting rank by community (grouping by community)
             ## TODO
             

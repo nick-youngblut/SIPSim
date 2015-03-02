@@ -75,10 +75,6 @@ def make_diffusion_dists(start=1,end=60001,step=100,maxRange=2000000):
 
     return itree
     
-
-#def add_diffusion(frag_GC_len, diffusionDists):    
-#    for x in diffusionDists[frag_GC_len[1]]:
-#        return frag_GC_len[0] + (x.data)()
     
     
 def GC2BD(frag_gc):
@@ -86,7 +82,6 @@ def GC2BD(frag_gc):
     Args:
     frag_gc -- numpy array of fragment G+C values
     """
-    # TODO: jit not speeding up calculation, need to fix
     return frag_gc / 100.0 * 0.098 + 1.66
 
     
@@ -200,72 +195,51 @@ def main(Uargs):
                         
             taxonAbsAbund = comm.get_taxonAbund(libID, taxon_name)
             sys.stderr.write('    N-fragments:   {}\n'.format(taxonAbsAbund))
-            
+
+            # accounting for taxon abundance of 0
+            if taxonAbsAbund >= 1:
+                nFrags = taxonAbsAbund
+            else:
+                nFrags = 1
+                            
             # sampling fragment GC & length values from taxon-specific KDE
-            t0 = time.time()
-            GC_len_arr = fragKDE.sampleTaxonKDE(taxon_name, size=taxonAbsAbund)
+            GC_len_arr = fragKDE.sampleTaxonKDE(taxon_name, size=nFrags)
             ## logging if needed
             if logfh is not None:
-                logfh.write("\n".join( ["\t".join([libID, taxon_name, str(x),str(y)]) for x,y in np.transpose(GC_len_arr)] ))
+                logfh.write("\n".join( ["\t".join([libID, taxon_name, str(x),str(y)]) \
+                                        for x,y in np.transpose(GC_len_arr)] ))
                 logfh.write("\n")
-                # TODO: write to file
-            
-             # sampling intra-taxon incorp for taxon; return: iterator
-            t1 = time.time()
-
-            # GC --> BD
-            t2 = time.time()
-            
+                
             # simulating diffusion; calc BD from frag GC
             f = lambda x: SIPSimCpp.add_diffusion(x[0], x[1])
             frag_BD = np.apply_along_axis(f, 0, GC_len_arr) / 100.0 * 0.098 + 1.66
             
-            t3 = time.time()
-            
-            # simulating general noise in the gradient column
-            #if OTUt.gn_scale_nonzero:
-            #    frag_gc = mpPool.imap(OTU.sample_g_noise_func,
-            #                          frag_gc,
-            #                          chunksize=chunkSize)
-
-                
-            # GC to BD values
-#            GC2BDv = np.vectorize(SIPSimCpp.GC2BD)
-#            frag_BD = GC2BDv(frag_gc)
-#            frag_BD = frag_gc / 100.0 * 0.098 + 1.66
-#            frag_gc = None
-                        
-            t4 = time.time()            
-
             
             # BD + BD shift from isotope incorporation
             ## TODO: implement abundance-weighting            
-            incorp_vals = np.array(incorp.sample_incorpFunc(libID, taxon_name, n_samples=taxonAbsAbund))
-
-                        
-            t5 = time.time()
-
+            incorp_vals = np.array(incorp.sample_incorpFunc(libID, taxon_name, n_samples=nFrags))
+            
             
             frag_BD =  frag_BD + (np.ravel(incorp_vals) / 100.0 * isotopeMaxBD)
-            #frag_BD = SIPSimCython.addIncorpBD(frag_BD, incorp_vals, isotopeMaxBD)        
-            
-            t6 = time.time()
-            
+            #frag_BD = SIPSimCython.addIncorpBD(frag_BD, incorp_vals,OA isotopeMaxBD)        
+                        
             # group by fraction
             frag_BD_bins = Counter(np.digitize(frag_BD, libFracBins))
             frag_BD_bins = binNum2ID(frag_BD_bins, libFracBins)            
 
             
-            t7 = time.time()
-#            print [t1 - t0, t2 - t1, t3 - t2, t4 - t3, t5 - t4, t6 - t5, t7 - t6];
- #           sys.exit()
-
             # converting to a pandas dataframe
             frag_BD_bins = frag_BD_bins.items()
             df = pd.DataFrame(frag_BD_bins)
             df.columns = ['fractions',taxon_name]
-            df.iloc[:,1] = df.applymap(str).iloc[:,1]   # must convert values to dtype=object
+
             
+            # accounting for taxon abundance of 0
+            if taxonAbsAbund < 1:
+                df[taxon_name] = 0
+                                   
+            # adding to dataframe
+            df.iloc[:,1] = df.applymap(str).iloc[:,1]   # must convert values to dtype=object
             lib_OTU_counts = pd.merge(lib_OTU_counts, df, how='outer', on='fractions') 
 
             # status
