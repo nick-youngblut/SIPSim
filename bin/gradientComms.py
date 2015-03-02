@@ -5,12 +5,12 @@
 gradientComms: simulate communities in the samples used for SIP
 
 Usage:
-  gradientComms [options] <taxon_list>
+  gradientComms [options] <genomeList>
   gradientComms -h | --help
   gradientComms --version
 
 Options:
-  <taxon_list>        A file listing taxon names ('-' if from STDIN). [default: -]
+  <genomeList>  A file listing: taxonName<tab>genomeSeqFileName
   --shared_perc=<sp>  The percent of taxa shared in each community.
                       Percent set by the community with the smallest richness.
                       Example: if smallest community is 10 taxa,
@@ -82,7 +82,7 @@ def call_grinder(genomeListFile, filePath=None, profileFile=None, exe='grinder')
 def main(uargs):
 
     # init
-    SC = SimComms(taxon_list = uargs['<taxon_list>'],
+    SC = SimComms(taxon_list = uargs['<genomeList>'],
                   perm_perc = uargs['--perm_perc'],
                   shared_perc = uargs['--shared_perc'],
                   richness = uargs['--richness'],

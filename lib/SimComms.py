@@ -49,6 +49,10 @@ def random_insert_seq(l, seq):
               for pos in xrange(len(l) + len(seq))]
 
 
+def power_neg(*args, **kwargs):
+    return 1 - np.random.power(*args, **kwargs)
+
+    
     
 class _Comm(object):
     """Parent class for other classes in the module
@@ -173,11 +177,13 @@ class SimComms(_Comm):
         self._taxon_pool = []
         if fileName == '-':
             for l in sys.stdin:
-                self._taxon_pool.append(l.rstrip())
+                x = l.rstrip().split('\t')
+                self._taxon_pool.append(x[0])
         else:
             with open(fileName, 'r') as inF:
                 for l in inF.readlines():
-                    self._taxon_pool.append(l.rstrip())
+                    x = l.rstrip().split('\t')
+                    self._taxon_pool.append(x[0])
         shuffle(self._taxon_pool)
 
         
@@ -411,6 +417,9 @@ class Comm(_Comm):
             distFunc = getattr(np.random, dist)
         except AttributeError:
             msg = 'Distribution "{}" is not supported'.format(dist)
+
+        if dist == 'power':
+            distFunc = power_neg
             
         try:
             return partial(distFunc, **params)
