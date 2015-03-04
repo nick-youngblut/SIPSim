@@ -239,6 +239,6 @@ class Genome(object):
         if self._nAmplicons is None:
             try:
                 self._nAmplicons = self.MFEprimerRes.shape[0]
-            except ValueError:
+            except (ValueError, AttributeError):
                 self._nAmplicons = None
         return self._nAmplicons

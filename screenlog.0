@@ -780,3 +780,41 @@ sh: 1: ampFragGC_skewN90-25-n5-nS.txt: not found
 2015-03-02 15:17:43.905 [NotebookApp] Saving notebook at /ipynb/bac_genome/all/nl1/fragLen.ipynb
 2015-03-02 15:19:43.899 [NotebookApp] Saving notebook at /ipynb/bac_genome/all/nl1/fragLen.ipynb
 2015-03-02 15:21:43.895 [NotebookApp] Saving notebook at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+2015-03-02 15:31:43.877 [NotebookApp] Saving notebook at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+2015-03-02 15:34:10.476 [NotebookApp] Saving notebook at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+^C2015-03-02 18:17:53.465 [NotebookApp] interrupted
+Serving notebooks from local directory: /home/nick/notebook/SIPSim
+10 active kernels 
+The IPython Notebook is running at: http://localhost:7702/
+Shutdown this notebook server (y/[n])? y
+2015-03-02 18:17:56.005 [NotebookApp] CRITICAL | Shutdown confirmed
+2015-03-02 18:17:56.005 [NotebookApp] Shutting down kernels
+2015-03-02 18:17:56.825 [NotebookApp] Kernel shutdown: ace47bb0-e606-471b-8784-666afc4509cc
+2015-03-02 18:17:57.744 [NotebookApp] Kernel shutdown: 9485c5bd-1e55-4e0c-afc8-a488824a13fb
+2015-03-02 18:17:58.246 [NotebookApp] Kernel shutdown: 53c0d725-55d0-4b2c-b195-c8f43ac75404
+2015-03-02 18:17:58.749 [NotebookApp] Kernel shutdown: 393bad2b-2b68-41f7-98e3-dd4fddfabb4d
+2015-03-02 18:17:59.862 [NotebookApp] Kernel shutdown: f86d0b67-8b78-44ad-94be-c778a821ef57
+2015-03-02 18:18:00.905 [NotebookApp] Kernel shutdown: a7f4ab13-1a6b-4b28-88eb-3ac6e7fe61bf
+2015-03-02 18:18:01.507 [NotebookApp] Kernel shutdown: 425bd485-942f-4b9b-9531-e4c088fbfd29
+2015-03-02 18:18:01.908 [NotebookApp] Kernel shutdown: a54fb245-53a0-464b-9e17-0cc5b2e6283a
+2015-03-02 18:18:02.728 [NotebookApp] Kernel shutdown: b78f6078-65c2-4cc6-9033-2ffa95b25447
+2015-03-02 18:18:03.229 [NotebookApp] Kernel shutdown: 3d86cc7e-c414-4ae8-a0bc-ddb4f33e19e8
+[32m[I 18:18:24.840 NotebookApp][m Using existing profile dir: u'/home/nick/.ipython/profile_default'
+[32m[I 18:18:24.861 NotebookApp][m Writing notebook server cookie secret to /home/nick/.ipython/profile_default/security/notebook_cookie_secret
+[32m[I 18:18:24.879 NotebookApp][m Using MathJax from CDN: https://cdn.mathjax.org/mathjax/latest/MathJax.js
+[33m[W 18:18:25.012 NotebookApp][m Terminals not available (error was No module named terminado)
+[32m[I 18:18:25.012 NotebookApp][m Serving notebooks from local directory: /home/nick/notebook/SIPSim
+[32m[I 18:18:25.012 NotebookApp][m 0 active kernels 
+[32m[I 18:18:25.012 NotebookApp][m The IPython Notebook is running at: http://localhost:7702/
+[32m[I 18:18:25.013 NotebookApp][m Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[32m[I 18:18:32.792 NotebookApp][m 302 GET / (127.0.0.1) 1.53ms
+[33m[W 18:22:41.658 NotebookApp][m Notebook ipynb/bac_genome/all/nl1/fragLen.ipynb is not trusted
+[32m[I 18:22:42.199 NotebookApp][m Kernel started: ac1d1081-4004-4de1-bbdf-2fe4fc33e90a
+[32m[I 18:22:54.629 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 18:22:54.631 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 18:26:00.366 NotebookApp][m Creating new file in /ipynb/bac_genome/all/nl1
+[33m[W 18:27:52.676 NotebookApp][m delete /ipynb/bac_genome/all/nl1/test.py
+[32m[I 18:28:00.665 NotebookApp][m Creating new notebook in /ipynb/bac_genome/all/nl1
+[32m[I 18:28:01.194 NotebookApp][m Kernel started: 34ae40d7-fac8-4d38-9923-280240b7b1b7
+[32m[I 18:28:39.539 NotebookApp][m Kernel shutdown: 34ae40d7-fac8-4d38-9923-280240b7b1b7
+[33m[W 18:28:39.541 NotebookApp][m delete /ipynb/bac_genome/all/nl1/Untitled.ipynb

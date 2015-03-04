@@ -4,23 +4,86 @@
 ## batteries
 import sys
 import math
-import logging 
+import logging
+import cPickle as pickle
 ## 3rd party
 import numpy as np
 import pandas as pd
 import scipy.stats as stats
 from sklearn.neighbors.kde import KernelDensity
-#import pymix.mixture as mixture
 import mixture
 
 # logging
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
 
+def load_fragGC_table(inFH, sep='\t'):
+    """Loading fragGC table as a dict of dicts of 2d lists.
+    {taxon_name : {scaffold : [fragStart, fragEnd, GC]}}
+    Args:
+    inFH -- file handle
+    sep -- value delimiter
+    """    
+    header_vals = set(['taxon_name','scaffoldID','fragStart','fragLength','fragGC'])
+    
+    d = dict()
+    lineNum = 0
+    for line in inFH.readlines():
+        lineNum += 1
+        line = line.rstrip().split(sep)
+
+        #header
+        if lineNum == 1:            
+            if not (header_vals == set(line) or header_vals < set(line)):
+                msg = 'The fragGC table does not have all'\
+                      ' required columns:\n\t{}'\
+                      .format(','.join(header_vals))
+                raise IOError(msg)
+            header_idx = {line[i]:i for i in xrange(len(line))}
+        # body            
+        else:
+            taxon_name = line[header_idx['taxon_name']]
+            try:
+                type(d[taxon_name])
+            except KeyError:
+                d[taxon_name] = dict()
+                d[taxon_name]['fragLength'] = []
+                d[taxon_name]['fragGC'] = []
+
+            fragLength = line[header_idx['fragLength']]
+            fragGC = line[header_idx['fragGC']]
+            d[taxon_name]['fragLength'].append(fragLength)
+            d[taxon_name]['fragGC'].append(fragGC)
+    return d
+
+            
+def load_fragGC_pickle(inFH):
+    """Loading fragGC info assuming a pickled python object
+    produced by SIPSim fragGC.
+    Args:
+    inFH -- file handle
+    """
+    fojb =  pickle.load(inFH)
+
+    d = dict()
+    for x in fojb:
+        taxon_name = x[0]
+        d[taxon_name] = dict()
+        d[taxon_name]['fragLength'] = []
+        d[taxon_name]['fragGC'] = []
+            
+        for scaf,v in x[1].items():            
+            for z in v:
+                # fragStart, fragLength, fragGC
+                d[taxon_name]['fragLength'].append(z[1])
+                d[taxon_name]['fragGC'].append(z[2])                
+    return d
+
+            
 class Frag_multiKDE(object):
     """Multivariate KDE fit to fragment G+C and fragment lengths.
     Method:
-    * load all fragGC values for a taxon
+    * load all fragGC data for >= taxon
     * fit mulit-var KDE to distribution (using gaussian_kde from scipy.stats)
     """
     
@@ -35,16 +98,21 @@ class Frag_multiKDE(object):
         self.fragGC_file = fragGC_file
         self.bandwidth = bandwidth
 
-        # loading values as pandas dataframe
-        self.fragGC_df = pd.read_csv(self.fragGC_file, sep='\t')
-        
+        # loading fragment values
+        with open(self.fragGC_file, 'r') as inFH:
+            try:
+                self._frag_data = load_fragGC_pickle(inFH)
+            except pickle.UnpicklingError:
+                inFH.seek(0)
+                self._frag_data = load_fragGC_table(inFH)
+
         # iter by taxon to fit kde
         self._fragKDE = dict()
-        for (taxon_name,taxon_df) in self._iter_df_by_taxon_name():
-            self._fragKDE[taxon_name] = self._fitKDE(taxon_df)
+        for taxon_name in self._frag_data.keys():
+            self._fragKDE[taxon_name] = self._fitKDE(taxon_name)
 
-        # delete df
-        self.fragGC_df = None
+        # delete data to save memory
+        self.fragGC_data = None
 
         
     def __repr__(self):
@@ -86,7 +154,6 @@ class Frag_multiKDE(object):
         #2d numpy array -- [[frag_GC,frag_len], ...]
         generator: 1d numpy array [frag_GC, frag_len]
         """
-
         # asserting kde function
         try:            
             kde = self._fragKDE[taxon_name]
@@ -96,14 +163,18 @@ class Frag_multiKDE(object):
         return kde.resample(size=size)
                 
                                    
-    def _fitKDE(self, taxon_df):
-        """Returns multivariate KernelDensity function fit to fragment GC values and lengths.
-        #Also sets 'kde_element_len', which signifies the number of values returned
-        #as 1 'sample' from the *.sample() method. This is needed because 1 'sample'
-        #can actually return many (100's, 1000's or more) values depending on the
-        #values used to fit the KDE.
+    def _fitKDE(self, taxon_name):
+        """Returns multivariate KernelDensity function fit to fragment GC
+        values and lengths.
+        Args:
+        taxon_name -- taxon name string
+        TODO:
+        bandwidth selection
         """
-        vals = np.vstack([taxon_df.GC, abs(taxon_df.fragEnd - taxon_df.fragStart)])                                 
+        #vals = np.vstack([taxon_df.GC, abs(taxon_df.fragEnd - taxon_df.fragStart)])
+        vals = [self._get_fragGC(taxon_name),
+                self._get_fragLength(taxon_name)]                
+        
         return stats.gaussian_kde(vals, bw_method=self.bandwidth)
 
         
@@ -113,6 +184,31 @@ class Frag_multiKDE(object):
         taxon_names = self.fragGC_df['taxon_name'].unique()
         for taxon_name in taxon_names:
             yield (taxon_name, self.fragGC_df.loc[self.fragGC_df['taxon_name'] == taxon_name])
+
+
+    def _get_fragGC(self, taxon_name):
+        """Getting fragGC values for a taxon.
+        """
+        assert hasattr(self, '_frag_data'), "No _frag_data attribute"
+        try:
+            type(self._frag_data[taxon_name])
+        except KeyError:
+            raise KeyError('taxon: "{}" not found'.format(taxon_name))
+        
+        return self._frag_data[taxon_name]['fragGC']
+            
+
+    def _get_fragLength(self, taxon_name):
+        """Getting fragGC values for a taxon.
+        """
+        assert hasattr(self, '_frag_data'), "No _frag_data attribute"
+        try:
+            type(self._frag_data[taxon_name])
+        except KeyError:
+            raise KeyError('taxon: "{}" not found'.format(taxon_name))
+        
+        return self._frag_data[taxon_name]['fragLength']
+
 
         
 

@@ -141,8 +141,12 @@ def main(Uargs):
     mpPool= mp.Pool(processes=int(Uargs['--threads']))
         
     # loading fragGC file as multivariate KDEs
+    sys.stderr.write('Creating 2d-KDEs of fragment GC & length...\n')
     fragKDE = FragGC.Frag_multiKDE(Uargs['<fragGC_file>'])
 
+    sys.stderr.write('Complete...\n')
+
+    
     # loading community file
     comm = CommTable.from_csv(Uargs['<comm_file>'], sep='\t')
     comm.set_abs_abund(Uargs['--abs_abund'])

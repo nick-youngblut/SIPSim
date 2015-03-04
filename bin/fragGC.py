@@ -26,7 +26,8 @@ Options:
                 [Default: 4000,None]
   --fr=<fr>     Fasta of forward & reverse primers (if amplicons).
   --np=<np>     Number of genomes to process in parallel.
-                [Default: 1]  
+                [Default: 1]
+  --tbl         Write out fragments as a table instead of a pickled python object?
   -h --help     Show this screen.
   --version     Show version.
   --debug       Debug mode
@@ -86,9 +87,11 @@ import sys,os
 import re
 import functools
 import itertools
+import cPickle as pickle 
 
 ## 3rd party
 import parmap
+import numpy as np
 
 ## application libraries
 scriptDir = os.path.dirname(__file__)
@@ -141,7 +144,8 @@ def by_genome(inFile, taxonName, args):
         
     # simulating fragments    
     simFO = SimFrags(fld=args['--fld'], flr=args['--flr'], rtl=args['--rtl'])
-    fragList = []
+    nFragsMade = 0
+    fragList = dict()
     ## if no amplicons
     if genome.nAmplicons == 0:
         pass
@@ -151,43 +155,59 @@ def by_genome(inFile, taxonName, args):
         fragLenCov = genome.length * coverage
         fragLenTotal = 0
         while 1:
-            (scaf,fragStart,fragEnd,fragSeq) = simFO.simFrag(genome)
-            fragList.append([genome.get_taxonName(),
-                             scaf,
-                             str(fragStart),
-                             str(fragEnd),
-                             str(genome.calcGC(fragSeq))
-                         ])
-            if fragStart == "NA" or fragEnd == "NA":
+            (scaf,fragStart,fragLen,fragGC) = simFO.simFrag(genome)
+            try:
+                type(fragList[scaf])
+            except KeyError:
+                fragList[scaf] = []
+                                
+            if fragStart == "NA":
                 break
-            elif fragLenTotal >= fragLenCov:
+            elif fragLenTotal > fragLenCov:
                 break
-            fragLenTotal += abs(fragEnd - fragStart + 1)                
+            fragLenTotal += abs(fragEnd - fragStart + 1)
+
+            nFragsMade += 1
+            fragList[scaf].append([fragStart, fragLen, fragGC])            
     ## if using fixed number of fragments
     else:            
         for i in xrange(int(args['--nf'])):
-            (scaf,fragStart,fragEnd,fragSeq) = simFO.simFrag(genome)
+            (scaf,fragStart,fragLen,fragGC) = simFO.simFrag(genome)
 
-            fragList.append([genome.get_taxonName(),
-                             scaf,
-                             str(fragStart),
-                             str(fragEnd),
-                             str(genome.calcGC(fragSeq))
-                         ])
-            if fragStart == "NA" or fragEnd == "NA":
+            try:
+                type(fragList[scaf])
+            except KeyError:
+                fragList[scaf] = []
+
+            if fragStart == "NA":
                 break
 
+            nFragsMade += 1
+            fragList[scaf].append([fragStart, fragLen, fragGC])
+
+                
     # status
     sys.stderr.write('  Genome name: {}\n'.format(genome.get_taxonName()))                
     sys.stderr.write('  Genome length (bp): {}\n'.format(genome.length))
     sys.stderr.write('  Number of amplicons: {}\n'.format(genome.nAmplicons))
-    sys.stderr.write('  Number of fragments simulated: {}\n'.format(len(fragList)))
-
+    sys.stderr.write('  Number of fragments simulated: {}\n'.format(nFragsMade))
                 
-    return fragList
+    return [genome.get_taxonName(), fragList]
 
-    
+
+def write_fragList(fragList):
+    """Writing out fragList as a tab-delim table.
+    """
+    print '\t'.join(['taxon_name','scaffoldID','fragStart','fragLength','fragGC'])            
+
+    for x in fragList:
+        taxon_name = x[0]
+        for scaf,v in x[1].items():
+            for y in v:                
+                print '\t'.join([taxon_name, scaf] + [str(i) for i in y])
+
         
+    
 # main
 if __name__ == '__main__':
     args = docopt(__doc__, version='0.1')
@@ -205,20 +225,27 @@ if __name__ == '__main__':
     # analyzing each genome (in parallel)    
     by_genome_part = functools.partial(by_genome, args=args)
 
-    print '\t'.join(['taxon_name','scaffoldID','fragStart','fragEnd','GC'])            
     if args['--debug']:
-        for x in itertools.starmap(by_genome_part,genomeList):
-            for y in x:
-                print '\t'.join(y)
+        fragList = itertools.starmap(by_genome_part,genomeList)
+        #fragList = map(by_genome_part,genomeList)        
+
+        if args['--tbl']:
+            write_fragList(fragList)
+        else:
+            pickle.dump([x for x in fragList], sys.stdout)
+            
     else:
-        ret = parmap.starmap(by_genome_part,
+        fragList = parmap.starmap(by_genome_part,
                              genomeList,
                              chunksize=1,
                              processes=int(args['--np']))
 
-        for x in ret:
-            for y in x:
-                print '\t'.join(y)                
+        if args['--tbl']:
+            write_fragList(fragList)
+        else:
+            pickle.dump(fragList, sys.stdout)
+
+        
         
     
 

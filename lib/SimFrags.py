@@ -14,6 +14,7 @@ import scipy.stats as stats
 from rtnorm import rtnorm
 
 
+
 def truncated_normal(location, scale, low, high, size=1):
     """Creating a function to randomly sample from a truncated normal distribution.
     Args:
@@ -61,7 +62,7 @@ class SimFrags(object):
         Args:
         genome -- genome-like object
         Return:
-        list -- [scaffold,start,end,frag_sequence]
+        list -- [scaffold,fragStart,fragLen,fragSequence]
         """
 
         tryCnt = 0
@@ -76,13 +77,20 @@ class SimFrags(object):
             # if no read template position (no amplicon): return None
             if readTempPos[0] is None:
                 return ["No_amplicons", 'NA', 'NA', '']
-            
+                
             # simulating fragment around read template
             fragPos = self._simFragPos(readTempPos)            
+
+            # frag start should be < frag end
+            if fragPos[1] >= fragPos[2]:
+                raise TypeError('fragStart >= fragEnd')
             
             # parsing fragment from genome index
-            fragSeq = genome.get_seq(*fragPos)            
-            fragSeqLen = len(fragSeq)
+            fragSeq = genome.get_seq(*fragPos)
+
+            # getting fragment info
+            fragGC = genome.calcGC(fragSeq)
+            fragSeqLen = len(fragSeq)            
             
             # checking to see if fragment acutally in range (accounting for edge cases)
             if tryCnt >= 1000:
@@ -95,7 +103,7 @@ class SimFrags(object):
                 tryCnt += 1
                 continue
                 
-        return [fragPos[0], fragPos[1], fragPos[2], fragSeq]
+        return [fragPos[0], fragPos[1], fragSeqLen, fragGC]
 
         
     def _simFragPos(self, readTempPos):
