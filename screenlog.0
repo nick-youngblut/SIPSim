@@ -818,3 +818,106 @@ Shutdown this notebook server (y/[n])? y
 [32m[I 18:28:01.194 NotebookApp][m Kernel started: 34ae40d7-fac8-4d38-9923-280240b7b1b7
 [32m[I 18:28:39.539 NotebookApp][m Kernel shutdown: 34ae40d7-fac8-4d38-9923-280240b7b1b7
 [33m[W 18:28:39.541 NotebookApp][m delete /ipynb/bac_genome/all/nl1/Untitled.ipynb
+[33m[W 08:33:14.785 NotebookApp][m Notebook ipynb/bac_genome/all/nl1/fragLen.ipynb is not trusted
+[32m[I 08:35:15.258 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 08:35:15.260 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 08:36:31.494 NotebookApp][m Kernel interrupted: ac1d1081-4004-4de1-bbdf-2fe4fc33e90a
+[32m[I 08:37:15.250 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 08:37:15.252 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 08:37:43.907 NotebookApp][m Kernel interrupted: ac1d1081-4004-4de1-bbdf-2fe4fc33e90a
+[32m[I 08:39:15.244 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 08:39:15.244 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 08:45:15.256 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 08:45:15.258 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 09:13:15.175 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 09:13:15.176 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 09:17:15.174 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 09:17:15.176 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 09:19:15.165 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 09:19:15.167 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 09:26:36.701 NotebookApp][m Kernel interrupted: ac1d1081-4004-4de1-bbdf-2fe4fc33e90a
+[32m[I 09:27:15.152 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 09:27:15.154 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 09:29:15.145 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 09:29:15.147 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 09:31:15.149 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 09:31:15.151 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 09:31:49.024 NotebookApp][m Kernel interrupted: ac1d1081-4004-4de1-bbdf-2fe4fc33e90a
+[33m[W 09:33:06.777 NotebookApp][m Notebook ipynb/bac_genome/Ecoli/fragLen.ipynb is not trusted
+[32m[I 09:33:07.828 NotebookApp][m Kernel started: f767c2ae-9653-40b7-87a4-7239a4afca61
+[32m[I 09:33:15.526 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 09:33:15.527 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 09:35:15.514 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 09:35:15.516 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 09:37:15.515 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 09:37:15.517 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 09:39:15.507 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 09:39:15.509 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 09:41:15.507 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 09:41:15.508 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 09:43:15.501 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 09:43:15.503 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 09:45:15.495 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 09:45:15.497 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 09:47:15.494 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 09:47:15.496 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 09:48:29.256 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 09:48:29.258 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 09:49:15.487 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 09:49:15.488 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 09:50:08.951 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 09:50:08.953 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 09:50:36.644 NotebookApp][m Kernel interrupted: ac1d1081-4004-4de1-bbdf-2fe4fc33e90a
+[32m[I 09:50:59.924 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 09:50:59.925 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 09:51:15.484 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 09:51:15.486 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 09:52:01.498 NotebookApp][m Kernel interrupted: ac1d1081-4004-4de1-bbdf-2fe4fc33e90a
+[32m[I 09:52:04.634 NotebookApp][m Kernel interrupted: ac1d1081-4004-4de1-bbdf-2fe4fc33e90a
+[32m[I 09:53:15.479 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 09:53:15.480 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 09:54:20.748 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 09:54:20.749 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 10:29:15.424 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 10:29:15.425 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 10:37:15.408 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 10:37:15.410 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 10:39:15.407 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 10:39:15.409 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 10:41:15.403 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 10:41:15.405 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 10:43:15.401 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 10:43:15.403 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+-->interrupted.
+[32m[I 10:44:30.855 NotebookApp][m Kernel interrupted: ac1d1081-4004-4de1-bbdf-2fe4fc33e90a
+Keyboard interrupt.
+[32m[I 10:45:15.397 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 10:45:15.399 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 10:47:15.397 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 10:47:15.399 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 10:49:15.388 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 10:49:15.390 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 10:51:15.393 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 10:51:15.395 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 10:53:15.390 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 10:53:15.392 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 10:55:15.385 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 10:55:15.388 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 10:57:15.382 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 10:57:15.384 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 11:03:15.373 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 11:03:15.375 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 11:05:15.370 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 11:05:15.373 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 11:07:15.363 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 11:07:15.365 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 11:09:15.360 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 11:09:15.361 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 11:11:15.354 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 11:11:15.356 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 11:13:15.357 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 11:13:15.360 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 11:14:02.847 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 11:14:02.849 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb
+[32m[I 11:14:27.816 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen.ipynb
+[33m[W 11:14:27.818 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen.ipynb

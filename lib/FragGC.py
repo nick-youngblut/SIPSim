@@ -159,8 +159,11 @@ class Frag_multiKDE(object):
             kde = self._fragKDE[taxon_name]
         except KeyError:
             raise KeyError('taxon "{}" does not have a KDE function set'.format(taxon_name))
-            
-        return kde.resample(size=size)
+
+        if kde is None:
+            return None
+        else:
+            return kde.resample(size=size)
                 
                                    
     def _fitKDE(self, taxon_name):
@@ -171,11 +174,14 @@ class Frag_multiKDE(object):
         TODO:
         bandwidth selection
         """
-        #vals = np.vstack([taxon_df.GC, abs(taxon_df.fragEnd - taxon_df.fragStart)])
+        #vals = np.vstack([taxon_df.GC, abs(taxon_df.fragEnd - taxon_df.fragStart)])        
         vals = [self._get_fragGC(taxon_name),
-                self._get_fragLength(taxon_name)]                
-        
-        return stats.gaussian_kde(vals, bw_method=self.bandwidth)
+                self._get_fragLength(taxon_name)]
+
+        try:
+            return stats.gaussian_kde(vals, bw_method=self.bandwidth)
+        except ValueError:
+            return None
 
         
     def _iter_df_by_taxon_name(self):

@@ -139,15 +139,9 @@ def main(Uargs):
     # parallel
     chunkSize = int(Uargs['--chunksize'])
     mpPool= mp.Pool(processes=int(Uargs['--threads']))
-        
-    # loading fragGC file as multivariate KDEs
-    sys.stderr.write('Creating 2d-KDEs of fragment GC & length...\n')
-    fragKDE = FragGC.Frag_multiKDE(Uargs['<fragGC_file>'])
-
-    sys.stderr.write('Complete...\n')
-
     
     # loading community file
+    sys.stderr.write('Loading files...\n')
     comm = CommTable.from_csv(Uargs['<comm_file>'], sep='\t')
     comm.set_abs_abund(Uargs['--abs_abund'])
         
@@ -157,6 +151,11 @@ def main(Uargs):
     # loading fraction file
     frac = FracTable.from_csv(Uargs['<frac_file>'], sep='\t')
 
+    
+    # loading fragGC file as multivariate KDEs
+    sys.stderr.write('Creating 2d-KDEs of fragment GC & length...\n')
+    fragKDE = FragGC.Frag_multiKDE(Uargs['<fragGC_file>'])
+    
     # creating interval tree of normal distributions to model diffusion
     diffusionDists = make_diffusion_dists()
     
@@ -176,6 +175,7 @@ def main(Uargs):
     
         
     # iter by library:
+    sys.stderr.write('Creating OTUs...\n')
     isotopeMaxBD = OTUt.get_isotopeMaxBD()
     u_taxon_names = comm.get_unique_taxon_names()
     OTU_counts = []  # list of all library-specific OTU_count dataframes
@@ -199,38 +199,39 @@ def main(Uargs):
                         
             taxonAbsAbund = comm.get_taxonAbund(libID, taxon_name)
             sys.stderr.write('    N-fragments:   {}\n'.format(taxonAbsAbund))
-
-            # accounting for taxon abundance of 0
-            if taxonAbsAbund >= 1:
-                nFrags = taxonAbsAbund
-            else:
-                nFrags = 1
-                            
-            # sampling fragment GC & length values from taxon-specific KDE
-            GC_len_arr = fragKDE.sampleTaxonKDE(taxon_name, size=nFrags)
-            ## logging if needed
-            if logfh is not None:
-                logfh.write("\n".join( ["\t".join([libID, taxon_name, str(x),str(y)]) \
-                                        for x,y in np.transpose(GC_len_arr)] ))
-                logfh.write("\n")
                 
-            # simulating diffusion; calc BD from frag GC
-            f = lambda x: SIPSimCpp.add_diffusion(x[0], x[1])
-            frag_BD = np.apply_along_axis(f, 0, GC_len_arr) / 100.0 * 0.098 + 1.66
+            # sampling fragment GC & length values from taxon-specific KDE
+            try:
+                GC_len_arr = fragKDE.sampleTaxonKDE(taxon_name, size=taxonAbsAbund)
+            except ValueError:
+                GC_len_arr = None
+
+            # calc BD 
+            if GC_len_arr is None or GC_len_arr.shape[1] == 0:
+                frag_BD = np.zeros(1)
+            else:
+                ## logging if needed
+                if logfh is not None:
+                    logfh.write("\n".join( ["\t".join([libID, taxon_name, str(x),str(y)]) \
+                                            for x,y in np.transpose(GC_len_arr)] ))
+                    logfh.write("\n")
+                
+                # simulating diffusion; calc BD from frag GC
+                f = lambda x: SIPSimCpp.add_diffusion(x[0], x[1])
+                frag_BD = np.apply_along_axis(f, 0, GC_len_arr) / 100.0 * 0.098 + 1.66
+                    
+            
+                # BD + BD shift from isotope incorporation
+                ## TODO: implement abundance-weighting            
+                incorp_vals = np.array(incorp.sample_incorpFunc(libID, taxon_name, n_samples=taxonAbsAbund))
             
             
-            # BD + BD shift from isotope incorporation
-            ## TODO: implement abundance-weighting            
-            incorp_vals = np.array(incorp.sample_incorpFunc(libID, taxon_name, n_samples=nFrags))
-            
-            
-            frag_BD =  frag_BD + (np.ravel(incorp_vals) / 100.0 * isotopeMaxBD)
-            #frag_BD = SIPSimCython.addIncorpBD(frag_BD, incorp_vals,OA isotopeMaxBD)        
+                frag_BD =  frag_BD + (np.ravel(incorp_vals) / 100.0 * isotopeMaxBD)
+                    
                         
             # group by fraction
             frag_BD_bins = Counter(np.digitize(frag_BD, libFracBins))
             frag_BD_bins = binNum2ID(frag_BD_bins, libFracBins)            
-
             
             # converting to a pandas dataframe
             frag_BD_bins = frag_BD_bins.items()
@@ -239,8 +240,8 @@ def main(Uargs):
 
             
             # accounting for taxon abundance of 0
-            if taxonAbsAbund < 1:
-                df[taxon_name] = 0
+#            if taxonAbsAbund < 1:
+#                df[taxon_name] = 0
                                    
             # adding to dataframe
             df.iloc[:,1] = df.applymap(str).iloc[:,1]   # must convert values to dtype=object

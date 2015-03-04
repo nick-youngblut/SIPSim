@@ -165,7 +165,7 @@ def by_genome(inFile, taxonName, args):
                 break
             elif fragLenTotal > fragLenCov:
                 break
-            fragLenTotal += abs(fragEnd - fragStart + 1)
+            fragLenTotal += fragLen 
 
             nFragsMade += 1
             fragList[scaf].append([fragStart, fragLen, fragGC])            
@@ -189,7 +189,8 @@ def by_genome(inFile, taxonName, args):
     # status
     sys.stderr.write('  Genome name: {}\n'.format(genome.get_taxonName()))                
     sys.stderr.write('  Genome length (bp): {}\n'.format(genome.length))
-    sys.stderr.write('  Number of amplicons: {}\n'.format(genome.nAmplicons))
+    if args['--nf']:
+        sys.stderr.write('  Number of amplicons: {}\n'.format(genome.nAmplicons))
     sys.stderr.write('  Number of fragments simulated: {}\n'.format(nFragsMade))
                 
     return [genome.get_taxonName(), fragList]
