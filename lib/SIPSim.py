@@ -117,7 +117,6 @@ def binNum2ID(frag_BD_bins, libFracBins):
     
     
 #--- main ---#
-#@profile
 def main(Uargs):
     # --abs_abund as int
     try:
@@ -125,7 +124,7 @@ def main(Uargs):
     except KeyError:
         raise KeyError('Cannot find "--abs_abund" key')
     except TypeError:
-        raise TypeError('"{}" must be float-like'.format(str(Uargs['--abs_abund'])))
+        raise TypeError('"{}" must be float-like'.format(Uargs['--abs_abund']))
 
 
     # fragment info log file
@@ -150,7 +149,6 @@ def main(Uargs):
     
     # loading fraction file
     frac = FracTable.from_csv(Uargs['<frac_file>'], sep='\t')
-
     
     # loading fragGC file as multivariate KDEs
     sys.stderr.write('Creating 2d-KDEs of fragment GC & length...\n')
@@ -186,11 +184,10 @@ def main(Uargs):
         # fraction bin list for library
         libFracBins = [x for x in frac.BD_bins(libID)]
         
-        # creating a dataframe of fractions
-        fracBins = ['{0:.3f}-{1:.3f}'.format(libFracBins[i-1],libFracBins[i]) for i in xrange(len(libFracBins))]
-        
+        # creating a dataframe of fraction bins
+        func = lambda x: '{0:.3f}-{1:.3f}'.format(libFracBins[x-1],libFracBins[x])
+        fracBins = [func(i) for i in xrange(len(libFracBins))][1:]        
         lib_OTU_counts = pd.DataFrame({'fractions':fracBins})
-         
         
         # iter by taxon:
         for (taxon_name_idx,taxon_name) in enumerate(u_taxon_names):
@@ -224,11 +221,10 @@ def main(Uargs):
                 # BD + BD shift from isotope incorporation
                 ## TODO: implement abundance-weighting            
                 incorp_vals = np.array(incorp.sample_incorpFunc(libID, taxon_name, n_samples=taxonAbsAbund))
-            
-            
-                frag_BD =  frag_BD + (np.ravel(incorp_vals) / 100.0 * isotopeMaxBD)
-                    
                         
+                frag_BD =  frag_BD + (np.ravel(incorp_vals) / 100.0 * isotopeMaxBD)
+
+                
             # group by fraction
             frag_BD_bins = Counter(np.digitize(frag_BD, libFracBins))
             frag_BD_bins = binNum2ID(frag_BD_bins, libFracBins)            
@@ -237,15 +233,10 @@ def main(Uargs):
             frag_BD_bins = frag_BD_bins.items()
             df = pd.DataFrame(frag_BD_bins)
             df.columns = ['fractions',taxon_name]
-
             
-            # accounting for taxon abundance of 0
-#            if taxonAbsAbund < 1:
-#                df[taxon_name] = 0
-                                   
             # adding to dataframe
             df.iloc[:,1] = df.applymap(str).iloc[:,1]   # must convert values to dtype=object
-            lib_OTU_counts = pd.merge(lib_OTU_counts, df, how='outer', on='fractions') 
+            lib_OTU_counts = pd.merge(lib_OTU_counts, df, how='outer', on='fractions')
 
             # status
             t_end = time.time()
@@ -260,8 +251,6 @@ def main(Uargs):
         lib_OTU_counts['library'] = libID
         lib_OTU_counts = lib_OTU_counts[['library','fractions','taxon','count']]
         lib_OTU_counts.sort(['fractions'])
-        ## removing end_fract-start_frac bin
-        lib_OTU_counts = lib_OTU_counts.iloc[1:,:]
 
         # making dict of library-specific dataframes
         OTU_counts.append(lib_OTU_counts)
