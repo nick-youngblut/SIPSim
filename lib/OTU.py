@@ -44,8 +44,8 @@ def add_diffusion(frag_gc_len, loc=0,  max_tries=100):
         
 
 
-class OTU_table(object):
-    """Class for the simulated OTU table"""
+class OTU_sim(object):
+    """Class for the simulating OTUs"""
     
     def __init__(self, frac, g_noise, gn_scale, abund_weight, isotope):
         """

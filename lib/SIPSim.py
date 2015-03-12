@@ -158,14 +158,14 @@ def main(Uargs):
     diffusionDists = make_diffusion_dists()
     
     # initializing OTU table class
-    OTUt = OTU.OTU_table(frac,
+    OTUsim = OTU.OTU_sim(frac,
                          g_noise=Uargs['--g_noise'],
                          gn_scale=Uargs['--gn_scale'],
                          abund_weight=Uargs['--a_weight'],                    
                          isotope=Uargs['--isotope'])
     
     # checking on library overlap
-    if not OTUt.checkLibOverlap([
+    if not OTUsim.checkLibOverlap([
             [x for x in comm.iter_libraries()],
             [x for x in incorp.iter_libraries()],
             [x for x in frac.iter_libraries()]]):
@@ -174,7 +174,7 @@ def main(Uargs):
         
     # iter by library:
     sys.stderr.write('Creating OTUs...\n')
-    isotopeMaxBD = OTUt.get_isotopeMaxBD()
+    isotopeMaxBD = OTUsim.get_isotopeMaxBD()
     u_taxon_names = comm.get_unique_taxon_names()
     OTU_counts = []  # list of all library-specific OTU_count dataframes
     
@@ -257,7 +257,6 @@ def main(Uargs):
 
         
     # combining library-specific dataframes and writing out long form of table
-    ## TODO: option for wide form of table
     pd.concat(OTU_counts, ignore_index=False).to_csv(sys.stdout, sep='\t', index=False)
             
 

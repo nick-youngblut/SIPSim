@@ -4,6 +4,8 @@
 ## batteries
 import os,sys
 from pprint import pprint
+import re
+from itertools import chain
 ## 3rd party
 import pandas as pd
 
@@ -62,7 +64,6 @@ def describe_builtin(obj):
     
     if docstr:
         items = docstr.split('\n')
-#        pprint(items)
         if items:
             func_descr = items[0]
             s = func_descr.replace(obj.__name__,'')
@@ -78,6 +79,16 @@ def describe_builtin(obj):
         yield None
 
 
+def parseKeyValueString(x):
+    """Parse a string in format: 'key1:value1,key2:value2,keyN:valueN'.
+    Return a dict
+    """
+    x = x.replace(' ','')
+    l = re.split('[:,]', x)
+    return {k:v for k,v in zip(l[::2],l[1::2])}
+        
+        
+
         
 class _table(object):
     """Template class for reading in SIPSim tables"""
@@ -86,15 +97,60 @@ class _table(object):
         """
         Args:
         df -- pandas dataframe
+        filename -- name of table file
         """
         self.df = df
         self.tableFileName = filename
-
+        
         # library as string
         try:
             self.df['library'] = self.df['library'].astype(str)
         except KeyError:
-            raise KeyError('"library" column not found in table: "{}"!'.format(filename))
+            self.wide2long()
+            try:
+                self.df['library'] = self.df['library'].astype(str)
+            except KeyError:
+                raise KeyError('"library" column not found in table: "{}"!'.format(filename))
+            
+
+    # reshaping table
+    def wide2long(self, sep='__'):
+        """Convert table from wide to long format.
+        Args:
+        sep -- used to split column names
+        """
+        self.df = pd.melt(self.df, id_vars=['taxon'])        
+        new_cols = self.df['variable'].str.split(sep).apply(pd.Series, 1)
+        self.df = self.df.join(new_cols)\
+                         .rename(columns={'value':'count',0:'library',1:'fractions'})\
+                         .drop('variable',1)
+
+        try:
+            self.df = self.df\
+                          .reindex_axis(['library','fractions','taxon','count'], axis=1)\
+                          .sort(['taxon', 'fractions', 'library'])            
+        except KeyError:
+            pass
+        
+
+    def long2wide(self, values, index, columns):
+        """Convert table from long to wide format.
+        Args:
+        values -- values in pivot table
+        index -- index in pivot table
+        columns -- columns in pivot table
+        """
+        self.df = pd.pivot_table(self.df, values=values,
+                                 index=index, columns=columns)
+        self.df.columns =  ['__'.join(x) for x in self.df.columns.tolist()]
+
+            
+    # write table
+    def to_csv(self, *args, **kwargs):
+        self.df.to_csv(*args, **kwargs)
+
+    def write_table(self, *args, **kwargs):
+        self.to_csv(*args, **kwargs)
 
             
     # load from csv

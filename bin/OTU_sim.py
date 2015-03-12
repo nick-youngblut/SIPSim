@@ -2,13 +2,13 @@
 
 #--- Option parsing ---#
 """
-OTU_table: create an OTU table of gradient fractions based on simulated
+OTU_sim: simulate OTUs for gradient fractions based on simulated
 fragment G+C content and isotope incorporation
 
 Usage:
-  OTU_table [options] <fragGC_file> <comm_file> <incorp_file> <frac_file>
-  OTU_table -h | --help
-  OTU_table --version
+  OTU_sim [options] <fragGC_file> <comm_file> <incorp_file> <frac_file>
+  OTU_sim -h | --help
+  OTU_sim --version
 
 Options:
   <fragGC_file>       Name of file produced by fragGC subcommand.
@@ -29,7 +29,7 @@ Options:
   --debug             Debug mode
 
 Description:
-  Create an OTU table for each fraction in >=1 CsCl gradient.
+  Create an OTU table of simulated OTUs for each fraction in >=1 CsCl gradient.
 
   Basically, the location within the gradient (i.e., buoyant density)
   of each DNA fragment associated with each taxon is determined, and

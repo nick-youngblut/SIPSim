@@ -49,8 +49,7 @@ from SIPSim import CommTable
 
 
 # functinos
-def main(Uargs):
-
+def main(Uargs):    
     # load comm file
     comm = CommTable.from_csv(Uargs['<comm_file>'], sep='\t')
 
