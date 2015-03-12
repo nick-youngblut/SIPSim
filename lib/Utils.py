@@ -141,8 +141,8 @@ class _table(object):
         index -- index in pivot table
         columns -- columns in pivot table
         """
-        self.df = pd.pivot_table(self.df, values=values,
-                                 index=index, columns=columns)
+        self.df = pd.pivot_table(self.df, values=values, index=index,
+                                 columns=columns, fill_value=0)
         self.df.columns =  ['__'.join(x) for x in self.df.columns.tolist()]
 
             
@@ -185,12 +185,22 @@ class _table(object):
     def iter_taxa(self, libID=None):
         """Iterating through all unique taxon names.
         """
-        if libID is None:
-            for taxon_name in self.iter_uniqueColumnValues('taxon_name'):
+        col_name = None        
+        try:
+            self.df['taxon_name']
+            col_name = 'taxon_name'
+        except KeyError:
+            try:
+                self.df['taxon']
+                col_name = 'taxon'
+            except KeyError:
+                raise KeyError('Neither "taxon_name" nor "taxon" is a column')
+        if libID is None:            
+            for taxon_name in self.iter_uniqueColumnValues(col_name):
                 yield taxon_name
         else:
             df_lib = self.df.loc[self.df['library'] == libID]
-            for taxon_name in df_lib['taxon_name'].unique():
+            for taxon_name in df_lib[col_name].unique():
                 yield taxon_name
                 
     def iter_taxonRowsInLib(self, libID):

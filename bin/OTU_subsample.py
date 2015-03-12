@@ -33,7 +33,10 @@ Description:
   This is used to simulate the actual sequencing of DNA/RNA from each gradient fraction.
   
   The 'dist' and 'dist_params' options are used to simulate uneven numbers of sequences
-  (here, signified as OTUs) per sample. 
+  (here, signified as OTUs) per sample.
+
+  If a community has a total count of 0, subsampling will produce a community with a
+  total count of 0 (can't subsample from nothing). 
 """
 
 # import

@@ -45,6 +45,8 @@ class OTU_table(_table):
         assert hasattr(self, 'samp_dist'), 'samp_dist attribute not found'
         assert hasattr(self, 'samp_dist_params'), 'samp_dist_params attribute not found'
 
+        # all taxa
+        all_taxa = Counter({x:0 for x in self.iter_taxa()})
         
         # subsampling
         df_sub = pd.DataFrame(columns=self.df.columns)
@@ -52,31 +54,39 @@ class OTU_table(_table):
             for fracID in self.iter_fractions(libID=libID):
                 # single community
                 comm = self.get_comm(libID, fracID)
+                sub_comm = None
 
                 # if no counts for community
                 if np.sum(comm['count']) < 1:
-                    df_sub = pd.concat([df_sub, comm])
-                    continue
-
-                # size to subsample
-                samp_size = self.samp_dist(size=1)
-                
-                # sampling
-                counts = comm['count']
-                try:
-                    samp_taxa = Counter(np.random.choice(comm['taxon'],
+                    sub_comm = comm.copy()
+                else:
+                    # size to subsample
+                    samp_size = self.samp_dist(size=1)
+                    
+                    # sampling
+                    counts = comm['count']
+                    try:
+                        sub_comm = Counter(np.random.choice(comm['taxon'],
                                                          size=samp_size,
                                                          replace= not no_replace,
                                                          p=counts/np.sum(counts)))
-                    samp_taxa = pd.DataFrame(samp_taxa.items())
-                    samp_taxa.columns = ['taxon','count']
-                    samp_taxa.loc[:,'library'] = libID
-                    samp_taxa.loc[:,'fractions'] = fracID
-                    df_sub = pd.concat([df_sub, samp_taxa])
-                except ValueError:
-                    comm.loc[:,'count'] = 0
-                    df_sub = pd.concat([df_sub, comm])
 
+                        
+                        # setting all taxa in counts
+                        sub_comm.update(all_taxa)
+                        
+                        # count to dataframe
+                        sub_comm = pd.DataFrame(sub_comm.items())
+                        sub_comm.columns = ['taxon','count']
+                        sub_comm.loc[:,'library'] = libID
+                        sub_comm.loc[:,'fractions'] = fracID
+                    except ValueError:
+                        sub_comm = comm.copy()
+                        comm.loc[:,'count'] = 0
+
+                df_sub = pd.concat([df_sub, sub_comm])
+
+                        
 
         df_sub['count'] = df_sub['count'].astype(int)
         return df_sub.reindex_axis(['library','fractions','taxon','count'], axis=1)
