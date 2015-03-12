@@ -1,16 +1,24 @@
+SIPSim
+======
+SIPSim is a pipeline for simulating data from high resolution 
+stable isotope probing (HR-SIP).
+
+
 INSTALLATION
 ============
 
-In the SIPSim directory, run the following:
+### Clone the repo
+
+~~~
+git clone https:github.com/nyoungb2/SIPSim.git
+cd SIPSim
+~~~
+
+### Compile C code; set up paths; add bash completion
 
 ~~~
 python setup.py build
 python setup.py install --prefix=~
-~~~
+echo 'source '`pwd`'/sourceMe' >> ~/.bashrc
 
-
-Add the following to your .profile or .bashrc:
-~~~
-source /PATH/TO/SIPSim/CHANGE/THIS!/sourceMe
-export PYTHONPATH=$PYTHONPATH:$HOME/lib/python2.7/site-packages/
 ~~~
