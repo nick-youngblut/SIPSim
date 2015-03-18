@@ -89,7 +89,8 @@ class OTU_table(_table):
                         
 
         df_sub['count'] = df_sub['count'].astype(int)
-        return df_sub.reindex_axis(['library','fractions','taxon','count'], axis=1)
+        return df_sub.reindex_axis(['library','fractions','taxon','count'], axis=1)\
+            .sort(['taxon','fractions','library'])
                 
         
     def _same_low_high(self):

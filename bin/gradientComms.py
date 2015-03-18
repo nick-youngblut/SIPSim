@@ -22,10 +22,10 @@ Options:
                       [default: 1]
   --abund_dist=<a>    The statistical distribution used for selecting relative abundances.
                       (see numpy.random for a list of distributions).
-                      [default: exponential]
+                      [default: lognormal]
   --abund_dist_p=<p>  Abundance distribution parameters.
                       (see numpy.random for distribution params).
-                      [default: scale:1]
+                      [default: mean:10,scale:2]
   --perm_perc=<pp>    How much to vary the rank-abundances between communities.
                       [default: 0]
   --n_comm=<nc>       Number of communities to simulate.
