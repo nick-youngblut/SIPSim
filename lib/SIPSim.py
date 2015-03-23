@@ -5,14 +5,13 @@ import logging
 import time
 from glob import glob
 from collections import defaultdict, Counter
-from itertools import imap, izip
 from functools import partial
 ## 3rd party
 import pandas as pd
 import numpy as np
-import numexpr as ne
-import multiprocessing as mp
-from intervaltree import Interval, IntervalTree
+#import numexpr as ne
+#import multiprocessing as mp
+#from intervaltree import Interval, IntervalTree
 ## application
 import FragGC
 from CommTable import CommTable
@@ -20,64 +19,11 @@ from FracTable import FracTable
 from IsoIncorpTable import IsoIncorpTable
 import OTU
 import SIPSimCpp
-#import SIPSimCython
+import SIPSimCython
 
 # logging
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
-
-# supporting functions
-def makeEmptyCountTable(comm, frac):  # depreciated
-    """Making a dict of 2d np arrays to hold the taxon count data.
-    All counts = 0. Dimensions = library : [taxon][fraction]
-    Args:
-    comm -- CommTable instance
-    frac -- FracTable instance
-    Return:
-    2d-array of zeros (n-taxon, n-fraction)
-    """
-    # assertions
-    assert isinstance(comm, CommTable), 'ERROR comm is not a CommTable instance'
-    assert isinstance(frac, FracTable), 'ERROR comm is not a FracTable instance'
-    
-    # making count table
-    taxon_name_len = len(comm.get_unique_taxon_names())
-    countTable = dict()
-    for libID in comm.iter_libraries():
-        fracID_len = len(frac.get_libFracIDs(libID))
-        countTable[libID] = np.zeros((taxon_name_len, fracID_len))
-        
-    return countTable
-
-
-def make_diffusion_dists(start=1,end=60001,step=100,maxRange=2000000):
-    """Making interval tree of normal distributions (loc=0, sigma=*see below).
-    Will be used to model the observed G+C variance caused by diffusion.
-    The interval tree is to limit the number of pre-generated distributions that
-    will need to be created.
-    Using equation: sigma = 44500 / L, where L = fragment length.
-    Args:
-    start -- start of sequence
-    end -- end of sequence
-    step -- sequence step
-    maxRange -- last (largest) range added to interval tree for any outlier large fragments
-    Return:
-    interval tree object
-    
-    """
-    # initialize itree
-    itree = IntervalTree()
-    
-    for i in xrange(start,end,step):
-        itree[i:i+step] = partial(np.random.normal, loc=0, scale=44500.0/i)
-
-    # max itree
-    itree[end+1:maxRange] = partial(np.random.normal, loc=0, scale=44500.0/end)
-
-    return itree
-    
-    
-    
     
 def binNum2ID(frag_BD_bins, libFracBins):
     """Convert Counter(np.digitize()) for frag_BD  to the fraction BD-min-max.
@@ -91,10 +37,29 @@ def binNum2ID(frag_BD_bins, libFracBins):
     return {msg.format(libFracBins[k-1],libFracBins[k]):v for (k,v) in frag_BD_bins.items()}
 
 
+def status(msg, startTime):
+    msgs = {'kde':'GC/fragment_length KDE sampled',
+            'diffusion':'diffusion added to BD values',
+            'incorp':'isotope incorporation added to BD values',
+            'bin':'binned BD values',
+            'final':'taxon finished'}
+
+    nowTime = time.time()
+    timeDiff = '{0:.1f}'.format(nowTime - startTime)
+    
+    try:
+        x = '     Elapsed: {0:>7} sec => {1}\n'
+        sys.stderr.write(x.format(timeDiff, msgs[msg.lower()]))
+    except KeyError:
+        raise KeyError('Cannot find status for key "{}"'.format(msg))
+
+    return nowTime
+        
+
 
     
 #--- main ---#
-@profile
+#@profile
 def main(Uargs):
     # --abs_abund as int
     try:
@@ -112,11 +77,7 @@ def main(Uargs):
         logfh.write("\n")
     else:
         logfh = None
-        
-    # parallel
-    chunkSize = int(Uargs['--chunksize'])
-    mpPool= mp.Pool(processes=int(Uargs['--threads']))
-    
+            
     # loading community file
     sys.stderr.write('Loading files...\n')
     comm = CommTable.from_csv(Uargs['<comm_file>'], sep='\t')
@@ -132,8 +93,6 @@ def main(Uargs):
     sys.stderr.write('Creating 2d-KDEs of fragment GC & length...\n')
     fragKDE = FragGC.Frag_multiKDE(Uargs['<fragGC_file>'])
     
-    # creating interval tree of normal distributions to model diffusion
-    diffusionDists = make_diffusion_dists()
     
     # initializing OTU table class
     OTUsim = OTU.OTU_sim(frac,
@@ -174,12 +133,14 @@ def main(Uargs):
                         
             taxonAbsAbund = comm.get_taxonAbund(libID, taxon_name)
             sys.stderr.write('    N-fragments:   {}\n'.format(taxonAbsAbund))
-                
+
+            
             # sampling fragment GC & length values from taxon-specific KDE
             try:
                 GC_len_arr = fragKDE.sampleTaxonKDE(taxon_name, size=taxonAbsAbund)
             except ValueError:
                 GC_len_arr = None
+            status('KDE', t_start)
                 
             # calc BD 
             if GC_len_arr is None or GC_len_arr.shape[1] == 0:
@@ -192,23 +153,29 @@ def main(Uargs):
                     logfh.write("\n")
                 
                 # simulating diffusion; calc BD from frag GC
-                f = lambda x: SIPSimCpp.add_diffusion(x[0], x[1])
-                frag_BD = np.apply_along_axis(f, 0, GC_len_arr) / 100.0 * 0.098 + 1.66
+#                f = lambda x: SIPSimCpp.add_diffusion(x[0], x[1])
+#               frag_BD = np.apply_along_axis(f, 0, GC_len_arr) / 100.0 * 0.098 + 1.66
+                    
+                frag_BD = SIPSimCython.add_diffusion_wrapper(GC_len_arr)
                 GC_len_arr = ()
-            
+                status('diffusion', t_start)
+                
                 # BD + BD shift from isotope incorporation
-                ## TODO: implement abundance-weighting            
+                ## TODO: implement abundance-weighting
                 incorp_vals = np.ravel(incorp.sample_incorpFunc(libID,
                                                        taxon_name,
                                                        n_samples=taxonAbsAbund))
                         
                 frag_BD += incorp_vals / 100.0 * isotopeMaxBD
-
+                status('incorp', t_start)
+                incorp_vals = ()
+                
                 
             # group by fraction
             frag_BD_bins = Counter(np.digitize(frag_BD, libFracBins))
             frag_BD = ()
-            frag_BD_bins = binNum2ID(frag_BD_bins, libFracBins)            
+            frag_BD_bins = binNum2ID(frag_BD_bins, libFracBins)
+            status('bin', t_start)
             
             # converting to a pandas dataframe
             frag_BD_bins = frag_BD_bins.items()
@@ -219,10 +186,8 @@ def main(Uargs):
             df.iloc[:,1] = df.applymap(str).iloc[:,1]   # must convert values to dtype=object
             lib_OTU_counts = pd.merge(lib_OTU_counts, df, how='outer', on='fractions')
 
-            # status
-            t_end = time.time()
-            sys.stderr.write('    Time elapsed:  {0:.1f} sec\n'.format(t_end - t_start))
-            
+            # end of loopo
+            status('final', t_start)            
             
 
         # formatting completed dataframe of OTU counts for the library

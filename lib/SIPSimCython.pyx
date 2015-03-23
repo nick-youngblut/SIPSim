@@ -1,18 +1,32 @@
 from __future__ import division
 import numpy as np
 cimport numpy as np
+from cython.parallel import prange
+
+import SIPSimCpp
+
 
 DTYPE = np.float
 ctypedef np.float_t DTYPE_t
 
-def addIncorpBD(np.ndarray frag_BD, np.ndarray incorp_perc, double isotopeMaxBD):
-    cdef int l1 = frag_BD.shape[0]
-    cdef int l2 = incorp_perc.shape[0]
-    cdef int i
-    cdef np.ndarray res = np.zeros([l1], dtype=DTYPE)
-    
-    for i in xrange(l1):
-        res[i] = incorp_perc[i] / 100 * isotopeMaxBD + frag_BD[i]
 
-    return res
-        
+    
+def add_diffusion_wrapper(np.ndarray[DTYPE_t, ndim=2] arr):    
+    cdef int n = len(arr[0])
+    cdef double[:] out = np.empty(n, dtype=DTYPE)
+    cdef unsigned int i
+    
+    for i in xrange(n):
+        out[i] = SIPSimCpp.add_diffusion(arr[0,i], arr[1,i]) / 100.0 * 0.098 + 1.66
+    return out
+
+
+def add_incorp(frag_BD,
+               np.ndarray[DTYPE_t, ndim=2] incorp_arr,
+               double isotopeMaxBD):
+    cdef int n = len(incorp_arr)
+    cdef double[:] out = np.empty(n, dtype=DTYPE)
+    for i in xrange(n):
+        frag_BD[i] += incorp_arr[i,1] / 100.0 * isotopeMaxBD
+    return frag_BD
+    
