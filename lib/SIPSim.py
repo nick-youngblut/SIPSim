@@ -10,6 +10,7 @@ from functools import partial
 ## 3rd party
 import pandas as pd
 import numpy as np
+import numexpr as ne
 import multiprocessing as mp
 from intervaltree import Interval, IntervalTree
 ## application
@@ -77,29 +78,6 @@ def make_diffusion_dists(start=1,end=60001,step=100,maxRange=2000000):
     
     
     
-def GC2BD(frag_gc):
-    """Conversion of G+C (0-100) to buoyant density.
-    Args:
-    frag_gc -- numpy array of fragment G+C values
-    """
-    return frag_gc / 100.0 * 0.098 + 1.66
-
-    
-def addIncorpBD(frag_BD_incorp, isotopeMaxBD):
-    """Adding BD from isotope incorporation to 0%-incorp BD values.
-    Args:
-    frag_BD -- array of frag_BD values
-    incorp_perc -- array of isotope incorp percentages
-    isotopeMaxBD -- float of max BD possible for isotope
-    Return:
-    1d array of updated BD values
-    """
-    #n = frag_BD.shape[0]
-    #result = np.zeros([n])
-    #for i in xrange(n):
-    #    result[i] = frag_BD[i] + isotopeMaxBD * (incorp_perc[i] / 100)
-    return frag_BD_incorp[0] + isotopeMaxBD * (frag_BD_incorp[1] / 100)
-
     
 def binNum2ID(frag_BD_bins, libFracBins):
     """Convert Counter(np.digitize()) for frag_BD  to the fraction BD-min-max.
@@ -109,14 +87,14 @@ def binNum2ID(frag_BD_bins, libFracBins):
     Return:
     dict of {fractionID : fragment_counts}
     """
-    return {'{0:.3f}-{1:.3f}'.format(libFracBins[k-1],libFracBins[k]):v for (k,v) in frag_BD_bins.items()}
+    msg = '{0:.3f}-{1:.3f}'
+    return {msg.format(libFracBins[k-1],libFracBins[k]):v for (k,v) in frag_BD_bins.items()}
 
 
 
-    
-    
     
 #--- main ---#
+@profile
 def main(Uargs):
     # --abs_abund as int
     try:
@@ -202,7 +180,7 @@ def main(Uargs):
                 GC_len_arr = fragKDE.sampleTaxonKDE(taxon_name, size=taxonAbsAbund)
             except ValueError:
                 GC_len_arr = None
-
+                
             # calc BD 
             if GC_len_arr is None or GC_len_arr.shape[1] == 0:
                 frag_BD = np.zeros(1)
@@ -216,17 +194,20 @@ def main(Uargs):
                 # simulating diffusion; calc BD from frag GC
                 f = lambda x: SIPSimCpp.add_diffusion(x[0], x[1])
                 frag_BD = np.apply_along_axis(f, 0, GC_len_arr) / 100.0 * 0.098 + 1.66
-                    
+                GC_len_arr = ()
             
                 # BD + BD shift from isotope incorporation
                 ## TODO: implement abundance-weighting            
-                incorp_vals = np.array(incorp.sample_incorpFunc(libID, taxon_name, n_samples=taxonAbsAbund))
+                incorp_vals = np.ravel(incorp.sample_incorpFunc(libID,
+                                                       taxon_name,
+                                                       n_samples=taxonAbsAbund))
                         
-                frag_BD =  frag_BD + (np.ravel(incorp_vals) / 100.0 * isotopeMaxBD)
+                frag_BD += incorp_vals / 100.0 * isotopeMaxBD
 
                 
             # group by fraction
             frag_BD_bins = Counter(np.digitize(frag_BD, libFracBins))
+            frag_BD = ()
             frag_BD_bins = binNum2ID(frag_BD_bins, libFracBins)            
             
             # converting to a pandas dataframe
@@ -257,7 +238,7 @@ def main(Uargs):
 
         
     # combining library-specific dataframes and writing out long form of table
-    pd.concat(OTU_counts, ignore_index=False).to_csv(sys.stdout, sep='\t', index=False)
+#    pd.concat(OTU_counts, ignore_index=False).to_csv(sys.stdout, sep='\t', index=False)
             
 
     # finish up

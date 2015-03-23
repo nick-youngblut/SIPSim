@@ -35,7 +35,9 @@ double rand_norm_range(double mean, double stdev, double min, double max){
       return x;
     }
     else if (tries >= max_tries){
-      cout << "ERROR: exceeded max tries (n=" << max_tries << ") to find a random variable" << endl;
+      cout << "ERROR: exceeded max tries (n=" 
+	   << max_tries 
+	   << ") to find a random variable" << endl;
       exit(1);
     }    
   }

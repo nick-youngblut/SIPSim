@@ -33,7 +33,9 @@ class IsoIncorpTable(_table):
         incorpFuncs = defaultdict(dict)
         for libID in self.iter_libraries():
             for (taxon_name,taxon_df) in self.iter_taxonRowsInLib(libID):
-                incorpFuncs[libID][taxon_name] = self._get_incorpDistFunc(taxon_df, libID, taxon_name)
+                incorpFuncs[libID][taxon_name] = self._get_incorpDistFunc(taxon_df,
+                                                                          libID,
+                                                                          taxon_name)
 
         return incorpFuncs
     
@@ -92,7 +94,8 @@ class IsoIncorpTable(_table):
                 msg = 'Distribution "{}" not supported'
                 raise KeyError(msg.format(distID))
             except TypeError:
-                msg = 'For: {}=>{}, distribution "{}" does not support all provided params: "{}"'
+                msg = 'For: {}=>{}, distribution "{}" does not'\
+                      ' support all provided params: "{}"'
                 raise TypeError(msg.format(libID, taxon_name, distID, ','.join(params.keys())))
                 
             # getting weights
