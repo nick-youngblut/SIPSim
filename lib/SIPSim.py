@@ -20,6 +20,8 @@ from IsoIncorpTable import IsoIncorpTable
 import OTU
 import SIPSimCpp
 import SIPSimCython
+from Utils import Status
+
 
 # logging
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
@@ -37,29 +39,9 @@ def binNum2ID(frag_BD_bins, libFracBins):
     return {msg.format(libFracBins[k-1],libFracBins[k]):v for (k,v) in frag_BD_bins.items()}
 
 
-def status(msg, startTime):
-    msgs = {'kde':'GC/fragment_length KDE sampled',
-            'diffusion':'diffusion added to BD values',
-            'incorp':'isotope incorporation added to BD values',
-            'bin':'binned BD values',
-            'final':'taxon finished'}
-
-    nowTime = time.time()
-    timeDiff = '{0:.1f}'.format(nowTime - startTime)
-    
-    try:
-        x = '     Elapsed: {0:>7} sec => {1}\n'
-        sys.stderr.write(x.format(timeDiff, msgs[msg.lower()]))
-    except KeyError:
-        raise KeyError('Cannot find status for key "{}"'.format(msg))
-
-    return nowTime
-        
-
 
     
 #--- main ---#
-#@profile
 def main(Uargs):
     # --abs_abund as int
     try:
@@ -70,6 +52,9 @@ def main(Uargs):
         raise TypeError('"{}" must be float-like'.format(Uargs['--abs_abund']))
 
 
+    ## logging
+    status = Status(Uargs['--quiet'])
+    
     # fragment info log file
     if Uargs['--log'] != 'None':
         logfh = open(Uargs['--log'], 'w')
@@ -140,7 +125,7 @@ def main(Uargs):
                 GC_len_arr = fragKDE.sampleTaxonKDE(taxon_name, size=taxonAbsAbund)
             except ValueError:
                 GC_len_arr = None
-            status('KDE', t_start)
+            status.msg('KDE', t_start)
                 
             # calc BD 
             if GC_len_arr is None or GC_len_arr.shape[1] == 0:
@@ -157,25 +142,27 @@ def main(Uargs):
 #               frag_BD = np.apply_along_axis(f, 0, GC_len_arr) / 100.0 * 0.098 + 1.66
                     
                 frag_BD = SIPSimCython.add_diffusion_wrapper(GC_len_arr)
-                GC_len_arr = ()
-                status('diffusion', t_start)
+                GC_len_arr = None
+                status.msg('diffusion', t_start)
                 
                 # BD + BD shift from isotope incorporation
+
+                SIPSimCython.add_incorp(frag_BD, incorp, isotopeMaxBD, libID, taxon_name, taxonAbsAbund)
+                
                 ## TODO: implement abundance-weighting
-                incorp_vals = np.ravel(incorp.sample_incorpFunc(libID,
-                                                       taxon_name,
-                                                       n_samples=taxonAbsAbund))
-                        
-                frag_BD += incorp_vals / 100.0 * isotopeMaxBD
-                status('incorp', t_start)
-                incorp_vals = ()
+#                incorp_vals = np.ravel(incorp.sample_incorpFunc(libID,
+#                                                       taxon_name,
+#                                                       n_samples=taxonAbsAbund))                        
+#                frag_BD += incorp_vals / 100.0 * isotopeMaxBD
+#                incorp_vals = None
+                status.msg('incorp', t_start)
                 
                 
             # group by fraction
             frag_BD_bins = Counter(np.digitize(frag_BD, libFracBins))
             frag_BD = ()
             frag_BD_bins = binNum2ID(frag_BD_bins, libFracBins)
-            status('bin', t_start)
+            status.msg('bin', t_start)
             
             # converting to a pandas dataframe
             frag_BD_bins = frag_BD_bins.items()
@@ -187,7 +174,7 @@ def main(Uargs):
             lib_OTU_counts = pd.merge(lib_OTU_counts, df, how='outer', on='fractions')
 
             # end of loopo
-            status('final', t_start)            
+            status.msg('final', t_start)            
             
 
         # formatting completed dataframe of OTU counts for the library

@@ -21,12 +21,17 @@ def add_diffusion_wrapper(np.ndarray[DTYPE_t, ndim=2] arr):
     return out
 
 
-def add_incorp(frag_BD,
-               np.ndarray[DTYPE_t, ndim=2] incorp_arr,
-               double isotopeMaxBD):
-    cdef int n = len(incorp_arr)
-    cdef double[:] out = np.empty(n, dtype=DTYPE)
-    for i in xrange(n):
-        frag_BD[i] += incorp_arr[i,1] / 100.0 * isotopeMaxBD
-    return frag_BD
+def add_incorp(frag_BD, incorp, double isotopeMaxBD,
+               libID, taxon_name, taxonAbsAbund):
     
+    cdef int n = len(frag_BD)
+    
+    cdef int i = 0
+    cdef double y = 100.0
+    cdef double z
+    for x in incorp.sample_incorpFunc(libID, taxon_name, taxonAbsAbund):
+        z = x[0]
+        frag_BD[i] += z / y * isotopeMaxBD
+        i += 1
+
+

@@ -1276,3 +1276,4 @@ OSError: [Errno 2] No such file or directory
 [32m[I 18:07:10.560 NotebookApp][m Kernel interrupted: 6fbbb7f3-6316-4b4f-a3a3-5505338ae390
 [32m[I 18:07:58.989 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
 [32m[I 18:09:00.566 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 11:34:51.519 NotebookApp][m Notebook ipynb/bac_genome/all/nl1/fragLen_logNorm.ipynb is not trusted

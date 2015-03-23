@@ -21,12 +21,12 @@ Options:
   --g_noise=<gn>      scipy distribution function describing gradient 'noise'. [default: cauchy]
   --gn_scale=<np>     Scale parameter for the '--g_noise' distribution. [default: 0.0]
   --gc_range=<gcr>    Min-max possible G+C values post-diffusion or post-noise. [default: 0,100]
-  --threads=<th>      Number of threads to use for parallel processing. [default: 1]
-  --chunksize=<cs>    Chunk size used by each thread. [default: 100]
   --log=<lg>          File name for log of GC and fragment length values ('None' = no file). [default: None]
-  -h --help           Show this screen.
+  --quiet             Limit STDERR output.
   --version           Show version.
   --debug             Debug mode
+  -h --help           Show this screen.
+
 
 Description:
   Create an OTU table of simulated OTUs for each fraction in >=1 CsCl gradient.
