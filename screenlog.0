@@ -1303,3 +1303,45 @@ OSError: [Errno 2] No such file or directory
 [32m[I 20:08:20.278 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
 [33m[W 20:08:20.279 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
 [32m[I 20:08:29.913 NotebookApp][m Kernel interrupted: 6fbbb7f3-6316-4b4f-a3a3-5505338ae390
+[32m[I 20:10:20.199 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 20:10:20.199 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 20:18:50.137 NotebookApp][m WebSocket ping timeout after 119951 ms.
+[33m[W 09:19:01.608 NotebookApp][m Notebook ipynb/bac_genome/n10/bac_genome10_v3.ipynb is not trusted
+[32m[I 09:19:03.702 NotebookApp][m Kernel started: e0d2b702-9b3c-4382-9741-b0390ca37e7c
+[32m[I 09:19:14.095 NotebookApp][m Saving file at /ipynb/bac_genome/n10/bac_genome10_v3.ipynb
+[33m[W 09:19:14.097 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n10/bac_genome10_v3.ipynb
+[32m[I 09:21:03.766 NotebookApp][m Saving file at /ipynb/bac_genome/n10/bac_genome10_v3.ipynb
+[33m[W 09:21:03.769 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n10/bac_genome10_v3.ipynb
+[32m[I 09:23:03.774 NotebookApp][m Saving file at /ipynb/bac_genome/n10/bac_genome10_v3.ipynb
+[33m[W 09:23:03.777 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n10/bac_genome10_v3.ipynb
+[32m[I 09:25:03.754 NotebookApp][m Saving file at /ipynb/bac_genome/n10/bac_genome10_v3.ipynb
+[33m[W 09:25:03.757 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n10/bac_genome10_v3.ipynb
+[32m[I 09:27:03.764 NotebookApp][m Saving file at /ipynb/bac_genome/n10/bac_genome10_v3.ipynb
+[33m[W 09:27:03.767 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n10/bac_genome10_v3.ipynb
+[32m[I 09:29:03.748 NotebookApp][m Saving file at /ipynb/bac_genome/n10/bac_genome10_v3.ipynb
+[33m[W 09:29:03.750 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n10/bac_genome10_v3.ipynb
+[32m[I 09:31:03.766 NotebookApp][m Saving file at /ipynb/bac_genome/n10/bac_genome10_v3.ipynb
+[33m[W 09:31:03.768 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n10/bac_genome10_v3.ipynb
+[32m[I 09:33:03.739 NotebookApp][m Saving file at /ipynb/bac_genome/n10/bac_genome10_v3.ipynb
+[33m[W 09:33:03.741 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n10/bac_genome10_v3.ipynb
+[32m[I 09:35:03.741 NotebookApp][m Saving file at /ipynb/bac_genome/n10/bac_genome10_v3.ipynb
+[33m[W 09:35:03.744 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n10/bac_genome10_v3.ipynb
+[32m[I 09:48:14.934 NotebookApp][m Saving file at /ipynb/bac_genome/n10/bac_genome10_v3.ipynb
+[33m[W 09:48:14.937 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n10/bac_genome10_v3.ipynb
+[32m[I 10:01:36.076 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 10:01:36.077 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:02:40.892 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 10:02:40.893 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:03:36.067 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 10:03:36.067 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:07:36.065 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 10:07:36.065 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:11:36.056 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 10:11:36.056 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:15:36.045 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 10:15:36.045 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:21:36.033 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 10:21:36.034 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:29:07.431 NotebookApp][m Kernel interrupted: 6fbbb7f3-6316-4b4f-a3a3-5505338ae390
+[32m[I 10:29:36.017 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 10:29:36.018 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb

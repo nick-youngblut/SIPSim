@@ -33,20 +33,27 @@ def binNum2ID(frag_BD_bins, libFracBins):
     frag_BD_bins -- dict of counts from np.digitize() binning
     libFracBins -- ordered set of fraction start-ends
     Return:
-    dict of {fractionID : fragment_counts}
-    """
+    dict -- {fractionID : fragment_counts}
+    """    
     msg = '{0:.3f}-{1:.3f}'
-    try:
-        return {msg.format(libFracBins[k-1],libFracBins[k]):v for (k,v) in frag_BD_bins.items()}
-    except IndexError:
-        sys.stderr.write("#ERROR#\n#-- frag_BD_bins --#\n")
-        sys.stderr.write(frag_BD_bins.items())
-        sys.stderr.write("\n#libFracBins#\n")
-        sys.stderr.write(libFracBins)
-        raise IndexError
+    n_bins = len(libFracBins)
+    out = {}
+    for k,v in frag_BD_bins.items():        
+        if k < 1:
+            binStart = -np.inf
+            binEnd = libFracBins[0]
+        elif k > len(libFracBins) -1:
+            binStart = libFracBins[-1]
+            binEnd = np.inf
+        else:
+            binStart = libFracBins[k-1]
+            binEnd = libFracBins[k]
+        binRange = msg.format(binStart, binEnd) 
+        out[binRange] = v
 
+    return out
 
-
+    
     
 #--- main ---#
 def main(Uargs):
