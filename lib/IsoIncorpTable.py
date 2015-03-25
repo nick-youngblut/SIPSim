@@ -2,7 +2,6 @@
 ## batteries
 from collections import defaultdict
 ## 3rd party
-#import pymix.mixture as mixture
 import mixture
 ## applicaton
 from Utils import _table
@@ -141,7 +140,7 @@ class IsoIncorpTable(_table):
         taxon_name -- name of taxon in the library
         n_samples -- number of samples to pull from distribution
         Return:
-        iterator of incorporation percentages
+        2d-list -- incorporation percentages
         """
         try:
             incorpFunc = self.incorpFuncs[libID][taxon_name]
@@ -149,3 +148,19 @@ class IsoIncorpTable(_table):
             raise KeyError('Cannot find library-taxon: "{}"-"{}"'.format(libID, taxon_name))
 
         return incorpFunc.sampleSet(n_samples)
+
+        
+    def get_incorpFunc(self, libID, taxon_name, n_samples=1):
+        """return the intra-population isotope incorporation function
+        set for the user-selected library-taxon.
+        Args:
+        libID -- library ID
+        taxon_name -- name of taxon in the library
+        n_samples -- number of samples to pull from distribution
+        Return:
+        function -- 
+        """
+        try:
+            return self.incorpFuncs[libID][taxon_name]
+        except KeyError:
+            raise KeyError('Cannot find library-taxon: "{}"-"{}"'.format(libID, taxon_name))

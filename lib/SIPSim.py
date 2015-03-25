@@ -36,7 +36,14 @@ def binNum2ID(frag_BD_bins, libFracBins):
     dict of {fractionID : fragment_counts}
     """
     msg = '{0:.3f}-{1:.3f}'
-    return {msg.format(libFracBins[k-1],libFracBins[k]):v for (k,v) in frag_BD_bins.items()}
+    try:
+        return {msg.format(libFracBins[k-1],libFracBins[k]):v for (k,v) in frag_BD_bins.items()}
+    except IndexError:
+        sys.stderr.write("#ERROR#\n#-- frag_BD_bins --#\n")
+        sys.stderr.write(frag_BD_bins.items())
+        sys.stderr.write("\n#libFracBins#\n")
+        sys.stderr.write(libFracBins)
+        raise IndexError
 
 
 
@@ -130,6 +137,7 @@ def main(Uargs):
             # calc BD 
             if GC_len_arr is None or GC_len_arr.shape[1] == 0:
                 frag_BD = np.zeros(1)
+                status.msg('zero', t_start)
             else:
                 ## logging if needed
                 if logfh is not None:
@@ -138,18 +146,17 @@ def main(Uargs):
                     logfh.write("\n")
                 
                 # simulating diffusion; calc BD from frag GC
-#                f = lambda x: SIPSimCpp.add_diffusion(x[0], x[1])
-#               frag_BD = np.apply_along_axis(f, 0, GC_len_arr) / 100.0 * 0.098 + 1.66
-                    
                 frag_BD = SIPSimCython.add_diffusion_wrapper(GC_len_arr)
                 GC_len_arr = None
                 status.msg('diffusion', t_start)
                 
-                # BD + BD shift from isotope incorporation
-
-                SIPSimCython.add_incorp(frag_BD, incorp, isotopeMaxBD, libID, taxon_name, taxonAbsAbund)
-                
+                # BD += BD shift from isotope incorporation
                 ## TODO: implement abundance-weighting
+                incorp_func = incorp.get_incorpFunc(libID,
+                                                    taxon_name,
+                                                    n_samples=taxonAbsAbund)
+                SIPSimCython.add_incorp(frag_BD, incorp_func, isotopeMaxBD)
+                
 #                incorp_vals = np.ravel(incorp.sample_incorpFunc(libID,
 #                                                       taxon_name,
 #                                                       n_samples=taxonAbsAbund))                        
@@ -160,7 +167,7 @@ def main(Uargs):
                 
             # group by fraction
             frag_BD_bins = Counter(np.digitize(frag_BD, libFracBins))
-            frag_BD = ()
+            frag_BD = None
             frag_BD_bins = binNum2ID(frag_BD_bins, libFracBins)
             status.msg('bin', t_start)
             
@@ -190,7 +197,7 @@ def main(Uargs):
 
         
     # combining library-specific dataframes and writing out long form of table
-#    pd.concat(OTU_counts, ignore_index=False).to_csv(sys.stdout, sep='\t', index=False)
+    pd.concat(OTU_counts, ignore_index=False).to_csv(sys.stdout, sep='\t', index=False)
             
 
     # finish up

@@ -1277,3 +1277,29 @@ OSError: [Errno 2] No such file or directory
 [32m[I 18:07:58.989 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
 [32m[I 18:09:00.566 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
 [33m[W 11:34:51.519 NotebookApp][m Notebook ipynb/bac_genome/all/nl1/fragLen_logNorm.ipynb is not trusted
+[32m[I 17:06:42.251 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/fragLen_logNorm.ipynb
+[33m[W 17:06:42.253 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl1/fragLen_logNorm.ipynb
+[32m[I 17:07:47.843 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/absAbund_logNorm.ipynb
+[32m[I 17:08:42.799 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/absAbund_logNorm.ipynb
+[32m[I 17:09:08.049 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/absAbund_logNorm.ipynb
+[33m[W 18:08:07.217 NotebookApp][m WebSocket ping timeout after 119910 ms.
+[33m[W 18:08:18.004 NotebookApp][m WebSocket ping timeout after 119997 ms.
+[33m[W 19:40:16.735 NotebookApp][m WebSocket ping timeout after 119794 ms.
+[33m[W 19:40:20.626 NotebookApp][m WebSocket ping timeout after 119897 ms.
+[32m[I 10:13:01.418 NotebookApp][m Kernel interrupted: 3c9e8c79-40ca-4adb-941a-5aaff38372c8
+[32m[I 10:14:32.701 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/absAbund_logNorm.ipynb
+[32m[I 11:11:06.913 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/absAbund_logNorm.ipynb
+[32m[I 11:15:54.716 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl1/absAbund_logNorm.ipynb
+[33m[W 13:15:06.924 NotebookApp][m WebSocket ping timeout after 119998 ms.
+[33m[W 14:59:32.384 NotebookApp][m Notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb is not trusted
+[33m[W 15:03:20.795 NotebookApp][m Notebook ipynb/bac_genome/all/nl1/absAbund.ipynb is not trusted
+[32m[I 15:03:33.753 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 15:03:33.754 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 15:03:44.702 NotebookApp][m Notebook ipynb/bac_genome/Ecoli/fragLen.ipynb is not trusted
+[33m[W 15:04:02.303 NotebookApp][m Notebook ipynb/non-equilibrium_calcs.ipynb is not trusted
+[33m[W 20:00:19.245 NotebookApp][m Notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb is not trusted
+[32m[I 20:02:20.225 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 20:02:20.226 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 20:08:20.278 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 20:08:20.279 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 20:08:29.913 NotebookApp][m Kernel interrupted: 6fbbb7f3-6316-4b4f-a3a3-5505338ae390
