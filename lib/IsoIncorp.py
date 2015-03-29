@@ -72,9 +72,9 @@ def populationDistributions(config, comm, percTaxa=100):
 
 
     # iterating through all libraries & taxon in each library
-    configLibIDs = {k:v for k,v in zip(config.get_configLibs(trunc=True), config.get_configLibs())}
-    for libID in comm.iter_libraries():
-        
+    configLibIDs = {k:v for k,v in zip(config.get_configLibs(trunc=True), \
+                                       config.get_configLibs())}
+    for libID in comm.iter_libraries():        
         # cross check libID between comm and config files
         libID = str(libID)
         if not libID in configLibIDs:
@@ -95,6 +95,7 @@ def populationDistributions(config, comm, percTaxa=100):
                 continue
                 
             # writing out the intra-population distribution(s) for the taxon in the library
+            ## only taxa in the user-defined percentage should have any incorporation
             if((float(taxon_idx)+1) / ntaxa * 100 > percTaxa):            
                 set_intraPopDistZero(outTbl, libID[1], taxon_name)
             else:
@@ -114,22 +115,23 @@ def set_intraPopDist(outTbl, config, libID, taxon_name):
     """
     libSect = config.get_libSection(libID[0])
     dist_cnt = 0
-    for (intraPopDistID,intraPopDist) in config.iter_configSections(libSect):
+    for (intraPopDistID,intraPopDist) in config.iter_configSections(libSect):    
         dist_cnt += 1
         # getting distribution
         distribution = intraPopDist['distribution']
         # getting weight
-        try:
-            weight = intraPopDist['weight']
-        except KeyError:
-            weight = ''
+        weight = float(intraPopDist.get('weight', 1.0))
             
-        # setting intra-pop param values
+        # setting intra-pop dist param values
+        intraPopParams = dict()
         for (paramID,param) in config.iter_configSections(intraPopDist):
             # getting inter-pop dist function
             func = [v['function'] for k,v in config.iter_configSections(param)][0]
             # sampling from function to get parameter for intra-pop distribution
+            maxtries = 1000
+            tries = 0
             while True:
+                tries += 1
                 paramVal = func.sample()
                 try:
                     paramVal = paramVal[0]
@@ -137,16 +139,32 @@ def set_intraPopDist(outTbl, config, libID, taxon_name):
                     pass
                 # values must be in range: 0-100
                 if paramVal >= 0 and paramVal <= 100:
+                    intraPopParams[paramID] = paramVal
                     break
+                # exceeding maxtries?
+                if tries >= maxtries:
+                    msg = 'Exceeded maxtries to get parameter in range: 0-100'
+                    sys.exit(msg)
 
-            # setting weight as float
-            if weight is None:
-                weight = 1.0
-            else:
-                weight = float(weight)
-                    
-            # saving row of values
-            outTbl.loc[outTbl.shape[0]+1] = [libID[1], taxon_name, str(dist_cnt), distribution,
+        # mu values rounded if < 1e-10
+        try:
+            if intraPopParams['mu'] < 1e-10:
+                intraPopParams['mu'] = round(intraPopParams['mu'], 0)
+        except KeyError:
+            pass
+            
+        # if start-end params differ by < 1e-8, make same value
+        try:
+            if abs(intraPopParams['start'] - intraPopParams['end']) < 1e-8:
+                intraPopParams['start'] = round(intraPopParams['start'],0)
+                intraPopParams['end'] = round(intraPopParams['end'],0)
+        except KeyError:
+            pass
+        
+        # writing values
+        for paramID, paramVal in intraPopParams.items():
+            outTbl.loc[outTbl.shape[0]+1] = [libID[1], taxon_name, 
+                                             str(dist_cnt), distribution,
                                              str(weight), paramID, str(paramVal)]
 
                                                     
@@ -180,11 +198,12 @@ class Config(ConfigObj):
         
         # check param assertions
         self._param_asserts()
-
+        
         # setting inter-population distribution functinos
         self._set_interPopDistFuncs()
+        self._set_interPopDistMM()
+        #self._set_intraPopDistFuncs()
 
-        
 
     @classmethod
     def load_config(cls, config_file, phylo=None):
@@ -215,64 +234,60 @@ class Config(ConfigObj):
                 if error == False:
                     error = 'Missing value or section.'
                 print section_string, ' = ', error
-            sys.exit()
+            sys.exit(1)
 
             
     def _param_asserts(self):
         """Checking that certain parameters comply to assertions.
-        """
-        # TODO: finish
-        
-        def end_gt_start(x):
-            pass
-    
-        for (libID,val1) in self.iteritems():
-            for (intraPopDist,val2) in self.iter_configSections(val1):
-                for (intraPopDistParam,val3) in self.iter_configSections(val2):
-                    for (interPopDistParam,val4) in self.iter_configSections(val3):
+        """    
+        for (libID,sect1) in self.iteritems():
+            for (intraPopDist,sect2) in self.iter_configSections(sect1):
+                # intra-pop level
+                self._check_start_end(sect2)
+                for (intraPopDistParam,sect3) in self.iter_configSections(sect2):
+                    for (interPopDistParam,sect4) in self.iter_configSections(sect3):
+                        # inter-pop level
+                        self._check_start_end(sect4)
 
-                        keyParams = {k.lower():v for k,v  in self.iter_sectionKeywords(val4)}
+
+    def _check_start_end(self, sect):
+        """Checking start & end parameters.
+        Args:
+        sect -- config section class
+        """
+        keyParams = {k.lower():v for k,v  in self.iter_sectionKeywords(sect)}
                         
-                        # assert params: end  > start
-                        if ('start' in keyParams) & ('end' in keyParams):
-                            try:
-                                startVal = float(keyParams['start'])
-                                endVal = float(keyParams['end'])
-                            except TypeError:
-                                continue
-                                
-                            if startVal >= endVal:
-                                if endVal >= 100:
-                                    val4['start'] = float(val4['start']) #- 1e-10
-                                else:
-                                    val4['end'] = float(val4['end']) #+ 1e-10
-                                    
+        # assert params: end  > start
+        if ('start' in keyParams) & ('end' in keyParams):
+            try:
+                startVal = float(keyParams['start'])
+                endVal = float(keyParams['end'])
+            except TypeError:
+                return None
+                
+            if startVal >= endVal:
+                if endVal >= 100:
+                    sect['start'] = float(sect['start']) - 1e-10
+                else:
+                    sect['end'] = float(sect['end']) + 1e-10
+        return None
                                             
 
-    def _set_interPopDistFuncs(self):
-        """Setting the inter-population distribution random sampling functions
-        based on user-selected distributions (pymix distributions).
-        A mixture models will be used for the inter-pop distribution
-        if multiple distributions are provided
-        (e.g., [[[[interPopDist 1]]]] & [[[[interPopDist 2]]]]).
-        'weight' parameters can be set for the individual distributions;
-        otherwise, each individual distribution will be weighted equally. 
-
-        """
+    def _set_interPopDistFuncs_OLD(self):
         # TODO: add BM distribution
         psblDists = {'normal' : mixture.NormalDistribution,
                      'uniform' : mixture.UniformDistribution,
-                     'same_value' : lambda start,end: start
-                 }
+                     'same_value' : lambda start,end: start}
 
         for (libID,val1) in self.iteritems():
             for (intraPopDist,val2) in self.iter_configSections(val1):
                 for (intraPopDistParam,val3) in self.iter_configSections(val2):
-                    # setting standard distributions
+                    # setting distributions functions
                     for (interPopDist,val4) in self.iter_configSections(val3):
                         d = val4['distribution']
                         otherParams = {k:v for k,v in val4.items() \
-                                       if k != 'distribution' and v is not None}
+                                       if k != 'distribution' and \
+                                       k != 'weight' and v is not None}
 
                         try: 
                             startParam = otherParams['start']
@@ -289,9 +304,8 @@ class Config(ConfigObj):
                                     otherParams['start'] -= 1e-5
                                 else:
                                     otherParams['end'] += 1e-5
-
-                        
-                        try:
+                                    
+                        try:                            
                             val4['function'] = psblDists[d](**otherParams)
                         except KeyError:
                             raise KeyError('distribution "{}" not supported'.format(d))
@@ -301,11 +315,15 @@ class Config(ConfigObj):
                     allInterPopDists = [[k,v] for k,v in self.iter_configSections(val3)]
                     nInterPopDists = len(allInterPopDists)
                     if nInterPopDists > 1:
-                        allFuncs = [v['function'] for k,v in allInterPopDists]
+                        allFuncs = [v['function'] for x in allInterPopDists for k,v in x]
                         allWeights = [v['weight'] for k,v in allInterPopDists if 'weight' in k]
+                        print allInterPopDists
+                        print allWeights; sys.exit()
                         if len(allWeights) < nInterPopDists:
                             allWeights = [1.0 / nInterPopDists for i in xrange(nInterPopDists)]
 
+                        print allWeights
+                            
                         # changing interPopDist to mixture model
                         for i in val3: val3.popitem()                        
                         val3['interPopDist 1'] = {'function' :
@@ -313,6 +331,74 @@ class Config(ConfigObj):
                                                                        allWeights,
                                                                        allFuncs)}
 
+        sys.exit()
+
+
+
+    def _set_interPopDistFuncs(self):
+        """Setting the inter-population distribution random sampling functions
+        based on user-selected distributions (pymix distributions).
+        A mixture models will be used for the inter-pop distribution
+        if multiple distributions are provided
+        (e.g., [[[[interPopDist 1]]]] & [[[[interPopDist 2]]]]).
+        'weight' parameters can be set for the individual distributions;
+        otherwise, each individual distribution will be weighted equally. 
+
+        """
+        # TODO: add BM distribution
+        psblDists = {'normal' : mixture.NormalDistribution,
+                     'uniform' : mixture.UniformDistribution}
+
+        for (libID,sect1) in self.iteritems():
+            for (intraPopDist,sect2) in self.iter_configSections(sect1):
+                for (intraPopDistParam,sect3) in self.iter_configSections(sect2):        
+                    for (interPopDist,sect4) in self.iter_configSections(sect3):
+
+                        dist = sect4['distribution']                 
+                        otherParams = {k:v for k,v in sect4.items() \
+                                       if k not in ['distribution','weight'] \
+                                       and v is not None}
+
+                        try:
+                            sect4['function'] = psblDists[dist](**otherParams)            
+                        except KeyError:
+                            msg = 'distribution "{}" not supported'
+                            raise KeyError(msg.format(dist))
+
+
+    def _set_interPopDistMM(self):
+        """Setting the inter-population distribution random sampling functions
+        based on user-selected distributions (pymix distributions).
+        A mixture models will be used for the inter-pop distribution
+        if multiple distributions are provided
+        (e.g., [[[[interPopDist 1]]]] & [[[[interPopDist 2]]]]).
+        'weight' parameters can be set for the individual distributions;
+        otherwise, each individual distribution will be weighted equally. 
+        """
+        for (libID,sect1) in self.iteritems():
+            for (intraPopDist,sect2) in self.iter_configSections(sect1):
+                for (intraPopDistParam,sect3) in self.iter_configSections(sect2):        
+
+                    # setting mixture models if needed
+                    allInterPopDists = [[k,v] for k,v in self.iter_configSections(sect3)]
+                    nInterPopDists = len(allInterPopDists)
+                    if nInterPopDists > 1:
+                        allFuncs = [v['function'] for x in allInterPopDists]
+                        allWeights = [v['weight'] for k,v in allInterPopDists \
+                                      if 'weight' in v]
+                        # fill in missing weights (total = 1)
+                        if len(allWeights) < nInterPopDists:
+                            allWeights = [1.0 / nInterPopDists for i in xrange(nInterPopDists)]
+                        
+                        assert sum(allWeights) == 1, 'interpop weights don\'t sum to 1'
+                            
+                        # changing interPopDist to mixture model
+                        for i in sect3: sect3.popitem()                        
+                        sect3['interPopDist 1'] = {'function' :
+                                                   mixture.MixtureModel(nInterPopDists,
+                                                                        allWeights,
+                                                                        allFuncs)}
+                                        
                     
     def get_libSection(self, libID):
         """Getting sub-section of user-defined library from config.
@@ -339,7 +425,7 @@ class Config(ConfigObj):
         for (sectID,val) in sect.iteritems():
             if isinstance(val, configobj.Section):
                 yield (sectID,val)
-
+                            
                 
     def iter_sectionKeywords(self, sect=None):
         """Iter through just the keywords of the provided section.
@@ -353,3 +439,12 @@ class Config(ConfigObj):
 
                 
 
+
+# class same_value(object):
+
+#     def __init__(self, start, end, **kwargs):
+#         self.start = start
+#         self.end = end
+        
+#     def p(self):
+#         return self.start
