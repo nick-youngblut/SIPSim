@@ -21,7 +21,6 @@ Options:
   --debug              Debug mode
 
 Description:
-
   For each population (taxon), there is a distribution of how much
   isotope is incorporated by each member of the population.
   These intra-population distributions are, in reality, likely to
@@ -77,8 +76,8 @@ Description:
      * Using Brownian Motion evolution (must provide --phylo):
        * params:
          * root = value assigned for root which will then be evolved across the tree
-         * ratio = ratio of brownian motion vs random sampling used (range: 0-1)
-         * sigma = standard deviation for evolving values
+         * ratio = ratio of brownian motion vs random sampling used 
+         * sigma = standard deviation for evolving values (drawing from a normal distribution)
 
 """
 

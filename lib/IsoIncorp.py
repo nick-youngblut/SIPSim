@@ -272,68 +272,6 @@ class Config(ConfigObj):
         return None
                                             
 
-    def _set_interPopDistFuncs_OLD(self):
-        # TODO: add BM distribution
-        psblDists = {'normal' : mixture.NormalDistribution,
-                     'uniform' : mixture.UniformDistribution,
-                     'same_value' : lambda start,end: start}
-
-        for (libID,val1) in self.iteritems():
-            for (intraPopDist,val2) in self.iter_configSections(val1):
-                for (intraPopDistParam,val3) in self.iter_configSections(val2):
-                    # setting distributions functions
-                    for (interPopDist,val4) in self.iter_configSections(val3):
-                        d = val4['distribution']
-                        otherParams = {k:v for k,v in val4.items() \
-                                       if k != 'distribution' and \
-                                       k != 'weight' and v is not None}
-
-                        try: 
-                            startParam = otherParams['start']
-                            endParam = otherParams['end']
-                        except KeyError:
-                            pass
-                        else:
-                            # assert start <= end
-                            if startParam > endParam:
-                                otherParams['start'] = endParam
-                                otherParams['end'] = startParam
-                            elif startParam == endParam:  
-                                if startParam >= 100:
-                                    otherParams['start'] -= 1e-5
-                                else:
-                                    otherParams['end'] += 1e-5
-                                    
-                        try:                            
-                            val4['function'] = psblDists[d](**otherParams)
-                        except KeyError:
-                            raise KeyError('distribution "{}" not supported'.format(d))
-
-                            
-                    # setting mixture models if needed
-                    allInterPopDists = [[k,v] for k,v in self.iter_configSections(val3)]
-                    nInterPopDists = len(allInterPopDists)
-                    if nInterPopDists > 1:
-                        allFuncs = [v['function'] for x in allInterPopDists for k,v in x]
-                        allWeights = [v['weight'] for k,v in allInterPopDists if 'weight' in k]
-                        print allInterPopDists
-                        print allWeights; sys.exit()
-                        if len(allWeights) < nInterPopDists:
-                            allWeights = [1.0 / nInterPopDists for i in xrange(nInterPopDists)]
-
-                        print allWeights
-                            
-                        # changing interPopDist to mixture model
-                        for i in val3: val3.popitem()                        
-                        val3['interPopDist 1'] = {'function' :
-                                                  mixture.MixtureModel(nInterPopDists,
-                                                                       allWeights,
-                                                                       allFuncs)}
-
-        sys.exit()
-
-
-
     def _set_interPopDistFuncs(self):
         """Setting the inter-population distribution random sampling functions
         based on user-selected distributions (pymix distributions).
