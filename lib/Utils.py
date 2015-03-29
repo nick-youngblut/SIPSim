@@ -3,9 +3,11 @@
 # import
 ## batteries
 import os,sys
-from pprint import pprint
 import re
+import time
+from pprint import pprint
 from itertools import chain
+
 ## 3rd party
 import pandas as pd
 
@@ -90,6 +92,51 @@ def parseKeyValueString(x):
         
         
 
+class Status(object):
+    """Simple custom logging information
+    """
+    def __init__(self, quiet=False):
+        self.quiet = quiet
+        self.msgs = {'kde':'GC/fragment_length KDE sampled',
+                     'diffusion':'diffusion added to BD values',
+                     'incorp':'isotope incorporation added to BD values',
+                     'bin':'binned BD values',
+                     'final':'taxon finished',
+                     'zero':'NOTE: taxon has an abundance of 0'}                
+
+    def msg(self, msgKey, startTime=None):
+        """Writing formatted status message to STDERR
+        Args:
+        msgKey -- key for writing which status message
+        startTime -- used to measure how much time has elapsed        
+        """    
+        nowTime = time.time()
+        if startTime is not None:
+            timeDiff = '{0:.1f}'.format(nowTime - startTime)
+        else:
+            timeDiff = '0.0'
+
+        if not self.quiet:
+            try:
+                x = '     Elapsed: {0:>7} sec => {1}\n'
+                sys.stderr.write(x.format(timeDiff, self.msgs[msgKey.lower()]))
+            except KeyError:
+                s = 'Cannot find status for message key "{}"'
+                raise KeyError(s.format(msgKey))
+
+        return nowTime
+
+    def status_quiet(self):
+        self.quiet = True
+
+    def status_loud(self):
+        self.quiet = False
+
+    def get_msgKeys(self):
+        """Get all possible message keys.
+        """
+        return self.msgs.keys()
+        
         
 class _table(object):
     """Template class for reading in SIPSim tables"""

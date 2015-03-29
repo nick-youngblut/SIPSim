@@ -2,7 +2,6 @@
 ## batteries
 from collections import defaultdict
 ## 3rd party
-#import pymix.mixture as mixture
 import mixture
 ## applicaton
 from Utils import _table
@@ -33,7 +32,9 @@ class IsoIncorpTable(_table):
         incorpFuncs = defaultdict(dict)
         for libID in self.iter_libraries():
             for (taxon_name,taxon_df) in self.iter_taxonRowsInLib(libID):
-                incorpFuncs[libID][taxon_name] = self._get_incorpDistFunc(taxon_df, libID, taxon_name)
+                incorpFuncs[libID][taxon_name] = self._get_incorpDistFunc(taxon_df,
+                                                                          libID,
+                                                                          taxon_name)
 
         return incorpFuncs
     
@@ -53,7 +54,6 @@ class IsoIncorpTable(_table):
         # supported standard distribution functions
         psblFuncs = {'normal' : mixture.NormalDistribution,
                      'uniform' : mixture.UniformDistribution}
-        
         
         # storing pymix distribution functions & weights for each distribution
         allDistFuncs = []
@@ -79,10 +79,11 @@ class IsoIncorpTable(_table):
                     params['start'] = endParam
                     params['end'] = startParam
                 elif startParam == endParam:  
+                    # start cannot = end, but can be close
                     if startParam >= 100:
-                        params['start'] -= 1e-5
+                        params['start'] -= 1e-10
                     else:
-                        params['end'] += 1e-5
+                        params['end'] += 1e-10
 
             # getting distribution
             try:
@@ -92,7 +93,8 @@ class IsoIncorpTable(_table):
                 msg = 'Distribution "{}" not supported'
                 raise KeyError(msg.format(distID))
             except TypeError:
-                msg = 'For: {}=>{}, distribution "{}" does not support all provided params: "{}"'
+                msg = 'For: {}=>{}, distribution "{}" does not'\
+                      ' support all provided params: "{}"'
                 raise TypeError(msg.format(libID, taxon_name, distID, ','.join(params.keys())))
                 
             # getting weights
@@ -138,7 +140,7 @@ class IsoIncorpTable(_table):
         taxon_name -- name of taxon in the library
         n_samples -- number of samples to pull from distribution
         Return:
-        iterator of incorporation percentages
+        2d-list -- incorporation percentages
         """
         try:
             incorpFunc = self.incorpFuncs[libID][taxon_name]
@@ -146,3 +148,39 @@ class IsoIncorpTable(_table):
             raise KeyError('Cannot find library-taxon: "{}"-"{}"'.format(libID, taxon_name))
 
         return incorpFunc.sampleSet(n_samples)
+
+        
+    def get_incorpFunc(self, libID, taxon_name, n_samples=1):
+        """return the intra-population isotope incorporation function
+        set for the user-selected library-taxon.
+        Args:
+        libID -- library ID
+        taxon_name -- name of taxon in the library
+        n_samples -- number of samples to pull from distribution
+        Return:
+        function -- 
+        """
+        try:
+            return self.incorpFuncs[libID][taxon_name]
+        except KeyError:
+            raise KeyError('Cannot find library-taxon: "{}"-"{}"'.format(libID, taxon_name))
+
+
+# class same_value:
+#     """Function to return an exact value instead of a Distribution.
+#     """
+
+#     def __init__(self, start, end):
+#         """start is always returned for sampling
+#         """
+#         self.start = start
+#         self.end = end
+
+#     def sample(self):
+#         return self.start
+    
+#     def sampleSet(self, n):
+#         arr = np.empty(n)
+#         return arr.fill(self.sample())
+        
+        

@@ -11,8 +11,10 @@ Usage:
 
 Options:
   <comm_file>          Output from `SIPSim gradientComm`. ('-' if from STDIN)
-  <config_file>        Config file setting inter-population-level incorporation distribution (see Description).
-  --phylo=<phy>        Newick phylogeny of taxa used for brownian motion evolution of distribution parameters.
+  <config_file>        Config file setting inter-population-level incorporation
+                       distribution (see Description).
+  --phylo=<phy>        Newick phylogeny of taxa used for brownian motion evolution 
+                       of distribution parameters (NOT YET IMPLEMENTED).
   --percTaxa=<pt>      Percent of taxa to incorporate any isotope. [Default: 100]
   -h --help            Show this screen.
   --version            Show version.
@@ -33,7 +35,8 @@ Description:
       * For example: the intra-pop mean is 'evolved' across the phylogeny, resulting
         in generally more similar intra-pop means among more closely related taxa.
       * The params to be 'evolved' are provided via '--evoStart'
-      * The degree of Browian motion vs random selection of values is controlled by '--evoWeight'
+      * The degree of Browian motion vs random selection of values is controlled 
+        by '--evoWeight'
     * Selecting the inter-pop isotope incorporation distribution params from user-defined
       inter-pop distributions describing how those params vary among populations.
       * This is set with a configure file (see 'config file' below)
@@ -44,17 +47,18 @@ Description:
   Supported intra-population incorp distributions (--popIncorp):
     'normal' = np.random.normal
     'uniform' = np.random.uniform
-    'gmm' = pymix gausian mixuture model (see 'gmm' below)
 
   Config file:
     File format:  http://www.voidspace.org.uk/python/configobj.html#config-files
+    * NOTE: the goal is to set INTRA-population parameters, which is why 
+      intra-population is higher in the hierarchy than inter-population
   ----------------- START ------------------
   [library1]
 
-    [[intraPopDist1]]    # <- the intra-population isotope distrubution
+    [[intraPopDist1]]  # <- the intra-population isotope distrubution
       distribution = normal
 
-      [[[loc]]]          # <- the inter-population variation in the 'loc' parameter for the intra-pop distribution
+      [[[loc]]]     # <- the inter-pop variation in 'loc' param for intra-pop distribution
       distribution = normal
       loc = 90
       scale = 2
@@ -66,7 +70,8 @@ Description:
   -----------------  END   ------------------
 
      * Multiple intraPopDist or interPopDist:
-       * If multiple distributions provided, then each will be incorporated into a mixture model.
+       * If multiple distributions provided, then each will be incorporated
+         into a mixture model.
        * A 'weight' parameter should be provided.
 
      * Using Brownian Motion evolution (must provide --phylo):
@@ -93,7 +98,6 @@ sys.path.append(libDir)
 #import IsoIncorp
 from SIPSim import CommTable
 import IsoIncorp
-#from IsoIncorp import IsotopeIncorpConfig
 
 
 # functions
@@ -117,7 +121,6 @@ def main(Uargs):
     # writing
     distsTbl.to_csv(sys.stdout, sep='\t', index=None)
     
-
     
     # if --config
     #! set inter-pop distributions based on config {param:numpy_dist}
