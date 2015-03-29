@@ -55,7 +55,6 @@ class IsoIncorpTable(_table):
         psblFuncs = {'normal' : mixture.NormalDistribution,
                      'uniform' : mixture.UniformDistribution}
         
-        
         # storing pymix distribution functions & weights for each distribution
         allDistFuncs = []
         allDistWeights = []
@@ -80,10 +79,11 @@ class IsoIncorpTable(_table):
                     params['start'] = endParam
                     params['end'] = startParam
                 elif startParam == endParam:  
+                    # start cannot = end, but can be close
                     if startParam >= 100:
-                        params['start'] -= 1e-5
+                        params['start'] -= 1e-10
                     else:
-                        params['end'] += 1e-5
+                        params['end'] += 1e-10
 
             # getting distribution
             try:
@@ -164,3 +164,23 @@ class IsoIncorpTable(_table):
             return self.incorpFuncs[libID][taxon_name]
         except KeyError:
             raise KeyError('Cannot find library-taxon: "{}"-"{}"'.format(libID, taxon_name))
+
+
+# class same_value:
+#     """Function to return an exact value instead of a Distribution.
+#     """
+
+#     def __init__(self, start, end):
+#         """start is always returned for sampling
+#         """
+#         self.start = start
+#         self.end = end
+
+#     def sample(self):
+#         return self.start
+    
+#     def sampleSet(self, n):
+#         arr = np.empty(n)
+#         return arr.fill(self.sample())
+        
+        

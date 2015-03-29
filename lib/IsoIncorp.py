@@ -4,19 +4,18 @@ import os, sys
 import re
 import functools
 import types
+import inspect
+import logging
 from collections import defaultdict
 from random import shuffle
-import inspect
 from StringIO import StringIO
-import logging
 ## 3rd party
 import configobj
 from configobj import ConfigObj, flatten_errors
 from validate import Validator
 import numpy as np
-#import pymix.mixture as mixture
-import mixture
 import pandas as pd
+import mixture
 ## application
 import Utils
 
@@ -387,9 +386,7 @@ class Config(ConfigObj):
                         allWeights = [v['weight'] for k,v in allInterPopDists \
                                       if 'weight' in v]
                         # fill in missing weights (total = 1)
-                        if len(allWeights) < nInterPopDists:
-                            allWeights = [1.0 / nInterPopDists for i in xrange(nInterPopDists)]
-                        
+                        allWeights = self._fill_in_weights(allWeights, n = nInterPopDists) 
                         assert sum(allWeights) == 1, 'interpop weights don\'t sum to 1'
                             
                         # changing interPopDist to mixture model
@@ -399,6 +396,36 @@ class Config(ConfigObj):
                                                                         allWeights,
                                                                         allFuncs)}
                                         
+
+    def _fill_in_weights(self, allWeights, n=None, total=1):
+        """Filling in any missing weights so that all weights total to 'total'
+        Args:
+        allWeights -- iterable of weight values
+        n -- number of weight values returned (if None, uses len(allWeights)
+        total -- sum of all returned weight values
+        """
+        if n is None:
+            n = len(allWeigths)
+
+        # convert NoneTypes
+        allWeightsWithVals = [x for x in allWeights if x is not None]
+        cur_sum = sum(allWeightsWithVals)
+        
+        if cur_sum > total:
+            raise ValueError, "Sum of weights > 1"
+        elif len(allWeightsWithVals) > n:
+            raise ValueError, "len(allWeights) > n"
+        elif cur_sum == total and len(allWeightsWithVals) == n:
+            return allWeightsWithVals
+        else:
+            remainder = float(total - cur_sum)
+            nNeeded = n - len(allWeightsWithVals)
+            newWeights = [remainder / nNeeded] * nNeeded
+            for i,val in enumerate(allWeights):
+                if val is None:
+                    allWeights[i] = newWeights.pop()
+            return allWeights + newWeights
+            
                     
     def get_libSection(self, libID):
         """Getting sub-section of user-defined library from config.
