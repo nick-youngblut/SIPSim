@@ -1512,3 +1512,4 @@ OSError: [Errno 2] No such file or directory
 [32m[I 17:19:28.032 NotebookApp][m Saving file at /ipynb/BM_simulations.ipynb
 [32m[I 17:21:28.008 NotebookApp][m Saving file at /ipynb/BM_simulations.ipynb
 [32m[I 17:25:30.804 NotebookApp][m Saving file at /ipynb/BM_simulations.ipynb
+[33m[W 18:31:35.439 NotebookApp][m WebSocket ping timeout after 119704 ms.

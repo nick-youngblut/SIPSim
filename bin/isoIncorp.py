@@ -15,7 +15,6 @@ Options:
                        distribution (see Description).
   --phylo=<phy>        Newick phylogeny of taxa used for brownian motion evolution 
                        of distribution parameters (NOT YET IMPLEMENTED).
-  --percTaxa=<pt>      Percent of taxa to incorporate any isotope. [Default: 100]
   -h --help            Show this screen.
   --version            Show version.
   --debug              Debug mode
@@ -53,6 +52,7 @@ Description:
       intra-population is higher in the hierarchy than inter-population
   ----------------- START ------------------
   [library1]
+    max_percent_incorp = 100   # <- max percent of taxa with any isotope incorporation
 
     [[intraPopDist1]]  # <- the intra-population isotope distrubution
       distribution = normal
@@ -114,8 +114,7 @@ def main(Uargs):
     config = IsoIncorp.Config.load_config(Uargs['<config_file>'],
                                           phylo=Uargs['--phylo'])
     
-    distsTbl = IsoIncorp.populationDistributions(config, comm,
-                                                 percTaxa=Uargs['--percTaxa'])
+    distsTbl = IsoIncorp.populationDistributions(config, comm)
 
     # writing
     distsTbl.to_csv(sys.stdout, sep='\t', index=None)

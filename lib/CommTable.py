@@ -4,6 +4,9 @@ import re
 class CommTable(_table):
     
     def __init__(self, *args, **kwargs):
+        """Subclassing pandas dataframe. CommTable.from_[csv,etc]()
+        Can be used for reading in a table.
+        """
         _table.__init__(self, *args, **kwargs)
 
         

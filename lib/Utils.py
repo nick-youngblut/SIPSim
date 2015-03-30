@@ -21,11 +21,12 @@ def checkExists(f):
         raise IOError('"{}" not found. Did you provide the full PATH?'.format(f))
 
 
-def parseGenomeList(inFile, filePath=None):
+def parseGenomeList(inFile, filePath=None, check_exists=True):
     """Parsing the genome list file
     Args:
     inFile -- genome list file name
     filePath -- abs path to genome sequence files
+    check_exists -- check if genome sequence files exist
     Return:
     dict -- {genomeFile : taxonName}
     """
@@ -46,7 +47,8 @@ def parseGenomeList(inFile, filePath=None):
                 fileName = os.path.join(filePath, fileName)
 
             # checking for file existence
-            checkExists(fileName)
+            if check_exists:
+                checkExists(fileName)
                 
             #genomeList[fileName] = taxonName
             genomeList.append((fileName,taxonName))

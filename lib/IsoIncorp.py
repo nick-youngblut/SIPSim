@@ -31,6 +31,8 @@ def get_configspec(strIO=True):
     """    
     configspec = """
     [__many__]
+       max_percent_incorp = float(0,100, default=100)
+
        [[__many__]]
           distribution = option('normal','uniform', 'BM', default='normal')
           weight = float(0,1, default=None)
@@ -50,16 +52,12 @@ def get_configspec(strIO=True):
         return configspec
 
         
-def populationDistributions(config, comm, percTaxa=100):
+def populationDistributions(config, comm):
     """Setting distribution parameters for intra-population isotope incorporation
     Args:
     config -- IsoIncorpConfig instance
     comm -- CommTable instance
-    percTaxa -- percent of taxa to have any isotope incorporation
-    """
-    # assert args
-    percTaxa = float(percTaxa)
-    
+    """    
     # list of taxon names used for all library iterations
     taxon_names = comm.get_unique_taxon_names()
     ## TODO: introduced biased shuffling based on taxon abundance/rank?
@@ -84,6 +82,9 @@ def populationDistributions(config, comm, percTaxa=100):
             libID = [x for x in (configLibIDs[libID], libID)]  # (full,truncated)
             libSect = config.get_libSection(libID[0])
 
+        # max percent taxa that can have isotope incorporation
+        max_perc_inc = config.get_max_percent_incorp(libID[0])
+
         # iterating by taxon
         ntaxa = len(taxon_names)
         for taxon_idx in xrange(ntaxa):
@@ -91,19 +92,20 @@ def populationDistributions(config, comm, percTaxa=100):
 
             # check if taxon in library
             if not comm.taxonInLib(taxon_name, libID[0]):
-                continue
-                
+                continue                
+
             # writing out the intra-population distribution(s) for the taxon in the library
             ## only taxa in the user-defined percentage should have any incorporation
-            if((float(taxon_idx)+1) / ntaxa * 100 > percTaxa):            
-                set_intraPopDistZero(outTbl, libID[1], taxon_name)
+            perc_taxa_processed = float(taxon_idx + 1) / ntaxa * 100
+            if(perc_taxa_processed > max_perc_inc):            
+                _set_intraPopDistZero(outTbl, libID[1], taxon_name)
             else:
-                set_intraPopDist(outTbl, config, libID, taxon_name)
+                _set_intraPopDist(outTbl, config, libID, taxon_name)
                         
     return outTbl
 
                 
-def set_intraPopDist(outTbl, config, libID, taxon_name):
+def _set_intraPopDist(outTbl, config, libID, taxon_name):
     """Setting isotope incorporation based on the interPopDist
     function for each intraPop parameter.
     Args:
@@ -167,7 +169,7 @@ def set_intraPopDist(outTbl, config, libID, taxon_name):
                                              str(weight), paramID, str(paramVal)]
 
                                                     
-def set_intraPopDistZero(outTbl, libID, taxon_name):
+def _set_intraPopDistZero(outTbl, libID, taxon_name):
     """Setting isotope incorporation essentially to 0
     (distribution=uniform, start=0, end=0)
     Args:
@@ -197,7 +199,7 @@ class Config(ConfigObj):
         
         # check param assertions
         self._param_asserts()
-        
+
         # setting inter-population distribution functinos
         self._set_interPopDistFuncs()
         self._set_interPopDistMM()
@@ -364,6 +366,19 @@ class Config(ConfigObj):
                     allWeights[i] = newWeights.pop()
             return allWeights + newWeights
             
+
+    def get_max_percent_incorp(self, libID):
+        """Getting the user-defined max_percent_incorp
+        for a specified library.
+        Args:
+        libID -- library ID
+        """
+        try:
+            return self[libID]['max_percent_incorp']
+        except KeyError:
+            msg = 'Cannot find max_percent_incorp for library: {}'
+            raise KeyError, msg.format(libID)
+
                     
     def get_libSection(self, libID):
         """Getting sub-section of user-defined library from config.
