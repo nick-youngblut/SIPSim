@@ -104,9 +104,6 @@ def main(Uargs):
     """
     Uargs -- dict of user-provided args
     """
-    # loading community file as dataframe
-    #comm = pd.read_csv(Uargs['<comm_file>'], sep='\t')
-
     # loading community file
     comm = CommTable.from_csv(Uargs['<comm_file>'], sep='\t')
 

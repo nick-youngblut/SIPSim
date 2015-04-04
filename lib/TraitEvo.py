@@ -1,38 +1,45 @@
 # import
 import numpy as np
 import dendropy 
+from dendropy.utility.error import DataParseError
 
 
-def read_tree(treeFile):
+def read_tree(tree_obj):
     """Parsing a tree file that's in various possible formats
     Args:
-    treeFile -- path to tree file
+    tree_obj -- path or data stream fo tree file
     Return:
-    dendropy object
+    dendropy object if successful; else raise DataParseError
     """
     psblFormats = ['newick', 'nexus']
     for f in psblFormats:
         try:
-            tree = dendropy.get_from_stream(treeFile, schema=f)
-        except DataParseError:
-            tree = None
-            continue
+            tree = dendropy.Tree.get_from_path(tree_obj, schema=f)
+        except (DataParseError, TypeError):
+            pass
         else:
             break
-    
-    if tree is None:
+        try:
+            tree = dendropy.Tree.get_from_stream(tree_obj, schema=f)
+        except (DataParseError, ValueError):
+            pass
+        else:
+            break
+        
+        
+    if isinstance(tree, dendropy.dataobject.tree.Tree):
+        return tree
+    else:
         msg = 'Do not recongnize tree file format (possible formats:{})'
         fmts = ','.join(psblFormats)
         raise DataParseError, msg.format(fmts)
-    else:
-        return tree
 
 
 
 def sim_traits(tree, start=0, sigma=0.1, weight=0.5, verbose=False):
     """Trait simulation as detailed in:
-    author = {Münkemüller, Tamara and Lavergne, Sébastien and Bzeznik,
-              Bruno and Dray, Stéphane and Jombart,
+    author = {Munkemuller, Tamara and Lavergne, Sebastien and Bzeznik,
+              Bruno and Dray, Stephane and Jombart,
               Thibaut and Schiffers, Katja and Thuiller, Wilfried},
     title = {How to measure and test phylogenetic signal},
     journal = {Methods in Ecology and Evolution}
@@ -61,7 +68,35 @@ def sim_traits(tree, start=0, sigma=0.1, weight=0.5, verbose=False):
         if verbose and node.taxon is not None:
             print('{} : {}'.format(node.taxon, node.value))
             
+
+
+class BrownianMotion:
     
+    def __init__(self, tree, start=0, sigma=0.1, weight=0.5, verbose=False):
+        """Calls sim_traits function and stores tree with simulated characters
+        as an attribute.
+        Args:
+        tree -- dendropy tree object or file with tree
+        start -- starting value for continuous character evolution
+        sigma -- sigma use for drawing from a normal distribution
+        weight -- weight parameter for random vs Brownian motion
+        range: 0-1; 0 = purely random; 1 = purely Brownian
+        verbose -- verbose output        
+        """
+        if tree is None:
+            self.tree = None
+        else:
+            self.tree = read_tree(tree)
+        sim_traits(self.tree, start=start, sigma=sigma, 
+                   weight=weight,verbose=verbose)
+
+        
+    def sample(self, taxon_label):
+        assert self.tree is not None, 'No tree object to sample'
+        func = lambda taxon: True if taxon.label == taxon_label else False
+        node = self.tree.find_node_with_taxon(func)
+        print node.value; sys.exit()
+
 
 if __name__ == '__main__':
     mle = dendropy.treesim.birth_death(birth_rate=1, death_rate=0.5, ntax=10)

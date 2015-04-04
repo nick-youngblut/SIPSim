@@ -18,6 +18,7 @@ import pandas as pd
 import mixture
 ## application
 import Utils
+from TraitEvo import BrownianMotion
 
 
 # logging
@@ -187,9 +188,19 @@ def _set_intraPopDistZero(outTbl, libID, taxon_name):
 class Config(ConfigObj):
     """Subclassing ConfigObj for isotope incorporation file."""
 
+    @classmethod
+    def load_config(cls, config_file, phylo=None):
+        configspec = get_configspec()
+
+        # loading config file
+        return cls(config_file, configspec=configspec, phylo=phylo)
+
+
     def __init__(self, *args, **kwargs):
+
         # phylo
         self.phylo = kwargs.pop('phylo', None)
+        self.BM = BrownianMotion(self.phylo)
 
         # config init
         ConfigObj.__init__(self, *args, **kwargs)
@@ -204,14 +215,6 @@ class Config(ConfigObj):
         self._set_interPopDistFuncs()
         self._set_interPopDistMM()
         #self._set_intraPopDistFuncs()
-
-
-    @classmethod
-    def load_config(cls, config_file, phylo=None):
-        configspec = get_configspec()
-
-        # loading config file
-        return cls(config_file, configspec=configspec)
     
 
     def _validate_config(self):
