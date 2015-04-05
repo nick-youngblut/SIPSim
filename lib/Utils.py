@@ -28,7 +28,7 @@ def parseGenomeList(inFile, filePath=None, check_exists=True):
     filePath -- abs path to genome sequence files
     check_exists -- check if genome sequence files exist
     Return:
-    dict -- {genomeFile : taxonName}
+    2d-list -- [(taxonName, genomeFile)]
     """
     # parse file as list
     genomeList = []
@@ -51,7 +51,7 @@ def parseGenomeList(inFile, filePath=None, check_exists=True):
                 checkExists(fileName)
                 
             #genomeList[fileName] = taxonName
-            genomeList.append((fileName,taxonName))
+            genomeList.append((taxonName,fileName))
                 
     return genomeList
 

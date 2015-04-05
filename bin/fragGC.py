@@ -105,7 +105,7 @@ import Utils
 
 
 # functions
-def by_genome(inFile, taxonName, args):
+def by_genome(taxonName, inFile, args):
     """All processing conducted per genome.
     Args:
     inFile -- genome sequence file name

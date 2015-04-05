@@ -18,6 +18,7 @@ import pandas as pd
 import mixture
 ## application
 import Utils
+import TraitEvo
 from TraitEvo import BrownianMotion
 
 
@@ -40,12 +41,15 @@ def get_configspec(strIO=True):
     
             [[[__many__]]]
                 [[[[__many__]]]]
-                distribution = option('normal','uniform', default='normal')
+                distribution = option('normal','uniform', 'BM', default='normal')
                 weight = float(0,1, default=None)
                 mu = float(0,100, default=None)
                 sigma = float(0,100, default=None)
                 start = float(0,100, default=None)
-                end = float(0,100, default=None)    
+                end = float(0,100, default=None)  
+                ratio = float(0,1, default=None)
+                minVal = float(0,100, default=None)
+                maxVal = float(0,100, default=None)
     """
     if strIO == True:
         return StringIO(configspec)
@@ -65,8 +69,9 @@ def populationDistributions(config, comm):
     shuffle(taxon_names)
     
     # DataFrame for output
-    outTbl = pd.DataFrame(columns=['library', 'taxon_name', 'distribution_index',
-                                   'distribution', 'weight', 'param', 'param_value'])
+    outTbl = pd.DataFrame(columns=['library', 'taxon_name', 
+                                   'distribution_index', 'distribution', 
+                                   'weight', 'param', 'param_value'])
 
 
     # iterating through all libraries & taxon in each library
@@ -83,7 +88,7 @@ def populationDistributions(config, comm):
             libID = [x for x in (configLibIDs[libID], libID)]  # (full,truncated)
             libSect = config.get_libSection(libID[0])
 
-        # max percent taxa that can have isotope incorporation
+        # max percent of taxa that can have isotope incorporation (set in config)
         max_perc_inc = config.get_max_percent_incorp(libID[0])
 
         # iterating by taxon
@@ -95,8 +100,8 @@ def populationDistributions(config, comm):
             if not comm.taxonInLib(taxon_name, libID[0]):
                 continue                
 
-            # writing out the intra-population distribution(s) for the taxon in the library
-            ## only taxa in the user-defined percentage should have any incorporation
+            # writing out the intra-pop dist(s) for the taxon in the library
+            ## only taxa in the user-defined % should have any incorporation
             perc_taxa_processed = float(taxon_idx + 1) / ntaxa * 100
             if(perc_taxa_processed > max_perc_inc):            
                 _set_intraPopDistZero(outTbl, libID[1], taxon_name)
@@ -115,6 +120,7 @@ def _set_intraPopDist(outTbl, config, libID, taxon_name):
     libID -- library ID [full_version,truc_version]
     taxon_name -- taxon name
     """
+
     libSect = config.get_libSection(libID[0])
     dist_cnt = 0
     for (intraPopDistID,intraPopDist) in config.iter_configSections(libSect):    
@@ -129,12 +135,16 @@ def _set_intraPopDist(outTbl, config, libID, taxon_name):
         for (paramID,param) in config.iter_configSections(intraPopDist):
             # getting inter-pop dist function
             func = [v['function'] for k,v in config.iter_configSections(param)][0]
+
             # sampling from function to get parameter for intra-pop distribution
             maxtries = 1000
             tries = 0
             while True:
                 tries += 1
-                paramVal = func.sample()
+                try:
+                    paramVal = func.sample(taxon_name)
+                except TypeError:
+                    paramVal = func.sample()
                 try:
                     paramVal = paramVal[0]
                 except TypeError:
@@ -145,29 +155,51 @@ def _set_intraPopDist(outTbl, config, libID, taxon_name):
                     break
                 # exceeding maxtries?
                 if tries >= maxtries:
-                    msg = 'Exceeded maxtries to get parameter in range: 0-100'
-                    sys.exit(msg)
+                    er = 'Taxon: {}'.format(taxon_name)
+                    msg = 'Exceeded maxtries to get parameter in range: 0-100'  
+                    sys.exit(': '.join(err, msg))
 
-        # mu values rounded if < 1e-10
-        try:
-            if intraPopParams['mu'] < 1e-10:
-                intraPopParams['mu'] = round(intraPopParams['mu'], 0)
-        except KeyError:
-            pass
-            
-        # if start-end params differ by < 1e-8, make same value
-        try:
-            if abs(intraPopParams['start'] - intraPopParams['end']) < 1e-8:
-                intraPopParams['start'] = round(intraPopParams['start'],0)
-                intraPopParams['end'] = round(intraPopParams['end'],0)
-        except KeyError:
-            pass
+        # checking paramters
+        _check_intraPopParams(intraPopParams)
         
         # writing values
         for paramID, paramVal in intraPopParams.items():
             outTbl.loc[outTbl.shape[0]+1] = [libID[1], taxon_name, 
                                              str(dist_cnt), distribution,
                                              str(weight), paramID, str(paramVal)]
+
+
+def _check_intraPopParams(intraPopParams):
+    """Formatting and verifying intra-population parameters.
+    Args:
+    intraPopParams -- dict {param : paramValue}
+    Return:
+    None -- modifies dict in place
+    """
+    # mu values rounded if < 1e-10
+    try:
+        if intraPopParams['mu'] < 1e-10:
+            intraPopParams['mu'] = round(intraPopParams['mu'], 0)
+    except KeyError:
+        pass
+            
+    # if start-end params differ by < 1e-8, make same value
+    try:
+        if abs(intraPopParams['start'] - intraPopParams['end']) < 1e-8:
+            intraPopParams['start'] = round(intraPopParams['start'],0)
+            intraPopParams['end'] = round(intraPopParams['end'],0)
+    except KeyError:
+        pass
+
+    # flip start-end if needed
+    try:
+        if intraPopParams['start'] > intraPopParams['end']:
+            intraPopParams['end'],intraPopParams['start'] = (intraPopParams['start'],
+                                                                 intraPopParams['end'])
+    except KeyError:
+        pass   
+                                                         
+    return None
 
                                                     
 def _set_intraPopDistZero(outTbl, libID, taxon_name):
@@ -200,7 +232,7 @@ class Config(ConfigObj):
 
         # phylo
         self.phylo = kwargs.pop('phylo', None)
-        self.BM = BrownianMotion(self.phylo)
+        self.tree = TraitEvo.read_tree(self.phylo)
 
         # config init
         ConfigObj.__init__(self, *args, **kwargs)
@@ -214,8 +246,7 @@ class Config(ConfigObj):
         # setting inter-population distribution functinos
         self._set_interPopDistFuncs()
         self._set_interPopDistMM()
-        #self._set_intraPopDistFuncs()
-    
+                
 
     def _validate_config(self):
         """Run configobj validator on config.
@@ -287,9 +318,9 @@ class Config(ConfigObj):
         otherwise, each individual distribution will be weighted equally. 
 
         """
-        # TODO: add BM distribution
         psblDists = {'normal' : mixture.NormalDistribution,
-                     'uniform' : mixture.UniformDistribution}
+                     'uniform' : mixture.UniformDistribution,
+                     'BM' : BrownianMotion}
 
         for (libID,sect1) in self.iteritems():
             for (intraPopDist,sect2) in self.iter_configSections(sect1):
@@ -301,11 +332,14 @@ class Config(ConfigObj):
                                        if k not in ['distribution','weight'] \
                                        and v is not None}
 
-                        try:
-                            sect4['function'] = psblDists[dist](**otherParams)            
-                        except KeyError:
-                            msg = 'distribution "{}" not supported'
-                            raise KeyError(msg.format(dist))
+                        try: 
+                            sect4['function'] = psblDists[dist](tree=self.tree, **otherParams)
+                        except TypeError:
+                            try:
+                                sect4['function'] = psblDists[dist](**otherParams)            
+                            except KeyError:
+                                msg = 'distribution "{}" not supported'
+                                raise KeyError(msg.format(dist))
 
 
     def _set_interPopDistMM(self):
@@ -319,26 +353,37 @@ class Config(ConfigObj):
         """
         for (libID,sect1) in self.iteritems():
             for (intraPopDist,sect2) in self.iter_configSections(sect1):
-                for (intraPopDistParam,sect3) in self.iter_configSections(sect2):        
-
-                    # setting mixture models if needed
+                for (intraPopDistParam,sect3) in self.iter_configSections(sect2):                
+                    
+                    # setting mixture models 
                     allInterPopDists = [[k,v] for k,v in self.iter_configSections(sect3)]
                     nInterPopDists = len(allInterPopDists)
-                    if nInterPopDists > 1:
-                        allFuncs = [v['function'] for x in allInterPopDists]
-                        allWeights = [v['weight'] for k,v in allInterPopDists \
-                                      if 'weight' in v]
+
+                    allFuncs = [v['function'] for x in allInterPopDists]
+                    allWeights = [v['weight'] for k,v in allInterPopDists \
+                                  if 'weight' in v]
+
+                    BMfuncs = [x for x in allFuncs if isinstance(x, TraitEvo.BrownianMotion)]
+                    
+                    # no mixture model if BM is a selected distribution
+                    if len(BMfuncs) >= 1:
+                        sect3['interPopDist1'] = {'function' : BMfuncs[0]}
+                    else:
+
+                        # else create mixture model from >=1 standard distribution
                         # fill in missing weights (total = 1)
                         allWeights = self._fill_in_weights(allWeights, n = nInterPopDists) 
                         assert sum(allWeights) == 1, 'interpop weights don\'t sum to 1'
-                            
+                        
                         # changing interPopDist to mixture model
                         for i in sect3: sect3.popitem()                        
                         sect3['interPopDist 1'] = {'function' :
                                                    mixture.MixtureModel(nInterPopDists,
                                                                         allWeights,
                                                                         allFuncs)}
-                                        
+                                                        
+
+
 
     def _fill_in_weights(self, allWeights, n=None, total=1):
         """Filling in any missing weights so that all weights total to 'total'
@@ -421,13 +466,3 @@ class Config(ConfigObj):
                 yield (sectID,val)
 
                 
-
-
-# class same_value(object):
-
-#     def __init__(self, start, end, **kwargs):
-#         self.start = start
-#         self.end = end
-        
-#     def p(self):
-#         return self.start

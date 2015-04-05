@@ -21,30 +21,49 @@ Options:
 
 Description:
   For each population (taxon), there is a distribution of how much
-  isotope is incorporated by each member of the population.
+  isotope is incorporated by each member of the population (intra-population
+  isotope incorporation).
   These intra-population distributions are, in reality, likely to
-  vary among populations (inter-population). This command is used
+  vary *among* populations (inter-population variation). This command is used
   to set the intra-population distributions of isotope abundance
   (e.g., normal or uniform) and how the parameters of those distributions
-  (e.g., the mean or sd) vary among taxa.
+  (e.g., the mean or sd) vary *among* taxa (inter-population).
 
-  This inter-population variation can be determined either by:
-    * Simulating brownian motion evolution of the intra-pop distribution parameters.
-      * For example: the intra-pop mean is 'evolved' across the phylogeny, resulting
-        in generally more similar intra-pop means among more closely related taxa.
-      * The params to be 'evolved' are provided via '--evoStart'
-      * The degree of Browian motion vs random selection of values is controlled 
-        by '--evoWeight'
-    * Selecting the inter-pop isotope incorporation distribution params from user-defined
-      inter-pop distributions describing how those params vary among populations.
-      * This is set with a configure file (see 'config file' below)
-      * A gaussian mixture model can be used to model populations that are
-        subdivided in how members incorporate isotope (e.g., high mean incorp in Group 1,
-        and low mean incorp in Group 2)
+  In other words, for each population (taxon), you are setting the distribution of isotope
+  incorporation for that population, and these population-level distributions 
+  can vary among populations (taxa).
 
-  Supported intra-population incorp distributions (--popIncorp):
+  For example, population-level incorporation is drawn from a normal distribution
+  for each taxon, but the mean (mu) of each population-level distribution is
+  determined by a uniform distribution that varies from 0 to 100. Thus, while
+  all populations have a normal distribution of incorporation, some will have
+  much more incorporation (near 100%) than others (close to 0%).
+
+  Distributions can be standard distributions (eg., normal or uniform) or a
+  mixture model, which is a combination of weighted distributions.
+  These distribution parameters can be defined with a config file (see below).
+
+  Inter-population variation in isotope incorporation can alternatively be 
+  modeled as Brownian motion evolution. In this case, each intra-population
+  parameter (eg., the 'mu' parameter for a normal distribution) is evolved
+  across the user-provided phylogeny as Brownian motion evolution.
+  WHY USE THIS METHOD? Brownian motion evoution will generally give highly 
+  related taxa more similar values than more distantly related taxa. This may
+  be more biologically realistic than simulating inter-population variation
+  as a normal or other standard distribution. 
+  As a null model of Brownian motion evolution, random evolution can be set
+  instead (no correlation between taxon relatedness and evolved character
+  value similarity). These 2 models of evolution can be combined with different
+  contributes ('ratio' parameter in the config file).
+
+
+  Supported intra-population distributions:
     'normal' = np.random.normal
     'uniform' = np.random.uniform
+    'BM' = browian motion evolution (must provide --phylo)
+
+  NOTES:
+    * Multiple standard distriutions can be provided to create a mixture model.
 
   Config file:
     File format:  http://www.voidspace.org.uk/python/configobj.html#config-files
@@ -58,14 +77,19 @@ Description:
       distribution = normal
 
       [[[loc]]]     # <- the inter-pop variation in 'loc' param for intra-pop distribution
-      distribution = normal
-      loc = 90
-      scale = 2
+        
+        [[[[interPopDist 1]]]]   # <- you can have >1 standard distribution 
+        distribution = normal
+        loc = 90
+        scale = 2
 
       [[[scale]]]
-      distribution = normal
-      loc = 10
-      scale = 2
+        
+        [[[[interPopDist 1]]]]
+        distribution = normal
+        loc = 10
+        scale = 2
+
   -----------------  END   ------------------
 
      * Multiple intraPopDist or interPopDist:
@@ -75,10 +99,9 @@ Description:
 
      * Using Brownian Motion evolution (must provide --phylo):
        * params:
-         * root = value assigned for root which will then be evolved across the tree
          * ratio = ratio of brownian motion vs random sampling used 
-         * sigma = standard deviation for evolving values (drawing from a normal distribution)
-
+         * sigma = standard deviation for evolving values
+                   (drawing from a normal distribution)
 """
 
 # import
