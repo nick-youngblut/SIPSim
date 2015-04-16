@@ -1787,3 +1787,18 @@ OSError: [Errno 2] No such file or directory
 [32m[I 10:12:51.642 NotebookApp][m Saving file at /ipynb/barkeri_extorquens.ipynb
 [32m[I 10:14:51.637 NotebookApp][m Saving file at /ipynb/barkeri_extorquens.ipynb
 [32m[I 10:16:51.642 NotebookApp][m Saving file at /ipynb/barkeri_extorquens.ipynb
+[32m[I 10:18:51.634 NotebookApp][m Saving file at /ipynb/barkeri_extorquens.ipynb
+[32m[I 10:22:51.623 NotebookApp][m Saving file at /ipynb/barkeri_extorquens.ipynb
+[32m[I 10:24:51.620 NotebookApp][m Saving file at /ipynb/barkeri_extorquens.ipynb
+[32m[I 10:26:01.772 NotebookApp][m Saving file at /ipynb/barkeri_extorquens.ipynb
+[33m[W 10:26:25.653 NotebookApp][m Notebook ipynb/bac_genome/all/dataset.ipynb is not trusted
+[32m[I 10:26:40.482 NotebookApp][m Kernel started: 6a8b7dfb-7f7a-4332-9006-173507c2424b
+[32m[I 10:26:44.490 NotebookApp][m Saving file at /ipynb/bac_genome/all/dataset.ipynb
+[33m[W 10:26:44.494 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/dataset.ipynb
+[32m[I 10:26:51.867 NotebookApp][m Saving file at /ipynb/barkeri_extorquens.ipynb
+[32m[I 10:28:40.882 NotebookApp][m Saving file at /ipynb/bac_genome/all/dataset.ipynb
+[33m[W 10:28:40.884 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/dataset.ipynb
+[32m[I 10:28:51.861 NotebookApp][m Saving file at /ipynb/barkeri_extorquens.ipynb
+[32m[I 11:23:09.736 NotebookApp][m Saving file at /ipynb/non-equilibrium_calcs.ipynb
+[33m[W 11:23:09.738 NotebookApp][m Saving untrusted notebook ipynb/non-equilibrium_calcs.ipynb
+[32m[I 11:23:18.735 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
