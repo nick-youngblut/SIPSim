@@ -18,10 +18,9 @@ Options:
                       of samples per community.
                       Input format: 'key1:value1,key2:value2,keyN:valueN'
                       To sample exactly X from each community, use: 'low:X,high:X'
-                      [default: low:100,high:100]
+                      [default: low:10000,high:10000]
   --samp_min          Use the minimum number of taxa in any community as the number
-                      subsampled for all communities. Overrides 'dist' option.
-                      Overrides 'n_dist' and 'n_dist_p'
+                      subsampled for all communities. Overrides '--dist*' options.
   --no-replace        Subsample without replacement.         
   -h --help           Show this screen.
   --version           Show version.

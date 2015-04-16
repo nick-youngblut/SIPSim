@@ -1513,3 +1513,277 @@ OSError: [Errno 2] No such file or directory
 [32m[I 17:21:28.008 NotebookApp][m Saving file at /ipynb/BM_simulations.ipynb
 [32m[I 17:25:30.804 NotebookApp][m Saving file at /ipynb/BM_simulations.ipynb
 [33m[W 18:31:35.439 NotebookApp][m WebSocket ping timeout after 119704 ms.
+[33m[W 10:30:59.461 NotebookApp][m Notebook ipynb/bac_genome/n10/bac_genome10_v3.ipynb is not trusted
+[33m[W 10:33:37.324 NotebookApp][m Notebook ipynb/bac_genome/all/nl1/absAbund.ipynb is not trusted
+[33m[W 10:33:40.061 NotebookApp][m Notebook ipynb/bac_genome/Ecoli/fragLen.ipynb is not trusted
+[33m[W 10:33:41.307 NotebookApp][m Notebook ipynb/non-equilibrium_calcs.ipynb is not trusted
+[33m[W 10:33:48.284 NotebookApp][m Notebook ipynb/bac_genome/all/nl1/fragLen_logNorm.ipynb is not trusted
+[33m[W 10:33:54.616 NotebookApp][m Notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb is not trusted
+[32m[I 10:35:55.361 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 10:35:55.362 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:37:55.358 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 10:37:55.359 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:39:55.352 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 10:39:55.353 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:44:59.913 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 10:44:59.914 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:45:55.341 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 10:45:55.341 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:46:30.593 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 10:46:30.594 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:46:52.504 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 10:46:52.505 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:47:55.336 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 10:47:55.337 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 11:01:55.311 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 11:01:55.312 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 11:03:55.307 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 11:03:55.308 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 11:05:55.303 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 11:05:55.304 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 11:07:55.286 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 11:07:55.287 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 11:08:01.188 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 11:08:01.189 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 11:13:55.280 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 11:13:55.281 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 11:15:55.297 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 11:15:55.299 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 11:29:55.272 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 11:29:55.274 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 11:31:55.270 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 11:31:55.272 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 11:33:55.259 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 11:35:55.256 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 11:37:55.241 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 11:39:55.256 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 11:41:55.247 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 11:43:55.246 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 11:45:55.236 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 11:48:10.177 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 12:58:19.972 NotebookApp][m WebSocket ping timeout after 119998 ms.
+[33m[W 12:58:23.208 NotebookApp][m WebSocket ping timeout after 119998 ms.
+[33m[W 12:58:25.418 NotebookApp][m WebSocket ping timeout after 119998 ms.
+[33m[W 12:58:39.062 NotebookApp][m WebSocket ping timeout after 119998 ms.
+[33m[W 12:58:41.962 NotebookApp][m WebSocket ping timeout after 119998 ms.
+[32m[I 12:07:27.076 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 12:08:20.252 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 12:12:43.738 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 12:15:27.059 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 12:18:13.201 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 12:19:27.048 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 12:20:30.824 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 12:21:10.993 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 12:21:27.046 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 12:22:14.217 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 12:22:32.735 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 12:47:27.010 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 12:49:27.009 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 12:51:27.009 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 12:53:26.999 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 12:55:26.998 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 12:57:26.999 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 12:59:26.987 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 13:01:26.986 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 13:03:26.978 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 13:05:26.977 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 13:07:26.974 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 13:09:26.965 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 13:10:36.478 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 13:11:26.962 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 13:12:36.706 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 13:13:26.963 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 13:14:31.009 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 13:22:54.428 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 07:57:15.461 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 07:59:15.444 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 08:01:15.444 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 08:03:15.443 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 08:05:15.810 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 08:07:15.820 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 08:09:15.420 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 08:11:15.429 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 09:07:15.331 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 09:09:15.322 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 09:11:15.322 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 09:13:15.311 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 09:15:15.309 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 09:17:15.300 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 09:19:15.310 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 09:27:15.291 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 09:29:15.277 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 09:31:15.286 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 09:35:15.274 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 09:37:15.273 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 09:39:15.264 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 09:41:15.262 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 09:43:15.254 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 09:45:15.252 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 09:47:15.241 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 09:49:15.241 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 09:51:15.243 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 09:53:15.240 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 09:55:15.233 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 09:57:15.241 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 09:59:15.228 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:01:15.226 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:03:15.217 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:05:15.217 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:07:15.217 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:09:15.217 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:11:15.217 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:13:15.212 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:15:15.205 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:17:15.205 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:19:15.194 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:21:15.194 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:27:15.181 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:29:15.171 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:31:15.171 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:33:15.170 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:35:15.158 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:37:15.158 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:38:23.177 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:39:15.143 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 10:41:15.141 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 11:25:49.428 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 13:03:33.053 NotebookApp][m WebSocket ping timeout after 119998 ms.
+[32m[I 15:20:31.128 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 14:26:29.309 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 14:28:08.137 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 14:29:26.007 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 15:11:35.990 NotebookApp][m WebSocket ping timeout after 119997 ms.
+[32m[I 19:04:59.379 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 19:06:59.386 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 19:10:59.375 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 19:12:59.378 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 19:14:59.368 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 19:16:59.358 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 19:18:59.681 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 19:20:59.730 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 19:22:59.868 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 19:24:29.294 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 19:26:20.314 NotebookApp][m WebSocket ping timeout after 119944 ms.
+[32m[I 19:35:25.276 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 19:39:02.609 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 19:41:01.719 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 19:42:45.602 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 19:44:59.798 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 19:46:59.821 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 19:48:59.783 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 19:50:59.810 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 19:53:00.052 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 19:55:01.786 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 19:55:02.884 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 19:56:17.905 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 20:09:28.376 NotebookApp][m WebSocket ping timeout after 119776 ms.
+[32m[I 06:41:30.635 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 06:43:30.636 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 06:45:30.627 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 06:51:30.614 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 06:53:30.613 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 06:55:30.603 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 06:57:30.602 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 06:59:30.601 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 07:01:30.597 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 07:05:30.576 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 07:09:30.589 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 07:11:30.590 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 07:13:30.578 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 07:15:30.580 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 07:17:30.569 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 07:19:28.299 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 07:21:30.568 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 07:29:30.554 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 07:31:30.545 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 07:33:30.545 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 07:35:30.544 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 07:37:30.533 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 07:38:05.561 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 08:06:18.005 NotebookApp][m Creating new directory in /ipynb/sandbox
+[33m[W 08:06:21.940 NotebookApp][m delete /ipynb/sandbox/Untitled Folder
+[32m[I 08:06:26.578 NotebookApp][m Creating new notebook in /ipynb/sandbox
+[32m[I 08:06:27.153 NotebookApp][m Kernel started: 1dc49614-8423-4eed-bcda-8d773951a547
+[32m[I 08:08:27.148 NotebookApp][m Saving file at /ipynb/sandbox/carat.ipynb
+[32m[I 08:10:27.150 NotebookApp][m Saving file at /ipynb/sandbox/carat.ipynb
+[32m[I 08:12:27.138 NotebookApp][m Saving file at /ipynb/sandbox/carat.ipynb
+[32m[I 08:17:37.005 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 08:19:36.988 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 08:21:37.065 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 08:23:36.988 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 08:25:36.985 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 08:27:36.977 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 08:29:36.971 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[32m[I 08:31:36.988 NotebookApp][m Saving file at /ipynb/bac_genome/all/nl2/inc_v_noInc/inc0_v_inc10.ipynb
+[33m[W 09:32:50.194 NotebookApp][m WebSocket ping timeout after 119998 ms.
+[33m[W 09:32:57.732 NotebookApp][m WebSocket ping timeout after 119998 ms.
+[32m[I 10:39:43.676 NotebookApp][m Creating new notebook in /ipynb
+[32m[I 10:39:44.411 NotebookApp][m Kernel started: 1ccf9b1a-b59f-43d1-b6ac-67d69f37d665
+[32m[I 10:40:02.320 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 10:43:44.357 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 10:45:44.351 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 10:47:44.350 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 10:51:44.342 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 10:53:44.339 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 10:54:04.747 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 11:31:44.266 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 11:32:50.172 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 11:33:44.263 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 11:35:44.263 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 11:39:44.255 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 11:41:44.252 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 11:43:44.253 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 11:44:09.090 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 11:55:44.229 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 11:57:44.224 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 12:49:44.150 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 12:51:44.137 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[33m[W 12:53:37.530 NotebookApp][m Notebook ipynb/non-equilibrium_calcs.ipynb is not trusted
+[32m[I 12:53:44.728 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 12:57:38.257 NotebookApp][m Saving file at /ipynb/non-equilibrium_calcs.ipynb
+[33m[W 12:57:38.258 NotebookApp][m Saving untrusted notebook ipynb/non-equilibrium_calcs.ipynb
+[32m[I 12:57:44.718 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 12:59:44.714 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 13:01:38.702 NotebookApp][m Saving file at /ipynb/non-equilibrium_calcs.ipynb
+[33m[W 13:01:38.703 NotebookApp][m Saving untrusted notebook ipynb/non-equilibrium_calcs.ipynb
+[32m[I 13:01:44.714 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[33m[W 15:02:08.267 NotebookApp][m WebSocket ping timeout after 119998 ms.
+[33m[W 15:02:15.028 NotebookApp][m WebSocket ping timeout after 119998 ms.
+[32m[I 14:07:26.568 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 14:09:26.575 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 14:11:26.565 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 14:13:26.562 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 14:17:26.555 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 14:19:26.551 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 14:21:26.549 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 14:22:23.842 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 14:37:26.522 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[33m[W 15:15:25.866 NotebookApp][m WebSocket ping timeout after 119998 ms.
+[32m[I 08:33:17.803 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 08:35:17.796 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 08:37:17.792 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 08:39:17.788 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 08:41:17.786 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 08:45:17.778 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 08:47:17.774 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 09:33:42.661 NotebookApp][m Kernel shutdown: 98e49282-f49d-44ef-bf6e-7cfaf9d8fc27
+[32m[I 09:35:18.010 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 09:37:18.004 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 09:39:18.001 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 09:40:55.419 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 09:49:17.991 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 09:50:54.471 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 09:51:17.980 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 09:53:17.977 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 09:54:56.439 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 09:55:17.975 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 09:55:43.101 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 10:06:15.825 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 10:06:51.145 NotebookApp][m Creating new notebook in /ipynb
+[32m[I 10:06:51.654 NotebookApp][m Kernel started: 97067ae7-4b36-41d8-8a7d-f21de564aeba
+[32m[I 10:07:18.929 NotebookApp][m Saving file at /ipynb/standard_vs_our_conditions.ipynb
+[32m[I 10:08:51.658 NotebookApp][m Saving file at /ipynb/barkeri_extorquens.ipynb
+[32m[I 10:10:51.646 NotebookApp][m Saving file at /ipynb/barkeri_extorquens.ipynb
+[32m[I 10:12:51.642 NotebookApp][m Saving file at /ipynb/barkeri_extorquens.ipynb
+[32m[I 10:14:51.637 NotebookApp][m Saving file at /ipynb/barkeri_extorquens.ipynb
+[32m[I 10:16:51.642 NotebookApp][m Saving file at /ipynb/barkeri_extorquens.ipynb

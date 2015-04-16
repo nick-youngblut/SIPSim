@@ -37,7 +37,7 @@ def get_configspec(strIO=True):
 
        [[__many__]]
           distribution = option('normal','uniform', 'BM', default='normal')
-          weight = float(0,1, default=None)
+          weight = float(0,1, default=1)
     
             [[[__many__]]]
                 [[[[__many__]]]]
@@ -291,7 +291,7 @@ class Config(ConfigObj):
         sect -- config section class
         """
         keyParams = {k.lower():v for k,v  in self.iter_sectionKeywords(sect)}
-                        
+                       
         # assert params: end  > start
         if ('start' in keyParams) & ('end' in keyParams):
             try:
@@ -305,6 +305,7 @@ class Config(ConfigObj):
                     sect['start'] = float(sect['start']) - 1e-10
                 else:
                     sect['end'] = float(sect['end']) + 1e-10
+
         return None
                                             
 
@@ -359,7 +360,7 @@ class Config(ConfigObj):
                     allInterPopDists = [[k,v] for k,v in self.iter_configSections(sect3)]
                     nInterPopDists = len(allInterPopDists)
 
-                    allFuncs = [v['function'] for x in allInterPopDists]
+                    allFuncs = [v['function'] for k,v in allInterPopDists]
                     allWeights = [v['weight'] for k,v in allInterPopDists \
                                   if 'weight' in v]
 
@@ -371,17 +372,17 @@ class Config(ConfigObj):
                     else:
 
                         # else create mixture model from >=1 standard distribution
-                        # fill in missing weights (total = 1)
+                        ## fill in missing weights (total = 1)
                         allWeights = self._fill_in_weights(allWeights, n = nInterPopDists) 
                         assert sum(allWeights) == 1, 'interpop weights don\'t sum to 1'
                         
                         # changing interPopDist to mixture model
-                        for i in sect3: sect3.popitem()                        
+                        for i in sect3: 
+                            sect3.popitem()                        
                         sect3['interPopDist 1'] = {'function' :
                                                    mixture.MixtureModel(nInterPopDists,
                                                                         allWeights,
                                                                         allFuncs)}
-                                                        
 
 
 
@@ -400,7 +401,7 @@ class Config(ConfigObj):
         cur_sum = sum(allWeightsWithVals)
         
         if cur_sum > total:
-            raise ValueError, "Sum of weights > 1"
+            raise ValueError, "Sum of parameter weights > 1"
         elif len(allWeightsWithVals) > n:
             raise ValueError, "len(allWeights) > n"
         elif cur_sum == total and len(allWeightsWithVals) == n:
