@@ -44,16 +44,44 @@ double rand_norm_range(double mean, double stdev, double min, double max){
 }
 
 
-double add_diffusion(double frag_gc, double frag_len){
+double add_diffusion_old(double frag_gc, double frag_len){
   double diff_coef = 44500;    
   double stdev = sqrt(diff_coef / frag_len);
   return frag_gc + rand_norm(0, stdev);
 }
 
 
+double add_diffusion(double frag_GC, double frag_len, 
+		     double T = 298, double B = 1.195e9,
+		     double G = 7.87e-10, int M = 882){
+  /*
+    Calculating diffusion in standard deviation of %G+C equivalents.
+    Adding diffusion G+C (drawn from normal distribution with s.d.=calculated s.d.) 
+    to input G+C value.
+    Args:
+    frag_BD = rho (buoyant density)
+    frag_len = fragment length (bp)
+    T = absolute temperature
+    B = beta
+    G = G coefficient (see Clay et al., 2003)
+    M = molecular weight per base pair of dry cesium DNA
+   */
+
+  double frag_BD = frag_GC / 100 * 0.098 + 1.66;
+
+  double R = 8.3145e7;    
+  double GC_var = pow(100 / 0.098, 2) * ((frag_BD*R*T)/(pow(B,2)*G*M*frag_len));
+  double GC_sd = sqrt(GC_var);
+
+  return frag_GC + rand_norm(0, GC_sd);
+  
+}
+
+
 double GC2BD(double frag_GC){  
   return frag_GC / 100.0 * 0.098 + 1.66;
 }
+
  
 double addIncorpBD(double frag_BD, double incorp_perc, double isoMaxBD){
   return incorp_perc / 100 * isoMaxBD + frag_BD;

@@ -86,11 +86,11 @@ def sys_call(cmd, quiet=False):
     output, err = proc.communicate()
 
     
-def index_genome(genomeFile, taxonName, chilliDir, faToTwoBitExe, K_value, quiet=False):
+def index_genome(taxonName, genomeFile, chilliDir, faToTwoBitExe, K_value, quiet=False):
     """indexing genome with MFEprimer indexing scripts. Just making system calls.
     Args:
-    genomeFile -- file name of genome fasta
     taxonName -- taxon name of genome fasta
+    genomeFile -- file name of genome fasta
     chilliDir -- string with 'chilli' directory path
     faToTwoBitExe -- string with path of faToTwoBit
     K_value -- k value used for indexing
@@ -123,8 +123,6 @@ def index_genome(genomeFile, taxonName, chilliDir, faToTwoBitExe, K_value, quiet
     # cleanup
     os.remove(genomeFile + '.unifasta')
 
-    return 1
-
 
 
 def main(Uargs):
@@ -149,8 +147,7 @@ def main(Uargs):
                                          faToTwoBitExe=faToTwoBitExe,
                                          K_value=Uargs['--K_value'],
                                          quiet=Uargs['--quiet']
-                                         )
-                                         
+                                         )                                         
 
     # indexing genomes in parallel
     parmap.starmap(index_genome_par, genomeList, processes=int(Uargs['--np']), chunksize=1)

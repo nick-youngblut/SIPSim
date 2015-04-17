@@ -28,6 +28,7 @@ def add_diffusion_wrapper(np.ndarray[DTYPE_t, ndim=2] arr):
     return out
 
 
+
 def add_incorp(frag_BD, incorp_func, double isotopeMaxBD):
     """Adding isotope incorporation BD-shift values to BD-0%-incorp
     values
@@ -47,28 +48,3 @@ def add_incorp(frag_BD, incorp_func, double isotopeMaxBD):
 
 
 
-# def add_incorp_block(frag_BD, incorp_func, double isotopeMaxBD, int blockSize = 10000):
-    
-#     cdef int n = len(frag_BD)
-    
-#     cdef int i = 0
-#     cdef double y = 100.0
-#     cdef double z = 0
-
-# #    blockStart = range(0, n, blockSize)
-    
-#     # making blocks
-# #    for i in xrange(blockSize):
-# #        block[i] = incorp_func.sample()[0]
-        
-#     cdef double[:] block = np.empty(n, dtype=DTYPE)
-#     for i in xrange(n):
-#         block[i] = incorp_func.sample()[0]
-
-#     with nogil:
-#         for i in prange(n, schedule='static'):
-#             frag_BD[i] += block[i] / y * isotopeMaxBD
-    
-#    # for i in xrange(n):
-#    #     z = incorp_func.sample()[0]
-#    #     frag_BD[i] += z / y * isotopeMaxBD

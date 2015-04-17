@@ -14,11 +14,13 @@ Options:
   --version     Show version.
 
 Commands:
+  renameGenomes -- formatting genome sequence names for SIPSim
   indexGenomes -- index genomes (required for amplicon-fragment simulation)
   fragGC -- Simulate genome fragments and calc fragment G+C content.
   gradientComms -- Simulate the original communities for each isopycnic gradient
   isoIncorp -- Simulate the amount of isotope incorporation for each taxon in each isopycnic gradient
   fractions -- Simulate taxon abundances in each fraction of each isopycnic gradient
+  OTU_sim -- simulate OTU table
 
 Description:
   Simulate how taxa would be distributed in isopycnic gradients as assessed by high throughput sequencing.

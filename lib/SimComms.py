@@ -420,7 +420,7 @@ class Comm(_Comm):
 
         if dist == 'power':
             distFunc = power_neg
-            
+                        
         try:
             return partial(distFunc, **params)
         except TypeError:
@@ -428,7 +428,7 @@ class Comm(_Comm):
             param_str = ','.join(param_str)
             msg = 'Params "{}" do not work with function "{}"'\
                   .format(param_str, dist)
-
+            raise TypeError, msg
 
     @property
     def n_taxa(self):
