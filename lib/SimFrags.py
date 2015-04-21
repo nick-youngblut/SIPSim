@@ -64,7 +64,6 @@ class SimFrags(object):
         Return:
         list -- [scaffold,fragStart,fragLen,fragSequence]
         """
-
         tryCnt = 0
         while 1:
             # get read template position
@@ -140,7 +139,6 @@ class SimFrags(object):
 
         # frag start (position upstream from read template)        
         randPos = np.random.randint(0, fragSize - readTempSize)
-            #int(pymcDist.runiform(0, fragSize - readTempSize, size=1))
         fragStart = readTempPos[2] - randPos
         fragEnd = fragStart + fragSize - 1
         

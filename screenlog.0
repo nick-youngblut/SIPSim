@@ -1961,3 +1961,6 @@ OSError: [Errno 2] No such file or directory
 [33m[W 15:14:59.427 NotebookApp][m WebSocket ping timeout after 119998 ms.
 [33m[W 15:15:09.219 NotebookApp][m WebSocket ping timeout after 119998 ms.
 [33m[W 15:15:14.131 NotebookApp][m WebSocket ping timeout after 119998 ms.
+[32m[I 14:24:01.836 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 14:24:33.120 NotebookApp][m Saving file at /ipynb/pickle_sandbox.ipynb
+[32m[I 14:38:04.776 NotebookApp][m Saving file at /ipynb/pickle_sandbox.ipynb

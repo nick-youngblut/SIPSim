@@ -2,17 +2,19 @@
 
 #--- Option parsing ---#
 """
-fragGC: simulate genomeic fragments that would be found in a isopycnic gradient and calc frag G+C
+fragments: simulate genome fragments that would be found in a isopycnic gradient
 
 Usage:
-  fragGC [options] <genomeList>
-  fragGC -h | --help
-  fragGC --version
+  fragments [options] <genomeList>
+  fragments -h | --help
+  fragments --version
 
 Options:
   <genomeList>  A file listing: taxonName<tab>genomeSeqFileName
   --fp=<fp>     Full path to genomeSeqFiles (if not in genomeList file).
   --rtr=<rtr>   Read template length range (min,max).
+                How big can the read template be (part of the DNA fragment 
+                that is actually sequenced) 
                 [Default: 400,1200]
   --rtl=<rtl>   Read template length distribution (see Description).
                 [Default: uniform,250,250]
@@ -22,12 +24,12 @@ Options:
                 [Default: 10000]
   --fld=<ld>    Fragment length distribution (see Description).
                 [Default: skewed-normal,9000,2500,-5]
-  --flr=<m>     Fragment length range (min,max). 
+  --flr=<m>     Fragment length range (min,max). ('None' = no bounds)
                 [Default: 4000,None]
-  --fr=<fr>     Fasta of forward & reverse primers (if amplicons).
+  --fr=<fr>     Fasta of forward & reverse primers (if simulating amplicons).
   --np=<np>     Number of genomes to process in parallel.
                 [Default: 1]
-  --tbl         Write out fragments as a table instead of a pickled python object?
+  --tbl         Write out fragments as a table instead of a pickled python object.
   -h --help     Show this screen.
   --version     Show version.
   --debug       Debug mode
@@ -184,7 +186,6 @@ def by_genome(taxonName, inFile, args):
 
             nFragsMade += 1
             fragList[scaf].append([fragStart, fragLen, fragGC])
-
                 
     # status
     sys.stderr.write('  Genome name: {}\n'.format(genome.get_taxonName()))                
@@ -207,16 +208,8 @@ def write_fragList(fragList):
             for y in v:                
                 print '\t'.join([taxon_name, scaf] + [str(i) for i in y])
 
-        
-    
-# main
-if __name__ == '__main__':
-    args = docopt(__doc__, version='0.1')
-    
-    # splitting comma-separated args
-    sp = re.compile(' *, *')    
-    args = {k:sp.split(str(v)) if sp.search(str(v)) else v for k,v in args.items()}
-    
+
+def main(args):
     # adding to args
     args['scriptDir'] = libDir
 
@@ -228,7 +221,6 @@ if __name__ == '__main__':
 
     if args['--debug']:
         fragList = itertools.starmap(by_genome_part,genomeList)
-        #fragList = map(by_genome_part,genomeList)        
 
         if args['--tbl']:
             write_fragList(fragList)
@@ -245,6 +237,17 @@ if __name__ == '__main__':
             write_fragList(fragList)
         else:
             pickle.dump(fragList, sys.stdout)
+        
+
+    
+# main
+if __name__ == '__main__':
+    args = docopt(__doc__, version='0.1')
+    
+    sp = re.compile(' *, *')    
+    args = {k:sp.split(str(v)) if sp.search(str(v)) else v for k,v in args.items()}
+    
+    main(args)
 
         
         

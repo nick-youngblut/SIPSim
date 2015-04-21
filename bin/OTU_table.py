@@ -6,9 +6,9 @@ OTU_sim: simulate OTUs for gradient fractions based on simulated
 fragment G+C content and isotope incorporation
 
 Usage:
-  OTU_sim [options] <fragGC_file> <comm_file> <incorp_file> <frac_file>
-  OTU_sim -h | --help
-  OTU_sim --version
+  OTU_table [options] <fragGC_file> <comm_file> <incorp_file> <frac_file>
+  OTU_table -h | --help
+  OTU_table --version
 
 Options:
   <fragGC_file>       Name of file produced by fragGC subcommand.
