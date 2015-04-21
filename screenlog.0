@@ -1955,3 +1955,9 @@ OSError: [Errno 2] No such file or directory
 [32m[I 14:48:29.818 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
 [32m[I 14:56:08.837 NotebookApp][m Kernel interrupted: 97067ae7-4b36-41d8-8a7d-f21de564aeba
 [32m[I 14:56:10.785 NotebookApp][m Saving file at /ipynb/barkeri_extorquens.ipynb
+[32m[I 14:58:10.777 NotebookApp][m Saving file at /ipynb/barkeri_extorquens.ipynb
+[32m[I 15:10:30.739 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 15:12:30.734 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[33m[W 15:14:59.427 NotebookApp][m WebSocket ping timeout after 119998 ms.
+[33m[W 15:15:09.219 NotebookApp][m WebSocket ping timeout after 119998 ms.
+[33m[W 15:15:14.131 NotebookApp][m WebSocket ping timeout after 119998 ms.
