@@ -10,7 +10,7 @@ import cPickle as pickle
 import numpy as np
 import pandas as pd
 import scipy.stats as stats
-from sklearn.neighbors.kde import KernelDensity
+#from sklearn.neighbors.kde import KernelDensity
 import mixture
 
 # logging
@@ -120,7 +120,7 @@ class Frag_multiKDE(object):
     def __repr__(self):
         out = ''        
         for taxon_name in self.iter_taxon_names():
-            for kde in self.iter_fragGC_kde([taxon_name]):
+            for kde in self.iter_kde([taxon_name]):
                 out += '{}\n\t{}\n'.format(taxon_name, kde.__repr__())
         return out
 
@@ -132,7 +132,7 @@ class Frag_multiKDE(object):
             yield taxon_name
 
             
-    def iter_fragGC_kde(self, taxon_names):
+    def iter_kde(self, taxon_names):
         """Getting the kde functions for all taxa-listed.
         Args:
         taxon_names -- list of taxon names
@@ -144,6 +144,13 @@ class Frag_multiKDE(object):
                 yield self._fragKDE[taxon_name]
             except KeyError:
                 raise KeyError('No KDE fit for taxon "{}"'.format(taxon_name))
+
+    
+    def get_all_kde(self):
+        """Return all KDE objects as list [[taxon_name, kde],]
+        """
+        return [[taxon_name, self._fragKDE[taxon_name]] 
+                 for taxon_name in self.iter_taxon_names()]
 
                 
     def sampleTaxonKDE(self, taxon_name, size=1):

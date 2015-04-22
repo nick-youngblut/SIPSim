@@ -32,7 +32,6 @@ import sys,os
 import cPickle as pickle 
 
 ## 3rd party
-import numpy as np
 
 ## application libraries
 scriptDir = os.path.dirname(__file__)
@@ -43,8 +42,6 @@ from FragGC import Frag_multiKDE
 
 
 # functions
-
-
 def main(args):    
     kde2d = Frag_multiKDE(args['<fragment_table>'], bandwidth=args['--bw'])
     pickle.dump(kde2d, sys.stdout)

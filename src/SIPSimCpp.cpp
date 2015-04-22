@@ -44,16 +44,18 @@ double rand_norm_range(double mean, double stdev, double min, double max){
 }
 
 
-double add_diffusion_old(double frag_gc, double frag_len){
+double calc_diffusion_simple(double frag_gc, double frag_len){
+  /*
+    Simple calculation of diffusion based on fragment length
+  */
   double diff_coef = 44500;    
   double stdev = sqrt(diff_coef / frag_len);
   return frag_gc + rand_norm(0, stdev);
 }
 
 
-double add_diffusion(double frag_GC, double frag_len, 
-		     double T = 298, double B = 1.195e9,
-		     double G = 7.87e-10, int M = 882){
+double calc_diffusion(double frag_GC, double frag_len,
+		      double T, double B, double G, int M){
   /*
     Calculating diffusion in standard deviation of %G+C equivalents.
     Adding diffusion G+C (drawn from normal distribution with s.d.=calculated s.d.) 
@@ -68,13 +70,10 @@ double add_diffusion(double frag_GC, double frag_len,
    */
 
   double frag_BD = frag_GC / 100 * 0.098 + 1.66;
-
   double R = 8.3145e7;    
-  double GC_var = pow(100 / 0.098, 2) * ((frag_BD*R*T)/(pow(B,2)*G*M*frag_len));
-  double GC_sd = sqrt(GC_var);
+  double GC_sd = sqrt(pow(100 / 0.098, 2) * ((frag_BD*R*T)/(pow(B,2)*G*M*frag_len)));
 
-  return frag_GC + rand_norm(0, GC_sd);
-  
+  return rand_norm(0, GC_sd);  
 }
 
 
@@ -92,7 +91,7 @@ BOOST_PYTHON_MODULE(SIPSimCpp)
 {
   def("rand_norm", rand_norm);
   def("rand_norm_range", rand_norm_range);
-  def("add_diffusion", add_diffusion);
+  def("calc_diffusion", calc_diffusion);
   def("GC2BD", GC2BD);
   def("addIncorpBD", addIncorpBD);
 }
