@@ -75,13 +75,16 @@ import SIPSimCython as SSC
 
 
 # functions
+def make_kde(taxon_name, kde, n, bw_method, **kwargs):
+    if kde is None:
+        return (taxon_name, None)
 
-def make_kde(taxon_name, kde, n, **kwargs):
     kdeBD = stats.gaussian_kde( 
         SSC.add_diffusion(
             kde.resample(size=n),
-            **kwargs))
-    return [taxon_name, kdeBD]
+            **kwargs), 
+        bw_method=bw_method)
+    return (taxon_name, kdeBD)
     
 
 def main(args):    
@@ -95,6 +98,11 @@ def main(args):
       create kde from BD array
       return kde object
     """
+    try:
+        args['--bw'] =float(args['--bw'])
+    except TypeError:
+        pass 
+
     with open(args['<fragment_kde>'], 'rb') as inFH:
         kde2d = pickle.load(inFH)
 
@@ -102,10 +110,13 @@ def main(args):
                     n = int(args['-n']),
                     T = float(args['-T']),
                     B = float(args['-B']),
-                    G = float(args['-G']))
+                    G = float(args['-G']),
+                    bw_method=args['--bw'])
     
 
-    KDE_BD = parmap.starmap(pfunc, kde2d.get_all_kde(),
+#    print kde2d.items(); sys.exit()
+
+    KDE_BD = parmap.starmap(pfunc, kde2d.items(),
                             processes = int(args['--np']),
                             chunksize = int(args['--cs']),
                             parallel = not args['--debug'])

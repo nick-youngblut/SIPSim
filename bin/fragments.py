@@ -78,7 +78,8 @@ Description:
     Parameters: location, scale, low, high
 
   ** Output **
-    A tab-delim file written to STDOUT.
+    If --tbl: tab-delim file written to STDOUT, else: a pickled version of
+    the table object
 
 """
 

@@ -1964,3 +1964,249 @@ OSError: [Errno 2] No such file or directory
 [32m[I 14:24:01.836 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
 [32m[I 14:24:33.120 NotebookApp][m Saving file at /ipynb/pickle_sandbox.ipynb
 [32m[I 14:38:04.776 NotebookApp][m Saving file at /ipynb/pickle_sandbox.ipynb
+[32m[I 14:40:12.581 NotebookApp][m Creating new notebook in /ipynb
+[32m[I 14:40:13.366 NotebookApp][m Kernel started: f100529a-faec-4e1a-9b14-cbe39e04d417
+[32m[I 14:40:55.474 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 14:42:55.470 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 14:48:55.467 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 14:50:55.454 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 14:52:55.451 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 14:53:41.178 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 15:09:47.809 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 08:47:56.112 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 08:49:24.013 NotebookApp][m Kernel interrupted: f909bc1b-c71e-4dde-8a68-d756919d289e
+[32m[I 08:49:39.873 NotebookApp][m Kernel interrupted: f909bc1b-c71e-4dde-8a68-d756919d289e
+[32m[I 08:49:42.826 NotebookApp][m Kernel interrupted: f909bc1b-c71e-4dde-8a68-d756919d289e
+[32m[I 08:49:56.100 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 08:51:56.096 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 08:53:56.091 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 08:55:56.088 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 09:13:56.054 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 09:15:56.055 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 09:19:52.029 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 09:21:56.036 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 09:23:56.034 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 09:25:56.029 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 09:27:56.025 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 09:28:40.006 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 09:29:56.021 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 09:31:56.024 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 09:33:56.015 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 09:35:56.015 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 09:37:56.018 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 09:39:56.004 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 09:41:56.004 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 09:43:56.009 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 09:45:55.994 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 09:47:55.988 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[33m[W 09:48:04.421 NotebookApp][m 404 GET /static/components/backbone/backbone-min.map (127.0.0.1) 44.47ms referer=http://127.0.0.1:7702/notebooks/ipynb/kde_sandbox.ipynb
+[33m[W 09:48:04.434 NotebookApp][m 404 GET /static/components/underscore/underscore-min.map (127.0.0.1) 11.86ms referer=http://127.0.0.1:7702/notebooks/ipynb/kde_sandbox.ipynb
+[32m[I 09:49:55.987 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 09:51:56.004 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 10:05:56.724 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 10:06:50.049 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 10:07:56.718 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 10:07:57.347 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 10:11:56.710 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 10:13:56.705 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 10:15:56.703 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 10:17:56.699 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 10:18:06.793 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 10:19:56.689 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 10:21:56.691 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 10:23:56.687 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 10:33:58.614 NotebookApp][m Creating new directory in /ipynb
+[32m[I 10:34:38.270 NotebookApp][m Creating new directory in /ipynb/t
+[32m[I 10:34:39.862 NotebookApp][m Creating new directory in /ipynb/t
+[32m[I 10:35:04.437 NotebookApp][m Creating new directory in /ipynb/t/genome100
+[33m[W 10:35:13.524 NotebookApp][m delete /ipynb/t/genome100/Untitled Folder
+[32m[I 10:35:15.810 NotebookApp][m Creating new notebook in /ipynb/t/genome100
+[32m[I 10:35:16.314 NotebookApp][m Kernel started: 83af750d-8c3b-4454-90f0-dd0c099f2c35
+[33m[W 10:35:41.348 NotebookApp][m Notebook ipynb/non-equilibrium_calcs.ipynb is not trusted
+[33m[W 10:36:04.352 NotebookApp][m Notebook ipynb/bac_genome/all/dataset.ipynb is not trusted
+[32m[I 10:37:16.308 NotebookApp][m Saving file at /ipynb/t/genome100/setup.ipynb
+[32m[I 10:39:16.305 NotebookApp][m Saving file at /ipynb/t/genome100/setup.ipynb
+[32m[I 10:41:16.300 NotebookApp][m Saving file at /ipynb/t/genome100/setup.ipynb
+[32m[I 10:43:16.292 NotebookApp][m Saving file at /ipynb/t/genome100/setup.ipynb
+[32m[I 10:45:16.299 NotebookApp][m Saving file at /ipynb/t/genome100/setup.ipynb
+[32m[I 10:46:14.584 NotebookApp][m Saving file at /ipynb/t/genome100/setup.ipynb
+[32m[I 10:47:16.288 NotebookApp][m Saving file at /ipynb/t/genome100/setup.ipynb
+[32m[I 10:48:08.885 NotebookApp][m Saving file at /ipynb/t/genome100/setup.ipynb
+[32m[I 10:49:04.303 NotebookApp][m Kernel shutdown: f100529a-faec-4e1a-9b14-cbe39e04d417
+[33m[W 10:49:04.306 NotebookApp][m delete /ipynb/Untitled.ipynb
+[32m[I 10:49:21.423 NotebookApp][m Creating new notebook in /ipynb/t/genome100
+[32m[I 10:49:21.972 NotebookApp][m Kernel started: 27ad8b61-be4e-453d-9602-b4c680e8a2d0
+[32m[I 10:51:21.971 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:53:16.599 NotebookApp][m Saving file at /ipynb/t/genome100/setup.ipynb
+[32m[I 10:53:21.966 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:11:00.290 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:11:22.546 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:13:22.553 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:15:22.538 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:17:22.536 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:19:22.532 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:21:22.529 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:23:22.525 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:25:22.520 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:27:22.517 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:29:22.510 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:31:23.499 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:31:27.884 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 11:33:23.493 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:33:28.816 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 11:35:23.498 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:37:23.490 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:39:24.483 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:39:29.486 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 11:41:24.478 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:41:31.107 NotebookApp][m Saving file at /ipynb/kde_sandbox.ipynb
+[32m[I 11:43:24.472 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:45:24.470 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:46:02.318 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:46:39.443 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:47:24.468 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:49:24.460 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:50:01.572 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:51:24.461 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:53:24.454 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:55:24.477 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:57:24.471 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:59:24.444 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:00:02.405 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[33m[W 13:04:53.824 NotebookApp][m WebSocket ping timeout after 119998 ms.
+[33m[W 13:05:06.909 NotebookApp][m WebSocket ping timeout after 119998 ms.
+[33m[W 13:05:14.958 NotebookApp][m WebSocket ping timeout after 119998 ms.
+[33m[W 13:05:17.272 NotebookApp][m WebSocket ping timeout after 119998 ms.
+[33m[W 13:05:17.403 NotebookApp][m WebSocket ping timeout after 119998 ms.
+[32m[I 13:18:23.280 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 13:20:23.275 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 13:21:19.642 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 13:26:24.135 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 09:34:52.970 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 09:36:52.948 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 09:38:52.947 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 09:40:52.905 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 09:41:41.444 NotebookApp][m Kernel interrupted: 27ad8b61-be4e-453d-9602-b4c680e8a2d0
+[32m[I 09:41:58.322 NotebookApp][m Kernel interrupted: 27ad8b61-be4e-453d-9602-b4c680e8a2d0
+[32m[I 09:42:52.918 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 09:44:52.903 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 09:52:52.887 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 09:54:52.903 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 09:56:52.872 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 09:58:52.884 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:00:52.878 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:02:52.872 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:04:52.867 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:12:53.768 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:14:53.760 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:16:53.755 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:18:53.748 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:20:53.746 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:22:53.744 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:24:53.729 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:26:53.726 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:28:22.661 NotebookApp][m Kernel interrupted: 27ad8b61-be4e-453d-9602-b4c680e8a2d0
+[32m[I 10:28:33.787 NotebookApp][m Kernel interrupted: 27ad8b61-be4e-453d-9602-b4c680e8a2d0
+[32m[I 10:28:40.421 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:30:44.365 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:32:44.365 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:34:44.362 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:36:44.358 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:38:44.347 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:40:44.345 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:42:44.338 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:44:44.340 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:46:44.326 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:48:44.332 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:50:44.330 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:51:56.264 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:52:44.323 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:54:44.327 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:56:44.313 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 10:58:44.308 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:00:12.707 NotebookApp][m Kernel interrupted: 27ad8b61-be4e-453d-9602-b4c680e8a2d0
+[32m[I 11:00:44.307 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:02:44.297 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:04:44.297 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:08:44.317 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:10:44.312 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:11:28.039 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:16:44.293 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:18:44.299 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:20:44.287 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:22:44.285 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:26:44.295 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:28:44.295 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:30:44.293 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:34:44.272 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:36:44.272 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:38:44.295 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:39:53.966 NotebookApp][m Kernel interrupted: 27ad8b61-be4e-453d-9602-b4c680e8a2d0
+[32m[I 11:40:44.266 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:42:44.270 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:44:44.248 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:46:44.238 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:48:44.245 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:50:44.235 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:52:44.246 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:54:44.236 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:56:44.219 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:58:44.225 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 11:59:41.482 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:00:44.240 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:02:44.242 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:04:44.247 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:06:42.065 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:08:44.234 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:10:44.238 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:12:44.258 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:14:44.234 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:16:44.244 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:18:44.240 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:20:44.253 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:22:05.019 NotebookApp][m Kernel interrupted: 27ad8b61-be4e-453d-9602-b4c680e8a2d0
+[32m[I 12:22:44.266 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:22:59.303 NotebookApp][m Kernel interrupted: 27ad8b61-be4e-453d-9602-b4c680e8a2d0
+[32m[I 12:23:36.028 NotebookApp][m Kernel interrupted: 27ad8b61-be4e-453d-9602-b4c680e8a2d0
+[32m[I 12:24:16.399 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:24:44.255 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:25:54.814 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:28:44.249 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:30:44.251 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:32:44.242 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:34:44.255 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:36:44.237 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:38:44.254 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:40:44.254 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:42:44.242 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:44:44.222 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:46:44.173 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:47:09.324 NotebookApp][m Kernel interrupted: 27ad8b61-be4e-453d-9602-b4c680e8a2d0
+[32m[I 12:47:35.739 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:48:44.179 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:50:44.191 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:52:44.228 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:54:44.168 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:56:44.214 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 12:58:44.204 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 13:00:44.203 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 13:02:44.204 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 13:04:44.251 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 13:06:44.135 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+-->interrupted.
+[32m[I 13:06:48.888 NotebookApp][m Kernel interrupted: 27ad8b61-be4e-453d-9602-b4c680e8a2d0
+Keyboard interrupt.
+-->interrupted.
+[32m[I 13:07:17.382 NotebookApp][m Kernel interrupted: 27ad8b61-be4e-453d-9602-b4c680e8a2d0
+[32m[I 13:07:18.972 NotebookApp][m KernelRestarter: restarting kernel (1/5)
+WARNING:root:kernel 27ad8b61-be4e-453d-9602-b4c680e8a2d0 restarted
+[32m[I 13:08:11.492 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 13:08:44.148 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 13:10:44.147 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 13:12:44.132 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 13:14:44.138 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 13:16:44.187 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 13:18:44.169 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 13:20:44.148 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 13:22:24.631 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb
+[32m[I 13:22:33.929 NotebookApp][m Saving file at /ipynb/t/genome100/default_run.ipynb

@@ -1,10 +1,5 @@
 """Fragment KDE classes"""
 
-
-#########
-# Depreciated
-#######
-
 # import
 ## batteries
 import sys
@@ -17,13 +12,15 @@ import pandas as pd
 import scipy.stats as stats
 #from sklearn.neighbors.kde import KernelDensity
 import mixture
+# amplication
+import SIPSimCython
 
 # logging
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
 
-def load_fragGC_table(inFH, sep='\t'):
-    """Loading fragGC table as a dict of dicts of 2d lists.
+def load_frags_table(inFH, sep='\t'):
+    """Loading frag info table as a dict of dicts of 2d lists.
     {taxon_name : {scaffold : [fragStart, fragEnd, GC]}}
     Args:
     inFH -- file handle
@@ -62,8 +59,8 @@ def load_fragGC_table(inFH, sep='\t'):
     return d
 
             
-def load_fragGC_pickle(inFH):
-    """Loading fragGC info assuming a pickled python object
+def load_frags_pickle(inFH):
+    """Loading frag GC info assuming a pickled python object
     produced by SIPSim fragGC.
     Args:
     inFH -- file handle
@@ -84,7 +81,71 @@ def load_fragGC_pickle(inFH):
                 d[taxon_name]['fragGC'].append(z[2])                
     return d
 
-            
+
+
+def load_frags(fileName):
+    """Loading fragment data (pickled) table.
+    Args:
+    fileName -- name of the fragment data table
+    Return:
+    dict{dict} -- {taxon_name:{key:value}}
+    """
+    try:
+        inFH = open(fileName, 'r')
+    except IOError:
+        inFH = sys.stdin
+
+    try:
+        frag_data = load_frags_pickle(inFH)
+    except pickle.UnpicklingError:
+        inFH.seek(0)
+        frag_data = load_frags_table(inFH)            
+
+    inFH.close()
+
+    return frag_data
+
+
+def fit_kde(frag_data, bw_method=None):
+    """Returns multivariate KernelDensity function fit to
+    fragment buoyant density (calculated from G+C) 
+    and fragment lengths.
+    Bandwidth selection based on bandwidth attribute.
+    Args:
+    frag_data -- dict of lists (fragment info)
+    bw_method -- passed to stats.gaussian_kde
+    Return:
+    dict of kde objects {taxon_name:kde}
+    """
+
+    kdes = dict()
+    for taxon_name,data in frag_data.items():
+        # getting GC & length values
+        try:
+            frag_GC = data['fragGC']
+        except KeyError:
+            msg = 'Taxon: {}: cannot find "fragGC"'            
+            raise KeyError, msg.format(taxon_name)
+        try:
+            frag_len = data['fragLength']
+        except KeyError:
+            msg = 'Taxon: {}: cannot find "fragLength"'            
+            raise KeyError, msg.format(taxon_name)
+
+        # GC2BD
+        frag_BD = SIPSimCython.GC2BD(np.array(frag_GC))
+
+        # kde fitting
+        try:
+            kdes[taxon_name] = stats.gaussian_kde([frag_BD, frag_len], 
+                                                  bw_method=bw_method)
+        except ValueError:
+            kdes[taxon_name] = None
+
+    return kdes
+
+
+     
 class Frag_multiKDE(object):
     """Multivariate KDE fit to fragment G+C and fragment lengths.
     Method:

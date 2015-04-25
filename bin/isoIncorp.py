@@ -123,49 +123,25 @@ import IsoIncorp
 
 
 # functions
-def main(Uargs):
-    """
-    Uargs -- dict of user-provided args
-    """
+def main(args):
     # loading community file
-    comm = CommTable.from_csv(Uargs['<comm_file>'], sep='\t')
+    comm = CommTable.from_csv(args['<comm_file>'], sep='\t')
 
     # loading the config file
-    config = IsoIncorp.Config.load_config(Uargs['<config_file>'],
-                                          phylo=Uargs['--phylo'])
+    config = IsoIncorp.Config.load_config(args['<config_file>'],
+                                          phylo=args['--phylo'])
     
+    # setting population distributions
     distsTbl = IsoIncorp.populationDistributions(config, comm)
 
-    # writing
+    # writing table
     distsTbl.to_csv(sys.stdout, sep='\t', index=None)
-    
-    
-    # if --config
-    #! set inter-pop distributions based on config {param:numpy_dist}
-    ## loading config file and set distributions
-    ## foreach sample:
-    ### randomly select taxon (up to % of taxa needed):
-    #### draw params from inter-pop distributions
-    #### write: sample,taxon,distribution,dist_params...
-    ### other taxa:
-    #### params = uniform dist, min-max=0
-    
-    # elif --phylo:
-    #! calling rTraitPhylo.r
-    ## foreach sample:
-    ### foreach intra-pop param:
-    #### call rTraitPhylo.r; save values
-    ### foreach taxon:
-    #### apply values to indiv. pop dist
-    #### write: sample,taxon,distribution,dist_params...
-    ### other taxa:
-    #### params = uniform dist, min-max=0
-    
+        
     
     
 # main
 if __name__ == '__main__':
-    Uargs = docopt(__doc__, version='0.1')    
-    main(Uargs)
+    args = docopt(__doc__, version='0.1')    
+    main(args)
 
 

@@ -54,15 +54,15 @@ double calc_diffusion_simple(double frag_gc, double frag_len){
 }
 
 
-double calc_diffusion(double frag_GC, double frag_len,
-		      double T, double B, double G, int M){
+double calc_diffusion_GC(double frag_GC, double frag_len,
+		         double T, double B, double G, int M){
   /*
     Calculating diffusion in standard deviation of %G+C equivalents.
     Adding diffusion G+C (drawn from normal distribution with s.d.=calculated s.d.) 
     to input G+C value.
     Args:
-    frag_BD = rho (buoyant density)
-    frag_len = fragment length (bp)
+    frag_GC = G+C content of DNA fragment
+    frag_len = DNA fragment length (bp)
     T = absolute temperature
     B = beta
     G = G coefficient (see Clay et al., 2003)
@@ -76,9 +76,36 @@ double calc_diffusion(double frag_GC, double frag_len,
   return rand_norm(0, GC_sd);  
 }
 
+double calc_diffusion_BD(double frag_BD, double frag_len,
+		         double T, double B, double G, int M){
+  /*
+    Calculating diffusion in standard deviation of buoyant_density equivalents (rho).
+    Args:
+    frag_BD = rho (buoyant density)
+    frag_len = fragment length (bp)
+    T = absolute temperature
+    B = beta
+    G = G coefficient (see Clay et al., 2003)
+    M = molecular weight per base pair of dry cesium DNA
+    Return:
+    BD error due to diffusion value drawn from a normal distribution with a 
+    standard deviation determined by calculated diffusion
+   */
 
-double GC2BD(double frag_GC){  
-  return frag_GC / 100.0 * 0.098 + 1.66;
+  double R = 8.3145e7;    
+  double sd_BD = sqrt((frag_BD*R*T)/(pow(B,2)*G*M*frag_len));
+
+  return rand_norm(0, sd_BD);  
+}
+
+
+double GC2BD(double GC){  
+  /*
+    Calaculate buoyant density from G+C.
+    Args:
+    GC = % GC of DNA fragment
+  */
+  return GC / 100.0 * 0.098 + 1.66;
 }
 
  
@@ -91,7 +118,8 @@ BOOST_PYTHON_MODULE(SIPSimCpp)
 {
   def("rand_norm", rand_norm);
   def("rand_norm_range", rand_norm_range);
-  def("calc_diffusion", calc_diffusion);
+  def("calc_diffusion_GC", calc_diffusion_GC);
+  def("calc_diffusion_BD", calc_diffusion_BD);
   def("GC2BD", GC2BD);
   def("addIncorpBD", addIncorpBD);
 }

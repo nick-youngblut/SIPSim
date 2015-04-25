@@ -2,19 +2,16 @@
 
 #--- Option parsing ---#
 """
-fragment_kde: make a 2d kernel density estimate of fragment 
-              buoyant density and length
+plot_kde: make plots of each kde object
 
 Usage:
-  fragments [options] <fragment_table> 
+  fragments [options] <kde> 
   fragments -h | --help
   fragments --version
 
 Options:
-  <fragment_table>  A (pickled) table of fragment GC and lengths.
+  <kde>             A pickled KDE object from another SIPSim subcommand.
                     '-' if input from STDIN. 
-  --bw=<bw>         The bandwidth scalar or function passed to
-                    scipy.stats.gaussian_kde(); 'bw_method'
   -h --help         Show this screen.
   --version         Show version.
   --debug           Debug mode
@@ -23,7 +20,7 @@ Description:
   Create a 2D kernel density estimate from fragment G+C and length values
   simulated by the 'fragments' subcommand.
   
-  Pickled kde object written to STDOUT.
+  Pickled kde objects are written to STDOUT.
 """
 
 # import
@@ -39,15 +36,13 @@ scriptDir = os.path.dirname(__file__)
 libDir = os.path.join(scriptDir, '../lib/')
 sys.path.append(libDir)
 
-import Fragments as Frags
+from FragGC import Frag_multiKDE
 
 
 # functions
 def main(args):    
-    #kde2d = Frag_multiKDE(args['<fragment_table>'], bandwidth=args['--bw'])
-    frag_tbl = Frags.load_frags(args['<fragment_table>'])
-    frag_kde = Frags.fit_kde(frag_tbl, bw_method=args['--bw'])
-    pickle.dump(frag_kde, sys.stdout)
+    kde2d = Frag_multiKDE(args['<fragment_table>'], bandwidth=args['--bw'])
+    pickle.dump(kde2d, sys.stdout)
 
     
 # main
