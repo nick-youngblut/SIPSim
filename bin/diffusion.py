@@ -11,7 +11,7 @@ Usage:
 
 Options:
   <fragment_kde>    Output from the fragment_kde subcommand.
-                    '-' if input from STDIN. 
+                    ('-' if input from STDIN) 
   -n=<n>            Number of Monte Carlo replicates to estimate
                     G+C error due to diffusion. 
                     [default: 10000]
@@ -53,7 +53,10 @@ Description:
 
   The error in 'true' G+C values caused by diffusion is estimated
   by Monte Carlo simulation. 
-  
+
+  **Output**
+  A pickled python object {taxon_name:buoyant_density_kde} is
+  written to STDOUT.
 """
 
 # import
@@ -72,6 +75,7 @@ sys.path.append(libDir)
 
 from FragGC import Frag_multiKDE
 import SIPSimCython as SSC
+import Utils
 
 
 # functions
@@ -103,8 +107,7 @@ def main(args):
     except TypeError:
         pass 
 
-    with open(args['<fragment_kde>'], 'rb') as inFH:
-        kde2d = pickle.load(inFH)
+    kde2d = Utils.load_kde(args['<fragment_kde>'])
 
     pfunc = partial(make_kde, 
                     n = int(args['-n']),
@@ -113,9 +116,6 @@ def main(args):
                     G = float(args['-G']),
                     bw_method=args['--bw'])
     
-
-#    print kde2d.items(); sys.exit()
-
     KDE_BD = parmap.starmap(pfunc, kde2d.items(),
                             processes = int(args['--np']),
                             chunksize = int(args['--cs']),

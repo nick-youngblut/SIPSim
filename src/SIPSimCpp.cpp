@@ -9,7 +9,6 @@ using namespace std;
 using namespace boost::python;
  
 
-
 double rand_norm(double mean, double stdev){
   boost::mt19937 rng(rand()); 
 

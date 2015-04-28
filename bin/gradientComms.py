@@ -10,13 +10,9 @@ Usage:
   gradientComms --version
 
 Options:
-  <genomeList>  A file listing: taxonName<tab>genomeSeqFileName
-  --shared_perc=<sp>  The percent of taxa shared in each community.
-                      Percent set by the community with the smallest richness.
-                      Example: if smallest community is 10 taxa,
-                               a shared percent of 20% = 2 shared taxa.
-                      The total taxon pool must be large enough to accommodate all un-shared taxa.
-                      [default: 100]
+  <genomeList>        A file listing: taxonName<tab>genomeSeqFileName
+  --n_comm=<nc>       Number of communities to simulate.
+                      [default: 1]
   --richness=<r>      The number of taxa in each library.
                       Values of 0-1 will be interpreted as a fraction of the total taxa pool.
                       [default: 1]
@@ -26,10 +22,14 @@ Options:
   --abund_dist_p=<p>  Abundance distribution parameters.
                       (see numpy.random for distribution params).
                       [default: mean:10,scale:2]
+  --shared_perc=<sp>  The percent of taxa shared in each community.
+                      Percent set by the community with the smallest richness.
+                      Example: if smallest community is 10 taxa,
+                               a shared percent of 20% = 2 shared taxa.
+                      The total taxon pool must be large enough to accommodate all un-shared taxa.
+                      [default: 100]
   --perm_perc=<pp>    How much to vary the rank-abundances between communities.
                       [default: 0]
-  --n_comm=<nc>       Number of communities to simulate.
-                      [default: 1]
   --config=<c>        Config file for setting community-specific parameters (& global params).
                       Community-specific parameters can include:
                         * richness

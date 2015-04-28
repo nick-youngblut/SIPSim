@@ -56,6 +56,20 @@ def get_configspec(strIO=True):
     else:
         return configspec
 
+
+def incorp_BD_KDE(kde, config):
+    """Estimating incorp BD distribution (BD + BD_shift_isotope)
+    via KDE
+    Args:
+    kde -- 1d kde object of BD values
+    config -- config object (setting isotope incorporation
+    Return:
+    kde_object -- BD distribution with isotope BD shift
+    """
+#    print config; sys.exit()
+    
+    
+
         
 def populationDistributions(config, comm):
     """Setting distribution parameters for intra-population isotope incorporation

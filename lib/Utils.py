@@ -7,10 +7,26 @@ import re
 import time
 from pprint import pprint
 from itertools import chain
+import cPickle as pickle
 
 ## 3rd party
 import pandas as pd
 
+
+def load_kde(fileName):
+    """Loading a pickled dict {taxon:kde_object} file.
+    Args:
+    fileName -- name of pickled file ('-' if from STDIN)
+    Return:
+    dict {taxon_name:kde_object}
+    """
+    if fileName == '-':
+        kde = pickle.load(sys.stdin)
+    else:
+        with open(fileName, 'rb') as inFH:
+            kde = pickle.load(inFH)
+    return kde
+    
 
 def checkExists(f):
     """

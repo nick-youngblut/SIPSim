@@ -5,19 +5,29 @@
 isoIncorp: set taxon isotope incorporation distributions
 
 Usage:
-  isoIncorp [options] <comm_file> <config_file>
+  isoIncorp [options] <BD_KDE> <config_file>
   isoIncorp -h | --help
   isoIncorp --version
 
 Options:
-  <comm_file>          Output from `SIPSim gradientComm`. ('-' if from STDIN)
-  <config_file>        Config file setting inter-population-level incorporation
-                       distribution (see Description).
-  --phylo=<phy>        Newick phylogeny of taxa used for brownian motion evolution 
-                       of distribution parameters (NOT YET IMPLEMENTED).
-  -h --help            Show this screen.
-  --version            Show version.
-  --debug              Debug mode
+  <BD_KDE>           Bouyant Density KDE object file  ('-' if from STDIN).
+  <config_file>      Config file setting inter-population-level incorporation
+                     distribution (see Description).
+  --comm=<cf>        Community file used set abundance-weighting of isotope.
+  -n=<n>             Number of Monte Carlo replicates to estimate
+                     G+C error due to diffusion. 
+                     [default: 10000]
+  --phylo=<phy>      Newick phylogeny of taxa used for brownian motion evolution 
+                     of distribution parameters.
+  --bw=<bw>          The bandwidth scalar or function passed to
+                     scipy.stats.gaussian_kde().
+  --np=<np>          Number of parallel processes.
+                     [default: 1]
+  --cs=<cs>          Chunksize for each process (number of taxa).
+                     [default: 1]
+  -h --help          Show this screen.
+  --version          Show version.
+  --debug            Debug mode
 
 Description:
   For each population (taxon), there is a distribution of how much
@@ -108,34 +118,86 @@ Description:
 ## batteries
 from docopt import docopt
 import sys,os
+from functools import partial
 
 ## 3rd party
 import pandas as pd
+import parmap
 
 ## application libraries
 scriptDir = os.path.dirname(__file__)
 libDir = os.path.join(scriptDir, '../lib/')
 sys.path.append(libDir)
 
-#import IsoIncorp
+##import IsoIncorp
 from SIPSim import CommTable
 import IsoIncorp
+import Utils
 
 
 # functions
-def main(args):
-    # loading community file
-    comm = CommTable.from_csv(args['<comm_file>'], sep='\t')
+def make_kde(taxon_name, kde, config, n, bw_method, **kwargs):
+    if kde is None:
+        return (taxon_name, None)
 
+    tmp = IsoIncorp.incorp_BD_KDE(kde, config, **kwargs)
+
+
+#    kdeBD = stats.gaussian_kde( 
+#        SSC.add_diffusion(
+#            kde.resample(size=n),
+#            **kwargs), 
+#        bw_method=bw_method)
+#    return (taxon_name, kdeBD)
+
+
+def add_comm_to_kde(KDE_BD, comm):
+    """Adding comm data for each taxon to each KDE.
+    """
+
+    print comm; sys.exit()
+
+#    for taxon_name,kde in KDE_BD.items():
+        
+
+
+def main(args):
+    # loading input
+    ## kde_bd
+    KDE_BD = Utils.load_kde(args['<BD_KDE>'])
+    ## comm (optional)
+    if args['--comm'] is not None:
+        comm = CommTable.from_csv(args['--comm'], sep='\t')
+    else:
+        comm = None
+
+
+    # combining kde and comm
+    add_comm_to_kde(KDE_BD, comm)
+    
     # loading the config file
     config = IsoIncorp.Config.load_config(args['<config_file>'],
                                           phylo=args['--phylo'])
-    
-    # setting population distributions
-    distsTbl = IsoIncorp.populationDistributions(config, comm)
+ 
+   
+    # creating kde of BD distributions with BD shift from isotop
+    KDE_BD_iso = dict()
+    for libID, cfg in config.items():        
+        pfunc = partial(make_kde, 
+                        config = cfg,
+                        n = args['-n'],
+                        bw_method = args['--bw'])                    
 
-    # writing table
-    distsTbl.to_csv(sys.stdout, sep='\t', index=None)
+        tmp = parmap.starmap(pfunc, KDE_BD.items(),
+                             processes = int(args['--np']),
+                             chunksize = int(args['--cs']),
+                             parallel = not args['--debug'])
+
+        KDE_BD_iso[libID] = {taxon:KDE for taxon,KDE in tmp.items()}
+    
+
+    # writing pickled BD-KDE with BD shift from isotope incorp
+    pickle.dump(KDE_BD_iso, sys.stdout)
         
     
     
