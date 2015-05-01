@@ -9,9 +9,6 @@ from functools import partial
 ## 3rd party
 import pandas as pd
 import numpy as np
-#import numexpr as ne
-#import multiprocessing as mp
-#from intervaltree import Interval, IntervalTree
 ## application
 import FragGC
 from CommTable import CommTable

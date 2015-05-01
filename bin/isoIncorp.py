@@ -10,13 +10,15 @@ Usage:
   isoIncorp --version
 
 Options:
-  <BD_KDE>           Bouyant Density KDE object file  ('-' if from STDIN).
+  <BD_KDE>           Buoyant Density KDE object file ('-' if from STDIN).
   <config_file>      Config file setting inter-population-level incorporation
                      distribution (see Description).
   --comm=<cf>        Community file used set abundance-weighting of isotope.
   -n=<n>             Number of Monte Carlo replicates to estimate
                      G+C error due to diffusion. 
-                     [default: 10000]
+                     [default: 100000]
+  --isotope=<is>     Isotope incorporated by taxa (13C or 15N).
+                     [default: 13C]
   --phylo=<phy>      Newick phylogeny of taxa used for brownian motion evolution 
                      of distribution parameters.
   --bw=<bw>          The bandwidth scalar or function passed to
@@ -72,10 +74,13 @@ Description:
     'uniform' = np.random.uniform
     'BM' = browian motion evolution (must provide --phylo)
 
+  OUTPUT:
+    An updated BD KDE object file is written to STDOUT.
+
   NOTES:
     * Multiple standard distriutions can be provided to create a mixture model.
 
-  Config file:
+  CONFIG FILE:
     File format:  http://www.voidspace.org.uk/python/configobj.html#config-files
     * NOTE: the goal is to set INTRA-population parameters, which is why 
       intra-population is higher in the hierarchy than inter-population
@@ -105,7 +110,8 @@ Description:
      * Multiple intraPopDist or interPopDist:
        * If multiple distributions provided, then each will be incorporated
          into a mixture model.
-       * A 'weight' parameter should be provided.
+       * A 'weight' parameter should be provided 
+          * example: weight = 0.5    # 50% weighting 
 
      * Using Brownian Motion evolution (must provide --phylo):
        * params:
@@ -119,10 +125,13 @@ Description:
 from docopt import docopt
 import sys,os
 from functools import partial
+import re
+import cPickle as pickle
 
 ## 3rd party
 import pandas as pd
 import parmap
+import scipy.stats as stats
 
 ## application libraries
 scriptDir = os.path.dirname(__file__)
@@ -133,32 +142,65 @@ sys.path.append(libDir)
 from SIPSim import CommTable
 import IsoIncorp
 import Utils
+from SIPSimCython import add_incorp
 
 
 # functions
-def make_kde(taxon_name, kde, config, n, bw_method, **kwargs):
+def _make_kde(taxon_name, x, libID, config,
+             isotope='13C', n=10000, bw_method=None): 
+
+    # status
+    sys.stderr.write('Processing: {}\n'.format(taxon_name))
+
+    # unpack
+    n = int(n)
+    kde = x['kde']
     if kde is None:
         return (taxon_name, None)
 
-    tmp = IsoIncorp.incorp_BD_KDE(kde, config, **kwargs)
+    # taxon abundance for library
+    try:
+        taxon_abund = x['abundances'][libID]
+    except KeyError:
+        tmp = re.sub('[Ll]ib(rary)* *','', libID)
+        try:
+            taxon_abund = x['abundances'][tmp]
+        except KeyError:
+            taxon_abund = None
+
+    # max incorporation for isotope
+    maxIsotopeBD = IsoIncorp.isotopeMaxBD(isotope)
+
+    # making a mixture model object lib:taxon
+    ## mix_model => distribution of % incorporation for taxon population
+    mix_model = IsoIncorp.make_incorp_model(taxon_name, libID, config)
 
 
-#    kdeBD = stats.gaussian_kde( 
-#        SSC.add_diffusion(
-#            kde.resample(size=n),
-#            **kwargs), 
-#        bw_method=bw_method)
-#    return (taxon_name, kdeBD)
+    # making KDE of BD + BD_isotope_incorp
+    kdeBD = stats.gaussian_kde( 
+        add_incorp(kde.resample(n)[0], 
+                   mix_model, 
+                   maxIsotopeBD),
+        bw_method=bw_method)
+
+    return (taxon_name, kdeBD)
 
 
-def add_comm_to_kde(KDE_BD, comm):
+def _add_comm_to_kde(KDE_BD, comm):
     """Adding comm data for each taxon to each KDE.
+    Args:
+    Return:
+    KDE_BD -- {taxon_name:{kde|lib_names|lib_abund:value}}
     """
 
-    print comm; sys.exit()
+    libIDs = comm.get_unique_libIDs()
+    for taxon_name,kde in KDE_BD.items():
+        d = {'kde':kde, 'abundances':{}}
+        for libID in libIDs:
+            abund = comm.get_taxonAbund(taxon_name, libID=libID)
+            d['abundances'][libID] = abund[0]
+        KDE_BD[taxon_name] = d    
 
-#    for taxon_name,kde in KDE_BD.items():
-        
 
 
 def main(args):
@@ -173,19 +215,21 @@ def main(args):
 
 
     # combining kde and comm
-    add_comm_to_kde(KDE_BD, comm)
+    _add_comm_to_kde(KDE_BD, comm)
     
     # loading the config file
     config = IsoIncorp.Config.load_config(args['<config_file>'],
                                           phylo=args['--phylo'])
- 
+     
    
-    # creating kde of BD distributions with BD shift from isotop
+    # creating kde of BD distributions with BD shift from isotope
     KDE_BD_iso = dict()
-    for libID, cfg in config.items():        
-        pfunc = partial(make_kde, 
-                        config = cfg,
+    for libID in config.keys():        
+        pfunc = partial(_make_kde, 
+                        config = config,
+                        libID = libID,
                         n = args['-n'],
+                        isotope = args['--isotope'],
                         bw_method = args['--bw'])                    
 
         tmp = parmap.starmap(pfunc, KDE_BD.items(),
@@ -193,7 +237,7 @@ def main(args):
                              chunksize = int(args['--cs']),
                              parallel = not args['--debug'])
 
-        KDE_BD_iso[libID] = {taxon:KDE for taxon,KDE in tmp.items()}
+        KDE_BD_iso[libID] = {taxon:KDE for taxon,KDE in tmp}
     
 
     # writing pickled BD-KDE with BD shift from isotope incorp

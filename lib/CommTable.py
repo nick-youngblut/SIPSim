@@ -35,24 +35,28 @@ class CommTable(_table):
         return libID in libs
 
             
-    def get_taxonAbund(self, libID, taxon_name, rel=False):
-        """Getting the abundance of taxon in the comm file.
-        Absolute abundance is returned unless rel=True.
-        If rel=True, relative abundance is returned.
+    def get_taxonAbund(self, taxon_name, libID=None):
+        """Getting the abundance(s) of taxon in the comm file.
         Args:
-        rel -- return relative abundance instead of absolute?
+        taxon_name -- name of taxon
+        libID -- library ID. If None, all libraries selected        
+        Return:
+        iterable of abundance values for the taxon
         """
-        if rel == True:
-            retCol = 'rel_abund_perc'
-        else:
-            retCol = 'abs_abund'
-            
+        retCol = 'rel_abund_perc'                    
         assert retCol in self.df.columns, \
             '"{}" column not found'.format(retCol)
-        df_sub =  self.df.loc[(self.df['library'] == libID) &
-                              (self.df['taxon_name'] == taxon_name)]
-        return int(df_sub[retCol])
+        if libID is not None:            
+            df_sub =  self.df.loc[(self.df['library'] == libID) &
+                                  (self.df['taxon_name'] == taxon_name)]
+        else:
+            df_sub =  self.df.loc[(self.df['taxon_name'] == taxon_name)]
+        
+        return df_sub[retCol].tolist()
 
     
+    def get_unique_libIDs(self):
+        return self.df['library'].unique().tolist()
+
     def get_unique_taxon_names(self):
         return self.df['taxon_name'].unique()        

@@ -1074,15 +1074,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
   #define __PYX_FORCE_INIT_THREADS 0
 #endif
 
-#define __Pyx_SetItemInt(o, i, v, type, is_signed, to_py_func, is_list, wraparound, boundscheck) \
-    (__Pyx_fits_Py_ssize_t(i, type, is_signed) ? \
-    __Pyx_SetItemInt_Fast(o, (Py_ssize_t)i, v, is_list, wraparound, boundscheck) : \
-    (is_list ? (PyErr_SetString(PyExc_IndexError, "list assignment index out of range"), -1) : \
-               __Pyx_SetItemInt_Generic(o, to_py_func(i), v)))
-static CYTHON_INLINE int __Pyx_SetItemInt_Generic(PyObject *o, PyObject *j, PyObject *v);
-static CYTHON_INLINE int __Pyx_SetItemInt_Fast(PyObject *o, Py_ssize_t i, PyObject *v,
-                                               int is_list, int wraparound, int boundscheck);
-
 static void __Pyx_Raise(PyObject *type, PyObject *value, PyObject *tb, PyObject *cause);
 
 static CYTHON_INLINE void __Pyx_RaiseTooManyValuesError(Py_ssize_t expected);
@@ -1489,7 +1480,7 @@ static PyObject *__pyx_builtin_id;
 static PyObject *__pyx_builtin_IndexError;
 static PyObject *__pyx_pf_3lib_12SIPSimCython_add_diffusion(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_arr, float __pyx_v_T, float __pyx_v_B, float __pyx_v_G, int __pyx_v_M); /* proto */
 static PyObject *__pyx_pf_3lib_12SIPSimCython_2GC2BD(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_arr); /* proto */
-static PyObject *__pyx_pf_3lib_12SIPSimCython_4add_incorp(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_frag_BD, PyObject *__pyx_v_incorp_func, double __pyx_v_isotopeMaxBD); /* proto */
+static PyObject *__pyx_pf_3lib_12SIPSimCython_4add_incorp(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_frag_BD, PyObject *__pyx_v_incorp_func, double __pyx_v_isotopeMaxBD); /* proto */
 static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
 static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info); /* proto */
 static int __pyx_array_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx_v_self, PyObject *__pyx_v_shape, Py_ssize_t __pyx_v_itemsize, PyObject *__pyx_v_format, PyObject *__pyx_v_mode, int __pyx_v_allocate_buffer); /* proto */
@@ -2425,17 +2416,17 @@ static PyObject *__pyx_pf_3lib_12SIPSimCython_2GC2BD(CYTHON_UNUSED PyObject *__p
 /* "lib/SIPSimCython.pyx":57
  * 
  * 
- * def add_incorp(frag_BD, incorp_func, double isotopeMaxBD):             # <<<<<<<<<<<<<<
+ * def add_incorp(np.ndarray[DTYPE_t, ndim=1] frag_BD,             # <<<<<<<<<<<<<<
+ *                incorp_func, double isotopeMaxBD):
  *     """Adding isotope incorporation BD-shift values to BD-0%-incorp
- *     values
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_3lib_12SIPSimCython_5add_incorp(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_3lib_12SIPSimCython_4add_incorp[] = "Adding isotope incorporation BD-shift values to BD-0%-incorp\n    values\n    Args:\n    incorp_func -- function that returns a 1d-list with a float\n    isotopeMaxBD -- the max BD possible with the selected isotope \n    ";
+static char __pyx_doc_3lib_12SIPSimCython_4add_incorp[] = "Adding isotope incorporation BD-shift values to BD-0%-incorp\n    values\n    Args:\n    frag_BD -- 1d numpy array of fragment BD values\n    incorp_func -- function that returns a 1d-list with a float\n    isotopeMaxBD -- the max BD possible with the selected isotope \n    ";
 static PyMethodDef __pyx_mdef_3lib_12SIPSimCython_5add_incorp = {"add_incorp", (PyCFunction)__pyx_pw_3lib_12SIPSimCython_5add_incorp, METH_VARARGS|METH_KEYWORDS, __pyx_doc_3lib_12SIPSimCython_4add_incorp};
 static PyObject *__pyx_pw_3lib_12SIPSimCython_5add_incorp(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  PyObject *__pyx_v_frag_BD = 0;
+  PyArrayObject *__pyx_v_frag_BD = 0;
   PyObject *__pyx_v_incorp_func = 0;
   double __pyx_v_isotopeMaxBD;
   int __pyx_lineno = 0;
@@ -2483,9 +2474,9 @@ static PyObject *__pyx_pw_3lib_12SIPSimCython_5add_incorp(PyObject *__pyx_self, 
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_frag_BD = values[0];
+    __pyx_v_frag_BD = ((PyArrayObject *)values[0]);
     __pyx_v_incorp_func = values[1];
-    __pyx_v_isotopeMaxBD = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_isotopeMaxBD == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 57; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_isotopeMaxBD = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_isotopeMaxBD == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 58; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
@@ -2495,18 +2486,25 @@ static PyObject *__pyx_pw_3lib_12SIPSimCython_5add_incorp(PyObject *__pyx_self, 
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_frag_BD), __pyx_ptype_5numpy_ndarray, 1, "frag_BD", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 57; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_3lib_12SIPSimCython_4add_incorp(__pyx_self, __pyx_v_frag_BD, __pyx_v_incorp_func, __pyx_v_isotopeMaxBD);
 
   /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3lib_12SIPSimCython_4add_incorp(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_frag_BD, PyObject *__pyx_v_incorp_func, double __pyx_v_isotopeMaxBD) {
+static PyObject *__pyx_pf_3lib_12SIPSimCython_4add_incorp(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_frag_BD, PyObject *__pyx_v_incorp_func, double __pyx_v_isotopeMaxBD) {
   int __pyx_v_n;
   int __pyx_v_i;
   double __pyx_v_y;
   double __pyx_v_z;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_frag_BD;
+  __Pyx_Buffer __pyx_pybuffer_frag_BD;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   Py_ssize_t __pyx_t_1;
@@ -2517,22 +2515,32 @@ static PyObject *__pyx_pf_3lib_12SIPSimCython_4add_incorp(CYTHON_UNUSED PyObject
   PyObject *__pyx_t_6 = NULL;
   double __pyx_t_7;
   int __pyx_t_8;
+  int __pyx_t_9;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("add_incorp", 0);
+  __pyx_pybuffer_frag_BD.pybuffer.buf = NULL;
+  __pyx_pybuffer_frag_BD.refcount = 0;
+  __pyx_pybuffernd_frag_BD.data = NULL;
+  __pyx_pybuffernd_frag_BD.rcbuffer = &__pyx_pybuffer_frag_BD;
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_frag_BD.rcbuffer->pybuffer, (PyObject*)__pyx_v_frag_BD, &__Pyx_TypeInfo_nn___pyx_t_3lib_12SIPSimCython_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES| PyBUF_WRITABLE, 1, 0, __pyx_stack) == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 57; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  }
+  __pyx_pybuffernd_frag_BD.diminfo[0].strides = __pyx_pybuffernd_frag_BD.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_frag_BD.diminfo[0].shape = __pyx_pybuffernd_frag_BD.rcbuffer->pybuffer.shape[0];
 
-  /* "lib/SIPSimCython.pyx":64
+  /* "lib/SIPSimCython.pyx":66
  *     isotopeMaxBD -- the max BD possible with the selected isotope
  *     """
  *     cdef int n = len(frag_BD)             # <<<<<<<<<<<<<<
  * 
  *     cdef int i = 0
  */
-  __pyx_t_1 = PyObject_Length(__pyx_v_frag_BD); if (unlikely(__pyx_t_1 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyObject_Length(((PyObject *)__pyx_v_frag_BD)); if (unlikely(__pyx_t_1 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_n = __pyx_t_1;
 
-  /* "lib/SIPSimCython.pyx":66
+  /* "lib/SIPSimCython.pyx":68
  *     cdef int n = len(frag_BD)
  * 
  *     cdef int i = 0             # <<<<<<<<<<<<<<
@@ -2541,7 +2549,7 @@ static PyObject *__pyx_pf_3lib_12SIPSimCython_4add_incorp(CYTHON_UNUSED PyObject
  */
   __pyx_v_i = 0;
 
-  /* "lib/SIPSimCython.pyx":67
+  /* "lib/SIPSimCython.pyx":69
  * 
  *     cdef int i = 0
  *     cdef double y = 100.0             # <<<<<<<<<<<<<<
@@ -2550,7 +2558,7 @@ static PyObject *__pyx_pf_3lib_12SIPSimCython_4add_incorp(CYTHON_UNUSED PyObject
  */
   __pyx_v_y = 100.0;
 
-  /* "lib/SIPSimCython.pyx":68
+  /* "lib/SIPSimCython.pyx":70
  *     cdef int i = 0
  *     cdef double y = 100.0
  *     cdef double z = 0             # <<<<<<<<<<<<<<
@@ -2559,7 +2567,7 @@ static PyObject *__pyx_pf_3lib_12SIPSimCython_4add_incorp(CYTHON_UNUSED PyObject
  */
   __pyx_v_z = 0.0;
 
-  /* "lib/SIPSimCython.pyx":70
+  /* "lib/SIPSimCython.pyx":72
  *     cdef double z = 0
  * 
  *     for i in xrange(n):             # <<<<<<<<<<<<<<
@@ -2570,14 +2578,14 @@ static PyObject *__pyx_pf_3lib_12SIPSimCython_4add_incorp(CYTHON_UNUSED PyObject
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "lib/SIPSimCython.pyx":71
+    /* "lib/SIPSimCython.pyx":73
  * 
  *     for i in xrange(n):
  *         z = incorp_func.sample()[0]             # <<<<<<<<<<<<<<
  *         frag_BD[i] += z / y * isotopeMaxBD
  * 
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_incorp_func, __pyx_n_s_sample); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 71; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_incorp_func, __pyx_n_s_sample); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 73; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_6 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_5))) {
@@ -2590,30 +2598,27 @@ static PyObject *__pyx_pf_3lib_12SIPSimCython_4add_incorp(CYTHON_UNUSED PyObject
       }
     }
     if (__pyx_t_6) {
-      __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 71; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 73; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     } else {
-      __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 71; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 73; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_5 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 71; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+    __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_5 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 73; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_5); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 71; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_5); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 73; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_v_z = __pyx_t_7;
 
-    /* "lib/SIPSimCython.pyx":72
+    /* "lib/SIPSimCython.pyx":74
  *     for i in xrange(n):
  *         z = incorp_func.sample()[0]
  *         frag_BD[i] += z / y * isotopeMaxBD             # <<<<<<<<<<<<<<
  * 
- * 
+ *     return frag_BD
  */
-    __pyx_t_8 = __pyx_v_i;
-    __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_frag_BD, __pyx_t_8, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(__pyx_t_5 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
-    __Pyx_GOTREF(__pyx_t_5);
     if (unlikely(__pyx_v_y == 0)) {
       #ifdef WITH_THREAD
       PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
@@ -2622,36 +2627,54 @@ static PyObject *__pyx_pf_3lib_12SIPSimCython_4add_incorp(CYTHON_UNUSED PyObject
       #ifdef WITH_THREAD
       PyGILState_Release(__pyx_gilstate_save);
       #endif
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 74; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
-    __pyx_t_4 = PyFloat_FromDouble(((__pyx_v_z / __pyx_v_y) * __pyx_v_isotopeMaxBD)); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_6 = PyNumber_InPlaceAdd(__pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_6);
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(__Pyx_SetItemInt(__pyx_v_frag_BD, __pyx_t_8, __pyx_t_6, int, 1, __Pyx_PyInt_From_int, 0, 1, 1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    __pyx_t_8 = __pyx_v_i;
+    __pyx_t_9 = -1;
+    if (__pyx_t_8 < 0) {
+      __pyx_t_8 += __pyx_pybuffernd_frag_BD.diminfo[0].shape;
+      if (unlikely(__pyx_t_8 < 0)) __pyx_t_9 = 0;
+    } else if (unlikely(__pyx_t_8 >= __pyx_pybuffernd_frag_BD.diminfo[0].shape)) __pyx_t_9 = 0;
+    if (unlikely(__pyx_t_9 != -1)) {
+      __Pyx_RaiseBufferIndexError(__pyx_t_9);
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 74; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    }
+    *__Pyx_BufPtrStrided1d(__pyx_t_3lib_12SIPSimCython_DTYPE_t *, __pyx_pybuffernd_frag_BD.rcbuffer->pybuffer.buf, __pyx_t_8, __pyx_pybuffernd_frag_BD.diminfo[0].strides) += ((__pyx_v_z / __pyx_v_y) * __pyx_v_isotopeMaxBD);
   }
+
+  /* "lib/SIPSimCython.pyx":76
+ *         frag_BD[i] += z / y * isotopeMaxBD
+ * 
+ *     return frag_BD             # <<<<<<<<<<<<<<
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __Pyx_INCREF(((PyObject *)__pyx_v_frag_BD));
+  __pyx_r = ((PyObject *)__pyx_v_frag_BD);
+  goto __pyx_L0;
 
   /* "lib/SIPSimCython.pyx":57
  * 
  * 
- * def add_incorp(frag_BD, incorp_func, double isotopeMaxBD):             # <<<<<<<<<<<<<<
+ * def add_incorp(np.ndarray[DTYPE_t, ndim=1] frag_BD,             # <<<<<<<<<<<<<<
+ *                incorp_func, double isotopeMaxBD):
  *     """Adding isotope incorporation BD-shift values to BD-0%-incorp
- *     values
  */
 
   /* function exit code */
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-  goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
+  { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
+    __Pyx_ErrFetch(&__pyx_type, &__pyx_value, &__pyx_tb);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_frag_BD.rcbuffer->pybuffer);
+  __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
   __Pyx_AddTraceback("lib.SIPSimCython.add_incorp", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
+  goto __pyx_L2;
   __pyx_L0:;
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_frag_BD.rcbuffer->pybuffer);
+  __pyx_L2:;
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -16344,9 +16367,9 @@ static int __Pyx_InitCachedConstants(void) {
   /* "lib/SIPSimCython.pyx":57
  * 
  * 
- * def add_incorp(frag_BD, incorp_func, double isotopeMaxBD):             # <<<<<<<<<<<<<<
+ * def add_incorp(np.ndarray[DTYPE_t, ndim=1] frag_BD,             # <<<<<<<<<<<<<<
+ *                incorp_func, double isotopeMaxBD):
  *     """Adding isotope incorporation BD-shift values to BD-0%-incorp
- *     values
  */
   __pyx_tuple__22 = PyTuple_Pack(7, __pyx_n_s_frag_BD, __pyx_n_s_incorp_func, __pyx_n_s_isotopeMaxBD, __pyx_n_s_n, __pyx_n_s_i, __pyx_n_s_y, __pyx_n_s_z); if (unlikely(!__pyx_tuple__22)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 57; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__22);
@@ -16638,9 +16661,9 @@ PyMODINIT_FUNC PyInit_SIPSimCython(void)
   /* "lib/SIPSimCython.pyx":57
  * 
  * 
- * def add_incorp(frag_BD, incorp_func, double isotopeMaxBD):             # <<<<<<<<<<<<<<
+ * def add_incorp(np.ndarray[DTYPE_t, ndim=1] frag_BD,             # <<<<<<<<<<<<<<
+ *                incorp_func, double isotopeMaxBD):
  *     """Adding isotope incorporation BD-shift values to BD-0%-incorp
- *     values
  */
   __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_3lib_12SIPSimCython_5add_incorp, NULL, __pyx_n_s_lib_SIPSimCython); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 57; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
@@ -17891,54 +17914,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
 }
 #endif
 
-static CYTHON_INLINE int __Pyx_SetItemInt_Generic(PyObject *o, PyObject *j, PyObject *v) {
-    int r;
-    if (!j) return -1;
-    r = PyObject_SetItem(o, j, v);
-    Py_DECREF(j);
-    return r;
-}
-static CYTHON_INLINE int __Pyx_SetItemInt_Fast(PyObject *o, Py_ssize_t i, PyObject *v,
-                                               int is_list, int wraparound, int boundscheck) {
-#if CYTHON_COMPILING_IN_CPYTHON
-    if (is_list || PyList_CheckExact(o)) {
-        Py_ssize_t n = (!wraparound) ? i : ((likely(i >= 0)) ? i : i + PyList_GET_SIZE(o));
-        if ((!boundscheck) || likely((n >= 0) & (n < PyList_GET_SIZE(o)))) {
-            PyObject* old = PyList_GET_ITEM(o, n);
-            Py_INCREF(v);
-            PyList_SET_ITEM(o, n, v);
-            Py_DECREF(old);
-            return 1;
-        }
-    } else {
-        PySequenceMethods *m = Py_TYPE(o)->tp_as_sequence;
-        if (likely(m && m->sq_ass_item)) {
-            if (wraparound && unlikely(i < 0) && likely(m->sq_length)) {
-                Py_ssize_t l = m->sq_length(o);
-                if (likely(l >= 0)) {
-                    i += l;
-                } else {
-                    if (PyErr_ExceptionMatches(PyExc_OverflowError))
-                        PyErr_Clear();
-                    else
-                        return -1;
-                }
-            }
-            return m->sq_ass_item(o, i, v);
-        }
-    }
-#else
-#if CYTHON_COMPILING_IN_PYPY
-    if (is_list || (PySequence_Check(o) && !PyDict_Check(o))) {
-#else
-    if (is_list || PySequence_Check(o)) {
-#endif
-        return PySequence_SetItem(o, i, v);
-    }
-#endif
-    return __Pyx_SetItemInt_Generic(o, PyInt_FromSsize_t(i), v);
-}
-
 #if PY_MAJOR_VERSION < 3
 static void __Pyx_Raise(PyObject *type, PyObject *value, PyObject *tb,
                         CYTHON_UNUSED PyObject *cause) {
@@ -18624,7 +18599,7 @@ static void __Pyx_ReleaseBuffer(Py_buffer *view) {
 #endif
 
 
-            static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level) {
+          static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level) {
     PyObject *empty_list = 0;
     PyObject *module = 0;
     PyObject *global_dict = 0;

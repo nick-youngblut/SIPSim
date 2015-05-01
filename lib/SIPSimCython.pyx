@@ -54,10 +54,12 @@ def GC2BD(np.ndarray[DTYPE_t, ndim=1] arr):
     return out
 
 
-def add_incorp(frag_BD, incorp_func, double isotopeMaxBD):
+def add_incorp(np.ndarray[DTYPE_t, ndim=1] frag_BD, 
+               incorp_func, double isotopeMaxBD):
     """Adding isotope incorporation BD-shift values to BD-0%-incorp
     values
     Args:
+    frag_BD -- 1d numpy array of fragment BD values
     incorp_func -- function that returns a 1d-list with a float
     isotopeMaxBD -- the max BD possible with the selected isotope 
     """    
@@ -71,5 +73,4 @@ def add_incorp(frag_BD, incorp_func, double isotopeMaxBD):
         z = incorp_func.sample()[0]
         frag_BD[i] += z / y * isotopeMaxBD
 
-
-
+    return frag_BD

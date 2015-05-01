@@ -123,6 +123,7 @@ class SimComms(_Comm):
             end = float(default=None)
             loc = float(default=None)
             scale = float(default=None)
+            sigma = float(default=None)
         """
         
         if strIO == True:
@@ -229,6 +230,7 @@ class SimComms(_Comm):
         """
         df =  pd.concat([x.taxa for x in self.values()],
                         axis=1)
+
         write_index = True
         df.columns = self.keys()
         if Long == True:
@@ -239,6 +241,8 @@ class SimComms(_Comm):
             df = pd.melt(df, id_vars=['taxon'], value_vars=val_vars)
             # ordering columns
             df.columns = ['taxon_name', 'library', 'rel_abund_perc']            
+            # sorting 
+            df = df.sort(['library','rel_abund_perc'], ascending=[1,0])
             # getting rank by community (grouping by community)
             df['rank'] = df.groupby(['library'])['rel_abund_perc']\
                            .rank(method='first',ascending=False).astype('int')
@@ -279,7 +283,7 @@ class SimComms(_Comm):
                                                 perm_ig(comm.taxa.index))
             
         
-        
+    # dict functions
     def items(self):
         return self.comms.items()
     def keys(self):
@@ -289,6 +293,7 @@ class SimComms(_Comm):
             return np.sort(self.comm_params.keys())
     def values(self):
         return self.comms.values()
+
         
     # property/setter
     @property

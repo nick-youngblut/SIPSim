@@ -8,8 +8,8 @@ from Utils import _table
 
 
 class IsoIncorpTable(_table):
-    """Isotope incorporation class; provided isotope table is converted to pymix functions"""
-
+    """Isotope incorporation class; provided isotope table is converted to pymix functions
+    """
     def __init__(self, *args, **kwargs):
         _table.__init__(self, *args, **kwargs)
 
@@ -164,23 +164,5 @@ class IsoIncorpTable(_table):
             return self.incorpFuncs[libID][taxon_name]
         except KeyError:
             raise KeyError('Cannot find library-taxon: "{}"-"{}"'.format(libID, taxon_name))
-
-
-# class same_value:
-#     """Function to return an exact value instead of a Distribution.
-#     """
-
-#     def __init__(self, start, end):
-#         """start is always returned for sampling
-#         """
-#         self.start = start
-#         self.end = end
-
-#     def sample(self):
-#         return self.start
-    
-#     def sampleSet(self, n):
-#         arr = np.empty(n)
-#         return arr.fill(self.sample())
         
         

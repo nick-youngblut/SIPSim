@@ -20,6 +20,7 @@ import mixture
 import Utils
 import TraitEvo
 from TraitEvo import BrownianMotion
+import SIPSimCython
 
 
 # logging
@@ -55,23 +56,218 @@ def get_configspec(strIO=True):
         return StringIO(configspec)
     else:
         return configspec
+    
 
-
-def incorp_BD_KDE(kde, config):
-    """Estimating incorp BD distribution (BD + BD_shift_isotope)
-    via KDE
+def make_incorp_model(taxon_name, libID, config):
+    """Setting isotope incorporation based on the interPopDist
+    function for each intraPop parameter.
     Args:
-    kde -- 1d kde object of BD values
-    config -- config object (setting isotope incorporation
+    taxon_name -- taxon name string
+    libID -- library ID string
+    config -- config object
     Return:
-    kde_object -- BD distribution with isotope BD shift
+    mixture model object (mixture class)
     """
-#    print config; sys.exit()
+
+    psblDists = {'normal' : mixture.NormalDistribution,
+                 'uniform' : mixture.UniformDistribution}
+
+
+    # creating individual distribution functions
+    libSect = config.get_libSection(libID[0])
+    intraPopDist_IDs = []
+    intraPopDist_funcs = []
+    weights = []
+    for (intraPopDistID,intraPopDist) in config.iter_configSections(libSect):    
+        # name of standard distribution
+        distID = intraPopDist['distribution']
+        intraPopDist_IDs.append(distID)
+        # getting mixture model weight for this distribution
+        weight = float(intraPopDist.get('weight', 0))
+        weights.append(weight)
+        # selecting intra-pop param values from inter-pop dists
+        params = dict()        
+        for (paramID,param) in config.iter_configSections(intraPopDist):
+            params[paramID] = _select_intrapop_param_value(param, 
+                                                           taxon_name)
+
+        # checking start-end parameters (if present)
+        _start_lt_end(params)
+
+        # making intra-pop dist function (standard distribution)
+        try:
+            dist_func = psblDists[distID](**params)
+        except KeyError:
+            msg = 'Distribution "{}" not supported'
+            raise KeyError, msg.format(distID)
+        intraPopDist_funcs.append(dist_func)
     
     
+    # making sure weights add up to 1
+    weights = _fill_in_weights(weights)
+    assert len(weights) == len(intraPopDist_IDs), \
+        'number_of_distributions != number_of_weights'
+    assert len(intraPopDist_IDs) == len(intraPopDist_funcs), \
+        'number_of_distributions != number_of_dist_functions'
+
+    # making incorporation mixture model
+    return mixture.MixtureModel(len(intraPopDist_IDs),
+                                weights,
+                                intraPopDist_funcs)
+                            
+
+
+def _select_intrapop_param_value(interPopDist, taxon_name, maxtries=1000):
+    """Selecting the intra-population parameter value
+    based on the inter-population distribution function.
+    Values are determinine % isotope incorporation, so acceptable
+    range is 0-100 (will try 'maxtries' times to select value in range).
+    Args:
+    interPopDist -- {'interPopDist':{'function':interPopdist_function}}
+    taxon_name -- name of taxon
+    maxtries -- number of tries to get a parameter values >0
+    Return:
+    float -- intra-pop param value
+    """
+    # getting inter-pop dist function
+    try:
+        interPopDist_func = interPopDist['interPopDist']['function']
+    except KeyError:
+        raise KeyError, 'Cannot find inter-pop dist function'
+
+
+    # sampling from function to get parameter for intra-pop distribution
+    tries = 0
+    while True:
+        tries += 1
+        try:
+            # if Brownian Motion evolution
+            paramVal = interPopDist_func.sample(taxon_name)
+        except TypeError:
+            paramVal = interPopDist_func.sample()
+            try:
+                paramVal = paramVal[0]
+            except TypeError:
+                pass
+        # values must be >= 0 and <= 100 to end loop
+        if paramVal >= 0 and paramVal <= 100:
+            break
+        # exceeding maxtries?
+        if tries >= maxtries:
+            err = 'Taxon: {}'.format(taxon_name)
+            msg = 'Exceeded maxtries to get parameter in range: 0-100'  
+            sys.exit(': '.join([err, msg]))
+
+    return paramVal
+
+
+    
+def _start_lt_end(params):
+    """Check that 'start' param is < 'end' param
+    if both params are found in the provided dict.
+    Args:
+    params -- {param_ID:param_value}
+    Return:
+    None
+    in-place edit of params
+    """
+    if ('start' in params) & ('end' in params):
+        try:
+            startVal = float(params['start'])
+            endVal = float(params['end'])
+        except TypeError:
+            return None            
+            
+        if startVal > endVal:
+            params['start'] = endVal
+            params['end'] = startVal
+        elif startVal == endVal:
+            # start-end cannot ==
+            if endVal >= 100:
+                params['start'] = startVal - 1e-10
+            else:
+                params['end'] = endVal + 1e-10
+
+    return None
+
+
+def _fill_in_weights(weights, n=None, total=1.0):
+    """Filling in any missing weights (None) 
+    so that all weights total to 'total'.
+    Both None and zero values will be set to 0,
+    while all others scaled to sum to 'total'.
+    Args:
+    weights -- iterable of weight values
+    n -- number of total weights needed.
+         if None; len(weights) used.
+    total -- sum of all returned weight values
+    """
+    total = float(total)
+        
+    # adding Nones if needed
+    if n is None:
+        n = len(weights)
+    elif n > len(weights):
+        i = n - len(weights)
+        weights.append([None for x in xrange(i)])
+    elif n < len(weights):
+        msg = 'WARNING: "n" is < len(weights)\n'
+        sys.stderr.write(msg)
+    else:
+        pass
+
+    # summing all real values
+    w_sum = sum([x for x in weights if x is not None])
+
+
+    # setting weights to sum to total
+    ## scaling factor
+    if w_sum == 0:
+        return [total / n for x in xrange(n)]
+    else:
+        a = total / w_sum
+
+    ## scaling weights
+    if a == 1:
+        # convert Nones to zeros
+        weights= [x if x else 0 for x in weights]
+    elif a > 1:
+        # convert Nones to zeros
+        weights = [x if x else 0 for x in weights]
+        # rescaling to total 
+        weights = [x * a for x in weights]
+    elif 1 < 1:
+        # rescaling all real values to sum to total
+        # all None values set to 0
+        ## rescale
+        weights = [x * a if x else x for x in weights]
+        ## convert Nones to zeros
+        weights = [x if x else 0 for x in weights]    
+    else:
+        raise RuntimeError, 'Logic Error'
+
+    assert sum(weights) == total, 'Scaled weights != total'
+    return weights
+
+
+def isotopeMaxBD(isotope):
+    """Setting the theoretical max BD shift of an isotope (if 100% incorporation).
+    Args:
+    isotope -- str; name of isotope
+    Return:
+    float 
+    """
+    psblIsotopes = {'13C' : 0.036,
+                    '15N' : 0.016}
+    try:
+        return psblIsotopes[isotope.upper()]
+    except KeyError:
+        raise KeyError('Isotope "{}" not supported.'.format(isotope))
+
+
 
         
-def populationDistributions(config, comm):
+def populationDistributions_OLD(config, comm):
     """Setting distribution parameters for intra-population isotope incorporation
     Args:
     config -- IsoIncorpConfig instance
@@ -125,7 +321,7 @@ def populationDistributions(config, comm):
     return outTbl
 
                 
-def _set_intraPopDist(outTbl, config, libID, taxon_name):
+def _set_intraPopDist_OLD(outTbl, config, libID, taxon_name):
     """Setting isotope incorporation based on the interPopDist
     function for each intraPop parameter.
     Args:
@@ -183,7 +379,7 @@ def _set_intraPopDist(outTbl, config, libID, taxon_name):
                                              str(weight), paramID, str(paramVal)]
 
 
-def _check_intraPopParams(intraPopParams):
+def _check_intraPopParams_OLD(intraPopParams):
     """Formatting and verifying intra-population parameters.
     Args:
     intraPopParams -- dict {param : paramValue}
@@ -216,7 +412,7 @@ def _check_intraPopParams(intraPopParams):
     return None
 
                                                     
-def _set_intraPopDistZero(outTbl, libID, taxon_name):
+def _set_intraPopDistZero_OLD(outTbl, libID, taxon_name):
     """Setting isotope incorporation essentially to 0
     (distribution=uniform, start=0, end=0)
     Args:
@@ -314,11 +510,16 @@ class Config(ConfigObj):
             except TypeError:
                 return None
                 
-            if startVal >= endVal:
+            if startVal > endVal:
+                sect['start'] = endVal
+                sect['end'] = startVal                
+            elif startVal == endVal:                
                 if endVal >= 100:
                     sect['start'] = float(sect['start']) - 1e-10
                 else:
                     sect['end'] = float(sect['end']) + 1e-10
+            else:
+                pass
 
         return None
                                             
@@ -360,7 +561,7 @@ class Config(ConfigObj):
     def _set_interPopDistMM(self):
         """Setting the inter-population distribution random sampling functions
         based on user-selected distributions (pymix distributions).
-        A mixture models will be used for the inter-pop distribution
+        A mixture model will be used for the inter-pop distribution
         if multiple distributions are provided
         (e.g., [[[[interPopDist 1]]]] & [[[[interPopDist 2]]]]).
         'weight' parameters can be set for the individual distributions;
@@ -382,52 +583,22 @@ class Config(ConfigObj):
                     
                     # no mixture model if BM is a selected distribution
                     if len(BMfuncs) >= 1:
-                        sect3['interPopDist1'] = {'function' : BMfuncs[0]}
+                        sect3['interPopDist'] = {'function' : BMfuncs[0]}
                     else:
 
                         # else create mixture model from >=1 standard distribution
                         ## fill in missing weights (total = 1)
-                        allWeights = self._fill_in_weights(allWeights, n = nInterPopDists) 
+                        allWeights = _fill_in_weights(allWeights, n = nInterPopDists) 
                         assert sum(allWeights) == 1, 'interpop weights don\'t sum to 1'
                         
                         # changing interPopDist to mixture model
                         for i in sect3: 
                             sect3.popitem()                        
-                        sect3['interPopDist 1'] = {'function' :
-                                                   mixture.MixtureModel(nInterPopDists,
-                                                                        allWeights,
-                                                                        allFuncs)}
+                        sect3['interPopDist'] = {'function' :
+                                                 mixture.MixtureModel(nInterPopDists,
+                                                                      allWeights,
+                                                                      allFuncs)}
 
-
-
-    def _fill_in_weights(self, allWeights, n=None, total=1):
-        """Filling in any missing weights so that all weights total to 'total'
-        Args:
-        allWeights -- iterable of weight values
-        n -- number of weight values returned (if None, uses len(allWeights)
-        total -- sum of all returned weight values
-        """
-        if n is None:
-            n = len(allWeigths)
-
-        # convert NoneTypes
-        allWeightsWithVals = [x for x in allWeights if x is not None]
-        cur_sum = sum(allWeightsWithVals)
-        
-        if cur_sum > total:
-            raise ValueError, "Sum of parameter weights > 1"
-        elif len(allWeightsWithVals) > n:
-            raise ValueError, "len(allWeights) > n"
-        elif cur_sum == total and len(allWeightsWithVals) == n:
-            return allWeightsWithVals
-        else:
-            remainder = float(total - cur_sum)
-            nNeeded = n - len(allWeightsWithVals)
-            newWeights = [remainder / nNeeded] * nNeeded
-            for i,val in enumerate(allWeights):
-                if val is None:
-                    allWeights[i] = newWeights.pop()
-            return allWeights + newWeights
             
 
     def get_max_percent_incorp(self, libID):
@@ -435,6 +606,8 @@ class Config(ConfigObj):
         for a specified library.
         Args:
         libID -- library ID
+        Return:
+        float
         """
         try:
             return self[libID]['max_percent_incorp']
@@ -452,7 +625,8 @@ class Config(ConfigObj):
 
         
     def get_configLibs(self, trunc=False):
-        """Get the library IDs from the config"""
+        """Get the library IDs from the config
+        """
         if trunc==True:
             return [re.sub('\D+', '', x) for x in self.keys()]
         else:

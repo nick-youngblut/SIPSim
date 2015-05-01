@@ -21,7 +21,7 @@ Options:
                       [default: lognormal]
   --abund_dist_p=<p>  Abundance distribution parameters.
                       (see numpy.random for distribution params).
-                      [default: mean:10,scale:2]
+                      [default: mean:10,sigma:2]
   --shared_perc=<sp>  The percent of taxa shared in each community.
                       Percent set by the community with the smallest richness.
                       Example: if smallest community is 10 taxa,
@@ -61,26 +61,7 @@ from SimComms import SimComms
 
 
 # functions
-def call_grinder(genomeListFile, filePath=None, profileFile=None, exe='grinder'):
-    """System call of grinder
-    Args:
-    genomeListFile -- genome list file name
-    filePath -- full path to genome files (if needed)
-    exe -- name of grinder executable
-    profileFile -- profile file to provide to grinder
-    """
-
-    cmd = '{exe} -rf {glf} -fp {fp}'.format(exe=exe, glf=genomeListFile, fp=filePath)
-    
-    if profileFile is not None:
-        cmd += ' -pf {}'.format(profileFile)
-        
-#    print subprocess.check_output([cmd], shell=True)
-    
-
-
 def main(uargs):
-
     # init
     SC = SimComms(taxon_list = uargs['<genomeList>'],
                   perm_perc = uargs['--perm_perc'],
