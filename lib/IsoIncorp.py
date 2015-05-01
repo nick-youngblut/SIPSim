@@ -68,10 +68,8 @@ def make_incorp_model(taxon_name, libID, config):
     Return:
     mixture model object (mixture class)
     """
-
     psblDists = {'normal' : mixture.NormalDistribution,
                  'uniform' : mixture.UniformDistribution}
-
 
     # creating individual distribution functions
     libSect = config.get_libSection(libID[0])
@@ -94,7 +92,7 @@ def make_incorp_model(taxon_name, libID, config):
         # checking start-end parameters (if present)
         _start_lt_end(params)
 
-        # making intra-pop dist function (standard distribution)
+        # making intra-pop dist function (a standard distribution)
         try:
             dist_func = psblDists[distID](**params)
         except KeyError:
@@ -120,7 +118,7 @@ def make_incorp_model(taxon_name, libID, config):
 def _select_intrapop_param_value(interPopDist, taxon_name, maxtries=1000):
     """Selecting the intra-population parameter value
     based on the inter-population distribution function.
-    Values are determinine % isotope incorporation, so acceptable
+    Values are % isotope incorporation, so acceptable
     range is 0-100 (will try 'maxtries' times to select value in range).
     Args:
     interPopDist -- {'interPopDist':{'function':interPopdist_function}}
@@ -168,7 +166,6 @@ def _start_lt_end(params):
     Args:
     params -- {param_ID:param_value}
     Return:
-    None
     in-place edit of params
     """
     if ('start' in params) & ('end' in params):
@@ -188,12 +185,10 @@ def _start_lt_end(params):
             else:
                 params['end'] = endVal + 1e-10
 
-    return None
-
 
 def _fill_in_weights(weights, n=None, total=1.0):
     """Filling in any missing weights (None) 
-    so that all weights total to 'total'.
+    so that the sum of all weights equals 'total'.
     Both None and zero values will be set to 0,
     while all others scaled to sum to 'total'.
     Args:
@@ -201,6 +196,8 @@ def _fill_in_weights(weights, n=None, total=1.0):
     n -- number of total weights needed.
          if None; len(weights) used.
     total -- sum of all returned weight values
+    Return:
+    list of floats
     """
     total = float(total)
         
@@ -255,7 +252,7 @@ def isotopeMaxBD(isotope):
     Args:
     isotope -- str; name of isotope
     Return:
-    float 
+    float
     """
     psblIsotopes = {'13C' : 0.036,
                     '15N' : 0.016}

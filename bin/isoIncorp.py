@@ -177,8 +177,9 @@ def _make_kde(taxon_name, x, libID, config, taxa_incorp_list,
         return (taxon_name, None)
 
     # can taxon incorporate any isotope?
+    ## if not, return 'raw' BD KDE 
     if taxon_name not in taxa_incorp_list:
-        return (taxon_name, None)
+        return (taxon_name, kde)
 
     # taxon abundance for library
     try:
@@ -263,7 +264,10 @@ def main(args):
     KDE_BD_iso = dict()
     for libID in config.keys():        
         # making a list of taxa that can incorporate 
+        # TODO: abundance cutoff: taxa must have abundance > threshold to incorporate
         taxa_incorp_list = _taxon_incorp_list(libID, config, KDE_BD)
+
+        # TODO: abundance weighting with less incorp for less taxa
 
         # setting params for parallelized function
         pfunc = partial(_make_kde, 
