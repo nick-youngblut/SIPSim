@@ -34,7 +34,7 @@ def get_configspec(strIO=True):
     """    
     configspec = """
     [__many__]
-       max_percent_incorp = float(0,100, default=100)
+       max_perc_taxa_incorp = float(0,100, default=100)
 
        [[__many__]]
           distribution = option('normal','uniform', 'BM', default='normal')
@@ -299,7 +299,7 @@ def populationDistributions_OLD(config, comm):
             libSect = config.get_libSection(libID[0])
 
         # max percent of taxa that can have isotope incorporation (set in config)
-        max_perc_inc = config.get_max_percent_incorp(libID[0])
+        max_perc_inc = config.get_max_perc_taxa_incorp(libID[0])
 
         # iterating by taxon
         ntaxa = len(taxon_names)
@@ -601,8 +601,8 @@ class Config(ConfigObj):
 
             
 
-    def get_max_percent_incorp(self, libID):
-        """Getting the user-defined max_percent_incorp
+    def get_max_perc_taxa_incorp(self, libID):
+        """Getting the user-defined max_perc_taxa_incorp
         for a specified library.
         Args:
         libID -- library ID
@@ -610,9 +610,9 @@ class Config(ConfigObj):
         float
         """
         try:
-            return self[libID]['max_percent_incorp']
+            return self[libID]['max_perc_taxa_incorp']
         except KeyError:
-            msg = 'Cannot find max_percent_incorp for library: {}'
+            msg = 'Cannot find max_perc_taxa_incorp for library: {}'
             raise KeyError, msg.format(libID)
 
                     
