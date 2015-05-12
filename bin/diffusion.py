@@ -63,73 +63,19 @@ Description:
 ## batteries
 from docopt import docopt
 import sys,os
-import cPickle as pickle 
-from functools import partial
-## 3rd party
-import parmap
-import scipy.stats as stats
 ## application libraries
 scriptDir = os.path.dirname(__file__)
 libDir = os.path.join(scriptDir, '../lib/')
 sys.path.append(libDir)
 
-from FragGC import Frag_multiKDE
-import SIPSimCython as SSC
-import Utils
+import Diffusion
 
-
-# functions
-def make_kde(taxon_name, kde, n, bw_method, **kwargs):
-    if kde is None:
-        return (taxon_name, None)
-
-    kdeBD = stats.gaussian_kde( 
-        SSC.add_diffusion(
-            kde.resample(size=n),
-            **kwargs), 
-        bw_method=bw_method)
-    return (taxon_name, kdeBD)
-    
-
-def main(args):    
-    """
-    load kde object
-    foreach kde (parallel):
-      foreach iter:
-        draw from kde and calculate diffusion
-        append to array
-      calculate BD from kde
-      create kde from BD array
-      return kde object
-    """
-    try:
-        args['--bw'] =float(args['--bw'])
-    except TypeError:
-        pass 
-
-    kde2d = Utils.load_kde(args['<fragment_kde>'])
-
-    pfunc = partial(make_kde, 
-                    n = int(args['-n']),
-                    T = float(args['-T']),
-                    B = float(args['-B']),
-                    G = float(args['-G']),
-                    bw_method=args['--bw'])
-    
-    KDE_BD = parmap.starmap(pfunc, kde2d.items(),
-                            processes = int(args['--np']),
-                            chunksize = int(args['--cs']),
-                            parallel = not args['--debug'])
-    
-
-    pickle.dump({taxon:KDE for taxon,KDE in KDE_BD}, 
-                sys.stdout)
     
     
 # main
 if __name__ == '__main__':
     args = docopt(__doc__, version='0.1')            
-    main(args)
+    Diffusion.main(args)
     
 
         

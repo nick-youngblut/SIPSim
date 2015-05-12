@@ -11,7 +11,8 @@ ctypedef np.float_t DTYPE_t
 
     
 def add_diffusion(np.ndarray[DTYPE_t, ndim=2] arr, 
-                  float T=298, float B=1.195e9, float G=7.87e-10, int M=882):
+                  float T=298, float B=1.195e9, 
+                  float G=7.87e-10, int M=882):
     """Adding diffusion to fragment buoyant density values. 
     See Clay et al., 2003 for more details.
     Args:
@@ -74,3 +75,6 @@ def add_incorp(np.ndarray[DTYPE_t, ndim=1] frag_BD,
         frag_BD[i] += z / y * isotopeMaxBD
 
     return frag_BD
+
+
+
