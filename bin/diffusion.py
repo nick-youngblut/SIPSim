@@ -14,7 +14,7 @@ Options:
                     ('-' if input from STDIN) 
   -n=<n>            Number of Monte Carlo replicates to estimate
                     G+C error due to diffusion. 
-                    [default: 10000]
+                    [default: 100000]
   -T=<T>            Ultracentrifugation run temperature (kelvin).
                     [default: 298]
   -B=<B>            Beta coefficient based on gradient salt density.

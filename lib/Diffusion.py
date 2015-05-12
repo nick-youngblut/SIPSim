@@ -24,11 +24,11 @@ def make_kde(taxon_name, kde, n, bw_method, **kwargs):
     if kde is None:
         return (taxon_name, None)
 
-    kdeBD = stats.gaussian_kde( 
-        SSC.add_diffusion(
-            kde.resample(size=n),
-            **kwargs), 
-        bw_method=bw_method)
+    BD_wDiff = SSC.add_diffusion(kde.resample(size=n),
+                                 **kwargs)
+
+    kdeBD = stats.gaussian_kde(BD_wDiff,
+                               bw_method=bw_method)
 
     return (taxon_name, kdeBD)
     

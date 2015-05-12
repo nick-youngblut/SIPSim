@@ -1,5 +1,6 @@
 from __future__ import division
 import sys
+import random
 import numpy as np
 cimport numpy as np
 from cython.parallel import prange
@@ -30,12 +31,21 @@ def add_diffusion(np.ndarray[DTYPE_t, ndim=2] arr,
     cdef double diff_error = 0.0
     for i in xrange(n):
         # fragment length must be > 0
-        if arr[1,i] < 1:
-            arr[1,i] = 1
+        ## if False: selecting another value from array
+        while 1:
+            if arr[1,i] <= 0:
+                arr[1,i] = arr[1,random.randint(0,n-1)]
+            else:
+                break
+
         # error from true BD due to diffusion
-        diff_error = SIPSimCpp.calc_diffusion_BD(arr[0,i], arr[1,i], T, B, G, M)
+        diff_error = SIPSimCpp.calc_diffusion_BD(arr[0,i], 
+                                                 arr[1,i], 
+                                                 T, B, G, M)            
+
         # true_BD + diffusion_error_BD
         out[i] = arr[0,i] + diff_error
+        
     return out
 
 
