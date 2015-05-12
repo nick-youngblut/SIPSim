@@ -65,17 +65,28 @@ Description:
 
   ** Distributions ** 
   normal:
-    Parameters: location (mean), scale (standard deviation)
+    Parameters: 
+     * location (mean)
+     * scale (standard deviation)
 
   uniform:
-    Parameters: low, high
+    Parameters: 
+     * low
+     * high
     
   skewed-normal:
-    Parameters: location (mean), scale (stardard deviation), shape (skew)
+    Parameters: 
+     * location (mean)
+     * scale (stardard deviation)
+     * shape (skew)
     Example: --fld  skewed-normal,11000,1000,-1000
 
   truncated-normal:
-    Parameters: location, scale, low, high
+    Parameters: 
+     * location
+     * scale
+     * low
+     * high
 
   ** Output **
     If --tbl: tab-delim file written to STDOUT, else: a pickled version of
@@ -219,25 +230,17 @@ def main(args):
         
     # analyzing each genome (in parallel)    
     by_genome_part = functools.partial(by_genome, args=args)
+    fragList = parmap.starmap(by_genome_part,
+                              genomeList,
+                              parallel = not args['--debug'],
+                              chunksize=1,
+                              processes=int(args['--np']))
 
-    if args['--debug']:
-        fragList = itertools.starmap(by_genome_part,genomeList)
-
-        if args['--tbl']:
-            write_fragList(fragList)
-        else:
-            pickle.dump([x for x in fragList], sys.stdout)
-            
+    # writing out table
+    if args['--tbl']:
+        write_fragList(fragList)
     else:
-        fragList = parmap.starmap(by_genome_part,
-                             genomeList,
-                             chunksize=1,
-                             processes=int(args['--np']))
-
-        if args['--tbl']:
-            write_fragList(fragList)
-        else:
-            pickle.dump(fragList, sys.stdout)
+        pickle.dump(fragList, sys.stdout)
         
 
     

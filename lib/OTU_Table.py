@@ -82,7 +82,6 @@ def main(args):
 
         # fraction bin list for library
         libFracBins = [x for x in frac_tbl.BD_bins(libID)]
-
         
         # creating a dataframe of fraction bins
         func = lambda x: '{0:.3f}-{1:.3f}'.format(libFracBins[x-1],libFracBins[x])
@@ -106,6 +105,14 @@ def main(args):
             elif taxonAbsAbund < 0:
                 raise ValueError, 'Taxon abundance cannot be negative'
             else:
+                x = sample_BD_kde(BD_KDE, 
+                              libID, 
+                              taxon_name, 
+                              taxonAbsAbund)
+                print [y for y in x if (y < 1.66 or y > 1.795)]
+                sys.exit()
+#                print x; sys.exit()
+
                 try:
                     frag_BD_bins = Counter(np.digitize(
                         sample_BD_kde(BD_KDE, 

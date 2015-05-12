@@ -222,7 +222,7 @@ class Genome(object):
         end -- sequence end position
         """
         try:
-            return str(self.fastaIdx[scaffold][start:end])
+            return str(self.fastaIdx[scaffold][start:end+1])
         except AttributeError:
             raise AttributeError('No fastaIdx attribute for genome object')
         except KeyError:
