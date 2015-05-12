@@ -62,7 +62,6 @@ Description:
   if simulating shotgun fragments and selected randomly from the list of amplicons
   if simulating amplicon fragments.
 
-
   ** Distributions ** 
   normal:
     Parameters: 
@@ -87,6 +86,11 @@ Description:
      * scale
      * low
      * high
+
+  ** NOTES **
+  The simulated fragment size is constrained by the genome sequence
+  template size. This may be why you get fragments that don't fall
+  into the provided fragment length distribution.
 
   ** Output **
     If --tbl: tab-delim file written to STDOUT, else: a pickled version of
@@ -147,7 +151,7 @@ def by_genome(taxonName, inFile, args):
     
     
     # sequenced read template location: amplicons
-    if genome.get_primerFile() is not None:
+    if genome.primerFile is not None:
         # in-silico PCR
         assert '--rtr' in args, '"--rtr" must be in args'
         genome.callMFEprimer(rtr=args['--rtr'], MFEprimerExe=MFEprimerExe)
@@ -200,13 +204,13 @@ def by_genome(taxonName, inFile, args):
             fragList[scaf].append([fragStart, fragLen, fragGC])
                 
     # status
-    sys.stderr.write('  Genome name: {}\n'.format(genome.get_taxonName()))                
+    sys.stderr.write('  Genome name: {}\n'.format(genome.taxonName))                
     sys.stderr.write('  Genome length (bp): {}\n'.format(genome.length))
     if args['--nf']:
         sys.stderr.write('  Number of amplicons: {}\n'.format(genome.nAmplicons))
     sys.stderr.write('  Number of fragments simulated: {}\n'.format(nFragsMade))
                 
-    return [genome.get_taxonName(), fragList]
+    return [genome.taxonName, fragList]
 
 
 def write_fragList(fragList):

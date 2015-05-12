@@ -63,7 +63,8 @@ class SimFrags(object):
         genome -- genome-like object
         Return:
         list -- [scaffold,fragStart,fragLen,fragSequence]
-        """
+        """        
+
         tryCnt = 0
         while 1:
             # get read template position
@@ -76,13 +77,17 @@ class SimFrags(object):
             # if no read template position (no amplicon): return None
             if readTempPos[0] is None:
                 return ["No_amplicons", 'NA', 'NA', '']
+            else:
+                scafID = readTempPos[0]
+
+            # read template sequence size
+            if genome is not None:
+                tempSize = genome.get_seq_len(scafID)
+            else:
+                tempSize = np.inf
                 
             # simulating fragment around read template
-            fragPos = self._simFragPos(readTempPos)            
-
-            # frag start should be < frag end
-            if fragPos[1] >= fragPos[2]:
-                raise TypeError('fragStart >= fragEnd')
+            fragPos = self._simFragPos(readTempPos, tempSize)                        
             
             # parsing fragment from genome index
             fragSeq = genome.get_seq(*fragPos)
@@ -93,10 +98,12 @@ class SimFrags(object):
             
             # checking to see if fragment acutally in range (accounting for edge cases)
             if tryCnt >= 1000:
-                raise ValueError('Exceeded {} tries to find frag '\
-                                 'length in min-max range'.format(str(tryCnt)))                
-            elif (fragSeqLen >= self.get_minFragSize()
-                and fragSeqLen <= self.get_maxFragSize()):
+                msg = 'Exceeded {} tries to find frag'\
+                      ' length in min-max range.' \
+                      ' You may need to adjust --flr.' 
+                raise ValueError(msg.format(tryCnt)) 
+            elif (fragSeqLen >= self.minFragSize
+                and fragSeqLen <= self.maxFragSize):
                 break
             else:
                 tryCnt += 1
@@ -105,13 +112,17 @@ class SimFrags(object):
         return [fragPos[0], fragPos[1], fragSeqLen, fragGC]
 
         
-    def _simFragPos(self, readTempPos):
+    def _simFragPos(self, readTempPos, tempSize):
         """Simulate the position of the fragment containing the read template.
         Location selected using a uniform distribution.
-        Fragment length selected using user-provide distribution (set during initilization)
+        Fragment length selected using user-provide distribution
+        (set during initilization).
+        Multiple iterations will be performed to try and get 
+        a fragment in range (minFragSize, maxFragSize).
 
         Args:
-        readTempPos -- list: [scaffoldID,readStart,readTemplateEnd]
+        readTempPos -- list: [scaffoldID,readTempStart,readTempEnd]
+                       
         Return:
         [scafID,fragStart,fragEnd]
         """
@@ -119,28 +130,44 @@ class SimFrags(object):
         if readTempPos[0] is None:
             return [None] * 3
 
-        # read template size
+        # read template size 
+        ## (just size of read; not full template sequence)
         readTempSize = readTempPos[2] - readTempPos[1] + 1
-        
+                
         # nfrag size
         tryCnt = 0
         while 1:
+            # draw from fragment size distribution
             fragSize = int(self.fld(size=1))
-            #print 'fragSize: {}'.format(str(fragSize))
+            assert fragSize > readTempSize, \
+                'Read template size > read size'
+
+            # frag start (position upstream from read template)        
+            randPos = np.random.randint(0, fragSize - readTempSize)
+            fragStart = readTempPos[1] - randPos
+            fragEnd = fragStart + fragSize - 1
+            # constraining start + end to within template fragment size
+            if fragStart < 0:
+                fragStart = 0
+            if fragEnd + 1 > tempSize:
+                fragEnd = fragStart + tempSize - 1
+
+            fragLen = fragEnd - fragStart + 1
+
             if tryCnt >= 1000:
-                raise ValueError('Exceeded {} tries to find'
-                                 ' frag length in min-max range'.format(str(tryCnt)))
-            elif fragSize >= self.get_minFragSize() and fragSize <= self.get_maxFragSize():
+                msg = 'Exceeded {} tries to find frag'\
+                      ' length in min-max range.' \
+                      ' You may need to adjust --flr.' 
+                raise ValueError(msg.format(tryCnt))
+            elif fragLen >= self.minFragSize and fragLen <= self.maxFragSize:
                 break
             else:
                 tryCnt += 1
                 continue
                 
-
-        # frag start (position upstream from read template)        
-        randPos = np.random.randint(0, fragSize - readTempSize)
-        fragStart = readTempPos[2] - randPos
-        fragEnd = fragStart + fragSize - 1
+        # frag start should be < frag end
+        if fragStart >= fragEnd:
+            raise TypeError('fragStart >= fragEnd')
         
         return readTempPos[0], fragStart, fragEnd
                 
@@ -235,9 +262,11 @@ class SimFrags(object):
         return scafName, start, start + int(mpSize) -1
 
         
-    def get_minFragSize(self):
+    @property
+    def minFragSize(self):
         return self.flr[0]
 
-    def get_maxFragSize(self):
+    @property
+    def maxFragSize(self):
         return self.flr[1]
                                     

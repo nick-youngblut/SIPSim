@@ -25,14 +25,12 @@ class Genome(object):
     """subclass of genomes: 1 genome entry"""
 
     def __init__(self, inFile, taxonName, primerFile=None):
-
         """
         Args:
         inFile -- name of the genome sequence file
         taxonName -- name of taxon
         primerFile -- file name of primers in fasta format
         """
-
         self.fileName = inFile
         self.taxonName = taxonName
         self.primerFile = primerFile
@@ -59,12 +57,11 @@ class Genome(object):
         except IndexError:
             raise IndexError('"rtr" must contain (min,max)')
 
-            
         # system call
         cmd = '{} -i {} -d {} --tab --size_start {} ' \
               '--size_stop {} --ppc 70 --tm_start 50 --tm_stop 70'
         cmd = cmd.format(MFEprimerExe,
-                         self.get_primerFile(),
+                         self.primerFile,
                          self.get_fileName(),
                          minTemplateLen,
                          maxTemplateLen)
@@ -77,6 +74,23 @@ class Genome(object):
         self.MFEprimerRes.BindingStart.astype(int)
         self.MFEprimerRes.BindingStop.astype(int)        
 
+        # checking values
+        self._MFEprimerRes_chk()
+
+
+    def _MFEprimerRes_chk(self):
+        """Assertions on output table from MFEprimer.
+        """
+        if self.MFEprimerRes is None:
+            return None
+        
+        # binding start/end < 0?
+        for myCol in ['BindingStart', 'BindingStop']:            
+            x = self.MFEprimerRes.loc[self.MFEprimerRes[myCol] < 0].shape
+            if x[0] > 0:
+                msg = myCol + " < 1"
+                raise TypeError, msg
+        
         
     def filterOverlaps(self, overlapPercCutoff=70):
         """Filtering out amplicons that substantially overlap.
@@ -85,19 +99,18 @@ class Genome(object):
         
         Args:
         overlapPercCutoff -- percent of overlap to consider 'substantially' overlapping
-        Attribute edits:
-        MFEprimer table filtered of overlaps
+        Returns:
+        None -- MFEprimer table object filtered of overlaps
         """
-        if self.get_MFEprimerRes() is None:  
+        if self.MFEprimerRes is None:  
             raise AttributeError('genome object does not have MFEprimerRes attribute. ' \
                                  'Run MFEprimer() first')
-
             
         # making interval tree
         tree = IntervalTree()
         
         # loading intervals
-        for count,row in self.get_MFEprimerRes().iterrows():
+        for count,row in self.MFEprimerRes.iterrows():
             # sanity check for + strand
             if row['BindingStart'] > row['BindingStop']:
                 raise TypeError('MFEprimer binding start-stop is not + strand')
@@ -181,45 +194,17 @@ class Genome(object):
         if rmPath is True:
             return os.path.split(self.fileName)[1]
         else:
-            return self.fileName
-            
-    def get_taxonName(self):
-        return self.taxonName
-        
-    def get_nFrags(self):
-        return self.nFrags
-        
-    def get_minTemplateRange(self):
-        return self.rtr[0]
-        
-    def get_maxTemplateRange(self):
-        return self.rtr[1]
-
-    def get_primerFile(self):
-        try:
-            return self.primerFile
-        except AttributeError:
-            return None
-                    
-    def get_MFEprimerRes(self):
-        """Getting the results of MFEprimer. Returns a dataframe"""
-        try:
-            return self.MFEprimerRes
-        except AttributeError:
-            return None
-            
-    def iter_seqRecs(self):
-        """Iterate over sequence records"""
-        with open(self.fileName) as inF:
-            for rec in SeqIO.parse(inF, 'fasta'):
-                yield rec
-                
+            return self.fileName    
+                                
     def get_seq(self, scaffold, start, end):
         """Getting sequence from genome. 0-indexing.
+        start-end will return at section of the sequence.
         Args:
         scaffold -- scaffold id
         start -- sequence start position
         end -- sequence end position
+        Return:
+        str -- sequence
         """
         try:
             return str(self.fastaIdx[scaffold][start:end+1])
@@ -227,6 +212,50 @@ class Genome(object):
             raise AttributeError('No fastaIdx attribute for genome object')
         except KeyError:
             raise KeyError('ScaffoldID "{}" not found in genome fasta index'.format(scaffold))
+
+    def get_seq_len(self, seqID):
+        
+        if not hasattr(self, '_fastaIdx_lens'):
+            self._fastaIdx_lens = {seqID:len(seq) for seqID,seq in self.fastaIdx.items()}
+        
+        try:
+            return self._fastaIdx_lens[seqID]
+        except KeyError:
+            msg = 'Cannot find "{}" in sequences'
+            raise KeyError, msg.format(seqID)
+        
+
+    def iter_seqRecs(self):
+        """Iterate over sequence records"""
+        with open(self.fileName) as inF:
+            for rec in SeqIO.parse(inF, 'fasta'):
+                yield rec
+
+
+    @property
+    def MFEprimerRes(self):
+        """Getting the results of MFEprimer. Returns a dataframe"""
+        try:
+            return self._MFEprimerRes
+        except AttributeError:
+            return None
+
+    @MFEprimerRes.setter
+    def MFEprimerRes(self, value):
+        self._MFEprimerRes = value
+
+
+    @property
+    def primerFile(self):                            
+        try:
+            return self._primerFile
+        except AttributeError:
+            return None
+
+    @primerFile.setter
+    def primerFile(self, value):
+        self._primerFile = value
+
             
     @property
     def length(self):
