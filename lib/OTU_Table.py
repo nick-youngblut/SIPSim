@@ -109,10 +109,6 @@ def main(args):
                               libID, 
                               taxon_name, 
                               taxonAbsAbund)
-                print [y for y in x if (y < 1.66 or y > 1.795)]
-                sys.exit()
-#                print x; sys.exit()
-
                 try:
                     frag_BD_bins = Counter(np.digitize(
                         sample_BD_kde(BD_KDE, 

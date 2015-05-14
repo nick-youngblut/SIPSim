@@ -21,6 +21,9 @@ import Utils
 
 # functions
 def make_kde(taxon_name, kde, n, bw_method, **kwargs):
+    msg = 'Processing: {}\n'
+    sys.stderr.write(msg.format(taxon_name))
+    
     if kde is None:
         return (taxon_name, None)
 
