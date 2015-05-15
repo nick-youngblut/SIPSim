@@ -47,7 +47,7 @@ scriptDir = os.path.dirname(__file__)
 libDir = os.path.join(scriptDir, '../lib/')
 sys.path.append(libDir)
 
-from OTU_table import OTU_table
+from OTU_Table import OTU_table
 #from SimComms import SimComms
 import Utils
 

@@ -2,7 +2,7 @@
 
 #--- Option parsing ---#
 """
-OTU_sum -- Sum OTU counts
+OTU_sum -- Sum OTU counts (by group)
 
 Usage:
   OTU_summary [options] <OTU_table_file>
@@ -10,14 +10,15 @@ Usage:
   OTU_summary --version
 
 Options:
-  <OTU_table_file>    Name of file produced by OTU_sim subcommand.
-  --groupby=<gb>      Comma-delimited list of columns to group by.
-                      [default: library,fractions]
-  --version           Show version.
-  --debug             Debug mode
+  <OTU_table_file>  Name of file produced by OTU_sim subcommand.
+  --groupby=<gb>    Comma-delimited list of columns to group by.
+                    [default: library,fractions]
+  --version         Show version.
+  --debug           Debug mode
 
 Description:
-  Sum OTU counts. The OTU table can be grouped by other columns to produce aggregate sums.
+  Sum OTU counts. The OTU table can be grouped by
+  other columns to produce aggregate sums.
 """
 
 # import
@@ -29,7 +30,7 @@ scriptDir = os.path.dirname(__file__)
 libDir = os.path.join(scriptDir, '../lib/')
 sys.path.append(libDir)
 
-from OTU_table import OTU_table
+from OTU_Table import OTU_table
 
 
 # main

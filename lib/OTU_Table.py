@@ -23,6 +23,7 @@ def binNum2ID(frag_BD_bins, libFracBins):
     """    
     msg = '{0:.3f}-{1:.3f}'
     n_bins = len(libFracBins)
+#    out = Counter()
     out = {}
     for k,v in frag_BD_bins.items():        
         if k < 1:
@@ -40,13 +41,14 @@ def binNum2ID(frag_BD_bins, libFracBins):
     return out
 
 def sample_BD_kde(BD_KDE, libID, taxon_name, size):
+
     try:
         frag_BD = BD_KDE[libID][taxon_name].resample(size=size)[0]
     except KeyError:
         msg = 'Cannot find lib->"{}":taxon->"{}"'
         raise KeyError, msg.format(libID, taxon_name)
     except AttributeError:
-        frag_BD = np.array([np.NaN])
+        frag_BD = None #np.array([np.NaN])
     return frag_BD
 
     
@@ -97,7 +99,7 @@ def main(args):
                                                     taxon_name=taxon_name,
                                                     abs_abund=True)
             taxonAbsAbund = int(round(taxonAbsAbund[0], 0))
-            sys.stderr.write('   N-fragments:   {}\n'.format(taxonAbsAbund))
+            sys.stderr.write('   taxon abs-abundance:  {}\n'.format(taxonAbsAbund))
             
             # sampling from BD KDE
             if taxonAbsAbund == 0:
@@ -105,10 +107,6 @@ def main(args):
             elif taxonAbsAbund < 0:
                 raise ValueError, 'Taxon abundance cannot be negative'
             else:
-                x = sample_BD_kde(BD_KDE, 
-                              libID, 
-                              taxon_name, 
-                              taxonAbsAbund)
                 try:
                     frag_BD_bins = Counter(np.digitize(
                         sample_BD_kde(BD_KDE, 
@@ -117,9 +115,12 @@ def main(args):
                                       taxonAbsAbund), 
                         libFracBins))
                 except ValueError:
-                    raise ValueError, 'No values returned from BD KDE'
-                frag_BD_bins = binNum2ID(frag_BD_bins, libFracBins)
+                    msg = '   WARNING: No bins for taxon; likely caused by no BD KDE\n'
+                    sys.stderr.write(msg)
+                    frag_BD_bins = {x:0 for x in lib_OTU_counts['fractions']}                
 
+            frag_BD_bins = binNum2ID(frag_BD_bins, libFracBins)
+                        
                        
             # converting to a pandas dataframe
             df = pd.DataFrame(frag_BD_bins.items())
