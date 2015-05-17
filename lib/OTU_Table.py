@@ -1,6 +1,7 @@
 import os, sys
 from functools import partial
 from collections import Counter
+from pprint import pprint
 ## 3rd party
 import parmap
 import numpy as np
@@ -23,7 +24,6 @@ def binNum2ID(frag_BD_bins, libFracBins):
     """    
     msg = '{0:.3f}-{1:.3f}'
     n_bins = len(libFracBins)
-#    out = Counter()
     out = {}
     for k,v in frag_BD_bins.items():        
         if k < 1:
@@ -36,12 +36,21 @@ def binNum2ID(frag_BD_bins, libFracBins):
             binStart = libFracBins[k-1]
             binEnd = libFracBins[k]
         binRange = msg.format(binStart, binEnd) 
-        out[binRange] = v
+        out[binRange] = str(v)
 
     return out
 
-def sample_BD_kde(BD_KDE, libID, taxon_name, size):
 
+def sample_BD_kde(BD_KDE, libID, taxon_name, size):
+    """Sampling from buoyant density KDE
+    Args:
+    BD_KDE -- {library:{taxon:scipy_KDE}}
+    libID -- library ID
+    taxon_name -- taxon name 
+    size -- how many to sample
+    Return:
+    array of fragment BD values
+    """
     try:
         frag_BD = BD_KDE[libID][taxon_name].resample(size=size)[0]
     except KeyError:
@@ -51,33 +60,80 @@ def sample_BD_kde(BD_KDE, libID, taxon_name, size):
         frag_BD = None #np.array([np.NaN])
     return frag_BD
 
+
+def _all_empty_bins(libFracBins):
+    """All possible fractions bins are set to zero
+    abundance for taxon
+    """
+    n_bins = len(libFracBins)
+    return {x:'0' for x in xrange(n_bins+1)}
+
+
+def sim_OTU(taxon_idx, taxon_name, comm_tbl, 
+            libID, BD_KDE, libFracBins):
+    sys.stderr.write('  Processing taxon: "{}"\n'.format(taxon_name))
+
+    # taxon abundance based on comm file
+    taxonAbsAbund = comm_tbl.get_taxonAbund(libID=libID, 
+                                            taxon_name=taxon_name,
+                                            abs_abund=True)
+    taxonAbsAbund = int(round(taxonAbsAbund[0], 0))
+    sys.stderr.write('   taxon abs-abundance:  {}\n'.format(taxonAbsAbund))
+
+
+    # sampling from BD KDE
+    if taxonAbsAbund == 0:
+        # zero counts for all bins
+       frag_BD_bins =  _all_empty_bins(libFracBins)
+    elif taxonAbsAbund < 0:
+        raise ValueError, 'Taxon abundance cannot be negative'
+    else:
+        try:
+            frag_BD_bins = Counter(np.digitize(
+                sample_BD_kde(BD_KDE, 
+                              libID, 
+                              taxon_name, 
+                              taxonAbsAbund), 
+                libFracBins))
+        except ValueError:
+            # zero counts for all bins
+            msg = '   WARNING: No bins for taxon; likely caused by no BD KDE\n'
+            sys.stderr.write(msg)
+            frag_BD_bins =  _all_empty_bins(libFracBins)
+
+    frag_BD_bins = binNum2ID(frag_BD_bins, libFracBins)
+
+    return [taxon_name, frag_BD_bins] 
     
-def main(args):
+
+    
+def main(uargs):
     # args formatting 
     try:
-        args['--abs'] = int(float(args['--abs']))
+        uargs['--abs'] = int(float(uargs['--abs']))
     except TypeError:
         msg = '"{}" must be float-like'
-        raise TypeError(msg.format(args['--abs']))
+        raise TypeError(msg.format(uargs['--abs']))
 
     # logging
-    status = Utils.Status(args['--quiet'])
+    status = Utils.Status(uargs['--quiet'])
     
     # loading files
     sys.stderr.write('Loading files...\n')
     ## BD kde 
-    BD_KDE = Utils.load_kde(args['<BD_KDE>'])    
+    BD_KDE = Utils.load_kde(uargs['<BD_KDE>'])    
     ## community file
-    comm_tbl = CommTable.from_csv(args['<communities>'], sep='\t')
-    comm_tbl.abs_abund = args['--abs']
+    comm_tbl = CommTable.from_csv(uargs['<communities>'], sep='\t')
+    comm_tbl.abs_abund = uargs['--abs']
     ## fraction file
-    frac_tbl = FracTable.from_csv(args['<fractions>'], sep='\t')
+    frac_tbl = FracTable.from_csv(uargs['<fractions>'], sep='\t')
 
     
     # iter by library:
     sys.stderr.write('Simulating OTUs...\n')
     u_taxon_names = comm_tbl.get_unique_taxon_names()
     OTU_counts = []  # list of all library-specific OTU_count dataframes
+
 
     for libID in comm_tbl.iter_libraries():
         sys.stderr.write('Processing library: "{}"\n'.format(libID))            
@@ -86,62 +142,33 @@ def main(args):
         libFracBins = [x for x in frac_tbl.BD_bins(libID)]
         
         # creating a dataframe of fraction bins
-        func = lambda x: '{0:.3f}-{1:.3f}'.format(libFracBins[x-1],libFracBins[x])
-        fracBins = [func(i) for i in xrange(len(libFracBins))][1:]        
-        lib_OTU_counts = pd.DataFrame({'fractions':fracBins})
+#        func = lambda x: '{0:.3f}-{1:.3f}'.format(libFracBins[x-1],libFracBins[x])
+#        fracBins = [func(i) for i in xrange(len(libFracBins))][1:]        
+#        lib_OTU_counts = pd.DataFrame({'fractions':fracBins})
+
+        # iter of taxa in parallel
+        f = partial(sim_OTU, comm_tbl=comm_tbl, libID=libID, 
+                    BD_KDE=BD_KDE, libFracBins=libFracBins)
+
+        ret = parmap.starmap(f, enumerate(u_taxon_names),
+                             chunksize = int(uargs['--cs']),
+                             processes = int(uargs['--np']),
+                             parallel = not uargs['--debug'])
+
         
-        # iter by taxon:
-        for (taxon_idx,taxon_name) in enumerate(u_taxon_names):
-            sys.stderr.write('  Processing taxon: "{}"\n'.format(taxon_name))
+        ## converting to a pandas dataframe
+        df = pd.DataFrame([x[1] for x in ret]).fillna(0)
+        df['taxon'] = [x[0] for x in ret]
+        
 
-            # taxon abundance
-            taxonAbsAbund = comm_tbl.get_taxonAbund(libID=libID, 
-                                                    taxon_name=taxon_name,
-                                                    abs_abund=True)
-            taxonAbsAbund = int(round(taxonAbsAbund[0], 0))
-            sys.stderr.write('   taxon abs-abundance:  {}\n'.format(taxonAbsAbund))
-            
-            # sampling from BD KDE
-            if taxonAbsAbund == 0:
-                frag_BD_bins = {x:0 for x in lib_OTU_counts['fractions']}                
-            elif taxonAbsAbund < 0:
-                raise ValueError, 'Taxon abundance cannot be negative'
-            else:
-                try:
-                    frag_BD_bins = Counter(np.digitize(
-                        sample_BD_kde(BD_KDE, 
-                                      libID, 
-                                      taxon_name, 
-                                      taxonAbsAbund), 
-                        libFracBins))
-                except ValueError:
-                    msg = '   WARNING: No bins for taxon; likely caused by no BD KDE\n'
-                    sys.stderr.write(msg)
-                    frag_BD_bins = {x:0 for x in lib_OTU_counts['fractions']}                
-
-            frag_BD_bins = binNum2ID(frag_BD_bins, libFracBins)
-                        
-                       
-            # converting to a pandas dataframe
-            df = pd.DataFrame(frag_BD_bins.items())
-            df.columns = ['fractions',taxon_name]
-            
-            # adding to dataframe
-            df.iloc[:,1] = df.applymap(str).iloc[:,1]   # must convert values to dtype=object
-            lib_OTU_counts = pd.merge(lib_OTU_counts, df, how='outer', on='fractions')
-
-
-        # formatting completed dataframe of OTU counts for the library
-        lib_OTU_counts.fillna(0, inplace=True)
-        lib_OTU_counts = pd.melt(lib_OTU_counts, id_vars=['fractions'])
-        lib_OTU_counts.columns = ['fractions', 'taxon', 'count']
-        lib_OTU_counts['library'] = libID
-        lib_OTU_counts = lib_OTU_counts[['library','fractions','taxon','count']]
-        lib_OTU_counts.sort(['fractions'])
-
-
+        df = pd.melt(df, id_vars=['taxon'])
+        df.columns = ['taxon','fraction', 'count']
+        df['library'] = libID
+        df = df[['library','taxon','fraction','count']]
+        df.sort(['taxon', 'fraction'], inplace=True)
+ 
         # making dict of library-specific dataframes
-        OTU_counts.append(lib_OTU_counts)
+        OTU_counts.append(df)
 
     # combining library-specific dataframes and writing out long form of table
     pd.concat(OTU_counts, ignore_index=False).to_csv(sys.stdout, sep='\t', index=False)

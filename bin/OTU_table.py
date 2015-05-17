@@ -11,16 +11,20 @@ Usage:
   OTU_table --version
 
 Options:
-  <BD_KDE>            KDE object of BD value distributions. 
-                      ('-' if from STDIN)
-  <communities>       Simulated community abundance table file.
-  <fractions>         Simulated gradient fraction file.
-  --abs=<aa>          Absolute abundance of all taxa in the community. 
-                      [default: 1e5]
-  --quiet             Limit STDERR output.
-  --version           Show version.
-  --debug             Debug mode
-  -h --help           Show this screen.
+  <BD_KDE>          KDE object of BD value distributions. 
+                    ('-' if from STDIN)
+  <communities>     Simulated community abundance table file.
+  <fractions>       Simulated gradient fraction file.
+  --abs=<aa>        Absolute abundance of all taxa in the community. 
+                    [default: 1e5]
+  --np=<np>         Number of parallel processes.
+                    [default: 1]
+  --cs=<cs>         Chunksize for each process (number of taxa).
+                    [default: 1]
+  --quiet           Limit STDERR output.
+  --version         Show version.
+  --debug           Debug mode (turns off parallel processing)
+  -h --help         Show this screen.
 
 
 Description:
