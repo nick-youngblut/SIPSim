@@ -41,7 +41,18 @@ def binNum2ID(frag_BD_bins, libFracBins):
     return out
 
 
-def sample_BD_kde(BD_KDE, libID, taxon_name, size):
+def _all_empty_bins(libFracBins):
+    """All possible fractions bins are set to zero
+    abundance for taxon.
+    Args:
+    libFracBins 
+    """
+    n_bins = len(libFracBins)
+    return {x:'0' for x in xrange(n_bins+1)}
+
+
+
+def _sample_BD_kde(BD_KDE, libID, taxon_name, size):
     """Sampling from buoyant density KDE
     Args:
     BD_KDE -- {library:{taxon:scipy_KDE}}
@@ -61,16 +72,48 @@ def sample_BD_kde(BD_KDE, libID, taxon_name, size):
     return frag_BD
 
 
-def _all_empty_bins(libFracBins):
-    """All possible fractions bins are set to zero
-    abundance for taxon
+def _bin_BD(BD_KDE, libFracBins, taxonAbsAbund, libID, taxon_name,
+            maxsize=10000000):
+    """Sampling BD KDE and binning values into fractions.
+    Parsing binning into chunks to prevent memory errors.
+    Args:
+    BD_KDE -- {library:{taxon:scipy_KDE}}
+    libFracBins -- list of gradient bins
+    libID -- library ID
+    taxon_name -- taxon name
+    maxsize -- max number of BD values to bin at once.
+    Return:
+    Counter object
     """
-    n_bins = len(libFracBins)
-    return {x:'0' for x in xrange(n_bins+1)}
+
+    abund_remain = taxonAbsAbund
+    frag_BD_bins = Counter()
+    while abund_remain > 0:
+        if abund_remain < maxsize:
+            maxsize = abund_remain
+        frag_BD_bins.update(Counter(np.digitize(
+            _sample_BD_kde(BD_KDE, libID, taxon_name, maxsize), 
+            libFracBins)))        
+        abund_remain -= maxsize
+        
+    return frag_BD_bins
 
 
 def sim_OTU(taxon_idx, taxon_name, comm_tbl, 
-            libID, BD_KDE, libFracBins):
+            libID, BD_KDE, libFracBins, maxsize):
+    """Simulate OTU by sampling BD KDE and binning
+    values into gradient fractions.
+    Args:
+    taxon_idx -- taxon number
+    taxon_name -- taxon name 
+    comm_tbl -- comm table object
+    libID -- library ID
+    BD_KDE -- {library:{taxon:scipy_KDE}}
+    libFracBins -- list of gradient bins
+    maxsize -- max number of BD values to bin at once.    
+    Return:
+    array of fragment BD values
+    """
     sys.stderr.write('  Processing taxon: "{}"\n'.format(taxon_name))
 
     # taxon abundance based on comm file
@@ -89,12 +132,8 @@ def sim_OTU(taxon_idx, taxon_name, comm_tbl,
         raise ValueError, 'Taxon abundance cannot be negative'
     else:
         try:
-            frag_BD_bins = Counter(np.digitize(
-                sample_BD_kde(BD_KDE, 
-                              libID, 
-                              taxon_name, 
-                              taxonAbsAbund), 
-                libFracBins))
+            frag_BD_bins = _bin_BD(BD_KDE, libFracBins, taxonAbsAbund,
+                                   libID, taxon_name, maxsize=maxsize)
         except ValueError:
             # zero counts for all bins
             msg = '   WARNING: No bins for taxon; likely caused by no BD KDE\n'
@@ -134,21 +173,16 @@ def main(uargs):
     u_taxon_names = comm_tbl.get_unique_taxon_names()
     OTU_counts = []  # list of all library-specific OTU_count dataframes
 
-
     for libID in comm_tbl.iter_libraries():
         sys.stderr.write('Processing library: "{}"\n'.format(libID))            
 
         # fraction bin list for library
         libFracBins = [x for x in frac_tbl.BD_bins(libID)]
         
-        # creating a dataframe of fraction bins
-#        func = lambda x: '{0:.3f}-{1:.3f}'.format(libFracBins[x-1],libFracBins[x])
-#        fracBins = [func(i) for i in xrange(len(libFracBins))][1:]        
-#        lib_OTU_counts = pd.DataFrame({'fractions':fracBins})
-
         # iter of taxa in parallel
         f = partial(sim_OTU, comm_tbl=comm_tbl, libID=libID, 
-                    BD_KDE=BD_KDE, libFracBins=libFracBins)
+                    BD_KDE=BD_KDE, libFracBins=libFracBins, 
+                    maxsize=int(uargs['--max']))
 
         ret = parmap.starmap(f, enumerate(u_taxon_names),
                              chunksize = int(uargs['--cs']),
@@ -156,18 +190,16 @@ def main(uargs):
                              parallel = not uargs['--debug'])
 
         
-        ## converting to a pandas dataframe
+        # converting to a pandas dataframe
         df = pd.DataFrame([x[1] for x in ret]).fillna(0)
-        df['taxon'] = [x[0] for x in ret]
-        
-
+        df['taxon'] = [x[0] for x in ret]        
         df = pd.melt(df, id_vars=['taxon'])
         df.columns = ['taxon','fraction', 'count']
         df['library'] = libID
         df = df[['library','taxon','fraction','count']]
         df.sort(['taxon', 'fraction'], inplace=True)
  
-        # making dict of library-specific dataframes
+        # Adding to dataframe of all libraries
         OTU_counts.append(df)
 
     # combining library-specific dataframes and writing out long form of table

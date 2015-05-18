@@ -2970,3 +2970,19 @@ WARNING:root:kernel c5e61a02-c5bb-4eef-bee9-ac6bbb4d4f82 restarted
 [33m[W 17:52:56.905 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
 [32m[I 17:54:56.763 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
 [33m[W 17:54:56.765 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 17:56:56.644 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 17:56:56.646 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 18:00:56.791 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 18:00:56.792 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 18:12:56.849 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 18:12:56.851 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 18:14:56.791 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 18:14:56.792 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 18:18:56.882 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 18:18:56.884 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[33m[W 18:34:19.717 NotebookApp][m WebSocket ping timeout after 119806 ms.
+[33m[W 18:40:44.730 NotebookApp][m Notebook ipynb/t/genome100/dev_run1.ipynb is not trusted
+[32m[I 18:42:54.219 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 18:42:54.221 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:07:15.299 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:07:15.301 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb

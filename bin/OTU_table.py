@@ -21,6 +21,9 @@ Options:
                     [default: 1]
   --cs=<cs>         Chunksize for each process (number of taxa).
                     [default: 1]
+  --max=<m>         Max Number of BD values to bin at once.
+                    Use smaller values to prevent memory errors.
+                    [default: 10000000]
   --quiet           Limit STDERR output.
   --version         Show version.
   --debug           Debug mode (turns off parallel processing)
