@@ -49,6 +49,8 @@ class Genome(object):
         Args:
         rtr -- read template size range (min,max)
         MFEprimerExe -- string with path of MFEprimer.py
+        Returns:
+        in-place edit -- MFEprimerRes
         """
         
         # Input check
@@ -79,7 +81,7 @@ class Genome(object):
 
 
     def _MFEprimerRes_chk(self):
-        """Assertions on output table from MFEprimer.
+        """Assertions on output table from MFEprimer.      
         """
         if self.MFEprimerRes is None:
             return None
@@ -100,7 +102,7 @@ class Genome(object):
         Args:
         overlapPercCutoff -- percent of overlap to consider 'substantially' overlapping
         Returns:
-        None -- MFEprimer table object filtered of overlaps
+        in-place edit -- self.MFEprimerRes (table object filtered of overlaps)
         """
         if self.MFEprimerRes is None:  
             raise AttributeError('genome object does not have MFEprimerRes attribute. ' \
@@ -156,8 +158,11 @@ class Genome(object):
     @staticmethod
     def _calcPercOverlap(iv1, iv2):
         """Calculating overlap between intervals (iv1, iv2)
-        Return:
-        tuple of percent overlap relative to iv1, relative to iv2
+        Args:
+        iv1 -- interval 1
+        iv2 -- interval 2
+        Returns:
+        tuple -- (percent overlap relative to iv1, relative to iv2)
         """
         if not iv1.overlaps(iv2):
             return [0.0, 0.0]
@@ -175,7 +180,11 @@ class Genome(object):
     @staticmethod
     def calcGC(seq):
         """Calculating GC content of a sequence string. Return as percent G+C.
-        Only unambiguous nucleotide codes will be counted.
+        Only unambiguous nucleotide codes (ATGC) will be counted.
+        Args:
+        seq -- string of DNA sequence
+        Returns:
+        float -- %GC
         """
         seq = str(seq).upper()
         aCount = seq.count('A')
@@ -191,6 +200,8 @@ class Genome(object):
                     
     # getters/setters/iters
     def get_fileName(self, rmPath=False):
+        """Getting fileName, without path if rmPath=True
+        """
         if rmPath is True:
             return os.path.split(self.fileName)[1]
         else:
@@ -203,7 +214,7 @@ class Genome(object):
         scaffold -- scaffold id
         start -- sequence start position
         end -- sequence end position
-        Return:
+        Returns:
         str -- sequence
         """
         try:
@@ -214,7 +225,12 @@ class Genome(object):
             raise KeyError('ScaffoldID "{}" not found in genome fasta index'.format(scaffold))
 
     def get_seq_len(self, seqID):
-        
+        """Getting length for sequence 'seqID'.
+        Args:
+        seqID -- ID of sequence
+        Returns:
+        int -- sequence length
+        """
         if not hasattr(self, '_fastaIdx_lens'):
             self._fastaIdx_lens = {seqID:len(seq) for seqID,seq in self.fastaIdx.items()}
         
@@ -226,7 +242,10 @@ class Genome(object):
         
 
     def iter_seqRecs(self):
-        """Iterate over sequence records"""
+        """Iterator of sequence records.
+        Returns:
+        iterator -- each sequence record
+        """
         with open(self.fileName) as inF:
             for rec in SeqIO.parse(inF, 'fasta'):
                 yield rec

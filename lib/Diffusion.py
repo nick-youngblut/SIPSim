@@ -21,6 +21,15 @@ import Utils
 
 # functions
 def make_kde(taxon_name, kde, n, bw_method, **kwargs):
+    """Makes scipy.stats.gaussian_kde from BD values
+    Args:
+    taxon_name -- taxon name
+    kde -- scipy.stats kde object of BD values or None
+    n -- sample size
+    bw_method -- KDE bandwidth method
+    Returns:
+    tuple -- (taxon_name, kde object of BD values)
+    """
     msg = 'Processing: {}\n'
     sys.stderr.write(msg.format(taxon_name))
     
@@ -37,15 +46,8 @@ def make_kde(taxon_name, kde, n, bw_method, **kwargs):
     
 
 def main(args):    
-    """
-    load kde object
-    foreach kde (parallel):
-      foreach iter:
-        draw from kde and calculate diffusion
-        append to array
-      calculate BD from kde
-      create kde from BD array
-      return kde object
+    """Main function for adding diffusion error to 
+    a KDE of buoyant density values.
     """
     try:
         args['--bw'] =float(args['--bw'])

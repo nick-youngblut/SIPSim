@@ -31,6 +31,8 @@ def get_configspec(strIO=True):
     """Return configspec set for instance.
     Args:
     strIO -- return configspec as a StringIO instance
+    Returns:
+    configspec object -- defines default parameters for config
     """    
     configspec = """
     [__many__]
@@ -65,7 +67,7 @@ def make_incorp_model(taxon_name, libID, config):
     taxon_name -- taxon name string
     libID -- library ID string
     config -- config object
-    Return:
+    Returns:
     mixture model object (mixture class)
     """
     psblDists = {'normal' : mixture.NormalDistribution,
@@ -124,7 +126,7 @@ def _select_intrapop_param_value(interPopDist, taxon_name, maxtries=1000):
     interPopDist -- {'interPopDist':{'function':interPopdist_function}}
     taxon_name -- name of taxon
     maxtries -- number of tries to get a parameter values >0
-    Return:
+    Returns:
     float -- intra-pop param value
     """
     # getting inter-pop dist function
@@ -165,7 +167,7 @@ def _start_lt_end(params):
     if both params are found in the provided dict.
     Args:
     params -- {param_ID:param_value}
-    Return:
+    Returns:
     in-place edit of params
     """
     if ('start' in params) & ('end' in params):
@@ -196,8 +198,8 @@ def _fill_in_weights(weights, n=None, total=1.0):
     n -- number of total weights needed.
          if None; len(weights) used.
     total -- sum of all returned weight values
-    Return:
-    list of floats
+    Returns:
+    list of floats -- [weight1, ...]
     """
     total = float(total)
         
@@ -252,7 +254,7 @@ def isotopeMaxBD(isotope):
     Args:
     isotope -- str; name of isotope
     Return:
-    float
+    float -- max BD value
     """
     psblIsotopes = {'13C' : 0.036,
                     '15N' : 0.016}
@@ -269,6 +271,8 @@ def populationDistributions_OLD(config, comm):
     Args:
     config -- IsoIncorpConfig instance
     comm -- CommTable instance
+    Returns:
+    in-place edit
     """    
     # list of taxon names used for all library iterations
     taxon_names = comm.get_unique_taxon_names()
@@ -318,117 +322,15 @@ def populationDistributions_OLD(config, comm):
     return outTbl
 
                 
-def _set_intraPopDist_OLD(outTbl, config, libID, taxon_name):
-    """Setting isotope incorporation based on the interPopDist
-    function for each intraPop parameter.
-    Args:
-    outTbl -- output dataframe
-    config -- config 
-    libID -- library ID [full_version,truc_version]
-    taxon_name -- taxon name
-    """
-
-    libSect = config.get_libSection(libID[0])
-    dist_cnt = 0
-    for (intraPopDistID,intraPopDist) in config.iter_configSections(libSect):    
-        dist_cnt += 1
-        # getting distribution
-        distribution = intraPopDist['distribution']
-        # getting weight
-        weight = float(intraPopDist.get('weight', 1.0))
-            
-        # setting intra-pop dist param values
-        intraPopParams = dict()
-        for (paramID,param) in config.iter_configSections(intraPopDist):
-            # getting inter-pop dist function
-            func = [v['function'] for k,v in config.iter_configSections(param)][0]
-
-            # sampling from function to get parameter for intra-pop distribution
-            maxtries = 1000
-            tries = 0
-            while True:
-                tries += 1
-                try:
-                    paramVal = func.sample(taxon_name)
-                except TypeError:
-                    paramVal = func.sample()
-                try:
-                    paramVal = paramVal[0]
-                except TypeError:
-                    pass
-                # values must be in range: 0-100
-                if paramVal >= 0 and paramVal <= 100:
-                    intraPopParams[paramID] = paramVal
-                    break
-                # exceeding maxtries?
-                if tries >= maxtries:
-                    er = 'Taxon: {}'.format(taxon_name)
-                    msg = 'Exceeded maxtries to get parameter in range: 0-100'  
-                    sys.exit(': '.join(err, msg))
-
-        # checking paramters
-        _check_intraPopParams(intraPopParams)
-        
-        # writing values
-        for paramID, paramVal in intraPopParams.items():
-            outTbl.loc[outTbl.shape[0]+1] = [libID[1], taxon_name, 
-                                             str(dist_cnt), distribution,
-                                             str(weight), paramID, str(paramVal)]
-
-
-def _check_intraPopParams_OLD(intraPopParams):
-    """Formatting and verifying intra-population parameters.
-    Args:
-    intraPopParams -- dict {param : paramValue}
-    Return:
-    None -- modifies dict in place
-    """
-    # mu values rounded if < 1e-10
-    try:
-        if intraPopParams['mu'] < 1e-10:
-            intraPopParams['mu'] = round(intraPopParams['mu'], 0)
-    except KeyError:
-        pass
-            
-    # if start-end params differ by < 1e-8, make same value
-    try:
-        if abs(intraPopParams['start'] - intraPopParams['end']) < 1e-8:
-            intraPopParams['start'] = round(intraPopParams['start'],0)
-            intraPopParams['end'] = round(intraPopParams['end'],0)
-    except KeyError:
-        pass
-
-    # flip start-end if needed
-    try:
-        if intraPopParams['start'] > intraPopParams['end']:
-            intraPopParams['end'],intraPopParams['start'] = (intraPopParams['start'],
-                                                                 intraPopParams['end'])
-    except KeyError:
-        pass   
-                                                         
-    return None
-
-                                                    
-def _set_intraPopDistZero_OLD(outTbl, libID, taxon_name):
-    """Setting isotope incorporation essentially to 0
-    (distribution=uniform, start=0, end=0)
-    Args:
-    outTbl -- output pandas dataframe
-    libID -- library ID
-    taxon_name -- taxon name
-    """
-    # saving row of values
-    l = [libID, taxon_name, '1', 'uniform', '1.0']
-    outTbl.loc[outTbl.shape[0]+1] = l + ['start', '0.0']
-    outTbl.loc[outTbl.shape[0]+1] = l + ['end', '0.0'] 
-
-
         
 class Config(ConfigObj):
-    """Subclassing ConfigObj for isotope incorporation file."""
+    """Subclassing ConfigObj for isotope incorporation file.
+    """
 
     @classmethod
     def load_config(cls, config_file, phylo=None):
+        """Loading config object with validation via the pre-set configspec
+        """
         configspec = get_configspec()
 
         # loading config file
@@ -436,7 +338,6 @@ class Config(ConfigObj):
 
 
     def __init__(self, *args, **kwargs):
-
         # phylo
         self.phylo = kwargs.pop('phylo', None)
         self.tree = TraitEvo.read_tree(self.phylo)
@@ -458,7 +359,8 @@ class Config(ConfigObj):
     def _validate_config(self):
         """Run configobj validator on config.
         Args:
-        config -- ConfigObj instance
+        Returns:
+        in-place edit
         """
         vtor = Validator()
         res = self.validate(vtor, preserve_errors=True)
@@ -496,6 +398,8 @@ class Config(ConfigObj):
         """Checking start & end parameters.
         Args:
         sect -- config section class
+        Returns:
+        None
         """
         keyParams = {k.lower():v for k,v  in self.iter_sectionKeywords(sect)}
                        
@@ -529,7 +433,8 @@ class Config(ConfigObj):
         (e.g., [[[[interPopDist 1]]]] & [[[[interPopDist 2]]]]).
         'weight' parameters can be set for the individual distributions;
         otherwise, each individual distribution will be weighted equally. 
-
+        Returns:
+        None
         """
         psblDists = {'normal' : mixture.NormalDistribution,
                      'uniform' : mixture.UniformDistribution,
@@ -563,6 +468,8 @@ class Config(ConfigObj):
         (e.g., [[[[interPopDist 1]]]] & [[[[interPopDist 2]]]]).
         'weight' parameters can be set for the individual distributions;
         otherwise, each individual distribution will be weighted equally. 
+        Returns:
+        None
         """
         for (libID,sect1) in self.iteritems():
             for (intraPopDist,sect2) in self.iter_configSections(sect1):
@@ -603,7 +510,7 @@ class Config(ConfigObj):
         for a specified library.
         Args:
         libID -- library ID
-        Return:
+        Returns:
         float
         """
         try:

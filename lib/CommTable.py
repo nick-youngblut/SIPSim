@@ -4,6 +4,8 @@ import re
 import numpy as np
 
 class CommTable(_table):
+    """pandas DataFrame subclass
+    """
     
     def __init__(self, *args, **kwargs):
         """Subclassing pandas dataframe. CommTable.from_[csv,etc]()
@@ -33,7 +35,7 @@ class CommTable(_table):
         libID -- library ID. If None, all libraries selected.
         abs_abund -- return absolute abundance instead of relative abundance
         Return:
-        iterable of abundance values for the taxon
+        iterable -- [abundance values for the taxon]
         """
         retCol = 'abs_abund' if abs_abund else 'rel_abund_perc'
         assert retCol in self.df.columns, \
@@ -48,9 +50,13 @@ class CommTable(_table):
 
     
     def get_unique_libIDs(self):
+        """Getting all unique libIDs from the community table
+        """
         return self.df['library'].unique().tolist()
 
     def get_unique_taxon_names(self):
+        """Getting all unique taxon names from the community table
+        """
         return self.df['taxon_name'].unique()        
 
     @property
@@ -62,6 +68,8 @@ class CommTable(_table):
         """Setting the absolute abundance of each taxon based on user-value.
         Args:
         abs_abund -- int; total abundance of all taxa in each library
+        Returns:
+        None
         """
         try:
             self.df['abs_abund'] = self.df['rel_abund_perc'] / 100 * int(abs_abund)

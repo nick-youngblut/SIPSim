@@ -9,7 +9,8 @@ from OrderedSet import OrderedSet
         
 
 class FracTable(_table):
-    """class for fraction table (output of fractions subcommand)"""
+    """Subclass of pandas.DataFrame
+    """
 
     # TODO; assertion that fractions are ordered and not overlapping
     
@@ -36,6 +37,8 @@ class FracTable(_table):
     def _set_itrees(self):
         """Setting a dict of interval trees for the BD-min/max ranges (1 per lib).
         Max in interval ranges is non-inclusive.
+        Returns:
+        in-place edit -- self.itrees
         """
         self.itrees = dict()
 
@@ -56,7 +59,7 @@ class FracTable(_table):
         libID -- library ID
         BD_value -- Bouyant density value
         Return:
-        list of fractionIDs that the BD_value falls into
+        list -- [fractionIDs that the BD_value falls into]
         """
         libID = str(libID)
         BD_value = float(BD_value)
@@ -83,6 +86,8 @@ class FracTable(_table):
         Args:
         libID -- str; library ID
         fracIDs -- iterable; fraction IDs, if None: all fracIDs used
+        Returns:
+        list -- ['BDmin-BDmax',...]
         """
         df_sub = self.df.loc[(self.df['library'] == libID)]
         df_sub.index = df_sub['fraction']
@@ -104,7 +109,7 @@ class FracTable(_table):
         Args:
         libID -- str; library ID
         fracID -- str; fraction ID
-        Return:
+        Returns:
         list -- [BD_min, BD_max]
         """
         df_sub = self.df.loc[(self.df['library'] == libID) & (self.df['fraction'] == fracID)]
@@ -119,8 +124,8 @@ class FracTable(_table):
         Useful for binning with np.digitize().
         Args:
         libID -- select BD values from just 1 library
-        Return:
-        
+        Returns:
+        OrderedSet -- [BD min-max bins]
         """
         if libID is not None:
             df_sub = self.df.loc[self.df['library'] == libID]
@@ -143,13 +148,17 @@ class FracTable(_table):
         """Return list of fractionIDs in a library
         Args:
         libID -- library ID
+        Returns:
+        list -- [fraction IDs]
         """
         df_sub = self.df.loc[self.df['library'] == libID]
         return list(df_sub['fraction'])
         
         
     def get_libFracDict(self):
-        """Return {libraryID : {fractionID : dict}}
+        """Get a dict of info for each fraction in each library
+        Returns:
+        dict -- {libraryID : {fractionID : dict}}
         """
         libFrac = defaultdict(defaultdict(dict))
         for i in xrange(self.df.shape[0]):

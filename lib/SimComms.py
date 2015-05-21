@@ -81,14 +81,20 @@ class _Comm(object):
 
         
 class SimComms(_Comm):
-    """Simulating communities"""
+    """Class for simulating taxon count data of communities.
+    """
 
     def __init__(self, taxon_list, perm_perc, shared_perc,
                  richness, abund_dist, abund_dist_params,
                  n_comm, config=None,
                  *args, **kwargs):
+        """
+        Args:
+        See gradientComms
+        """
         _Comm.__init__(self, *args, **kwargs)
         
+
         self._load_taxon_list(taxon_list)
         self.perm_perc = perm_perc
         self.shared_perc = shared_perc
@@ -114,6 +120,8 @@ class SimComms(_Comm):
         """Return configspec set for instance.
         Args:
         strIO -- return configspec as a StringIO instance
+        Returns:
+        configspec object
         """
         configspec = """
         [__many__]
@@ -132,7 +140,7 @@ class SimComms(_Comm):
             return configspec
 
             
-    def _load_config(self):
+    def _load_config(self):    
         assert hasattr(self, 'config'), "No config attribute found."
 
         configspec = self._get_configspec()
@@ -194,7 +202,7 @@ class SimComms(_Comm):
         Args:
         n -- number of taxa to draw
         Return:
-        list of taxon names
+        list -- [taxon_name1, taxon_nameN, ...]
         """
         assert n <= len(self.taxon_pool), \
             'Cannot draw {} taxa from taxon pool'.format(n)
@@ -227,6 +235,7 @@ class SimComms(_Comm):
         """Joining comm objects into 1 dataframe and printing.
         Args:
         Long -- write table in long format
+        Returns:
         """
         df =  pd.concat([x.taxa for x in self.values()],
                         axis=1)
@@ -257,6 +266,11 @@ class SimComms(_Comm):
     def permute(comm, perm_perc):
         """Permute a certain percentage of the taxa abundances.
         Permuting just the indices of the series objects.
+        Args:
+        comm -- comm table object
+        perm_perc -- percent of taxa to permute
+        Returns:
+        in-place edit of comm table
         """
         # assertions
         perm_perc = float(perm_perc)

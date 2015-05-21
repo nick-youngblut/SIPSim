@@ -36,7 +36,8 @@ scriptDir = os.path.dirname(__file__)
 libDir = os.path.join(scriptDir, '../lib/')
 sys.path.append(libDir)
 
-from FragGC import Frag_multiKDE
+#from FragGC import Frag_multiKDE
+from Fragments import Frag_multiKDE
 
 
 # functions

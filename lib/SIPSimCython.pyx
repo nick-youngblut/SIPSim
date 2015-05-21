@@ -22,8 +22,8 @@ def add_diffusion(np.ndarray[DTYPE_t, ndim=2] arr,
     B -- beta coefficient
     G -- G coefficient
     M -- molecular weight per pair base pair of dry cesium DNA
-    Return:
-    np.arr -- 1d numpy array of BD values that include diffusion error
+    Returns:
+    numpy.array -- [BD values that include diffusion error]
     """
     cdef int n = len(arr[0])
     cdef double[:] out = np.empty(n, dtype=DTYPE)
@@ -55,7 +55,7 @@ def GC2BD(np.ndarray[DTYPE_t, ndim=1] arr):
     Args:
     arr -- numpy array of G+C values
     Return:
-    numpy array of BD values
+    numpy.array -- [BD values]
     """
     cdef int n = len(arr)
     cdef double[:] out = np.empty(n, dtype=DTYPE)
@@ -73,6 +73,8 @@ def add_incorp(np.ndarray[DTYPE_t, ndim=1] frag_BD,
     frag_BD -- 1d numpy array of fragment BD values
     incorp_func -- function that returns a 1d-list with a float
     isotopeMaxBD -- the max BD possible with the selected isotope 
+    Returns:
+    float -- buoyant density value
     """    
     cdef int n = len(frag_BD)
     

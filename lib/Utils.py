@@ -17,8 +17,8 @@ def load_kde(fileName):
     """Loading a pickled dict {taxon:kde_object} file.
     Args:
     fileName -- name of pickled file ('-' if from STDIN)
-    Return:
-    dict {taxon_name:kde_object}
+    Returns:
+    dict -- {taxon_name:kde_object}
     """
     if fileName == '-':
         kde = pickle.load(sys.stdin)
@@ -29,9 +29,9 @@ def load_kde(fileName):
     
 
 def checkExists(f):
-    """
+    """ Checking that file exists.
     Args:
-    f -- file name
+    f -- file name    
     """
     if not os.path.isfile(f):
         raise IOError('"{}" not found. Did you provide the full PATH?'.format(f))
@@ -43,8 +43,8 @@ def parseGenomeList(inFile, filePath=None, check_exists=True):
     inFile -- genome list file name
     filePath -- abs path to genome sequence files
     check_exists -- check if genome sequence files exist
-    Return:
-    2d-list -- [(taxonName, genomeFile)]
+    Returns:
+    2d-list -- [[taxonName, genomeFile], ...]
     """
     # parse file as list
     genomeList = []
@@ -76,7 +76,13 @@ def parseGenomeList(inFile, filePath=None, check_exists=True):
 
 
 def describe_builtin(obj):
-    """ Describe a builtin function """
+    """ Describe a builtin function if obj.__doc__
+    available.
+    Args:
+    obj -- python object
+    Returns:
+    iterator 
+    """
 
     #wi('+Built-in Function: %s' % obj.__name__)
     # Built-in functions cannot be inspected by
@@ -105,7 +111,8 @@ def describe_builtin(obj):
 def parseKeyValueString(x):
     """Parse a string in format: 'key1:value1,key2:value2,keyN:valueN'.
     Values assumed to be numeric.
-    Returns a dict.
+    Returns:
+    dict -- {key:value, ...}
     """
     x = x.replace(' ','')
     l = re.split('[:,]', x)
@@ -160,7 +167,9 @@ class Status(object):
         
         
 class _table(object):
-    """Template class for reading in SIPSim tables"""
+    """Template class for reading in SIPSim tables.
+    Tables are just pandas.DataFrame objects.
+    """
     
     def __init__(self, df, filename):
         """
@@ -229,6 +238,8 @@ class _table(object):
         Args:
         filename -- Table file name
         kwargs -- passed to pandas.read_csv
+        Returns:
+        pandas.DataFrame subclass 
         """
         df = pd.read_csv(filename, **kwargs)
         return cls(df, filename)
@@ -237,6 +248,8 @@ class _table(object):
     # get/set/iter
     def iter_uniqueColumnValues(self, columnID):
         """General iteration of unique column values.
+        Args:       
+        columnID -- ID of column in table
         """
         try:
             for l in self.df[columnID].unique():

@@ -10,7 +10,7 @@ import scipy.stats as stats
 from Utils import _table
 
 
-def add_diffusion(frag_gc_len, loc=0,  max_tries=100):
+def add_diffusion_OLD(frag_gc_len, loc=0,  max_tries=100):
     """Sampling the diffusion distribution function and adding value
     to the provided GC value.
     Asserts that G+C must be between 0 & 100.
@@ -44,7 +44,7 @@ def add_diffusion(frag_gc_len, loc=0,  max_tries=100):
         
 
 
-class OTU_sim(object):
+class OTU_sim_OLD(object):
     """Class for the simulating OTUs"""
     
     def __init__(self, frac, g_noise, gn_scale, abund_weight, isotope):

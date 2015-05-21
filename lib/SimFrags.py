@@ -17,12 +17,15 @@ from rtnorm import rtnorm
 
 def truncated_normal(location, scale, low, high, size=1):
     """Creating a function to randomly sample from a truncated normal distribution.
+    Function returned from stats.logistic.ppf
     Args:
     loc -- mean
     scale -- standard deviation
     low -- min value that can be sampled from full distribution
     high -- max value that can be sampled from the full distribution
     size -- number of random samples to return
+    Returns:
+    function
     """
     nrm = stats.logistic.cdf(high)-stats.logistic.cdf(low)
     yr = np.random.rand(size)*(nrm)+stats.logistic.cdf(low)
@@ -119,12 +122,10 @@ class SimFrags(object):
         (set during initilization).
         Multiple iterations will be performed to try and get 
         a fragment in range (minFragSize, maxFragSize).
-
         Args:
-        readTempPos -- list: [scaffoldID,readTempStart,readTempEnd]
-                       
-        Return:
-        [scafID,fragStart,fragEnd]
+        readTempPos -- list: [scaffoldID,readTempStart,readTempEnd]                       
+        Returns:
+        list -- [scafID,fragStart,fragEnd]
         """
         # assertions
         if readTempPos[0] is None:
@@ -180,7 +181,7 @@ class SimFrags(object):
         """Setting user defined distribution. Using numpy distribution functions.
         Args:
         userDist -- User defined distribution with moment info. Example: ['normal',10,1]
-        Return:
+        Returns:
         function -- partial numpy distribution function with moment values provided
         """
         userDist[0] = str(userDist[0]).lower()
@@ -224,7 +225,7 @@ class SimFrags(object):
         Args:
         genome -- genome-like object
         Return:
-        [scaffold,start,end] -- read template scafoldID,start,end
+        list -- [read_scaffold_ID,start,end] 
         """
         nAmps = genome.get_nAmplicons()
         if nAmps <= 0:
@@ -245,8 +246,8 @@ class SimFrags(object):
         end seleded based on read template length distribution.
         Args:
         genome -- genome-like object
-        Return:
-        [scafName,start,end] -- scaffold and start-end of read template
+        Returns:
+        list -- [scafName,start,end] -- scaffold and start-end of read template
         """
         assert hasattr(self, 'rtl'), '"rtl" attribute required'
         

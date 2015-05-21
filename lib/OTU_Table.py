@@ -45,7 +45,9 @@ def _all_empty_bins(libFracBins):
     """All possible fractions bins are set to zero
     abundance for taxon.
     Args:
-    libFracBins 
+    libFracBins -- ordered set of fraction start-ends
+    Returns:
+    dict -- {bin_ID:'0'}
     """
     n_bins = len(libFracBins)
     return {x:'0' for x in xrange(n_bins+1)}
@@ -60,7 +62,7 @@ def _sample_BD_kde(BD_KDE, libID, taxon_name, size):
     taxon_name -- taxon name 
     size -- how many to sample
     Return:
-    array of fragment BD values
+    array -- [fragment BD values]
     """
     try:
         frag_BD = BD_KDE[libID][taxon_name].resample(size=size)[0]
@@ -83,7 +85,7 @@ def _bin_BD(BD_KDE, libFracBins, taxonAbsAbund, libID, taxon_name,
     taxon_name -- taxon name
     maxsize -- max number of BD values to bin at once.
     Return:
-    Counter object
+    Counter object -- {fraction_ID : count}
     """
 
     abund_remain = taxonAbsAbund
@@ -112,7 +114,7 @@ def sim_OTU(taxon_idx, taxon_name, comm_tbl,
     libFracBins -- list of gradient bins
     maxsize -- max number of BD values to bin at once.    
     Return:
-    array of fragment BD values
+    array -- [fragment BD values]
     """
     sys.stderr.write('  Processing taxon: "{}"\n'.format(taxon_name))
 
@@ -145,8 +147,11 @@ def sim_OTU(taxon_idx, taxon_name, comm_tbl,
     return [taxon_name, frag_BD_bins] 
     
 
+
     
 def main(uargs):
+    """Main function for making OTU table.
+    """
     # args formatting 
     try:
         uargs['--abs'] = int(float(uargs['--abs']))
@@ -172,7 +177,6 @@ def main(uargs):
     sys.stderr.write('Simulating OTUs...\n')
     u_taxon_names = comm_tbl.get_unique_taxon_names()
     OTU_counts = []  # list of all library-specific OTU_count dataframes
-
     for libID in comm_tbl.iter_libraries():
         sys.stderr.write('Processing library: "{}"\n'.format(libID))            
 
@@ -209,6 +213,8 @@ def main(uargs):
 
 
 class OTU_table(_table):
+    """Subclass of pandas DataFrame
+    """
 
     def __init__(self, *args, **kwargs):
         _table.__init__(self, *args, **kwargs)
@@ -226,7 +232,8 @@ class OTU_table(_table):
 
     def get_comm_size_stats(self):
         """Getting stats on the size of each community.
-        Return: [min, mean, median, max]
+        Returns: 
+        list -- [min, mean, median, max]
         """
         counts = self.df.groupby(['library','fraction']).sum()['count']
         return [np.min(counts), np.mean(counts), np.median(counts), np.max(counts)]
@@ -238,7 +245,7 @@ class OTU_table(_table):
         Args:
         no_replace -- subsample without replacement
         Return:
-        pandas DataFrame of subsampled community
+        pandas DataFrame -- subsampled community
         """
         # assertions
         assert hasattr(self, 'samp_dist'), 'samp_dist attribute not found'
@@ -307,13 +314,23 @@ class OTU_table(_table):
 
 
     def get_comm(self, libID, fracID):        
+        """Returns subset of community dataframe.
+        Subset selected from libID and fracID args.
+        Args:
+        libID -- library ID
+        fracID -- fraction ID
+        Returns:
+        pandas.DataFrame
+        """
         return self.df.loc[(self.df['library'] == libID) &
                            (self.df['fraction'] == fracID),:]
             
     # iter
-    def iter_fractions(self, libID):
+    def iter_fractions(self, libID):    
         """iterating through fractions of a certain library.
         Yields a fraction ID.
+        Args:
+        libID -- library ID
         """
         df_sub = self.df.loc[self.df['library'] == libID]
         for fracID in df_sub['fraction'].unique():
@@ -334,7 +351,6 @@ class OTU_table(_table):
     @samp_dist.setter
     def samp_dist(self, x):
         self.samp_dist_name = x
-
         # setting numpy function
         ## if function should return one constant value
         if self._same_low_high():

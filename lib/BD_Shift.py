@@ -19,7 +19,7 @@ def kde_intersect(taxon, d1, d2, **kwargs):
     d1 -- {taxon_name:kde}
     d2 -- {taxon_name:kde}
     Returns:
-    [taxon_name, BD_shift]
+    list -- [taxon_name, BD_shift]
     """
     x = _kde_intersect(d1[taxon], d2[taxon], **kwargs)
     assert np.isnan(x) or 0 <= x <= 1, \
@@ -38,7 +38,7 @@ def _kde_intersect(kde1, kde2, start=1.66, end=1.85, step=0.001):
     end -- float; end of series
     step -- float; step size of series
     Returns:
-    float; intersection     
+    float -- intersection value
     """
     if kde1 is None or kde2 is None:
         return np.NAN
@@ -62,6 +62,8 @@ def is_kde_lib(d):
     """Is the kde object a dict of dicts {lib:{taxon:scipy_kde}}?
     Args:
     d -- {taxon_name:kde} or {libID:{taxon_name:kde}}
+    Returns:
+    boolean
     """
     try:
         k1 = d.keys()[0]
@@ -77,7 +79,7 @@ def kde_add_lib(d):
     Args:
     d -- {taxon_name:kde} or {libID:{taxon_name:kde}}
     Returns:
-    {libID:{taxon_name:kde}}
+    dict -- {libID:{taxon_name:kde}}
     """
     is_lib = is_kde_lib(d)
     if is_lib:
@@ -93,7 +95,7 @@ def taxon_overlap(d1, d2):
     d1 -- {taxon_name:kde}
     d2 -- {taxon_name:kde}
     Returns:
-    interable of overlapping taxon names
+    iterable -- [overlapping taxon names]
     """
     taxa1 = set(d1.keys())
     taxa2 = set(d2.keys())
@@ -106,6 +108,8 @@ def taxon_overlap(d1, d2):
 
 
 def main(args):
+    """Main function for calculating BD shift.
+    """
     sys.stderr.write('Loading KDE objects...\n')
     kde1 = Utils.load_kde(args['<kde1>'])
     kde2 = Utils.load_kde(args['<kde2>'])
