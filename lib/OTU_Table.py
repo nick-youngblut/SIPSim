@@ -228,7 +228,7 @@ class OTU_table(_table):
         """Getting stats on the size of each community.
         Return: [min, mean, median, max]
         """
-        counts = self.df.groupby(['library','fractions']).sum()['count']
+        counts = self.df.groupby(['library','fraction']).sum()['count']
         return [np.min(counts), np.mean(counts), np.median(counts), np.max(counts)]
 
         
@@ -278,7 +278,7 @@ class OTU_table(_table):
                         sub_comm = pd.DataFrame(sub_comm.items())
                         sub_comm.columns = ['taxon','count']
                         sub_comm.loc[:,'library'] = libID
-                        sub_comm.loc[:,'fractions'] = fracID
+                        sub_comm.loc[:,'fraction'] = fracID
                     except ValueError:
                         sub_comm = comm.copy()
                         comm.loc[:,'count'] = 0
@@ -288,8 +288,8 @@ class OTU_table(_table):
                         
 
         df_sub['count'] = df_sub['count'].astype(int)
-        return df_sub.reindex_axis(['library','fractions','taxon','count'], axis=1)\
-            .sort(['taxon','fractions','library'])
+        return df_sub.reindex_axis(['library','fraction','taxon','count'], axis=1)\
+            .sort(['taxon','fraction','library'])
                 
         
     def _same_low_high(self):
@@ -308,7 +308,7 @@ class OTU_table(_table):
 
     def get_comm(self, libID, fracID):        
         return self.df.loc[(self.df['library'] == libID) &
-                           (self.df['fractions'] == fracID),:]
+                           (self.df['fraction'] == fracID),:]
             
     # iter
     def iter_fractions(self, libID):
@@ -316,10 +316,9 @@ class OTU_table(_table):
         Yields a fraction ID.
         """
         df_sub = self.df.loc[self.df['library'] == libID]
-        for fracID in df_sub['fractions'].unique():
+        for fracID in df_sub['fraction'].unique():
             yield fracID
         
-
     
     # properties/setters
     @property

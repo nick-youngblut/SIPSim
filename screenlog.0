@@ -2986,3 +2986,75 @@ WARNING:root:kernel c5e61a02-c5bb-4eef-bee9-ac6bbb4d4f82 restarted
 [33m[W 18:42:54.221 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
 [32m[I 19:07:15.299 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
 [33m[W 19:07:15.301 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:08:55.618 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:08:55.620 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[33m[W 10:17:55.516 NotebookApp][m Notebook ipynb/t/genome100/dev_run1.ipynb is not trusted
+[32m[I 11:24:08.537 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 11:24:08.539 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[33m[W 11:37:32.969 NotebookApp][m Notebook ipynb/t/genome100/dev_run1.ipynb is not trusted
+[32m[I 11:39:34.634 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 11:39:34.636 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 13:01:34.577 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 13:01:34.578 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[33m[W 15:13:51.169 NotebookApp][m WebSocket ping timeout after 119998 ms.
+[33m[W 11:38:03.881 NotebookApp][m Notebook ipynb/bac_genome/Ecoli/fragLen.ipynb is not trusted
+[32m[I 11:38:04.951 NotebookApp][m Kernel started: f5b29577-d565-493c-a3cc-4129a0082727
+[32m[I 11:38:16.383 NotebookApp][m Kernel shutdown: f5b29577-d565-493c-a3cc-4129a0082727
+[32m[I 11:38:33.093 NotebookApp][m Kernel started: 39727f4f-48d1-4c9b-a87b-dd92bd0ef610
+[32m[I 11:39:19.179 NotebookApp][m Creating new directory in /ipynb
+[32m[I 11:39:43.200 NotebookApp][m Creating new notebook in /ipynb/HR-SIP_example
+[32m[I 11:39:43.924 NotebookApp][m Kernel started: 91f23abb-09d9-492b-876f-350ca506b454
+[32m[I 11:41:43.919 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 11:43:43.919 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 11:48:57.044 NotebookApp][m Kernel started: 11729550-30c9-4a92-bfea-05a869f1004c
+[32m[I 11:49:43.922 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 11:51:43.920 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 11:53:43.917 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 11:55:43.916 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 11:57:43.922 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 11:59:43.915 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 12:01:43.909 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 12:03:44.433 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 12:05:44.430 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 12:07:44.432 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 12:09:44.431 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 12:11:44.429 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 12:13:44.433 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 12:15:44.430 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 12:16:31.852 NotebookApp][m Kernel interrupted: 91f23abb-09d9-492b-876f-350ca506b454
+[32m[I 12:17:44.423 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 12:17:46.015 NotebookApp][m Kernel interrupted: 91f23abb-09d9-492b-876f-350ca506b454
+[32m[I 12:19:44.420 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 12:21:44.420 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 12:25:44.412 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 12:27:44.413 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 12:29:44.410 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 12:31:44.403 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 12:33:44.413 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 12:35:44.404 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 12:37:44.653 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 12:38:05.474 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 12:39:03.872 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 12:41:44.639 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 12:55:45.320 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 12:57:45.311 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 12:59:45.329 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 13:01:45.309 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 13:05:45.308 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 13:07:45.305 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 13:07:47.213 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 13:09:45.297 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 13:11:45.293 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 13:13:45.292 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 13:15:45.288 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 13:17:45.284 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 13:19:45.281 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 13:21:45.279 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 13:23:45.280 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 13:25:45.278 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 13:27:45.274 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 13:29:45.353 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 13:30:32.312 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 14:46:34.063 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 13:12:39.708 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 13:12:39.710 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb

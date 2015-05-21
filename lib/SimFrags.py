@@ -137,10 +137,17 @@ class SimFrags(object):
         # nfrag size
         tryCnt = 0
         while 1:
+            if tryCnt >= 1000:
+                msg = 'Exceeded {} tries to find frag'\
+                      ' length in min-max range.' \
+                      ' You may need to adjust --flr.' 
+                raise ValueError(msg.format(tryCnt))
+
             # draw from fragment size distribution
             fragSize = int(self.fld(size=1))
-            assert fragSize > readTempSize, \
-                'Read template size > read size'
+            if fragSize < readTempSize:
+                tryCnt += 1
+                continue
 
             # frag start (position upstream from read template)        
             randPos = np.random.randint(0, fragSize - readTempSize)
@@ -154,12 +161,9 @@ class SimFrags(object):
 
             fragLen = fragEnd - fragStart + 1
 
-            if tryCnt >= 1000:
-                msg = 'Exceeded {} tries to find frag'\
-                      ' length in min-max range.' \
-                      ' You may need to adjust --flr.' 
-                raise ValueError(msg.format(tryCnt))
-            elif fragLen >= self.minFragSize and fragLen <= self.maxFragSize:
+            if fragSize > readTempSize and \
+               fragLen >= self.minFragSize and \
+               fragLen <= self.maxFragSize:
                 break
             else:
                 tryCnt += 1

@@ -30,9 +30,9 @@ Options:
   --np=<np>     Number of genomes to process in parallel.
                 [Default: 1]
   --tbl         Write out fragments as a table instead of a pickled python object.
-  -h --help     Show this screen.
+  --debug       Debug mode (turn off parallel processing)
   --version     Show version.
-  --debug       Debug mode
+  -h --help     Show this screen.
 
 Description:
   Simulate the genomic fragments that would be found in an isopycnic gradient.
