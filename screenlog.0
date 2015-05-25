@@ -3058,3 +3058,63 @@ WARNING:root:kernel c5e61a02-c5bb-4eef-bee9-ac6bbb4d4f82 restarted
 [32m[I 14:46:34.063 NotebookApp][m Saving file at /ipynb/HR-SIP_example/genome_n4.ipynb
 [32m[I 13:12:39.708 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
 [33m[W 13:12:39.710 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 12:17:55.036 NotebookApp][m Using existing profile dir: u'/home/nick/.ipython/profile_default'
+[32m[I 12:17:55.042 NotebookApp][m Using MathJax from CDN: https://cdn.mathjax.org/mathjax/latest/MathJax.js
+[32m[I 12:17:55.057 NotebookApp][m Serving notebooks from local directory: /home/nick/notebook/SIPSim
+[32m[I 12:17:55.057 NotebookApp][m 0 active kernels 
+[32m[I 12:17:55.058 NotebookApp][m The IPython Notebook is running at: http://localhost:7702/
+[32m[I 12:17:55.058 NotebookApp][m Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[32m[I 12:18:00.542 NotebookApp][m 302 GET / (127.0.0.1) 1.29ms
+[33m[W 12:18:44.403 NotebookApp][m Notebook ipynb/t/genome100/dev_run1.ipynb is not trusted
+[32m[I 12:18:46.056 NotebookApp][m Kernel started: 09ea3a26-4a78-4c84-a533-c809cb2637c2
+[32m[I 12:20:11.359 NotebookApp][m Kernel started: f201f0f5-4867-4f3b-b5d7-d461537984ca
+[32m[I 12:22:11.376 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 12:24:11.365 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 12:26:11.361 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 12:28:11.364 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 12:30:11.362 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 12:32:11.359 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 12:33:03.897 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 12:34:11.360 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 12:36:11.360 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 12:45:17.480 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 12:52:11.354 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 12:52:52.723 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 12:54:11.352 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 12:54:15.277 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 12:56:12.244 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 12:58:12.234 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 13:00:12.234 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 13:02:12.245 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 13:04:12.233 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 13:06:12.234 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 13:08:12.233 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 13:10:12.235 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 13:12:12.228 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 13:14:12.230 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 13:16:12.226 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 13:18:12.220 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 13:20:12.227 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 13:22:12.223 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 13:24:12.222 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 13:25:45.232 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 13:36:12.508 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 13:38:12.226 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 13:40:12.228 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 13:42:12.227 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 13:43:05.361 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 13:43:05.363 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 13:44:12.234 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 13:46:12.231 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 13:48:12.227 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 13:50:12.230 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 14:00:12.221 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 14:02:12.220 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 14:04:13.067 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 14:05:07.218 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 14:05:07.236 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 14:06:13.068 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 14:07:08.281 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 14:07:08.283 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 14:08:13.066 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 14:09:19.376 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb

@@ -2,62 +2,173 @@
 ## batteries
 import os, sys
 import re
-import functools
+from functools import partial
 import types
-import inspect
 import logging
+import cPickle as pickle
 from collections import defaultdict
 from random import shuffle
 from StringIO import StringIO
 ## 3rd party
-import configobj
-from configobj import ConfigObj, flatten_errors
-from validate import Validator
 import numpy as np
 import pandas as pd
 import mixture
+import parmap
+import scipy.stats as stats
 ## application
 import Utils
-import TraitEvo
-from TraitEvo import BrownianMotion
 import SIPSimCython
-
+from CommTable import CommTable
+from SIPSimCython import add_incorp
+from Config import Config
 
 # logging
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
 
-def get_configspec(strIO=True):
-    """Return configspec set for instance.
-    Args:
-    strIO -- return configspec as a StringIO instance
-    Returns:
-    configspec object -- defines default parameters for config
-    """    
-    configspec = """
-    [__many__]
-       max_perc_taxa_incorp = float(0,100, default=100)
-
-       [[__many__]]
-          distribution = option('normal','uniform', 'BM', default='normal')
-          weight = float(0,1, default=1)
-    
-            [[[__many__]]]
-                [[[[__many__]]]]
-                distribution = option('normal','uniform', 'BM', default='normal')
-                weight = float(0,1, default=None)
-                mu = float(0,100, default=None)
-                sigma = float(0,100, default=None)
-                start = float(0,100, default=None)
-                end = float(0,100, default=None)  
-                ratio = float(0,1, default=None)
-                minVal = float(0,100, default=None)
-                maxVal = float(0,100, default=None)
+def main(args):
+    """Main function for performing isotope incorporation simulation.
     """
-    if strIO == True:
-        return StringIO(configspec)
+    # loading input
+    ## kde_bd
+    KDE_BD = Utils.load_kde(args['<BD_KDE>'])
+    ## comm (optional)
+    if args['--comm'] is not None:
+        comm = CommTable.from_csv(args['--comm'], sep='\t')
     else:
-        return configspec
+        comm = None
+
+    # combining kde and comm
+    _add_comm_to_kde(KDE_BD, comm)
+    
+    # loading the config file
+    config = Config.load_config(args['<config_file>'],
+                                phylo=args['--phylo'])
+     
+
+    # creating kde of BD distributions with BD shift from isotope
+    KDE_BD_iso = dict()
+    for libID in config.keys():        
+        # making a list of taxa that can incorporate 
+        # TODO: abundance cutoff: taxa must have abundance > threshold to incorporate
+        taxa_incorp_list = _taxon_incorp_list(libID, config, KDE_BD)
+
+        # TODO: abundance weighting with less incorp for less taxa
+
+        # setting params for parallelized function
+        pfunc = partial(_make_kde, 
+                        config = config,
+                        libID = libID,
+                        n = args['-n'],
+                        taxa_incorp_list = taxa_incorp_list,
+                        isotope = args['--isotope'],
+                        bw_method = args['--bw'])                    
+
+        # parallel by taxon
+        tmp = parmap.starmap(pfunc, KDE_BD.items(),
+                             processes = int(args['--np']),
+                             chunksize = int(args['--cs']),
+                             parallel = not args['--debug'])
+
+        KDE_BD_iso[libID] = {taxon:KDE for taxon,KDE in tmp}
+    
+
+    # writing pickled BD-KDE with BD shift from isotope incorp
+    pickle.dump(KDE_BD_iso, sys.stdout)
+        
+
+def _make_kde(taxon_name, x, libID, config, taxa_incorp_list, 
+             isotope='13C', n=10000, bw_method=None): 
+    """Making new KDE of BD value distribution which includes
+    BD shift due to isotope incorporation. 
+    Args:
+    taxon_name -- str; name of taxon
+    x -- dict; keys: kde, [abundances]
+    libID -- str; library ID
+    config -- config object
+    taxa_incorp_list -- iterable; taxa that can incorporate isotope
+    isotope -- str; isotope that is incorporated
+    n -- number of Monte Carlo samples to use for estimating
+         BD+isotope_BD distribution
+    bw_method -- bandwidth scalar or function passed to
+                 scipy.stats.gaussian_kde().
+    Return:
+    (taxon_name, KDE*)
+       * Note: KDE object may be None    
+    """
+
+    # status
+    sys.stderr.write('Processing: {}\n'.format(taxon_name))
+
+    # unpack
+    n = int(n)
+    kde = x['kde']
+    if kde is None:
+        return (taxon_name, None)
+
+    # can taxon incorporate any isotope?
+    ## if not, return 'raw' BD KDE 
+    if taxon_name not in taxa_incorp_list:
+        return (taxon_name, kde)
+
+    # taxon abundance for library
+    try:
+        taxon_abund = x['abundances'][libID]
+    except KeyError:
+        tmp = re.sub('[Ll]ib(rary)* *','', libID)
+        try:
+            taxon_abund = x['abundances'][tmp]
+        except KeyError:
+            taxon_abund = None
+
+    # max incorporation for isotope
+    maxIsotopeBD = isotopeMaxBD(isotope)
+
+    # making a mixture model object lib:taxon
+    ## mix_model => distribution of % incorporation for taxon population
+    mix_model = make_incorp_model(taxon_name, libID, config)
+
+    # making KDE of BD + BD_isotope_incorp
+    kdeBD = stats.gaussian_kde( 
+        add_incorp(kde.resample(n)[0], 
+                   mix_model, 
+                   maxIsotopeBD),
+        bw_method=bw_method)
+
+    return (taxon_name, kdeBD)
+
+
+def _add_comm_to_kde(KDE_BD, comm):
+    """Adding comm data for each taxon to each KDE.
+    Args:
+    Return:
+    KDE_BD -- {taxon_name:{kde|abundances}}
+    """
+    libIDs = comm.get_unique_libIDs()
+    for taxon_name,kde in KDE_BD.items():
+        d = {'kde':kde, 'abundances':{}}
+        for libID in libIDs:
+            abund = comm.get_taxonAbund(taxon_name, libID=libID)
+            d['abundances'][libID] = abund[0]
+        KDE_BD[taxon_name] = d    
+
+
+def _taxon_incorp_list(libID, config, KDE_BD):
+    # perc incorp from config
+    try:
+        max_perc_taxa_incorp = config.get_max_perc_taxa_incorp(libID) 
+    except KeyError:
+        max_perc_taxa_incorp = 100.0
+    max_perc_taxa_incorp /= 100.0
+
+    # randomized list of taxa
+    taxon_names = KDE_BD.keys()
+    shuffle(taxon_names)
+
+    # set of taxa that incorporate any isotope
+    n_incorp = int(round(len(taxon_names) * max_perc_taxa_incorp, 0))
+    return taxon_names[:n_incorp]
+
     
 
 def make_incorp_model(taxon_name, libID, config):
@@ -74,13 +185,18 @@ def make_incorp_model(taxon_name, libID, config):
                  'uniform' : mixture.UniformDistribution}
 
     # creating individual distribution functions
-    libSect = config.get_libSection(libID[0])
+    libSect = config.get_libSection(libID)
     intraPopDist_IDs = []
     intraPopDist_funcs = []
     weights = []
     for (intraPopDistID,intraPopDist) in config.iter_configSections(libSect):    
+
         # name of standard distribution
-        distID = intraPopDist['distribution']
+        try:
+            distID = intraPopDist['distribution']
+        except KeyError:
+            msg = 'Cannot find "distribution" key for "{}"'
+            raise KeyError, msg.format(intraPopDistID)
         intraPopDist_IDs.append(distID)
         # getting mixture model weight for this distribution
         weight = float(intraPopDist.get('weight', 0))
@@ -104,7 +220,7 @@ def make_incorp_model(taxon_name, libID, config):
     
     
     # making sure weights add up to 1
-    weights = _fill_in_weights(weights)
+    weights = Config._fill_in_weights(weights)
     assert len(weights) == len(intraPopDist_IDs), \
         'number_of_distributions != number_of_weights'
     assert len(intraPopDist_IDs) == len(intraPopDist_funcs), \
@@ -188,67 +304,6 @@ def _start_lt_end(params):
                 params['end'] = endVal + 1e-10
 
 
-def _fill_in_weights(weights, n=None, total=1.0):
-    """Filling in any missing weights (None) 
-    so that the sum of all weights equals 'total'.
-    Both None and zero values will be set to 0,
-    while all others scaled to sum to 'total'.
-    Args:
-    weights -- iterable of weight values
-    n -- number of total weights needed.
-         if None; len(weights) used.
-    total -- sum of all returned weight values
-    Returns:
-    list of floats -- [weight1, ...]
-    """
-    total = float(total)
-        
-    # adding Nones if needed
-    if n is None:
-        n = len(weights)
-    elif n > len(weights):
-        i = n - len(weights)
-        weights.append([None for x in xrange(i)])
-    elif n < len(weights):
-        msg = 'WARNING: "n" is < len(weights)\n'
-        sys.stderr.write(msg)
-    else:
-        pass
-
-    # summing all real values
-    w_sum = sum([x for x in weights if x is not None])
-
-
-    # setting weights to sum to total
-    ## scaling factor
-    if w_sum == 0:
-        return [total / n for x in xrange(n)]
-    else:
-        a = total / w_sum
-
-    ## scaling weights
-    if a == 1:
-        # convert Nones to zeros
-        weights= [x if x else 0 for x in weights]
-    elif a > 1:
-        # convert Nones to zeros
-        weights = [x if x else 0 for x in weights]
-        # rescaling to total 
-        weights = [x * a for x in weights]
-    elif 1 < 1:
-        # rescaling all real values to sum to total
-        # all None values set to 0
-        ## rescale
-        weights = [x * a if x else x for x in weights]
-        ## convert Nones to zeros
-        weights = [x if x else 0 for x in weights]    
-    else:
-        raise RuntimeError, 'Logic Error'
-
-    assert sum(weights) == total, 'Scaled weights != total'
-    return weights
-
-
 def isotopeMaxBD(isotope):
     """Setting the theoretical max BD shift of an isotope (if 100% incorporation).
     Args:
@@ -263,299 +318,4 @@ def isotopeMaxBD(isotope):
     except KeyError:
         raise KeyError('Isotope "{}" not supported.'.format(isotope))
 
-
-
         
-def populationDistributions_OLD(config, comm):
-    """Setting distribution parameters for intra-population isotope incorporation
-    Args:
-    config -- IsoIncorpConfig instance
-    comm -- CommTable instance
-    Returns:
-    in-place edit
-    """    
-    # list of taxon names used for all library iterations
-    taxon_names = comm.get_unique_taxon_names()
-    ## TODO: introduced biased shuffling based on taxon abundance/rank?
-    shuffle(taxon_names)
-    
-    # DataFrame for output
-    outTbl = pd.DataFrame(columns=['library', 'taxon_name', 
-                                   'distribution_index', 'distribution', 
-                                   'weight', 'param', 'param_value'])
-
-
-    # iterating through all libraries & taxon in each library
-    configLibIDs = {k:v for k,v in zip(config.get_configLibs(trunc=True), \
-                                       config.get_configLibs())}
-    for libID in comm.iter_libraries():        
-        # cross check libID between comm and config files
-        libID = str(libID)
-        if not libID in configLibIDs:
-            msg = 'library "{}" in comm file but not in config. Skipping\n'
-            logging.warning(msg.format(libID))
-            continue
-        else:
-            libID = [x for x in (configLibIDs[libID], libID)]  # (full,truncated)
-            libSect = config.get_libSection(libID[0])
-
-        # max percent of taxa that can have isotope incorporation (set in config)
-        max_perc_inc = config.get_max_perc_taxa_incorp(libID[0])
-
-        # iterating by taxon
-        ntaxa = len(taxon_names)
-        for taxon_idx in xrange(ntaxa):
-            taxon_name = taxon_names[taxon_idx]
-
-            # check if taxon in library
-            if not comm.taxonInLib(taxon_name, libID[0]):
-                continue                
-
-            # writing out the intra-pop dist(s) for the taxon in the library
-            ## only taxa in the user-defined % should have any incorporation
-            perc_taxa_processed = float(taxon_idx + 1) / ntaxa * 100
-            if(perc_taxa_processed > max_perc_inc):            
-                _set_intraPopDistZero(outTbl, libID[1], taxon_name)
-            else:
-                _set_intraPopDist(outTbl, config, libID, taxon_name)
-                        
-    return outTbl
-
-                
-        
-class Config(ConfigObj):
-    """Subclassing ConfigObj for isotope incorporation file.
-    """
-
-    @classmethod
-    def load_config(cls, config_file, phylo=None):
-        """Loading config object with validation via the pre-set configspec
-        """
-        configspec = get_configspec()
-
-        # loading config file
-        return cls(config_file, configspec=configspec, phylo=phylo)
-
-
-    def __init__(self, *args, **kwargs):
-        # phylo
-        self.phylo = kwargs.pop('phylo', None)
-        self.tree = TraitEvo.read_tree(self.phylo)
-
-        # config init
-        ConfigObj.__init__(self, *args, **kwargs)
-        
-        # validate
-        self._validate_config()
-        
-        # check param assertions
-        self._param_asserts()
-
-        # setting inter-population distribution functinos
-        self._set_interPopDistFuncs()
-        self._set_interPopDistMM()
-                
-
-    def _validate_config(self):
-        """Run configobj validator on config.
-        Args:
-        Returns:
-        in-place edit
-        """
-        vtor = Validator()
-        res = self.validate(vtor, preserve_errors=True)
-        if res != True:
-            print 'ERROR: config file contains errors:'
-            
-            for entry in flatten_errors(self, res):
-                # each entry is a tuple
-                section_list, key, error = entry
-                if key is not None:
-                    section_list.append(key)
-                else:
-                    section_list.append('[missing section]')
-                    section_string = ', '.join(section_list)
-                if error == False:
-                    error = 'Missing value or section.'
-                print section_string, ' = ', error
-            sys.exit(1)
-
-            
-    def _param_asserts(self):
-        """Checking that certain parameters comply to assertions.
-        """    
-        for (libID,sect1) in self.iteritems():
-            for (intraPopDist,sect2) in self.iter_configSections(sect1):
-                # intra-pop level
-                self._check_start_end(sect2)
-                for (intraPopDistParam,sect3) in self.iter_configSections(sect2):
-                    for (interPopDistParam,sect4) in self.iter_configSections(sect3):
-                        # inter-pop level
-                        self._check_start_end(sect4)
-
-
-    def _check_start_end(self, sect):
-        """Checking start & end parameters.
-        Args:
-        sect -- config section class
-        Returns:
-        None
-        """
-        keyParams = {k.lower():v for k,v  in self.iter_sectionKeywords(sect)}
-                       
-        # assert params: end  > start
-        if ('start' in keyParams) & ('end' in keyParams):
-            try:
-                startVal = float(keyParams['start'])
-                endVal = float(keyParams['end'])
-            except TypeError:
-                return None
-                
-            if startVal > endVal:
-                sect['start'] = endVal
-                sect['end'] = startVal                
-            elif startVal == endVal:                
-                if endVal >= 100:
-                    sect['start'] = float(sect['start']) - 1e-10
-                else:
-                    sect['end'] = float(sect['end']) + 1e-10
-            else:
-                pass
-
-        return None
-                                            
-
-    def _set_interPopDistFuncs(self):
-        """Setting the inter-population distribution random sampling functions
-        based on user-selected distributions (pymix distributions).
-        A mixture models will be used for the inter-pop distribution
-        if multiple distributions are provided
-        (e.g., [[[[interPopDist 1]]]] & [[[[interPopDist 2]]]]).
-        'weight' parameters can be set for the individual distributions;
-        otherwise, each individual distribution will be weighted equally. 
-        Returns:
-        None
-        """
-        psblDists = {'normal' : mixture.NormalDistribution,
-                     'uniform' : mixture.UniformDistribution,
-                     'BM' : BrownianMotion}
-
-        for (libID,sect1) in self.iteritems():
-            for (intraPopDist,sect2) in self.iter_configSections(sect1):
-                for (intraPopDistParam,sect3) in self.iter_configSections(sect2):        
-                    for (interPopDist,sect4) in self.iter_configSections(sect3):
-
-                        dist = sect4['distribution']                 
-                        otherParams = {k:v for k,v in sect4.items() \
-                                       if k not in ['distribution','weight'] \
-                                       and v is not None}
-
-                        try: 
-                            sect4['function'] = psblDists[dist](tree=self.tree, **otherParams)
-                        except TypeError:
-                            try:
-                                sect4['function'] = psblDists[dist](**otherParams)            
-                            except KeyError:
-                                msg = 'distribution "{}" not supported'
-                                raise KeyError(msg.format(dist))
-
-
-    def _set_interPopDistMM(self):
-        """Setting the inter-population distribution random sampling functions
-        based on user-selected distributions (pymix distributions).
-        A mixture model will be used for the inter-pop distribution
-        if multiple distributions are provided
-        (e.g., [[[[interPopDist 1]]]] & [[[[interPopDist 2]]]]).
-        'weight' parameters can be set for the individual distributions;
-        otherwise, each individual distribution will be weighted equally. 
-        Returns:
-        None
-        """
-        for (libID,sect1) in self.iteritems():
-            for (intraPopDist,sect2) in self.iter_configSections(sect1):
-                for (intraPopDistParam,sect3) in self.iter_configSections(sect2):                
-                    
-                    # setting mixture models 
-                    allInterPopDists = [[k,v] for k,v in self.iter_configSections(sect3)]
-                    nInterPopDists = len(allInterPopDists)
-
-                    allFuncs = [v['function'] for k,v in allInterPopDists]
-                    allWeights = [v['weight'] for k,v in allInterPopDists \
-                                  if 'weight' in v]
-
-                    BMfuncs = [x for x in allFuncs if isinstance(x, TraitEvo.BrownianMotion)]
-                    
-                    # no mixture model if BM is a selected distribution
-                    if len(BMfuncs) >= 1:
-                        sect3['interPopDist'] = {'function' : BMfuncs[0]}
-                    else:
-
-                        # else create mixture model from >=1 standard distribution
-                        ## fill in missing weights (total = 1)
-                        allWeights = _fill_in_weights(allWeights, n = nInterPopDists) 
-                        assert sum(allWeights) == 1, 'interpop weights don\'t sum to 1'
-                        
-                        # changing interPopDist to mixture model
-                        for i in sect3: 
-                            sect3.popitem()                        
-                        sect3['interPopDist'] = {'function' :
-                                                 mixture.MixtureModel(nInterPopDists,
-                                                                      allWeights,
-                                                                      allFuncs)}
-
-            
-
-    def get_max_perc_taxa_incorp(self, libID):
-        """Getting the user-defined max_perc_taxa_incorp
-        for a specified library.
-        Args:
-        libID -- library ID
-        Returns:
-        float
-        """
-        try:
-            return self[libID]['max_perc_taxa_incorp']
-        except KeyError:
-            msg = 'Cannot find max_perc_taxa_incorp for library: {}'
-            raise KeyError, msg.format(libID)
-
-                    
-    def get_libSection(self, libID):
-        """Getting sub-section of user-defined library from config.
-        Args:
-        libID -- library ID
-        """
-        return self[libID]
-
-        
-    def get_configLibs(self, trunc=False):
-        """Get the library IDs from the config
-        """
-        if trunc==True:
-            return [re.sub('\D+', '', x) for x in self.keys()]
-        else:
-            return self.keys()
-
-            
-    def iter_configSections(self, sect=None):
-        """Iter through the sub-sections of the provided section.
-        If not section provided, starting at the top-level section.
-        """
-        if sect is None:
-            sect = self
-        for (sectID,val) in sect.iteritems():
-            if isinstance(val, configobj.Section):
-                yield (sectID,val)
-                            
-                
-    def iter_sectionKeywords(self, sect=None):
-        """Iter through just the keywords of the provided section.
-        If not section provided, starting at the top-level section.        
-        """
-        if sect is None:
-            sect = self
-        for (sectID,val) in sect.iteritems():
-            if not isinstance(val, configobj.Section):
-                yield (sectID,val)
-
-                

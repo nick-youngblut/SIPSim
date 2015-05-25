@@ -20,11 +20,16 @@ def load_kde(fileName):
     Returns:
     dict -- {taxon_name:kde_object}
     """
-    if fileName == '-':
-        kde = pickle.load(sys.stdin)
-    else:
-        with open(fileName, 'rb') as inFH:
-            kde = pickle.load(inFH)
+    try:
+        if fileName == '-':
+            kde = pickle.load(sys.stdin)
+        else:
+            with open(fileName, 'rb') as inFH:
+                kde = pickle.load(inFH)
+    except pickle.UnpicklingError:
+        msg = 'Cannot unpickle "{}"'
+        raise pickle.UnpicklingError, msg.format(fileName)
+
     return kde
     
 

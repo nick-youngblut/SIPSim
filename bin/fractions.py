@@ -45,7 +45,7 @@ sys.path.append(libDir)
 
 
 from Fractions import Fractions
-from SIPSim import CommTable
+from CommTable import CommTable
 
 
 # functinos

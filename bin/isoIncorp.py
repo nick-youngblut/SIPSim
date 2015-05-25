@@ -124,15 +124,6 @@ Description:
 ## batteries
 from docopt import docopt
 import sys,os
-from functools import partial
-import re
-import cPickle as pickle
-from random import shuffle
-
-## 3rd party
-import pandas as pd
-import parmap
-import scipy.stats as stats
 
 ## application libraries
 scriptDir = os.path.dirname(__file__)
@@ -140,161 +131,12 @@ libDir = os.path.join(scriptDir, '../lib/')
 sys.path.append(libDir)
 
 ##import IsoIncorp
-from SIPSim import CommTable
 import IsoIncorp
-import Utils
-from SIPSimCython import add_incorp
 
-
-# functions
-def _make_kde(taxon_name, x, libID, config, taxa_incorp_list, 
-             isotope='13C', n=10000, bw_method=None): 
-    """Making new KDE of BD value distribution which includes
-    BD shift due to isotope incorporation. 
-    Args:
-    taxon_name -- str; name of taxon
-    x -- dict; keys: kde, [abundances]
-    libID -- str; library ID
-    config -- config object
-    taxa_incorp_list -- iterable; taxa that can incorporate isotope
-    isotope -- str; isotope that is incorporated
-    n -- number of Monte Carlo samples to use for estimating
-         BD+isotope_BD distribution
-    bw_method -- bandwidth scalar or function passed to
-                 scipy.stats.gaussian_kde().
-    Return:
-    (taxon_name, KDE*)
-       * Note: KDE object may be None    
-    """
-
-    # status
-    sys.stderr.write('Processing: {}\n'.format(taxon_name))
-
-    # unpack
-    n = int(n)
-    kde = x['kde']
-    if kde is None:
-        return (taxon_name, None)
-
-    # can taxon incorporate any isotope?
-    ## if not, return 'raw' BD KDE 
-    if taxon_name not in taxa_incorp_list:
-        return (taxon_name, kde)
-
-    # taxon abundance for library
-    try:
-        taxon_abund = x['abundances'][libID]
-    except KeyError:
-        tmp = re.sub('[Ll]ib(rary)* *','', libID)
-        try:
-            taxon_abund = x['abundances'][tmp]
-        except KeyError:
-            taxon_abund = None
-
-    # max incorporation for isotope
-    maxIsotopeBD = IsoIncorp.isotopeMaxBD(isotope)
-
-    # making a mixture model object lib:taxon
-    ## mix_model => distribution of % incorporation for taxon population
-    mix_model = IsoIncorp.make_incorp_model(taxon_name, libID, config)
-
-    # making KDE of BD + BD_isotope_incorp
-    kdeBD = stats.gaussian_kde( 
-        add_incorp(kde.resample(n)[0], 
-                   mix_model, 
-                   maxIsotopeBD),
-        bw_method=bw_method)
-
-    return (taxon_name, kdeBD)
-
-
-def _add_comm_to_kde(KDE_BD, comm):
-    """Adding comm data for each taxon to each KDE.
-    Args:
-    Return:
-    KDE_BD -- {taxon_name:{kde|abundances}}
-    """
-    libIDs = comm.get_unique_libIDs()
-    for taxon_name,kde in KDE_BD.items():
-        d = {'kde':kde, 'abundances':{}}
-        for libID in libIDs:
-            abund = comm.get_taxonAbund(taxon_name, libID=libID)
-            d['abundances'][libID] = abund[0]
-        KDE_BD[taxon_name] = d    
-
-
-def _taxon_incorp_list(libID, config, KDE_BD):
-    # perc incorp from config
-    try:
-        max_perc_taxa_incorp = config.get_max_perc_taxa_incorp(libID) 
-    except KeyError:
-        max_perc_taxa_incorp = 100.0
-    max_perc_taxa_incorp /= 100.0
-
-    # randomized list of taxa
-    taxon_names = KDE_BD.keys()
-    shuffle(taxon_names)
-
-    # set of taxa that incorporate any isotope
-    n_incorp = int(round(len(taxon_names) * max_perc_taxa_incorp, 0))
-    return taxon_names[:n_incorp]
-
-
-
-def main(args):
-    # loading input
-    ## kde_bd
-    KDE_BD = Utils.load_kde(args['<BD_KDE>'])
-    ## comm (optional)
-    if args['--comm'] is not None:
-        comm = CommTable.from_csv(args['--comm'], sep='\t')
-    else:
-        comm = None
-
-
-    # combining kde and comm
-    _add_comm_to_kde(KDE_BD, comm)
-    
-    # loading the config file
-    config = IsoIncorp.Config.load_config(args['<config_file>'],
-                                          phylo=args['--phylo'])
-     
-
-    # creating kde of BD distributions with BD shift from isotope
-    KDE_BD_iso = dict()
-    for libID in config.keys():        
-        # making a list of taxa that can incorporate 
-        # TODO: abundance cutoff: taxa must have abundance > threshold to incorporate
-        taxa_incorp_list = _taxon_incorp_list(libID, config, KDE_BD)
-
-        # TODO: abundance weighting with less incorp for less taxa
-
-        # setting params for parallelized function
-        pfunc = partial(_make_kde, 
-                        config = config,
-                        libID = libID,
-                        n = args['-n'],
-                        taxa_incorp_list = taxa_incorp_list,
-                        isotope = args['--isotope'],
-                        bw_method = args['--bw'])                    
-
-        # parallel by taxon
-        tmp = parmap.starmap(pfunc, KDE_BD.items(),
-                             processes = int(args['--np']),
-                             chunksize = int(args['--cs']),
-                             parallel = not args['--debug'])
-
-        KDE_BD_iso[libID] = {taxon:KDE for taxon,KDE in tmp}
-    
-
-    # writing pickled BD-KDE with BD shift from isotope incorp
-    pickle.dump(KDE_BD_iso, sys.stdout)
-        
-    
     
 # main
 if __name__ == '__main__':
     args = docopt(__doc__, version='0.1')    
-    main(args)
+    IsoIncorp.main(args)
 
 

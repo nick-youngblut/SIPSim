@@ -53,7 +53,6 @@ def _all_empty_bins(libFracBins):
     return {x:'0' for x in xrange(n_bins+1)}
 
 
-
 def _sample_BD_kde(BD_KDE, libID, taxon_name, size):
     """Sampling from buoyant density KDE
     Args:
@@ -65,10 +64,15 @@ def _sample_BD_kde(BD_KDE, libID, taxon_name, size):
     array -- [fragment BD values]
     """
     try:
+        BD_KDE[libID]
+    except KeyError:        
+        msg = 'Cannot find library->"{}"'
+        raise KeyError, msg.format(libID)
+    try:
         frag_BD = BD_KDE[libID][taxon_name].resample(size=size)[0]
     except KeyError:
-        msg = 'Cannot find lib->"{}":taxon->"{}"'
-        raise KeyError, msg.format(libID, taxon_name)
+        msg = 'Cannot find taxon->"{}" in lib->"{}"'
+        raise KeyError, msg.format(taxon_name, libID)
     except AttributeError:
         frag_BD = None #np.array([np.NaN])
     return frag_BD
