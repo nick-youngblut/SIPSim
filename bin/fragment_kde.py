@@ -30,9 +30,9 @@ Description:
 ## batteries
 from docopt import docopt
 import sys,os
-import cPickle as pickle 
 
 ## 3rd party
+import dill
 
 ## application libraries
 scriptDir = os.path.dirname(__file__)
@@ -47,7 +47,7 @@ def main(args):
     #kde2d = Frag_multiKDE(args['<fragment_table>'], bandwidth=args['--bw'])
     frag_tbl = Frags.load_frags(args['<fragment_table>'])
     frag_kde = Frags.fit_kde(frag_tbl, bw_method=args['--bw'])
-    pickle.dump(frag_kde, sys.stdout)
+    dill.dump(frag_kde, sys.stdout)
 
     
 # main

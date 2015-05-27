@@ -117,7 +117,6 @@ def fit_kde(frag_data, bw_method=None):
     Return:
     dict of kde objects {taxon_name:kde}
     """
-
     kdes = dict()
     for taxon_name,data in frag_data.items():
         # getting GC & length values

@@ -25,8 +25,6 @@ Options:
                     scipy.stats.gaussian_kde().
   --np=<np>         Number of parallel processes.
                     [default: 1]
-  --cs=<cs>         Chunksize for each process (number of taxa).
-                    [default: 1]
   -h --help         Show this screen.
   --version         Show version.
   --debug           Debug mode (no parallel processes)

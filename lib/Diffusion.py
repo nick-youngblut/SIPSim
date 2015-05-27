@@ -9,6 +9,8 @@ from functools import partial
 import parmap
 import scipy.stats as stats
 import numpy as np
+import dill
+from pathos.multiprocessing import ProcessingPool
 ## application libraries
 scriptDir = os.path.dirname(__file__)
 libDir = os.path.join(scriptDir, '../lib/')
@@ -20,25 +22,41 @@ import Utils
 
 
 # functions
-def make_kde(taxon_name, kde, n, bw_method, **kwargs):
+def make_kde(x, n, bw_method, **kwargs):
     """Makes scipy.stats.gaussian_kde from BD values
     Args:
-    taxon_name -- taxon name
-    kde -- scipy.stats kde object of BD values or None
+    x -- list of containing [taxon_name, kde]
+      taxon_name -- taxon name
+      kde -- scipy.stats kde object of BD values or None
     n -- sample size
     bw_method -- KDE bandwidth method
     Returns:
     tuple -- (taxon_name, kde object of BD values)
     """
+    # input unpacking a type checking
+    try:
+        taxon_name,kde = x
+    except ValueError:
+        msg = '"x" must be (taxon_name, kde)'
+        raise ValueError, msg
+
+    try:
+        bw_method =float(bw_method)
+    except ValueError:
+        pass 
+
+    # status
     msg = 'Processing: {}\n'
     sys.stderr.write(msg.format(taxon_name))
     
     if kde is None:
         return (taxon_name, None)
 
+    # adding diffusion
     BD_wDiff = SSC.add_diffusion(kde.resample(size=n),
                                  **kwargs)
 
+    # making new kde
     kdeBD = stats.gaussian_kde(BD_wDiff,
                                bw_method=bw_method)
 
@@ -49,11 +67,6 @@ def main(args):
     """Main function for adding diffusion error to 
     a KDE of buoyant density values.
     """
-    try:
-        args['--bw'] =float(args['--bw'])
-    except TypeError:
-        pass 
-
     kde2d = Utils.load_kde(args['<fragment_kde>'])
 
     pfunc = partial(make_kde, 
@@ -63,14 +76,15 @@ def main(args):
                     G = float(args['-G']),
                     bw_method=args['--bw'])
     
-    KDE_BD = parmap.starmap(pfunc, kde2d.items(),
-                            processes = int(args['--np']),
-                            chunksize = int(args['--cs']),
-                            parallel = not args['--debug'])
-    
+    # difussion calc in parallel
+    pool = ProcessingPool(nodes=int(args['--np']))
+    if args['--debug']:
+        KDE_BD = map(pfunc, kde2d.items())
+    else:
+        KDE_BD = pool.map(pfunc, kde2d.items())
 
-    pickle.dump({taxon:KDE for taxon,KDE in KDE_BD}, 
-                sys.stdout)
+    # pickling output
+    dill.dump({taxon:KDE for taxon,KDE in KDE_BD}, sys.stdout)
     
 
 
