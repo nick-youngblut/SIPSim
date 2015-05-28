@@ -103,159 +103,24 @@ Description:
 from docopt import docopt
 import sys,os
 import re
-import functools
-import itertools
-import cPickle as pickle 
-
-## 3rd party
-import parmap
-import numpy as np
-
 ## application libraries
 scriptDir = os.path.dirname(__file__)
 libDir = os.path.join(scriptDir, '../lib/')
 sys.path.append(libDir)
 
-from Genome import Genome
-from SimFrags import SimFrags
-import Utils
+import Fragments
 
 
-
-# functions
-def by_genome(taxonName, inFile, args):
-    """All processing conducted per genome.
-    Args:
-    inFile -- genome sequence file name
-    taxonName -- taxon name of genome
-    args -- user-provided args as dict
-    Return:
-    2d-list -- for each fragment: [taxonName,scaf,start,end,GC]
-    """
-    # status
-    sys.stderr.write('Processing: "{}"\n'.format(taxonName))
-    
-    # input check
-    assert 'scriptDir' in args, '"scriptDir" not in args'
-    
-    
-    # checking for MFEprimer.py executable
-    MFEprimerExe = os.path.join(args['scriptDir'], 'MFEprimer.py')
-    if not os.path.isfile(MFEprimerExe):
-        raise IOError('Cannot find executable "{}"'.format(MFEprimerExe))
-
-
-    # making genome object
-    assert '--fr' in args, '"--fr" must be provided in args'
-    genome = Genome(inFile, taxonName, args['--fr'])
-    
-    
-    # sequenced read template location: amplicons
-    if genome.primerFile is not None:
-        # in-silico PCR
-        assert '--rtr' in args, '"--rtr" must be in args'
-        genome.callMFEprimer(rtr=args['--rtr'], MFEprimerExe=MFEprimerExe)
-    
-        # filtering overlapping in-silico amplicons
-        genome.filterOverlaps()
-        
-        
-    # simulating fragments    
-    simFO = SimFrags(fld=args['--fld'], flr=args['--flr'], rtl=args['--rtl'])
-    nFragsMade = 0
-    fragList = dict()
-    ## if no amplicons
-    if genome.nAmplicons == 0:
-        pass
-    ## if using coverage
-    elif args['--nf'].endswith('X') or args['--nf'].endswith('x'):
-        coverage = float(args['--nf'].rstrip('xX'))
-        fragLenCov = genome.length * coverage
-        fragLenTotal = 0
-        while 1:
-            (scaf,fragStart,fragLen,fragGC) = simFO.simFrag(genome)
-            try:
-                type(fragList[scaf])
-            except KeyError:
-                fragList[scaf] = []
-                                
-            if fragStart == "NA":
-                break
-            elif fragLenTotal > fragLenCov:
-                break
-            fragLenTotal += fragLen 
-
-            nFragsMade += 1
-            fragList[scaf].append([fragStart, fragLen, fragGC])            
-    ## if using fixed number of fragments
-    else:            
-        for i in xrange(int(args['--nf'])):
-            (scaf,fragStart,fragLen,fragGC) = simFO.simFrag(genome)
-
-            try:
-                type(fragList[scaf])
-            except KeyError:
-                fragList[scaf] = []
-
-            if fragStart == "NA":
-                break
-
-            nFragsMade += 1
-            fragList[scaf].append([fragStart, fragLen, fragGC])
-                
-    # status
-    sys.stderr.write('  Genome name: {}\n'.format(genome.taxonName))                
-    sys.stderr.write('  Genome length (bp): {}\n'.format(genome.length))
-    if args['--nf']:
-        sys.stderr.write('  Number of amplicons: {}\n'.format(genome.nAmplicons))
-    sys.stderr.write('  Number of fragments simulated: {}\n'.format(nFragsMade))
-                
-    return [genome.taxonName, fragList]
-
-
-def write_fragList(fragList):
-    """Writing out fragList as a tab-delim table.
-    """
-    print '\t'.join(['taxon_name','scaffoldID','fragStart','fragLength','fragGC'])            
-
-    for x in fragList:
-        taxon_name = x[0]
-        for scaf,v in x[1].items():
-            for y in v:                
-                print '\t'.join([taxon_name, scaf] + [str(i) for i in y])
-
-
-def main(args):
-    # adding to args
-    args['scriptDir'] = libDir
-
-    # list of genome files
-    genomeList =  Utils.parseGenomeList(args['<genomeList>'], filePath=args['--fp'])
-        
-    # analyzing each genome (in parallel)    
-    by_genome_part = functools.partial(by_genome, args=args)
-    fragList = parmap.starmap(by_genome_part,
-                              genomeList,
-                              parallel = not args['--debug'],
-                              chunksize=1,
-                              processes=int(args['--np']))
-
-    # writing out table
-    if args['--tbl']:
-        write_fragList(fragList)
-    else:
-        pickle.dump(fragList, sys.stdout)
-        
-
-    
 # main
 if __name__ == '__main__':
     args = docopt(__doc__, version='0.1')
     
     sp = re.compile(' *, *')    
-    args = {k:sp.split(str(v)) if sp.search(str(v)) else v for k,v in args.items()}
-    
-    main(args)
+    args = {k:sp.split(str(v)) if sp.search(str(v)) 
+            else v for k,v in args.items()}
+    args['scriptDir'] = libDir
+
+    Fragments.main(args)
 
         
         

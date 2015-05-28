@@ -5,12 +5,50 @@
 import os,sys
 import re
 import time
+import platform
+import subprocess
 from pprint import pprint
 from itertools import chain
 import dill
 
 ## 3rd party
 import pandas as pd
+
+
+def get_os():
+    """getting operating system; only unix-like machines"""
+    
+    OS = platform.uname()[0]
+    if OS == 'Linux':
+        OS = 'linux'
+    elif OS == 'Darwin':
+        OS = 'mac'
+    else:
+        sys.stderr.write('OS: "{}" not supported\n'.format(OS))
+
+    return OS
+
+
+def is_file(fileName):
+    """Does file exist?"""
+    if os.path.isfile(fileName) is False:
+        raise IOError('"{}" does not exist'.format(fileName))
+
+        
+def sys_call(cmd, quiet=False):
+    """System call of command."""
+    try:
+        if quiet:
+            DEVNULL = open(os.devnull, 'w')
+            proc = subprocess.Popen([cmd], shell=True, stdout=DEVNULL)
+        else:
+            proc = subprocess.Popen([cmd], shell=True)
+    except subprocess.CalledProcessError:
+        pass # handle errors in the called executable
+    except OSError:
+        raise OSError('No executable for command: "{}"\n'.format(cmd))
+
+    output, err = proc.communicate()
 
 
 def load_kde(fileName):

@@ -15,7 +15,6 @@ scriptDir = os.path.dirname(__file__)
 libDir = os.path.join(scriptDir, '../lib/')
 sys.path.append(libDir)
 
-from FragGC import Frag_multiKDE
 import SIPSimCython as SSC
 import Utils
 

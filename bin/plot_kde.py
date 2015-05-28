@@ -37,12 +37,12 @@ libDir = os.path.join(scriptDir, '../lib/')
 sys.path.append(libDir)
 
 #from FragGC import Frag_multiKDE
-from Fragments import Frag_multiKDE
+from Frag_MultiKDE import Frag_MultiKDE
 
 
 # functions
 def main(args):    
-    kde2d = Frag_multiKDE(args['<fragment_table>'], bandwidth=args['--bw'])
+    kde2d = Frag_MultiKDE(args['<fragment_table>'], bandwidth=args['--bw'])
     pickle.dump(kde2d, sys.stdout)
 
     

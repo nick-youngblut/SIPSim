@@ -2,18 +2,23 @@
 
 # import
 ## batteries
-import sys
+import sys,os
 import math
 import logging
+import functools
 import cPickle as pickle
 ## 3rd party
 import numpy as np
 import pandas as pd
 import scipy.stats as stats
-#from sklearn.neighbors.kde import KernelDensity
 import mixture
+import dill
+from pathos.multiprocessing import ProcessingPool
 # amplication
 import SIPSimCython
+from Genome import Genome
+from SimFrags import SimFrags
+import Utils
 
 # logging
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
@@ -145,148 +150,130 @@ def fit_kde(frag_data, bw_method=None):
 
 
      
-class Frag_multiKDE(object):
-    """Multivariate KDE fit to fragment G+C and fragment lengths.
-    Method:
-    * load all fragGC data for >= taxon
-    * fit mulit-var KDE to distribution (using gaussian_kde from scipy.stats)
+# functions
+def by_genome(x, args):
+    """All processing conducted per genome.
+    Args:
+    x -- [inFile,taxonName]
+      inFile -- genome sequence file name
+      taxonName -- taxon name of genome
+    args -- user-provided args as dict
+    Return:
+    2d-list -- for each fragment: [taxonName,scaf,start,end,GC]
     """
+    taxonName,inFile = x
+    # status
+    sys.stderr.write('Processing: "{}"\n'.format(taxonName))
     
-    def __init__(self, fragGC_file, bandwidth=None):
-        """Using sklearn.neighbors.kde for distribution fitting. See
-        the doc for that class to get more info on the parameters passed
-        to it. 
-        Args:
-        fragGC_file -- File produced by fragGC subcommand
-        bandwidth -- KDE bandwidth parameter passed to KDE function
-        """
-        self.fragGC_file = fragGC_file
-        self.bandwidth = bandwidth
+    # input check
+    assert 'scriptDir' in args, '"scriptDir" not in args'
+    
+    
+    # checking for MFEprimer.py executable
+    MFEprimerExe = os.path.join(args['scriptDir'], 'MFEprimer.py')
+    if not os.path.isfile(MFEprimerExe):
+        raise IOError('Cannot find executable "{}"'.format(MFEprimerExe))
 
-        # loading fragment values        
-        def _load_fragGC(inFH):
-            try:
-                self._frag_data = load_fragGC_pickle(inFH)
-            except pickle.UnpicklingError:
-                inFH.seek(0)
-                self._frag_data = load_fragGC_table(inFH)            
-        try:
-            with open(self.fragGC_file, 'r') as inFH:
-                _load_fragGC(inFH)
-        except IOError:
-            _load_fragGC(sys.stdin)
 
-        # iter by taxon to fit kde
-        self._fragKDE = dict()
-        for taxon_name in self._frag_data.keys():
-            self._fragKDE[taxon_name] = self._fitKDE(taxon_name)
-
+    # making genome object
+    assert '--fr' in args, '"--fr" must be provided in args'
+    genome = Genome(inFile, taxonName, args['--fr'])
+    
+    
+    # sequenced read template location: amplicons
+    if genome.primerFile is not None:
+        # in-silico PCR
+        assert '--rtr' in args, '"--rtr" must be in args'
+        genome.callMFEprimer(rtr=args['--rtr'], MFEprimerExe=MFEprimerExe)
+    
+        # filtering overlapping in-silico amplicons
+        genome.filterOverlaps()
         
-    def __repr__(self):
-        out = ''        
-        for taxon_name in self.iter_taxon_names():
-            for kde in self.iter_kde([taxon_name]):
-                out += '{}\n\t{}\n'.format(taxon_name, kde.__repr__())
-        return out
-
-
-    def iter_taxon_names(self):
-        """Iterate through all taxon names.
-        """
-        for taxon_name in self._fragKDE.keys():
-            yield taxon_name
-
-            
-    def iter_kde(self, taxon_names):
-        """Getting the kde functions for all taxa-listed.
-        Args:
-        taxon_names -- list of taxon names
-        """
-        assert not isinstance(taxon_names, str), 'Provide a list-like object'
-
-        for taxon_name in taxon_names:
+        
+    # simulating fragments    
+    simFO = SimFrags(fld=args['--fld'], flr=args['--flr'], rtl=args['--rtl'])
+    nFragsMade = 0
+    fragList = dict()
+    ## if no amplicons
+    if genome.nAmplicons == 0:
+        pass
+    ## if using coverage
+    elif args['--nf'].endswith('X') or args['--nf'].endswith('x'):
+        coverage = float(args['--nf'].rstrip('xX'))
+        fragLenCov = genome.length * coverage
+        fragLenTotal = 0
+        while 1:
+            (scaf,fragStart,fragLen,fragGC) = simFO.simFrag(genome)
             try:
-                yield self._fragKDE[taxon_name]
+                type(fragList[scaf])
             except KeyError:
-                raise KeyError('No KDE fit for taxon "{}"'.format(taxon_name))
+                fragList[scaf] = []
+                                
+            if fragStart == "NA":
+                break
+            elif fragLenTotal > fragLenCov:
+                break
+            fragLenTotal += fragLen 
 
+            nFragsMade += 1
+            fragList[scaf].append([fragStart, fragLen, fragGC])            
+    ## if using fixed number of fragments
+    else:            
+        for i in xrange(int(args['--nf'])):
+            (scaf,fragStart,fragLen,fragGC) = simFO.simFrag(genome)
+
+            try:
+                type(fragList[scaf])
+            except KeyError:
+                fragList[scaf] = []
+
+            if fragStart == "NA":
+                break
+
+            nFragsMade += 1
+            fragList[scaf].append([fragStart, fragLen, fragGC])
+                
+    # status
+    sys.stderr.write('  Genome name: {}\n'.format(genome.taxonName))                
+    sys.stderr.write('  Genome length (bp): {}\n'.format(genome.length))
+    if args['--nf']:
+        sys.stderr.write('  Number of amplicons: {}\n'.format(genome.nAmplicons))
+    sys.stderr.write('  Number of fragments simulated: {}\n'.format(nFragsMade))
+                
+    return [genome.taxonName, fragList]
+
+
+def write_fragList(fragList):
+    """Writing out fragList as a tab-delim table.
+    """
+    print '\t'.join(['taxon_name','scaffoldID','fragStart','fragLength','fragGC'])            
+
+    for x in fragList:
+        taxon_name = x[0]
+        for scaf,v in x[1].items():
+            for y in v:                
+                print '\t'.join([taxon_name, scaf] + [str(i) for i in y])
+
+
+def main(args):
+    # list of genome files
+    genomeList =  Utils.parseGenomeList(args['<genomeList>'], filePath=args['--fp'])
+        
+    # analyzing each genome (in parallel)    
+    pfunc = functools.partial(by_genome, args=args)
     
-    def get_all_kde(self):
-        """Return all KDE objects as list [[taxon_name, kde],]
-        """
-        return [[taxon_name, self._fragKDE[taxon_name]] 
-                 for taxon_name in self.iter_taxon_names()]
+    # difussion calc in parallel
+    pool = ProcessingPool(nodes=int(args['--np']))
+    if args['--debug']:
+        fragList = map(pfunc, genomeList)
+    else:
+        fragList = pool.map(pfunc, genomeList)
 
-                
-    def sampleTaxonKDE(self, taxon_name, size=1):
-        """Sample from the KDE function set for a taxon.
-        Args:
-        taxon_name -- name of taxon
-        size -- number of fragments to sample
-        #args and kwargs -- passed to KDE function
-        Return:
-        #2d numpy array -- [[frag_GC,frag_len], ...]
-        generator: 1d numpy array [frag_GC, frag_len]
-        """
-        # asserting kde function
-        try:            
-            kde = self._fragKDE[taxon_name]
-        except KeyError:
-            raise KeyError('taxon "{}" does not have a KDE function set'.format(taxon_name))
 
-        if kde is None:
-            return None
-        else:
-            return kde.resample(size=size)
-                
-                                   
-    def _fitKDE(self, taxon_name):
-        """Returns multivariate KernelDensity function fit to fragment GC
-        values and lengths.
-        Bandwidth selection based on bandwidth attribute.
-        Args:
-        taxon_name -- taxon name string
-        """
-        #vals = np.vstack([taxon_df.GC, abs(taxon_df.fragEnd - taxon_df.fragStart)])        
-        vals = [self._get_fragGC(taxon_name),
-                self._get_fragLength(taxon_name)]
-
-        try:
-            return stats.gaussian_kde(vals, bw_method=self.bandwidth)
-        except ValueError:
-            return None
-
+    # writing out table
+    if args['--tbl']:
+        write_fragList(fragList)
+    else:
+        dill.dump(fragList, sys.stdout)
         
-    def _iter_df_by_taxon_name(self):
-        """Iterate by unique taxon names.
-        """
-        taxon_names = self.fragGC_df['taxon_name'].unique()
-        for taxon_name in taxon_names:
-            yield (taxon_name, self.fragGC_df.loc[self.fragGC_df['taxon_name'] == taxon_name])
 
-
-    def _get_fragGC(self, taxon_name):
-        """Getting fragGC values for a taxon.
-        """
-        assert hasattr(self, '_frag_data'), "No _frag_data attribute"
-        try:
-            type(self._frag_data[taxon_name])
-        except KeyError:
-            raise KeyError('taxon: "{}" not found'.format(taxon_name))
-        
-        return self._frag_data[taxon_name]['fragGC']
-            
-
-    def _get_fragLength(self, taxon_name):
-        """Getting fragGC values for a taxon.
-        """
-        assert hasattr(self, '_frag_data'), "No _frag_data attribute"
-        try:
-            type(self._frag_data[taxon_name])
-        except KeyError:
-            raise KeyError('taxon: "{}" not found'.format(taxon_name))
-        
-        return self._frag_data[taxon_name]['fragLength']
-
-
-        
