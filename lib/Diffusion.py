@@ -39,11 +39,14 @@ def make_kde(x, n, bw_method, **kwargs):
     except ValueError:
         msg = '"x" must be (taxon_name, kde)'
         raise ValueError, msg
-
     try:
-        bw_method =float(bw_method)
-    except ValueError:
+        bw_method = float(bw_method)
+    except (TypeError, ValueError) as e:
         pass 
+    try: 
+        bw_method = bw_method.lower()
+    except AttributeError:
+        pass
 
     # status
     msg = 'Processing: {}\n'
