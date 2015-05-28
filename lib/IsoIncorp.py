@@ -5,7 +5,6 @@ import re
 from functools import partial
 import types
 import logging
-import cPickle as pickle
 from collections import defaultdict
 from random import shuffle
 from StringIO import StringIO
@@ -13,8 +12,9 @@ from StringIO import StringIO
 import numpy as np
 import pandas as pd
 import mixture
-import parmap
 import scipy.stats as stats
+import dill
+from pathos.multiprocessing import ProcessingPool
 ## application
 import Utils
 import SIPSimCython
@@ -65,25 +65,27 @@ def main(args):
                         bw_method = args['--bw'])                    
 
         # parallel by taxon
-        tmp = parmap.starmap(pfunc, KDE_BD.items(),
-                             processes = int(args['--np']),
-                             chunksize = int(args['--cs']),
-                             parallel = not args['--debug'])
+        pool = ProcessingPool(nodes=int(args['--np']))
+        if args['--debug']:
+            tmp = map(pfunc, KDE_BD.items())
+        else:
+            tmp = pool.map(pfunc, KDE_BD.items())
 
         KDE_BD_iso[libID] = {taxon:KDE for taxon,KDE in tmp}
     
 
     # writing pickled BD-KDE with BD shift from isotope incorp
-    pickle.dump(KDE_BD_iso, sys.stdout)
+    dill.dump(KDE_BD_iso, sys.stdout)
         
 
-def _make_kde(taxon_name, x, libID, config, taxa_incorp_list, 
+def _make_kde(x, libID, config, taxa_incorp_list, 
              isotope='13C', n=10000, bw_method=None): 
     """Making new KDE of BD value distribution which includes
     BD shift due to isotope incorporation. 
     Args:
-    taxon_name -- str; name of taxon
-    x -- dict; keys: kde, [abundances]
+    x -- [taxon_name, dict -- {kde:abundance}]
+#    taxon_name -- str; name of taxon
+#    x -- dict; keys: kde, [abundances]
     libID -- str; library ID
     config -- config object
     taxa_incorp_list -- iterable; taxa that can incorporate isotope
@@ -96,6 +98,7 @@ def _make_kde(taxon_name, x, libID, config, taxa_incorp_list,
     (taxon_name, KDE*)
        * Note: KDE object may be None    
     """
+    taxon_name,x = x
 
     # status
     sys.stderr.write('Processing: {}\n'.format(taxon_name))
