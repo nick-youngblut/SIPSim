@@ -3,9 +3,10 @@ from functools import partial
 from collections import Counter
 from pprint import pprint
 ## 3rd party
-import parmap
 import numpy as np
 import pandas as pd
+import dill
+from pathos.multiprocessing import ProcessingPool
 ## amplication
 from CommTable import CommTable
 from FracTable import FracTable
@@ -105,13 +106,13 @@ def _bin_BD(BD_KDE, libFracBins, taxonAbsAbund, libID, taxon_name,
     return frag_BD_bins
 
 
-def sim_OTU(taxon_idx, taxon_name, comm_tbl, 
-            libID, BD_KDE, libFracBins, maxsize):
+def sim_OTU(x, comm_tbl, libID, BD_KDE, libFracBins, maxsize):
     """Simulate OTU by sampling BD KDE and binning
     values into gradient fractions.
     Args:
-    taxon_idx -- taxon number
-    taxon_name -- taxon name 
+    x -- [taxon_idx,taxon_name]
+      taxon_idx -- taxon number
+      taxon_name -- taxon name 
     comm_tbl -- comm table object
     libID -- library ID
     BD_KDE -- {library:{taxon:scipy_KDE}}
@@ -120,7 +121,9 @@ def sim_OTU(taxon_idx, taxon_name, comm_tbl,
     Return:
     array -- [fragment BD values]
     """
+    taxon_idx,taxon_name = x
     sys.stderr.write('  Processing taxon: "{}"\n'.format(taxon_name))
+    
 
     # taxon abundance based on comm file
     taxonAbsAbund = comm_tbl.get_taxonAbund(libID=libID, 
@@ -188,15 +191,15 @@ def main(uargs):
         libFracBins = [x for x in frac_tbl.BD_bins(libID)]
         
         # iter of taxa in parallel
-        f = partial(sim_OTU, comm_tbl=comm_tbl, libID=libID, 
-                    BD_KDE=BD_KDE, libFracBins=libFracBins, 
-                    maxsize=int(uargs['--max']))
+        pfunc = partial(sim_OTU, comm_tbl=comm_tbl, libID=libID, 
+                        BD_KDE=BD_KDE, libFracBins=libFracBins, 
+                        maxsize=int(uargs['--max']))
 
-        ret = parmap.starmap(f, enumerate(u_taxon_names),
-                             chunksize = int(uargs['--cs']),
-                             processes = int(uargs['--np']),
-                             parallel = not uargs['--debug'])
-
+        pool = ProcessingPool(nodes=int(uargs['--np']))
+        if uargs['--debug']:
+            ret = map(pfunc, enumerate(u_taxon_names))
+        else:
+            ret = pool.map(pfunc, enumerate(u_taxon_names))
         
         # converting to a pandas dataframe
         df = pd.DataFrame([x[1] for x in ret]).fillna(0)

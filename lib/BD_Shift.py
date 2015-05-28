@@ -3,9 +3,10 @@ import sys, os
 import cPickle as pickle 
 from functools import partial
 ## 3rd party
-import parmap
 import numpy as np
 import scipy.stats as stats
+import dill
+from pathos.multiprocessing import ProcessingPool
 ## Application
 import Utils
 
@@ -21,6 +22,7 @@ def kde_intersect(taxon, d1, d2, **kwargs):
     Returns:
     list -- [taxon_name, BD_shift]
     """
+    sys.stderr.write('Processing: {}\n'.format(taxon))
     x = _kde_intersect(d1[taxon], d2[taxon], **kwargs)
     assert np.isnan(x) or 0 <= x <= 1, \
         'KDE intersection is not in 0-1 range; value={}'.format(x)
@@ -48,8 +50,6 @@ def _kde_intersect(kde1, kde2, start=1.66, end=1.85, step=0.001):
     # calculate intersection densities
     pmin = np.min(np.c_[kde1(x),kde2(x)], axis=1)
     # integrate areas under curves
-#    total = kde1.integrate_box_1d(start,end) + \
-#            kde2.integrate_box_1d(start,end)
     total = np.trapz(y=kde1(x), x=x) + \
             np.trapz(y=kde2(x), x=x)
     intersection = np.trapz(y=pmin,x=x)
@@ -133,10 +133,12 @@ def main(args):
                             start=float(args['--start']),
                             end=float(args['--end']),
                             step=float(args['--step']))
-            res = parmap.map(pfunc, taxa, 
-                             processes=int(args['--np']),
-                             chunksize=int(args['--cs']),
-                             parallel=not args['--debug'])
+
+            pool = ProcessingPool(nodes=int(args['--np']))
+            if args['--debug']:
+                res = map(pfunc, taxa)
+            else:
+                res = pool.map(pfunc, taxa)
             
             # writing out table
             for line in res:

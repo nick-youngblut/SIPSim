@@ -6,7 +6,6 @@ import sys,os
 import cPickle as pickle 
 from functools import partial
 ## 3rd party
-import parmap
 import scipy.stats as stats
 import numpy as np
 import dill

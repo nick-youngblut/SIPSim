@@ -7,7 +7,7 @@ import re
 import time
 from pprint import pprint
 from itertools import chain
-import cPickle as pickle
+import dill
 
 ## 3rd party
 import pandas as pd
@@ -22,13 +22,13 @@ def load_kde(fileName):
     """
     try:
         if fileName == '-':
-            kde = pickle.load(sys.stdin)
+            kde = dill.load(sys.stdin)
         else:
             with open(fileName, 'rb') as inFH:
-                kde = pickle.load(inFH)
-    except pickle.UnpicklingError:
+                kde = dill.load(inFH)
+    except dill.UnpicklingError:
         msg = 'Cannot unpickle "{}"'
-        raise pickle.UnpicklingError, msg.format(fileName)
+        raise dill.UnpicklingError, msg.format(fileName)
 
     return kde
     

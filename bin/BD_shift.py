@@ -12,16 +12,14 @@ Usage:
 Options:
   <kde1>         KDE object
   <kde2>         KDE object 
-  --np=<np>      Number of parallel processes.
-                 [default: 1]
-  --cs=<cs>      Chunksize for each process (number of taxa).
-                 [default: 1]
   --start=<s>    Start of series for integration.
                  [default: 1.66]
   --end=<e>      End of series for integration.
                  [default: 1.85]
   --step=<x>     Step size of series for integration.
                  [default: 0.001]
+  --np=<np>      Number of parallel processes.
+                 [default: 1]
   --version      Show version.
   --debug        Debug mode (no parallel processes)
   -h --help      Show this screen.
@@ -42,13 +40,6 @@ Description:
 ## batteries
 from docopt import docopt
 import sys,os
-import cPickle as pickle 
-from functools import partial
-## 3rd party
-import parmap
-import numpy as np
-import scipy.stats as stats
-
 ## application libraries
 scriptDir = os.path.dirname(__file__)
 libDir = os.path.join(scriptDir, '../lib/')
