@@ -2,8 +2,7 @@
 
 #--- Option parsing ---#
 """
-OTU_sim: simulate OTUs for gradient fractions based on simulated
-fragment G+C content and isotope incorporation
+OTU_table: simulate OTUs for gradient fractions
 
 Usage:
   OTU_table [options] <BD_KDE> <communities> <fractions>

@@ -28,7 +28,8 @@ Options:
                                a shared percent of 20% = 2 shared taxa.
                       The total taxon pool must be large enough to accommodate all un-shared taxa.
                       [default: 100]
-  --perm_perc=<pp>    How much to vary the rank-abundances between communities.
+  --perm_perc=<pp>    How much to vary the rank-abundances between communities. 
+                      Percentage = percent of taxa to permute.
                       [default: 0]
   --config=<c>        Config file for setting community-specific parameters (& global params).
                       Community-specific parameters can include:

@@ -2,7 +2,7 @@
 
 #--- Option parsing ---#
 """
-OTU_wideLong -- convert OTU table from wide to long or vice versa.
+OTU_wideLong -- convert OTU table from wide to long or vice versa
 
 Usage:
   OTU_wideLong [options] <OTU_table_file>

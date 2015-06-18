@@ -14,13 +14,29 @@ Options:
   --version     Show version.
 
 Commands:
-  renameGenomes -- formatting genome sequence names for SIPSim
-  indexGenomes -- index genomes (required for amplicon-fragment simulation)
-  fragGC -- Simulate genome fragments and calc fragment G+C content.
-  gradientComms -- Simulate the original communities for each isopycnic gradient
-  isoIncorp -- Simulate the amount of isotope incorporation for each taxon in each isopycnic gradient
-  fractions -- Simulate taxon abundances in each fraction of each isopycnic gradient
-  OTU_sim -- simulate OTU table
+  Genomes:
+    renameGenomes -- formatting genome sequence names for SIPSim
+    indexGenomes -- index genomes (required for amplicon-fragment simulation)
+  Fragments:
+    fragments -- Simulate genome fragments and calc fragment G+C content.
+    fragment_kde -- make a 2d kernel density estimate of fragment buoyant density and length
+  Community:
+    gradientComms -- Simulate the original communities for each isopycnic gradient
+  Diffusion:
+    diffusion -- Incorporate gradient diffusion in G+C variance
+  Isotope:
+    isoIncorp -- Simulate the amount of isotope incorporation for each taxon in each isopycnic gradient
+    BD_shift -- Determine the shift in buoyant density based on KDE overlap
+  Fractions:
+    fractions -- Simulate taxon abundances in each fraction of each isopycnic gradient
+  OTUs:
+    OTU_table -- simulate OTU table
+    OTU_subsample -- simulate sequencing by subsampling from an OTU table
+    OTU_wideLong -- convert OTU table from wide to long or vice versa
+    OTU_sampleData -- make a 'sample_data' table (phyloseq) from the OTU table
+    OTU_sum -- Sum OTU counts (by group)
+  KDEs:
+   kde_bandwidth -- Get the bandwidth of each KDE
 
 Description:
   Simulate how taxa would be distributed in isopycnic gradients as assessed by high throughput sequencing.

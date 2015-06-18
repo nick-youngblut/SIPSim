@@ -2,7 +2,7 @@
 
 #--- Option parsing ---#
 """
-diffusion: incorporate gradient diffusion in G+C variance. 
+diffusion: incorporate gradient diffusion in G+C variance
 
 Usage:
   fragments [options] <fragment_kde>
