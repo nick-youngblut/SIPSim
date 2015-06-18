@@ -331,6 +331,7 @@ class OTU_table(_table):
         """
         return self.df.loc[(self.df['library'] == libID) &
                            (self.df['fraction'] == fracID),:]
+
             
     # iter
     def iter_fractions(self, libID):    
@@ -345,6 +346,12 @@ class OTU_table(_table):
         
     
     # properties/setters
+    @property 
+    def is_long(self):
+        """Returns true if the table is in 'long' format
+        """
+        long_cols = ['library','fraction']
+        return all([x in self.df.columns.values for x in long_cols])
     @property
     def samp_dist_params(self):
         return self._samp_dist_params

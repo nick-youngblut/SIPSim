@@ -35,7 +35,7 @@ scriptDir = os.path.dirname(__file__)
 libDir = os.path.join(scriptDir, '../lib/')
 sys.path.append(libDir)
 
-from OTU_table import OTU_table
+from OTU_Table import OTU_table
 
 
 # main
@@ -47,7 +47,7 @@ if __name__ == '__main__':
     index = False
     if Uargs['--wide']:
         otu_tbl.long2wide(values='count',index='taxon',
-                          columns=['library','fractions'])
+                          columns=['library','fraction'])
         index = True
         
     otu_tbl.to_csv(sys.stdout, sep='\t', index=index)                 

@@ -3246,3 +3246,204 @@ WARNING:root:kernel c5e61a02-c5bb-4eef-bee9-ac6bbb4d4f82 restarted
 [33m[W 12:25:39.589 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
 [32m[I 12:26:42.128 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
 [33m[W 12:26:42.130 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 12:28:42.107 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 12:28:42.110 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 12:30:42.027 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 12:30:42.031 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 12:34:42.062 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 12:34:42.063 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 13:43:04.858 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 13:43:04.860 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 13:47:04.889 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 13:47:04.891 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 13:53:04.875 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 13:53:04.877 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 13:55:04.869 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 13:55:04.871 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 13:56:32.455 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 13:56:32.457 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 18:23:23.767 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 18:23:23.769 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 18:25:24.174 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 18:25:24.176 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 18:27:24.198 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 18:27:24.200 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 18:31:24.163 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 18:31:24.165 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 18:33:24.164 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 18:33:24.165 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 18:35:24.208 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 18:35:24.210 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[33m[W 18:38:30.400 NotebookApp][m WebSocket ping timeout after 119932 ms.
+[32m[I 18:48:26.534 NotebookApp][m Kernel interrupted: 09ea3a26-4a78-4c84-a533-c809cb2637c2
+[33m[W 18:48:49.142 NotebookApp][m Notebook ipynb/t/genome100/dev_run1.ipynb is not trusted
+[32m[I 18:50:57.663 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 18:50:57.665 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 18:52:57.065 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 18:52:57.067 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 18:54:57.655 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 18:54:57.657 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 18:56:57.640 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 18:56:57.642 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 18:57:47.838 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 18:57:47.839 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:00:55.263 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:00:55.265 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:02:55.291 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:02:55.292 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:04:55.268 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:04:55.270 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:06:55.688 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:06:55.689 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:08:55.834 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:08:55.836 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:10:55.288 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:10:55.290 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:12:55.243 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:12:55.245 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:14:55.324 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:14:55.326 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:16:55.265 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:16:55.267 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:18:55.272 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:18:55.274 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:20:02.715 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:20:02.716 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:20:05.518 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:20:05.521 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:20:55.267 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:20:55.269 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:26:55.552 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:26:55.554 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:28:55.261 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:28:55.263 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:29:46.339 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:29:46.341 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:36:55.541 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:36:55.543 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:40:55.324 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:40:55.326 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:42:34.195 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:42:34.197 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:42:55.312 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:42:55.314 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:44:55.292 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:44:55.294 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:46:00.717 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:46:00.719 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:46:04.049 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:46:04.051 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:46:34.072 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:46:34.074 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:46:38.034 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:46:38.036 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 19:55:20.537 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:55:20.539 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[33m[W 19:59:22.697 NotebookApp][m WebSocket ping timeout after 119927 ms.
+[33m[W 11:55:47.024 NotebookApp][m Notebook ipynb/t/genome100/dev_run1.ipynb is not trusted
+[32m[I 11:57:48.826 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 11:57:48.828 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 11:59:48.838 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 11:59:48.840 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 12:00:25.746 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 12:00:25.748 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 12:51:32.826 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 12:51:32.828 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[33m[W 12:59:18.881 NotebookApp][m WebSocket ping timeout after 119998 ms.
+[33m[W 11:31:40.130 NotebookApp][m Notebook ipynb/t/genome100/dev_run1.ipynb is not trusted
+[32m[I 11:33:43.107 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 11:33:43.109 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 11:35:42.877 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 11:35:42.879 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 11:37:42.915 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 11:37:42.917 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 11:38:16.680 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 11:38:16.682 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 11:38:59.686 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 11:38:59.688 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 11:39:19.301 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 11:39:19.303 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 11:39:50.252 NotebookApp][m Creating new notebook in /ipynb/t/genome100
+[32m[I 11:39:50.783 NotebookApp][m Kernel started: 5d346dda-86e3-46e9-bd1b-3e21e8a92c3a
+[32m[I 11:41:50.865 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 11:43:50.880 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 12:24:00.389 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 12:24:00.390 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[33m[W 12:44:38.212 NotebookApp][m WebSocket ping timeout after 119915 ms.
+[33m[W 12:44:42.357 NotebookApp][m WebSocket ping timeout after 119966 ms.
+[33m[W 12:44:42.366 NotebookApp][m WebSocket ping timeout after 119974 ms.
+[33m[W 12:44:51.246 NotebookApp][m WebSocket ping timeout after 119940 ms.
+[32m[I 12:49:45.980 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 12:49:45.981 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 12:51:46.044 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 12:51:46.046 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 12:53:45.980 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 12:53:45.982 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 12:55:46.231 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 12:55:46.233 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 12:57:46.165 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 12:57:46.167 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 12:58:48.108 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 12:58:48.110 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 12:59:31.641 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 12:59:31.644 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 13:45:32.074 NotebookApp][m Saving file at /ipynb/t/genome100/dev_run1.ipynb
+[33m[W 13:45:32.076 NotebookApp][m Saving untrusted notebook ipynb/t/genome100/dev_run1.ipynb
+[32m[I 14:45:20.087 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 14:47:20.064 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 14:47:30.261 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 14:48:26.120 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 15:21:17.826 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 12:06:37.519 NotebookApp][m Using existing profile dir: u'/home/nick/.ipython/profile_default'
+[32m[I 12:06:37.525 NotebookApp][m Using MathJax from CDN: https://cdn.mathjax.org/mathjax/latest/MathJax.js
+[32m[I 12:06:37.541 NotebookApp][m Serving notebooks from local directory: /home/nick/notebook/SIPSim
+[32m[I 12:06:37.541 NotebookApp][m 0 active kernels 
+[32m[I 12:06:37.541 NotebookApp][m The IPython Notebook is running at: http://localhost:7702/
+[32m[I 12:06:37.541 NotebookApp][m Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[32m[I 12:06:50.198 NotebookApp][m 302 GET / (127.0.0.1) 1.37ms
+[33m[W 19:07:15.417 NotebookApp][m Notebook ipynb/t/genome100/dev_run1.ipynb is not trusted
+[32m[I 19:07:31.735 NotebookApp][m Kernel started: a3f3f4a3-2aea-4f7f-852a-1689a1d4253a
+[32m[I 19:07:48.749 NotebookApp][m Kernel started: 7e5cbd3e-1c70-4891-88ac-e5966636edbf
+[32m[I 19:08:15.149 NotebookApp][m Kernel started: 6c11e5f5-dcae-4c39-ad69-4ea15e9bfd59
+[32m[I 19:10:15.211 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[33m[W 19:11:29.348 NotebookApp][m Notebook ipynb/bac_genome_all.ipynb is not trusted
+[32m[I 19:11:45.290 NotebookApp][m Kernel started: dbbe0422-76aa-42d1-b2f3-c09241cb171d
+[32m[I 19:12:15.472 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 19:14:09.912 NotebookApp][m Kernel shutdown: dbbe0422-76aa-42d1-b2f3-c09241cb171d
+[32m[I 19:15:28.421 NotebookApp][m Kernel started: d0c4e817-e4b6-4ae7-ba7d-79737feb8bba
+[32m[I 19:16:16.421 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 19:18:16.409 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 19:20:16.481 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 19:22:17.442 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 20:12:29.325 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 20:18:29.311 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 20:20:29.311 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 20:22:29.270 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 20:24:29.837 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 20:26:29.264 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 20:28:29.403 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 20:28:44.546 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 20:34:29.296 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 20:35:30.544 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 20:36:29.280 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 20:38:29.406 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 20:40:29.339 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 20:42:29.530 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 20:44:29.532 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 20:46:29.545 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 20:48:29.577 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 20:50:29.550 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 20:52:29.685 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 20:54:29.386 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 20:56:29.437 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 20:58:31.000 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 21:00:29.477 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 21:02:29.788 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 21:04:29.937 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 21:06:07.269 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 21:06:25.253 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[32m[I 21:10:02.842 NotebookApp][m Saving file at /ipynb/t/genome100/validation_sandbox.ipynb
+[33m[W 21:11:58.994 NotebookApp][m WebSocket ping timeout after 119759 ms.
+[33m[W 21:12:02.283 NotebookApp][m WebSocket ping timeout after 119364 ms.
+[33m[W 21:12:03.294 NotebookApp][m WebSocket ping timeout after 119759 ms.
+[33m[W 21:12:15.694 NotebookApp][m WebSocket ping timeout after 119870 ms.

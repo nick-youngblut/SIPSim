@@ -231,7 +231,8 @@ class _table(object):
             try:
                 self.df['library'] = self.df['library'].astype(str)
             except KeyError:
-                raise KeyError('"library" column not found in table: "{}"!'.format(filename))
+                msg = '"library" column not found in table: "{}"!'
+                raise KeyError(msg.format(filename))
             
 
     # reshaping table
@@ -240,19 +241,19 @@ class _table(object):
         Args:
         sep -- used to split column names
         """
-        self.df = pd.melt(self.df, id_vars=['taxon'])        
+        self.df = pd.melt(self.df, id_vars=['taxon'])
         new_cols = self.df['variable'].str.split(sep).apply(pd.Series, 1)
         self.df = self.df.join(new_cols)\
-                         .rename(columns={'value':'count',0:'library',1:'fractions'})\
+                         .rename(columns={'value':'count',0:'library',1:'fraction'})\
                          .drop('variable',1)
 
         try:
             self.df = self.df\
                           .reindex_axis(['library','fractions','taxon','count'], axis=1)\
-                          .sort(['taxon', 'fractions', 'library'])            
+                          .sort(['taxon', 'fraction', 'library'])            
         except KeyError:
             pass
-        
+
 
     def long2wide(self, values, index, columns):
         """Convert table from long to wide format.
