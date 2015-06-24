@@ -255,8 +255,10 @@ class OTU_table(_table):
         pandas DataFrame -- subsampled community
         """
         # assertions
-        assert hasattr(self, 'samp_dist'), 'samp_dist attribute not found'
-        assert hasattr(self, 'samp_dist_params'), 'samp_dist_params attribute not found'
+        assert hasattr(self, 'samp_dist'), \
+            'samp_dist attribute not found'
+        assert hasattr(self, 'samp_dist_params'), \
+            'samp_dist_params attribute not found'
 
         # all taxa
         all_taxa = Counter({x:0 for x in self.iter_taxa()})
@@ -283,7 +285,6 @@ class OTU_table(_table):
                                                          size=samp_size,
                                                          replace= not no_replace,
                                                          p=counts/np.sum(counts)))
-
                         
                         # setting all taxa in counts
                         sub_comm.update(all_taxa)
@@ -298,10 +299,9 @@ class OTU_table(_table):
                         comm.loc[:,'count'] = 0
 
                 df_sub = pd.concat([df_sub, sub_comm])
-
                         
-
         df_sub['count'] = df_sub['count'].astype(int)
+
         return df_sub.reindex_axis(['library','fraction','taxon','count'], axis=1)\
             .sort(['taxon','fraction','library'])
                 

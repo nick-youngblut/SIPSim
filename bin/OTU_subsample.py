@@ -48,7 +48,6 @@ libDir = os.path.join(scriptDir, '../lib/')
 sys.path.append(libDir)
 
 from OTU_Table import OTU_table
-#from SimComms import SimComms
 import Utils
 
 
@@ -67,8 +66,8 @@ def main(Uargs):
     
     
     # setting subsampling size distribution
-    otu_tbl.set_samp_dist(samp_dist = Uargs['--dist'],
-                          samp_dist_params = Uargs['--dist_params'])
+    otu_tbl.set_samp_dist(samp_dist=Uargs['--dist'],
+                          samp_dist_params=Uargs['--dist_params'])
     
     # subsampling
     df = otu_tbl.subsample(no_replace=Uargs['--no-replace'])
