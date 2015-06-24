@@ -25,6 +25,7 @@ Commands:
   Diffusion:
     diffusion -- Incorporate gradient diffusion in G+C variance
   Isotope:
+    incorpConfigExample -- create example isotope incorporation config file
     isoIncorp -- Simulate the amount of isotope incorporation for each taxon in each isopycnic gradient
     BD_shift -- Determine the shift in buoyant density based on KDE overlap
   Fractions:

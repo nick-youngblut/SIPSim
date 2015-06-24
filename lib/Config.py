@@ -56,6 +56,139 @@ def get_configspec(strIO=True):
         return configspec
 
 
+def get_basicConfig(strIO=True):
+    basicConfig = """
+    [1]
+      # baseline: no incorporation
+    
+      [[intraPopDist 1]]
+      distribution = uniform
+    
+        [[[start]]]
+    
+          [[[[interPopDist 1]]]]
+            distribution = uniform
+            start = 0
+            end = 0
+    
+        [[[end]]]
+    
+          [[[[interPopDist 1]]]]
+            distribution = uniform
+            start = 0
+            end = 0
+    
+    [2]
+      # 'treatment' community: possible incorporation
+    
+      max_perc_taxa_incorp = 50
+    
+      [[intraPopDist 1]]
+      distribution = uniform
+    
+        [[[start]]]
+    
+          [[[[interPopDist 1]]]]
+            distribution = uniform
+            start = 100
+            end = 100
+    
+        [[[end]]]
+    
+          [[[[interPopDist 1]]]]
+            distribution = uniform
+            start = 100
+            end = 100
+    """
+    if strIO == True:
+        return StringIO(basicConfig)
+    else:
+        return basicConfig
+
+
+class ExampleConfig(ConfigObj):
+
+    def __init__(self, *args, **kwargs):
+        # config init
+        ConfigObj.__init__(self, *args, **kwargs)
+        
+    def check_treatment_lib(self):
+        try:
+            self['2']
+        except KeyError:
+            self['2'] = {}    
+
+    def check_treatment_intraPop(self):
+        try:
+            self['2']['intraPopDist 1'] 
+        except KeyError:
+            self['2']['intraPopDist 1'] = {}
+                
+    def set_percTaxa(self, percTaxa):
+        self.check_treatment_lib()
+        self['2']['max_perc_taxa_incorp'] = percTaxa
+
+    def set_percIncorpUnif(self, percIncorpUnif):
+        self.check_treatment_lib()
+        self.check_treatment_intraPop()
+        if self.treatment_intraPopDistDist != 'uniform':
+            self.treatment_intraPopDistDist = 'uniform'
+        self['2']['intraPopDist 1']['start'] = {
+            'interPopDist 1' : {
+                'distribution' : 'uniform',
+                'start' : percIncorpUnif,
+                'end' : percIncorpUnif
+            }
+        }        
+        self['2']['intraPopDist 1']['end'] = {
+            'interPopDist 1' : {
+                'distribution' : 'uniform',
+                'start' : percIncorpUnif,
+                'end' : percIncorpUnif
+            }
+        }
+        
+    def set_percIncorpNorm(self, percIncorpMean, percIncorpSD):
+        self.check_treatment_lib()
+        self.check_treatment_intraPop()
+        if self.treatment_intraPopDistDist != 'normal':
+            self.treatment_intraPopDistDist = 'normal'
+        for x in ['start', 'end']:
+            try:
+                self['2']['intraPopDist 1'].pop(x)
+            except KeyError:
+                pass
+
+        self['2']['intraPopDist 1']['mu'] = {
+            'interPopDist 1' : {
+                'distribution' : 'uniform',
+                'start' : percIncorpMean,
+                'end' : percIncorpMean
+            }
+        }        
+        self['2']['intraPopDist 1']['sigma'] = {
+            'interPopDist 1' : {
+                'distribution' : 'uniform',
+                'start' : percIncorpSD,
+                'end' : percIncorpSD
+            }
+        }
+        
+
+    @property
+    def treatment_intraPopDistDist(self):
+        try:
+            return self['2']['intraPopDist 1']['distribution']
+        except KeyError:
+            msg = 'Cannot find "interPopDist 1" => "distribution"'
+            raise KeyError, msg
+        
+    @treatment_intraPopDistDist.setter
+    def treatment_intraPopDistDist(self, value):
+        self['2']['intraPopDist 1']['distribution'] = value
+
+
+
 class Config(ConfigObj):
     """Subclassing ConfigObj for isotope incorporation file.
     """
@@ -128,8 +261,7 @@ class Config(ConfigObj):
         """
         configspec = get_configspec()
 
-        # loading config file
-        cfg =  cls(config_file, configspec=configspec, phylo=phylo)
+        cfg = cls(config_file, configspec=configspec, phylo=phylo)
 
         # checking keys
         msg = 'Library IDs must be a continuous set of integers starting from 1'

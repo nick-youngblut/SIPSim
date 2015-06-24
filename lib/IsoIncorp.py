@@ -322,3 +322,5 @@ def isotopeMaxBD(isotope):
         raise KeyError('Isotope "{}" not supported.'.format(isotope))
 
         
+
+    
