@@ -9,7 +9,7 @@ Usage:
   OTU_subsample --version
 
 Options:
-  <OTU_table_file>    Name of file produced by OTU_table subcommand.
+  <OTU_table_file>    OTU table file.
   --dist=<nd>         Distribution used to select number of samples per community.
                       See numpy.random for possible distributions.
                       For the same number of samples per community, use 'uniform'.

@@ -10,7 +10,7 @@ Usage:
   OTU_wideLong --version
 
 Options:
-  <OTU_table_file>    Name of file produced by OTU_sim subcommand.
+  <OTU_table_file>    OTU table file.
   -w --wide           Convert table to 'wide' format.
   -h --help           Show this screen.
   --version           Show version.

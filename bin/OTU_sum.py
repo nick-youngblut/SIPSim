@@ -10,7 +10,7 @@ Usage:
   OTU_summary --version
 
 Options:
-  <OTU_table_file>  Name of file produced by OTU_sim subcommand.
+  <OTU_table_file>  OTU table file.
   --groupby=<gb>    Comma-delimited list of columns to group by.
                     [default: library,fractions]
   --version         Show version.

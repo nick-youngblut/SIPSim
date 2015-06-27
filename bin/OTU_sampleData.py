@@ -5,12 +5,12 @@
 OTU_sampleData -- make a 'sample_data' table (phyloseq) from the OTU table
 
 Usage:
-  OTU_wideLong [options] <OTU_table_file>
-  OTU_wideLong -h | --help
-  OTU_wideLong --version
+  OTU_sampleData [options] <OTU_table_file>
+  OTU_sampleData -h | --help
+  OTU_sampleData --version
 
 Options:
-  <OTU_table_file>    Name of file produced by OTU_sim subcommand.
+  <OTU_table_file>    OTU table file name.
   -h --help           Show this screen.
   --version           Show version.
   --debug             Debug mode
