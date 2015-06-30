@@ -13,9 +13,9 @@ Options:
   <genomeList>  A file listing: taxonName<tab>genomeSeqFileName
   --fp=<fp>     Full path to genomeSeqFiles (if not in genomeList file).
   --rtr=<rtr>   Read template length range (min,max).
-                How big can the read template be (part of the DNA fragment 
-                that is actually sequenced) 
-                [Default: 400,1200]
+                How big can the read template be (the part of the DNA fragment 
+                that is actually sequenced)?
+                [Default: 200,1200]
   --rtl=<rtl>   Read template length distribution (see Description).
                 [Default: uniform,250,250]
   --nf=<nf>     Number of fragments to simulate per genome.

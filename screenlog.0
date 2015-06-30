@@ -3825,3 +3825,86 @@ Keyboard interrupt.
 [32m[I 14:25:57.928 NotebookApp][m Saving file at /ipynb/t/genome100/full_pipeline.ipynb
 [32m[I 14:27:57.629 NotebookApp][m Saving file at /ipynb/t/genome100/full_pipeline.ipynb
 [32m[I 14:31:18.847 NotebookApp][m Saving file at /ipynb/t/genome100/full_pipeline.ipynb
+[33m[W 08:38:51.211 NotebookApp][m WebSocket ping timeout after 119896 ms.
+[33m[W 08:39:15.673 NotebookApp][m WebSocket ping timeout after 119885 ms.
+[32m[I 09:10:36.151 NotebookApp][m Kernel started: 656352e9-bc73-44fc-8144-65cb8a969122
+[32m[I 09:12:36.184 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 09:12:50.095 NotebookApp][m Kernel interrupted: 656352e9-bc73-44fc-8144-65cb8a969122
+[32m[I 09:14:26.083 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[33m[W 09:18:08.519 NotebookApp][m Notebook ipynb/bac_genome/n1210/dataset.ipynb is not trusted
+[32m[I 09:18:10.287 NotebookApp][m Kernel started: 99bce4ca-d84a-4278-aa28-282a3dd89463
+[32m[I 09:20:30.057 NotebookApp][m Saving file at /ipynb/README.ipynb
+[32m[I 09:21:55.626 NotebookApp][m Kernel started: 79615231-423a-4f38-b5e6-bfd62725ed13
+[32m[I 09:23:55.688 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp.ipynb
+[32m[I 09:25:55.640 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp.ipynb
+[32m[I 09:27:55.639 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp.ipynb
+[32m[I 09:29:55.725 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp.ipynb
+[32m[I 09:30:40.946 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp.ipynb
+[32m[I 09:31:55.639 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp.ipynb
+[32m[I 09:37:55.636 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp.ipynb
+[32m[I 09:49:55.633 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp.ipynb
+[32m[I 09:51:25.770 NotebookApp][m Kernel interrupted: 79615231-423a-4f38-b5e6-bfd62725ed13
+[32m[I 09:51:30.002 NotebookApp][m Kernel interrupted: 79615231-423a-4f38-b5e6-bfd62725ed13
+[32m[I 09:51:55.632 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp.ipynb
+[32m[I 09:53:55.967 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp.ipynb
+[32m[I 09:54:33.979 NotebookApp][m Saving file at /ipynb/README.ipynb
+[32m[I 09:56:03.310 NotebookApp][m Kernel interrupted: 79615231-423a-4f38-b5e6-bfd62725ed13
+[32m[I 09:57:55.958 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp.ipynb
+[32m[I 09:59:55.961 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp.ipynb
+[32m[I 10:05:56.950 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp.ipynb
+[32m[I 10:36:57.918 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 10:54:04.910 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp.ipynb
+[32m[I 10:54:16.544 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp.ipynb
+[32m[I 10:55:20.982 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp.ipynb
+[32m[I 10:55:43.897 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp.ipynb
+[32m[I 10:57:03.850 NotebookApp][m Saving file at /ipynb/t/barkeri_extorquens.ipynb
+[32m[I 10:58:52.807 NotebookApp][m Saving file at /ipynb/README.ipynb
+[32m[I 11:00:52.853 NotebookApp][m Saving file at /ipynb/README.ipynb
+[32m[I 11:02:52.798 NotebookApp][m Saving file at /ipynb/README.ipynb
+[32m[I 11:03:37.925 NotebookApp][m Saving file at /ipynb/README.ipynb
+[32m[I 11:04:06.796 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp.ipynb
+[32m[I 11:04:52.798 NotebookApp][m Saving file at /ipynb/README.ipynb
+[32m[I 11:05:47.335 NotebookApp][m Saving file at /ipynb/README.ipynb
+[32m[I 11:06:52.797 NotebookApp][m Saving file at /ipynb/README.ipynb
+[32m[I 11:07:03.077 NotebookApp][m Saving file at /ipynb/README.ipynb
+[32m[I 11:34:38.452 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp.ipynb
+[32m[I 11:35:42.155 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp.ipynb
+[32m[I 11:35:44.672 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp.ipynb
+[33m[W 11:59:10.715 NotebookApp][m Notebook ipynb/bac_genome/Ecoli/Dataset.ipynb is not trusted
+[32m[I 11:59:11.046 NotebookApp][m Kernel started: 439be5bc-0bf6-48d2-9b69-b1395e244fc1
+[32m[I 12:01:11.054 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/Dataset.ipynb
+[32m[I 12:03:11.059 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/Dataset.ipynb
+[32m[I 12:05:11.049 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/Dataset.ipynb
+[32m[I 12:07:11.045 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/Dataset.ipynb
+[32m[I 12:09:11.042 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/Dataset.ipynb
+[32m[I 12:11:11.040 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/Dataset.ipynb
+[32m[I 12:11:36.767 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/Dataset.ipynb
+[32m[I 12:13:11.493 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/Dataset.ipynb
+[32m[I 12:13:18.274 NotebookApp][m Saving file at /ipynb/README.ipynb
+[33m[W 12:13:24.324 NotebookApp][m Notebook ipynb/bac_genome/Ecoli/fragLen.ipynb is not trusted
+[32m[I 12:13:26.264 NotebookApp][m Kernel started: 404c34fa-f771-452c-8285-c2cc8c398748
+[32m[I 12:13:58.799 NotebookApp][m Creating new notebook in /ipynb/bac_genome/Ecoli
+[32m[I 12:13:59.303 NotebookApp][m Kernel started: a89b6139-837b-4e0f-b014-f25cc5e4bb7c
+[32m[I 12:15:59.310 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/frag_sim.ipynb
+[32m[I 12:17:29.143 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/frag_sim.ipynb
+[32m[I 12:19:44.025 NotebookApp][m Kernel interrupted: 79615231-423a-4f38-b5e6-bfd62725ed13
+[32m[I 12:20:13.611 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp.ipynb
+[32m[I 12:20:48.214 NotebookApp][m Creating new notebook in /ipynb/bac_genome/n1210
+[32m[I 12:20:48.711 NotebookApp][m Kernel started: fdbbc10f-2fbe-4c24-abeb-abc1e9f9faa8
+[32m[I 12:22:48.714 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 13:24:49.287 NotebookApp][m WebSocket ping timeout after 119946 ms.
+[33m[W 13:24:56.077 NotebookApp][m WebSocket ping timeout after 119978 ms.
+[33m[W 13:24:59.874 NotebookApp][m WebSocket ping timeout after 119997 ms.
+[33m[W 13:25:05.723 NotebookApp][m WebSocket ping timeout after 119896 ms.
+[33m[W 13:25:10.732 NotebookApp][m WebSocket ping timeout after 119888 ms.
+[33m[W 13:25:14.098 NotebookApp][m WebSocket ping timeout after 119973 ms.
+[33m[W 13:25:14.176 NotebookApp][m WebSocket ping timeout after 119947 ms.
+[32m[I 14:15:50.554 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 14:41:57.457 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 14:43:22.913 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 14:45:57.453 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 14:46:26.453 NotebookApp][m Saving file at /ipynb/README.ipynb
+[32m[I 14:47:57.451 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 14:49:57.520 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 14:51:57.447 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 18:47:06.539 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
