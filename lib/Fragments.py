@@ -269,7 +269,6 @@ def main(args):
     else:
         fragList = pool.map(pfunc, genomeList)
 
-
     # writing out table
     if args['--tbl']:
         write_fragList(fragList)

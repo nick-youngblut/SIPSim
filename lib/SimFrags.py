@@ -146,7 +146,7 @@ class SimFrags(object):
 
             # draw from fragment size distribution
             fragSize = int(self.fld(size=1))
-            if fragSize < readTempSize:
+            if fragSize <= readTempSize:
                 tryCnt += 1
                 continue
 

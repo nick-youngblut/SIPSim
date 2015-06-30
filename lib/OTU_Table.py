@@ -1,4 +1,5 @@
 import os, sys
+import time
 from functools import partial
 from collections import Counter
 from pprint import pprint
@@ -154,7 +155,6 @@ def sim_OTU(x, comm_tbl, libID, BD_KDE, libFracBins, maxsize):
     return [taxon_name, frag_BD_bins] 
     
 
-
     
 def main(uargs):
     """Main function for making OTU table.
@@ -199,8 +199,11 @@ def main(uargs):
         if uargs['--debug']:
             ret = map(pfunc, enumerate(u_taxon_names))
         else:
-            ret = pool.map(pfunc, enumerate(u_taxon_names))
-        
+            ret = pool.amap(pfunc, enumerate(u_taxon_names))
+            while not ret.ready():
+                time.sleep(2)
+            ret = ret.get()        
+
         # converting to a pandas dataframe
         df = pd.DataFrame([x[1] for x in ret]).fillna(0)
         df['taxon'] = [x[0] for x in ret]        
@@ -215,7 +218,6 @@ def main(uargs):
 
     # combining library-specific dataframes and writing out long form of table
     pd.concat(OTU_counts, ignore_index=False).to_csv(sys.stdout, sep='\t', index=False)
-
 
 
 

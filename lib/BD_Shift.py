@@ -1,5 +1,6 @@
 ## batteries
 import sys, os
+import time
 import cPickle as pickle 
 from functools import partial
 ## 3rd party
@@ -22,7 +23,7 @@ def kde_intersect(taxon, d1, d2, **kwargs):
     Returns:
     list -- [taxon_name, BD_shift]
     """
-    sys.stderr.write('Processing: {}\n'.format(taxon))
+    sys.stderr.write('  Processing: {}\n'.format(taxon))
     x = _kde_intersect(d1[taxon], d2[taxon], **kwargs)
     assert np.isnan(x) or 0 <= x <= 1, \
         'KDE intersection is not in 0-1 range; value={}'.format(x)
@@ -138,8 +139,11 @@ def main(args):
             if args['--debug']:
                 res = map(pfunc, taxa)
             else:
-                res = pool.map(pfunc, taxa)
-            
+                res = pool.amap(pfunc, taxa)
+                while not res.ready():
+                    time.sleep(2)
+                res = res.get()        
+                            
             # writing out table
             for line in res:
                 print '\t'.join([libID1, libID2] + \

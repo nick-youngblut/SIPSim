@@ -44,7 +44,6 @@ import Fragments as Frags
 
 # functions
 def main(args):    
-    #kde2d = Frag_multiKDE(args['<fragment_table>'], bandwidth=args['--bw'])
     frag_tbl = Frags.load_frags(args['<fragment_table>'])
     frag_kde = Frags.fit_kde(frag_tbl, bw_method=args['--bw'])
     dill.dump(frag_kde, sys.stdout)
