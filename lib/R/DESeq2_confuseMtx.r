@@ -13,11 +13,11 @@ options:
   <DESeq2>         DESeq2 results object file ("-" if from STDIN).
   -o=<o>           Basename for output files.
                    [Default: DESeq2-cMtx]
-  --padj=<q>       Max adjusted P-value.
-                   [Default: 0.05]
-  --log2=<l>       Min log2FoldChange. 
-  --log2neg=<ln>   Quartile of negative log2FoldChange values.
-                   This is used to select the min-log2FoldChange value.
+  --padj=<q>       Max adjusted P-value (value < padj_cutoff).
+  --padjBH=<qq>    Max adjusted P-value (BH method).
+  --log2=<l>       Min log2FoldChange (log2fc). 
+  --log2neg=<ln>   Min log2FoldChange based on negative log2fc values
+                   (see below).
   -h               Help
 description:
   Use caret to make a confusion matrix comparing
@@ -26,9 +26,13 @@ description:
   PREDICTED isotope incorporation (based on DESeq2 results).
 
   log2neg
-    This assumes that negative log2FoldChange values are caused
+    This assumes that negative log2FoldChange (log2fc) values are caused
     by noise, and thus provide an estimate for the deviation
     in log2FoldChange from 0 that is the result of noise.
+    The cutoff is determined as the quartile of negative log2fc values
+    (converted to absolute values).
+    For example: if log2neg=0.95, the log2fc cutoff is set as
+    the distance from 0 that 95% of all negative "noise" log2fc values.    
 ' -> doc
 
 opts = docopt(doc)
@@ -56,23 +60,41 @@ BD.shift = read.delim(opts[['BD_shift']], sep='\t')
 ### DESeq2 object
 deseq.res = as.data.frame(deseq.res)
 deseq.res$taxon = rownames(deseq.res)
+
+### log2fold cutoff & padj cutoff
+log2.cut = -1/0   # -negInfinity (ie., no cutoff)
+padj.cut = 1/0       # Infinity (ie., no cutoff)
+
+#### log2.cutoff
 if(! is.null(opts[['--log2neg']])){
   log2neg = as.numeric(opts[['--log2neg']])
   x = deseq.res %>%
     filter(log2FoldChange < 0) %>%
-      summarize(q5 = quantile(log2FoldChange, log2neg))
+      mutate(log2FoldChange = abs(log2FoldChange)) %>%
+        summarize(q5 = quantile(log2FoldChange, log2neg))
   log2.cut = abs(x[1,])
 }
 if(! is.null(opts[['--log2']])){
   log2.cut = as.numeric(opts[['--log2']])
+}
+message('Log2Fold cutoff: ', log2.cut)
+padj.cut = opts[['--padj']]
+#### padj.cut
+if(! is.null(opts[['--padj']])){
+  padj.cut = as.numeric(opts[['--padj']])
+  message('padj cutoff: ', padj.cut)
   deseq.res = deseq.res %>% 
-    mutate(incorp = (padj < 0.05) & (log2FoldChange >= log2.cut))
-} else {
+    mutate(incorp = (padj < padj.cut) & (log2FoldChange >= log2.cut))
+} else
+if(! is.null(opts[['--padjBH']])){
+  padj.cut = as.numeric(opts[['--padjBH']])
+  message('padj cutoff: ', padj.cut)
   deseq.res = deseq.res %>% 
-    mutate(incorp = padj < 0.05)
+    mutate(incorp = (padj.BH < padj.cut) & (log2FoldChange >= log2.cut))
 }
 
-### BD-shift table
+
+### BD-shift table (reference)
 BD.shift = BD.shift %>%
   filter(lib2 == '2') %>%
       mutate(incorp = BD_shift > 0.05)

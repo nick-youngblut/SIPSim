@@ -12,7 +12,8 @@ options:
   <phyloseq>         Phyloseq object file.
   --sampleSum=<ss>   Minimum sample size.
                      [Default: 100]
-  --occur=<oc>       Minimum fraction of samples that a taxon must be found.
+  --occur=<oc>       Minimum fraction of samples that a taxon must
+                     be found (ie., sparcity threshold).
                      [Default: 0.25]
   --BD_min=<min>     Minimum sample buoyant density.
                      [Default: 1]

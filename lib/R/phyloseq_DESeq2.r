@@ -10,6 +10,11 @@ suppressPackageStartupMessages(library(docopt))
 
 options:
   <phyloseq>   Phyloseq object file.
+  --log2=<l>   Log2 fold change cutoff.
+               [Default: 0.25]
+  --hypo=<h>   altHypothesis tested by DESeq
+               ("greaterAbs","greater","less")
+               [Default: NULL]
   -h           Help' -> doc
 
 opts = docopt(doc)
@@ -22,6 +27,7 @@ for(x in pkgs){
 }
 
 # main
+log2.cut = as.numeric(opts[['--log2']])
 ## import
 if(opts[['<phyloseq>']] == '-'){
   con = pipe("cat", "rb")
@@ -48,8 +54,22 @@ geoMeans = apply(counts(dds), 1, gm_mean)
 dds = estimateSizeFactors(dds, geoMeans=geoMeans)
 
 ## DESeq
-dds = DESeq(dds, fitType='local')
-res = results(dds)
+dds = DESeq(dds, fitType='local', test='Wald')
+if(opts[['--hypo']] != 'NULL'){
+  res = results(dds,
+    lfcThreshold=log2.cut,
+    altHypothesis=opts[['--hypo']],
+    independentFiltering=FALSE)  
+} else {
+  res = results(dds, independentFiltering=FALSE)
+}
+
+
+## p-adjust as in Pepe-Ranney et al. (2015)
+beta = res$log2FoldChange
+betaSE = res$lfcSE
+res$p = pnorm(beta, log2.cut, betaSE, lower.tail = FALSE)
+res$padj.BH = p.adjust(res$p, "BH")
 
 ## writing
 con = pipe("cat", "wb")
