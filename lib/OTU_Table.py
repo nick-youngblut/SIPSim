@@ -153,6 +153,34 @@ def sim_OTU(x, comm_tbl, libID, BD_KDE, libFracBins, maxsize):
     frag_BD_bins = binNum2ID(frag_BD_bins, libFracBins)
 
     return [taxon_name, frag_BD_bins] 
+
+
+def _get_BD_range(x):
+    """Getting the BD range from a fraction ID 
+    (eg., "1.710-1.716").
+    Args:
+    x -- fraction ID string
+    Returns:
+    tuple -- BD start, middle end
+    """
+
+    if x.startswith('-'):
+        [start,_,end] = x.rpartition('-')
+    else:
+        [start,_,end] = x.partition('-')            
+        
+    if start.startswith('-inf'):
+        end = round(float(end),3)
+        mid = end
+    elif end.endswith('inf'):
+        start = round(float(start),3)
+        mid = start
+    else:
+        start = round(float(start),3)
+        end = round(float(end),3)
+        mid = round((end - start)/2 + start,3)
+        
+    return start, mid, end
     
 
     
@@ -210,9 +238,12 @@ def main(uargs):
         df = pd.melt(df, id_vars=['taxon'])
         df.columns = ['taxon','fraction', 'count']
         df['library'] = libID
-        df = df[['library','taxon','fraction','count']]
+        x = df['fraction'].apply(_get_BD_range).apply(pd.Series)
+        x.columns = ['BD_min','BD_mid','BD_max']
+        df = pd.concat([df, x], axis=2)
+        df = df[['library','taxon','fraction','BD_min','BD_mid','BD_max','count']]
         df.sort(['taxon', 'fraction'], inplace=True)
- 
+
         # Adding to dataframe of all libraries
         OTU_counts.append(df)
 
