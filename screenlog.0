@@ -4242,3 +4242,4 @@ Keyboard interrupt.
 [32m[I 20:22:25.808 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/DESeq2_dif_BD_range.ipynb
 [32m[I 20:24:26.270 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/DESeq2_dif_BD_range.ipynb
 [32m[I 20:30:58.141 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/DESeq2_dif_BD_range.ipynb
+[33m[W 13:41:45.207 NotebookApp][m WebSocket ping timeout after 119900 ms.

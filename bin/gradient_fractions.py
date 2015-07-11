@@ -2,7 +2,7 @@
 
 #--- Option parsing ---#
 """
-fractions: Simulate the fraction produced during gradient fractionation
+gradient_fractions: Simulate the fraction produced during gradient fractionation
   Specifically, simulating the sizes (in bouyant density) of each fraction.
   Assuming 1 isopycnic gradient per library (sample).
 

@@ -2,7 +2,7 @@
 
 #--- Option parsing ---#
 """
-kde_bandwidth: get the bandwidth of each KDE
+KDE_bandwidth: get the bandwidth of each KDE
 
 Usage:
   fragments [options] <kde>

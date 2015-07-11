@@ -28,8 +28,8 @@ Commands:
     incorpConfigExample -- create example isotope incorporation config file
     isoIncorp -- Simulate the amount of isotope incorporation for each taxon in each isopycnic gradient
     BD_shift -- Determine the shift in buoyant density based on KDE overlap
-  Fractions:
-    fractions -- Simulate taxon abundances in each fraction of each isopycnic gradient
+  Gradient fractions:
+    gradient_fractions -- Simulate taxon abundances in each fraction of each isopycnic gradient
   OTUs:
     OTU_table -- simulate OTU table
     OTU_subsample -- simulate sequencing by subsampling from an OTU table
@@ -37,7 +37,7 @@ Commands:
     OTU_sampleData -- make a 'sample_data' table (phyloseq) from the OTU table
     OTU_sum -- Sum OTU counts (by group)
   KDEs:
-   kde_bandwidth -- Get the bandwidth of each KDE
+    KDE_bandwidth -- Get the bandwidth of each KDE
 
 Description:
   Simulate how taxa would be distributed in isopycnic gradients as assessed by high throughput sequencing.
