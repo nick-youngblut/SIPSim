@@ -6,9 +6,9 @@
 KDE_plot: make plots of each KDE (1D or 2D)
 
 Usage:
-  fragments [options] <kde>
-  fragments -h | --help
-  fragments --version
+  KDE_plot [options] <kde>
+  KDE_plot -h | --help
+  KDE_plot --version
 
 Options:
   <kde>         Pickled KDE object
@@ -19,6 +19,14 @@ Options:
                 [Default: 0]
   --nCol=<nc>   Number of subplot columns.
                 [Default: 3]
+  --xMin=<xm>   Minimum x-axis value ('' = min value in dataset).
+                [Default: ]
+  --xMax=<xM>   Maximum x-axis value ('' = max value in dataset).
+                [Default: ]
+  --yMin=<ym>   Minimum y-axis value ('' = min value in dataset).
+                [Default: ]
+  --yMax=<yM>   Maximum y-axis value ('' = max value in dataset).
+                [Default: ]
   --xStep=<xs>  X dimension granularity.
                 [Default: 0.0005]
   --yStep=<yx>  Y dimension granularity.
@@ -27,12 +35,14 @@ Options:
                 [Default: 4]
   --yX=<yx>     Y dimension figure size multiplier (ncol * x)
                 [Default: 3.5]
+  --logY=<ly>   Base for y-axis log scaling ('' = no log scaling).
+                [Default: ]
   -h --help     Show this screen.
   --version     Show version.
   --debug       Debug mode
 
 Description:
-  Plot each KDE (1D or 2D KDEs) in the the provided kde object. 
+  Plot each KDE (1D or 2D KDEs) in the the provided multi-KDE object. 
 """
 
 # import
@@ -50,50 +60,20 @@ import FigGen
 
 # main
 if __name__ == '__main__':
-    args = docopt(__doc__, version='0.1')            
+    args = docopt(__doc__, version='0.1')
     KDEs = Utils.load_kde(args['<kde>'])
-
-
+    
     FigGen.make_kde_fig(KDEs, args['-o'], 
                         n_subplot=args['-n'], 
                         ncol=args['--nCol'], 
+                        xMin=args['--xMin'],
+                        xMax=args['--xMax'],
+                        yMin=args['--yMin'],
+                        yMax=args['--yMax'],
                         xStep=args['--xStep'], 
                         yStep=args['--yStep'],
                         xX=args['--xX'],
-                        yX=args['--yX'])
+                        yX=args['--yX'],
+                        logY=args['--logY'])
 
-
-    # checking n-dims    
-    # ndims = FigGen.KDE_ndims(KDEs)
-    # if len(ndims) > 1:
-    #     msg = 'KDEs do not all have the same number of dimensions'
-    # else:
-    #     ndims = list(ndims)[0]
-
-    # # plotting based on ndims
-    # if ndims == 1:
-    #     # making histograms of the 1d KDEs
-    #     FigGen.make_kde_fig(KDEs, args['-o'], 
-    #                              n_subplot=args['-n'], 
-    #                              ncol=args['--nCol'], 
-    #                              xStep=args['--xStep'], 
-    #                              yStep=args['--yStep'],
-    #                              xX=args['--xX'],
-    #                              yX=args['--yX'])
-    # elif ndims == 2:
-    #     # making heatmaps of the 2d KDEs
-    #     FigGen.make_2d_kde_plots(KDEs, args['-o'], 
-    #                              n_subplot=args['-n'], 
-    #                              ncol=args['--nCol'], 
-    #                              xStep=args['--xStep'], 
-    #                              yStep=args['--yStep'],
-    #                              xX=args['--xX'],
-    #                              yX=args['--yX'])
-    # else:
-    #     msg = 'KDE ndims > 2; cannot create figure'
-    #     raise ValueError, msg
-    
-
-
-   
         

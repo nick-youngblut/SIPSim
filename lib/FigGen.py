@@ -16,6 +16,50 @@ def KDE_ndims(KDEs):
     return set(c.keys())
 
 
+def format_subplot_axes(subplot, xStart, xEnd, yStart=None, yEnd=None):
+    # min/max of axes
+    subplot.set_xlim([xStart,xEnd])
+    if not None in (yStart, yEnd):
+        subplot.set_ylim([yStart,yEnd])
+
+    # ticks
+    subplot.tick_params(direction='out')
+    subplot.spines['top'].set_visible(False)
+    subplot.spines['right'].set_visible(False)
+    subplot.get_xaxis().tick_bottom()
+    subplot.get_yaxis().tick_left()
+
+    # rotate x-labels
+    xlabels = subplot.get_xticklabels()
+    for label in xlabels:
+        label.set_rotation(90) 
+    
+
+def plot_1d_kde_histogram(kde, subplot, 
+                          xStart=1.66, xEnd=1.78, xStep=0.001,
+                          xlab=None, ylab=None, title=None): 
+    """Creating a subplot histogram of 1d-KDE.
+    Args:
+    kde -- kde object
+    subplot -- matplotlib subplot object
+    """
+    xi = np.arange(xStart,xEnd,xStep)
+
+    if kde is not None:
+        yi = kde(xi)
+        subplot.bar(xi, yi, width=xStep)
+    
+    if title:
+        subplot.set_title(title[:25])
+    if xlab:
+        subplot.xlabel(xlab)
+    if ylab:
+        subplot.ylabel(ylab)
+
+    # pretty axes
+    format_subplot_axes(subplot, xStart, xEnd)
+
+
 def plot_2d_kde_heatmap(kde, subplot, 
                         xStart=1.66, xEnd=1.78, xStep=0.001, 
                         yStart=1, yEnd=15000, yStep=100, 
@@ -26,9 +70,9 @@ def plot_2d_kde_heatmap(kde, subplot,
     subplot -- matplotlib subplot object
     """
 
-    i = np.arange(xStart, xEnd, float(xStep))
+    i = np.arange(xStart, xEnd, xStep)
     i_nbins = len(i)
-    j = np.arange(yStart, yEnd, float(yStep))    
+    j = np.arange(yStart, yEnd, yStep)
     j_nbins = len(j)
     
     xi,yi = np.mgrid[i.min():i.max():i_nbins*1j, j.min():j.max():j_nbins*1j]
@@ -44,25 +88,12 @@ def plot_2d_kde_heatmap(kde, subplot,
     if ylab:
         subplot.ylabel(ylab)
 
-    # min/max of axes
-    subplot.set_xlim([xStart,xEnd])
-    subplot.set_ylim([yStart,yEnd])
-
-    # ticks
-    subplot.tick_params(direction='out')
-    subplot.spines['top'].set_visible(False)
-    subplot.spines['right'].set_visible(False)
-    subplot.get_xaxis().tick_bottom()
-    subplot.get_yaxis().tick_left()
-
-    # rotate x-labels
-    xlabels = subplot.get_xticklabels()
-    for label in xlabels:
-        label.set_rotation(90) 
+    # pretty axes
+    format_subplot_axes(subplot, xStart, xEnd, yStart, yEnd)
         
 
-def make_2d_subplot_coords(n_subplot, ncol):
-    """Making 2d subplot coords
+def make_subplot_coords(n_subplot, ncol):
+    """Making subplot coords
     Args:
     n_subplot -- number of subplots to make
     Return:
@@ -104,58 +135,17 @@ def get_KDEs_min_max(KDEs):
     
 
 
-def make_2d_kde_plots_OLD(KDEs, outFile, n_subplot=0, ncol=3, xX=4, yX=3.5, **kwargs):
-
-    # value format
-    ncol = int(ncol)
-    xX = float(xX)
-    yX = float(yX)
-
-    # determine x,y min/max for plotting
-    x_min,x_max,y_min,y_max = get_KDEs_min_max(KDEs)
-    
-    # subplot coords
-    n_subplot = int(n_subplot)
-    if n_subplot < 1:
-        n_subplot = len(KDEs.keys())
-    coords,nrow = make_2d_subplot_coords(n_subplot, ncol)
-
-    # making subplot object
-    f, axarr = plt.subplots(nrow, ncol, figsize=(ncol*xX, nrow*yX))
-    if axarr.ndim == 1:
-        axarr = np.array([axarr])        
-
-    # making subplots
-    taxon_cnt = 0
-    for (i,j),(taxon) in zip(coords, sorted(KDEs.keys())):
-        msg = 'Processing KDE for taxon: "{}"\n'
-        sys.stderr.write(msg.format(taxon))
-
-        kde = KDEs[taxon]
-
-        plot_2d_kde(kde, axarr[i,j],
-                    xStart=x_min, xEnd=x_max, 
-                    yStart=y_min, yEnd=y_max, 
-                    title=taxon, **kwargs)
-
-        taxon_cnt += 1
-        if taxon_cnt >= n_subplot:
-            break
-
-    # saving figure
-    plt.tight_layout()
-    plt.savefig(outFile, bbox_inches='tight')
-    msg = 'File written: "{}"\n'
-    sys.stderr.write(msg.format(outFile))
-
-
-def make_kde_fig(KDEs, outFile, n_subplot=0, ncol=3, xX=4, yX=3.5, **kwargs):
+def make_kde_fig(KDEs, outFile, n_subplot=0, ncol=3, 
+                 xMin='', xMax='', yMin='', yMax='',
+                 xX=4, yX=3.5, xStep=0.0005, yStep=100, logY=''):
 
     # value format
     n_subplot = int(n_subplot)
     ncol = int(ncol)
     xX = float(xX)
     yX = float(yX)
+    xStep = float(xStep)
+    yStep = float(yStep)
 
     # checking n-dims of KDEs
     ndims = KDE_ndims(KDEs)
@@ -165,23 +155,20 @@ def make_kde_fig(KDEs, outFile, n_subplot=0, ncol=3, xX=4, yX=3.5, **kwargs):
         ndims = list(ndims)[0]
 
     # determine x,y min/max for plotting
-    x_min,x_max,y_min,y_max = get_KDEs_min_max(KDEs)
+    x_min,x_max,y_min,y_max = get_KDEs_min_max(KDEs)    
+    if not xMin == '':
+        x_min = float(xMin)
+    if not xMax == '':
+        x_max = float(xMax)
+    if not yMin == '':
+        y_min = float(yMin)
+    if not yMax == '':
+        y_max = float(yMax)    
 
     # subplot coords
     if n_subplot < 1:
         n_subplot = len(KDEs.keys())
-
-    ## 1d KDEs
-    if ndims == 1:
-        pass
-    ## 2d KDEs
-    elif ndims == 2:
-        coords,nrow = make_2d_subplot_coords(n_subplot, ncol)    
-    ## other
-    else:
-        msg = 'KDE ndims > 2; cannot create figure'
-        raise ValueError, msg
-
+    coords,nrow = make_subplot_coords(n_subplot, ncol)    
 
     # making subplot object
     f, axarr = plt.subplots(nrow, ncol, figsize=(ncol*xX, nrow*yX))
@@ -194,15 +181,20 @@ def make_kde_fig(KDEs, outFile, n_subplot=0, ncol=3, xX=4, yX=3.5, **kwargs):
         msg = 'Processing KDE for taxon: "{}"\n'
         sys.stderr.write(msg.format(taxon))
 
-        kde = KDEs[taxon]
+        kde = KDEs[taxon]        
+        subplot = axarr[i,j]
+        if not logY == '':
+            subplot.set_yscale('log', basey=float(logY))
 
         if ndims == 1:
-            plot_1d_
+            plot_1d_kde_histogram(kde, subplot,
+                                  xStart=x_min, xEnd=x_max, xStep=xStep,
+                                  title=taxon)
         elif ndims == 2:
-            plot_2d_kde_heatmap(kde, axarr[i,j],
-                                xStart=x_min, xEnd=x_max, 
-                                yStart=y_min, yEnd=y_max, 
-                                title=taxon, **kwargs)
+            plot_2d_kde_heatmap(kde, subplot,
+                                xStart=x_min, xEnd=x_max, xStep=xStep,
+                                yStart=y_min, yEnd=y_max, yStep=yStep,
+                                title=taxon)
         else:
             msg = 'KDE ndims > 2; cannot create figure'
             raise ValueError, msg
@@ -211,8 +203,6 @@ def make_kde_fig(KDEs, outFile, n_subplot=0, ncol=3, xX=4, yX=3.5, **kwargs):
         taxon_cnt += 1
         if taxon_cnt >= n_subplot:
             break
-
-
 
     # saving figure
     plt.tight_layout()

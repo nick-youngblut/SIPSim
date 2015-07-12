@@ -19,17 +19,21 @@ Commands:
     indexGenomes -- index genomes (required for amplicon-fragment simulation)
   Fragments:
     fragments -- Simulate genome fragments and calc fragment G+C content.
-    fragment_kde -- make a 2d kernel density estimate of fragment buoyant density and length
+    fragment_kde -- make a 2d kernel density estimate of fragment buoyant 
+                    density and length
   Community:
-    gradientComms -- Simulate the original communities for each isopycnic gradient
+    gradientComms -- Simulate the original communities for each isopycnic
+                     gradient
   Diffusion:
     diffusion -- Incorporate gradient diffusion in G+C variance
   Isotope:
     incorpConfigExample -- create example isotope incorporation config file
-    isoIncorp -- Simulate the amount of isotope incorporation for each taxon in each isopycnic gradient
+    isoIncorp -- Simulate the amount of isotope incorporation for each taxon in
+                 each isopycnic gradient
     BD_shift -- Determine the shift in buoyant density based on KDE overlap
   Gradient fractions:
-    gradient_fractions -- Simulate taxon abundances in each fraction of each isopycnic gradient
+    gradient_fractions -- Simulate taxon abundances in each fraction of each
+                          isopycnic gradient
   OTUs:
     OTU_table -- simulate OTU table
     OTU_subsample -- simulate sequencing by subsampling from an OTU table
@@ -38,9 +42,11 @@ Commands:
     OTU_sum -- Sum OTU counts (by group)
   KDEs:
     KDE_bandwidth -- Get the bandwidth of each KDE
+    KDE_plot -- plot sets of 1D or 2D KDEs
 
 Description:
-  Simulate how taxa would be distributed in isopycnic gradients as assessed by high throughput sequencing.
+  Simulate how taxa would be distributed in isopycnic gradients as assessed by
+high throughput sequencing.
 """
 
 import os, sys
