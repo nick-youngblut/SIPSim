@@ -31,7 +31,8 @@ def load_frags_table(inFH, sep='\t'):
     inFH -- file handle
     sep -- value delimiter
     """    
-    header_vals = set(['taxon_name','scaffoldID','fragStart','fragLength','fragGC'])
+    header_vals = set(['taxon_name','scaffoldID','fragStart',
+                       'fragLength','fragGC'])
     
     d = dict()
     lineNum = 0
@@ -122,6 +123,11 @@ def fit_kde(frag_data, bw_method=None):
     Return:
     dict of kde objects {taxon_name:kde}
     """
+    try:
+        bw_method = float(bw_method)
+    except ValueError:
+        pass
+    
     kdes = dict()
     for taxon_name,data in frag_data.items():
         # getting GC & length values
@@ -237,8 +243,10 @@ def by_genome(x, args):
     sys.stderr.write('  Genome name: {}\n'.format(genome.taxonName))                
     sys.stderr.write('  Genome length (bp): {}\n'.format(genome.length))
     if args['--nf']:
-        sys.stderr.write('  Number of amplicons: {}\n'.format(genome.nAmplicons))
-    sys.stderr.write('  Number of fragments simulated: {}\n'.format(nFragsMade))
+        msg = '  Number of amplicons: {}\n'
+        sys.stderr.write(msg.format(genome.nAmplicons))
+    msg = '  Number of fragments simulated: {}\n'
+    sys.stderr.write(msg.format(nFragsMade))
                 
     return [genome.taxonName, fragList]
 
@@ -246,8 +254,8 @@ def by_genome(x, args):
 def write_fragList(fragList):
     """Writing out fragList as a tab-delim table.
     """
-    print '\t'.join(['taxon_name','scaffoldID','fragStart','fragLength','fragGC'])            
-
+    print '\t'.join(['taxon_name','scaffoldID','fragStart',
+                     'fragLength','fragGC'])            
     for x in fragList:
         taxon_name = x[0]
         for scaf,v in x[1].items():
@@ -257,7 +265,8 @@ def write_fragList(fragList):
 
 def main(args):
     # list of genome files
-    genomeList =  Utils.parseGenomeList(args['<genomeList>'], filePath=args['--fp'])
+    genomeList =  Utils.parseGenomeList(args['<genomeList>'], 
+                                        filePath=args['--fp'])
         
     # analyzing each genome (in parallel)    
     pfunc = functools.partial(by_genome, args=args)
