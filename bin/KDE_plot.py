@@ -62,18 +62,39 @@ import FigGen
 if __name__ == '__main__':
     args = docopt(__doc__, version='0.1')
     KDEs = Utils.load_kde(args['<kde>'])
-    
-    FigGen.make_kde_fig(KDEs, args['-o'], 
-                        n_subplot=args['-n'], 
-                        ncol=args['--nCol'], 
-                        xMin=args['--xMin'],
-                        xMax=args['--xMax'],
-                        yMin=args['--yMin'],
-                        yMax=args['--yMax'],
-                        xStep=args['--xStep'], 
-                        yStep=args['--yStep'],
-                        xX=args['--xX'],
-                        yX=args['--yX'],
-                        logY=args['--logY'])
+
+    try:
+        FigGen.KDE_ndims(KDEs)
+    except AttributeError:
+        outFile = os.path.splitext(args['-o'])
+        msg = 'Processing library: "{}"\n'
+        for lib,x in KDEs.items():
+            sys.stderr.write(msg.format(lib))
+            outName = ''.join([outFile[0], '_', str(lib), outFile[1]])
+            FigGen.make_kde_fig(x, outName, 
+                                n_subplot=args['-n'], 
+                                ncol=args['--nCol'], 
+                                xMin=args['--xMin'],
+                                xMax=args['--xMax'],
+                                yMin=args['--yMin'],
+                                yMax=args['--yMax'],
+                                xStep=args['--xStep'], 
+                                yStep=args['--yStep'],
+                                xX=args['--xX'],
+                                yX=args['--yX'],
+                                logY=args['--logY'])
+    else:
+        FigGen.make_kde_fig(KDEs, args['-o'], 
+                            n_subplot=args['-n'], 
+                            ncol=args['--nCol'], 
+                            xMin=args['--xMin'],
+                            xMax=args['--xMax'],
+                            yMin=args['--yMin'],
+                            yMax=args['--yMax'],
+                            xStep=args['--xStep'], 
+                            yStep=args['--yStep'],
+                            xX=args['--xX'],
+                            yX=args['--yX'],
+                            logY=args['--logY'])
 
         
