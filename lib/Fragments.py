@@ -58,12 +58,24 @@ def load_frags_table(inFH, sep='\t'):
                 d[taxon_name]['fragLength'] = []
                 d[taxon_name]['fragGC'] = []
 
+            # fragment length
             fragLength = line[header_idx['fragLength']]
-            fragLength = int(fragLength)
+            try:
+                fragLength = int(fragLength)
+            except ValueError:
+                continue
+
+            # fragment GC content
             fragGC = line[header_idx['fragGC']]
-            fragGC = float(fragGC)
+            try:
+                fragGC = float(fragGC)
+            except ValueError:
+                continue
+
+            # adding to dict
             d[taxon_name]['fragLength'].append(fragLength)
             d[taxon_name]['fragGC'].append(fragGC)
+
     return d
 
             
