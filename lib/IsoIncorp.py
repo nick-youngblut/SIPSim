@@ -35,11 +35,11 @@ def main(args):
     ## comm (optional)
     if args['--comm'] is not None:
         comm = CommTable.from_csv(args['--comm'], sep='\t')
+        # combining kde and comm
+        _add_comm_to_kde(KDE_BD, comm)
     else:
         comm = None
 
-    # combining kde and comm
-    _add_comm_to_kde(KDE_BD, comm)
     
     # loading the config file
     config = Config.load_config(args['<config_file>'],
@@ -84,8 +84,6 @@ def _make_kde(x, libID, config, taxa_incorp_list,
     BD shift due to isotope incorporation. 
     Args:
     x -- [taxon_name, dict -- {kde:abundance}]
-#    taxon_name -- str; name of taxon
-#    x -- dict; keys: kde, [abundances]
     libID -- str; library ID
     config -- config object
     taxa_incorp_list -- iterable; taxa that can incorporate isotope

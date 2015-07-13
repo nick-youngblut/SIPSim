@@ -75,15 +75,18 @@ class _Comm(object):
     def richness(self, x):
         x = float(x)
         if x <= 1:
+            # x = fraction of total taxa pool
+            # setting x as that fraction number of taxa
             x = len(self.taxon_pool) * x
         self._richness = int(round(x,0))
+        if self._richness < 1:
+            self._richness = 1
 
 
-        
+
 class SimComms(_Comm):
     """Class for simulating taxon count data of communities.
     """
-
     def __init__(self, taxon_list, perm_perc, shared_perc,
                  richness, abund_dist, abund_dist_params,
                  n_comm, config=None,
@@ -91,11 +94,10 @@ class SimComms(_Comm):
         """
         Args:
         See gradientComms
-        """
+       """
         _Comm.__init__(self, *args, **kwargs)
-        
 
-        self._load_taxon_list(taxon_list)
+        self._load_taxon_list(taxon_list)        
         self.perm_perc = perm_perc
         self.shared_perc = shared_perc
         self.richness = richness
@@ -104,7 +106,6 @@ class SimComms(_Comm):
         self.config = config
         self.n_comm = n_comm
                     
-        
         # loading config; setting community parameters
         if config is not None:
             self.comm_params = self._load_config()
@@ -183,17 +184,17 @@ class SimComms(_Comm):
         Args:
         fileName -- name of taxon file
         """
-        self._taxon_pool = []
+        self.taxon_pool = []
         if fileName == '-':
             for l in sys.stdin:
                 x = l.rstrip().split('\t')
-                self._taxon_pool.append(x[0])
+                self.taxon_pool.append(x[0])
         else:
             with open(fileName, 'r') as inF:
                 for l in inF.readlines():
                     x = l.rstrip().split('\t')
-                    self._taxon_pool.append(x[0])
-        shuffle(self._taxon_pool)
+                    self.taxon_pool.append(x[0])
+        shuffle(self.taxon_pool)
 
         
     def _drawFromTaxonPool(self, n):
@@ -226,7 +227,7 @@ class SimComms(_Comm):
         except KeyError:
             raise KeyError('Cannot find community ID "{}" in '\
                            'community params\n'.format(comm_id))
-
+        
         # init comm objects
         self.comms[comm_id] = Comm(comm_id, self)
 
@@ -286,6 +287,7 @@ class SimComms(_Comm):
         perm_idx = sample(range(comm.n_taxa), n_perm)
         perm_ig = itemgetter(perm_idx)
         n_perm_idx = set(range(comm.n_taxa)) - set(perm_idx)
+                
         if len(n_perm_idx) > 0:
             n_perm_ig = itemgetter(*n_perm_idx)        
             # altering pandas series of taxa & abundances
@@ -295,7 +297,7 @@ class SimComms(_Comm):
             # altering pandas series of taxa & abundances
             comm.taxa.index = random_insert_seq([],
                                                 perm_ig(comm.taxa.index))
-            
+
         
     # dict functions
     def items(self):
@@ -319,6 +321,7 @@ class SimComms(_Comm):
             self._n_comm = int(x)
         except ValueError:
             raise ValueError('n_comm must be an integer')
+
     @property
     def perm_perc(self):
         return self._perm_perc
@@ -327,6 +330,7 @@ class SimComms(_Comm):
         x = float(x)
         assert (x >= 0 and x <= 100), 'shared_perc must be in range 0-100'
         self._perm_perc = x        
+
     @property
     def shared_perc(self):
         return self._shared_perc
@@ -335,12 +339,6 @@ class SimComms(_Comm):
         x = float(x)
         assert (x >= 0 and x <= 100), 'shared_perc must be in range 0-100'
         self._shared_perc = x
-    @property
-    def taxon_pool(self):
-        return self._taxon_pool
-    @taxon_pool.setter    
-    def taxon_pool(self, x):
-        self._taxon_pool = x
 
     @property
     def min_richness(self):
@@ -358,8 +356,7 @@ class SimComms(_Comm):
                                    'comm_id "{}"'.format(k))
             self._min_richness = min(richness_vals)
         return self._min_richness
-        
-                    
+                            
     @property
     def n_shared(self):
         """The number of taxa that should be shared;
@@ -389,27 +386,27 @@ class Comm(_Comm):
     def __init__(self, comm_id, GradientComms, *args, **kwargs): 
         """
         Args:
-        taxon_list -- list of taxa
-        richness -- number of taxa in community
-        abund_dist -- taxon abundance distribution
+        comm_id -- community ID
+        GradientComms -- gradient community object
         """
         _Comm.__init__(self, *args, **kwargs)
         self.comm_id = comm_id                                                     
         self.params = GradientComms.comm_params[comm_id]
         self.n_shared = GradientComms.n_shared
+        self.taxon_pool = GradientComms.taxon_pool
         self.richness = self.params['richness']
-                                                       
+
         # assertions
         if self.richness > self.n_shared + GradientComms.n_taxa_remaining:
             sys.exit('ERROR: Comm_ID {}\n'\
             '  Community richness is set too high! It is > taxon pool.\n'\
             '  There is not enough taxa to make the desired communities.\n' \
             '  You must reduce richness or increase perc_shared.\n'\
-            '  NOTE: shared_perc is based on the community with the min. richness.\n'\
-            .format(comm_id))
+            '  NOTE: shared_perc is based on the community with the min. ' \
+            'richness.\n'.format(comm_id))
         
         # selecting additional taxa beyond those shared by all comms
-        ## unique taxa inserted randomly in list while perserving shared taxa rank-abund
+        ## unique taxa inserted rand in list while keeping shared taxa r-abund
         n_unique = self.richness - GradientComms.n_shared
         assert n_unique >= 0, 'ERROR: Comm_ID {}: the number ' \
             'of unique taxa is < 0'.format(comm_id)

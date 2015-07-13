@@ -125,7 +125,7 @@ def fit_kde(frag_data, bw_method=None):
     """
     try:
         bw_method = float(bw_method)
-    except ValueError:
+    except TypeError:
         pass
     
     kdes = dict()
