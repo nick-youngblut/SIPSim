@@ -72,7 +72,8 @@ class CommTable(_table):
         None
         """
         try:
-            self.df['abs_abund'] = self.df['rel_abund_perc'] / 100 * int(abs_abund)
+            x = self.df['rel_abund_perc']
+            self.df['abs_abund'] = x / 100 * int(abs_abund)
         except KeyError:
             raise KeyError('"rel_abund_perc" column not found in comm file')
 

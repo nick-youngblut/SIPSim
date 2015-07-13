@@ -40,7 +40,7 @@ def get_configspec(strIO=True):
     
             [[[__many__]]]
                 [[[[__many__]]]]
-                distribution = option('normal','uniform', 'BM', default='normal')
+                distribution = option('normal','uniform','BM',default='normal')
                 weight = float(0,1, default=None)
                 mu = float(0,100, default=None)
                 sigma = float(0,100, default=None)

@@ -59,7 +59,9 @@ def load_frags_table(inFH, sep='\t'):
                 d[taxon_name]['fragGC'] = []
 
             fragLength = line[header_idx['fragLength']]
+            fragLength = int(fragLength)
             fragGC = line[header_idx['fragGC']]
+            fragGC = float(fragGC)
             d[taxon_name]['fragLength'].append(fragLength)
             d[taxon_name]['fragGC'].append(fragGC)
     return d
@@ -108,7 +110,7 @@ def load_frags(fileName):
         frag_data = load_frags_table(inFH)            
 
     inFH.close()
-
+    
     return frag_data
 
 

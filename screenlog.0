@@ -4342,3 +4342,70 @@ Keyboard interrupt.
 [32m[I 11:43:49.156 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
 [32m[I 11:45:49.177 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
 [32m[I 11:47:49.162 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 12:51:49.114 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 13:05:49.104 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 13:07:50.315 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 13:09:49.895 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 13:11:41.080 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 13:13:49.891 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 13:13:57.766 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 13:15:49.881 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 13:15:58.398 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 13:18:54.077 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 13:21:49.883 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 13:25:49.890 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 13:27:50.298 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 13:29:50.398 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 13:31:50.396 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[33m[W 13:32:56.625 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/Ecoli/%7B%7D (127.0.0.1): No such file or directory: ipynb/bac_genome/Ecoli/{}
+[33m[W 13:32:56.841 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/Ecoli/%7B%7D (127.0.0.1) 237.52ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/incorp.ipynb
+[33m[W 13:33:20.642 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/Ecoli/%7B%7D (127.0.0.1): No such file or directory: ipynb/bac_genome/Ecoli/{}
+[33m[W 13:33:20.644 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/Ecoli/%7B%7D (127.0.0.1) 2.98ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 13:33:50.397 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 13:35:50.403 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[33m[W 14:03:55.700 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/Ecoli/%7B%7D (127.0.0.1): No such file or directory: ipynb/bac_genome/Ecoli/{}
+[33m[W 14:03:55.702 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/Ecoli/%7B%7D (127.0.0.1) 2.98ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 14:03:55.867 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 14:05:55.883 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[33m[W 14:06:20.171 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/Ecoli/%7B%7D (127.0.0.1): No such file or directory: ipynb/bac_genome/Ecoli/{}
+[33m[W 14:06:20.173 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/Ecoli/%7B%7D (127.0.0.1) 2.64ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/incorp.ipynb
+[33m[W 14:06:39.737 NotebookApp][m 404 GET /home/nick/notebook/SIPSim/dev/Ecoli/incorp/0/ampFrags_kde_dif_incorp_1.png (127.0.0.1) 1.94ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/incorp.ipynb
+[33m[W 14:06:39.743 NotebookApp][m 404 GET /home/nick/notebook/SIPSim/dev/Ecoli/incorp/0/ampFrags_kde_dif_incorp_2.png (127.0.0.1) 1.84ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/incorp.ipynb
+[33m[W 14:06:39.746 NotebookApp][m 404 GET /home/nick/notebook/SIPSim/dev/Ecoli/incorp/100/ampFrags_kde_dif_incorp_1.png (127.0.0.1) 1.79ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/incorp.ipynb
+[33m[W 14:06:39.750 NotebookApp][m 404 GET /home/nick/notebook/SIPSim/dev/Ecoli/incorp/100/ampFrags_kde_dif_incorp_2.png (127.0.0.1) 1.83ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/incorp.ipynb
+[33m[W 14:06:39.752 NotebookApp][m 404 GET /home/nick/notebook/SIPSim/dev/Ecoli/incorp/40/ampFrags_kde_dif_incorp_2.png (127.0.0.1) 1.75ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/incorp.ipynb
+[33m[W 14:06:39.754 NotebookApp][m 404 GET /home/nick/notebook/SIPSim/dev/Ecoli/incorp/20/ampFrags_kde_dif_incorp_1.png (127.0.0.1) 1.75ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/incorp.ipynb
+[33m[W 14:06:39.757 NotebookApp][m 404 GET /home/nick/notebook/SIPSim/dev/Ecoli/incorp/20/ampFrags_kde_dif_incorp_2.png (127.0.0.1) 1.79ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/incorp.ipynb
+[33m[W 14:06:39.760 NotebookApp][m 404 GET /home/nick/notebook/SIPSim/dev/Ecoli/incorp/60/ampFrags_kde_dif_incorp_2.png (127.0.0.1) 1.76ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/incorp.ipynb
+[33m[W 14:06:39.761 NotebookApp][m 404 GET /home/nick/notebook/SIPSim/dev/Ecoli/incorp/40/ampFrags_kde_dif_incorp_1.png (127.0.0.1) 0.71ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/incorp.ipynb
+[33m[W 14:06:39.762 NotebookApp][m 404 GET /home/nick/notebook/SIPSim/dev/Ecoli/incorp/60/ampFrags_kde_dif_incorp_1.png (127.0.0.1) 0.71ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/incorp.ipynb
+[33m[W 14:06:39.763 NotebookApp][m 404 GET /home/nick/notebook/SIPSim/dev/Ecoli/incorp/80/ampFrags_kde_dif_incorp_1.png (127.0.0.1) 0.71ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/incorp.ipynb
+[33m[W 14:06:39.764 NotebookApp][m 404 GET /home/nick/notebook/SIPSim/dev/Ecoli/incorp/80/ampFrags_kde_dif_incorp_2.png (127.0.0.1) 0.71ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 14:06:48.708 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[33m[W 14:07:43.420 NotebookApp][m 404 GET /home/nick/notebook/SIPSim/dev/Ecoli/incorp/0/ampFrags_kde_dif_incorp_1.png (127.0.0.1) 1.95ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/incorp.ipynb
+[33m[W 14:07:43.423 NotebookApp][m 404 GET /home/nick/notebook/SIPSim/dev/Ecoli/incorp/0/ampFrags_kde_dif_incorp_2.png (127.0.0.1) 1.79ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 14:07:55.880 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[33m[W 14:08:15.532 NotebookApp][m 404 GET /home/nick/notebook/SIPSim/dev/Ecoli/incorp/0/ampFrags_kde_dif_incorp_1.png (127.0.0.1) 0.81ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/incorp.ipynb
+[33m[W 14:08:15.533 NotebookApp][m 404 GET /home/nick/notebook/SIPSim/dev/Ecoli/incorp/0/ampFrags_kde_dif_incorp_2.png (127.0.0.1) 0.72ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/incorp.ipynb
+[33m[W 14:08:55.180 NotebookApp][m 404 GET /home/nick/notebook/SIPSim/dev/Ecoli/incorp/0/ampFrags_kde_dif_incorp_1.png (127.0.0.1) 1.90ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/incorp.ipynb
+[33m[W 14:08:55.182 NotebookApp][m 404 GET /home/nick/notebook/SIPSim/dev/Ecoli/incorp/0/ampFrags_kde_dif_incorp_2.png (127.0.0.1) 1.79ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 14:08:57.477 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 14:09:55.883 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 14:11:55.880 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 14:12:06.381 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 14:13:55.896 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 14:14:08.432 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 14:15:55.992 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 14:17:04.530 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 14:17:13.506 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/incorp.ipynb
+[32m[I 14:17:54.331 NotebookApp][m Kernel started: 81c6f727-6e43-4bc4-b1d8-f5b33e340c43
+[32m[I 14:19:54.450 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/diffusion.ipynb
+[32m[I 14:21:54.448 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/diffusion.ipynb
+[32m[I 14:23:54.329 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/diffusion.ipynb
+[32m[I 14:24:04.261 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/diffusion.ipynb
+[32m[I 14:25:28.265 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/diffusion.ipynb
+[32m[I 14:27:23.355 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/diffusion.ipynb
+[32m[I 14:27:54.338 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/diffusion.ipynb
+[32m[I 14:29:54.336 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/diffusion.ipynb
+[32m[I 14:33:54.433 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/diffusion.ipynb
+[32m[I 14:34:13.589 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/diffusion.ipynb

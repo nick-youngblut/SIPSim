@@ -35,11 +35,11 @@ def main(args):
     ## comm (optional)
     if args['--comm'] is not None:
         comm = CommTable.from_csv(args['--comm'], sep='\t')
-        # combining kde and comm
-        _add_comm_to_kde(KDE_BD, comm)
     else:
         comm = None
-
+        
+    # combining kde and comm
+    _add_comm_to_kde(KDE_BD, comm)
     
     # loading the config file
     config = Config.load_config(args['<config_file>'],
@@ -50,7 +50,8 @@ def main(args):
     KDE_BD_iso = dict()
     for libID in config.keys():        
         # making a list of taxa that can incorporate 
-        # TODO: abundance cutoff: taxa must have abundance > threshold to incorporate
+        # TODO: abundance cutoff: 
+        ##       taxa must have abundance > threshold to incorporate
         taxa_incorp_list = _taxon_incorp_list(libID, config, KDE_BD)
 
         # TODO: abundance weighting with less incorp for less taxa
@@ -139,16 +140,24 @@ def _make_kde(x, libID, config, taxa_incorp_list,
     return (taxon_name, kdeBD)
 
 
-def _add_comm_to_kde(KDE_BD, comm):
+def _add_comm_to_kde(KDE_BD, comm=None):
     """Adding comm data for each taxon to each KDE.
+    'abundances' will be an empty dict if comm is not provided.
     Args:
-    Return:
+    KDE_BD -- 
+    comm -- gradient community object
+    In-place edit:
     KDE_BD -- {taxon_name:{kde|abundances}}
     """
-    libIDs = comm.get_unique_libIDs()
+    try:
+        libIDs = comm.get_unique_libIDs()
+    except AttributeError:
+        libIDs = [None]
     for taxon_name,kde in KDE_BD.items():
         d = {'kde':kde, 'abundances':{}}
         for libID in libIDs:
+            if libID is None:
+                continue
             abund = comm.get_taxonAbund(taxon_name, libID=libID)
             d['abundances'][libID] = abund[0]
         KDE_BD[taxon_name] = d    
