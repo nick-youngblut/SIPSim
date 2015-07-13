@@ -18,7 +18,7 @@ Options:
   -n=<n>        Number of taxon KDEs to plot (0 = all plotted).
                 [Default: 0]
   --nCol=<nc>   Number of subplot columns.
-                [Default: 3]
+                [Default: 1]
   --xMin=<xm>   Minimum x-axis value ('' = min value in dataset).
                 [Default: ]
   --xMax=<xM>   Maximum x-axis value ('' = max value in dataset).

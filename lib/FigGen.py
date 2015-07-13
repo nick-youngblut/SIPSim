@@ -17,6 +17,8 @@ def KDE_ndims(KDEs):
 
 
 def format_subplot_axes(subplot, xStart, xEnd, yStart=None, yEnd=None):
+    """Formatting subplot axes to look pretty.
+    """
     # min/max of axes
     subplot.set_xlim([xStart,xEnd])
     if not None in (yStart, yEnd):
@@ -146,13 +148,17 @@ def make_kde_fig(KDEs, outFile, n_subplot=0, ncol=3,
     yX = float(yX)
     xStep = float(xStep)
     yStep = float(yStep)
-
+    
     # checking n-dims of KDEs
     ndims = KDE_ndims(KDEs)
     if len(ndims) > 1:
         msg = 'KDEs do not all have the same number of dimensions'
     else:
-        ndims = list(ndims)[0]
+        try:
+            ndims = list(ndims)[0]
+        except IndexError:
+            msg = 'Nothing to plot!'
+            raise IOError, msg
 
     # determine x,y min/max for plotting
     x_min,x_max,y_min,y_max = get_KDEs_min_max(KDEs)    
@@ -172,8 +178,17 @@ def make_kde_fig(KDEs, outFile, n_subplot=0, ncol=3,
 
     # making subplot object
     f, axarr = plt.subplots(nrow, ncol, figsize=(ncol*xX, nrow*yX))
-    if axarr.ndim == 1:
-        axarr = np.array([axarr])        
+    try:         
+        if axarr.ndim == 1:
+            axarr = np.array([axarr])                    
+    except AttributeError:
+        try:
+            axarr = np.array([[x] for x in axarr])
+        except TypeError:
+            axarr = np.array([[axarr]])            
+    finally:
+        if ncol == 1:
+            axarr = axarr.transpose()
 
     # making subplots
     taxon_cnt = 0
