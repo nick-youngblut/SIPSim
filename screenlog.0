@@ -4419,3 +4419,77 @@ Keyboard interrupt.
 [32m[I 14:55:54.530 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/diffusion.ipynb
 [32m[I 14:57:54.512 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/diffusion.ipynb
 [32m[I 14:59:44.023 NotebookApp][m Saving file at /ipynb/bac_genome/Ecoli/diffusion.ipynb
+[33m[W 15:03:10.556 NotebookApp][m delete /ipynb/bac_genome/Ecoli/fragLen_old.ipynb
+[33m[W 15:03:24.841 NotebookApp][m Notebook ipynb/bac_genome/Ecoli/README.ipynb is not trusted
+[33m[W 09:47:30.394 NotebookApp][m No such file or directory: ipynb/bac_genome/n1210/perc_incorp.ipynb
+[33m[W 09:47:30.394 NotebookApp][m 404 GET /api/contents/ipynb/bac_genome/n1210/perc_incorp.ipynb?content=0&_=1436750928677 (127.0.0.1) 2.92ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/perc_incorp.ipynb
+[32m[I 09:47:30.475 NotebookApp][m Uploading file to /ipynb/bac_genome/n1210/perc_incorp.ipynb
+[33m[W 10:49:48.900 NotebookApp][m WebSocket ping timeout after 119997 ms.
+[32m[I 11:37:30.067 NotebookApp][m Kernel started: 48515787-f192-4613-9d7c-4f90be3c1346
+[32m[I 11:39:30.407 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif.ipynb
+[32m[I 11:39:52.071 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif.ipynb
+[32m[I 11:41:00.668 NotebookApp][m Kernel started: 7f5973b7-6e8e-4cf6-9989-16642ac09f15
+[32m[I 11:43:01.009 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 11:45:00.980 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 11:47:01.054 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 11:49:00.982 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 12:13:03.963 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 12:15:03.555 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 12:17:03.566 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 12:17:37.520 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif.ipynb
+[32m[I 12:19:03.524 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 12:21:03.543 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 12:23:03.505 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 12:25:03.512 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 12:27:03.506 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 12:29:03.509 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 12:33:03.541 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 12:33:14.353 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 12:33:54.321 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 12:36:00.724 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 12:37:03.578 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 12:39:03.517 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 12:47:03.458 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 12:49:03.517 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 13:13:05.377 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 13:15:05.365 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 13:17:05.374 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 13:22:11.153 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 13:24:34.947 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/DESeq2_dif_BD_range.ipynb
+[32m[I 13:26:30.093 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/DESeq2_dif_BD_range.ipynb
+[32m[I 13:28:30.150 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/DESeq2_dif_BD_range.ipynb
+[32m[I 13:30:30.162 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/DESeq2_dif_BD_range.ipynb
+[32m[I 13:31:06.345 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 13:33:06.375 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 13:35:06.430 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 13:37:06.339 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 13:39:06.918 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 13:41:06.332 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 13:43:06.242 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 13:45:06.310 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 13:59:27.708 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 14:01:10.187 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 14:03:10.127 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 14:05:10.130 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 14:07:10.141 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 14:09:10.176 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 14:11:10.165 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 14:13:10.152 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 14:15:10.126 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 14:17:10.215 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 14:19:10.162 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 14:21:10.116 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 14:23:10.226 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 14:25:10.128 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 14:27:10.156 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 14:28:26.207 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 14:29:10.140 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 14:31:10.203 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 14:33:10.201 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 14:38:51.557 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 14:40:37.850 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 15:10:46.799 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/DESeq2_dif_BD_range.ipynb
+[32m[I 15:12:46.819 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/DESeq2_dif_BD_range.ipynb
+[32m[I 15:13:06.589 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
+[32m[I 15:14:46.798 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/DESeq2_dif_BD_range.ipynb
+[32m[I 15:14:49.227 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/perc_incorp_unif_diff-BD-range.ipynb
