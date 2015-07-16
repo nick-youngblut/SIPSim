@@ -2,7 +2,7 @@
 
 #--- Option parsing ---#
 """
-tree_sim -- Sum OTU counts
+tree_sim -- Simulate a phylogeny for a specified set of taxa
 
 Usage:
   tree_sim [options] list <genome_list>
@@ -22,7 +22,8 @@ Options:
   --death_rate_sd=<ds>   Death rate standard deviation for birth-death model. 
                          [default: 0.0]
   --star                 Create a star tree instead of a birth-death model tree.
-  --outfmt=<f>           Output file format ('newick' or 'nexus'). [default: newick] 
+  --outfmt=<f>           Output file format ('newick' or 'nexus').
+                         [default: newick] 
   --version              Show version.
   --debug                Debug mode
 
@@ -41,6 +42,7 @@ from docopt import docopt
 import os, sys
 ## 3rd party
 import dendropy
+from dendropy.treesim import star_tree, birth_death
 ## application libraries
 scriptDir = os.path.dirname(__file__)
 libDir = os.path.join(scriptDir, '../lib/')
@@ -69,14 +71,14 @@ if __name__ == '__main__':
 
     # simulating tree
     if Uargs['--star']:
-        tree = dendropy.treesim.star_tree(taxon_set=taxa)
+        tree = star_tree(taxon_set=taxa)
     else:
-        tree = dendropy.treesim.birth_death(Uargs['--birth_rate'],
-                                            Uargs['--death_rate'],
-                                            birth_rate_sd=Uargs['--birth_rate_sd'],
-                                            death_rate_sd=Uargs['--death_rate_sd'],
-                                            taxon_set=taxa)
-
+        tree = birth_death(Uargs['--birth_rate'],
+                           Uargs['--death_rate'],
+                           birth_rate_sd=Uargs['--birth_rate_sd'],
+                           death_rate_sd=Uargs['--death_rate_sd'],
+                           taxon_set=taxa)
+        
     # writing tree
     outfmt = Uargs['--outfmt'].lower()
     psbl_fmts = ['newick','nexus']

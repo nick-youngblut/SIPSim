@@ -2,12 +2,12 @@
 
 #--- Option parsing ---#
 """
-isoIncorp: set taxon isotope incorporation distributions
+isotope_incorp: set taxon isotope incorporation distributions
 
 Usage:
-  isoIncorp [options] <BD_KDE> <config_file>
-  isoIncorp -h | --help
-  isoIncorp --version
+  isotope_incorp [options] <BD_KDE> <config_file>
+  isotope_incorp -h | --help
+  isotope_incorp --version
 
 Options:
   <BD_KDE>           Buoyant Density KDE object file ('-' if from STDIN).
@@ -39,15 +39,15 @@ Description:
   (e.g., normal or uniform) and how the parameters of those distributions
   (e.g., the mean or sd) vary *among* taxa (inter-population).
 
-  In other words, for each population (taxon), you are setting the distribution of isotope
-  incorporation for that population, and these population-level distributions 
-  can vary among populations (taxa).
+  In other words, for each population (taxon), you are setting the distribution
+  of isotope incorporation for that population, and these population-level
+  distributions can vary among populations (taxa).
 
-  For example, population-level incorporation is drawn from a normal distribution
-  for each taxon, but the mean (mu) of each population-level distribution is
-  determined by a uniform distribution that varies from 0 to 100. Thus, while
-  all populations have a normal distribution of incorporation, some will have
-  much more incorporation (near 100%) than others (close to 0%).
+  For example, population-level incorporation is drawn from a normal
+  distribution for each taxon, but the mean (mu) of each population-level
+  distribution is determined by a uniform distribution that varies from 0 to
+  100. Thus, while all populations have a normal distribution of incorporation, 
+  some will have much more incorporation (near 100%) than others (close to 0%).
 
   Distributions can be standard distributions (eg., normal or uniform) or a
   mixture model, which is a combination of weighted distributions.
@@ -84,12 +84,12 @@ Description:
       intra-population is higher in the hierarchy than inter-population
   ----------------- START ------------------
   [library1]
-    max_perc_taxa_incorp = 100   # <- max percent of taxa with any isotope incorporation
+    max_perc_taxa_incorp = 100  #<- max percent of taxa with any isotope incorp
 
-    [[intraPopDist1]]  # <- the intra-population isotope distrubution
+    [[intraPopDist1]]  # <- intra-population isotope distrubution
       distribution = normal
 
-      [[[loc]]]     # <- the inter-pop variation in 'loc' param for intra-pop distribution
+      [[[loc]]]   # <- inter-pop variation in 'loc' param for intra-pop dist.
         
         [[[[interPopDist 1]]]]   # <- you can have >1 standard distribution 
         distribution = normal

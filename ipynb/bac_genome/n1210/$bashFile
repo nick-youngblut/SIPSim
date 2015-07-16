@@ -1,0 +1,37 @@
+#!/bin/bash
+
+## just R analysis
+
+#-- R analysis --#
+export PATH={R_dir}:$PATH
+# plotting taxon abundances
+OTU_taxonAbund.r \
+    OTU_n2_abs{abs}_sub{subsample}.txt \
+    -r {topTaxaToPlot} \
+    -o OTU_n2_abs{abs}_sub{subsample} 
+# running DeSeq2 and making confusion matrix on predicting incorporators
+## making phyloseq object from OTU table
+phyloseq_make.r \
+    OTU_n2_abs{abs}_sub{subsample}_w.txt \
+    -s OTU_n2_abs{abs}_sub{subsample}_meta.txt \
+    > OTU_n2_abs{abs}_sub{subsample}.physeq
+## filtering phyloseq object to just taxa/samples of interest
+phyloseq_edit.r \
+    OTU_n2_abs{abs}_sub{subsample}.physeq \
+    --BD_min {BD_min} --BD_max {BD_max} \
+    > OTU_n2_abs{abs}_sub{subsample}_filt.physeq
+## making ordination
+phyloseq_ordination.r \
+    OTU_n2_abs{abs}_sub{subsample}_filt.physeq \
+    OTU_n2_abs{abs}_sub{subsample}_bray-NMDS.pdf
+## DESeq2
+phyloseq_DESeq2.r \
+    OTU_n2_abs{abs}_sub{subsample}_filt.physeq \
+    --log2 {log2} \
+    --hypo greater \
+    > OTU_n2_abs{abs}_sub{subsample}_DESeq2
+## Confusion matrix
+DESeq2_confuseMtx.r \
+    {fileName}_kde_dif_incorp_BD-shift.txt \
+    OTU_n2_abs{abs}_sub{subsample}_DESeq2 \
+    --padj {padj} 

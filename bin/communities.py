@@ -2,12 +2,12 @@
 
 #--- Option parsing ---#
 """
-gradientComms: simulate communities in the samples used for SIP
+communities: simulate communities in the samples used for SIP
 
 Usage:
-  gradientComms [options] <genomeList>
-  gradientComms -h | --help
-  gradientComms --version
+  communities [options] <genomeList>
+  communities -h | --help
+  communities --version
 
 Options:
   <genomeList>        A file listing: taxonName<tab>genomeSeqFileName

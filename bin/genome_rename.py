@@ -2,12 +2,12 @@
 
 #--- Option parsing ---#
 """
-renameGenomes: formatting genome sequences in a multi-fasta file for SIPsim
+genome_rename: formatting genome sequences in a multi-fasta file for SIPSim
 
 Usage:
-  renameGenomes [options] <genome_fasta>
-  renameGenomes -h | --help
-  renameGenomes --version
+  genome_rename [options] <genome_fasta>
+  genome_rename -h | --help
+  genome_rename --version
 
 Options:
   <genome_fasta>  Fasta file containing genome sequences ('-' if from STDIN).

@@ -15,21 +15,20 @@ Options:
 
 Commands:
   Genomes:
-    renameGenomes -- formatting genome sequence names for SIPSim
-    indexGenomes -- index genomes (required for amplicon-fragment simulation)
+    genome_rename -- formatting genome sequence names for SIPSim
+    genome_index -- index genomes (required for amplicon-fragment simulation)
   Fragments:
     fragments -- Simulate genome fragments and calc fragment G+C content.
-    fragment_kde -- make a 2d kernel density estimate of fragment buoyant 
+    fragment_kde -- make a 2D kernel density estimate of fragment buoyant 
                     density and length
   Community:
-    gradientComms -- Simulate the original communities for each isopycnic
-                     gradient
+    communities -- Simulate the original communities for each isopycnic gradient
   Diffusion:
     diffusion -- Incorporate gradient diffusion in G+C variance
   Isotope:
     incorpConfigExample -- create example isotope incorporation config file
-    isoIncorp -- Simulate the amount of isotope incorporation for each taxon in
-                 each isopycnic gradient
+    isotope_incorp -- Simulate the amount of isotope incorporation for each
+                      taxon in each isopycnic gradient
     BD_shift -- Determine the shift in buoyant density based on KDE overlap
   Gradient fractions:
     gradient_fractions -- Simulate taxon abundances in each fraction of each
@@ -43,6 +42,8 @@ Commands:
   KDEs:
     KDE_bandwidth -- Get the bandwidth of each KDE
     KDE_plot -- plot sets of 1D or 2D KDEs
+  Trees:
+    tree_sim -- Simulate a phylogeny for a specified set of taxa
 
 Description:
   Simulate how taxa would be distributed in isopycnic gradients as assessed by

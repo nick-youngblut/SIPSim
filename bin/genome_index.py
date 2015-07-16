@@ -2,12 +2,13 @@
 
 #--- Option parsing ---#
 """
-indexGenomes: index genomes for in-silico PCR; required for amplicon-fragment simulation
+genome_index: index genomes for in-silico PCR; required for 
+               amplicon-fragment simulation
 
 Usage:
-  indexGenomes [options] <genomeList>
-  indexGenomes -h | --help
-  indexGenomes --version
+  genome_index [options] <genomeList>
+  genome_index -h | --help
+  genome_index --version
 
 Options:
   <genomeList>    A file listing: taxonName<tab>genomeSeqFileName
@@ -21,8 +22,10 @@ Options:
 
 Description:
   The genomeList file (tab-delim; 'taxon_name<tab>file_name')
-  should list all genome sequence files
-  (fasta file format; 1 genome per file; genomes can be multi-chromosome/scaffold).
+  should list all genome sequence files. Format:
+   * fasta file format
+   * 1 genome per file; 
+   * genomes can be multi-chromosome/scaffold
 
   This script is not needed if shotgun-fragments are to be simulated
   (instead of amplicon-fragments).

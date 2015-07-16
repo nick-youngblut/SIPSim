@@ -3,33 +3,34 @@
 #--- Option parsing ---#
 """
 gradient_fractions: Simulate the fraction produced during gradient fractionation
-  Specifically, simulating the sizes (in bouyant density) of each fraction.
-  Assuming 1 isopycnic gradient per library (sample).
 
 Usage:
-  fractions [options] <comm_file>
-  fractions -h | --help
-  fractions --version
+  gradient_fractions [options] <comm_file>
+  gradient_fractions -h | --help
+  gradient_fractions --version
 
 Options:
-  <comm_file>          Name of file produced by gradientComms subcommand.
-  --distribution=<d>   Distribution used to select gradient sizes. [default: normal]
-  --params=<p>         Params passed to distribution (see pymix.mixture for distribution params).
-                       [default: mu:0.004,sigma:0.0015]
-  --BD_min=<x>         Minimum BD of any fraction. [default: 1.660]
-  --BD_max=<y>         Maximum BD of any fraction. [default: 1.795]
-  --frac_min=<m>       Minimum fraction size. [default: 0.001]
-  -h --help            Show this screen.
-  --version            Show version.
-  --debug              Debug mode
+  <comm_file>       Name of file produced by gradientComms subcommand.
+  --dist=<d>        Distribution used to select gradient sizes.
+                    [default: normal]
+  --params=<p>      Params passed to distribution 
+                    (see pymix.mixture for distribution params).
+                    [default: mu:0.004,sigma:0.0015]
+  --BD_min=<x>      Minimum BD of any fraction. [default: 1.66]
+  --BD_max=<y>      Maximum BD of any fraction. [default: 1.78]
+  --frac_min=<m>    Minimum fraction size. [default: 0.001]
+  -h --help         Show this screen.
+  --version         Show version.
+  --debug           Debug mode
 
 Description:
   Simulate the gradient fractionation for each library as specified in the
   community file (created with the gradientComm subcommand).
   Specifically, the sizes (in bouyant density) of each gradient fraction
-  is simulated.
+  is simulated. Assuming 1 isopycnic gradient per library (sample).
 
-  The fraction size range and variance is selected from a user-defined distribution.
+  The fraction size range and variance is selected from a user-defined
+  distribution.
 """
 
 # import
