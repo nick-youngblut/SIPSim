@@ -29,7 +29,7 @@ Options:
   --fr=<fr>     Fasta of forward & reverse primers (if simulating amplicons).
   --np=<np>     Number of genomes to process in parallel.
                 [Default: 1]
-  --tbl         Write out fragments as a table instead of a pickled python object.
+  --tbl         Write fragments as a table instead of a pickled python object.
   --debug       Debug mode (turn off parallel processing)
   --version     Show version.
   -h --help     Show this screen.
@@ -43,24 +43,25 @@ Description:
 
   '--rtr' and '--rtl':
     'read template' refers to the template nucleotide molecule from
-    which the read originated. Template size is needed to constrain the location and lengths
-    of the simulated genome fragments that contain these templates (G+C calculated
+    which the read originated. Template size is needed to constrain the location
+    and lengths of the simulated genome fragments that contain these templates
+    (G+C calculated
     from these fragments).
     Templates could either be an amplicon (e.g. 16S rRNA sequencing)
     or a genomic fragment (e.g. shotgun metagenomics). '--rtl' constrains
-    the size of this template. If primers are provided, the in-silico generated amplicons
-    are filtered to those that fit in the specified read template range.
-    '--rtl' is used to determine the template lengths of shotgun metagenomic reads
-    (not contrained by provided primers).
+    the size of this template. If primers are provided, the in-silico generated
+    amplicons are filtered to those that fit in the specified read template
+    range. '--rtl' is used to determine the template lengths of shotgun
+    metagenomic reads (not contrained by provided primers).
 
     ** Example for 16S rRNA amplicons **
     Assumning amplicon lengths of 500-650 bp, use: '--rtr 500,650'.
     This will filter out all in-silico amplicons outside of this range.
 
   ** Selection of scaffold/chromosome **
-  For genoems with multiple scaffolds/chromosomes, the scaffold is chosen randomly
-  if simulating shotgun fragments and selected randomly from the list of amplicons
-  if simulating amplicon fragments.
+  For genoems with multiple scaffolds/chromosomes, the scaffold is chosen
+  randomly if simulating shotgun fragments and selected randomly from the list
+  of amplicons if simulating amplicon fragments.
 
   ** Distributions ** 
   normal:

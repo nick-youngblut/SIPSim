@@ -59,7 +59,7 @@ def main(Uargs):
     params = {k.lower():float(v) for k,v in zip(l[0::2],l[1::2])}
 
     # initialize fraction
-    fracs = Fractions(Uargs['--distribution'], params,
+    fracs = Fractions(Uargs['--dist'], params,
                       Uargs['--BD_min'], Uargs['--BD_max'],
                       Uargs['--frac_min'])
 

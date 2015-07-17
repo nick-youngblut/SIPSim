@@ -8,8 +8,9 @@ import numpy as np
 
 
 class Fractions(object):
-    """Simulated gradient fractions based on theoretical min-max of BD incorporation.
-    Fraction size distribution is normal with user-defined params.
+    """Simulated gradient fractions based on theoretical min-max of BD 
+    incorporation. Fraction size distribution is normal with user-defined
+    params.
     """
 
     def __init__(self, distribution, params, BD_min, BD_max, frac_min):
@@ -52,7 +53,8 @@ class Fractions(object):
             self.distFunc = func(**self.params)
         except TypeError:
             msg = 'Distribution "{}" does not accept all provided params: {}'
-            raise TypeError(msg.format(self.distribution, ','.join(self.params.keys())))
+            raise TypeError(msg.format(self.distribution, 
+                                       ','.join(self.params.keys())))
 
 
     def simFractions(self, libID, max_tries=1000):
@@ -100,7 +102,8 @@ class Fractions(object):
         ## cumulative addition
         BD_vals_cumsum = np.array(BD_vals).cumsum()
         BD_max_vals = BD_vals_cumsum + self.BD_min
-        BD_min_vals = np.concatenate( (np.array([self.BD_min]), BD_max_vals[:len(BD_max_vals)-1]) )
+        BD_min_vals = np.concatenate( (np.array([self.BD_min]), 
+                                       BD_max_vals[:len(BD_max_vals)-1]) )
 
         return zip(BD_min_vals, BD_max_vals, BD_vals)
 

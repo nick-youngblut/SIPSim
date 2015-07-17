@@ -24,6 +24,29 @@ import Utils
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
 
+
+def main(args):
+    # list of genome files
+    genomeList =  Utils.parseGenomeList(args['<genomeList>'], 
+                                        filePath=args['--fp'])
+        
+    # analyzing each genome (in parallel)    
+    pfunc = functools.partial(by_genome, args=args)
+    
+    # difussion calc in parallel
+    pool = ProcessingPool(nodes=int(args['--np']))
+    if args['--debug']:
+        fragList = map(pfunc, genomeList)
+    else:
+        fragList = pool.map(pfunc, genomeList)
+
+    # writing out table
+    if args['--tbl']:
+        write_fragList(fragList)
+    else:
+        dill.dump(fragList, sys.stdout)
+
+
 def load_frags_table(inFH, sep='\t'):
     """Loading frag info table as a dict of dicts of 2d lists.
     {taxon_name : {scaffold : [fragStart, fragEnd, GC]}}
@@ -277,25 +300,5 @@ def write_fragList(fragList):
                 print '\t'.join([taxon_name, scaf] + [str(i) for i in y])
 
 
-def main(args):
-    # list of genome files
-    genomeList =  Utils.parseGenomeList(args['<genomeList>'], 
-                                        filePath=args['--fp'])
-        
-    # analyzing each genome (in parallel)    
-    pfunc = functools.partial(by_genome, args=args)
-    
-    # difussion calc in parallel
-    pool = ProcessingPool(nodes=int(args['--np']))
-    if args['--debug']:
-        fragList = map(pfunc, genomeList)
-    else:
-        fragList = pool.map(pfunc, genomeList)
-
-    # writing out table
-    if args['--tbl']:
-        write_fragList(fragList)
-    else:
-        dill.dump(fragList, sys.stdout)
         
 
