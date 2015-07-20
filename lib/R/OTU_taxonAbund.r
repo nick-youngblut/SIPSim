@@ -44,11 +44,12 @@ for(x in pkgs){
 tbl = read.delim(opts[['<OTU>']], sep='\t')
 
 ## BD min/max/mid
-tbl = tbl %>%
-  mutate(fraction = gsub('^-inf','negInf',fraction)) %>%
-    separate(fraction, into = c('BD_min','BD_max'), sep='-', convert=TRUE, remove=FALSE) %>%
-      mutate(BD_min = as.numeric(gsub('negInf','-inf',BD_min)),
-             BD_max = as.numeric(gsub('negInf','-inf',BD_max)))
+#tbl = tbl %>%
+#  mutate(fraction = gsub('^-inf','negInf',fraction)) %>%
+#    separate(fraction, into = c('BD_min','BD_max'), sep='-',
+#             convert=TRUE, remove=FALSE) %>%
+#      mutate(BD_min = as.numeric(gsub('negInf','-inf',BD_min)),
+#             BD_max = as.numeric(gsub('negInf','-inf',BD_max)))
 
 calc_BD_mid = function(BD_min, BD_max){
   if(is.infinite(BD_min)){
@@ -61,7 +62,7 @@ calc_BD_mid = function(BD_min, BD_max){
     }
   stop('LOGIC error')
 }
-tbl$BD_mid = mapply(calc_BD_mid,tbl$BD_min, tbl$BD_max) 
+#tbl$BD_mid = mapply(calc_BD_mid,tbl$BD_min, tbl$BD_max) 
 
 calc_BD_width = function(BD_min, BD_max){
   if(is.infinite(BD_min)){

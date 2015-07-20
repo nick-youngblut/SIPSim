@@ -19,8 +19,9 @@ Options:
                       Input format: 'key1:value1,key2:value2,keyN:valueN'
                       To sample exactly X from each community, use: 'low:X,high:X'
                       [default: low:10000,high:10000]
-  --samp_min          Use the minimum number of taxa in any community as the number
-                      subsampled for all communities. Overrides '--dist*' options.
+  --samp_min          Use the minimum number of taxa in any community as the
+                      number subsampled for all communities. Overrides '--dist*'
+                      options.
   --no-replace        Subsample without replacement.         
   -h --help           Show this screen.
   --version           Show version.
@@ -29,13 +30,14 @@ Options:
 Description:
   Subsample from an OTU table created by the OTU_table subcommand.
 
-  This is used to simulate the actual sequencing of DNA/RNA from each gradient fraction.
+  This is used to simulate the actual sequencing of DNA/RNA from each
+  gradient fraction.
   
-  The 'dist' and 'dist_params' options are used to simulate uneven numbers of sequences
-  (here, signified as OTUs) per sample.
+  The 'dist' and 'dist_params' options are used to simulate uneven numbers
+  of sequences (here, signified as OTUs) per sample.
 
-  If a community has a total count of 0, subsampling will produce a community with a
-  total count of 0 (can't subsample from nothing). 
+  If a community has a total count of 0, subsampling will produce a community
+  with a total count of 0 (can't subsample from nothing). 
 """
 
 # import
@@ -55,16 +57,14 @@ def main(Uargs):
     # dist params as dict
     Uargs['--dist_params'] = Utils.parseKeyValueString(Uargs['--dist_params'])
     
-    otu_tbl = OTU_table.from_csv(Uargs['<OTU_table_file>'],
-                                 sep='\t')
+    otu_tbl = OTU_table.from_csv(Uargs['<OTU_table_file>'], sep='\t')
 
-    # if --samp_min, get min comm size, set dist to uniform with same low & high
+    # if --samp_min, get min comm size, set dist to uniform w/ same low & high
     if Uargs['--samp_min']:
         min_size = otu_tbl.get_comm_size_stats()[0]
         assert min_size > 0, '--samp min is < 1. Nothing to sample!'
         Uargs['--dist_params'] = {'low':min_size, 'high':min_size}
-    
-    
+        
     # setting subsampling size distribution
     otu_tbl.set_samp_dist(samp_dist=Uargs['--dist'],
                           samp_dist_params=Uargs['--dist_params'])

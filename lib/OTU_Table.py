@@ -294,8 +294,8 @@ class OTU_table(_table):
             'samp_dist_params attribute not found'
 
         # all taxa
-        all_taxa = Counter({x:0 for x in self.iter_taxa()})
-        
+        all_taxa = Counter({x:0 for x in self.iter_taxa()})        
+
         # subsampling
         df_sub = pd.DataFrame(columns=self.df.columns)
         for libID in self.iter_libraries():
@@ -318,15 +318,22 @@ class OTU_table(_table):
                                                          size=samp_size,
                                                          replace= not no_replace,
                                                          p=counts/np.sum(counts)))
-                        
+
+                                                
                         # setting all taxa in counts
-                        sub_comm.update(all_taxa)
-                        
+                        sub_comm.update(all_taxa)                        
+
                         # count to dataframe
                         sub_comm = pd.DataFrame(sub_comm.items())
                         sub_comm.columns = ['taxon','count']
                         sub_comm.loc[:,'library'] = libID
                         sub_comm.loc[:,'fraction'] = fracID
+                        BD_min = round(comm['BD_min'].unique()[0], 3)
+                        sub_comm.loc[:,'BD_min'] = BD_min
+                        BD_mid = round(comm['BD_mid'].unique()[0], 3)
+                        sub_comm.loc[:,'BD_mid'] = BD_mid
+                        BD_max = round(comm['BD_max'].unique()[0], 3)
+                        sub_comm.loc[:,'BD_max'] = BD_max
                     except ValueError:
                         sub_comm = comm.copy()
                         comm.loc[:,'count'] = 0
@@ -335,8 +342,9 @@ class OTU_table(_table):
                         
         df_sub['count'] = df_sub['count'].astype(int)
 
-        return df_sub.reindex_axis(['library','fraction','taxon','count'], axis=1)\
-            .sort(['taxon','fraction','library'])
+        cols = ['library','fraction','taxon','BD_min','BD_mid','BD_max','count']
+        sort_cols = ['taxon','fraction','library']
+        return df_sub.reindex_axis(cols, axis=1).sort(sort_cols)
                 
         
     def _same_low_high(self):
@@ -391,6 +399,15 @@ class OTU_table(_table):
     @samp_dist_params.setter
     def samp_dist_params(self, x):
         self._samp_dist_params = x
+
+
+    @property
+    def columns(self):
+        return self.df.columns
+    @columns.setter
+    def columns(self, x):
+        self.df.columns = x
+
         
     @property
     def samp_dist(self):

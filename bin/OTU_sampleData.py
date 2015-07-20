@@ -51,7 +51,7 @@ if __name__ == '__main__':
     df['sample'] = df.apply(L, 1)
     df[['BD_min','BD_max']] = df['fraction'].str.extract('(.+)-(.+)')
     L = lambda x: round((float(x['BD_min']) + float(x['BD_max'])) / 2, 4)
-    df['BD_mean'] = df.apply(L, 1)
+    df['BD_mid'] = df.apply(L, 1)
     cols = df.columns.tolist()
     cols = ['sample'] + [x for x in cols if x != 'sample']
     df = df[cols]
