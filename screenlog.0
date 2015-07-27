@@ -4837,3 +4837,16 @@ WARNING:root:kernel 99a0bb0c-6acb-47c6-aefc-42f78100eca5 restarted
 [32m[I 09:25:32.100 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
 [32m[I 09:27:11.392 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
 [32m[I 09:27:13.208 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
+[32m[I 12:56:39.960 NotebookApp][m Kernel shutdown: 01cdedc1-3d42-46ae-bd99-97b7364f09e6
+[32m[I 12:56:42.475 NotebookApp][m Kernel shutdown: a54cc7d4-9a59-4503-85fb-12b453451927
+[32m[I 12:56:53.460 NotebookApp][m Kernel shutdown: 99bce4ca-d84a-4278-aa28-282a3dd89463
+[32m[I 12:57:06.104 NotebookApp][m Creating new notebook in /ipynb/bac_genome/n1210
+[32m[I 12:57:06.644 NotebookApp][m Kernel started: 4033c791-1376-404f-8374-010992de5e09
+[32m[I 12:59:06.648 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb
+[32m[I 13:00:40.306 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb
+[32m[I 13:02:42.432 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb
+[32m[I 13:28:45.543 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb
+[32m[I 13:30:45.534 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb
+[32m[I 13:32:45.536 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb
+[32m[I 13:34:45.591 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb
+[32m[I 13:36:45.561 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb
