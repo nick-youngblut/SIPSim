@@ -4822,3 +4822,18 @@ WARNING:root:kernel 99a0bb0c-6acb-47c6-aefc-42f78100eca5 restarted
 [32m[I 07:23:35.739 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
 [32m[I 07:24:49.881 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
 [32m[I 07:34:28.835 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
+[33m[W 07:59:00.835 NotebookApp][m WebSocket ping timeout after 119997 ms.
+[32m[I 08:01:42.606 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
+[32m[I 08:27:46.245 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
+[32m[I 08:29:46.327 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
+[32m[I 08:31:46.239 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
+[32m[I 08:33:46.243 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
+[32m[I 08:37:46.250 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
+[33m[W 08:50:42.644 NotebookApp][m WebSocket ping timeout after 119940 ms.
+[32m[I 09:05:28.389 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
+[32m[I 09:21:28.382 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
+[32m[I 09:23:28.376 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
+[32m[I 09:25:28.371 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
+[32m[I 09:25:32.100 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
+[32m[I 09:27:11.392 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
+[32m[I 09:27:13.208 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
