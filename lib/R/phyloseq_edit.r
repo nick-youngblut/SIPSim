@@ -57,8 +57,8 @@ if(! is.null(occur)){
 ### BD min-max
 if(! is.null(BD_min) & ! is.null(BD_max)){
   physeq.sd = sample_data(physeq)
-  physeq = prune_samples((physeq.sd$BD_mean >= BD_min) &
-                           (physeq.sd$BD_mean <= BD_max), physeq)                            
+  physeq = prune_samples((physeq.sd$BD_mid >= BD_min) &
+                           (physeq.sd$BD_mid <= BD_max), physeq)                            
   }
 
 ## writing

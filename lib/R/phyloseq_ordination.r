@@ -51,7 +51,7 @@ p = plot_ordination(physeq, ord, justDF=T)
 p$library = as.character(p$library)
 
 ggplot(p, aes(x = NMDS1, y = NMDS2)) +
-  geom_point(aes(fill=library, size = BD_mean), pch=21) +
+  geom_point(aes(fill=library, size = BD_mid), pch=21) +
     scale_size(range=c(2,8)) +
       theme_bw() +
         theme(
