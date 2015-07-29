@@ -4850,3 +4850,10 @@ WARNING:root:kernel 99a0bb0c-6acb-47c6-aefc-42f78100eca5 restarted
 [32m[I 13:32:45.536 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb
 [32m[I 13:34:45.591 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb
 [32m[I 13:36:45.561 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb
+[33m[W 14:28:12.434 NotebookApp][m WebSocket ping timeout after 119949 ms.
+[32m[I 17:10:58.037 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb
+[32m[I 17:11:37.901 NotebookApp][m Kernel interrupted: 4033c791-1376-404f-8374-010992de5e09
+[32m[I 17:12:09.576 NotebookApp][m Kernel restarted: 4033c791-1376-404f-8374-010992de5e09
+[32m[I 17:12:58.037 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb
+[32m[I 19:29:34.598 NotebookApp][m Kernel interrupted: 4033c791-1376-404f-8374-010992de5e09
+[32m[I 19:31:15.768 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb

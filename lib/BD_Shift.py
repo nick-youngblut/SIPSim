@@ -13,7 +13,7 @@ import Utils
 
 
 # functions
-def kde_intersect(taxon, d1, d2, **kwargs):
+def kde_intersect(x, **kwargs):
     """Wrapper for unpacking dict objects containing
     KDEs for the provided taxon.
     Args:
@@ -23,11 +23,14 @@ def kde_intersect(taxon, d1, d2, **kwargs):
     Returns:
     list -- [taxon_name, BD_shift]
     """
+    assert len(x) >= 3, 'x must contain (taxon,kde1,kde2)'
+    taxon = x[0]    
+
     sys.stderr.write('  Processing: {}\n'.format(taxon))
-    x = _kde_intersect(d1[taxon], d2[taxon], **kwargs)
-    assert np.isnan(x) or 0 <= x <= 1, \
-        'KDE intersection is not in 0-1 range; value={}'.format(x)
-    return [taxon, 1 - x]
+    y = _kde_intersect(x[1], x[2], **kwargs)
+    assert np.isnan(y) or 0 <= y <= 1, \
+        'KDE intersection is not in 0-1 range; value={}'.format(y)
+    return [taxon, 1 - y]
 
 
 def _kde_intersect(kde1, kde2, start=1.66, end=1.85, step=0.001):
@@ -127,19 +130,21 @@ def main(args):
             sys.stderr.write(msg.format(libID1, libID2))
 
             # overlap of taxa btw libraries
-            taxa = taxon_overlap(d1, d2)
+            taxa = taxon_overlap(d1, d2)            
 
             # calculating BD shift (in parallel)
-            pfunc = partial(kde_intersect, d1=d1, d2=d2,
+            pfunc = partial(kde_intersect, 
                             start=float(args['--start']),
                             end=float(args['--end']),
                             step=float(args['--step']))
 
             pool = ProcessingPool(nodes=int(args['--np']))
             if args['--debug']:
-                res = map(pfunc, taxa)
+                res = map(pfunc, [(taxon, d1[taxon], d2[taxon])
+                                  for taxon in taxa])
             else:
-                res = pool.amap(pfunc, taxa)
+                res = pool.amap(pfunc, [(taxon, d1[taxon], d2[taxon])
+                                        for taxon in taxa])
                 while not res.ready():
                     time.sleep(2)
                 res = res.get()        

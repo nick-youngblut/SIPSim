@@ -58,7 +58,7 @@ def _all_empty_bins(libFracBins):
 def _sample_BD_kde(BD_KDE, libID, taxon_name, size):
     """Sampling from buoyant density KDE
     Args:
-    BD_KDE -- {library:{taxon:scipy_KDE}}
+    BD_KDE -- scipy KDE for taxon
     libID -- library ID
     taxon_name -- taxon name 
     size -- how many to sample
@@ -66,17 +66,9 @@ def _sample_BD_kde(BD_KDE, libID, taxon_name, size):
     array -- [fragment BD values]
     """
     try:
-        BD_KDE[libID]
-    except KeyError:        
-        msg = 'Cannot find library->"{}"'
-        raise KeyError, msg.format(libID)
-    try:
-        frag_BD = BD_KDE[libID][taxon_name].resample(size=size)[0]
-    except KeyError:
-        msg = 'Cannot find taxon->"{}" in lib->"{}"'
-        raise KeyError, msg.format(taxon_name, libID)
+        frag_BD = BD_KDE.resample(size=size)[0]
     except AttributeError:
-        frag_BD = None #np.array([np.NaN])
+        frag_BD = None
     return frag_BD
 
 
@@ -85,7 +77,7 @@ def _bin_BD(BD_KDE, libFracBins, taxonAbsAbund, libID, taxon_name,
     """Sampling BD KDE and binning values into fractions.
     Parsing binning into chunks to prevent memory errors.
     Args:
-    BD_KDE -- {library:{taxon:scipy_KDE}}
+    BD_KDE -- scipy KDE for taxon
     libFracBins -- list of gradient bins
     libID -- library ID
     taxon_name -- taxon name
@@ -93,7 +85,6 @@ def _bin_BD(BD_KDE, libFracBins, taxonAbsAbund, libID, taxon_name,
     Return:
     Counter object -- {fraction_ID : count}
     """
-
     abund_remain = taxonAbsAbund
     frag_BD_bins = Counter()
     while abund_remain > 0:
@@ -107,24 +98,25 @@ def _bin_BD(BD_KDE, libFracBins, taxonAbsAbund, libID, taxon_name,
     return frag_BD_bins
 
 
-def sim_OTU(x, comm_tbl, libID, BD_KDE, libFracBins, maxsize):
+def sim_OTU(x, comm_tbl, libID, libFracBins, maxsize):
     """Simulate OTU by sampling BD KDE and binning
     values into gradient fractions.
     Args:
-    x -- [taxon_idx,taxon_name]
-      taxon_idx -- taxon number
-      taxon_name -- taxon name 
+    x -- (taxon_idx,taxon_name,KDE)
+      * taxon_idx -- taxon number
+      * taxon_name -- taxon name 
+      * KDE -- scipy KDE for taxon
     comm_tbl -- comm table object
     libID -- library ID
-    BD_KDE -- {library:{taxon:scipy_KDE}}
     libFracBins -- list of gradient bins
     maxsize -- max number of BD values to bin at once.    
     Return:
     array -- [fragment BD values]
     """
-    taxon_idx,taxon_name = x
-    sys.stderr.write('  Processing taxon: "{}"\n'.format(taxon_name))
-    
+    assert len(x) >=3, 'x must be: (taxon_id, taxon_name, kde)'
+    taxon_idx,taxon_name,BD_KDE = x
+
+    sys.stderr.write('  Processing taxon: "{}"\n'.format(taxon_name))    
 
     # taxon abundance based on comm file
     taxonAbsAbund = comm_tbl.get_taxonAbund(libID=libID, 
@@ -200,7 +192,7 @@ def main(uargs):
     # loading files
     sys.stderr.write('Loading files...\n')
     ## BD kde 
-    BD_KDE = Utils.load_kde(uargs['<BD_KDE>'])    
+    BD_KDE_all = Utils.load_kde(uargs['<BD_KDE>'])    
     ## community file
     comm_tbl = CommTable.from_csv(uargs['<communities>'], sep='\t')
     comm_tbl.abs_abund = uargs['--abs']
@@ -214,20 +206,31 @@ def main(uargs):
     OTU_counts = []  # list of all library-specific OTU_count dataframes
     for libID in comm_tbl.iter_libraries():
         sys.stderr.write('Processing library: "{}"\n'.format(libID))            
+        
+        # KDEs for library
+        try:
+            BD_KDE = BD_KDE_all[libID] 
+        except KeyError:        
+            msg = 'Cannot find KDEs for library->"{}"'
+            raise KeyError, msg.format(libID)            
 
         # fraction bin list for library
         libFracBins = [x for x in frac_tbl.BD_bins(libID)]
         
         # iter of taxa in parallel
-        pfunc = partial(sim_OTU, comm_tbl=comm_tbl, libID=libID, 
-                        BD_KDE=BD_KDE, libFracBins=libFracBins, 
+        pfunc = partial(sim_OTU, 
+                        comm_tbl=comm_tbl, 
+                        libID=libID, 
+                        libFracBins=libFracBins, 
                         maxsize=int(uargs['--max']))
 
         pool = ProcessingPool(nodes=int(uargs['--np']))
         if uargs['--debug']:
-            ret = map(pfunc, enumerate(u_taxon_names))
+            ret = map(pfunc,[(i,taxon,BD_KDE[taxon]) for
+                             i,taxon in enumerate(u_taxon_names)])
         else:
-            ret = pool.amap(pfunc, enumerate(u_taxon_names))
+            ret = pool.amap(pfunc,[(i,taxon,BD_KDE[taxon]) for
+                                   i,taxon in enumerate(u_taxon_names)])
             while not ret.ready():
                 time.sleep(2)
             ret = ret.get()        
@@ -241,14 +244,17 @@ def main(uargs):
         x = df['fraction'].apply(_get_BD_range).apply(pd.Series)
         x.columns = ['BD_min','BD_mid','BD_max']
         df = pd.concat([df, x], axis=2)
-        df = df[['library','taxon','fraction','BD_min','BD_mid','BD_max','count']]
+        df = df[['library','taxon','fraction',
+                 'BD_min','BD_mid','BD_max','count']]
         df.sort(['taxon', 'fraction'], inplace=True)
 
         # Adding to dataframe of all libraries
         OTU_counts.append(df)
 
     # combining library-specific dataframes and writing out long form of table
-    pd.concat(OTU_counts, ignore_index=False).to_csv(sys.stdout, sep='\t', index=False)
+    pd.concat(OTU_counts, ignore_index=False).to_csv(sys.stdout, 
+                                                     sep='\t', 
+                                                     index=False)
 
 
 
@@ -276,7 +282,8 @@ class OTU_table(_table):
         list -- [min, mean, median, max]
         """
         counts = self.df.groupby(['library','fraction']).sum()['count']
-        return [np.min(counts), np.mean(counts), np.median(counts), np.max(counts)]
+        return [np.min(counts), np.mean(counts), 
+                np.median(counts), np.max(counts)]
 
         
     def subsample(self, no_replace=False):
@@ -348,8 +355,8 @@ class OTU_table(_table):
                 
         
     def _same_low_high(self):
-        """Returns low/high value if samp_dist_params contain keys 'low' and 'high
-        and the values of these keys are equal.
+        """Returns low/high value if samp_dist_params contain keys 'low' 
+        and 'high and the values of these keys are equal.
         Else, returns False.
         """
         try:
@@ -433,7 +440,8 @@ class OTU_table(_table):
         try:
             self._samp_dist(size=1)
         except TypeError:
-            params = ','.join([':'.join(y) for y in self.samp_dist_params.items()])
+            params = ','.join([':'.join(y) for y 
+                               in self.samp_dist_params.items()])
             raise TypeError('Params "{}" do not work with distribution "{}"\n'\
                              .format(x, params))        
         return 0
