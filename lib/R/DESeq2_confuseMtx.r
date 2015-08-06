@@ -55,11 +55,12 @@ if(opts[['<DESeq2>']] == '-'){
 x = suppressPackageStartupMessages(as.data.frame(deseq.res))
 BD.shift = read.delim(opts[['BD_shift']], sep='\t')
 
-
 ## edit
 ### DESeq2 object
 deseq.res = as.data.frame(deseq.res)
 deseq.res$taxon = rownames(deseq.res)
+
+#deseq.res %>% head %>% print; stop()
 
 ### log2fold cutoff & padj cutoff
 log2.cut = -1/0   # -negInfinity (ie., no cutoff)
@@ -91,14 +92,14 @@ if(! is.null(opts[['--padjBH']])){
   message('padj cutoff: ', padj.cut)
   deseq.res = deseq.res %>% 
     mutate(incorp = (padj.BH < padj.cut) & (log2FoldChange >= log2.cut))
+} else {
+  stop('Provide either --padj or --padjBH')
 }
-
 
 ### BD-shift table (reference)
 BD.shift = BD.shift %>%
   filter(lib2 == '2') %>%
       mutate(incorp = BD_shift > 0.05)
-
 
 # making factors of incorporation status
 order_incorp = function(x){
@@ -116,7 +117,11 @@ tbl.c = inner_join(BD.shift, deseq.res, c('taxon' = 'taxon'))
 # making confusion matrix
 ## incorp.x = BD.shift  (KNOWN)
 ## incorp.y = deseq.res  (PREDICTED)
-tbl.c = rename(tbl.c, c('incorp.x' = 'incorp.known', 'incorp.y' = 'incorp.pred'))
+tbl.c = tbl.c %>%
+  mutate(incorp.known = incorp.x,
+         incorp.pred = incorp.y) %>%
+           select(-incorp.x, -incorp.y)
+#    rename(c('incorp.x' = 'incorp.known', 'incorp.y' = 'incorp.pred'))
 c.mtx = confusionMatrix(tbl.c$incorp.pred, tbl.c$incorp.known)
 
 ## writing
