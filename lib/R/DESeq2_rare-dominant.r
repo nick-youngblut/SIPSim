@@ -80,6 +80,4 @@ outFile = paste(c(opts[['-o']], 'dom'), collapse='_')
 saveRDS(tbl.j.dom, outFile)
 message('File written: ', outFile)
 
-#tbl.j %>% head %>% print
-#tbl.j.dom %>% head %>% print; stop()
 

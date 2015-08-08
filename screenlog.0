@@ -4969,3 +4969,127 @@ WARNING:root:kernel 99a0bb0c-6acb-47c6-aefc-42f78100eca5 restarted
 [32m[I 19:45:40.008 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
 [32m[I 19:47:39.991 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
 [32m[I 19:49:40.050 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[33m[W 08:53:13.496 NotebookApp][m WebSocket ping timeout after 119967 ms.
+[33m[W 19:59:02.273 NotebookApp][m Notebook ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb is not trusted
+[32m[I 20:00:15.954 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 20:02:15.912 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 20:04:15.957 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[33m[W 20:05:19.267 NotebookApp][m Notebook ipynb/bac_genome/n1210/perc_incorp_unif_rep.ipynb is not trusted
+[32m[I 20:06:16.759 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 20:08:16.767 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 20:10:16.922 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 20:12:16.701 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 20:14:17.016 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 20:16:16.842 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 20:18:16.793 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 20:20:17.061 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 20:20:34.673 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 20:22:59.648 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 20:24:27.745 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness.ipynb
+[33m[W 20:58:08.178 NotebookApp][m WebSocket ping timeout after 119850 ms.
+[33m[W 20:58:08.236 NotebookApp][m WebSocket ping timeout after 119902 ms.
+[33m[W 20:58:09.560 NotebookApp][m WebSocket ping timeout after 119955 ms.
+[33m[W 20:58:15.952 NotebookApp][m WebSocket ping timeout after 119934 ms.
+[33m[W 20:58:19.839 NotebookApp][m WebSocket ping timeout after 119833 ms.
+[33m[W 20:58:20.080 NotebookApp][m WebSocket ping timeout after 119954 ms.
+[33m[W 20:58:28.072 NotebookApp][m WebSocket ping timeout after 119760 ms.
+[33m[W 20:58:35.582 NotebookApp][m WebSocket ping timeout after 119904 ms.
+[32m[I 11:46:53.864 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 11:48:20.401 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 11:48:53.797 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 11:49:58.781 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 12:17:17.712 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 12:21:17.703 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 12:23:17.742 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 12:25:17.702 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 12:27:17.726 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 12:29:17.736 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 12:31:17.699 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 12:33:17.764 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 12:35:17.700 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 12:37:17.709 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 12:47:17.741 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 12:49:17.674 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 12:51:17.674 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 12:53:17.767 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 12:55:17.788 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 12:57:17.677 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 12:57:34.848 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 14:12:11.794 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 14:14:11.786 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 14:16:11.803 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 14:18:11.806 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 14:20:12.092 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 14:22:11.772 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 14:24:11.814 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 14:26:11.771 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 14:28:11.759 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 14:30:12.458 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 14:32:11.764 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[33m[W 14:34:07.706 NotebookApp][m Notebook ipynb/bac_genome/n1210/validation.ipynb is not trusted
+[32m[I 14:34:14.280 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 14:36:14.572 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 14:38:14.472 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 14:54:30.691 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 14:54:30.693 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 14:56:20.016 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 14:58:19.908 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 15:00:19.910 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 15:02:19.905 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 15:04:19.907 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 15:06:19.927 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 15:08:19.912 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 15:16:22.369 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 15:18:22.359 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 15:19:04.595 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 15:19:09.326 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 15:19:22.842 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 15:26:32.955 NotebookApp][m KernelRestarter: restarting kernel (1/5)
+[32m[I 06:39:53.122 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 06:41:53.014 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 06:43:52.997 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 06:45:52.989 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 06:47:52.988 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 06:49:53.024 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 06:50:22.427 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 06:51:53.013 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 06:52:23.304 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 06:53:53.102 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 06:55:53.094 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 06:57:53.020 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 06:59:53.010 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 07:09:53.008 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 07:11:53.000 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 07:13:53.020 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 07:15:53.000 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 07:17:52.999 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 07:19:53.001 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 07:21:52.996 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 07:23:52.998 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 07:25:49.658 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 07:27:53.002 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 07:29:53.101 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 07:31:22.144 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 07:31:48.131 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 07:31:53.175 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 07:31:53.708 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_abund.ipynb
+[32m[I 07:33:40.307 NotebookApp][m Kernel interrupted: f9518b52-f328-49db-98d3-80d187a22f1f
+[32m[I 07:34:03.130 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb
+[33m[W 07:34:03.134 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb
+[32m[I 07:34:18.793 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness.ipynb
+[32m[I 07:38:18.710 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness.ipynb
+[32m[I 07:40:18.705 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness.ipynb
+[32m[I 07:42:18.703 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness.ipynb
+[32m[I 07:44:18.724 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness.ipynb
+[32m[I 07:46:18.779 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness.ipynb
+[32m[I 07:48:18.714 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness.ipynb
+[32m[I 07:50:18.719 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness.ipynb
+[32m[I 07:52:18.813 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness.ipynb
+[32m[I 07:54:18.823 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness.ipynb
+[32m[I 07:56:18.700 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness.ipynb
+[32m[I 07:58:18.723 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness.ipynb
+[32m[I 08:00:18.775 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness.ipynb
+[32m[I 08:00:58.877 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness.ipynb
+[32m[I 08:02:16.776 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness.ipynb
+[32m[I 08:36:29.606 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness.ipynb
+[32m[I 08:51:03.582 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness.ipynb
