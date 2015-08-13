@@ -440,7 +440,7 @@ class OTU_table(_table):
         try:
             self._samp_dist(size=1)
         except TypeError:
-            params = ','.join([':'.join(y) for y 
+            params = ','.join([str(x) + ':' + str(y)  for x,y 
                                in self.samp_dist_params.items()])
             raise TypeError('Params "{}" do not work with distribution "{}"\n'\
                              .format(x, params))        

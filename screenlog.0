@@ -5680,3 +5680,71 @@ WARNING:root:kernel 6a1e697c-f761-4de6-aae2-03a594f7ea73 restarted
 [32m[I 11:23:23.244 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
 [32m[I 11:25:23.139 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
 [32m[I 11:25:24.868 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 11:27:23.146 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+ampFrags_kde_dif.pkl	 ampFrags_lg_kde.txt	    ampFrags_real_kde.pkl    ampFrags_sm_kde.txt
+ampFrags_kde_dif.txt	 ampFrags_lg.log	    ampFrags_real_kde.txt    ampFrags_sm.log
+ampFrags_kde.pkl	 ampFrags_lg.txt	    ampFrags_real.log	     ampFrags_sm.txt
+ampFrags_kde.txt	 ampFrags.log		    ampFrags_real.txt	     ampFrags.txt
+ampFrags_lg_kde_dif.pkl  ampFrags.pkl		    ampFrags_sm_kde_dif.pkl
+ampFrags_lg_kde_dif.txt  ampFrags_real_kde_dif.pkl  ampFrags_sm_kde_dif.txt
+ampFrags_lg_kde.pkl	 ampFrags_real_kde_dif.txt  ampFrags_sm_kde.pkl
+[32m[I 11:29:23.146 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 11:31:23.160 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 11:33:23.134 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 11:35:23.162 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 11:36:04.718 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 11:38:42.676 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 11:39:04.381 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 11:39:23.054 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 11:39:47.027 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 11:40:12.486 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[33m[W 11:42:22.386 NotebookApp][m Notebook ipynb/bac_genome/n1210/validation.ipynb is not trusted
+[32m[I 11:42:36.880 NotebookApp][m Kernel shutdown: 81c6f727-6e43-4bc4-b1d8-f5b33e340c43
+[32m[I 11:42:37.383 NotebookApp][m Kernel shutdown: 515f256a-aba3-4870-85b5-08f12ce340b7
+[32m[I 11:42:37.898 NotebookApp][m Kernel shutdown: a89b6139-837b-4e0f-b014-f25cc5e4bb7c
+[32m[I 11:42:38.403 NotebookApp][m Kernel shutdown: 1f21685f-0ed3-4b64-ae08-a64ecffe6a0e
+[32m[I 11:42:41.299 NotebookApp][m Kernel shutdown: 439be5bc-0bf6-48d2-9b69-b1395e244fc1
+[32m[I 11:42:41.704 NotebookApp][m Kernel shutdown: b737efba-1a64-4da7-a48c-c995a9f0adf2
+[32m[I 11:42:51.528 NotebookApp][m Kernel shutdown: 66d6e43d-27ff-4659-b5a4-86da2926d4c2
+[32m[I 11:44:26.519 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 11:44:26.522 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 11:46:25.999 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 11:46:26.001 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 11:47:38.705 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 11:47:38.707 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 11:48:25.882 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 11:48:25.884 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 11:52:21.891 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 11:52:21.893 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 11:54:26.010 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 11:54:26.013 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 11:56:25.928 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 11:56:25.930 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 11:58:25.592 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 11:58:25.594 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 12:00:25.183 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 12:00:25.185 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 12:01:52.518 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 12:01:52.519 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 12:02:25.068 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 12:02:25.070 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 12:04:25.268 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 12:04:25.270 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 12:07:55.657 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 12:07:55.660 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 12:16:25.707 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 12:16:25.710 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 12:24:25.945 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 12:24:25.947 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 12:40:25.207 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 12:40:25.209 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 12:42:25.578 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 12:42:25.580 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 12:44:25.139 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 12:44:25.141 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 12:46:25.136 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 12:46:25.138 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 12:48:25.152 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 12:48:25.154 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 12:50:25.159 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 12:50:25.161 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/validation.ipynb
