@@ -5093,3 +5093,590 @@ WARNING:root:kernel 99a0bb0c-6acb-47c6-aefc-42f78100eca5 restarted
 [32m[I 08:02:16.776 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness.ipynb
 [32m[I 08:36:29.606 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness.ipynb
 [32m[I 08:51:03.582 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness.ipynb
+[32m[I 11:51:27.052 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb
+[33m[W 11:51:27.059 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb
+[32m[I 11:51:32.375 NotebookApp][m Kernel started: 667fab21-705c-4c7d-968b-3b8976638b9d
+[32m[I 11:53:32.466 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 11:55:32.498 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 11:57:32.435 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 12:06:52.220 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 12:15:35.029 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 12:17:35.037 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 12:23:35.040 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 12:25:35.142 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 12:25:38.466 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 12:35:37.250 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 13:08:43.218 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 13:10:43.233 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 13:12:43.221 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 13:16:43.215 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 13:18:43.208 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 13:20:43.203 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 13:44:52.722 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 13:46:52.897 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 14:33:43.316 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 14:35:43.278 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 14:37:43.272 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 14:39:43.273 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 14:41:43.280 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 14:43:43.391 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 14:45:43.621 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 14:47:43.274 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 14:51:43.257 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 14:53:43.259 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 14:55:43.261 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 14:57:43.247 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 14:58:55.093 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 15:01:43.200 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 15:09:53.412 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 15:11:53.805 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 15:14:28.903 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 15:19:34.105 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[33m[W 15:22:03.674 NotebookApp][m WebSocket ping timeout after 119906 ms.
+[32m[I 07:26:04.947 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_evenness_abund.ipynb
+[32m[I 09:27:37.746 NotebookApp][m Kernel restarted: a546f4f2-0002-4b9d-92c7-60b192727fbe
+[33m[W 09:27:37.747 NotebookApp][m zmq message arrived on closed channel
+[32m[I 09:27:46.970 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
+[32m[I 09:29:46.916 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
+[32m[I 09:31:46.911 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
+[32m[I 09:33:46.907 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
+[32m[I 09:35:46.900 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
+[32m[I 09:37:46.895 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
+[32m[I 09:39:46.938 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
+[32m[I 09:41:46.891 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
+[32m[I 09:42:13.981 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
+[32m[I 09:42:21.105 NotebookApp][m Saving file at /ipynb/Manuscript_outline.ipynb
+[33m[W 12:19:07.856 NotebookApp][m WebSocket ping timeout after 119977 ms.
+[33m[W 12:26:24.006 NotebookApp][m delete /ipynb/bac_genome/n1210/$bashFile
+[32m[I 13:12:10.144 NotebookApp][m Creating new notebook in /ipynb/sandbox
+[32m[I 13:12:10.822 NotebookApp][m Kernel started: 89ce76ae-f90a-4b0e-896f-5cd7a31e3b70
+[32m[I 13:14:10.822 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 13:18:10.812 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 13:20:10.901 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 13:22:10.804 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 13:24:10.802 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 13:25:11.678 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 13:25:15.675 NotebookApp][m Kernel restarted: 89ce76ae-f90a-4b0e-896f-5cd7a31e3b70
+[33m[W 13:25:15.677 NotebookApp][m zmq message arrived on closed channel
+[32m[I 13:26:10.798 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 13:26:52.903 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 13:26:57.080 NotebookApp][m Kernel restarted: 89ce76ae-f90a-4b0e-896f-5cd7a31e3b70
+[32m[I 13:28:10.858 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 13:30:10.800 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 13:34:10.796 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 13:36:10.797 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 13:38:10.793 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 13:42:10.812 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 13:44:10.807 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 13:46:10.794 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 13:48:10.792 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 13:50:10.789 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 13:52:10.786 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 13:54:10.785 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 13:56:10.800 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 13:56:45.205 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 13:57:47.970 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[33m[W 14:00:27.117 NotebookApp][m WebSocket ping timeout after 119931 ms.
+[33m[W 17:27:12.909 NotebookApp][m Notebook ipynb/bac_genome/n1210/validation.ipynb is not trusted
+[32m[I 17:29:16.568 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 17:31:16.566 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 17:33:16.567 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 17:35:16.561 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 17:37:16.614 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 17:39:16.552 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 17:41:16.552 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 17:47:16.563 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 17:48:12.992 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 17:49:16.557 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 17:51:16.559 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 17:53:16.566 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 17:53:41.088 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 18:46:12.182 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 18:48:12.171 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 18:50:12.168 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 19:08:12.154 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 19:10:12.154 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 19:12:12.149 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 19:18:12.147 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 19:20:12.146 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 19:22:12.190 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 19:24:12.135 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 19:26:12.139 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 19:28:12.139 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 19:32:12.133 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 19:36:12.131 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 19:38:12.132 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 19:40:12.131 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 19:40:35.325 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 19:44:33.203 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 07:24:55.007 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 07:25:47.488 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 07:26:56.628 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 07:28:56.625 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 07:30:56.628 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 07:31:37.554 NotebookApp][m Kernel interrupted: 89ce76ae-f90a-4b0e-896f-5cd7a31e3b70
+[32m[I 07:31:54.319 NotebookApp][m Kernel restarted: 89ce76ae-f90a-4b0e-896f-5cd7a31e3b70
+[32m[I 07:32:56.641 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 07:34:56.654 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 07:40:56.621 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 07:42:56.638 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 07:44:56.634 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 07:46:56.621 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 07:48:56.620 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 07:50:56.611 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 07:56:53.338 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 07:57:22.090 NotebookApp][m Creating new notebook in /ipynb/bac_genome/n1210
+[32m[I 07:57:22.713 NotebookApp][m Kernel started: 6a1e697c-f761-4de6-aae2-03a594f7ea73
+[32m[I 07:59:22.721 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[33m[W 07:59:58.582 NotebookApp][m Notebook ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb is not trusted
+[32m[I 08:01:22.719 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 08:03:22.812 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 08:05:19.791 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 08:09:22.716 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 08:11:22.714 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 08:13:22.718 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 08:15:22.708 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 08:17:23.909 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 08:17:32.764 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 08:19:32.681 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 08:21:23.830 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 08:21:33.428 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 08:23:23.918 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 08:23:33.422 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 08:25:33.423 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 08:27:33.430 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 08:29:33.427 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 08:31:33.455 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 08:33:01.398 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 08:33:29.783 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 08:33:36.206 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 08:35:03.258 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 08:36:32.984 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 08:37:04.393 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 08:51:40.330 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 08:53:40.326 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 08:55:40.329 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 08:57:40.331 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 08:59:40.805 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 09:00:03.708 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 09:01:18.103 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 09:02:03.708 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 09:04:03.788 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 09:06:03.807 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 09:08:04.661 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 09:09:49.753 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 09:11:49.755 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 09:13:52.411 NotebookApp][m Saving file at /ipynb/sandbox/procrustes.ipynb
+[32m[I 09:14:05.168 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 09:28:49.989 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 09:32:13.652 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 09:34:13.576 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 09:36:13.936 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 09:38:13.483 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 09:40:13.498 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 09:42:13.449 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 09:44:13.448 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 09:46:13.470 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 09:48:13.470 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 09:50:13.484 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 09:52:13.492 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 09:54:13.459 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 09:56:13.869 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 09:56:25.759 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 09:58:13.495 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 09:58:17.310 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 10:00:13.519 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 10:20:13.844 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 10:22:13.387 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 10:24:13.443 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 10:26:13.420 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 10:28:13.436 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 10:30:13.460 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 10:32:13.403 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 10:34:13.396 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 10:35:15.002 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 10:36:05.338 NotebookApp][m Kernel interrupted: 6a1e697c-f761-4de6-aae2-03a594f7ea73
+[32m[I 10:36:13.402 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 10:36:44.761 NotebookApp][m Kernel interrupted: 6a1e697c-f761-4de6-aae2-03a594f7ea73
+[32m[I 10:37:51.478 NotebookApp][m Kernel interrupted: 6a1e697c-f761-4de6-aae2-03a594f7ea73
+[32m[I 10:38:13.516 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 10:38:19.436 NotebookApp][m Kernel interrupted: 6a1e697c-f761-4de6-aae2-03a594f7ea73
+[32m[I 10:38:21.443 NotebookApp][m Kernel interrupted: 6a1e697c-f761-4de6-aae2-03a594f7ea73
+[32m[I 10:38:23.145 NotebookApp][m Kernel interrupted: 6a1e697c-f761-4de6-aae2-03a594f7ea73
+[32m[I 10:38:38.401 NotebookApp][m Kernel interrupted: 6a1e697c-f761-4de6-aae2-03a594f7ea73
+[32m[I 10:39:14.456 NotebookApp][m Kernel interrupted: 6a1e697c-f761-4de6-aae2-03a594f7ea73
+[32m[I 10:39:34.328 NotebookApp][m Kernel restarted: 6a1e697c-f761-4de6-aae2-03a594f7ea73
+[32m[I 10:40:13.383 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 10:42:13.372 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 10:44:13.368 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 10:50:13.365 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 10:52:13.393 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 10:56:13.379 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 10:58:13.484 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 11:00:13.807 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 11:02:13.470 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 11:04:13.475 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 11:06:13.426 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 11:08:13.521 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 11:10:13.470 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 11:10:33.742 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 11:12:13.457 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 11:12:47.470 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 11:14:13.465 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 11:16:13.435 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 11:18:13.445 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 11:20:13.424 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 11:22:13.461 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 11:24:13.472 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 11:24:27.731 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 11:26:13.474 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 11:26:49.245 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 11:27:06.140 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[33m[W 12:29:04.339 NotebookApp][m WebSocket ping timeout after 119913 ms.
+[33m[W 12:29:23.079 NotebookApp][m WebSocket ping timeout after 119915 ms.
+[33m[W 12:29:23.894 NotebookApp][m WebSocket ping timeout after 119910 ms.
+[33m[W 12:29:24.374 NotebookApp][m WebSocket ping timeout after 119980 ms.
+[33m[W 12:29:27.124 NotebookApp][m WebSocket ping timeout after 119963 ms.
+[33m[W 12:29:31.286 NotebookApp][m WebSocket ping timeout after 119924 ms.
+[32m[I 20:03:47.399 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 20:05:47.570 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 20:07:47.807 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 20:09:47.328 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 20:11:47.302 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+*** stack smashing detected ***: /opt/anaconda/bin/python terminated
+======= Backtrace: =========
+/lib/x86_64-linux-gnu/libc.so.6(__fortify_fail+0x37)[0x7f46920f7387]
+/lib/x86_64-linux-gnu/libc.so.6(__fortify_fail+0x0)[0x7f46920f7350]
+/usr/lib/R/lib/libR.so(+0xfeca3)[0x7f466b3b2ca3]
+/usr/lib/R/lib/libR.so(+0x16d229)[0x7f466b421229]
+/usr/lib/R/lib/libR.so(+0x17175d)[0x7f466b42575d]
+/usr/lib/R/lib/libR.so(+0xcb35d)[0x7f466b37f35d]
+[0x7f466949b3a8]
+======= Memory map: ========
+00400000-00401000 r-xp 00000000 08:03 212402757                          /opt/anaconda/bin/python2.7
+00600000-00601000 rw-p 00000000 08:03 212402757                          /opt/anaconda/bin/python2.7
+00bec000-21046000 rw-p 00000000 00:00 0                                  [heap]
+7f4630000000-7f4630021000 rw-p 00000000 00:00 0 
+7f4630021000-7f4634000000 ---p 00000000 00:00 0 
+7f4638000000-7f4638021000 rw-p 00000000 00:00 0 
+7f4638021000-7f463c000000 ---p 00000000 00:00 0 
+7f464f3d9000-7f464f419000 rw-p 00000000 00:00 0 
+7f4651dd9000-7f4651e59000 rw-p 00000000 00:00 0 
+7f4654a97000-7f4654a98000 ---p 00000000 00:00 0 
+7f4654a98000-7f4655298000 rw-p 00000000 00:00 0 
+7f4655298000-7f4655299000 ---p 00000000 00:00 0 
+7f4655299000-7f4655a99000 rw-p 00000000 00:00 0 
+7f4655bd8000-7f4655bd9000 ---p 00000000 00:00 0 
+7f4655bd9000-7f46563d9000 rw-p 00000000 00:00 0 
+7f46563d9000-7f46563db000 r-xp 00000000 08:03 590886                     /usr/lib/x86_64-linux-gnu/pango/1.6.0/modules/pango-basic-fc.so
+7f46563db000-7f46565da000 ---p 00002000 08:03 590886                     /usr/lib/x86_64-linux-gnu/pango/1.6.0/modules/pango-basic-fc.so
+7f46565da000-7f46565db000 r--p 00001000 08:03 590886                     /usr/lib/x86_64-linux-gnu/pango/1.6.0/modules/pango-basic-fc.so
+7f46565db000-7f46565dc000 rw-p 00002000 08:03 590886                     /usr/lib/x86_64-linux-gnu/pango/1.6.0/modules/pango-basic-fc.so
+7f46565dc000-7f46565de000 r-xp 00000000 08:03 166099                     /usr/lib/x86_64-linux-gnu/gconv/ISO8859-1.so
+7f46565de000-7f46567dd000 ---p 00002000 08:03 166099                     /usr/lib/x86_64-linux-gnu/gconv/ISO8859-1.so
+7f46567dd000-7f46567de000 r--p 00001000 08:03 166099                     /usr/lib/x86_64-linux-gnu/gconv/ISO8859-1.so
+7f46567de000-7f46567df000 rw-p 00002000 08:03 166099                     /usr/lib/x86_64-linux-gnu/gconv/ISO8859-1.so
+7f46567df000-7f46567e9000 r-xp 00000000 08:03 3866640                    /usr/lib/R/modules/lapack.so
+7f46567e9000-7f46569e8000 ---p 0000a000 08:03 3866640                    /usr/lib/R/modules/lapack.so
+7f46569e8000-7f46569e9000 r--p 00009000 08:03 3866640                    /usr/lib/R/modules/lapack.so
+7f46569e9000-7f46569ea000 rw-p 0000a000 08:03 3866640                    /usr/lib/R/modules/lapack.so
+7f46569ea000-7f46569ec000 r-xp 00000000 08:03 4030884                    /usr/local/lib/R/site-library/lazyeval/libs/lazyeval.so
+7f46569ec000-7f4656beb000 ---p 00002000 08:03 4030884                    /usr/local/lib/R/site-library/lazyeval/libs/lazyeval.so
+7f4656beb000-7f4656bec000 r--p 00001000 08:03 4030884                    /usr/local/lib/R/site-library/lazyeval/libs/lazyeval.so
+7f4656bec000-7f4656bed000 rw-p 00002000 08:03 4030884                    /usr/local/lib/R/site-library/lazyeval/libs/lazyeval.so
+7f4656bed000-7f4658255000 r--s 00000000 08:03 4032110                    /usr/local/lib/R/site-library/stringi/libs/icudt52l.dat
+7f4658255000-7f4658263000 r-xp 00000000 08:03 13665555                   /usr/local/lib/R/site-library/vegan/libs/vegan.so
+7f4658263000-7f4658462000 ---p 0000e000 08:03 13665555                   /usr/local/lib/R/site-library/vegan/libs/vegan.so
+7f4658462000-7f4658463000 r--p 0000d000 08:03 13665555                   /usr/local/lib/R/site-library/vegan/libs/vegan.so
+7f4658463000-7f4658464000 rw-p 0000e000 08:03 13665555                   /usr/local/lib/R/site-library/vegan/libs/vegan.so
+7f4658464000-7f46584aa000 r-xp 00000000 08:03 13730332                   /usr/lib/R/library/mgcv/libs/mgcv.so
+7f46584aa000-7f46586a9000 ---p 00046000 08:03 13730332                   /usr/lib/R/library/mgcv/libs/mgcv.so
+7f46586a9000-7f46586aa000 r--p 00045000 08:03 13730332                   /usr/lib/R/library/mgcv/libs/mgcv.so
+7f46586aa000-7f46586ab000 rw-p 00046000 08:03 13730332                   /usr/lib/R/library/mgcv/libs/mgcv.so
+7f46586ab000-7f46586b6000 r-xp 00000000 08:03 14222203                   /usr/local/lib/R/site-library/multtest/libs/multtest.so
+7f46586b6000-7f46588b5000 ---p 0000b000 08:03 14222203                   /usr/local/lib/R/site-library/multtest/libs/multtest.so
+7f46588b5000-7f46588b6000 r--p 0000a000 08:03 14222203                   /usr/local/lib/R/site-library/multtest/libs/multtest.so
+7f46588b6000-7f46588b7000 rw-p 0000b000 08:03 14222203                   /usr/local/lib/R/site-library/multtest/libs/multtest.so
+7f46588b7000-7f465891d000 r-xp 00000000 08:03 132870                     /usr/lib/x86_64-linux-gnu/libgmp.so.10.0.2
+7f465891d000-7f4658b1c000 ---p 00066000 08:03 132870                     /usr/lib/x86_64-linux-gnu/libgmp.so.10.0.2
+7f4658b1c000-7f4658b1d000 r--p 00065000 08:03 132870                     /usr/lib/x86_64-linux-gnu/libgmp.so.10.0.2
+7f4658b1d000-7f4658b25000 rw-p 00066000 08:03 132870                     /usr/lib/x86_64-linux-gnu/libgmp.so.10.0.2
+7f4658b25000-7f4658e96000 r-xp 00000000 08:03 94798413                   /usr/local/lib/R/site-library/igraph/libs/igraph.so
+7f4658e96000-7f4659096000 ---p 00371000 08:03 94798413                   /usr/local/lib/R/site-library/igraph/libs/igraph.so
+7f4659096000-7f4659098000 r--p 00371000 08:03 94798413                   /usr/local/lib/R/site-library/igraph/libs/igraph.so
+7f4659098000-7f4659099000 rw-p 00373000 08:03 94798413                   /usr/local/lib/R/site-library/igraph/libs/igraph.so
+7f4659099000-7f46590aa000 rw-p 00000000 00:00 0 
+7f46590aa000-7f46590ce000 r-xp 00000000 08:03 4064830                    /usr/local/lib/R/site-library/DESeq2/libs/DESeq2.so
+7f46590ce000-7f46592ce000 ---p 00024000 08:03 4064830                    /usr/local/lib/R/site-library/DESeq2/libs/DESeq2.so
+7f46592ce000-7f46592cf000 r--p 00024000 08:03 4064830                    /usr/local/lib/R/site-library/DESeq2/libs/DESeq2.so
+7f46592cf000-7f46592d0000 rw-p 00025000 08:03 4064830                    /usr/local/lib/R/site-library/DESeq2/libs/DESeq2.so
+7f46592d0000-7f4659313000 r-xp 00000000 08:03 4031003                    /usr/local/lib/R/site-library/locfit/libs/locfit.so
+7f4659313000-7f4659512000 ---p 00043000 08:03 4031003                    /usr/local/lib/R/site-library/locfit/libs/locfit.so
+7f4659512000-7f4659513000 r--p 00042000 08:03 4031003                    /usr/local/lib/R/site-library/locfit/libs/locfit.so
+7f4659513000-7f4659515000 rw-p 00043000 08:03 4031003                    /usr/local/lib/R/site-library/locfit/libs/locfit.so
+7f4659515000-7f4659518000 rw-p 00000000 00:00 0 
+7f4659518000-7f465951e000 r-xp 00000000 08:03 14254275                   /usr/local/lib/R/site-library/genefilter/libs/genefilter.so
+7f465951e000-7f465971d000 ---p 00006000 08:03 14254275                   /usr/local/lib/R/site-library/genefilter/libs/genefilter.so
+7f465971d000-7f465971e000 r--p 00005000 08:03 14254275                   /usr/local/lib/R/site-library/genefilter/libs/genefilter.so
+7f465971e000-7f465971f000 rw-p 00006000 08:03 14254275                   /usr/local/lib/R/site-library/genefilter/libs/genefilter.so
+7f465971f000-7f4659860000 r-xp 00000000 08:03 211944181                  /opt/anaconda/lib/libxml2.so.2.9.0
+7f4659860000-7f4659a5f000 ---p 00141000 08:03 211944181                  /opt/anaconda/lib/libxml2.so.2.9.0
+7f4659a5f000-7f4659a69000 rw-p 00140000 08:03 211944181                  /opt/anaconda/lib/libxml2.so.2.9.0
+7f4659a69000-7f4659a6a000 rw-p 00000000 00:00 0 
+7f4659a6a000-7f4659a87000 r-xp 00000000 08:03 13599719                   /usr/local/lib/R/site-library/XML/libs/XML.so
+7f4659a87000-7f4659c86000 ---p 0001d000 08:03 13599719                   /usr/local/lib/R/site-library/XML/libs/XML.so
+7f4659c86000-7f4659c87000 r--p 0001c000 08:03 13599719                   /usr/local/lib/R/site-library/XML/libs/XML.so
+7f4659c87000-7f4659c89000 rw-p 0001d000 08:03 13599719                   /usr/local/lib/R/site-library/XML/libs/XML.so
+7f4659c89000-7f4659c8e000 r-xp 00000000 08:03 13729886                   /usr/local/lib/R/site-library/Hmisc/libs/Hmisc.so
+7f4659c8e000-7f4659e8e000 ---p 00005000 08:03 13729886                   /usr/local/lib/R/site-library/Hmisc/libs/Hmisc.so
+7f4659e8e000-7f4659e8f000 r--p 00005000 08:03 13729886                   /usr/local/lib/R/site-library/Hmisc/libs/Hmisc.so
+7f4659e8f000-7f4659e90000 rw-p 00006000 08:03 13729886                   /usr/local/lib/R/site-library/Hmisc/libs/Hmisc.so
+7f4659e90000-7f4659e9c000 r-xp 00000000 08:03 3834233                    /usr/lib/R/library/rpart/libs/rpart.so
+7f4659e9c000-7f465a09b000 ---p 0000c000 08:03 3834233                    /usr/lib/R/library/rpart/libs/rpart.so
+7f465a09b000-7f465a09c000 r--p 0000b000 08:03 3834233                    /usr/lib/R/library/rpart/libs/rpart.so
+7f465a09c000-7f465a09d000 rw-p 0000c000 08:03 3834233                    /usr/lib/R/library/rpart/libs/rpart.so
+7f465a09d000-7f465a0a1000 r-xp 00000000 08:03 3834193                    /usr/lib/R/library/nnet/libs/nnet.so
+7f465a0a1000-7f465a2a0000 ---p 00004000 08:03 3834193                    /usr/lib/R/library/nnet/libs/nnet.so
+7f465a2a0000-7f465a2a1000 r--p 00003000 08:03 3834193                    /usr/lib/R/library/nnet/libs/nnet.so
+7f465a2a1000-7f465a2a2000 rw-p 00004000 08:03 3834193                    /usr/lib/R/library/nnet/libs/nnet.so
+7f465a2a2000-7f465a2ba000 r-xp 00000000 08:03 3833987                    /usr/lib/R/library/foreign/libs/foreign.so
+7f465a2ba000-7f465a4b9000 ---p 00018000 08:03 3833987                    /usr/lib/R/library/foreign/libs/foreign.so
+7f465a4b9000-7f465a4ba000 r--p 00017000 08:03 3833987                    /usr/lib/R/library/foreign/libs/foreign.so
+7f465a4ba000-7f465a4bb000 rw-p 00018000 08:03 3833987                    /usr/lib/R/library/foreign/libs/foreign.so
+7f465a4bb000-7f465a4c3000 r-xp 00000000 08:03 13928049                   /usr/local/lib/R/site-library/acepack/libs/acepack.so
+7f465a4c3000-7f465a6c2000 ---p 00008000 08:03 13928049                   /usr/local/lib/R/site-library/acepack/libs/acepack.so
+7f465a6c2000-7f465a6c3000 r--p 00007000 08:03 13928049                   /usr/local/lib/R/site-library/acepack/libs/acepack.so
+7f465a6c3000-7f465a6c4000 rw-p 00008000 08:03 13928049                   /usr/local/lib/R/site-library/acepack/libs/acepack.so
+7f465a6c4000-7f465a6e3000 r-xp 00000000 08:03 13730175                   /usr/lib/R/library/survival/libs/survival.so
+7f465a6e3000-7f465a8e2000 ---p 0001f000 08:03 13730175                   /usr/lib/R/library/survival/libs/survival.so
+7f465a8e2000-7f465a8e3000 r--p 0001e000 08:03 13730175                   /usr/lib/R/library/survival/libs/survival.so
+7f465a8e3000-7f465a8e4000 rw-p 0001f000 08:03 13730175                   /usr/lib/R/library/survival/libs/survival.so
+7f465a8e4000-7f465a8e6000 r-xp 00000000 08:03 3835275                    /usr/lib/R/library/splines/libs/splines.so
+7f465a8e6000-7f465aae5000 ---p 00002000 08:03 3835275                    /usr/lib/R/library/splines/libs/splines.so
+7f465aae5000-7f465aae6000 r--p 00001000 08:03 3835275                    /usr/lib/R/library/splines/libs/splines.so
+7f465aae6000-7f465aae7000 rw-p 00002000 08:03 3835275                    /usr/lib/R/library/splines/libs/splines.so
+7f465aae7000-7f465aafe000 r-xp 00000000 08:03 13664263                   /usr/local/lib/R/site-library/RcppArmadillo/libs/RcppArmadillo.so
+7f465aafe000-7f465acfd000 ---p 00017000 08:03 13664263                   /usr/local/lib/R/site-library/RcppArmadillo/libs/RcppArmadillo.so
+7f465acfd000-7f465acfe000 r--p 00016000 08:03 13664263                   /usr/local/lib/R/site-library/RcppArmadillo/libs/RcppArmadillo.so
+7f465acfe000-7f465acff000 rw-p 00017000 08:03 13664263                   /usr/local/lib/R/site-library/RcppArmadillo/libs/RcppArmadillo.so
+7f465acff000-7f465ad07000 r-xp 00000000 08:03 4064783                    /usr/local/lib/R/site-library/GenomicRanges/libs/GenomicRanges.so
+7f465ad07000-7f465af06000 ---p 00008000 08:03 4064783                    /usr/local/lib/R/site-library/GenomicRanges/libs/GenomicRanges.so
+7f465af06000-7f465af07000 r--p 00007000 08:03 4064783                    /usr/local/lib/R/site-library/GenomicRanges/libs/GenomicRanges.so
+7f465af07000-7f465af08000 rw-p 00008000 08:03 4064783                    /usr/local/lib/R/site-library/GenomicRanges/libs/GenomicRanges.so
+7f465af08000-7f465af0a000 r-xp 00000000 08:03 14319998                   /usr/local/lib/R/site-library/base64enc/libs/base64enc.so
+7f465af0a000-7f465b109000 ---p 00002000 08:03 14319998                   /usr/local/lib/R/site-library/base64enc/libs/base64enc.so
+7f465b109000-7f465b10a000 r--p 00001000 08:03 14319998                   /usr/local/lib/R/site-library/base64enc/libs/base64enc.so
+7f465b10a000-7f465b10b000 rw-p 00002000 08:03 14319998                   /usr/local/lib/R/site-library/base64enc/libs/base64enc.so
+7f465b10b000-7f465b10d000 rw-p 00000000 00:00 0 
+7f465b10d000-7f465b1cc000 r-xp 00000000 08:03 14221777                   /usr/local/lib/R/site-library/RSQLite/libs/RSQLite.so
+7f465b1cc000-7f465b3cc000 ---p 000bf000 08:03 14221777                   /usr/local/lib/R/site-library/RSQLite/libs/RSQLite.so
+7f465b3cc000-7f465b3cf000 r--p 000bf000 08:03 14221777                   /usr/local/lib/R/site-library/RSQLite/libs/RSQLite.so
+7f465b3cf000-7f465b3d2000 rw-p 000c2000 08:03 14221777                   /usr/local/lib/R/site-library/RSQLite/libs/RSQLite.so
+7f465b3d2000-7f465b3d4000 r-xp 00000000 08:03 4032223                    /usr/local/lib/R/site-library/BBmisc/libs/BBmisc.so
+7f465b3d4000-7f465b5d3000 ---p 00002000 08:03 4032223                    /usr/local/lib/R/site-library/BBmisc/libs/BBmisc.so
+7f465b5d3000-7f465b5d4000 r--p 00001000 08:03 4032223                    /usr/local/lib/R/site-library/BBmisc/libs/BBmisc.so
+7f465b5d4000-7f465b5d5000 rw-p 00002000 08:03 4032223                    /usr/local/lib/R/site-library/BBmisc/libs/BBmisc.so
+7f465b5d5000-7f465b5e0000 r-xp 00000000 08:03 13534154                   /usr/local/lib/R/site-library/checkmate/libs/checkmate.so
+7f465b5e0000-7f465b7df000 ---p 0000b000 08:03 13534154                   /usr/local/lib/R/site-library/checkmate/libs/checkmate.so
+7f465b7df000-7f465b7e0000 r--p 0000a000 08:03 13534154                   /usr/local/lib/R/site-library/checkmate/libs/checkmate.so
+7f465b7e0000-7f465b7e1000 rw-p 0000b000 08:03 13534154                   /usr/local/lib/R/site-library/checkmate/libs/checkmate.so
+7f465b7e1000-7f465b7e6000 r-xp 00000000 08:03 14123709                   /usr/local/lib/R/site-library/Biobase/libs/Biobase.so
+7f465b7e6000-7f465b9e5000 ---p 00005000 08:03 14123709                   /usr/local/lib/R/site-library/Biobase/libs/Biobase.so
+7f465b9e5000-7f465b9e6000 r--p 00004000 08:03 14123709                   /usr/local/lib/R/site-library/Biobase/libs/Biobase.so
+7f465b9e6000-7f465b9e7000 rw-p 00005000 08:03 14123709                   /usr/local/lib/R/site-library/Biobase/libs/Biobase.so
+7f465b9e7000-7f465ba18000 r-xp 00000000 08:03 14090262                   /usr/local/lib/R/site-library/data.table/libs/datatable.so
+7f465ba18000-7f465bc17000 ---p 00031000 08:03 14090262                   /usr/local/lib/R/site-library/data.table/libs/datatable.so
+7f465bc17000-7f465bc18000 r--p 00030000 08:03 14090262                   /usr/local/lib/R/site-library/data.table/libs/datatable.so
+7f465bc18000-7f465bc19000 rw-p 00031000 08:03 14090262                   /usr/local/lib/R/site-library/data.table/libs/datatable.so
+7f465bc19000-7f465bc7d000 rw-p 00000000 00:00 0 
+7f465bc7d000-7f465bc7f000 r-xp 00000000 08:03 13534186                   /usr/local/lib/R/site-library/chron/libs/chron.so
+7f465bc7f000-7f465be7e000 ---p 00002000 08:03 13534186                   /usr/local/lib/R/site-library/chron/libs/chron.so
+7f465be7e000-7f465be7f000 r--p 00001000 08:03 13534186                   /usr/local/lib/R/site-library/chron/libs/chron.so
+7f465be7f000-7f465be80000 rw-p 00002000 08:03 13534186                   /usr/local/lib/R/site-library/chron/libs/chron.so
+7f465be80000-7f465be8f000 r-xp 00000000 08:03 13729983                   /usr/lib/R/library/cluster/libs/cluster.so
+7f465be8f000-7f465c08e000 ---p 0000f000 08:03 13729983                   /usr/lib/R/library/cluster/libs/cluster.so
+7f465c08e000-7f465c08f000 r--p 0000e000 08:03 13729983                   /usr/lib/R/library/cluster/libs/cluster.so
+7f465c08f000-7f465c090000 rw-p 0000f000 08:03 13729983                   /usr/lib/R/library/cluster/libs/cluster.so
+7f465c090000-7f465c0c5000 r-xp 00000000 08:03 4064606                    /usr/local/lib/R/site-library/Biostrings/libs/Biostrings.so
+7f465c0c5000-7f465c2c5000 ---p 00035000 08:03 4064606                    /usr/local/lib/R/site-library/Biostrings/libs/Biostrings.so
+7f465c2c5000-7f465c2c6000 r--p 00035000 08:03 4064606                    /usr/local/lib/R/site-library/Biostrings/libs/Biostrings.so
+7f465c2c6000-7f465c2c7000 rw-p 00036000 08:03 4064606                    /usr/local/lib/R/site-library/Biostrings/libs/Biostrings.so
+7f465c2c7000-7f465e930000 rw-p 00000000 00:00 0 
+7f465e930000-7f465e945000 r-xp 00000000 08:03 14222237                   /usr/local/lib/R/site-library/XVector/libs/XVector.so
+7f465e945000-7f465eb45000 ---p 00015000 08:03 14222237                   /usr/local/lib/R/site-library/XVector/libs/XVector.so
+7f465eb45000-7f465eb46000 r--p 00015000 08:03 14222237                   /usr/local/lib/R/site-library/XVector/libs/XVector.so
+7f465eb46000-7f465eb47000 rw-p 00016000 08:03 14222237                   /usr/local/lib/R/site-library/XVector/libs/XVector.so
+7f465eb47000-7f465eb6a000 r-xp 00000000 08:03 4063668                    /usr/local/lib/R/site-library/IRanges/libs/IRanges.so
+7f465eb6a000-7f465ed6a000 ---p 00023000 08:03 4063668                    /usr/local/lib/R/site-library/IRanges/libs/IRanges.so
+7f465ed6a000-7f465ed6b000 r--p 00023000 08:03 4063668                    /usr/local/lib/R/site-library/IRanges/libs/IRanges.so
+7f465ed6b000-7f465ed6c000 rw-p 00024000 08:03 4063668                    /usr/local/lib/R/site-library/IRanges/libs/IRanges.so
+7f465ed6c000-7f465ed81000 r-xp 00000000 08:03 14319704                   /usr/local/lib/R/site-library/S4Vectors/libs/S4Vectors.so
+7f465ed81000-7f465ef81000 ---p 00015000 08:03 14319704                   /usr/local/lib/R/site-library/S4Vectors/libs/S4Vectors.so
+7f465ef81000-7f465ef82000 r--p 00015000 08:03 14319704                   /usr/local/lib/R/site-library/S4Vectors/libs/S4Vectors.so
+7f465ef82000-7f465ef83000 rw-p 00016000 08:03 14319704                   /usr/local/lib/R/site-library/S4Vectors/libs/S4Vectors.so
+7f465ef83000-7f465efdb000 rw-p 00000000 00:00 0 
+7f465efdb000-7f465eff9000 r-xp 00000000 08:03 14123456                   /usr/local/lib/R/site-library/RJSONIO/libs/RJSONIO.so
+7f465eff9000-7f465f1f8000 ---p 0001e000 08:03 14123456                   /usr/local/lib/R/site-library/RJSONIO/libs/RJSONIO.so
+7f465f1f8000-7f465f1f9000 r--p 0001d000 08:03 14123456                   /usr/local/lib/R/site-library/RJSONIO/libs/RJSONIO.so
+7f465f1f9000-7f465f1fa000 rw-p 0001e000 08:03 14123456                   /usr/local/lib/R/site-library/RJSONIO/libs/RJSONIO.so
+7f465f1fa000-7f465f2b7000 r-xp 00000000 08:03 13730233                   /usr/lib/R/library/Matrix/libs/Matrix.so
+7f465f2b7000-7f465f4b6000 ---p 000bd000 08:03 13730233                   /usr/lib/R/library/Matrix/libs/Matrix.so
+7f465f4b6000-7f465f4b7000 r--p 000bc000 08:03 13730233                   /usr/lib/R/library/Matrix/libs/Matrix.so
+7f465f4b7000-7f465f4ba000 rw-p 000bd000 08:03 13730233                   /usr/lib/R/library/Matrix/libs/Matrix.so
+7f465f4ba000-7f465f6bc000 rw-p 00000000 00:00 0 
+7f465f6bc000-7f465f6e1000 r-xp 00000000 08:03 12812732                   /usr/local/lib/R/site-library/ape/libs/ape.so
+7f465f6e1000-7f465f8e0000 ---p 00025000 08:03 12812732                   /usr/local/lib/R/site-library/ape/libs/ape.so
+7f465f8e0000-7f465f8e1000 r--p 00024000 08:03 12812732                   /usr/local/lib/R/site-library/ape/libs/ape.so
+7f465f8e1000-7f465f8e2000 rw-p 00025000 08:03 12812732                   /usr/local/lib/R/site-library/ape/libs/ape.so
+7f465f8e2000-7f465f8f3000 r-xp 00000000 08:03 3834128                    /usr/lib/R/library/nlme/libs/nlme.so
+7f465f8f3000-7f465faf2000 ---p 00011000 08:03 3834128                    /usr/lib/R/library/nlme/libs/nlme.so
+7f465faf2000-7f465faf3000 r--p 00010000 08:03 3834128                    /usr/lib/R/library/nlme/libs/nlme.so
+7f465faf3000-7f465faf4000 rw-p 00011000 08:03 3834128                    /usr/lib/R/library/nlme/libs/nlme.so
+7f465faf4000-7f465faf7000 r-xp 00000000 08:03 13730058                   /usr/lib/R/library/lattice/libs/lattice.so
+7f465faf7000-7f465fcf6000 ---p 00003000 08:03 13730058                   /usr/lib/R/library/lattice/libs/lattice.so
+7f465fcf6000-7f465fcf7000 r--p 00002000 08:03 13730058                   /usr/lib/R/library/lattice/libs/lattice.so
+7f465fcf7000-7f465fcf8000 rw-p 00003000 08:03 13730058                   /usr/lib/R/library/lattice/libs/lattice.so
+7f465fcf8000-7f465fd0e000 r-xp 00000000 08:03 12812546                   /usr/local/lib/R/site-library/ade4/libs/ade4.so
+7f465fd0e000-7f465ff0d000 ---p 00016000 08:03 12812546                   /usr/local/lib/R/site-library/ade4/libs/ade4.so
+7f465ff0d000-7f465ff0e000 r--p 00015000 08:03 12812546                   /usr/local/lib/R/site-library/ade4/libs/ade4.so
+7f465ff0e000-7f465ff0f000 rw-p 00016000 08:03 12812546                   /usr/local/lib/R/site-library/ade4/libs/ade4.so
+7f465ff0f000-7f46600d8000 r-xp 00000000 08:03 13762663                   /usr/local/lib/R/site-library/dplyr/libs/dplyr.so
+7f46600d8000-7f46602d7000 ---p 001c9000 08:03 13762663                   /usr/local/lib/R/site-library/dplyr/libs/dplyr.so
+7f46602d7000-7f46602e5000 r--p 001c8000 08:03 13762663                   /usr/local/lib/R/site-library/dplyr/libs/dplyr.so
+7f46602e5000-7f46602e6000 rw-p 001d6000 08:03 13762663                   /usr/local/lib/R/site-library/dplyr/libs/dplyr.so
+7f46602e6000-7f46602e8000 rw-p 00000000 00:00 0 
+7f46602e8000-7f46602ec000 r-xp 00000000 08:03 3835182                    /usr/lib/R/library/parallel/libs/parallel.so
+7f46602ec000-7f46604ec000 ---p 00004000 08:03 3835182                    /usr/lib/R/library/parallel/libs/parallel.so
+7f46604ec000-7f46604ed000 r--p 00004000 08:03 3835182                    /usr/lib/R/library/parallel/libs/parallel.so
+7f46604ed000-7f46604ee000 rw-p 00005000 08:03 3835182                    /usr/lib/R/library/parallel/libs/parallel.so
+7f46604ee000-7f46604f3000 r-xp 00000000 08:03 13730112                   /usr/lib/R/library/MASS/libs/MASS.so
+7f46604f3000-7f46606f2000 ---p 00005000 08:03 13730112                   /usr/lib/R/library/MASS/libs/MASS.so
+7f46606f2000-7f46606f3000 r--p 00004000 08:03 13730112                   /usr/lib/R/library/MASS/libs/MASS.so
+7f46606f3000-7f46606f4000 rw-p 00005000 08:03 13730112                   /usr/lib/R/library/MASS/libs/MASS.so
+7f46606f4000-7f46606fe000 r-xp 00000000 08:03 13697478                   /usr/local/lib/R/site-library/scales/libs/scales.so
+7f46606fe000-7f46608fe000 ---p 0000a000 08:03 13697478                   /usr/local/lib/R/site-library/scales/libs/scales.so
+7f46608fe000-7f46608ff000 r--p 0000a000 08:03 13697478                   /usr/local/lib/R/site-library/scales/libs/scales.so
+7f46608ff000-7f4660900000 rw-p 0000b000 08:03 13697478                   /usr/local/lib/R/site-library/scales/libs/scales.so
+7f4660900000-7f466090a000 r-xp 00000000 08:03 13534215                   /usr/local/lib/R/site-library/colorspace/libs/colorspace.so
+7f466090a000-7f4660b09000 ---p 0000a000 08:03 13534215                   /usr/local/lib/R/site-library/colorspace/libs/colorspace.so
+7f4660b09000-7f4660b0a000 r--p 00009000 08:03 13534215                   /usr/local/lib/R/site-library/colorspace/libs/colorspace.so
+7f4660b0a000-7f4660b0b000 rw-p 0000a000 08:03 13534215                   /usr/local/lib/R/site-library/colorspace/libs/colorspace.so
+7f4660b0b000-7f4660b19000 r-xp 00000000 08:03 4064545                    /usr/local/lib/R/site-library/reshape2/libs/reshape2.so[32m[I 20:12:10.328 NotebookApp][m KernelRestarter: restarting kernel (1/5)
+WARNING:root:kernel 6a1e697c-f761-4de6-aae2-03a594f7ea73 restarted
+[32m[I 20:12:39.416 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 20:13:17.218 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 20:13:47.172 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 20:15:47.186 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 20:17:47.316 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 20:19:47.257 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 20:21:47.784 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 20:23:47.868 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 20:24:06.947 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 20:24:09.521 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 20:26:48.458 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 20:29:18.550 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 20:31:48.827 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 20:34:20.016 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 20:36:49.130 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 20:39:19.018 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 20:44:20.567 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 20:46:50.610 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 20:49:12.631 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 20:49:21.501 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 20:51:17.684 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 20:56:50.348 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 20:59:20.157 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 21:01:26.548 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 21:04:20.555 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 21:06:15.214 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[33m[W 21:08:05.817 NotebookApp][m WebSocket ping timeout after 119359 ms.
+[32m[I 07:01:18.933 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 07:01:21.082 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 07:05:41.206 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 07:10:01.185 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 07:12:23.819 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 07:18:43.662 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 07:27:04.591 NotebookApp][m Kernel interrupted: 6a1e697c-f761-4de6-aae2-03a594f7ea73
+[32m[I 07:27:25.426 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 07:31:45.366 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 07:31:48.939 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 07:31:56.878 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 07:33:50.365 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 07:34:01.676 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 07:36:05.613 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 07:40:25.446 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 07:41:20.264 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 07:49:15.477 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 08:27:30.033 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 08:33:06.384 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/atomIncorp_taxaIncorp_NMDS.ipynb
+[32m[I 08:36:46.065 NotebookApp][m Creating new directory in /ipynb/bac_genome
+[32m[I 08:37:00.472 NotebookApp][m Creating new notebook in /ipynb/bac_genome/n3
+[32m[I 08:37:01.055 NotebookApp][m Kernel started: 582797f6-62b7-4a20-8d5f-80e94adb608e
+[32m[I 08:39:01.483 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[33m[W 08:39:52.602 NotebookApp][m Notebook ipynb/bac_genome/n3/dataset.ipynb is not trusted
+[32m[I 08:39:54.276 NotebookApp][m Kernel started: 66d6e43d-27ff-4659-b5a4-86da2926d4c2
+[32m[I 08:41:02.477 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 08:41:54.379 NotebookApp][m Saving file at /ipynb/bac_genome/n3/dataset.ipynb
+[33m[W 08:41:54.383 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n3/dataset.ipynb
+[32m[I 08:43:54.378 NotebookApp][m Saving file at /ipynb/bac_genome/n3/dataset.ipynb
+[33m[W 08:43:54.381 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n3/dataset.ipynb
+[32m[I 08:44:30.706 NotebookApp][m Saving file at /ipynb/bac_genome/n3/dataset.ipynb
+[33m[W 08:44:30.708 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n3/dataset.ipynb
+[32m[I 09:12:01.578 NotebookApp][m Saving file at /ipynb/bac_genome/n3/dataset.ipynb
+[33m[W 09:12:01.581 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n3/dataset.ipynb
+[32m[I 09:14:01.500 NotebookApp][m Saving file at /ipynb/bac_genome/n3/dataset.ipynb
+[33m[W 09:14:01.501 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n3/dataset.ipynb
+[32m[I 09:16:01.597 NotebookApp][m Saving file at /ipynb/bac_genome/n3/dataset.ipynb
+[33m[W 09:16:01.599 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n3/dataset.ipynb
+[32m[I 09:28:03.469 NotebookApp][m Saving file at /ipynb/bac_genome/n3/dataset.ipynb
+[33m[W 09:28:03.470 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n3/dataset.ipynb
+[32m[I 09:30:03.464 NotebookApp][m Saving file at /ipynb/bac_genome/n3/dataset.ipynb
+[33m[W 09:30:03.468 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n3/dataset.ipynb
+[32m[I 09:32:03.397 NotebookApp][m Saving file at /ipynb/bac_genome/n3/dataset.ipynb
+[32m[I 09:34:03.393 NotebookApp][m Saving file at /ipynb/bac_genome/n3/dataset.ipynb
+[32m[I 09:36:03.380 NotebookApp][m Saving file at /ipynb/bac_genome/n3/dataset.ipynb
+[32m[I 09:37:39.126 NotebookApp][m Saving file at /ipynb/bac_genome/n3/dataset.ipynb
+[32m[I 09:38:03.376 NotebookApp][m Saving file at /ipynb/bac_genome/n3/dataset.ipynb
+[32m[I 09:38:47.375 NotebookApp][m Saving file at /ipynb/bac_genome/n3/dataset.ipynb
+[32m[I 09:40:03.357 NotebookApp][m Saving file at /ipynb/bac_genome/n3/dataset.ipynb
+[32m[I 09:51:22.297 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 09:53:22.297 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 09:55:22.298 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 09:57:22.320 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 09:59:22.304 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 10:01:22.304 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 10:03:22.315 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 10:05:22.299 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 10:07:22.307 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 10:09:22.399 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 10:11:22.293 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 10:13:22.275 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 10:19:22.287 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 10:21:22.281 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 10:23:22.299 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 10:25:22.287 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 10:26:06.293 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 10:27:22.290 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 10:29:22.296 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 10:31:22.355 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 10:33:22.430 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 10:35:22.413 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 10:37:22.335 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 10:39:22.326 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 10:45:22.342 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 10:49:22.339 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 10:51:22.335 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 10:53:22.354 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 10:55:22.445 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 10:57:22.350 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 10:59:22.350 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 11:01:22.343 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 11:03:22.375 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 11:05:22.352 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 11:07:22.314 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 11:09:22.322 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 11:19:23.109 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 11:21:23.156 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 11:23:23.244 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 11:25:23.139 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 11:25:24.868 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
