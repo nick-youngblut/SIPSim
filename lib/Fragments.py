@@ -113,6 +113,9 @@ def load_frags_pickle(inFH):
     d = dict()
     for x in fojb:
         taxon_name = x[0]
+        if d.has_key(taxon_name):
+            msg =  'WARNING: {} was found multiple times\n'
+            sys.stderr.write(msg.format(taxon_name))
         d[taxon_name] = dict()
         d[taxon_name]['fragLength'] = []
         d[taxon_name]['fragGC'] = []
@@ -121,7 +124,7 @@ def load_frags_pickle(inFH):
             for z in v:
                 # fragStart, fragLength, fragGC
                 d[taxon_name]['fragLength'].append(z[1])
-                d[taxon_name]['fragGC'].append(z[2])                
+                d[taxon_name]['fragGC'].append(z[2])              
     return d
 
 

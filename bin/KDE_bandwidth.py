@@ -5,9 +5,9 @@
 KDE_bandwidth: get the bandwidth of each KDE
 
 Usage:
-  fragments [options] <kde>
-  fragments -h | --help
-  fragments --version
+  KDE_bandwidth [options] <kde>
+  KDE_bandwidth -h | --help
+  KDE_bandwidth --version
 
 Options:
   <kde>         Pickled KDE object

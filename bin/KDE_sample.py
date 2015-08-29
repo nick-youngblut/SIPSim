@@ -5,9 +5,9 @@
 KDE_sample: sample from each KDE and write a table of values
 
 Usage:
-  fragments [options] <kde>
-  fragments -h | --help
-  fragments --version
+  KDE_sample [options] <kde>
+  KDE_sample -h | --help
+  KDE_sample --version
 
 Options:
   <kde>         Pickled KDE object

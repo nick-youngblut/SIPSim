@@ -12009,3 +12009,219 @@ OperationalError: database is locked
 [32m[I 10:13:09.908 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
 [32m[I 10:15:09.886 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
 [32m[I 10:18:15.068 NotebookApp][m Kernel restarted: a718ca1e-0b9e-40e9-b8f3-46c12997156c
+[32m[I 10:29:47.045 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/SIPSim_run1.ipynb
+[32m[I 10:33:01.516 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/SIPSim_run1.ipynb
+[32m[I 10:33:12.551 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 10:47:47.249 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/full_richness.ipynb
+[32m[I 10:58:43.963 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/full_richness.ipynb
+[32m[I 11:00:35.953 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/full_richness.ipynb
+[32m[I 11:05:47.351 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/full_richness.ipynb
+[32m[I 11:06:10.197 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/full_richness.ipynb
+[33m[W 11:23:12.327 NotebookApp][m WebSocket ping timeout after 119845 ms.
+[33m[W 11:23:15.179 NotebookApp][m WebSocket ping timeout after 119932 ms.
+[33m[W 11:23:20.937 NotebookApp][m WebSocket ping timeout after 117075 ms.
+[33m[W 11:23:21.339 NotebookApp][m WebSocket ping timeout after 117180 ms.
+[33m[W 11:23:27.496 NotebookApp][m WebSocket ping timeout after 119650 ms.
+[32m[I 13:59:59.517 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/full_richness.ipynb
+[32m[I 14:06:53.494 NotebookApp][m Creating new notebook in /ipynb/bac_genome/priming_exp
+[32m[I 14:06:54.442 NotebookApp][m Kernel started: 8f37d9d1-3a28-46b6-936f-517052d73e10
+[32m[I 14:07:58.275 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:08:19.713 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:08:55.231 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/prime_exp_bulk_soil_taxa_abund-dist.ipynb
+[32m[I 14:09:32.024 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:09:56.645 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:10:18.602 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/prime_exp_bulk_soil_taxa_abund-dist.ipynb
+[32m[I 07:19:57.845 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/full_richness.ipynb
+[32m[I 13:03:25.897 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 13:05:25.963 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 13:07:25.903 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 13:09:25.975 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 13:11:25.888 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:04:23.940 NotebookApp][m Kernel started: a4a5da53-f65a-428b-96ab-033adad59649
+[32m[I 14:05:25.851 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:07:25.888 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:09:25.840 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:11:25.848 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:13:25.849 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:15:25.845 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:17:25.947 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:19:25.840 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:21:25.837 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:23:25.835 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:25:25.838 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:27:25.906 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:29:25.836 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:31:25.827 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:33:25.834 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:35:25.830 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:37:25.832 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:39:25.827 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:41:25.824 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:41:28.433 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:43:25.898 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:45:25.814 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:47:25.822 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:48:19.787 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:49:19.557 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:49:25.835 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:50:11.809 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:51:25.814 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:52:22.427 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:53:25.821 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:54:31.787 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:55:25.812 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:57:25.819 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:58:51.385 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 15:07:26.652 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 15:09:26.662 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 15:11:26.590 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 15:13:26.601 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 15:15:03.836 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 15:17:26.627 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 15:19:14.223 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 15:19:23.488 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[33m[W 15:21:54.426 NotebookApp][m WebSocket ping timeout after 119997 ms.
+[33m[W 15:22:00.722 NotebookApp][m WebSocket ping timeout after 119997 ms.
+[33m[W 15:22:06.188 NotebookApp][m WebSocket ping timeout after 119902 ms.
+[32m[I 18:36:16.608 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 18:36:17.218 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 18:37:19.362 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 18:39:32.879 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 18:42:46.614 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 18:46:16.702 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 19:00:47.778 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 19:01:07.047 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 19:03:07.030 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 19:05:07.019 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 19:07:07.026 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 19:09:06.995 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 19:11:07.273 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 19:12:19.487 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 19:13:08.032 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 19:14:02.046 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 19:15:08.001 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 19:16:41.456 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 19:17:07.466 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 19:17:12.680 NotebookApp][m Kernel interrupted: 4a5aa8f7-684c-4df8-8c36-fa7ccb9734a4
+[32m[I 19:17:55.499 NotebookApp][m Kernel interrupted: 4a5aa8f7-684c-4df8-8c36-fa7ccb9734a4
+[32m[I 19:19:07.460 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 19:21:07.640 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 19:23:07.465 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 19:25:07.977 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 19:27:08.046 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 19:29:08.064 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 19:31:08.056 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 19:33:02.068 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 19:34:11.791 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 19:35:07.254 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 19:37:08.546 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 19:38:03.922 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 19:38:34.353 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 19:54:47.710 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 20:01:25.761 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 20:04:21.832 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 20:04:46.906 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 20:12:48.669 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[33m[W 21:07:54.011 NotebookApp][m WebSocket ping timeout after 119629 ms.
+[33m[W 21:07:57.121 NotebookApp][m WebSocket ping timeout after 119667 ms.
+[33m[W 21:08:00.816 NotebookApp][m WebSocket ping timeout after 119679 ms.
+[32m[I 11:42:25.157 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 14:06:52.946 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 14:07:17.296 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 14:21:26.362 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 14:22:17.737 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 14:29:04.525 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 14:29:39.495 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 14:37:09.296 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 14:39:26.318 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 14:40:27.884 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 14:41:14.768 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 14:46:58.732 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 14:57:26.273 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 15:09:29.696 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 15:15:26.235 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 15:19:55.271 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 07:18:50.662 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 07:26:33.725 NotebookApp][m Kernel interrupted: a718ca1e-0b9e-40e9-b8f3-46c12997156c
+[32m[I 07:26:56.005 NotebookApp][m Kernel restarted: a718ca1e-0b9e-40e9-b8f3-46c12997156c
+[32m[I 07:36:51.491 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 07:54:51.468 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 08:08:25.876 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 08:12:51.400 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 08:13:44.362 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 08:13:44.580 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 08:13:48.099 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 08:16:55.413 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 08:18:55.424 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 08:20:55.419 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 08:22:55.417 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 08:24:55.424 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 08:26:55.388 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 08:28:55.460 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 08:29:02.483 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 08:30:55.383 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 08:32:55.385 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 08:33:22.527 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 08:34:55.378 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 08:36:55.403 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/CD-HIT.ipynb
+[32m[I 08:39:22.380 NotebookApp][m Kernel interrupted: a718ca1e-0b9e-40e9-b8f3-46c12997156c
+[32m[I 08:39:26.466 NotebookApp][m Kernel restarted: a718ca1e-0b9e-40e9-b8f3-46c12997156c
+[32m[I 08:40:15.165 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 08:45:05.668 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 08:48:07.184 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 08:48:18.572 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 09:06:53.255 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 09:24:53.210 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 09:42:53.210 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 09:43:35.704 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 09:47:32.295 NotebookApp][m Kernel interrupted: a718ca1e-0b9e-40e9-b8f3-46c12997156c
+[32m[I 09:47:38.543 NotebookApp][m Kernel interrupted: a718ca1e-0b9e-40e9-b8f3-46c12997156c
+[32m[I 10:00:53.136 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 10:54:54.041 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 11:06:06.678 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 11:06:32.253 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 11:07:37.395 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 11:07:54.709 NotebookApp][m Kernel interrupted: a718ca1e-0b9e-40e9-b8f3-46c12997156c
+[32m[I 11:08:46.458 NotebookApp][m Kernel interrupted: a718ca1e-0b9e-40e9-b8f3-46c12997156c
+[32m[I 11:09:27.794 NotebookApp][m Kernel interrupted: a718ca1e-0b9e-40e9-b8f3-46c12997156c
+[32m[I 11:10:09.319 NotebookApp][m Kernel interrupted: a718ca1e-0b9e-40e9-b8f3-46c12997156c
+[32m[I 11:10:46.099 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 11:30:42.072 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 11:48:54.062 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 12:06:54.078 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 14:17:27.509 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 14:30:55.525 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 14:57:44.423 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:59:44.413 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 15:01:45.412 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 15:02:28.089 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 15:06:55.435 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 15:24:55.466 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 15:28:09.004 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 15:34:13.329 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 15:34:51.712 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 07:09:15.824 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 07:19:01.286 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 07:27:15.869 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 07:45:15.777 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 07:55:22.627 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 07:56:13.638 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 07:57:22.624 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 07:59:22.624 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 08:01:22.622 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 08:03:16.641 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 08:03:22.619 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 08:05:22.612 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 08:07:22.615 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 08:09:22.609 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 08:11:23.592 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 08:21:16.608 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 08:26:53.102 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 08:26:55.692 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 08:39:16.636 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 08:45:14.088 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 08:50:30.864 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 08:51:30.501 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 08:52:04.867 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 09:33:16.519 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
+[32m[I 09:45:51.773 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/X12C.700.14.05.ipynb
