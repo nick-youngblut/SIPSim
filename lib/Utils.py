@@ -10,9 +10,11 @@ import subprocess
 from pprint import pprint
 from itertools import chain
 import dill
+import random
 
 ## 3rd party
 import pandas as pd
+import scipy.stats as ss
 
 
 def get_os():
@@ -160,6 +162,69 @@ def parseKeyValueString(x):
     x = x.replace(' ','')
     l = re.split('[:,]', x)
     return {k:float(v) for k,v in zip(l[::2],l[1::2])}
+
+
+
+
+def random_walk_var_step(x, max_walk):
+    """Shuffle the order of a list based on a random walk along list value
+    ranks, where walk step size is randomly selected to be between 0 and
+    max_walk for each step. 
+    This produces a ordering with a certain level of autocorrelation
+    that is set by the max walk step size. The larger the max walk step size,
+    the less autocorrelation that will be prevalent. 
+    Args:
+    x -- a list-like object
+    max_walk -- the max distance in rank for the walk step.
+    Return:
+    a reordered list of values
+    """
+    # x = list
+    try:
+        x = list(x)
+    except TypeError:
+        msg = 'x must be a list-like object'
+        raise TypeError, msg
+        
+    x_len = len(x)
+    
+    # ranks of values
+    ## (index, value, value_rank)
+    ranks = zip(range(x_len), x, ss.rankdata(x))
+ 
+    # starting range
+    start_i = random.randrange(0,x_len,1)
+    cur_rank = ranks[start_i]
+
+    # filtering cur_rank from ranks 
+    ranks = [x for x in ranks if x[0] != cur_rank[0]]
+    
+    # moving through ranks
+    x_new_order = [cur_rank[1]]
+    for i in xrange(x_len-1):       
+        # select max walk distance
+        max_range = random.randrange(1,max_walk+1)
+    
+        # filter to just ranks w/in rank distance
+        filt_ranks = [x for x in ranks 
+                      if abs(x[2] - cur_rank[2]) <= max_range]
+    
+        # selecting randomly from filtered ranks
+        cur_rank = random.sample(filt_ranks, k=1)[0]
+        
+        # adding value to new list
+        x_new_order.append(cur_rank[1])
+        
+        # filtering cur_rank from ranks 
+        ranks = [x for x in ranks if x[0] != cur_rank[0]]
+
+        # re-ranking remaining values
+        rank_vals = [x[2] for x in ranks]
+        new_ranks = ss.rankdata(rank_vals)
+        for i,v in enumerate(new_ranks):
+            ranks[i] = (ranks[i][0], ranks[i][1], v)
+                    
+    return x_new_order
         
         
 

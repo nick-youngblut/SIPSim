@@ -23,6 +23,11 @@ Options:
                       number subsampled for all communities. Overrides '--dist*'
                       options.
   --no-replace        Subsample without replacement.         
+  --walk=<w>          Set fraction order a autocorrelating based on a random 
+                      walk. This parameter determines the max walk step size.
+                      The greater the size, the less autocorrleation.
+                      Zero = completely random (no autocorrelation).
+                      [Default: 0]
   -h --help           Show this screen.
   --version           Show version.
   --debug             Debug mode
@@ -54,6 +59,8 @@ import Utils
 
 
 def main(Uargs):
+    Uargs['--walk'] = int(Uargs['--walk'])
+
     # dist params as dict
     Uargs['--dist_params'] = Utils.parseKeyValueString(Uargs['--dist_params'])
     
@@ -70,7 +77,8 @@ def main(Uargs):
                           samp_dist_params=Uargs['--dist_params'])
     
     # subsampling
-    df = otu_tbl.subsample(no_replace=Uargs['--no-replace'])
+    df = otu_tbl.subsample(no_replace=Uargs['--no-replace'],
+                           walk=Uargs['--walk'])
 
     # writing out table
     df.to_csv(sys.stdout, sep='\t', index=False)

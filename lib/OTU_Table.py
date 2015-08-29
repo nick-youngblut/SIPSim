@@ -14,6 +14,7 @@ from FracTable import FracTable
 import BD_Shift
 import Utils
 from Utils import _table
+from Utils import random_walk_var_step
 
 
 def binNum2ID(frag_BD_bins, libFracBins):
@@ -286,7 +287,7 @@ class OTU_table(_table):
                 np.median(counts), np.max(counts)]
 
         
-    def subsample(self, no_replace=False):
+    def subsample(self, no_replace=False, walk=0):
         """Subsampling from each community.
         Using numpy.random.choice with taxon abundances as weights
         Args:
@@ -304,8 +305,20 @@ class OTU_table(_table):
         all_taxa = Counter({x:0 for x in self.iter_taxa()})        
 
         # subsampling
+        samp_cnt = 0
         df_sub = pd.DataFrame(columns=self.df.columns)
         for libID in self.iter_libraries():
+            # making list of fraction sizes 
+            samp_sizes = []
+            for fracID in self.iter_fractions(libID=libID):
+                samp_size = self.samp_dist(size=1)
+                samp_size = int(round(samp_size, 0))
+                samp_sizes.append(samp_size)
+
+            # applying autocorrleation via random walk (if needed)
+            if walk > 0:
+                samp_sizes = random_walk_var_step(samp_sizes, walk)
+
             for fracID in self.iter_fractions(libID=libID):
                 # single community
                 comm = self.get_comm(libID, fracID)
@@ -316,7 +329,7 @@ class OTU_table(_table):
                     sub_comm = comm.copy()
                 else:
                     # size to subsample
-                    samp_size = self.samp_dist(size=1)
+                    samp_size = samp_sizes[samp_cnt]
                     
                     # sampling
                     counts = comm['count']
@@ -325,7 +338,6 @@ class OTU_table(_table):
                                                          size=samp_size,
                                                          replace= not no_replace,
                                                          p=counts/np.sum(counts)))
-
                                                 
                         # setting all taxa in counts
                         sub_comm.update(all_taxa)                        
@@ -346,6 +358,7 @@ class OTU_table(_table):
                         comm.loc[:,'count'] = 0
 
                 df_sub = pd.concat([df_sub, sub_comm])
+                samp_cnt += 1
                         
         df_sub['count'] = df_sub['count'].astype(int)
 
