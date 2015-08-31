@@ -19,6 +19,8 @@ Options:
                       Input format: 'key1:value1,key2:value2,keyN:valueN'
                       To sample exactly X from each community, use: 'low:X,high:X'
                       [default: low:10000,high:10000]
+  --min_size=<m>      Minimum sample size (truncates distribution).
+  --max_size=<n>      Maximum sample size (truncates distribution). 
   --samp_min          Use the minimum number of taxa in any community as the
                       number subsampled for all communities. Overrides '--dist*'
                       options.
@@ -28,6 +30,9 @@ Options:
                       The greater the size, the less autocorrleation.
                       Zero = completely random (no autocorrelation).
                       [Default: 0]
+  --base=<b>          Logarithm base for log-transform of taxon counts.
+                      Taxon counts used set sampling probabilities;
+                      a larger base will even out probabilities.
   -h --help           Show this screen.
   --version           Show version.
   --debug             Debug mode
@@ -43,6 +48,8 @@ Description:
 
   If a community has a total count of 0, subsampling will produce a community
   with a total count of 0 (can't subsample from nothing). 
+
+  Parameters where a value is required but not set by default are not used.
 """
 
 # import
@@ -78,7 +85,10 @@ def main(Uargs):
     
     # subsampling
     df = otu_tbl.subsample(no_replace=Uargs['--no-replace'],
-                           walk=Uargs['--walk'])
+                           walk=Uargs['--walk'], 
+                           min_size=Uargs['--min_size'], 
+                           max_size=Uargs['--max_size'], 
+                           base=Uargs['--base'])
 
     # writing out table
     df.to_csv(sys.stdout, sep='\t', index=False)

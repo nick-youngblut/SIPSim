@@ -12422,3 +12422,149 @@ Shutdown this notebook server (y/[n])? y
 [33m[W 09:19:11.391 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
 [32m[I 09:35:11.642 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
 [33m[W 09:35:11.644 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 09:45:12.413 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 09:45:12.415 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 09:45:55.264 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb
+[33m[W 09:45:55.267 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb
+[32m[I 09:47:12.292 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 09:47:12.295 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 09:47:55.257 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb
+[33m[W 09:47:55.260 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb
+[32m[I 09:49:30.471 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb
+[33m[W 09:49:30.474 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb
+[32m[I 09:50:14.401 NotebookApp][m Kernel interrupted: 53590d0e-32fa-4e05-af95-cb74ec36b877
+[32m[I 09:51:55.273 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb
+[33m[W 09:51:55.275 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb
+[32m[I 09:55:13.205 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 09:55:13.207 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 09:57:13.242 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 09:57:13.245 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 10:38:08.430 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/n1210/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20150831084657 (127.0.0.1) 1.14ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 10:38:08.431 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/n1210/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20150831084657 (127.0.0.1) 0.91ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 10:38:08.504 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20150831084657 (127.0.0.1) 2.92ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 10:38:08.511 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20150831084657 (127.0.0.1) 2.85ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 10:38:08.516 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20150831084657 (127.0.0.1) 2.81ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 10:38:10.486 NotebookApp][m Kernel started: 03d092c4-9056-44f5-b0da-d002fba14260
+[33m[W 10:39:04.163 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/Ecoli/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20150831084657 (127.0.0.1) 0.98ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/frag_sim.ipynb
+[33m[W 10:39:04.164 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/Ecoli/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20150831084657 (127.0.0.1) 0.93ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/frag_sim.ipynb
+[32m[I 10:39:04.457 NotebookApp][m Kernel started: e57c62cf-9eb8-48fe-8602-ffb86ceb283e
+[33m[W 10:39:04.541 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20150831084657 (127.0.0.1) 1.56ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/frag_sim.ipynb
+[33m[W 10:39:04.556 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20150831084657 (127.0.0.1) 1.19ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/frag_sim.ipynb
+[33m[W 10:39:04.558 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20150831084657 (127.0.0.1) 1.14ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Ecoli/frag_sim.ipynb
+[32m[I 10:39:29.093 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 10:39:29.095 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 10:41:29.106 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 10:41:29.108 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 10:43:29.129 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 10:43:29.131 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 10:45:29.180 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 10:45:29.183 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 10:47:29.148 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 10:47:29.150 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 10:47:46.914 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 10:47:46.917 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 10:49:29.176 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 10:49:29.178 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 10:50:45.619 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 10:50:45.622 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 10:53:29.093 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 10:53:29.096 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 10:55:29.203 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 10:55:29.205 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 10:57:29.061 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 10:57:29.064 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 10:59:29.085 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 10:59:29.091 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 11:11:34.197 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 11:11:34.199 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 11:13:34.070 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 11:13:34.072 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 11:25:34.070 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 11:25:34.072 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 11:27:34.117 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 11:29:34.153 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 11:33:33.976 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 11:35:34.054 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 11:41:34.072 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 11:43:34.140 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 11:45:34.067 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 11:46:25.941 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb
+[33m[W 11:46:25.943 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb
+[32m[I 11:48:25.905 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb
+[33m[W 11:48:25.907 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb
+[32m[I 11:49:08.714 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb
+[33m[W 11:49:08.716 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb
+[32m[I 11:55:35.015 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 11:57:34.991 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 11:59:34.940 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 11:59:36.941 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 12:07:34.899 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 12:09:34.943 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 12:11:34.965 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 12:13:34.919 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 12:15:34.989 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 12:19:34.919 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 12:21:34.914 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 12:23:34.924 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 12:25:34.939 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 12:27:34.907 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 12:30:44.706 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 12:33:34.850 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 12:45:34.944 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 12:47:34.934 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 12:49:34.957 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 12:51:34.935 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 12:56:44.915 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 13:07:35.219 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 13:11:34.931 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 13:13:34.935 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[33m[W 13:14:17.806 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/priming_exp/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20150831084657 (127.0.0.1) 1.07ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[33m[W 13:14:17.808 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/priming_exp/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20150831084657 (127.0.0.1) 0.91ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[33m[W 13:14:17.862 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20150831084657 (127.0.0.1) 2.96ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 13:14:19.399 NotebookApp][m Kernel started: 1fa892c0-aade-48c7-b0b8-bfe605532c69
+[33m[W 13:14:19.428 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20150831084657 (127.0.0.1) 1.52ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[33m[W 13:14:19.430 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20150831084657 (127.0.0.1) 1.15ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 13:15:34.938 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 13:29:34.948 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 13:31:34.921 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 13:33:34.943 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 13:35:34.944 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 13:37:34.957 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 13:39:34.946 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 13:41:34.830 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 13:43:35.112 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 13:45:34.958 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 13:47:34.944 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 13:49:34.922 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 13:57:34.911 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 13:59:35.015 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 14:01:34.912 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 14:03:34.956 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 14:05:34.944 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 14:07:34.946 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 14:09:34.910 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 14:11:34.994 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 14:15:34.897 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 14:17:34.896 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 14:21:34.932 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 14:23:34.892 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 14:25:34.876 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 14:27:34.886 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 14:29:34.969 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 14:31:34.896 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 14:33:34.897 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 14:35:34.879 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 14:37:34.900 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 14:43:34.967 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 14:45:34.909 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 14:49:34.943 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 14:51:34.881 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 14:53:34.765 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 14:55:34.767 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 14:57:34.868 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 15:01:34.939 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 15:03:35.128 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 15:07:34.851 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 15:08:08.658 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 15:11:34.768 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[32m[I 15:12:30.009 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb

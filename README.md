@@ -7,6 +7,15 @@ stable isotope probing (HR-SIP).
 INSTALLATION
 ============
 
+## DEPENENCIES
+
+* [pathos](https://github.com/uqfoundation/pathos)
+  * [pathos external dependencies](https://github.com/uqfoundation/pathos/tree/master/external)
+* [pyfasta](https://pypi.python.org/pypi/pyfasta/)
+* [intervaltree](https://github.com/chaimleib/intervaltree)
+
+## Install of SIPSim
+
 ### Clone the repo
 
 ~~~

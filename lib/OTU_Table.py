@@ -1,5 +1,6 @@
 import os, sys
 import time
+import math
 from functools import partial
 from collections import Counter
 from pprint import pprint
@@ -163,10 +164,10 @@ def _get_BD_range(x):
         [start,_,end] = x.partition('-')            
         
     if start.startswith('-inf'):
-        end = round(float(end),3)
+        end = round(float(end),3) - 0.001
         mid = end
     elif end.endswith('inf'):
-        start = round(float(start),3)
+        start = round(float(start),3) + 0.001
         mid = start
     else:
         start = round(float(start),3)
@@ -287,11 +288,17 @@ class OTU_table(_table):
                 np.median(counts), np.max(counts)]
 
         
-    def subsample(self, no_replace=False, walk=0):
+    def subsample(self, no_replace=False, walk=0, 
+                  min_size=0, max_size=None, base=None):
         """Subsampling from each community.
         Using numpy.random.choice with taxon abundances as weights
         Args:
         no_replace -- subsample without replacement
+        walk -- order values by a random walk 
+        min_size -- minimum sample size
+        max_size -- max sample size
+        base -- log base for transforming taxon counts 
+                (used for subsampling probabilities)
         Return:
         pandas DataFrame -- subsampled community
         """
@@ -300,6 +307,17 @@ class OTU_table(_table):
             'samp_dist attribute not found'
         assert hasattr(self, 'samp_dist_params'), \
             'samp_dist_params attribute not found'
+
+        # min/max sample size
+        if min_size is None:
+            min_size = 0
+        if max_size is None:
+            max_size = np.inf
+        min_size = float(min_size)
+        max_size = float(max_size)
+        assert min_size >= 0, 'min_size must be >= 0'
+        assert max_size >= min_size, 'max_size must be >= min_size'
+
 
         # all taxa
         all_taxa = Counter({x:0 for x in self.iter_taxa()})        
@@ -311,14 +329,26 @@ class OTU_table(_table):
             # making list of fraction sizes 
             samp_sizes = []
             for fracID in self.iter_fractions(libID=libID):
-                samp_size = self.samp_dist(size=1)
-                samp_size = int(round(samp_size, 0))
+                max_tries = 1000
+                tries = 0
+                msg = 'Exceeded tries to select a sample size within the range'
+                while 1:
+                    samp_size = self.samp_dist(size=1)[0]
+                    samp_size = int(round(samp_size, 0))
+                    if samp_size >= min_size and samp_size <= max_size:
+                        break
+                    tries += 1
+                    if tries >= max_tries:
+                        print samp_size
+                        raise ValueError, msg
                 samp_sizes.append(samp_size)
+                
 
             # applying autocorrleation via random walk (if needed)
             if walk > 0:
                 samp_sizes = random_walk_var_step(samp_sizes, walk)
 
+            # subsampling; weighted by relative abundances
             for fracID in self.iter_fractions(libID=libID):
                 # single community
                 comm = self.get_comm(libID, fracID)
@@ -331,16 +361,25 @@ class OTU_table(_table):
                     # size to subsample
                     samp_size = samp_sizes[samp_cnt]
                     
-                    # sampling
+                    # sampling probabilities (relative abundances)
                     counts = comm['count']
+                    if base is not None:
+                        base = float(base)
+                        counts = [math.log(x+1,base) for x in counts]                        
+                    rel_abunds = counts / np.sum(counts)                    
+                    total_rel_abund = round(np.sum(rel_abunds),5)
+                    msg = 'Probabilities = {}, but should = 1'
+                    assert total_rel_abund == 1.0, msg.format(total_rel_abund)
+                    
+                    # sample from taxa list
                     try:
                         sub_comm = Counter(np.random.choice(comm['taxon'],
                                                          size=samp_size,
                                                          replace= not no_replace,
-                                                         p=counts/np.sum(counts)))
+                                                         p=rel_abunds))
                                                 
                         # setting all taxa in counts
-                        sub_comm.update(all_taxa)                        
+                        sub_comm.update(all_taxa)                                                
 
                         # count to dataframe
                         sub_comm = pd.DataFrame(sub_comm.items())
