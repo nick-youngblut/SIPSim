@@ -24,8 +24,8 @@ class FracTable(_table):
         # assertions on columns
         assertCols = ['library','fraction','BD_min','BD_max','fraction_size']
         for col in assertCols:
-            assert col in self.df.columns, \
-                'Column "{}" not found in file "{}"'.format(col, self.tableFileName)
+            msg = 'Column "{}" not found in file "{}"'
+            assert col in self.df.columns, msg.format(col, self.tableFileName)
 
         # fraction ID as int
         self.df['fraction'] = self.df['fraction'].astype(int)
@@ -35,8 +35,8 @@ class FracTable(_table):
 
         
     def _set_itrees(self):
-        """Setting a dict of interval trees for the BD-min/max ranges (1 per lib).
-        Max in interval ranges is non-inclusive.
+        """Setting a dict of interval trees for the BD-min/max ranges
+        (1 per lib). Max in interval ranges is non-inclusive.
         Returns:
         in-place edit -- self.itrees
         """
@@ -47,13 +47,15 @@ class FracTable(_table):
             return Interval(float(x[0]),float(x[1]),int(x[2]))
         
         for libID in self.iter_libraries():
-            df_sub = self.df.loc[self.df['library'] == libID, ['BD_min','BD_max','fraction']]
-            self.itrees[libID] = IntervalTree(list(df_sub.apply(make_frac_interval, axis=1)))
+            x = self.df['library'] == libID, ['BD_min','BD_max','fraction']
+            df_sub = self.df.loc[x]
+            y = list(df_sub.apply(make_frac_interval, axis=1))
+            self.itrees[libID] = IntervalTree(y)
 
             
     def which_frac(self, libID, BD_value):
-        """Determine which of the simulated fractions that the BD value falls into.
-        Using an interval tree of BD-min/max values.
+        """Determine which of the simulated fractions that the BD value falls
+        into. Using an interval tree of BD-min/max values.
         BD_max is non-inclusive.
         Args:
         libID -- library ID
@@ -69,7 +71,8 @@ class FracTable(_table):
         try:
             fracIDs = [x.data for x in self.itrees[libID][BD_value]]            
         except KeyError:
-            raise KeyError('Library "{}" not found in fraction table'.format(libID))
+            msg = 'Library "{}" not found in fraction table'
+            raise KeyError(msg.format(libID))
 
         fracIDs_len = len(fracIDs)
         if fracIDs_len == 0:
@@ -112,7 +115,8 @@ class FracTable(_table):
         Returns:
         list -- [BD_min, BD_max]
         """
-        df_sub = self.df.loc[(self.df['library'] == libID) & (self.df['fraction'] == fracID)]
+        x = (self.df['library'] == libID) & (self.df['fraction'] == fracID) 
+        df_sub = self.df.loc[x]
         return list(df_sub.loc[0][['BD_min','BD_max']])
 
 
@@ -141,7 +145,8 @@ class FracTable(_table):
         Format: [libraryID]_[fractionID]_[BD_min]_[BD_max]
         """
         df_sub = self.df[['library','fraction','BD_min','BD_max']]
-        return list(df_sub.apply(lambda x : '_'.join([str(y) for y in x]), axis=1))
+        f = lambda x : '_'.join([str(y) for y in x])
+        return list(df_sub.apply(f, axis=1))
 
     
     def get_libFracIDs(self, libID):

@@ -12246,3 +12246,179 @@ Keyboard interrupt.
 [32m[I 11:35:56.125 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
 [32m[I 11:37:30.806 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
 [32m[I 11:39:29.575 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[33m[W 11:57:03.998 NotebookApp][m WebSocket ping timeout after 119944 ms.
+[33m[W 11:57:06.739 NotebookApp][m WebSocket ping timeout after 119997 ms.
+[33m[W 18:39:06.726 NotebookApp][m Could not copy README_STARTUP to startup dir. Source file /opt/anaconda/lib/python2.7/site-packages/IPython/config/profile/README_STARTUP does not exist.
+[33m[W 18:39:06.727 NotebookApp][m Could not copy README_STARTUP to startup dir. Source file /opt/anaconda/lib/python2.7/site-packages/IPython/config/profile/README_STARTUP does not exist.
+[33m[W 18:39:06.727 NotebookApp][m Could not copy README_STARTUP to startup dir. Source file /opt/anaconda/lib/python2.7/site-packages/IPython/config/profile/README_STARTUP does not exist.
+[33m[W 18:39:06.727 NotebookApp][m Could not copy default file to static dir. Source file /opt/anaconda/lib/python2.7/site-packages/IPython/html/static/custom/custom.js does not exist.
+[33m[W 18:39:06.728 NotebookApp][m Could not copy default file to static dir. Source file /opt/anaconda/lib/python2.7/site-packages/IPython/html/static/custom/custom.css does not exist.
+[31m[E 18:39:17.014 NotebookApp][m Uncaught exception GET /notebooks/ipynb/bac_genome/n1210/ID_16S_genes.ipynb (127.0.0.1)
+    HTTPServerRequest(protocol='http', host='127.0.0.1:7702', method='GET', uri='/notebooks/ipynb/bac_genome/n1210/ID_16S_genes.ipynb', version='HTTP/1.1', remote_ip='127.0.0.1', headers={'Accept-Language': 'en-US,en;q=0.8', 'Accept-Encoding': 'gzip, deflate, sdch', 'Host': '127.0.0.1:7702', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36', 'Connection': 'keep-alive', 'Referer': 'http://127.0.0.1:7702/tree/ipynb/bac_genome/n1210', 'If-None-Match': '"8a8f653803f964276ec1868746a7965d5cde11b9"', 'Upgrade-Insecure-Requests': '1'})
+    Traceback (most recent call last):
+      File "/opt/anaconda/lib/python2.7/site-packages/tornado/web.py", line 1346, in _execute
+        utf8(self.request.headers.get("If-None-Match", ""))
+      File "/opt/anaconda/lib/python2.7/site-packages/tornado/web.py", line 2626, in wrapper
+        def transform_first_chunk(self, status_code, headers, chunk, finishing):
+      File "/opt/anaconda/lib/python2.7/site-packages/IPython/html/notebook/handlers.py", line 43, in get
+      File "/opt/anaconda/lib/python2.7/site-packages/IPython/html/base/handlers.py", line 238, in render_template
+      File "/opt/anaconda/lib/python2.7/site-packages/IPython/html/base/handlers.py", line 234, in get_template
+      File "/opt/anaconda/lib/python2.7/site-packages/jinja2/environment.py", line 791, in get_template
+        @internalcode
+      File "/opt/anaconda/lib/python2.7/site-packages/jinja2/environment.py", line 765, in _load_template
+        """
+      File "/opt/anaconda/lib/python2.7/site-packages/jinja2/loaders.py", line 113, in load
+        source, filename, uptodate = self.get_source(environment, name)
+      File "/opt/anaconda/lib/python2.7/site-packages/jinja2/loaders.py", line 178, in get_source
+        
+    TemplateNotFound: notebook.html
+[31m[E 18:39:17.019 NotebookApp][m Uncaught exception in write_error
+    Traceback (most recent call last):
+      File "/opt/anaconda/lib/python2.7/site-packages/tornado/web.py", line 928, in send_error
+        # Now that the request is finished, clear the callback we
+      File "/opt/anaconda/lib/python2.7/site-packages/IPython/html/base/handlers.py", line 301, in write_error
+      File "/opt/anaconda/lib/python2.7/site-packages/IPython/html/base/handlers.py", line 238, in render_template
+      File "/opt/anaconda/lib/python2.7/site-packages/IPython/html/base/handlers.py", line 234, in get_template
+      File "/opt/anaconda/lib/python2.7/site-packages/jinja2/environment.py", line 791, in get_template
+        @internalcode
+      File "/opt/anaconda/lib/python2.7/site-packages/jinja2/environment.py", line 765, in _load_template
+        """
+      File "/opt/anaconda/lib/python2.7/site-packages/jinja2/loaders.py", line 113, in load
+        source, filename, uptodate = self.get_source(environment, name)
+      File "/opt/anaconda/lib/python2.7/site-packages/jinja2/loaders.py", line 178, in get_source
+        
+    TemplateNotFound: error.html
+[31m[E 18:39:17.020 NotebookApp][m {
+      "Accept-Language": "en-US,en;q=0.8", 
+      "Accept-Encoding": "gzip, deflate, sdch", 
+      "Connection": "keep-alive", 
+      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8", 
+      "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36", 
+      "Host": "127.0.0.1:7702", 
+      "Referer": "http://127.0.0.1:7702/tree/ipynb/bac_genome/n1210", 
+      "If-None-Match": "\"8a8f653803f964276ec1868746a7965d5cde11b9\"", 
+      "Upgrade-Insecure-Requests": "1"
+    }
+[31m[E 18:39:17.020 NotebookApp][m 500 GET /notebooks/ipynb/bac_genome/n1210/ID_16S_genes.ipynb (127.0.0.1) 7.00ms referer=http://127.0.0.1:7702/tree/ipynb/bac_genome/n1210
+[33m[W 18:39:17.175 NotebookApp][m 404 GET /favicon.ico (127.0.0.1) 1.79ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/ID_16S_genes.ipynb
+[31m[E 18:39:42.118 NotebookApp][m Uncaught exception GET /notebooks/ipynb/bac_genome/n1210/ID_16S_genes.ipynb (127.0.0.1)
+    HTTPServerRequest(protocol='http', host='127.0.0.1:7702', method='GET', uri='/notebooks/ipynb/bac_genome/n1210/ID_16S_genes.ipynb', version='HTTP/1.1', remote_ip='127.0.0.1', headers={'Accept-Language': 'en-US,en;q=0.8', 'Accept-Encoding': 'gzip, deflate, sdch', 'Host': '127.0.0.1:7702', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36', 'Connection': 'keep-alive', 'Cache-Control': 'max-age=0', 'Upgrade-Insecure-Requests': '1'})
+    Traceback (most recent call last):
+      File "/opt/anaconda/lib/python2.7/site-packages/tornado/web.py", line 1346, in _execute
+        utf8(self.request.headers.get("If-None-Match", ""))
+      File "/opt/anaconda/lib/python2.7/site-packages/tornado/web.py", line 2626, in wrapper
+        def transform_first_chunk(self, status_code, headers, chunk, finishing):
+      File "/opt/anaconda/lib/python2.7/site-packages/IPython/html/notebook/handlers.py", line 43, in get
+      File "/opt/anaconda/lib/python2.7/site-packages/IPython/html/base/handlers.py", line 238, in render_template
+      File "/opt/anaconda/lib/python2.7/site-packages/IPython/html/base/handlers.py", line 234, in get_template
+      File "/opt/anaconda/lib/python2.7/site-packages/jinja2/environment.py", line 791, in get_template
+        @internalcode
+      File "/opt/anaconda/lib/python2.7/site-packages/jinja2/environment.py", line 765, in _load_template
+        """
+      File "/opt/anaconda/lib/python2.7/site-packages/jinja2/loaders.py", line 113, in load
+        source, filename, uptodate = self.get_source(environment, name)
+      File "/opt/anaconda/lib/python2.7/site-packages/jinja2/loaders.py", line 178, in get_source
+        
+    TemplateNotFound: notebook.html
+[31m[E 18:39:42.120 NotebookApp][m Uncaught exception in write_error
+    Traceback (most recent call last):
+      File "/opt/anaconda/lib/python2.7/site-packages/tornado/web.py", line 928, in send_error
+        # Now that the request is finished, clear the callback we
+      File "/opt/anaconda/lib/python2.7/site-packages/IPython/html/base/handlers.py", line 301, in write_error
+      File "/opt/anaconda/lib/python2.7/site-packages/IPython/html/base/handlers.py", line 238, in render_template
+      File "/opt/anaconda/lib/python2.7/site-packages/IPython/html/base/handlers.py", line 234, in get_template
+      File "/opt/anaconda/lib/python2.7/site-packages/jinja2/environment.py", line 791, in get_template
+        @internalcode
+      File "/opt/anaconda/lib/python2.7/site-packages/jinja2/environment.py", line 765, in _load_template
+        """
+      File "/opt/anaconda/lib/python2.7/site-packages/jinja2/loaders.py", line 113, in load
+        source, filename, uptodate = self.get_source(environment, name)
+      File "/opt/anaconda/lib/python2.7/site-packages/jinja2/loaders.py", line 178, in get_source
+        
+    TemplateNotFound: error.html
+[31m[E 18:39:42.122 NotebookApp][m {
+      "Accept-Language": "en-US,en;q=0.8", 
+      "Accept-Encoding": "gzip, deflate, sdch", 
+      "Connection": "keep-alive", 
+      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8", 
+      "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36", 
+      "Host": "127.0.0.1:7702", 
+      "Cache-Control": "max-age=0", 
+      "Upgrade-Insecure-Requests": "1"
+    }
+[31m[E 18:39:42.122 NotebookApp][m 500 GET /notebooks/ipynb/bac_genome/n1210/ID_16S_genes.ipynb (127.0.0.1) 4.68ms referer=None
+^C[32m[I 18:42:59.861 NotebookApp][m interrupted
+Serving notebooks from local directory: /home/nick/notebook/SIPSim
+7 active kernels 
+The IPython Notebook is running at: http://localhost:7702/
+Shutdown this notebook server (y/[n])? y
+[C 18:43:02.466 NotebookApp] Shutdown confirmed
+[32m[I 18:43:02.466 NotebookApp][m Shutting down kernels
+[32m[I 18:43:02.881 NotebookApp][m Kernel shutdown: a4a5da53-f65a-428b-96ab-033adad59649
+[32m[I 18:43:03.783 NotebookApp][m Kernel shutdown: 186ce8a7-ae0d-4774-86ea-9f87d0c91aad
+[32m[I 18:43:04.285 NotebookApp][m Kernel shutdown: 8f37d9d1-3a28-46b6-936f-517052d73e10
+[32m[I 18:43:06.076 NotebookApp][m Kernel shutdown: a718ca1e-0b9e-40e9-b8f3-46c12997156c
+[32m[I 18:43:06.077 NotebookApp][m Kernel shutdown: e3a4bb78-fdad-4612-ae3f-aaa9ee21554c
+[32m[I 18:43:06.077 NotebookApp][m Kernel shutdown: 4a5aa8f7-684c-4df8-8c36-fa7ccb9734a4
+[32m[I 18:43:06.078 NotebookApp][m Kernel shutdown: 2990891d-2230-4f0e-8f0f-9a72c3b632c5
+[32m[I 18:43:26.907 NotebookApp][m Serving notebooks from local directory: /home/nick/notebook/SIPSim
+[32m[I 18:43:26.907 NotebookApp][m 0 active kernels 
+[32m[I 18:43:26.907 NotebookApp][m The IPython Notebook is running at: http://localhost:7702/
+[32m[I 18:43:26.907 NotebookApp][m Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[33m[W 18:43:42.585 NotebookApp][m 404 GET /clusters?_=1440708938277 (127.0.0.1) 29.98ms referer=http://127.0.0.1:7702/tree/ipynb/bac_genome/n1210
+^C[32m[I 08:46:43.039 NotebookApp][m interrupted
+Serving notebooks from local directory: /home/nick/notebook/SIPSim
+0 active kernels 
+The IPython Notebook is running at: http://localhost:7702/
+Shutdown this notebook server (y/[n])? y
+[C 08:46:46.062 NotebookApp] Shutdown confirmed
+[32m[I 08:46:46.063 NotebookApp][m Shutting down kernels
+[32m[I 08:46:57.331 NotebookApp][m Serving notebooks from local directory: /home/nick/notebook/SIPSim
+[32m[I 08:46:57.331 NotebookApp][m 0 active kernels 
+[32m[I 08:46:57.331 NotebookApp][m The IPython Notebook is running at: http://localhost:7702/
+[32m[I 08:46:57.331 NotebookApp][m Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[32m[I 08:47:46.091 NotebookApp][m Creating new directory in /ipynb/bac_genome/priming_exp
+[33m[W 08:48:31.490 NotebookApp][m Notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05.ipynb is not trusted
+[33m[W 08:48:31.661 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/priming_exp/validation_sample/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20150831084657 (127.0.0.1) 6.64ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05.ipynb
+[33m[W 08:48:31.663 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/priming_exp/validation_sample/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20150831084657 (127.0.0.1) 1.01ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05.ipynb
+[32m[I 08:48:33.651 NotebookApp][m Kernel started: 33e5dcea-aa45-4136-90b4-5591f8985e34
+[33m[W 08:48:33.748 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20150831084657 (127.0.0.1) 2.06ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05.ipynb
+[33m[W 08:48:33.972 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20150831084657 (127.0.0.1) 1.77ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05.ipynb
+[33m[W 08:48:33.974 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20150831084657 (127.0.0.1) 1.01ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05.ipynb
+[32m[I 08:48:38.086 NotebookApp][m Kernel shutdown: 33e5dcea-aa45-4136-90b4-5591f8985e34
+[33m[W 08:48:43.708 NotebookApp][m Timeout waiting for kernel_info reply from 33e5dcea-aa45-4136-90b4-5591f8985e34
+[33m[W 08:53:35.182 NotebookApp][m Notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb is not trusted
+[33m[W 08:53:35.344 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/priming_exp/validation_sample/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20150831084657 (127.0.0.1) 1.08ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb
+[33m[W 08:53:35.346 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/priming_exp/validation_sample/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20150831084657 (127.0.0.1) 0.90ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb
+[33m[W 08:53:35.462 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20150831084657 (127.0.0.1) 2.97ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb
+[33m[W 08:53:35.466 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20150831084657 (127.0.0.1) 2.83ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb
+[33m[W 08:53:35.501 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20150831084657 (127.0.0.1) 2.91ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb
+[32m[I 08:53:37.328 NotebookApp][m Kernel started: 53590d0e-32fa-4e05-af95-cb74ec36b877
+[32m[I 08:55:37.520 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb
+[33m[W 08:55:37.522 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb
+[32m[I 08:56:53.312 NotebookApp][m Copying ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb to /ipynb/bac_genome/priming_exp/validation_sample
+[33m[W 08:56:53.489 NotebookApp][m Notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb is not trusted
+[33m[W 08:56:53.618 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default-Copy1.ipynb
+[33m[W 08:57:08.448 NotebookApp][m Notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb is not trusted
+[33m[W 08:57:08.609 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/priming_exp/validation_sample/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20150831084657 (127.0.0.1) 1.23ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 08:57:08.631 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/priming_exp/validation_sample/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20150831084657 (127.0.0.1) 0.92ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 08:57:10.565 NotebookApp][m Kernel started: af17e54d-c28a-46cd-86cb-006b353dd2f4
+[33m[W 08:57:10.685 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20150831084657 (127.0.0.1) 26.59ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 08:57:10.986 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20150831084657 (127.0.0.1) 1.66ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 08:57:10.988 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20150831084657 (127.0.0.1) 1.20ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 08:59:10.725 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 08:59:10.727 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 09:05:11.322 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 09:05:11.324 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 09:07:11.368 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 09:07:11.370 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 09:09:11.288 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 09:09:11.290 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 09:11:11.295 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 09:11:11.297 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 09:17:11.344 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 09:17:11.347 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 09:19:11.389 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 09:19:11.391 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[32m[I 09:35:11.642 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
+[33m[W 09:35:11.644 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default_moreDiffusion.ipynb
