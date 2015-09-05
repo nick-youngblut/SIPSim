@@ -319,7 +319,7 @@ class OTU_table(_table):
         assert max_size >= min_size, 'max_size must be >= min_size'
 
 
-        # all taxa
+        # counting all taxa
         all_taxa = Counter({x:0 for x in self.iter_taxa()})        
 
         # subsampling
@@ -365,7 +365,8 @@ class OTU_table(_table):
                     counts = comm['count']
                     if base is not None:
                         base = float(base)
-                        counts = [math.log(x+1,base) for x in counts]                        
+                        counts = [math.log(x+1,base) for x in counts]   
+                        #counts = [x /base for x in counts]      
                     rel_abunds = counts / np.sum(counts)                    
                     total_rel_abund = round(np.sum(rel_abunds),5)
                     msg = 'Probabilities = {}, but should = 1'
@@ -379,7 +380,7 @@ class OTU_table(_table):
                                                          p=rel_abunds))
                                                 
                         # setting all taxa in counts
-                        sub_comm.update(all_taxa)                                                
+                        sub_comm.update(all_taxa)      
 
                         # count to dataframe
                         sub_comm = pd.DataFrame(sub_comm.items())

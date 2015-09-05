@@ -1,0 +1,4 @@
+library	taxon_name	rel_abund_perc	rank
+1	Escherichia_coli_1303	50.112085378	1
+1	Streptomyces_pratensis_ATCC_33331	25.895339604	2
+1	Clostridium_ljungdahlii_DSM_13528	23.992575017	3

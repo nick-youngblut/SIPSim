@@ -179,7 +179,7 @@ def random_walk_var_step(x, max_walk):
     Return:
     a reordered list of values
     """
-    # x = list
+    # x as list
     try:
         x = list(x)
     except TypeError:
@@ -203,7 +203,10 @@ def random_walk_var_step(x, max_walk):
     x_new_order = [cur_rank[1]]
     for i in xrange(x_len-1):       
         # select max walk distance
-        max_range = random.randrange(1,max_walk+1)
+        if max_walk > 1:
+            max_range = random.randrange(1,max_walk)
+        else:
+            max_range = 1
     
         # filter to just ranks w/in rank distance
         filt_ranks = [x for x in ranks 
