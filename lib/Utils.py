@@ -9,10 +9,12 @@ import platform
 import subprocess
 from pprint import pprint
 from itertools import chain
+from functools import partial
 import dill
 import random
 
 ## 3rd party
+import numpy as np
 import pandas as pd
 import scipy.stats as ss
 
@@ -228,7 +230,43 @@ def random_walk_var_step(x, max_walk):
             ranks[i] = (ranks[i][0], ranks[i][1], v)
                     
     return x_new_order
+
+
+def part_dist_func(dist, dist_params):
+    """Creating a numpy.random distribution function with the
+    distribution parameters already set.
+    Args:
+    dist -- name of np.random distribution function
+    dist_params -- dict of parameters
+    Return:
+    partial_func -- numpy.random function with params set
+    """
+    ## is numpy function?
+    try:
+        dist_func =  getattr(np.random, dist)
+    except AttributeError:
+        raise AttributeError('Distribution "{}" not supported\n'.format(dist))
+
+
+    # if function should return one constant value
+    try:
+        if dist_params['low'] == dist_params['high']:
+            return lambda size: [dist_params['low']] * size
+    except KeyError:
+        pass
+
+    # else making partial function
+    try:
+        part_dist_func = partial(dist_func, **dist_params)
+        part_dist_func(size=1)
+    except TypeError:
+             params = ','.join([str(x) + ':' + str(y)  for x,y 
+                                in dist_params.items()])
+             msg = 'Params "{}" do not work with distribution "{}"\n'
+             raise TypeError(msg.format(params, dist))  
         
+    return part_dist_func
+
         
 
 class Status(object):
