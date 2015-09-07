@@ -13143,3 +13143,113 @@ WARNING:root:kernel 633741ce-87d7-40f4-b49a-ff8d77905338 restarted
 [32m[I 12:23:49.813 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
 [32m[I 12:25:49.837 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
 [32m[I 12:26:53.998 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 12:31:49.810 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 12:33:01.235 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 12:33:39.427 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 12:40:51.361 NotebookApp][m Saving file at /ipynb/sandbox/pickle.ipynb
+[33m[W 12:41:05.642 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/priming_exp/validation_sample/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20150903072628 (127.0.0.1) 0.95ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-moreDif.ipynb
+[33m[W 12:41:05.643 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/priming_exp/validation_sample/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20150903072628 (127.0.0.1) 0.91ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-moreDif.ipynb
+[33m[W 12:41:07.173 NotebookApp][m Notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb is not trusted
+[33m[W 12:41:07.365 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/priming_exp/validation_sample/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20150903072628 (127.0.0.1) 0.94ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[33m[W 12:41:07.366 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/priming_exp/validation_sample/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20150903072628 (127.0.0.1) 0.81ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[33m[W 12:41:07.412 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20150903072628 (127.0.0.1) 2.92ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[33m[W 12:41:07.426 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20150903072628 (127.0.0.1) 2.88ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[33m[W 12:41:07.430 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20150903072628 (127.0.0.1) 2.84ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_moreDiffusion.ipynb
+[33m[W 12:41:07.709 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20150903072628 (127.0.0.1) 1.15ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-moreDif.ipynb
+[33m[W 12:41:08.596 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20150903072628 (127.0.0.1) 2.87ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-moreDif.ipynb
+[33m[W 12:41:08.600 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20150903072628 (127.0.0.1) 2.81ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-moreDif.ipynb
+[33m[W 12:41:10.212 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/priming_exp/validation_sample/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20150903072628 (127.0.0.1) 1.08ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.45.01_fracRichness.ipynb
+[33m[W 12:41:10.214 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/priming_exp/validation_sample/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20150903072628 (127.0.0.1) 0.91ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.45.01_fracRichness.ipynb
+[33m[W 12:41:10.292 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20150903072628 (127.0.0.1) 2.91ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.45.01_fracRichness.ipynb
+[33m[W 12:41:10.304 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20150903072628 (127.0.0.1) 2.87ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.45.01_fracRichness.ipynb
+[33m[W 12:41:10.313 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20150903072628 (127.0.0.1) 2.89ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.45.01_fracRichness.ipynb
+[32m[I 12:41:25.899 NotebookApp][m Copying ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb to /ipynb/bac_genome/priming_exp/validation_sample
+[33m[W 12:41:26.084 NotebookApp][m Notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb is not trusted
+[33m[W 12:41:26.216 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default-Copy1.ipynb
+[33m[W 12:41:34.111 NotebookApp][m delete /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default-Copy1.ipynb
+[32m[I 12:41:42.022 NotebookApp][m Copying ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness.ipynb to /ipynb/bac_genome/priming_exp/validation_sample
+[33m[W 12:42:00.061 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/priming_exp/validation_sample/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20150903072628 (127.0.0.1) 1.08ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[33m[W 12:42:00.063 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/priming_exp/validation_sample/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20150903072628 (127.0.0.1) 0.92ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[33m[W 12:42:00.195 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20150903072628 (127.0.0.1) 2.97ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[33m[W 12:42:00.204 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20150903072628 (127.0.0.1) 2.93ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[33m[W 12:42:00.208 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20150903072628 (127.0.0.1) 2.82ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 12:42:03.055 NotebookApp][m Kernel started: 890d734d-06a5-4194-b6f1-76a83b452937
+[32m[I 12:44:03.304 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 12:46:00.445 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[33m[W 12:46:06.549 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/priming_exp/validation_sample/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20150903072628 (127.0.0.1) 1.09ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness.ipynb
+[33m[W 12:46:06.550 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/priming_exp/validation_sample/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20150903072628 (127.0.0.1) 0.91ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness.ipynb
+[33m[W 12:46:06.678 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20150903072628 (127.0.0.1) 3.01ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness.ipynb
+[33m[W 12:46:06.684 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20150903072628 (127.0.0.1) 2.91ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness.ipynb
+[33m[W 12:46:06.695 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20150903072628 (127.0.0.1) 2.88ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness.ipynb
+[33m[W 12:46:07.536 NotebookApp][m Notebook ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb is not trusted
+[33m[W 12:46:07.702 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/priming_exp/validation_sample/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20150903072628 (127.0.0.1) 1.02ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb
+[33m[W 12:46:07.703 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/priming_exp/validation_sample/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20150903072628 (127.0.0.1) 0.90ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb
+[33m[W 12:46:07.886 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20150903072628 (127.0.0.1) 2.95ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb
+[33m[W 12:46:07.897 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20150903072628 (127.0.0.1) 2.92ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb
+[33m[W 12:46:07.903 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20150903072628 (127.0.0.1) 2.86ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_default.ipynb
+[33m[W 12:46:09.342 NotebookApp][m Notebook ipynb/bac_genome/priming_exp/priming_exp_info.ipynb is not trusted
+[33m[W 12:46:09.475 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/priming_exp/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20150903072628 (127.0.0.1) 0.93ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[33m[W 12:46:09.477 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/priming_exp/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20150903072628 (127.0.0.1) 0.91ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[33m[W 12:46:11.066 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20150903072628 (127.0.0.1) 1.14ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[33m[W 12:46:11.557 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20150903072628 (127.0.0.1) 2.96ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[33m[W 12:46:11.561 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20150903072628 (127.0.0.1) 2.84ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 12:52:03.082 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 12:56:03.078 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 13:02:03.065 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 13:04:03.076 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 13:08:03.128 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 13:42:03.320 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 13:46:03.348 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 13:48:03.665 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 13:50:06.542 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+-->interrupted.
+[32m[I 13:51:46.396 NotebookApp][m Kernel interrupted: 890d734d-06a5-4194-b6f1-76a83b452937
+Keyboard interrupt.
+[32m[I 13:52:06.611 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 13:54:06.585 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 13:56:06.650 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 13:58:06.530 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 14:00:06.566 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 14:02:06.534 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 14:04:06.527 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 14:06:06.613 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 14:08:06.639 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 14:10:06.574 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 14:12:06.518 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 14:14:06.531 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 14:16:06.528 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 14:18:06.479 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 14:20:06.521 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 14:22:06.484 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 14:24:06.626 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 14:26:06.532 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 14:26:26.294 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 14:28:39.976 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[33m[W 14:28:39.982 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:30:40.022 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[33m[W 14:30:40.024 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:32:40.081 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[33m[W 14:32:40.083 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:34:39.971 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[33m[W 14:34:39.974 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+-->interrupted.
+[32m[I 14:35:34.671 NotebookApp][m Kernel interrupted: 89061ff0-4735-4188-8be8-f4105233625a
+Keyboard interrupt.
+[32m[I 14:36:40.068 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[33m[W 14:36:40.071 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:38:40.019 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[33m[W 14:38:40.022 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:40:39.963 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[33m[W 14:40:39.965 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:42:39.952 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[33m[W 14:42:39.954 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:44:39.998 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[33m[W 14:44:40.000 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:45:51.360 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[33m[W 14:45:51.363 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:46:37.706 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 14:46:43.607 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[33m[W 14:46:43.610 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/priming_exp/priming_exp_info.ipynb
+[32m[I 14:50:43.623 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 14:52:43.734 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 14:53:36.542 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb

@@ -23,7 +23,7 @@ Options:
                            [Default: low:0.3,high:0.3]
   --primer_conc=<pc>       Molarity of forward and reverse primers (units = uM).
                            [Default: 1]
-  -f=<f>                   The initial PCR reaction effiency.
+  -f=<f>                   The theoretical maximum PCR efficiency.
                            [Default: 1]
   -k=<k>                   k parameter used in Suzuki & Giovannoni (1996).
                            [Default: 5]
@@ -34,6 +34,7 @@ Options:
 
 Description:
   Simulate PCR on the template DNA for each gradient fraction sample.
+
   This simulation will account for template saturation, where 
   PCR effeciency declines with increased template concentrations in later
   PCR cycles (see Suzuki & Giovannoni, 1996).
@@ -55,7 +56,7 @@ sys.path.append(libDir)
 
 from Utils import parseKeyValueString as distParamParse
 from OTU_Table import OTU_table
-from PCR_Sim import PCR_Sim
+from PCR import PCR_sim
     
 
 def main(Uargs):
@@ -66,7 +67,7 @@ def main(Uargs):
     otu_tbl = OTU_table.from_csv(Uargs['<OTU_table>'], sep='\t')
 
     # PCR simulation
-    otu_tbl_pcr = PCR_Sim(otu_tbl,
+    otu_tbl_pcr = PCR_sim(otu_tbl,
                           DNA_conc_dist = Uargs['--DNA_conc_dist'],
                           DNA_conc_dist_p = Uargs['--DNA_conc_dist_p'],
                           primer_conc = float(Uargs['--primer_conc']),

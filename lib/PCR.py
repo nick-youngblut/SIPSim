@@ -35,7 +35,7 @@ def calc_template_conc(M_0, P_0, f_0, k, n, debug=0):
     Args:
     M_0 -- The template molarity at PCR cycle 0
     P_n -- The primer molarity 
-    f -- The PCR rxn efficiency
+    f_0 -- The theoretical maximum PCR rxn efficiency
     k -- The ratio between the rate constants of reannealing and priming rxns
     n -- The PCR cycle number
     debug -- extra output to stderr
@@ -53,7 +53,6 @@ def calc_template_conc(M_0, P_0, f_0, k, n, debug=0):
     #M_0 already as uM
     P_0 = P_0 * 1e-6
 
-
     # for each PCR cycle
     M_n = M_0
     P_n = P_0
@@ -63,7 +62,7 @@ def calc_template_conc(M_0, P_0, f_0, k, n, debug=0):
         # calculating new molarity at end of cycle n
         M_n1 = M_n *  math.e ** f_n
         # calculating drop in primer conc (subtract of increase in template)
-        P_n = P_n - (M_n1 - M_n)
+        #P_n = P_n - (M_n1 - M_n)
         # setting template molarity for next cycle
         M_n = M_n1
         # debug
@@ -74,7 +73,7 @@ def calc_template_conc(M_0, P_0, f_0, k, n, debug=0):
 
 
 
-def PCR_Sim(otu_tbl, DNA_conc_dist, DNA_conc_dist_p, primer_conc, 
+def PCR_sim(otu_tbl, DNA_conc_dist, DNA_conc_dist_p, primer_conc, 
             n_cycles=30, f_0=1, k=5, debug=0):
     """Simulate PCR on each gradient fraction sample.
     Args:
@@ -84,7 +83,7 @@ def PCR_Sim(otu_tbl, DNA_conc_dist, DNA_conc_dist_p, primer_conc,
     DNA_conc_dist_p -- DNA_conc_dist parameters.
     primer_conc -- molarities of primers (each), units = uM.
     n_cycles -- number of PCR
-    f_0 -- The init PCR rxn efficiency
+    f_0 -- The theoretical maximum PCR rxn efficiency
     k -- k parameter in Suzuki & Giovannoni (1996)
     Return:
     otu_table -- copy of otu_table with edited values
