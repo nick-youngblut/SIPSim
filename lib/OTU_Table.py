@@ -6,6 +6,7 @@ from collections import Counter
 from pprint import pprint
 ## 3rd party
 import numpy as np
+from numpy.random import choice
 import pandas as pd
 import dill
 from pathos.multiprocessing import ProcessingPool
@@ -255,11 +256,13 @@ def main(uargs):
 
     # combining library-specific dataframes
     df_comb = pd.concat(OTU_counts, ignore_index=False)
+
     # calculating taxon relative abundances 
     df_comb['count'] = df_comb['count'].astype('int')
     f = lambda x: x / x.sum()
     cols = ['library','fraction']
     df_comb['rel_abund'] = df_comb.groupby(cols).transform(f)['count']
+
     # writing out long form of table
     df_comb.to_csv(sys.stdout, sep='\t', index=False)
 
@@ -292,6 +295,60 @@ class OTU_table(_table):
         return [np.min(counts), np.mean(counts), 
                 np.median(counts), np.max(counts)]
 
+
+        
+    def _frac_size_list(self, libID, max_tries=1000):
+        """Getting list of fraction community total abundances (sizes)
+        Args:
+        libID -- library ID
+        max_tries -- max tries to select a value btw min_size & max_size
+        Return:
+        samp_size -- list of sample sizes
+        """
+        samp_sizes = []
+        msg = 'Exceeded tries to select a sample size within the range for {}:{}'
+        for fracID in self.iter_fractions(libID=libID):
+            tries = 0
+            while 1:
+                samp_size = self.samp_dist(size=1)[0]
+                samp_size = int(round(samp_size, 0))
+                if samp_size >= self.min_samp_size and \
+                   samp_size <= self.max_samp_size:
+                    break
+                else:
+                    tries += 1
+                if tries >= max_tries:
+                    raise ValueError, msg.format(libID, fracID)
+            samp_sizes.append(samp_size)
+        return samp_sizes
+
+
+    def _samp_probs(self, comm, rel_abund=False):
+        """Getting subsampling weights from taxon counts or relative abundances.
+        If counts used, the relative abundances are calculated and used
+        as weights.
+        Args:
+        comm -- OTU table of one community 
+        rel_abund -- use 'rel_abund' column in table; else use 'count'
+        Return:
+        rel_abunds -- list of relative abundances (weights)
+        """
+        if rel_abund is True:
+            rel_abunds = comm['rel_abund']
+        else:
+            counts = comm['count']
+            if self.base is not None:
+                counts = [math.log(x+1,self.base) for x in counts]   
+            
+            rel_abunds = counts / np.sum(counts)                    
+        
+        # assertion
+        total_rel_abund = round(np.sum(rel_abunds),5)
+        msg = 'Probabilities = {}, but should = 1'
+        assert total_rel_abund == 1.0, msg.format(total_rel_abund)
+        
+        return rel_abunds
+    
         
     def subsample(self, no_replace=False, walk=0, 
                   min_size=0, max_size=None, base=None):
@@ -307,22 +364,20 @@ class OTU_table(_table):
         Return:
         pandas DataFrame -- subsampled community
         """
+        # attributes
+        self.walk = walk
+        self.min_samp_size = min_size
+        self.max_samp_size = max_size
+        self.base = base
+
         # assertions
-        assert hasattr(self, 'samp_dist'), \
-            'samp_dist attribute not found'
-        assert hasattr(self, 'samp_dist_params'), \
-            'samp_dist_params attribute not found'
-
-        # min/max sample size
-        if min_size is None:
-            min_size = 0
-        if max_size is None:
-            max_size = np.inf
-        min_size = float(min_size)
-        max_size = float(max_size)
-        assert min_size >= 0, 'min_size must be >= 0'
-        assert max_size >= min_size, 'max_size must be >= min_size'
-
+        msg = '{} attribute not found'
+        assert hasattr(self, 'samp_dist'), msg.format('samp_dist')
+        assert hasattr(self, 'samp_dist_params'), msg.format('samp_dist_params')
+        msg = 'min_size must be >= 0'
+        assert self.min_samp_size >= 0, msg
+        msg = 'max_size must be >= min_size'
+        assert self.max_samp_size >= self.min_samp_size, msg
 
         # counting all taxa
         all_taxa = Counter({x:0 for x in self.iter_taxa()})        
@@ -332,22 +387,8 @@ class OTU_table(_table):
         df_sub = pd.DataFrame(columns=self.df.columns)
         for libID in self.iter_libraries():
             # making list of fraction sizes 
-            samp_sizes = []
-            for fracID in self.iter_fractions(libID=libID):
-                max_tries = 1000
-                tries = 0
-                msg = 'Exceeded tries to select a sample size within the range'
-                while 1:
-                    samp_size = self.samp_dist(size=1)[0]
-                    samp_size = int(round(samp_size, 0))
-                    if samp_size >= min_size and samp_size <= max_size:
-                        break
-                    tries += 1
-                    if tries >= max_tries:
-                        print samp_size
-                        raise ValueError, msg
-                samp_sizes.append(samp_size)
-                
+            samp_sizes = self._frac_size_list(libID)
+
 
             # applying autocorrleation via random walk (if needed)
             if walk > 0:
@@ -366,23 +407,15 @@ class OTU_table(_table):
                     # size to subsample
                     samp_size = samp_sizes[samp_cnt]
                     
-                    # sampling probabilities (relative abundances)
-                    counts = comm['count']
-                    if base is not None:
-                        base = float(base)
-                        counts = [math.log(x+1,base) for x in counts]   
-                        #counts = [x /base for x in counts]      
-                    rel_abunds = counts / np.sum(counts)                    
-                    total_rel_abund = round(np.sum(rel_abunds),5)
-                    msg = 'Probabilities = {}, but should = 1'
-                    assert total_rel_abund == 1.0, msg.format(total_rel_abund)
-                    
+                    # sampling probabilities (relative abundances)                    
+                    rel_abunds = self._samp_probs(comm, rel_abund=True)
+
                     # sample from taxa list
                     try:
-                        sub_comm = Counter(np.random.choice(comm['taxon'],
-                                                         size=samp_size,
-                                                         replace= not no_replace,
-                                                         p=rel_abunds))
+                        sub_comm = Counter(choice(comm['taxon'],
+                                                  size=samp_size,
+                                                  replace= not no_replace,
+                                                  p=rel_abunds))
                                                 
                         # setting all taxa in counts
                         sub_comm.update(all_taxa)      
@@ -406,8 +439,11 @@ class OTU_table(_table):
                 samp_cnt += 1
                         
         df_sub['count'] = df_sub['count'].astype(int)
+        df_sub['rel_abund'] = self._norm_counts(df_sub)
 
-        cols = ['library','fraction','taxon','BD_min','BD_mid','BD_max','count']
+        cols = ['library','fraction','taxon',
+                'BD_min','BD_mid','BD_max',
+                'count', 'rel_abund']
         sort_cols = ['taxon','fraction','library']
         return df_sub.reindex_axis(cols, axis=1).sort(sort_cols)
                 
@@ -433,16 +469,19 @@ class OTU_table(_table):
         """
         self.df[val_index] = self.df.apply(f, axis=1)
 
+    def _norm_counts(self, df, sel_index='count'):
+        f = lambda x: x / x.sum()
+        return df.groupby(['library','fraction']).transform(f)[sel_index]
 
-    def add_rel_abund(self, sel_index, val_index='rel_abund'):
+
+    def add_rel_abund(self, sel_index='count', val_index='rel_abund'):
         """Adding relative abundances (fractions) to OTU table.
         In-place edit of OTU table: new column = 'rel_abund'
         Args:
-        index -- column to calculate relative abundances for
-        """
-        f = lambda x: x / x.sum()
-        rel_abunds = self.df.groupby(['library','fraction']).transform(f)
-        self.df.loc[:,val_index] = rel_abunds[sel_index]
+        val_index -- name of new column of relative abundances
+        """        
+        self.df.loc[:,val_index] = self._norm_counts(self.df, sel_index)
+
 
         
     def add_init_molarity(self, total_M_func):
@@ -504,6 +543,7 @@ class OTU_table(_table):
         """
         long_cols = ['library','fraction']
         return all([x in self.df.columns.values for x in long_cols])
+
     @property
     def samp_dist_params(self):
         return self._samp_dist_params
@@ -511,14 +551,12 @@ class OTU_table(_table):
     def samp_dist_params(self, x):
         self._samp_dist_params = x
 
-
     @property
     def columns(self):
         return self.df.columns
     @columns.setter
     def columns(self, x):
         self.df.columns = x
-
         
     @property
     def samp_dist(self):
@@ -549,7 +587,31 @@ class OTU_table(_table):
             raise TypeError('Params "{}" do not work with distribution "{}"\n'\
                              .format(x, params))        
         return 0
-        
-        
+                
+    @property
+    def min_samp_size(self):
+        return self._min_samp_size
+    @min_samp_size.setter
+    def min_samp_size(self, x):
+        if x is None:
+            x = 0
+        self._min_samp_size = float(x)
     
+    @property
+    def max_samp_size(self):
+        return self._max_samp_size
+    @max_samp_size.setter
+    def max_samp_size(self, x):
+        if x is None:
+            x = np.inf
+        self._max_samp_size = float(x)
     
+    @property
+    def base(self):
+        return self._base
+    @base.setter
+    def base(self, x):
+        if x is None:
+            self._base = None
+        else:
+            self._base = float(x)

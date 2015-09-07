@@ -106,7 +106,7 @@ def PCR_Sim(otu_tbl, DNA_conc_dist, DNA_conc_dist_p, primer_conc,
     otu_tbl.apply_each_taxon(f, 'final_molarity')
 
     # calculating new relative abundances
-    otu_tbl.add_rel_abund('final_molarity', val_index='rel_abund_post_PCR')
+    otu_tbl.add_rel_abund('final_molarity', val_index='rel_abund')
     
     # removing intermediate columns
     if not debug:

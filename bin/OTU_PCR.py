@@ -2,12 +2,12 @@
 
 #--- Option parsing ---#
 """
-PCR: simulate PCR of gradient fraction DNA samples
+OTU_PCR: simulate PCR of gradient fraction DNA samples
 
 Usage:
-  PCR [options] <OTU_table>
-  PCR -h | --help
-  PCR --version
+  OTU_PCR [options] <OTU_table>
+  OTU_PCR -h | --help
+  OTU_PCR --version
 
 Options:
   <OTU_table>              OTU table file.
