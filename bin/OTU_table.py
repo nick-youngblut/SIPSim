@@ -23,7 +23,7 @@ Options:
                     [default: 10000000]
   --quiet           Limit STDERR output.
   --version         Show version.
-  --debug           Debug mode (turns off parallel processing)
+  --debug           Debug mode.
   -h --help         Show this screen.
 
 
@@ -39,6 +39,13 @@ Description:
     1) The absolute abundance of the OTU in the pre-gradient community.
     2) The G+C content of each simulated fragment of the taxon.
     3) The fragment length of each simulated fragment (influences diffusion).
+
+  Table column descriptions:
+    library -- library_ID (gradient_ID)
+    fraction -- fraction_ID
+    BD_XXX -- buoyant density values
+    count -- total number of DNA fragments for the taxon in the gradient fraction
+    rel_abund -- relative abundance (0-1) for the taxon in the gradient fraction
 """
 
 # import

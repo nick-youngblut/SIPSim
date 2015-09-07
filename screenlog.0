@@ -13081,3 +13081,43 @@ OperationalError: database is locked
 [32m[I 12:15:57.992 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
 [32m[I 12:17:57.992 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
 [32m[I 12:19:57.992 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 07:09:19.649 NotebookApp][m 302 GET / (127.0.0.1) 0.88ms
+[33m[W 07:09:42.207 NotebookApp][m 404 GET /notebooks/ipynb/sandbox/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20150903072628 (127.0.0.1) 1.00ms referer=http://127.0.0.1:7702/notebooks/ipynb/sandbox/PCR_sim.ipynb
+[33m[W 07:09:42.209 NotebookApp][m 404 GET /notebooks/ipynb/sandbox/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20150903072628 (127.0.0.1) 0.93ms referer=http://127.0.0.1:7702/notebooks/ipynb/sandbox/PCR_sim.ipynb
+[33m[W 07:09:42.748 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20150903072628 (127.0.0.1) 1.19ms referer=http://127.0.0.1:7702/notebooks/ipynb/sandbox/PCR_sim.ipynb
+[33m[W 07:09:42.773 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20150903072628 (127.0.0.1) 1.20ms referer=http://127.0.0.1:7702/notebooks/ipynb/sandbox/PCR_sim.ipynb
+[33m[W 07:09:42.775 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20150903072628 (127.0.0.1) 1.17ms referer=http://127.0.0.1:7702/notebooks/ipynb/sandbox/PCR_sim.ipynb
+[32m[I 09:19:42.541 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 09:21:42.553 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 09:22:09.032 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 09:31:49.135 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 09:33:49.162 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 09:37:49.128 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 09:53:49.129 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 09:59:49.117 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 10:01:49.120 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 10:03:49.203 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 10:05:49.117 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 10:07:49.116 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 10:09:49.112 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 10:11:49.160 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 10:13:49.155 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 10:33:49.125 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 10:36:49.282 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 10:39:49.115 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 10:41:49.112 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 10:43:49.125 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 10:45:49.096 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 10:47:49.111 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 10:49:18.437 NotebookApp][m KernelRestarter: restarting kernel (1/5)
+WARNING:root:kernel 633741ce-87d7-40f4-b49a-ff8d77905338 restarted
+[32m[I 10:49:49.098 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 10:50:23.674 NotebookApp][m Kernel started: 22b7cde6-7f02-4d7a-8106-a2d88519d2cf
+[33m[W 10:50:23.676 NotebookApp][m 404 GET /notebooks/ipynb/sandbox/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20150903072628 (127.0.0.1) 1.16ms referer=http://127.0.0.1:7702/notebooks/ipynb/sandbox/pickle.ipynb
+[33m[W 10:50:23.677 NotebookApp][m 404 GET /notebooks/ipynb/sandbox/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20150903072628 (127.0.0.1) 0.84ms referer=http://127.0.0.1:7702/notebooks/ipynb/sandbox/pickle.ipynb
+[33m[W 10:50:23.766 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20150903072628 (127.0.0.1) 1.16ms referer=http://127.0.0.1:7702/notebooks/ipynb/sandbox/pickle.ipynb
+[33m[W 10:50:23.782 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20150903072628 (127.0.0.1) 1.09ms referer=http://127.0.0.1:7702/notebooks/ipynb/sandbox/pickle.ipynb
+[33m[W 10:50:23.783 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20150903072628 (127.0.0.1) 1.04ms referer=http://127.0.0.1:7702/notebooks/ipynb/sandbox/pickle.ipynb
+[32m[I 10:51:49.850 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 10:52:19.166 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 10:52:23.847 NotebookApp][m Saving file at /ipynb/sandbox/pickle.ipynb

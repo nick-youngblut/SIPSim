@@ -253,10 +253,15 @@ def main(uargs):
         # Adding to dataframe of all libraries
         OTU_counts.append(df)
 
-    # combining library-specific dataframes and writing out long form of table
-    pd.concat(OTU_counts, ignore_index=False).to_csv(sys.stdout, 
-                                                     sep='\t', 
-                                                     index=False)
+    # combining library-specific dataframes
+    df_comb = pd.concat(OTU_counts, ignore_index=False)
+    # calculating taxon relative abundances 
+    df_comb['count'] = df_comb['count'].astype('int')
+    f = lambda x: x / x.sum()
+    cols = ['library','fraction']
+    df_comb['rel_abund'] = df_comb.groupby(cols).transform(f)['count']
+    # writing out long form of table
+    df_comb.to_csv(sys.stdout, sep='\t', index=False)
 
 
 
@@ -420,6 +425,52 @@ class OTU_table(_table):
         except AttributeError:
             return False
 
+    def apply_each_taxon(self, f, val_index):
+        """Apply a function to each taxon in OTU table.
+        In-place edit of OTU table
+        f -- function
+        val_index -- the new column of values        
+        """
+        self.df[val_index] = self.df.apply(f, axis=1)
+
+
+    def add_rel_abund(self, sel_index, val_index='rel_abund'):
+        """Adding relative abundances (fractions) to OTU table.
+        In-place edit of OTU table: new column = 'rel_abund'
+        Args:
+        index -- column to calculate relative abundances for
+        """
+        f = lambda x: x / x.sum()
+        rel_abunds = self.df.groupby(['library','fraction']).transform(f)
+        self.df.loc[:,val_index] = rel_abunds[sel_index]
+
+        
+    def add_init_molarity(self, total_M_func):
+        """Adding taxon template initial molarity to otu table.
+        In-place edit of OTU table: new column = 'init_molarity'        
+        Args:
+        total_M_func -- a function that returns the total community DNA molarity
+                        (units = uM)        
+        """
+        # adding relative abundance column if not found
+        try:
+            self.df.loc[:,'rel_abund'] 
+        except KeyError:
+            self.add_rel_abund()
+        # calculating molarity
+        f = lambda x: x * total_M_func(1)[0] * 1e-6
+        init_M = self.df.groupby(['library','fraction']).transform(f)
+        self.df.loc[:,'init_molarity'] = init_M['rel_abund']
+
+        
+    def rm_columns(self, index):
+        """Delete/remove columns from the OTU table.
+        Columns removed in place.
+        Args:
+        index -- column index
+        """
+        self.df.drop(index, axis=1, inplace=True)
+
 
     def get_comm(self, libID, fracID):        
         """Returns subset of community dataframe.
@@ -432,7 +483,7 @@ class OTU_table(_table):
         """
         return self.df.loc[(self.df['library'] == libID) &
                            (self.df['fraction'] == fracID),:]
-
+        
             
     # iter
     def iter_fractions(self, libID):    
