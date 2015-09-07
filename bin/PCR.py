@@ -72,7 +72,8 @@ def main(Uargs):
                           primer_conc = float(Uargs['--primer_conc']),
                           n_cycles = int(Uargs['--n_cycles']),
                           f_0 = float(Uargs['-f']),
-                          k = float(Uargs['-k']))
+                          k = float(Uargs['-k']), 
+                          debug=Uargs['--debug'])
     
 
 # main

@@ -89,11 +89,9 @@ def PCR_Sim(otu_tbl, DNA_conc_dist, DNA_conc_dist_p, primer_conc,
     Return:
     otu_table -- copy of otu_table with edited values
     """
+
     # making a partial function for DNA_conc_dist
     dist_func = Utils.part_dist_func(DNA_conc_dist, DNA_conc_dist_p)
-
-    # adding relative abundance to otu_table
- #   otu_tbl.add_rel_abund('count')
 
     # adding partial template molarities for each community
     otu_tbl.add_init_molarity(dist_func)
