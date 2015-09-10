@@ -389,7 +389,6 @@ class OTU_table(_table):
             # making list of fraction sizes 
             samp_sizes = self._frac_size_list(libID)
 
-
             # applying autocorrleation via random walk (if needed)
             if walk > 0:
                 samp_sizes = random_walk_var_step(samp_sizes, walk)
@@ -461,6 +460,22 @@ class OTU_table(_table):
         except AttributeError:
             return False
 
+            
+    def apply_each_comm(self, f, sel_index, val_index):
+        """Apply a function to each taxon in OTU table.
+        In-place edit of OTU table
+        f -- function
+        val_index -- the new column of values        
+        """
+        # assertions
+        for x in (sel_index, val_index):
+            assert not isinstance(x, basestring)
+
+        # group & apply
+        g = ['library', 'fraction']
+        self.df[val_index] =  self.df.groupby(g)[sel_index].transform(f);
+      
+
     def apply_each_taxon(self, f, val_index):
         """Apply a function to each taxon in OTU table.
         In-place edit of OTU table
@@ -469,37 +484,44 @@ class OTU_table(_table):
         """
         self.df[val_index] = self.df.apply(f, axis=1)
 
+
     def _norm_counts(self, df, sel_index='count'):
+        """Normalize OTU counts by total count for community.
+        Args:
+        df -- pandas dataframe: OTU table
+        sel_index -- column with OTU count values
+        Return:
+        column of normalized values
+        """
         f = lambda x: x / x.sum()
-        return df.groupby(['library','fraction']).transform(f)[sel_index]
+        return df.groupby(['library','fraction'])[sel_index].transform(f)
 
 
-    def add_rel_abund(self, sel_index='count', val_index='rel_abund'):
+    def add_rel_abund(self, sel_index=['count'], val_index=['rel_abund']):
         """Adding relative abundances (fractions) to OTU table.
         In-place edit of OTU table: new column = 'rel_abund'
         Args:
         val_index -- name of new column of relative abundances
         """        
-        self.df.loc[:,val_index] = self._norm_counts(self.df, sel_index)
+        # assertions
+        for x in (sel_index, val_index):
+            assert not isinstance(x, basestring)
+        # adding column
+        x = self._norm_counts(self.df, sel_index)
+        self.df.loc[:,val_index] = x.ix[:,0]
 
 
-        
-    def add_init_molarity(self, total_M_func):
-        """Adding taxon template initial molarity to otu table.
-        In-place edit of OTU table: new column = 'init_molarity'        
+    def adjust_abs_abund(self, rel_index, abs_index):
+        """Adjust the absolute values by relative values.
+        The abs_index column is edited in place.
         Args:
-        total_M_func -- a function that returns the total community DNA molarity
-                        (units = uM)        
+        rel_index -- column index for relative values
+        abs_index -- column index for absolute values
         """
-        # adding relative abundance column if not found
-        try:
-            self.df.loc[:,'rel_abund'] 
-        except KeyError:
-            self.add_rel_abund()
-        # calculating molarity
-        f = lambda x: x * total_M_func(1)[0] * 1e-6
-        init_M = self.df.groupby(['library','fraction']).transform(f)
-        self.df.loc[:,'init_molarity'] = init_M['rel_abund']
+        abs_sum = np.sum(self.df.loc[:,abs_index])
+        x = self.df.loc[:,rel_index] * float(abs_sum)
+        f = lambda x : round(x, 0)
+        self.df[abs_index] = x.apply(f, axis=1).astype('int')
 
         
     def rm_columns(self, index):

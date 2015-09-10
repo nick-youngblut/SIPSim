@@ -12,65 +12,62 @@ import pandas as pd
 import Utils
 
 
-def rxn_eff(f_0, P_n, M_n, k):
-    """Calculating PCR rxn efficiency based on Suzuki and Giovannoni (1996).
-    Args:
-    f_0 -- The rxn effeciency at PCR cycle 0
-    P_n -- Primer molarity at PCR cycle n
-    M_n -- Template molarity at PCR cycle n
-    k -- The ratio between the rate constants of reannealing and priming rxns
-    Return:
-    f_n -- The PCR rxn efficiency at PCR cycle n
-    """ 
-    try:
-        f_n = f_0 * (P_n / (k * (M_n + P_n)))
-    except ZeroDivisionError:
-        f_n = 0.0
-    return f_n
-
-
-def calc_template_conc(M_0, P_0, f_0, k, n, debug=0):
-    """Calculate the DNA template concentration at cycle n.
-    Based on Suzuki and Giovannoni (1996).
+def PCR_cycle(M_n, P_n, f_0, k):
+    """Increase in template conc. after a PCR cycle.
     Args:
     M_0 -- The template molarity at PCR cycle 0
     P_n -- The primer molarity 
     f_0 -- The theoretical maximum PCR rxn efficiency
     k -- The ratio between the rate constants of reannealing and priming rxns
-    n -- The PCR cycle number
-    debug -- extra output to stderr
     Return:
-    M_n -- the template molarity at cycle n
+    M_n -- post-cycle template molarity 
     """
-    # skipping if M_0 == 0 (nothing to amplify)
-    if M_0 <= 0:
+    assert M_n >= 0, 'M_n must be >= 0'
+    if M_n == 0:
         return 0
 
-    # debug msg
-    dmsg = 'cycle:{}, M_n:{}, P_n:{}, f_n:{}\n'
+    # calculating rxn efficiency
+    b = k * M_n + P_n
+    if b > 0:
+        f_n = f_0 * P_n / b
+    else:
+        f_n = 0.0
 
-    # converting units (uM --> M)
-    #M_0 already as uM
-    P_0 = P_0 * 1e-6
+    # debug
+    #print (f_n, M_n, P_n, f_0, k, b)
+        
+    # calculating resulting template molarity
+    return M_n *  math.e ** f_n
+    
 
-    # for each PCR cycle
-    M_n = M_0
-    P_n = P_0
+def run_PCR(taxa_molarities, P_0, f_0, k, n=30):
+    """PCR run simulation.
+    Args:
+    taxa_molarities -- iterable of molarities for each taxon in community
+    P_0 -- The inital primar molarity
+    f_0 -- The initial PCR rxn efficiency
+    k -- The ratio between the rate constants of reannealing and priming rxns
+    """
+    P_n = P_0 * 1e-6
+    tm = list(taxa_molarities)
     for cycle in range(n):
-        # getting efficiency
-        f_n = rxn_eff(f_0, P_n, M_n, k)
-        # calculating new molarity at end of cycle n
-        M_n1 = M_n *  math.e ** f_n
-        # calculating drop in primer conc (subtract of increase in template)
-        #P_n = P_n - (M_n1 - M_n)
-        # setting template molarity for next cycle
-        M_n = M_n1
         # debug
-        if debug:
-            sys.stderr.write(dmsg.format(cycle, M_n, P_n, f_n))
+        #print "cycle:{}".format(cycle)
 
-    return M_n
+        # initial template molarity
+        M_sum1 = np.sum(tm)
 
+        # calculating new molarity for cycle (for each taxon)
+        f = lambda M_0 : PCR_cycle(M_0, P_n=P_n, f_0=f_0, k=k)
+        tm = [f(x) for x in tm]
+
+        # sum of new molarity
+        M_sum2 = np.sum(tm)
+
+        # change in primer molarity (inverse of template Molarity)
+        P_n = P_n - (M_sum2 - M_sum1)
+        
+    return tm
 
 
 def PCR_sim(otu_tbl, DNA_conc_dist, DNA_conc_dist_p, primer_conc, 
@@ -88,24 +85,24 @@ def PCR_sim(otu_tbl, DNA_conc_dist, DNA_conc_dist_p, primer_conc,
     Return:
     otu_table -- copy of otu_table with edited values
     """
-
     # making a partial function for DNA_conc_dist
     dist_func = Utils.part_dist_func(DNA_conc_dist, DNA_conc_dist_p)
 
     # adding partial template molarities for each community
-    otu_tbl.add_init_molarity(dist_func)
-    
-    # calculating per-taxon post-PCR molarities
-    f = lambda row: calc_template_conc(M_0=row['init_molarity'],
-                                       P_0=primer_conc,
-                                       f_0=f_0, 
-                                       k=k,
-                                       n=n_cycles,
-                                       debug=debug)
-    otu_tbl.apply_each_taxon(f, 'final_molarity')
+    f = lambda x : x * dist_func(size=1)[0] * 1e-6
+    otu_tbl.apply_each_comm(f, ['rel_abund'], ['init_molarity'])
 
-    # calculating new relative abundances
-    otu_tbl.add_rel_abund('final_molarity', val_index='rel_abund')
+    # PCR
+    f = lambda x : run_PCR(x, P_0=primer_conc, f_0=f_0, k=k, n=30)
+    otu_tbl.apply_each_comm(f, ['init_molarity'], ['final_molarity'])
+
+    # calculating new relative abundances by using final molarity as proportions
+    otu_tbl.add_rel_abund(sel_index=['final_molarity'], 
+                          val_index=['rel_abund'])
+
+    # adjusting counts (absolute abundances) based on relative abundances 
+    otu_tbl.adjust_abs_abund(rel_index=['rel_abund'], 
+                             abs_index=['count'])
     
     # removing intermediate columns
     if not debug:

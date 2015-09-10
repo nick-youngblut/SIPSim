@@ -163,9 +163,7 @@ def parseKeyValueString(x):
     """
     x = x.replace(' ','')
     l = re.split('[:,]', x)
-    return {k:float(v) for k,v in zip(l[::2],l[1::2])}
-
-
+    return {k.lower():float(v) for k,v in zip(l[::2],l[1::2])}
 
 
 def random_walk_var_step(x, max_walk):
@@ -241,12 +239,11 @@ def part_dist_func(dist, dist_params):
     Return:
     partial_func -- numpy.random function with params set
     """
-    ## is numpy function?
+    ## get numpy function
     try:
         dist_func =  getattr(np.random, dist)
     except AttributeError:
         raise AttributeError('Distribution "{}" not supported\n'.format(dist))
-
 
     # if function should return one constant value
     try:
@@ -260,11 +257,11 @@ def part_dist_func(dist, dist_params):
         part_dist_func = partial(dist_func, **dist_params)
         part_dist_func(size=1)
     except TypeError:
-             params = ','.join([str(x) + ':' + str(y)  for x,y 
-                                in dist_params.items()])
-             msg = 'Params "{}" do not work with distribution "{}"\n'
-             raise TypeError(msg.format(params, dist))  
-        
+        params = ','.join([str(x) + ':' + str(y)  for x,y 
+                           in dist_params.items()])
+        msg = 'Params "{}" do not work with distribution "{}"\n'
+        raise TypeError(msg.format(params, dist))  
+
     return part_dist_func
 
         
