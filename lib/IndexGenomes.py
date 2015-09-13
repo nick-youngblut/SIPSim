@@ -18,15 +18,23 @@ import Utils
 
     
 def index_genome(x, chilliDir, faToTwoBitExe, K_value, quiet=False):
-    """indexing genome with MFEprimer indexing scripts. Just making system calls.
-    Args:
-    x -- (taxonName, genomeFile)
-      taxonName -- taxon name of genome fasta
-      genomeFile -- file name of genome fasta
-    chilliDir -- string with 'chilli' directory path
-    faToTwoBitExe -- string with path of faToTwoBit
-    K_value -- k value used for indexing
-    quiet -- quiet all messages
+    """index a genome with MFEprimer indexing scripts. 
+    This is just making system calls.
+    
+    Parameters
+    ----------
+    x : tuple
+        (taxonName, genomeFile)
+        taxonName -- taxon name of genome fasta
+        genomeFile -- file name of genome fasta
+    chilliDir : str
+        'chilli' directory path
+    faToTwoBitExe : str
+        path of faToTwoBit
+    K_value : int
+        k value used for indexing
+    quiet : bool
+        quiet all messages
     """
     taxonName,genomeFile = x
     # status
@@ -59,6 +67,12 @@ def index_genome(x, chilliDir, faToTwoBitExe, K_value, quiet=False):
 
 
 def main(Uargs):
+    """
+    Parameters
+    ----------
+    Uargs : dict
+        See ``genome_index`` subcommand
+    """
     # machine info
     OS = Utils.get_os()
     machine = platform.machine()
@@ -92,8 +106,7 @@ def main(Uargs):
     # status
     sys.stderr.write('#-- All genomes indexed --#\n')
 
-    
-    
+        
 # main
 if __name__ == '__main__':
     Uargs = docopt(__doc__, version='0.1')

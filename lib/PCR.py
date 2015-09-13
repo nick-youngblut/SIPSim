@@ -13,14 +13,22 @@ import Utils
 
 
 def PCR_cycle(M_n, P_n, f_0, k):
-    """Increase in template conc. after a PCR cycle.
-    Args:
-    M_0 -- The template molarity at PCR cycle 0
-    P_n -- The primer molarity 
-    f_0 -- The theoretical maximum PCR rxn efficiency
-    k -- The ratio between the rate constants of reannealing and priming rxns
-    Return:
-    M_n -- post-cycle template molarity 
+    """Increase in template concentratino after a PCR cycle.
+    
+    Parameters
+    ----------
+    M_0 : float
+        The template molarity at PCR cycle 0
+    P_n : float
+        The primer molarity 
+    f_0 : float
+        The theoretical maximum PCR rxn efficiency
+    k : float
+        The ratio between the rate constants of reannealing and priming rxns
+
+    Returns
+    -------
+    float : post-cycle template molarity 
     """
     assert M_n >= 0, 'M_n must be >= 0'
     if M_n == 0:
@@ -42,11 +50,20 @@ def PCR_cycle(M_n, P_n, f_0, k):
 
 def run_PCR(taxa_molarities, P_0, f_0, k, n=30):
     """PCR run simulation.
-    Args:
-    taxa_molarities -- iterable of molarities for each taxon in community
-    P_0 -- The inital primar molarity
-    f_0 -- The initial PCR rxn efficiency
-    k -- The ratio between the rate constants of reannealing and priming rxns
+
+    Parameters
+    ----------
+    taxa_molarities : list
+        molarities for each taxon in community
+    P_0 : float
+        The inital primar molarity
+    f_0 : float
+        The initial PCR rxn efficiency
+    k  : float 
+        The ratio between the rate constants of reannealing and priming rxns
+    Returns
+    -------
+    float : taxa molarities post-PCR
     """
     P_n = P_0 * 1e-6
     tm = list(taxa_molarities)
@@ -73,17 +90,27 @@ def run_PCR(taxa_molarities, P_0, f_0, k, n=30):
 def PCR_sim(otu_tbl, DNA_conc_dist, DNA_conc_dist_p, primer_conc, 
             n_cycles=30, f_0=1, k=5, debug=0):
     """Simulate PCR on each gradient fraction sample.
-    Args:
-    otu_table -- OTU table object
-    DNA_conc_dist -- numpy.random distribution used to select starting DNA 
-                     molarity for each sample (units = uM). 
-    DNA_conc_dist_p -- DNA_conc_dist parameters.
-    primer_conc -- molarities of primers (each), units = uM.
-    n_cycles -- number of PCR
-    f_0 -- The theoretical maximum PCR rxn efficiency
-    k -- k parameter in Suzuki & Giovannoni (1996)
-    Return:
-    otu_table -- copy of otu_table with edited values
+
+    Parameters
+    ----------
+    otu_table : OTU table object
+    DNA_conc_dist : function
+        numpy.random distribution used to select starting DNA 
+        molarity for each sample (units = uM). 
+    DNA_conc_dist_p : dict
+        DNA_conc_dist parameters.
+    primer_conc : float
+        molarities of primers (each), units = uM.
+    n_cycles : int
+        number of PCR
+    f_0 : float
+        The theoretical maximum PCR rxn efficiency
+    k : int 
+        k parameter in Suzuki & Giovannoni (1996)
+
+    Returns
+    -------
+    otu_table object : otu_table with edited values
     """
     # making a partial function for DNA_conc_dist
     dist_func = Utils.part_dist_func(DNA_conc_dist, DNA_conc_dist_p)
@@ -108,6 +135,3 @@ def PCR_sim(otu_tbl, DNA_conc_dist, DNA_conc_dist_p, primer_conc,
     if not debug:
         cols2rm = ['init_molarity', 'final_molarity']
         otu_tbl.rm_columns(cols2rm)
-
-    # writing out otu table
-    otu_tbl.to_csv(sys.stdout, sep='\t', index=False)

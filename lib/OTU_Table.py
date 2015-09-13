@@ -21,11 +21,17 @@ from Utils import random_walk_var_step
 
 def binNum2ID(frag_BD_bins, libFracBins):
     """Convert Counter(np.digitize()) for frag_BD  to the fraction BD-min-max.
-    Args:
-    frag_BD_bins -- dict of counts from np.digitize() binning
-    libFracBins -- ordered set of fraction start-ends
-    Return:
-    dict -- {fractionID : fragment_counts}
+
+    Parameters
+    ----------
+    frag_BD_bins : dict 
+        counts from np.digitize() binning
+    libFracBins : ordered set
+        fraction start-ends
+
+    Returns
+    -------
+    dict : {fractionID : fragment_counts}
     """    
     msg = '{0:.3f}-{1:.3f}'
     n_bins = len(libFracBins)
@@ -49,24 +55,35 @@ def binNum2ID(frag_BD_bins, libFracBins):
 def _all_empty_bins(libFracBins):
     """All possible fractions bins are set to zero
     abundance for taxon.
-    Args:
-    libFracBins -- ordered set of fraction start-ends
-    Returns:
-    dict -- {bin_ID:'0'}
+
+    Parameters
+    ----------
+    libFracBins : ordered set
+        fraction start-ends
+
+    Returns
+    -------
+    dict : {bin_ID:'0'}
     """
     n_bins = len(libFracBins)
     return {x:'0' for x in xrange(n_bins+1)}
 
 
 def _sample_BD_kde(BD_KDE, libID, taxon_name, size):
-    """Sampling from buoyant density KDE
-    Args:
-    BD_KDE -- scipy KDE for taxon
-    libID -- library ID
-    taxon_name -- taxon name 
-    size -- how many to sample
+    """Sample from buoyant density KDE.
+    
+    Parameters
+    ----------
+    BD_KDE : scipy KDE object
+        KDE object for taxon
+    libID : str
+        library ID
+    taxon_name : str
+        taxon name 
+    size : int
+        sample size
     Return:
-    array -- [fragment BD values]
+    numpy.array : fragment BD values
     """
     try:
         frag_BD = BD_KDE.resample(size=size)[0]
@@ -79,14 +96,22 @@ def _bin_BD(BD_KDE, libFracBins, taxonAbsAbund, libID, taxon_name,
             maxsize=10000000):
     """Sampling BD KDE and binning values into fractions.
     Parsing binning into chunks to prevent memory errors.
-    Args:
-    BD_KDE -- scipy KDE for taxon
-    libFracBins -- list of gradient bins
-    libID -- library ID
-    taxon_name -- taxon name
-    maxsize -- max number of BD values to bin at once.
-    Return:
-    Counter object -- {fraction_ID : count}
+    
+    Parameters
+    ----------
+    BD_KDE : scipy KDE object
+    libFracBins : list
+        gradient bins
+    libID : str
+        library ID
+    taxon_name : str
+        taxon name
+    maxsize : int
+        max number of BD values to bin at once.
+
+    Returns
+    -------
+    Counter object : {fraction_ID : count}
     """
     abund_remain = taxonAbsAbund
     frag_BD_bins = Counter()
@@ -104,17 +129,25 @@ def _bin_BD(BD_KDE, libFracBins, taxonAbsAbund, libID, taxon_name,
 def sim_OTU(x, comm_tbl, libID, libFracBins, maxsize):
     """Simulate OTU by sampling BD KDE and binning
     values into gradient fractions.
-    Args:
-    x -- (taxon_idx,taxon_name,KDE)
-      * taxon_idx -- taxon number
-      * taxon_name -- taxon name 
-      * KDE -- scipy KDE for taxon
-    comm_tbl -- comm table object
-    libID -- library ID
-    libFracBins -- list of gradient bins
-    maxsize -- max number of BD values to bin at once.    
-    Return:
-    array -- [fragment BD values]
+
+    Parameters
+    ----------
+    x : tuple
+        (taxon_idx,taxon_name,KDE)
+        * taxon_idx -- taxon number
+        * taxon_name -- taxon name 
+        * KDE -- scipy KDE for taxon
+    comm_tbl : comm table object
+    libID : str
+        library ID
+    libFracBins : list 
+        gradient bins
+    maxsize : int
+        max number of BD values to bin at once.    
+
+    Returns
+    -------
+    numpy.array : [fragment BD values]
     """
     assert len(x) >=3, 'x must be: (taxon_id, taxon_name, kde)'
     taxon_idx,taxon_name,BD_KDE = x
@@ -127,7 +160,6 @@ def sim_OTU(x, comm_tbl, libID, libFracBins, maxsize):
                                             abs_abund=True)
     taxonAbsAbund = int(round(taxonAbsAbund[0], 0))
     sys.stderr.write('   taxon abs-abundance:  {}\n'.format(taxonAbsAbund))
-
 
     # sampling from BD KDE
     if taxonAbsAbund == 0:
@@ -153,12 +185,16 @@ def sim_OTU(x, comm_tbl, libID, libFracBins, maxsize):
 def _get_BD_range(x):
     """Getting the BD range from a fraction ID 
     (eg., "1.710-1.716").
-    Args:
-    x -- fraction ID string
-    Returns:
+
+    Parameters
+    ----------
+    x : str
+        fraction ID
+
+    Returns
+    -------
     tuple -- BD start, middle end
     """
-
     if x.startswith('-'):
         [start,_,end] = x.rpartition('-')
     else:
@@ -181,6 +217,11 @@ def _get_BD_range(x):
     
 def main(uargs):
     """Main function for making OTU table.
+    
+    Parameters
+    ----------
+    uargs : dict
+        See ``OTU_table`` subcommand.
     """
     # args formatting 
     try:
@@ -269,7 +310,7 @@ def main(uargs):
 
 
 class OTU_table(_table):
-    """Subclass of pandas DataFrame
+    """Subclass of pandas DataFrame.
     """
 
     def __init__(self, *args, **kwargs):
@@ -278,9 +319,13 @@ class OTU_table(_table):
 
     def set_samp_dist(self, samp_dist, samp_dist_params):
         """Setting subsampling size distribution & params.
-        Args:
-        samp_dist -- str of numpy.random distribution attribute
-        samp_dist_params -- dict of params for the distribution function
+
+        Parameters
+        ----------
+        samp_dist : str 
+            a numpy.random distribution attribute
+        samp_dist_params : dict
+            dict of params for the distribution function
         """
         self.samp_dist_params = samp_dist_params        
         self.samp_dist = samp_dist
@@ -288,8 +333,10 @@ class OTU_table(_table):
 
     def get_comm_size_stats(self):
         """Getting stats on the size of each community.
-        Returns: 
-        list -- [min, mean, median, max]
+
+        Returns
+        -------
+        list : [min, mean, median, max]
         """
         counts = self.df.groupby(['library','fraction']).sum()['count']
         return [np.min(counts), np.mean(counts), 
@@ -298,12 +345,18 @@ class OTU_table(_table):
 
         
     def _frac_size_list(self, libID, max_tries=1000):
-        """Getting list of fraction community total abundances (sizes)
-        Args:
-        libID -- library ID
-        max_tries -- max tries to select a value btw min_size & max_size
-        Return:
-        samp_size -- list of sample sizes
+        """Get a list of fraction community total abundances (sizes).
+        
+        Parameters
+        ----------
+        libID : str
+            library ID
+        max_tries : int
+            max tries to select a value btw min_size & max_size
+
+        Returns
+        -------
+        list : sample sizes (ints)
         """
         samp_sizes = []
         msg = 'Exceeded tries to select a sample size within the range for {}:{}'
@@ -324,14 +377,20 @@ class OTU_table(_table):
 
 
     def _samp_probs(self, comm, rel_abund=False):
-        """Getting subsampling weights from taxon counts or relative abundances.
+        """Get subsampling weights from taxon counts or relative abundances.
         If counts used, the relative abundances are calculated and used
         as weights.
-        Args:
-        comm -- OTU table of one community 
-        rel_abund -- use 'rel_abund' column in table; else use 'count'
-        Return:
-        rel_abunds -- list of relative abundances (weights)
+
+        Parameters
+        ----------
+        comm : comm object
+            OTU table of one community 
+        rel_abund : bool
+            use 'rel_abund' column in table; else use 'count'
+
+        Returns
+        -------
+        list : relative abundances (weights)
         """
         if rel_abund is True:
             rel_abunds = comm['rel_abund']
@@ -352,17 +411,24 @@ class OTU_table(_table):
         
     def subsample(self, no_replace=False, walk=0, 
                   min_size=0, max_size=None, base=None):
-        """Subsampling from each community.
+        """Subsample from each community.
         Using numpy.random.choice with taxon abundances as weights
-        Args:
-        no_replace -- subsample without replacement
-        walk -- order values by a random walk 
-        min_size -- minimum sample size
-        max_size -- max sample size
-        base -- log base for transforming taxon counts 
-                (used for subsampling probabilities)
-        Return:
-        pandas DataFrame -- subsampled community
+
+        Parameters
+        ----------
+        no_replace : bool
+            subsample without replacement
+        walk : int
+            order values by a random walk with `walk` as max step size
+        min_size, max_size : int
+            min|max sample size
+        base : float
+            log base for transforming taxon counts 
+            (used for subsampling probabilities)
+
+        Returns
+        -------
+        pandas DataFrame : subsampled community table
         """
         # attributes
         self.walk = walk
@@ -466,10 +532,16 @@ class OTU_table(_table):
             
     def apply_each_comm(self, f, sel_index, val_index):
         """Apply a function to each taxon in OTU table.
-        In-place edit of OTU table
-        f -- function
-        sel_index -- column(s) use for for calculations
-        val_index -- column name(s) of values        
+        In-place edit of OTU table.
+        
+        Parameters
+        ----------
+        f : function
+            Applied function
+        sel_index : pandas column index
+            column(s) use for for calculations
+        val_index : pandas column index
+            column(s) of resulting values        
         """
         g = ['library', 'fraction']
         self.df[val_index] =  self.df.groupby(g)[sel_index].transform(f)
@@ -477,20 +549,30 @@ class OTU_table(_table):
 
     def apply_each_taxon(self, f, val_index):
         """Apply a function to each taxon in OTU table.
-        In-place edit of OTU table
-        f -- function
-        val_index -- the new column of values        
+        In-place edit of OTU table.
+
+        Parameters
+        ----------
+        f : function
+            Applied function
+        val_index : pandas column index
+            column(s) of resulting values        
         """
         self.df[val_index] = self.df[val_index].apply(f)
 
 
     def _norm_counts(self, df, sel_index='count'):
         """Normalize OTU counts by total count for community.
-        Args:
-        df -- pandas dataframe: OTU table
-        sel_index -- column with OTU count values
-        Return:
-        column of normalized values
+
+        Parameters
+        ----------
+        df : pandas dataframe
+            OTU table
+        sel_index :  column with OTU count values
+
+        Returns
+        -------
+        pandas series of normalized values
         """
         f = lambda x: np.nan_to_num(x / np.sum(x))
         return df.groupby(['library','fraction'])[sel_index].transform(f)
@@ -498,10 +580,14 @@ class OTU_table(_table):
 
     def add_rel_abund(self, sel_index='count', val_index='rel_abund'):
         """Adding relative abundances (fractions) to OTU table.
-        In-place edit of OTU table: new column = 'rel_abund'
-        Args:
-        sel_index -- column with OTU count values
-        val_index -- name of new column of relative abundances
+        In-place edit of OTU table: new/editted column = 'rel_abund'
+
+        Parameters
+        ----------
+        sel_index : pandas column index
+            column(s) use for for calculations
+        val_index : pandas column index
+            column(s) of resulting values        
         """        
         # assertions
         for x in (sel_index, val_index):
@@ -513,9 +599,13 @@ class OTU_table(_table):
     def adjust_abs_abund(self, rel_index, abs_index):
         """Adjust the absolute values by relative values.
         The abs_index column is edited in place.
-        Args:
-        rel_index -- column index for relative values
-        abs_index -- column index for absolute values
+
+        Parameters
+        ----------
+        sel_index : pandas column index
+            column(s) use for for calculations
+        val_index : pandas column index
+            column(s) of resulting values        
         """
         abs_sum = np.sum(self.df.loc[:,abs_index])
         x = self.df.loc[:,rel_index] * float(abs_sum)
@@ -526,13 +616,19 @@ class OTU_table(_table):
     def rm_columns(self, index):
         """Delete/remove columns from the OTU table.
         Columns removed in place.
-        Args:
-        index -- column index
+
+        Parameters
+        ----------
+        f : function
+            Applied function
+        index : pandas column index
+            column(s) to drop
         """
         self.df.drop(index, axis=1, inplace=True)
 
     def rename_columns(self, *args, **kwargs):
         """Renaming columns of OTU table.
+
         Parameters
         ----------
         See pandas.DataFrame.rename
@@ -547,11 +643,16 @@ class OTU_table(_table):
     def get_comm(self, libID, fracID):        
         """Returns subset of community dataframe.
         Subset selected from libID and fracID args.
-        Args:
-        libID -- library ID
-        fracID -- fraction ID
-        Returns:
-        pandas.DataFrame
+
+        Parameters
+        ----------
+        libID : str
+            library ID
+        fracID : str
+            fraction ID
+        Returns
+        -------
+        pandas.DataFrame : subset of community dataframe
         """
         return self.df.loc[(self.df['library'] == libID) &
                            (self.df['fraction'] == fracID),:]
@@ -559,6 +660,7 @@ class OTU_table(_table):
 
     def to_csv(self, *args, **kwargs):
         """Write OTU table as CSV.
+
         Parameters
         ----------
         See pandas.to_csv
@@ -569,9 +671,15 @@ class OTU_table(_table):
     # iter
     def iter_fractions(self, libID):    
         """iterating through fractions of a certain library.
-        Yields a fraction ID.
-        Args:
-        libID -- library ID
+        
+        Parameters
+        ----------
+        libID : str
+            library ID
+
+        Yields
+        ------
+        str : fraction ID
         """
         df_sub = self.df.loc[self.df['library'] == libID]
         for fracID in df_sub['fraction'].unique():
@@ -581,8 +689,7 @@ class OTU_table(_table):
     # properties/setters
     @property 
     def is_long(self):
-        """Returns true if the table is in 'long' format
-        """
+        """Return true if the table is in 'long' format"""
         long_cols = ['library','fraction']
         return all([x in self.df.columns.values for x in long_cols])
 

@@ -15,13 +15,17 @@ class Fractions(object):
 
     def __init__(self, distribution, params, BD_min, BD_max, frac_min):
         """
-        Args:
-        distribution -- str; name of distribution for selecting fraction sizes
-        params -- dict-like; distribution params passed to distribution function
-                  (pymix.mixture distributions)
-        BD_min -- Min BD for gradient fractions.
-        BD_max -- Max BD for gradient fractions.
-        frac_min -- Min size of any fraction.
+        Parameters
+        ----------
+        distribution : str
+            Name of distribution for selecting fraction sizes
+        params : dict
+            Distribution params passed to distribution function
+            (pymix.mixture distributions)
+        BD_min, BD_max : float
+             Min|max BD for gradient fractions.
+        frac_min : float
+             Min size of any fraction.
         """
         BD_min, BD_max, frac_min = map(float, (BD_min, BD_max, frac_min))
         assert BD_min > 0 and BD_max > 0, "BD_min/max must be positive numbers"
@@ -39,7 +43,7 @@ class Fractions(object):
         
         
     def _set_distributionFunction(self):
-        """Setting user-defined distribution (pymix distributions)"""
+        """Set user-defined distribution (pymix distributions)."""
         psblFuncs = {'uniform' : mixture.UniformDistribution,
                      'normal' : mixture.NormalDistribution}
 
@@ -58,10 +62,18 @@ class Fractions(object):
 
 
     def simFractions(self, libID, max_tries=1000):
-        """Simulating the gradient fractions for a library
-        Args:
-        libID -- library ID (a.k.a. isopycnic gradient ID)
-        max_tries -- max number of tries to get BD values in BD_range
+        """Simulate the gradient fractions for a library.
+
+        Parameters
+        ----------
+        libID : str
+            library ID (a.k.a. isopycnic gradient ID)
+        max_tries : int
+            max number of tries to get BD values in BD_range
+        Returns
+        -------
+        l2d : 2d-list 
+            [[BD_min_vals, BD_max_vals, BD_vals]]
         """
         
         # sample & sum to get up to just past (BD_range - BD_max)
@@ -109,7 +121,8 @@ class Fractions(object):
 
 
     def sample_frac_size(self, max_tries=1000):
-        """Sampling from user-defined distribution. The value must be >= frac_min
+        """Sampling from user-defined distribution. 
+        The value must be >= frac_min.
         """
         tries = 0
         while True:
@@ -119,7 +132,8 @@ class Fractions(object):
             else:
                 tries += 1
 
-            if tries > max_tries:
-                msg = 'Exceeded {} tries to make BD fraction from user-defined distribution. Giving up!'
+            if tries > max_tries:                
+                msg = 'Exceeded {} tries to make BD fraction ' + \
+                      'from user-defined distribution. Giving up!'
                 print msg.format(max_tries)
                 sys.exit(1)

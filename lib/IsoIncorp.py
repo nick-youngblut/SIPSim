@@ -28,6 +28,11 @@ logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
 def main(args):
     """Main function for performing isotope incorporation simulation.
+    
+    Parameters
+    ----------
+    args : dict
+        See ``isotope_incorp`` subcommand.
     """
     # loading input
     ## kde_bd
@@ -83,19 +88,28 @@ def _make_kde(x, libID, config, taxa_incorp_list,
              isotope='13C', n=10000, bw_method=None): 
     """Making new KDE of BD value distribution which includes
     BD shift due to isotope incorporation. 
-    Args:
-    x -- [taxon_name, dict -- {kde:abundance}]
-    libID -- str; library ID
-    config -- config object
-    taxa_incorp_list -- iterable; taxa that can incorporate isotope
-    isotope -- str; isotope that is incorporated
-    n -- number of Monte Carlo samples to use for estimating
-         BD+isotope_BD distribution
-    bw_method -- bandwidth scalar or function passed to
-                 scipy.stats.gaussian_kde().
-    Return:
-    (taxon_name, KDE*)
-       * Note: KDE object may be None    
+
+    Parameters
+    ----------
+    x : list
+        [taxon_name, dict -- {kde:abundance}]
+    libID : str
+        library ID
+    config : config object
+    taxa_incorp_list : list
+        names of taxa that can incorporate isotope
+    isotope : str, optional
+        isotope that is incorporated
+    n : int
+        number of Monte Carlo samples to use for estimating BD+isotope_BD
+        distribution
+    bw_method : str or function
+        bandwidth scalar or function passed to scipy.stats.gaussian_kde().
+
+    Returns
+    -------
+    tuple -- (taxon_name, KDE*)
+        *Note: KDE object may be None    
     """
     taxon_name,x = x
 
@@ -143,11 +157,12 @@ def _make_kde(x, libID, config, taxa_incorp_list,
 def _add_comm_to_kde(KDE_BD, comm=None):
     """Adding comm data for each taxon to each KDE.
     'abundances' will be an empty dict if comm is not provided.
-    Args:
-    KDE_BD -- 
-    comm -- gradient community object
-    In-place edit:
-    KDE_BD -- {taxon_name:{kde|abundances}}
+    In-place edit of KDE_BD {taxon_name:{kde|abundances}}
+
+    Parameters
+    ----------
+    KDE_BD : KDE object       
+    comm : gradient community object
     """
     try:
         libIDs = comm.get_unique_libIDs()
@@ -180,15 +195,20 @@ def _taxon_incorp_list(libID, config, KDE_BD):
     return taxon_names[:n_incorp]
 
     
-
 def make_incorp_model(taxon_name, libID, config):
     """Setting isotope incorporation based on the interPopDist
     function for each intraPop parameter.
-    Args:
-    taxon_name -- taxon name string
-    libID -- library ID string
-    config -- config object
-    Returns:
+
+    Parameters
+    ----------
+    taxon_name : str
+        taxon name string
+    libID : str
+        library ID string
+    config : config object
+
+    Returns
+    -------
     mixture model object (mixture class)
     """
     psblDists = {'normal' : mixture.NormalDistribution,
@@ -242,25 +262,30 @@ def make_incorp_model(taxon_name, libID, config):
                                 intraPopDist_funcs)
                             
 
-
 def _select_intrapop_param_value(interPopDist, taxon_name, maxtries=1000):
-    """Selecting the intra-population parameter value
+    """Select the intra-population parameter value
     based on the inter-population distribution function.
     Values are % isotope incorporation, so acceptable
     range is 0-100 (will try 'maxtries' times to select value in range).
-    Args:
-    interPopDist -- {'interPopDist':{'function':interPopdist_function}}
-    taxon_name -- name of taxon
-    maxtries -- number of tries to get a parameter values >0
-    Returns:
-    float -- intra-pop param value
+
+    Parameters
+    ----------
+    interPopDist : dict
+        {'interPopDist':{'function':interPopdist_function}}
+    taxon_name : str
+         name of taxon
+    maxtries : int
+         number of tries to get a parameter values >0
+
+    Returns
+    -------
+    float : intra-pop param value
     """
     # getting inter-pop dist function
     try:
         interPopDist_func = interPopDist['interPopDist']['function']
     except KeyError:
         raise KeyError, 'Cannot find inter-pop dist function'
-
 
     # sampling from function to get parameter for intra-pop distribution
     tries = 0
@@ -291,10 +316,12 @@ def _select_intrapop_param_value(interPopDist, taxon_name, maxtries=1000):
 def _start_lt_end(params):
     """Check that 'start' param is < 'end' param
     if both params are found in the provided dict.
-    Args:
-    params -- {param_ID:param_value}
-    Returns:
-    in-place edit of params
+    In-place edit of params.
+
+    Parameters
+    ----------
+    params : dict
+        {param_ID:param_value}
     """
     if ('start' in params) & ('end' in params):
         try:
@@ -316,10 +343,15 @@ def _start_lt_end(params):
 
 def isotopeMaxBD(isotope):
     """Setting the theoretical max BD shift of an isotope (if 100% incorporation).
-    Args:
-    isotope -- str; name of isotope
-    Return:
-    float -- max BD value
+
+    Parameters
+    ----------
+    isotope : str
+        name of isotope
+
+    Returns
+    -------
+    float : max BD value
     """
     psblIsotopes = {'13C' : 0.036,
                     '15N' : 0.016}
@@ -328,6 +360,3 @@ def isotopeMaxBD(isotope):
     except KeyError:
         raise KeyError('Isotope "{}" not supported.'.format(isotope))
 
-        
-
-    

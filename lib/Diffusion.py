@@ -21,15 +21,23 @@ import Utils
 
 # functions
 def make_kde(x, n, bw_method, **kwargs):
-    """Makes scipy.stats.gaussian_kde from BD values
-    Args:
-    x -- list of containing [taxon_name, kde]
-      taxon_name -- taxon name
-      kde -- scipy.stats kde object of BD values or None
-    n -- sample size
-    bw_method -- KDE bandwidth method
-    Returns:
-    tuple -- (taxon_name, kde object of BD values)
+    """Make a scipy.stats.gaussian_kde from BD values.
+    
+    Parameters
+    ----------
+    x : list
+        [taxon_name, kde]
+        taxon_name -- taxon name
+        kde -- scipy.stats kde object of BD values or None
+    n : int
+        sample size
+    bw_method : str or function
+         KDE bandwidth method (see scipy.stats)
+
+    Returns
+    -------
+    k : tuple 
+        (taxon_name, kde object of BD values)
     """
     # input unpacking a type checking
     try:
@@ -67,6 +75,10 @@ def make_kde(x, n, bw_method, **kwargs):
 def main(args):    
     """Main function for adding diffusion error to 
     a KDE of buoyant density values.
+
+    Parameters:
+    args : dict
+        See ``diffusion`` subcommand
     """
     kde2d = Utils.load_kde(args['<fragment_kde>'])
 

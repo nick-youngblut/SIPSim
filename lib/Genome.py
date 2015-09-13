@@ -26,10 +26,14 @@ class Genome(object):
 
     def __init__(self, inFile, taxonName, primerFile=None):
         """
-        Args:
-        inFile -- name of the genome sequence file
-        taxonName -- name of taxon
-        primerFile -- file name of primers in fasta format
+        Parameters
+        ----------
+        inFile : str
+            name of the genome sequence file
+        taxonName : str
+            name of taxon
+        primerFile : str
+            file name of primers in fasta format
         """
         self.fileName = inFile
         self.taxonName = taxonName
@@ -45,14 +49,16 @@ class Genome(object):
         
         
     def callMFEprimer(self, rtr, MFEprimerExe='./MFEprimer.py'):
-        """Calling MFEprimer to get amplicons.
-        Args:
-        rtr -- read template size range (min,max)
-        MFEprimerExe -- string with path of MFEprimer.py
-        Returns:
-        in-place edit -- MFEprimerRes
-        """
-        
+        """Cal MFEprimer to get amplicons.
+        in-place edit of MFEprimerRes object
+
+        Parameters
+        ----------
+        rtr : tuple
+            read template size range (min,max)
+        MFEprimerExe : str
+            path of MFEprimer.py
+        """        
         # Input check
         try:
             (minTemplateLen,maxTemplateLen) = rtr[:3]
@@ -81,8 +87,7 @@ class Genome(object):
 
 
     def _MFEprimerRes_chk(self):
-        """Assertions on output table from MFEprimer.      
-        """
+        """Assertions on output table from MFEprimer."""
         if self.MFEprimerRes is None:
             return None
         
@@ -98,15 +103,17 @@ class Genome(object):
         """Filtering out amplicons that substantially overlap.
         The amplicon with the highest PPC with be kept.
         The MFEprimerRes attribute must be set.
+        in-place edit of MFEprimerRes object (table object filtered of overlaps)
         
-        Args:
-        overlapPercCutoff -- percent of overlap to consider 'substantially' overlapping
-        Returns:
-        in-place edit -- self.MFEprimerRes (table object filtered of overlaps)
+        Parmeters
+        ---------
+        overlapPercCutoff : float
+            percent of overlap to consider 'substantially' overlapping
         """
         if self.MFEprimerRes is None:  
-            raise AttributeError('genome object does not have MFEprimerRes attribute. ' \
-                                 'Run MFEprimer() first')
+            msg = 'genome object does not have MFEprimerRes attribute.' + \
+                  ' Run MFEprimer() first'
+            raise AttributeError, msg
             
         # making interval tree
         tree = IntervalTree()
@@ -157,12 +164,15 @@ class Genome(object):
         
     @staticmethod
     def _calcPercOverlap(iv1, iv2):
-        """Calculating overlap between intervals (iv1, iv2)
-        Args:
-        iv1 -- interval 1
-        iv2 -- interval 2
-        Returns:
-        tuple -- (percent overlap relative to iv1, relative to iv2)
+        """Calculate the overlap between intervals (iv1, iv2).
+        
+        Parmeters
+        ---------
+        iv1, iv2 : interval
+
+        Returns
+        -------
+        tuple : (percent overlap relative to iv1, relative to iv2)
         """
         if not iv1.overlaps(iv2):
             return [0.0, 0.0]
@@ -181,10 +191,15 @@ class Genome(object):
     def calcGC(seq):
         """Calculating GC content of a sequence string. Return as percent G+C.
         Only unambiguous nucleotide codes (ATGC) will be counted.
-        Args:
-        seq -- string of DNA sequence
-        Returns:
-        float -- %GC
+        
+        Parameters
+        ----------
+        seq : str
+            DNA sequence
+
+        Returns
+        -------
+        float : %GC
         """
         seq = str(seq).upper()
         aCount = seq.count('A')
@@ -193,15 +208,15 @@ class Genome(object):
         gCount = seq.count('G')
 
         try:
-            return float(cCount + gCount) / float(aCount + tCount + cCount + gCount) * 100.0
+            b = float(aCount + tCount + cCount + gCount)
+            return float(cCount + gCount) / b * 100.0
         except ZeroDivisionError:
             return 'NA'
             
                     
     # getters/setters/iters
     def get_fileName(self, rmPath=False):
-        """Getting fileName, without path if rmPath=True
-        """
+        """Get fileName, without path if rmPath=True."""
         if rmPath is True:
             return os.path.split(self.fileName)[1]
         else:
@@ -210,11 +225,16 @@ class Genome(object):
     def get_seq(self, scaffold, start, end):
         """Getting sequence from genome. 0-indexing.
         start-end will return at section of the sequence.
-        Args:
-        scaffold -- scaffold id
-        start -- sequence start position
-        end -- sequence end position
-        Returns:
+        
+        Parameters
+        ----------
+        scaffold : str
+            scaffold id
+        start, end : int
+            sequence start-end positions
+
+        Returns
+        -------
         str -- sequence
         """
         try:
@@ -224,12 +244,18 @@ class Genome(object):
         except KeyError:
             raise KeyError('ScaffoldID "{}" not found in genome fasta index'.format(scaffold))
 
+
     def get_seq_len(self, seqID):
-        """Getting length for sequence 'seqID'.
-        Args:
-        seqID -- ID of sequence
-        Returns:
-        int -- sequence length
+        """Get length for sequence 'seqID'.
+
+        Parameters
+        ----------
+        seqID : str
+            ID of sequence
+
+        Returns
+        -------
+        int : sequence length
         """
         if not hasattr(self, '_fastaIdx_lens'):
             self._fastaIdx_lens = {seqID:len(seq) for seqID,seq in self.fastaIdx.items()}
@@ -243,8 +269,10 @@ class Genome(object):
 
     def iter_seqRecs(self):
         """Iterator of sequence records.
-        Returns:
-        iterator -- each sequence record
+
+        Returns
+        -------
+        iterator : each sequence record
         """
         with open(self.fileName) as inF:
             for rec in SeqIO.parse(inF, 'fasta'):
@@ -253,7 +281,7 @@ class Genome(object):
 
     @property
     def MFEprimerRes(self):
-        """Getting the results of MFEprimer. Returns a dataframe"""
+        """Get the results of MFEprimer. Returns a dataframe"""
         try:
             return self._MFEprimerRes
         except AttributeError:

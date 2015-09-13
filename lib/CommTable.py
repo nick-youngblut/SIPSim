@@ -15,12 +15,17 @@ class CommTable(_table):
 
 
     def taxonInLib(self, taxon_name, libID):
-        """Checking whether taxon in the selected library
-        Args:
-        taxon_name -- taxon name
-        libID -- library ID
-        Return:
-        boolean
+        """Checking whether taxon in the selected library.
+        Parameters
+        ----------
+        taxon_name : str
+            taxon name
+        libID : str
+            library ID
+
+        Return
+        ------
+        b : boolean
         """
         libID = re.sub('\D+', '', libID)
         dfSub = self.df.loc[self.df['taxon_name'] == taxon_name]
@@ -30,12 +35,20 @@ class CommTable(_table):
             
     def get_taxonAbund(self, taxon_name, libID=None, abs_abund=False):
         """Getting the abundance(s) of taxon in the comm file.
-        Args:
-        taxon_name -- name of taxon
-        libID -- library ID. If None, all libraries selected.
-        abs_abund -- return absolute abundance instead of relative abundance
-        Return:
-        iterable -- [abundance values for the taxon]
+
+        Parameters
+        ----------
+        taxon_name : str
+            name of taxon
+        libID : str
+            library ID. If None, all libraries selected.
+        abs_abund : bool
+             return absolute abundance instead of relative abundance
+
+        Returns
+        -------
+        abund_vals : iterable 
+            abundance values for the taxon
         """
         retCol = 'abs_abund' if abs_abund else 'rel_abund_perc'
         assert retCol in self.df.columns, \
@@ -50,27 +63,26 @@ class CommTable(_table):
 
     
     def get_unique_libIDs(self):
-        """Getting all unique libIDs from the community table
-        """
+        """Get all unique libIDs from the community table."""
         return self.df['library'].unique().tolist()
 
     def get_unique_taxon_names(self):
-        """Getting all unique taxon names from the community table
-        """
+        """Get all unique taxon names from the community table."""
         return self.df['taxon_name'].unique()        
 
     @property
     def abs_abund(self):
+        """The absolute abundance of each taxon based on user-value.
+
+        Parameters
+        ----------
+        abs_abund : int
+            total abundance of all taxa in each library
+        """
         return self.df['abs_abund']
 
     @abs_abund.setter
     def abs_abund(self, abs_abund):
-        """Setting the absolute abundance of each taxon based on user-value.
-        Args:
-        abs_abund -- int; total abundance of all taxa in each library
-        Returns:
-        None
-        """
         try:
             x = self.df['rel_abund_perc']
             self.df['abs_abund'] = x / 100 * int(abs_abund)

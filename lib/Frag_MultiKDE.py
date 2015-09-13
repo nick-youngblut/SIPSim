@@ -72,9 +72,16 @@ class Frag_MultiKDE(object):
 
             
     def iter_kde(self, taxon_names):
-        """Getting the kde functions for all taxa-listed.
-        Args:
-        taxon_names -- list of taxon names
+        """Get the kde functions for all taxa-listed.
+        
+        Parameters
+        ----------
+        taxon_names : list
+            list of taxon names
+        
+        Yields
+        ------
+        KDE : kde function
         """
         assert not isinstance(taxon_names, str), 'Provide a list-like object'
 
@@ -94,12 +101,16 @@ class Frag_MultiKDE(object):
                 
     def sampleTaxonKDE(self, taxon_name, size=1):
         """Sample from the KDE function set for a taxon.
-        Args:
-        taxon_name -- name of taxon
-        size -- number of fragments to sample
-        #args and kwargs -- passed to KDE function
-        Return:
-        #2d numpy array -- [[frag_GC,frag_len], ...]
+
+        Parameters
+        ----------
+        taxon_name : str
+            name of taxon
+        size : int
+            number of fragments to sample
+
+        Returns
+        -------
         generator: 1d numpy array [frag_GC, frag_len]
         """
         # asserting kde function
@@ -115,11 +126,14 @@ class Frag_MultiKDE(object):
                 
                                    
     def _fitKDE(self, taxon_name):
-        """Returns multivariate KernelDensity function fit to fragment GC
+        """Return a multivariate KernelDensity function fit to fragment GC
         values and lengths.
         Bandwidth selection based on bandwidth attribute.
-        Args:
-        taxon_name -- taxon name string
+        
+        Parameters
+        ----------       
+        taxon_name : str
+            taxon name
         """
         #vals = np.vstack([taxon_df.GC, abs(taxon_df.fragEnd - taxon_df.fragStart)])        
         vals = [self._get_fragGC(taxon_name),
@@ -132,16 +146,14 @@ class Frag_MultiKDE(object):
 
         
     def _iter_df_by_taxon_name(self):
-        """Iterate by unique taxon names.
-        """
+        """Iterate by unique taxon names."""
         taxon_names = self.fragGC_df['taxon_name'].unique()
         for taxon_name in taxon_names:
             yield (taxon_name, self.fragGC_df.loc[self.fragGC_df['taxon_name'] == taxon_name])
 
 
     def _get_fragGC(self, taxon_name):
-        """Getting fragGC values for a taxon.
-        """
+        """Get fragGC values for a taxon."""
         assert hasattr(self, '_frag_data'), "No _frag_data attribute"
         try:
             type(self._frag_data[taxon_name])
@@ -152,8 +164,7 @@ class Frag_MultiKDE(object):
             
 
     def _get_fragLength(self, taxon_name):
-        """Getting fragGC values for a taxon.
-        """
+        """Getting fragGC values for a taxon."""
         assert hasattr(self, '_frag_data'), "No _frag_data attribute"
         try:
             type(self._frag_data[taxon_name])

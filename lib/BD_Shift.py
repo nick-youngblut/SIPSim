@@ -14,14 +14,24 @@ import Utils
 
 # functions
 def kde_intersect(x, **kwargs):
-    """Wrapper for unpacking dict objects containing
-    KDEs for the provided taxon.
-    Args:
-    taxon -- str; taxon name
-    d1 -- {taxon_name:kde}
-    d2 -- {taxon_name:kde}
-    Returns:
-    list -- [taxon_name, BD_shift]
+    """Wrapper for unpacking dict objects containing KDEs for the
+    provided taxon.
+ 
+    Parameters
+    ----------
+    x : list
+        [taxon name, kde1, kde2]
+    kwargs : optional
+        passed to `_kde_intersect`
+
+    Returns
+    -------
+    list
+       [taxon_name, BD_shift]
+
+    Notes
+    -----
+    The BD shift values range from 0 to 1 (1 = no BD distribution overlap).
     """
     assert len(x) >= 3, 'x must contain (taxon,kde1,kde2)'
     taxon = x[0]    
@@ -36,15 +46,22 @@ def kde_intersect(x, **kwargs):
 def _kde_intersect(kde1, kde2, start=1.66, end=1.85, step=0.001):
     """Calculating the intersection of 2 KDE objects.
     np.trapz is used for integration.
-    start, end, & step define the points evaluated for each KDE.
-    Args:
-    kde1 -- scipy kde object
-    kde2 -- scipy kde object
-    start -- float; start of series
-    end -- float; end of series
-    step -- float; step size of series
-    Returns:
-    float -- intersection value
+    (start, end, & step) define the points evaluated for each KDE.
+    
+    Parameters
+    ----------
+    kde1, kde2 : scipy kde object
+    start : float, optional
+        start of BD value series
+    end :  float, optional
+        end of BD value series
+    step : float, optional
+        step size of series
+
+    Returns
+    -------
+    intersect_value : float
+        overal coefficient
     """
     if kde1 is None or kde2 is None:
         return np.NAN
@@ -64,10 +81,14 @@ def _kde_intersect(kde1, kde2, start=1.66, end=1.85, step=0.001):
 
 def is_kde_lib(d):
     """Is the kde object a dict of dicts {lib:{taxon:scipy_kde}}?
-    Args:
-    d -- {taxon_name:kde} or {libID:{taxon_name:kde}}
-    Returns:
-    boolean
+
+    Parameters
+    ----------
+    d : dict
+        {taxon_name:kde} or {libID:{taxon_name:kde}}
+    Returns
+    -------
+    b : boolean
     """
     try:
         k1 = d.keys()[0]
@@ -80,10 +101,16 @@ def is_kde_lib(d):
 
 def kde_add_lib(d):    
     """Adding top-level library ID ('NA') to dict if not present.
-    Args:
-    d -- {taxon_name:kde} or {libID:{taxon_name:kde}}
-    Returns:
-    dict -- {libID:{taxon_name:kde}}
+
+    Parameters
+    ----------
+    d : dict
+        {taxon_name:kde} or {libID:{taxon_name:kde}}
+
+    Returns
+    -------
+    d : dict 
+        {libID:{taxon_name:kde}}
     """
     is_lib = is_kde_lib(d)
     if is_lib:
@@ -95,11 +122,16 @@ def kde_add_lib(d):
 def taxon_overlap(d1, d2):
     """Determine which taxa overlap between KDE objects.
     Warnings for taxa that do not overlap.
-    Args:
-    d1 -- {taxon_name:kde}
-    d2 -- {taxon_name:kde}
-    Returns:
-    iterable -- [overlapping taxon names]
+
+    Parameters
+    ----------
+    d1, d2 : dict
+        {taxon_name:kde}
+
+    Returns
+    -------
+    taxon_names : iterable
+        set of overlapping taxon names
     """
     taxa1 = set(d1.keys())
     taxa2 = set(d2.keys())
@@ -113,6 +145,11 @@ def taxon_overlap(d1, d2):
 
 def main(args):
     """Main function for calculating BD shift.
+
+    Parameters
+    ----------
+    args : dict
+        See ``BD_shift`` subcommand
     """
     sys.stderr.write('Loading KDE objects...\n')
     kde1 = Utils.load_kde(args['<kde1>'])

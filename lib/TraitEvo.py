@@ -6,10 +6,15 @@ from dendropy.utility.error import DataParseError
 
 
 def read_tree(tree_obj):
-    """Parsing a tree file that's in various possible formats
-    Args:
-    tree_obj -- path or data stream fo tree file
-    Returns:
+    """Parse a tree file that's in various possible formats
+    
+    Parameters
+    ----------
+    tree_obj : str or data_stream
+        tree data input
+
+    Returns
+    -------
     dendropy object 
     """
     if tree_obj is None:
@@ -29,8 +34,7 @@ def read_tree(tree_obj):
             pass
         else:
             break
-        
-        
+                
     if isinstance(tree, dendropy.dataobject.tree.Tree):
         return tree
     else:
@@ -41,13 +45,16 @@ def read_tree(tree_obj):
 
 def get_leaf_node_labels(tree):
     """Return a list of leaf labels.
-    Args:
-    tree -- dendropy tree object
-    Returns:
-    list -- [leaf_label, ...]
+
+    Parameters
+    ----------
+    tree : dendropy tree object
+
+    Returns
+    -------
+    list : [leaf_label, ...]
     """
     return [x.taxon for x in tree.leaf_iter()]
-
 
 
 class BrownianMotion:
@@ -56,15 +63,22 @@ class BrownianMotion:
                  maxVal=100, verbose=False):
         """Calls sim_traits function and stores tree with simulated characters
         as an attribute.
-        Args:
-        tree -- dendropy tree object. It will be deepcopied
-        start -- starting value for continuous character evolution
-        sigma -- sigma use for drawing from a normal distribution
-        ratio -- weight parameter for random vs Brownian motion
-        range: 0-1; 0 = purely random; 1 = purely Brownian
-        minVal -- minimum bounds on simulated values
-        maxVal -- maximum bounds on simulated values
-        verbose -- verbose output        
+
+        Parameters
+        ----------
+        tree : dendropy tree object
+            It will be deepcopied
+        start : float
+            Starting value for continuous character evolution
+        sigma : float
+            Sigma use for drawing from a normal distribution
+        ratio : float
+            Weight parameter for random vs Brownian motion
+        range: float 
+            Values between 0-1; 0 = purely random; 1 = purely Brownian
+        minVal, maxVal -- min|max bounds on simulated values
+        verbose : bool
+            verbose output        
         """
         if tree is None:
             msg = 'tree object cannot be None'
@@ -94,8 +108,8 @@ class BrownianMotion:
         Thibaut and Schiffers, Katja and Thuiller, Wilfried},
         title = {How to measure and test phylogenetic signal},
         journal = {Methods in Ecology and Evolution}        
-        Returns:
-        in-place edit of self.tree
+
+        In-place edit of `tree` attribute.
         """        
         ntaxa = len(self.tree.nodes())
         # simulate brownian motion
@@ -124,17 +138,23 @@ class BrownianMotion:
 
     
     def sample(self, taxon_label):
-        """Getting value for taxon in self.tree if taxon is present;
+        """Getting value for taxon in `tree` attribute if taxon is present;
         otherwise, returns value from random uniform with range: (0,100).
-        Args:
-        taxon_label -- string of a taxon in self.tree
-        Returns:
-        list -- [float]
+
+        Parameters
+        ----------
+        taxon_label : str
+            Name of a taxon in `tree` attribute.
+
+        Returns
+        -------
+        list : floats
         """
         func = lambda taxon: True if taxon.label == taxon_label else False
         node = self.tree.find_node_with_taxon(func)
         if node is None:
-            msg = 'Taxon: "{}" not found in the provided phylogeny. Setting random value.\n'
+            msg = 'Taxon: "{}" not found in the provided phylogeny.' + \
+                  ' Setting random value.\n'
             sys.stderr.write(msg.format(taxon_label))
             return np.random.uniform(0,100)
         else:

@@ -52,7 +52,7 @@ References:
 # import
 ## batteries
 from docopt import docopt
-import os, sys
+import sys
 ## application libraries
 scriptDir = os.path.dirname(__file__)
 libDir = os.path.join(scriptDir, '../lib/')
@@ -79,6 +79,9 @@ def main(Uargs):
                           f_0 = float(Uargs['-f']),
                           k = float(Uargs['-k']), 
                           debug=Uargs['--debug'])
+
+    # writing out file
+    otu_tbl_pcr.to_csv(sys.stdout, sep='\t', index=False)
     
 
 # main

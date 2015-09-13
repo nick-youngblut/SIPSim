@@ -16,14 +16,23 @@ def add_diffusion(np.ndarray[DTYPE_t, ndim=2] arr,
                   float G=7.87e-10, int M=882):
     """Adding diffusion to fragment buoyant density values. 
     See Clay et al., 2003 for more details.
-    Args:
-    arr -- 2d-array: [[frag_buoyant_density,],[frag_length,]]
-    T -- gradient temperature in Kelvin
-    B -- beta coefficient
-    G -- G coefficient
-    M -- molecular weight per pair base pair of dry cesium DNA
-    Returns:
-    numpy.array -- [BD values that include diffusion error]
+
+    Paramters
+    ---------
+    arr : numpy array
+        2d array: [[frag_buoyant_density,],[frag_length,]]
+    T : float
+        gradient temperature in Kelvin
+    B : float
+        beta coefficient
+    G : float
+        G coefficient
+    M : float
+         molecular weight per pair base pair of dry cesium DNA
+
+    Returns
+    -------
+    numpy.array : [BD values that include diffusion error]
     """
     cdef int n = len(arr[0])
     cdef double[:] out = np.empty(n, dtype=DTYPE)
@@ -50,12 +59,17 @@ def add_diffusion(np.ndarray[DTYPE_t, ndim=2] arr,
 
 
 def GC2BD(np.ndarray[DTYPE_t, ndim=1] arr):
-    """Converting G+C (% from 0-100) to buoyant density (BD)
+    """Convert G+C (% from 0-100) to buoyant density (BD)
     Equation: (GC / 100) * 0.098 + 1.66
-    Args:
-    arr -- numpy array of G+C values
-    Return:
-    numpy.array -- [BD values]
+
+    Parameters
+    ----------
+    arr : numpy.array 
+        G+C values
+
+    Returns
+    -------
+    numpy.array : BD values
     """
     cdef int n = len(arr)
     cdef double[:] out = np.empty(n, dtype=DTYPE)
@@ -67,14 +81,20 @@ def GC2BD(np.ndarray[DTYPE_t, ndim=1] arr):
 
 def add_incorp(np.ndarray[DTYPE_t, ndim=1] frag_BD, 
                incorp_func, double isotopeMaxBD):
-    """Adding isotope incorporation BD-shift values to BD-0%-incorp
-    values
-    Args:
-    frag_BD -- 1d numpy array of fragment BD values
-    incorp_func -- function that returns a 1d-list with a float
-    isotopeMaxBD -- the max BD possible with the selected isotope 
-    Returns:
-    float -- buoyant density value
+    """Adding isotope incorporation BD-shift values to BD-0%-incorp values.
+
+    Parameters
+    ----------
+    frag_BD : numpy.array
+        1d array of fragment BD values
+    incorp_func : function
+        A function that returns a 1d-list with a float
+    isotopeMaxBD : float
+        The max BD possible with the selected isotope 
+
+    Returns
+    -------
+    float : buoyant density value
     """    
     cdef int n = len(frag_BD)
     

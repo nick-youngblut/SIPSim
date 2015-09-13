@@ -26,6 +26,12 @@ logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
 
 def main(args):
+    """
+    Parmeters
+    ---------
+    args : dict
+        See ``fragments`` subcommand
+    """
     # list of genome files
     genomeList =  Utils.parseGenomeList(args['<genomeList>'], 
                                         filePath=args['--fp'])
@@ -48,11 +54,18 @@ def main(args):
 
 
 def load_frags_table(inFH, sep='\t'):
-    """Loading frag info table as a dict of dicts of 2d lists.
-    {taxon_name : {scaffold : [fragStart, fragEnd, GC]}}
-    Args:
-    inFH -- file handle
-    sep -- value delimiter
+    """Load frag info table as a dict of dicts of 2d lists.
+    
+    Parameters
+    ----------
+    inFH : file handle
+    sep : str
+        value delimiter
+    
+    Returns
+    -------
+    frags : dict
+        {taxon_name : {scaffold : [fragStart, fragEnd, GC]}}
     """    
     header_vals = set(['taxon_name','scaffoldID','fragStart',
                        'fragLength','fragGC'])
@@ -103,10 +116,17 @@ def load_frags_table(inFH, sep='\t'):
 
             
 def load_frags_pickle(inFH):
-    """Loading frag GC info assuming a pickled python object
+    """Load frag GC info assuming a pickled python object
     produced by SIPSim fragGC.
-    Args:
-    inFH -- file handle
+    
+    Parameters
+    ----------
+    inFH : file handle
+
+    Returns
+    -------
+    d : dict
+        {taxon_name : {info : [values]}}
     """
     fojb =  pickle.load(inFH)
 
@@ -130,11 +150,17 @@ def load_frags_pickle(inFH):
 
 
 def load_frags(fileName):
-    """Loading fragment data (pickled) table.
-    Args:
-    fileName -- name of the fragment data table
-    Return:
-    dict{dict} -- {taxon_name:{key:value}}
+    """Load fragment data (pickled) table.
+    
+    Parameters
+    ----------
+    fileName : str
+        name of the fragment data table
+
+    Returns
+    -------
+    d : dict{dict} 
+        {taxon_name:{key:value}}
     """
     try:
         inFH = open(fileName, 'r')
@@ -157,11 +183,17 @@ def fit_kde(frag_data, bw_method=None):
     fragment buoyant density (calculated from G+C) 
     and fragment lengths.
     Bandwidth selection based on bandwidth attribute.
-    Args:
-    frag_data -- dict of lists (fragment info)
+    
+    Parameters
+    ----------
+    frag_data : dict
+       dict of lists {fragment info)
     bw_method -- passed to stats.gaussian_kde
-    Return:
-    dict of kde objects {taxon_name:kde}
+
+    Returns
+    -------
+    d : dict 
+        Dict of KDE objects {taxon_name:KDE}
     """
     try:
         bw_method = float(bw_method)
@@ -199,13 +231,20 @@ def fit_kde(frag_data, bw_method=None):
 # functions
 def by_genome(x, args):
     """All processing conducted per genome.
-    Args:
-    x -- [inFile,taxonName]
-      inFile -- genome sequence file name
-      taxonName -- taxon name of genome
-    args -- user-provided args as dict
-    Return:
-    2d-list -- for each fragment: [taxonName,scaf,start,end,GC]
+
+    Parameters
+    ----------
+    x : list
+        [inFile,taxonName]
+        inFile -- genome sequence file name
+        taxonName -- taxon name of genome
+    args : dict
+       user-provided args 
+
+    Returns
+    -------
+    l2d -- list of lists
+        for each fragment: [taxonName,scaf,start,end,GC]
     """
     taxonName,inFile = x
     # status
@@ -234,8 +273,7 @@ def by_genome(x, args):
     
         # filtering overlapping in-silico amplicons
         genome.filterOverlaps()
-        
-        
+                
     # simulating fragments    
     simFO = SimFrags(fld=args['--fld'], flr=args['--flr'], rtl=args['--rtl'])
     nFragsMade = 0
@@ -292,8 +330,7 @@ def by_genome(x, args):
 
 
 def write_fragList(fragList):
-    """Writing out fragList as a tab-delim table.
-    """
+    """Write out fragList as a tab-delim table."""
     print '\t'.join(['taxon_name','scaffoldID','fragStart',
                      'fragLength','fragGC'])            
     for x in fragList:

@@ -10,11 +10,14 @@ from OrderedSet import OrderedSet
 
 class FracTable(_table):
     """Subclass of pandas.DataFrame
-    """
 
-    # TODO; assertion that fractions are ordered and not overlapping
+    TODO
+    ----
+    Assertion that fractions are ordered and not overlapping.
+    """
     
     def __init__(self, *args, **kwargs):
+        """_table subclass"""
         _table.__init__(self, *args, **kwargs)
         
         # 'delete' inherited methods involving taxa
@@ -37,8 +40,7 @@ class FracTable(_table):
     def _set_itrees(self):
         """Setting a dict of interval trees for the BD-min/max ranges
         (1 per lib). Max in interval ranges is non-inclusive.
-        Returns:
-        in-place edit -- self.itrees
+        in-place edit of ``trees`` attribute.
         """
         self.itrees = dict()
 
@@ -57,11 +59,18 @@ class FracTable(_table):
         """Determine which of the simulated fractions that the BD value falls
         into. Using an interval tree of BD-min/max values.
         BD_max is non-inclusive.
-        Args:
-        libID -- library ID
-        BD_value -- Bouyant density value
-        Return:
-        list -- [fractionIDs that the BD_value falls into]
+        
+        Parameters
+        ----------
+        libID : str
+            library ID
+        BD_value : float
+            Bouyant density value
+
+        Returns
+        -------
+        fracIDs : list 
+            fractionIDs that the BD_value falls into
         """
         libID = str(libID)
         BD_value = float(BD_value)
@@ -85,12 +94,19 @@ class FracTable(_table):
         
             
     def fracID2BDminmax(self, libID, fracIDs=None):
-        """Convert fractionIDs to 'BDmin-BDmax
-        Args:
-        libID -- str; library ID
-        fracIDs -- iterable; fraction IDs, if None: all fracIDs used
-        Returns:
-        list -- ['BDmin-BDmax',...]
+        """Convert fractionIDs to 'BDmin-BDmax'.
+        
+        Parameters
+        ----------
+        libID : str
+            library ID
+        fracIDs : iterable
+            fraction IDs; if None: all fracIDs used
+
+        Returns
+        -------
+        BD_min_max : list 
+            A list of 'BDmin-BDmax' (1 string per fraction).
         """
         df_sub = self.df.loc[(self.df['library'] == libID)]
         df_sub.index = df_sub['fraction']
@@ -108,12 +124,19 @@ class FracTable(_table):
 
         
     def get_fracBDminxax(self, libID, fracID):
-        """Getting the BD min/max values for a fraction in a library.
-        Args:
-        libID -- str; library ID
-        fracID -- str; fraction ID
-        Returns:
-        list -- [BD_min, BD_max]
+        """Get the BD min/max values for a fraction in a library.
+        
+        Parameters
+        ----------
+        libID : str
+             library ID
+        fracID :str
+             fraction ID
+
+        Returns
+        -------
+        BD_min_max : list
+            [BD_min, BD_max]
         """
         x = (self.df['library'] == libID) & (self.df['fraction'] == fracID) 
         df_sub = self.df.loc[x]
@@ -126,10 +149,16 @@ class FracTable(_table):
         * bins do not overlap
         * bins cover the whole BD range (min[n] == max[n-1])
         Useful for binning with np.digitize().
-        Args:
-        libID -- select BD values from just 1 library
-        Returns:
-        OrderedSet -- [BD min-max bins]
+
+        Parameters
+        ----------
+        libID : str
+            library ID; select BD values from just 1 library
+
+        Returns
+        -------
+        BD_bins : OrderedSet 
+            BD min-max bins
         """
         if libID is not None:
             df_sub = self.df.loc[self.df['library'] == libID]
@@ -151,10 +180,16 @@ class FracTable(_table):
     
     def get_libFracIDs(self, libID):
         """Return list of fractionIDs in a library
-        Args:
-        libID -- library ID
-        Returns:
-        list -- [fraction IDs]
+        
+        Parameters
+        ----------
+        libID : str
+            library ID
+
+        Returns
+        -------
+        fracIDs : list 
+            fraction IDs
         """
         df_sub = self.df.loc[self.df['library'] == libID]
         return list(df_sub['fraction'])
@@ -162,8 +197,11 @@ class FracTable(_table):
         
     def get_libFracDict(self):
         """Get a dict of info for each fraction in each library
-        Returns:
-        dict -- {libraryID : {fractionID : dict}}
+
+        Returns
+        -------
+        d : dict
+             {libraryID : {fractionID : dict_of_info}}            
         """
         libFrac = defaultdict(defaultdict(dict))
         for i in xrange(self.df.shape[0]):

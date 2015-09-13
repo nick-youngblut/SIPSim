@@ -20,9 +20,8 @@ from validate import Validator
 # utility functions
 def str2dict(s):
     """Parsing string (format: 'item:value,item:value')
-    to create a dict object
-    """
-    
+    to create a dict object.    
+    """    
     if hasattr(s, 'split'):
         l = re.split('[:,]', s)
         try:
@@ -36,11 +35,17 @@ def str2dict(s):
         
 def random_insert_seq(l, seq):
     """Insert seq items at random locations in list.
-    Args:
-    l  -- target list 
-    seq -- iterable of items to insert
-    Return:
-    list of with values randomly inserted
+
+    Paramters
+    ---------
+    l : list
+        target list object
+    seq : iteralbe
+        items to insert in the list
+
+    Returns
+    -------
+    list : target list with `seq` values randomly inserted
     """
     insert_locs = sample(xrange(len(l) + len(seq)), len(seq))
     inserts = dict(zip(insert_locs, seq))
@@ -55,8 +60,7 @@ def power_neg(*args, **kwargs):
     
     
 class _Comm(object):
-    """Parent class for other classes in the module
-    """
+    """Parent class for other classes in the module."""
     
     def __init__(self):
         pass
@@ -83,18 +87,17 @@ class _Comm(object):
             self._richness = 1
 
 
-
 class SimComms(_Comm):
-    """Class for simulating taxon count data of communities.
-    """
+    """Class for simulating taxon count data of communities."""
     def __init__(self, taxon_list, perm_perc, shared_perc,
                  richness, abund_dist, abund_dist_params,
                  n_comm, config=None,
                  *args, **kwargs):
         """
-        Args:
+        Parameters
+        ----------
         See gradientComms
-       """
+        """
         _Comm.__init__(self, *args, **kwargs)
 
         self._load_taxon_list(taxon_list)        
@@ -119,10 +122,13 @@ class SimComms(_Comm):
             
     def _get_configspec(self, strIO=True):
         """Return configspec set for instance.
-        Args:
-        strIO -- return configspec as a StringIO instance
-        Returns:
-        configspec object
+        Parameters
+        ----------
+        strIO : bool
+            return configspec as a StringIO instance
+        Returns
+        -------
+        configspec object 
         """
         configspec = """
         [__many__]
@@ -181,8 +187,11 @@ class SimComms(_Comm):
         
     def _load_taxon_list(self, fileName):
         """Loading taxon list file. Taxa order is randomly shuffled.
-        Args:
-        fileName -- name of taxon file
+        
+        Parameters
+        ----------
+        fileName : str
+             name of taxon file
         """
         self.taxon_pool = []
         if fileName == '-':
@@ -198,12 +207,17 @@ class SimComms(_Comm):
 
         
     def _drawFromTaxonPool(self, n):
-        """Drawing from taxon pool, returning n-taxa;
+        """Draw from taxon pool, returning n-taxa;
         those taxa are removed from the pool.
-        Args:
-        n -- number of taxa to draw
-        Return:
-        list -- [taxon_name1, taxon_nameN, ...]
+
+        Parameters
+        ----------
+        n : int
+            number of taxa to draw
+
+        Returns
+        -------
+        list : [taxon_name1, taxon_nameN, ...]
         """
         assert n <= len(self.taxon_pool), \
             'Cannot draw {} taxa from taxon pool'.format(n)
@@ -213,9 +227,12 @@ class SimComms(_Comm):
 
                 
     def make_comm(self, comm_id):
-        """Making a Comm object.
-        Args:
-        comm_id -- str; community name from comm_params attrib
+        """Make a Comm object.
+        
+        Parameters
+        ----------
+        comm_id : str
+            Community name from comm_params attrib
         """
         # assertions
         comm_id = str(comm_id)
@@ -234,9 +251,12 @@ class SimComms(_Comm):
         
     def write_comm_table(self, Long=True):
         """Joining comm objects into 1 dataframe and printing.
-        Args:
-        Long -- write table in long format
-        Returns:
+        Writing table to STDOUT.
+
+        Parameters
+        ----------
+        Long : bool
+            Write table in long format
         """
         df =  pd.concat([x.taxa for x in self.values()],
                         axis=1)
@@ -267,11 +287,13 @@ class SimComms(_Comm):
     def permute(comm, perm_perc):
         """Permute a certain percentage of the taxa abundances.
         Permuting just the indices of the series objects.
-        Args:
-        comm -- comm table object
-        perm_perc -- percent of taxa to permute
-        Returns:
-        in-place edit of comm table
+        In-place edit of comm table
+
+        Parameters
+        ----------
+        comm : comm table object
+        perm_perc : float
+            percent of taxa to permute
         """
         # assertions
         perm_perc = float(perm_perc)
@@ -342,8 +364,7 @@ class SimComms(_Comm):
 
     @property
     def min_richness(self):
-        """The minimum richness of any community as defined by comm_params.
-        """
+        """The minimum richness of any community as defined by comm_params."""
         if not hasattr(self, '_min_richness'):
             setattr(self, '_min_richness', None)
         if self._min_richness is None:
@@ -376,18 +397,18 @@ class SimComms(_Comm):
         if not hasattr(self, '_n_taxa_remaining'):
             setattr(self, '_n_taxa_remaining', None)
         return len(self.taxon_pool)
-            
-        
-
+                    
 
 class Comm(_Comm):
     """Community class"""
 
     def __init__(self, comm_id, GradientComms, *args, **kwargs): 
         """
-        Args:
-        comm_id -- community ID
-        GradientComms -- gradient community object
+        Parameters
+        ----------
+        comm_id : str
+            community ID
+        GradientComms : gradient community object
         """
         _Comm.__init__(self, *args, **kwargs)
         self.comm_id = comm_id                                                     
@@ -426,7 +447,6 @@ class Comm(_Comm):
 
     def __repr__(self):
         return self.taxa.__repr__()
-
         
     def _get_abund_dist(self, dist, params):
         try:

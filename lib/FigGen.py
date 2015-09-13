@@ -11,6 +11,15 @@ import matplotlib.pyplot as plt
 
 def KDE_ndims(KDEs):
     """Get the number of dimesions of each KDE in the dict of KDEs
+    
+    Parameters
+    ----------
+    KDEs : dict
+        dict of KDE objects
+    
+    Returns
+    -------
+    ndims : set       
     """
     c = Counter([KDE.d for KDE in KDEs.values() if KDE is not None])
     return set(c.keys())
@@ -18,6 +27,18 @@ def KDE_ndims(KDEs):
 
 def format_subplot_axes(subplot, xStart, xEnd, yStart=None, yEnd=None):
     """Formatting subplot axes to look pretty.
+    
+    Parameters
+    ----------
+    subplot : matplotlib subplot object
+    xStart : float
+        x-axis start
+    xEnd : float
+        x-axis end
+    yStart : float, optional
+        y-axis start
+    yEnd : float, optional
+        y-axis end
     """
     # min/max of axes
     subplot.set_xlim([xStart,xEnd])
@@ -40,10 +61,12 @@ def format_subplot_axes(subplot, xStart, xEnd, yStart=None, yEnd=None):
 def plot_1d_kde_histogram(kde, subplot, 
                           xStart=1.66, xEnd=1.78, xStep=0.001,
                           xlab=None, ylab=None, title=None): 
-    """Creating a subplot histogram of 1d-KDE.
-    Args:
-    kde -- kde object
-    subplot -- matplotlib subplot object
+    """Create a subplot histogram of 1d-KDE.
+    
+    Parameters
+    ----------
+    kde : KDE object
+    subplot : matplotlib subplot object
     """
     xi = np.arange(xStart,xEnd,xStep)
 
@@ -66,10 +89,12 @@ def plot_2d_kde_heatmap(kde, subplot,
                         xStart=1.66, xEnd=1.78, xStep=0.001, 
                         yStart=1, yEnd=15000, yStep=100, 
                         xlab=None, ylab=None, title=None): 
-    """Creating a subplot heatmap of a 2d-KDE object
-    Args:
-    kde -- kde object
-    subplot -- matplotlib subplot object
+    """Create a subplot heatmap of a 2d-KDE object.
+
+    Parameters
+    ----------
+    kde : KDE object
+    subplot : matplotlib subplot object
     """
 
     i = np.arange(xStart, xEnd, xStep)
@@ -95,11 +120,17 @@ def plot_2d_kde_heatmap(kde, subplot,
         
 
 def make_subplot_coords(n_subplot, ncol):
-    """Making subplot coords
-    Args:
-    n_subplot -- number of subplots to make
-    Return:
-    tuple -- (subplot_coords_x-y,nrow,ncol)
+    """Make subplot coords.
+
+    Parameters
+    ----------
+    n_subplot : int
+        number of subplots to make
+    ncol : int
+        Number of columns with subplots
+    Returns
+    x : tuple 
+       (subplot_coords_x-y,nrow,ncol)
     """
     # setting up subplots
     ncol = int(ncol)
@@ -113,6 +144,13 @@ def make_subplot_coords(n_subplot, ncol):
 
 
 def get_KDEs_min_max(KDEs):
+    """Get the min & max of each KDE object.
+
+    Parameters
+    ----------
+    KDEs : dict
+        dict of KDE objects
+    """
     x_min = []
     y_min = []
     x_max = []
@@ -140,6 +178,29 @@ def get_KDEs_min_max(KDEs):
 def make_kde_fig(KDEs, outFile, n_subplot=0, ncol=3, 
                  xMin='', xMax='', yMin='', yMax='',
                  xX=4, yX=3.5, xStep=0.0005, yStep=100, logY=''):
+    """Make KDE figure.
+    
+    Parameters
+    ----------
+    KDEs : dict
+        dict of KDE objects
+    outFile : str
+        Name of output file.
+    n_subplot : int
+        Number of subplots.
+    ncol : int
+        Number of subplot columns.
+    xMin, xMax, xStep : float
+        x-axis range values
+    yMin, yMax, yStep : float
+        y-axis range values
+    xX : float
+        figure width
+    yX : float
+        figure height
+    logY : float
+        Plot y-axis as log with base of ``logY``        
+    """
 
     # value format
     n_subplot = int(n_subplot)

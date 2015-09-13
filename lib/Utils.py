@@ -20,8 +20,7 @@ import scipy.stats as ss
 
 
 def get_os():
-    """getting operating system; only unix-like machines"""
-    
+    """Get operating system; only works for unix-like machines"""
     OS = platform.uname()[0]
     if OS == 'Linux':
         OS = 'linux'
@@ -40,7 +39,22 @@ def is_file(fileName):
 
         
 def sys_call(cmd, quiet=False):
-    """System call of command."""
+    """System call of command.
+    
+    Parameters
+    ----------
+    cmd : str
+        The command to run as a system call
+    quiet : bool
+        Suppress the system command output
+
+    Returns
+    -------
+    output : str
+       system call output
+    err : str
+       system call error
+    """
     try:
         if quiet:
             DEVNULL = open(os.devnull, 'w')
@@ -56,11 +70,16 @@ def sys_call(cmd, quiet=False):
 
 
 def load_kde(fileName):
-    """Loading a pickled dict {taxon:kde_object} file.
-    Args:
-    fileName -- name of pickled file ('-' if from STDIN)
-    Returns:
-    dict -- {taxon_name:kde_object}
+    """Load a pickled dict {taxon:kde_object} file.
+    
+    Parameters
+    ----------
+    fileName : str
+        name of pickled file ('-' if from STDIN)
+
+    Returns
+    -------
+    dict : {taxon_name:kde_object}
     """
     try:
         if fileName == '-':
@@ -76,22 +95,26 @@ def load_kde(fileName):
     
 
 def checkExists(f):
-    """ Checking that file exists.
-    Args:
-    f -- file name    
-    """
+    """ Check that the file `f` exists."""
     if not os.path.isfile(f):
-        raise IOError('"{}" not found. Did you provide the full PATH?'.format(f))
+        msg = '"{}" not found. Did you provide the full PATH?'
+        raise IOError(msg.format(f))
 
 
 def parseGenomeList(inFile, filePath=None, check_exists=True):
-    """Parsing the genome list file
-    Args:
-    inFile -- genome list file name
-    filePath -- abs path to genome sequence files
-    check_exists -- check if genome sequence files exist
+    """Parsing the genome list file.
+
+    Parameters
+    ----------
+    inFile : str
+        file name of genome list file
+    filePath : str
+        The absolute path to genome sequence files. a
+    check_exists : bool
+        Check if genome sequence files exist
+    
     Returns:
-    2d-list -- [[taxonName, genomeFile], ...]
+    list : [[taxonName, genomeFile], ...]
     """
     # parse file as list
     genomeList = []
@@ -125,12 +148,15 @@ def parseGenomeList(inFile, filePath=None, check_exists=True):
 def describe_builtin(obj):
     """ Describe a builtin function if obj.__doc__
     available.
-    Args:
-    obj -- python object
-    Returns:
-    iterator 
-    """
 
+    Parameters
+    ----------
+    obj : python object
+    
+    Returns
+    -------
+    iterator : builtin args
+    """
     #wi('+Built-in Function: %s' % obj.__name__)
     # Built-in functions cannot be inspected by
     # inspect.getargspec. We have to try and parse
@@ -158,10 +184,15 @@ def describe_builtin(obj):
 def parseKeyValueString(x):
     """Parse a string in format: 'key1:value1,key2:value2,keyN:valueN'.
     Values assumed to be numeric.
-    Args:
-    x -- string in format: 'key:value,key:value,...'
-    Returns:
-    dict -- {key:value, ...}
+    
+    Parameters
+    ----------
+    x : string
+        Required format: 'key:value,key:value,...'
+
+    Returns
+    -------
+    dict : {key:value, ...}
     """
     if x is None or x == 'None':
         return {}
@@ -177,11 +208,17 @@ def random_walk_var_step(x, max_walk):
     This produces a ordering with a certain level of autocorrelation
     that is set by the max walk step size. The larger the max walk step size,
     the less autocorrelation that will be prevalent. 
-    Args:
-    x -- a list-like object
-    max_walk -- the max distance in rank for the walk step.
-    Return:
-    a reordered list of values
+    
+    Parameters
+    ----------
+    x : list
+        Rank values
+    max_walk : int
+        The max distance in rank for the walk step.
+
+    Returns
+    -------
+    list : a reordered list of values
     """
     # x as list
     try:
@@ -237,11 +274,18 @@ def random_walk_var_step(x, max_walk):
 def part_dist_func(dist, dist_params):
     """Creating a numpy.random distribution function with the
     distribution parameters already set.
-    Args:
-    dist -- name of np.random distribution function
-    dist_params -- dict of parameters
-    Return:
-    partial_func -- numpy.random function with params set
+ 
+    Parameters
+    ----------
+    dist : str
+        name of numpy.random distribution function
+    dist_params : dict
+        numpy.random distribution function parameters.
+        Example: {low:1, high:10}
+
+    Returns
+    -------
+    function : numpy.random function with set parameters
     """
     ## get numpy function
     try:
@@ -271,8 +315,7 @@ def part_dist_func(dist, dist_params):
         
 
 class Status(object):
-    """Simple custom logging information
-    """
+    """Simple custom logging information"""
     def __init__(self, quiet=False):
         self.quiet = quiet
         self.msgs = {'kde':'GC/fragment_length KDE sampled',
@@ -283,10 +326,14 @@ class Status(object):
                      'zero':'NOTE: taxon has an abundance of 0'}                
 
     def msg(self, msgKey, startTime=None):
-        """Writing formatted status message to STDERR
-        Args:
-        msgKey -- key for writing which status message
-        startTime -- used to measure how much time has elapsed        
+        """Writing formatted status message to STDERR.
+        
+        Parameters
+        ----------
+        msgKey : str
+            dict key for writing which status message
+        startTime : bool
+            used to measure how much time has elapsed        
         """    
         nowTime = time.time()
         if startTime is not None:
@@ -319,13 +366,14 @@ class Status(object):
 class _table(object):
     """Template class for reading in SIPSim tables.
     Tables are just pandas.DataFrame objects.
-    """
-    
+    """    
     def __init__(self, df, filename):
         """
-        Args:
-        df -- pandas dataframe
-        filename -- name of table file
+        Parameters
+        ----------
+        df : pandas dataframe object
+        filename : str
+             name of table file
         """
         self.df = df
         self.tableFileName = filename
@@ -345,18 +393,23 @@ class _table(object):
     # reshaping table
     def wide2long(self, sep='__'):
         """Convert table from wide to long format.
-        Args:
-        sep -- used to split column names
+        
+        Parameters
+        ----------
+        sep : str
+            used to split column names
         """
         self.df = pd.melt(self.df, id_vars=['taxon'])
         new_cols = self.df['variable'].str.split(sep).apply(pd.Series, 1)
+        d = {'value':'count',0:'library',1:'fraction'}
         self.df = self.df.join(new_cols)\
-                         .rename(columns={'value':'count',0:'library',1:'fraction'})\
+                         .rename(columns=d)\
                          .drop('variable',1)
 
         try:
+            l = ['library','fractions','taxon','count']
             self.df = self.df\
-                          .reindex_axis(['library','fractions','taxon','count'], axis=1)\
+                          .reindex_axis(l, axis=1)\
                           .sort(['taxon', 'fraction', 'library'])            
         except KeyError:
             pass
@@ -364,10 +417,15 @@ class _table(object):
 
     def long2wide(self, values, index, columns):
         """Convert table from long to wide format.
-        Args:
-        values -- values in pivot table
-        index -- index in pivot table
-        columns -- columns in pivot table
+        
+        Parameters
+        ----------
+        values : list
+            values in pivot table
+        index : list?
+            index in pivot table
+        columns : list
+            columns in pivot table
         """
         self.df = pd.pivot_table(self.df, values=values, index=index,
                                  columns=columns, fill_value=0)
@@ -386,10 +444,16 @@ class _table(object):
     @classmethod
     def from_csv(cls, filename, **kwargs):
         """Read in table file to a pandas dataframe.
-        Args:
-        filename -- Table file name
-        kwargs -- passed to pandas.read_csv
-        Returns:
+
+        Parameters
+        ----------
+        filename : str
+            Table file name
+        kwargs : dict
+            passed to pandas.read_csv
+
+        Returns
+        -------
         pandas.DataFrame subclass 
         """
         df = pd.read_csv(filename, **kwargs)
@@ -399,8 +463,10 @@ class _table(object):
     # get/set/iter
     def iter_uniqueColumnValues(self, columnID):
         """General iteration of unique column values.
-        Args:       
-        columnID -- ID of column in table
+
+        Parameters
+        ----------
+        str : ID of column in table
         """
         try:
             for l in self.df[columnID].unique():
@@ -409,14 +475,12 @@ class _table(object):
             raise KeyError('Column "{}" not found'.format(columnID))
             
     def iter_libraries(self):
-        """iterating through all unique library IDs
-        """
+        """iterate through all unique library IDs."""
         for libID in self.iter_uniqueColumnValues('library'):
             yield libID
                 
     def iter_taxa(self, libID=None):
-        """Iterating through all unique taxon names.
-        """
+        """Iterate through all unique taxon names."""
         col_name = None        
         try:
             self.df['taxon_name']
@@ -437,8 +501,11 @@ class _table(object):
                 
     def iter_taxonRowsInLib(self, libID):
         """Iterate through all subset dataframes containing just 1 taxon.
-        Args:
-        libID -- str; library ID        
+        
+        Parameters
+        ----------
+        libID : str
+            library ID        
         """
         df_lib = self.df.loc[self.df['library'] == libID]
         for taxon_name in df_lib['taxon_name'].unique():

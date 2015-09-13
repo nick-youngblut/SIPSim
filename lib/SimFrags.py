@@ -18,14 +18,21 @@ from rtnorm import rtnorm
 def truncated_normal(location, scale, low, high, size=1):
     """Creating a function to randomly sample from a truncated normal distribution.
     Function returned from stats.logistic.ppf
-    Args:
-    loc -- mean
-    scale -- standard deviation
-    low -- min value that can be sampled from full distribution
-    high -- max value that can be sampled from the full distribution
-    size -- number of random samples to return
-    Returns:
-    function
+
+    Parameters
+    ----------
+    loc : float
+        location parameter of distribution
+    scale : float
+        standard deviation parameters of distribution
+    low, high : float
+        min|max value that can be sampled from full distribution
+    size : int
+        number of random samples to return
+
+    Returns
+    -------
+    function : distribution function
     """
     nrm = stats.logistic.cdf(high)-stats.logistic.cdf(low)
     yr = np.random.rand(size)*(nrm)+stats.logistic.cdf(low)
@@ -33,14 +40,18 @@ def truncated_normal(location, scale, low, high, size=1):
 
     
 class SimFrags(object):
-    """Class for genome fragment simulation"""
+    """Class for genome fragment simulation."""
 
     def __init__(self, fld, flr, rtl=None):
         """
-        Args:
-        fld -- fragment length distribution (type,moments...)
-        flr -- fragment length range (min,max)
-        rtl -- read template length distribution (type,moments..)
+        Paramters
+        ---------
+        fld : function
+            fragment length distribution (type,moments...)
+        flr : tuple
+            fragment length range (min,max)
+        rtl : tuple
+            read template length distribution (type,moments..)
         """        
         self.flr = [float('inf') if
                     x.lower() == 'none' or
@@ -49,11 +60,11 @@ class SimFrags(object):
                     int(x) for x in flr]
         if self.flr[0] == float('inf'):
             self.flr[0] = 1
-
         
         # setting fld distribution function
         self.fld = self._set_user_dist(fld)
-        assert self.fld is not None, 'fragment length distribution (fld) should not be None'
+        msg = 'fragment length distribution (fld) should not be None'
+        assert self.fld is not None, msg
         
         # setting rtl distribution function
         if rtl is not None:
@@ -62,12 +73,15 @@ class SimFrags(object):
         
     def simFrag(self, genome):
         """Simulation of a single fragment.
-        Args:
-        genome -- genome-like object
-        Return:
-        list -- [scaffold,fragStart,fragLen,fragSequence]
-        """        
 
+        Parameters
+        ----------
+        genome : genome object
+
+        Returns
+        -------
+        list : [scaffold,fragStart,fragLen,fragSequence]
+        """        
         tryCnt = 0
         while 1:
             # get read template position
@@ -122,10 +136,15 @@ class SimFrags(object):
         (set during initilization).
         Multiple iterations will be performed to try and get 
         a fragment in range (minFragSize, maxFragSize).
-        Args:
-        readTempPos -- list: [scaffoldID,readTempStart,readTempEnd]                       
-        Returns:
-        list -- [scafID,fragStart,fragEnd]
+
+        Parameters
+        ----------
+        readTempPos : list
+            [scaffoldID,readTempStart,readTempEnd]                       
+
+        Returns
+        -------
+        list : [scafID,fragStart,fragEnd]
         """
         # assertions
         if readTempPos[0] is None:
@@ -179,10 +198,15 @@ class SimFrags(object):
 
     def _set_user_dist(self, userDist):
         """Setting user defined distribution. Using numpy distribution functions.
-        Args:
-        userDist -- User defined distribution with moment info. Example: ['normal',10,1]
-        Returns:
-        function -- partial numpy distribution function with moment values provided
+        
+        Parameters
+        ----------
+        userDist : tuple
+            User defined distribution with moment info.
+            Example: ('normal',10,1)
+        Returns
+        -------
+        function : partial numpy distribution function with moment values provided
         """
         userDist[0] = str(userDist[0]).lower()
         userDist[1:] = [int(x) for x in userDist[1:]]
@@ -215,17 +239,22 @@ class SimFrags(object):
                                      a=userDist[3],
                                      b=userDist[4])
         else:
-            raise ValueError('Distribution "{}" is not supported.'.format(userDist[0]))
+            msg = 'Distribution "{}" is not supported.'
+            raise ValueError(msg.format(userDist[0]))
                         
         
     def _get_randPos_amp(self, genome):
         """Getting the genomic position of a randomly selected amplicon.
         The amplicon is selected randomly from the list of amplicons.
         None values are returned if no amplicons exist.
-        Args:
-        genome -- genome-like object
-        Return:
-        list -- [read_scaffold_ID,start,end] 
+        
+        Parameters
+        ----------
+        genome : genome object
+
+        Returns
+        -------
+        list : [read_scaffold_ID,start,end] 
         """
         nAmps = genome.get_nAmplicons()
         if nAmps <= 0:
@@ -244,10 +273,15 @@ class SimFrags(object):
         The scaffold/chromosome is randomly selected.
         start selected from a uniform distribution.
         end seleded based on read template length distribution.
-        Args:
-        genome -- genome-like object
-        Returns:
-        list -- [scafName,start,end] -- scaffold and start-end of read template
+        
+        Parameters
+        ----------
+        genome : genomeobject
+
+        Returns
+        -------
+        list : [scafName,start,end]
+               scaffold and start-end of read template
         """
         assert hasattr(self, 'rtl'), '"rtl" attribute required'
         
