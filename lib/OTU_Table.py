@@ -274,7 +274,7 @@ class OTU_table(_table):
 
     def __init__(self, *args, **kwargs):
         _table.__init__(self, *args, **kwargs)
-
+        self._table_columns = self.df.columns.tolist()
 
     def set_samp_dist(self, samp_dist, samp_dist_params):
         """Setting subsampling size distribution & params.
@@ -447,14 +447,17 @@ class OTU_table(_table):
         return df_sub.reindex_axis(cols, axis=1).sort(sort_cols)
                 
         
-    def _same_low_high(self):
-        """Returns low/high value if samp_dist_params contain keys 'low' 
-        and 'high and the values of these keys are equal.
-        Else, returns False.
+    def _same_low_high(self, ret=False):
+        """Check for same 'low' and 'high' parameter values.
+        If same (and ret=False), returns True, else False.
+        If ret=True, the 'low|high' value is returned.
         """
         try:
-            if self.samp_dist_params['high'] == self.samp_dist_params['low']:
+            same = self.samp_dist_params['high'] == self.samp_dist_params['low']
+            if ret == True:
                 return self.samp_dist_params['high']
+            else: 
+                return same
         except KeyError:
             return False
         except AttributeError:
@@ -465,15 +468,11 @@ class OTU_table(_table):
         """Apply a function to each taxon in OTU table.
         In-place edit of OTU table
         f -- function
-        val_index -- the new column of values        
+        sel_index -- column(s) use for for calculations
+        val_index -- column name(s) of values        
         """
-        # assertions
-        for x in (sel_index, val_index):
-            assert not isinstance(x, basestring)
-
-        # group & apply
         g = ['library', 'fraction']
-        self.df[val_index] =  self.df.groupby(g)[sel_index].transform(f);
+        self.df[val_index] =  self.df.groupby(g)[sel_index].transform(f)
       
 
     def apply_each_taxon(self, f, val_index):
@@ -482,7 +481,7 @@ class OTU_table(_table):
         f -- function
         val_index -- the new column of values        
         """
-        self.df[val_index] = self.df.apply(f, axis=1)
+        self.df[val_index] = self.df[val_index].apply(f)
 
 
     def _norm_counts(self, df, sel_index='count'):
@@ -493,22 +492,22 @@ class OTU_table(_table):
         Return:
         column of normalized values
         """
-        f = lambda x: x / x.sum()
+        f = lambda x: np.nan_to_num(x / np.sum(x))
         return df.groupby(['library','fraction'])[sel_index].transform(f)
 
 
-    def add_rel_abund(self, sel_index=['count'], val_index=['rel_abund']):
+    def add_rel_abund(self, sel_index='count', val_index='rel_abund'):
         """Adding relative abundances (fractions) to OTU table.
         In-place edit of OTU table: new column = 'rel_abund'
         Args:
+        sel_index -- column with OTU count values
         val_index -- name of new column of relative abundances
         """        
         # assertions
         for x in (sel_index, val_index):
-            assert not isinstance(x, basestring)
-        # adding column
-        x = self._norm_counts(self.df, sel_index)
-        self.df.loc[:,val_index] = x.ix[:,0]
+            assert isinstance(x, basestring)
+
+        self.df[val_index] = self._norm_counts(self.df, sel_index)    
 
 
     def adjust_abs_abund(self, rel_index, abs_index):
@@ -532,6 +531,18 @@ class OTU_table(_table):
         """
         self.df.drop(index, axis=1, inplace=True)
 
+    def rename_columns(self, *args, **kwargs):
+        """Renaming columns of OTU table.
+        Parameters
+        ----------
+        See pandas.DataFrame.rename
+        """
+        self.df.rename(*args, **kwargs)
+
+    def reset_columns(self):
+        """Reseting OTU table column order based on initial ordering."""
+        self.df = self.df[self._table_columns]
+
 
     def get_comm(self, libID, fracID):        
         """Returns subset of community dataframe.
@@ -545,6 +556,15 @@ class OTU_table(_table):
         return self.df.loc[(self.df['library'] == libID) &
                            (self.df['fraction'] == fracID),:]
         
+
+    def to_csv(self, *args, **kwargs):
+        """Write OTU table as CSV.
+        Parameters
+        ----------
+        See pandas.to_csv
+        """
+        self.df.to_csv(*args, **kwargs)
+
             
     # iter
     def iter_fractions(self, libID):    
@@ -589,7 +609,7 @@ class OTU_table(_table):
         # setting numpy function
         ## if function should return one constant value
         if self._same_low_high():
-            self._samp_n = self._same_low_high()
+            self._samp_n = self._same_low_high(ret=True)
             self._samp_dist = lambda size: [self._samp_n] * size
             return 0
             

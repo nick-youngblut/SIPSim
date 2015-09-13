@@ -25,3 +25,82 @@
 [32m[I 12:43:43.624 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
 [32m[I 12:45:43.681 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
 [32m[I 12:47:43.684 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb
+[32m[I 18:22:46.587 NotebookApp][m Kernel shutdown: 22b7cde6-7f02-4d7a-8106-a2d88519d2cf
+[32m[I 18:22:53.997 NotebookApp][m Creating new notebook in /ipynb/sandbox
+[33m[W 18:22:54.591 NotebookApp][m 404 GET /notebooks/ipynb/sandbox/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20150903072628 (127.0.0.1) 2.45ms referer=http://127.0.0.1:7702/notebooks/ipynb/sandbox/Untitled.ipynb?kernel_name=python2
+[33m[W 18:22:54.594 NotebookApp][m 404 GET /notebooks/ipynb/sandbox/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20150903072628 (127.0.0.1) 2.33ms referer=http://127.0.0.1:7702/notebooks/ipynb/sandbox/Untitled.ipynb?kernel_name=python2
+[32m[I 18:22:54.655 NotebookApp][m Kernel started: ddd8e807-9d13-4f05-8f63-849d5d9d1e3b
+[33m[W 18:22:54.756 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20150903072628 (127.0.0.1) 2.53ms referer=http://127.0.0.1:7702/notebooks/ipynb/sandbox/Untitled.ipynb?kernel_name=python2
+[33m[W 18:22:54.877 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20150903072628 (127.0.0.1) 1.24ms referer=http://127.0.0.1:7702/notebooks/ipynb/sandbox/Untitled.ipynb?kernel_name=python2
+[33m[W 18:22:54.881 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20150903072628 (127.0.0.1) 1.16ms referer=http://127.0.0.1:7702/notebooks/ipynb/sandbox/Untitled.ipynb?kernel_name=python2
+[32m[I 18:24:54.706 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 18:25:37.243 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 18:25:41.432 NotebookApp][m Saving file at /ipynb/sandbox/PCR_sim.ipynb
+[32m[I 18:26:54.709 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 18:28:54.710 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 18:30:54.767 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 18:32:54.816 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 18:34:54.958 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 18:50:55.656 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 18:52:55.799 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 18:54:55.599 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 18:56:56.016 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 18:58:55.667 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 19:00:53.618 NotebookApp][m Kernel interrupted: ddd8e807-9d13-4f05-8f63-849d5d9d1e3b
+[32m[I 19:00:55.698 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 19:02:55.860 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 19:04:55.849 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 19:06:55.582 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 19:08:55.960 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 19:10:56.145 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 19:12:55.702 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 19:14:56.194 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 19:16:56.080 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 19:18:56.056 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 19:20:56.120 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 19:22:55.926 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 19:24:36.059 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 19:24:48.448 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 19:24:56.162 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 19:26:56.267 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 19:58:56.274 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 20:00:55.674 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 20:02:56.186 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 20:04:56.212 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 20:06:55.652 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 20:08:05.345 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 20:08:56.131 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 20:10:56.084 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 20:12:56.321 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 20:14:56.388 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 20:16:56.471 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 20:17:06.780 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 20:18:56.291 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 20:22:55.834 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 20:26:55.999 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[33m[W 21:29:09.034 NotebookApp][m WebSocket ping timeout after 119684 ms.
+[33m[W 21:29:25.241 NotebookApp][m WebSocket ping timeout after 119918 ms.
+[32m[I 08:44:03.278 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 09:06:24.569 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 09:07:33.516 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 09:07:33.682 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 09:08:24.678 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 09:10:24.574 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 09:11:43.389 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[33m[W 10:59:18.196 NotebookApp][m WebSocket ping timeout after 119887 ms.
+[32m[I 11:52:12.884 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 11:52:48.477 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[33m[W 11:52:52.216 NotebookApp][m 404 GET /notebooks/ipynb/sandbox/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20150903072628 (127.0.0.1) 1.00ms referer=http://127.0.0.1:7702/notebooks/ipynb/sandbox/OTU_add_error.ipynb
+[33m[W 11:52:52.217 NotebookApp][m 404 GET /notebooks/ipynb/sandbox/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20150903072628 (127.0.0.1) 0.91ms referer=http://127.0.0.1:7702/notebooks/ipynb/sandbox/OTU_add_error.ipynb
+[33m[W 11:52:52.626 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20150903072628 (127.0.0.1) 3.01ms referer=http://127.0.0.1:7702/notebooks/ipynb/sandbox/OTU_add_error.ipynb
+[33m[W 11:52:52.633 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20150903072628 (127.0.0.1) 2.92ms referer=http://127.0.0.1:7702/notebooks/ipynb/sandbox/OTU_add_error.ipynb
+[33m[W 11:52:52.684 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20150903072628 (127.0.0.1) 2.88ms referer=http://127.0.0.1:7702/notebooks/ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 11:54:54.432 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 11:56:54.556 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 11:58:54.621 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 12:34:54.712 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 12:36:55.195 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 12:38:54.804 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 12:40:54.749 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 12:42:54.744 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 12:44:54.794 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb

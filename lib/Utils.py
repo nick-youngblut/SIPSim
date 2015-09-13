@@ -158,9 +158,13 @@ def describe_builtin(obj):
 def parseKeyValueString(x):
     """Parse a string in format: 'key1:value1,key2:value2,keyN:valueN'.
     Values assumed to be numeric.
+    Args:
+    x -- string in format: 'key:value,key:value,...'
     Returns:
     dict -- {key:value, ...}
     """
+    if x is None or x == 'None':
+        return {}
     x = x.replace(' ','')
     l = re.split('[:,]', x)
     return {k.lower():float(v) for k,v in zip(l[::2],l[1::2])}
