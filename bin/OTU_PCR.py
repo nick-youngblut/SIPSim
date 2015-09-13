@@ -39,6 +39,10 @@ Description:
   PCR effeciency declines with increased template concentrations in later
   PCR cycles (see Suzuki & Giovannoni, 1996).
 
+  Output
+  ------
+  A tab-delimited OTU table written to STDOUT.
+
 References:
   Suzuki MT, Giovannoni SJ. (1996). Bias caused by template annealing in the
   amplification of mixtures of 16S rRNA genes by PCR. Appl Environ Microbiol

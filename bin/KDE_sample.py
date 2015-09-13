@@ -20,9 +20,10 @@ Options:
 
 Description:
   Sample values from each KDE in the pickled KDE object
-and produce a table of values.
+  and produce a table of values.
 
-  **Output**
+  Output
+  ------
   Tab-delim file: <taxon><tab><value>
 """
 

@@ -35,7 +35,7 @@ Description:
 
   Output
   ------
-  OTU table in *.txt format
+  A tab-delimited OTU table written to STDOUT
 """
 
 # import

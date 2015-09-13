@@ -19,7 +19,11 @@ Options:
   --debug       Debug mode
 
 Description:
-  Get some basic information on KDE object files
+  Get some basic information on KDE object files.
+
+  Output
+  ------
+  Values written to STDOUT
 """
 
 # import

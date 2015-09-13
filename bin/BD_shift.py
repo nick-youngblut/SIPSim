@@ -32,7 +32,8 @@ Description:
   the integral of intersection densities at each point
   in the specified value series (start,end,step).
  
-  **Output**
+  Output
+  ------
   A tab-delimited table of BD shift values is written to STDOUT.
 """
 

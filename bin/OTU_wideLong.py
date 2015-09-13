@@ -24,6 +24,10 @@ Description:
   By default, the output table is in 'long' format.
 
   For the 'wide' format, column names are formatted as '[library]__[fraction]'
+
+  Output
+  ------
+  A tab-delimieted OTU table written to STDOUT.
 """
 
 # import

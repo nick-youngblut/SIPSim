@@ -58,12 +58,14 @@ Description:
     Assumning amplicon lengths of 500-650 bp, use: '--rtr 500,650'.
     This will filter out all in-silico amplicons outside of this range.
 
-  ** Selection of scaffold/chromosome **
+  Selection of scaffold/chromosome
+  --------------------------------
   For genoems with multiple scaffolds/chromosomes, the scaffold is chosen
   randomly if simulating shotgun fragments and selected randomly from the list
   of amplicons if simulating amplicon fragments.
 
-  ** Distributions ** 
+  Distributions
+  -------------
   normal:
     Parameters: 
      * location (mean)
@@ -88,14 +90,16 @@ Description:
      * low
      * high
 
-  ** NOTES **
+  Notes
+  -----
   The simulated fragment size is constrained by the genome sequence
   template size. This may be why you get fragments that don't fall
   into the provided fragment length distribution.
 
-  ** Output **
-    If --tbl: tab-delim file written to STDOUT, else: a pickled version of
-    the table object
+  Output
+  ------
+  If --tbl: tab-delim file written to STDOUT, else: a pickled version of
+  the table object
 
 """
 

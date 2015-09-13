@@ -50,6 +50,10 @@ Description:
   with a total count of 0 (can't subsample from nothing). 
 
   Parameters where a value is required but not set by default are not used.
+
+  Output
+  ------
+  A tab-delimited OTU table written to STDOUT.
 """
 
 # import

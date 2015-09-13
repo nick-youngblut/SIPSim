@@ -72,17 +72,20 @@ Description:
     'uniform' = np.random.uniform
     'BM' = browian motion evolution (must provide --phylo)
 
-  OUTPUT:
-    An updated BD KDE object file is written to STDOUT.
+  Output
+  ------
+  An updated BD KDE object file is written to STDOUT.
 
-  NOTES:
-    * Multiple standard distriutions can be provided to create a mixture model.
+  Notes
+  -----
+  * Multiple standard distriutions can be provided to create a mixture model.
 
-  CONFIG FILE:
+  Config file
+  -----------
     File format:  http://www.voidspace.org.uk/python/configobj.html#config-files
     * NOTE: the goal is to set INTRA-population parameters, which is why 
       intra-population is higher in the hierarchy than inter-population
-  ----------------- START ------------------
+    ------ START ------
   [library1]
     max_perc_taxa_incorp = 100  #<- max percent of taxa with any isotope incorp
 
@@ -102,8 +105,7 @@ Description:
         distribution = normal
         loc = 10
         scale = 2
-
-  -----------------  END   ------------------
+    ------  END  ------
 
      * Multiple intraPopDist or interPopDist:
        * If multiple distributions provided, then each will be incorporated

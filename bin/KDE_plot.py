@@ -43,6 +43,9 @@ Options:
 
 Description:
   Plot each KDE (1D or 2D KDEs) in the the provided multi-KDE object. 
+
+  Output:
+  Image files written to `-o`
 """
 
 # import

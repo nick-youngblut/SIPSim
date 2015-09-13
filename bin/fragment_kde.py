@@ -22,7 +22,9 @@ Options:
 Description:
   Create a 2D kernel density estimate from fragment G+C and length values
   simulated by the 'fragments' subcommand.
-  
+
+  Output
+  ------  
   Pickled kde object written to STDOUT.
 """
 

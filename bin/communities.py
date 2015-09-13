@@ -46,7 +46,8 @@ Options:
 Description:
   Simulating the alpha and and beta diversities of >=1 community.
 
-  Output:
+  Output
+  ------
     A tab-delimited table of taxon abundances for each library is written to
     STDOUT.
 

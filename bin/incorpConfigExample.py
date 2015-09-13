@@ -28,8 +28,9 @@ Description:
   See the isoIncorp subcommand documentation for more info
   on isotope incorporation config files.
 
-  OUTPUT:
-    Config file written to STDOUT
+  OUTPUT
+  ------
+  Config file written to STDOUT
 """
 
 # import

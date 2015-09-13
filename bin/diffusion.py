@@ -52,7 +52,8 @@ Description:
   The error in 'true' G+C values caused by diffusion is estimated
   by Monte Carlo simulation. 
 
-  **Output**
+  Output
+  ------
   A pickled python object {taxon_name:buoyant_density_kde} is
   written to STDOUT.
 """

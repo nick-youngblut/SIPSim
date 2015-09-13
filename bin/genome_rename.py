@@ -17,8 +17,14 @@ Options:
 
 Description:
   Reformating the sequence names so that they work with SIPSim.
+
+  Output
+  ------
   Edited fasta written to STDOUT.
-  WARNING: there are no checks that the file is actually in fasta format.
+
+  WARNINGS!
+  ---------
+  There are no checks that the file is actually in fasta format.
 
 """
 

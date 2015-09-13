@@ -33,7 +33,9 @@ Description:
 
   A simple birth-death model is used for tree simulation.
 
-  The resulting tree is written to STDOUT.
+  Output
+  ------
+  A phylogeny is written to STDOUT.
 """
 
 # import

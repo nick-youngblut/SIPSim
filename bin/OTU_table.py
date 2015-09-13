@@ -39,13 +39,16 @@ Description:
     1) The absolute abundance of the OTU in the pre-gradient community.
     2) The G+C content of each simulated fragment of the taxon.
     3) The fragment length of each simulated fragment (influences diffusion).
-
+  
+  Output
+  ------
+  A tab-delimited OTU table written to STDOUT.
   Table column descriptions:
-    library -- library_ID (gradient_ID)
-    fraction -- fraction_ID
-    BD_XXX -- buoyant density values
-    count -- total number of DNA fragments for the taxon in the gradient fraction
-    rel_abund -- relative abundance (0-1) for the taxon in the gradient fraction
+    library : library_ID (gradient_ID)
+    fraction : fraction_ID
+    BD_XXX : buoyant density values
+    count : total number of DNA fragments for the taxon in the gradient fraction
+    rel_abund : relative abundance (0-1) for the taxon in the gradient fraction
 """
 
 # import

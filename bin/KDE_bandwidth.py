@@ -18,9 +18,10 @@ Options:
 
 Description:
   Get the KDE bandwidth (KDE factor) for each KDE in 
-the provided kde object. 
+  the provided kde object. 
 
-  **Output**
+  Output
+  ------
   Tab-delim file: <taxon><tab><bandwidth>
 """
 
