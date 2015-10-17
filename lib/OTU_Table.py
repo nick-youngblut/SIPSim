@@ -590,9 +590,8 @@ class OTU_table(_table):
             column(s) of resulting values        
         """        
         # assertions
-        for x in (sel_index, val_index):
-            assert isinstance(x, basestring)
-
+#        for x in (sel_index, val_index):
+#            assert isinstance(x, basestring)
         self.df[val_index] = self._norm_counts(self.df, sel_index)    
 
 

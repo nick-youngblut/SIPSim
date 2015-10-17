@@ -53,6 +53,7 @@ References:
 ## batteries
 from docopt import docopt
 import sys
+import os
 ## application libraries
 scriptDir = os.path.dirname(__file__)
 libDir = os.path.join(scriptDir, '../lib/')
@@ -71,17 +72,17 @@ def main(Uargs):
     otu_tbl = OTU_table.from_csv(Uargs['<OTU_table>'], sep='\t')
 
     # PCR simulation
-    otu_tbl_pcr = PCR_sim(otu_tbl,
-                          DNA_conc_dist = Uargs['--DNA_conc_dist'],
-                          DNA_conc_dist_p = Uargs['--DNA_conc_dist_p'],
-                          primer_conc = float(Uargs['--primer_conc']),
-                          n_cycles = int(Uargs['--n_cycles']),
-                          f_0 = float(Uargs['-f']),
-                          k = float(Uargs['-k']), 
-                          debug=Uargs['--debug'])
+    PCR_sim(otu_tbl,
+            DNA_conc_dist = Uargs['--DNA_conc_dist'],
+            DNA_conc_dist_p = Uargs['--DNA_conc_dist_p'],
+            primer_conc = float(Uargs['--primer_conc']),
+            n_cycles = int(Uargs['--n_cycles']),
+            f_0 = float(Uargs['-f']),
+            k = float(Uargs['-k']), 
+            debug=Uargs['--debug'])
 
     # writing out file
-    otu_tbl_pcr.to_csv(sys.stdout, sep='\t', index=False)
+    otu_tbl.to_csv(sys.stdout, sep='\t', index=False)
     
 
 # main

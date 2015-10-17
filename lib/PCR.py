@@ -90,6 +90,7 @@ def run_PCR(taxa_molarities, P_0, f_0, k, n=30):
 def PCR_sim(otu_tbl, DNA_conc_dist, DNA_conc_dist_p, primer_conc, 
             n_cycles=30, f_0=1, k=5, debug=0):
     """Simulate PCR on each gradient fraction sample.
+    In-place edit of OTU table.
 
     Parameters
     ----------
@@ -130,7 +131,7 @@ def PCR_sim(otu_tbl, DNA_conc_dist, DNA_conc_dist_p, primer_conc,
     # adjusting counts (absolute abundances) based on relative abundances 
     otu_tbl.adjust_abs_abund(rel_index=['rel_abund'], 
                              abs_index=['count'])
-    
+
     # removing intermediate columns
     if not debug:
         cols2rm = ['init_molarity', 'final_molarity']

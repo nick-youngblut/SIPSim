@@ -104,3 +104,162 @@
 [32m[I 12:40:54.749 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
 [32m[I 12:42:54.744 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
 [32m[I 12:44:54.794 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 06:55:56.919 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 06:57:56.812 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 10:01:26.307 NotebookApp][m Saving file at /ipynb/sandbox/OTU_add_error.ipynb
+[32m[I 13:07:39.541 NotebookApp][m KernelRestarter: restarting kernel (1/5)
+[32m[I 11:00:09.585 NotebookApp][m Creating new notebook in /ipynb/bac_genome
+[32m[I 11:00:10.196 NotebookApp][m Kernel started: 05f4a99d-997e-4039-b718-816a64951643
+[33m[W 11:00:10.203 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20150903072628 (127.0.0.1) 1.14ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Untitled.ipynb?kernel_name=python2
+[33m[W 11:00:10.206 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20150903072628 (127.0.0.1) 1.25ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Untitled.ipynb?kernel_name=python2
+[33m[W 11:00:10.293 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20150903072628 (127.0.0.1) 1.43ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Untitled.ipynb?kernel_name=python2
+[33m[W 11:00:10.308 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20150903072628 (127.0.0.1) 1.19ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Untitled.ipynb?kernel_name=python2
+[33m[W 11:00:10.310 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20150903072628 (127.0.0.1) 1.15ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Untitled.ipynb?kernel_name=python2
+[32m[I 11:02:10.195 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 11:04:10.191 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 11:05:41.129 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[33m[W 11:06:06.118 NotebookApp][m Notebook ipynb/bac_genome/n1210/dataset.ipynb is not trusted
+[33m[W 11:06:06.209 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/n1210/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20150903072628 (127.0.0.1) 1.20ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/dataset.ipynb
+[33m[W 11:06:06.212 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/n1210/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20150903072628 (127.0.0.1) 0.93ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/dataset.ipynb
+[33m[W 11:06:06.257 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20150903072628 (127.0.0.1) 3.13ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/dataset.ipynb
+[33m[W 11:06:06.270 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20150903072628 (127.0.0.1) 2.92ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/dataset.ipynb
+[33m[W 11:06:06.274 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20150903072628 (127.0.0.1) 2.84ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/dataset.ipynb
+[32m[I 11:06:07.999 NotebookApp][m Kernel started: dd54981c-a9a7-4482-ba61-d9bf63306702
+[32m[I 11:06:11.035 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 11:08:11.119 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 11:08:14.641 NotebookApp][m Kernel restarted: 05f4a99d-997e-4039-b718-816a64951643
+[32m[I 11:10:11.132 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 11:12:11.040 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 11:14:12.490 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 11:16:12.493 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 11:18:12.499 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 11:20:12.487 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 11:22:12.482 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 11:24:12.487 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 11:26:12.552 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 11:38:20.399 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 11:40:20.394 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 11:42:20.388 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 11:44:20.388 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 11:46:20.456 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 11:48:20.380 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 11:50:20.379 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 11:50:31.125 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 11:52:24.527 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 11:53:46.395 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 11:54:24.518 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 11:56:24.913 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 11:56:39.539 NotebookApp][m Kernel shutdown: dd54981c-a9a7-4482-ba61-d9bf63306702
+[33m[W 11:56:41.498 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/n1210/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20150903072628 (127.0.0.1) 0.99ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/ID_16S_genes.ipynb
+[33m[W 11:56:41.499 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/n1210/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20150903072628 (127.0.0.1) 0.94ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/ID_16S_genes.ipynb
+[32m[I 11:56:41.790 NotebookApp][m Kernel started: db5c29d4-d5de-4fed-a344-f1260c801ff0
+[33m[W 11:56:41.857 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20150903072628 (127.0.0.1) 1.49ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/ID_16S_genes.ipynb
+[33m[W 11:56:41.877 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20150903072628 (127.0.0.1) 1.17ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/ID_16S_genes.ipynb
+[33m[W 11:56:41.879 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20150903072628 (127.0.0.1) 1.16ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/ID_16S_genes.ipynb
+[32m[I 11:58:25.916 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 11:59:18.276 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 12:00:25.959 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 12:02:25.977 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 12:03:16.054 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 12:04:25.894 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 12:06:25.897 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 12:10:25.898 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 12:18:25.916 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 12:20:25.909 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 12:22:25.915 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 12:24:25.911 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 12:26:02.700 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 12:28:25.963 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 12:30:25.959 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 12:32:25.906 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 12:34:26.097 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 12:36:26.091 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 12:36:54.054 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 12:38:26.046 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 12:40:07.362 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 12:44:26.014 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 12:46:26.117 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 12:48:26.028 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 12:50:26.108 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 12:52:26.086 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 12:54:26.095 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 12:56:26.135 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 13:06:25.992 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 13:08:25.934 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 13:10:25.894 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 13:12:25.896 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 13:14:25.916 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 13:16:25.900 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 13:18:25.885 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 13:20:25.895 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 13:22:25.878 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 13:24:25.990 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 13:26:25.874 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 13:27:48.169 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 13:28:25.867 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 13:29:38.181 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 13:34:25.868 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 13:38:25.855 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 13:39:34.402 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 13:39:37.691 NotebookApp][m Saving file at /ipynb/bac_genome/SSU_genes_per_ng_DNA.ipynb
+[32m[I 13:40:43.224 NotebookApp][m Copying ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR.ipynb to /ipynb/bac_genome/priming_exp/validation_sample
+[33m[W 13:41:08.756 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/priming_exp/validation_sample/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20150903072628 (127.0.0.1) 1.18ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[33m[W 13:41:08.757 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/priming_exp/validation_sample/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20150903072628 (127.0.0.1) 0.79ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[33m[W 13:41:08.855 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20150903072628 (127.0.0.1) 3.02ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[33m[W 13:41:08.870 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20150903072628 (127.0.0.1) 2.94ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[33m[W 13:41:08.875 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20150903072628 (127.0.0.1) 2.79ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[32m[I 13:41:12.367 NotebookApp][m Kernel started: c4250d4b-fe1f-40c3-99f1-d28b7931991e
+[32m[I 13:47:14.613 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[32m[I 13:49:14.342 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[32m[I 13:51:14.368 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[32m[I 14:05:15.326 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[32m[I 14:07:15.420 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[32m[I 14:09:14.110 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[32m[I 14:11:13.921 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[32m[I 14:13:14.003 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[32m[I 14:15:06.310 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[32m[I 14:17:14.679 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[32m[I 14:19:14.585 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[32m[I 14:19:37.697 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[32m[I 14:25:13.896 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[32m[I 14:29:13.719 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[32m[I 14:53:14.558 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[32m[I 15:09:15.357 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[32m[I 15:11:15.385 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[32m[I 15:13:15.456 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[32m[I 15:15:15.280 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[32m[I 15:19:15.268 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[32m[I 15:21:15.043 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[32m[I 15:23:16.113 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[32m[I 15:23:16.913 NotebookApp][m Saving file at /ipynb/bac_genome/priming_exp/validation_sample/X12C.700.14.05_fracRichness-PCR-negBin.ipynb
+[32m[I 13:01:12.366 NotebookApp][m KernelRestarter: restarting kernel (1/5)
+^C[32m[I 10:52:35.540 NotebookApp][m interrupted
+Serving notebooks from local directory: /home/nick/notebook/SIPSim
+15 active kernels 
+The IPython Notebook is running at: http://localhost:7702/
+Shutdown this notebook server (y/[n])? y
+[C 10:52:36.578 NotebookApp] Shutdown confirmed
+[32m[I 10:52:36.579 NotebookApp][m Shutting down kernels
+[32m[I 10:52:37.190 NotebookApp][m Kernel shutdown: 35ca6119-39fc-4308-a10f-50bad510cdbd
+[32m[I 10:52:37.569 NotebookApp][m Kernel shutdown: cdc3babf-f97a-4502-821e-984190b91cc4
+[32m[I 10:52:38.171 NotebookApp][m Kernel shutdown: 89061ff0-4735-4188-8be8-f4105233625a
+Unhandled exception in thread started by <bound method ParentPollerUnix.__bootstrap of <ParentPollerUnix(Thread-1, stopped daemon 140121375024896)>>
+ERROR - failed to write data to stream: <ipykernel.iostream.OutStream object at 0x7f70aa51c250>
+ERROR - failed to write data to stream: <ipykernel.iostream.OutStream object at 0x7f70aa51c250>
+ERROR - failed to write data to stream: <ipykernel.iostream.OutStream object at 0x7f70aa51c250>
+ERROR - failed to write data to stream: <ipykernel.iostream.OutStream object at 0x7f70aa51c250>
+Error in sys.excepthook:
+Traceback (most recent call last):
+  File "/opt/anaconda/lib/python2.7/site-packages/IPython/core/ultratb.py", line 1098, in __call__
+    [32m[I 10:52:39.193 NotebookApp][m Kernel shutdown: 3ccf0194-30ed-4839-a10e-3877a2d4983d
+[32m[I 10:52:39.194 NotebookApp][m Kernel shutdown: c2225f1b-c3a9-4494-80c4-0bc2fe97a878
+[32m[I 10:52:39.194 NotebookApp][m Kernel shutdown: 05f4a99d-997e-4039-b718-816a64951643
+[32m[I 10:52:39.209 NotebookApp][m Kernel shutdown: 98dcdd75-a854-4448-872d-33993774f4e9
+[32m[I 10:52:39.229 NotebookApp][m Kernel shutdown: f6685a8c-fb4b-4103-b334-5128c7bb4de8
+[32m[I 10:52:39.230 NotebookApp][m Kernel shutdown: c4250d4b-fe1f-40c3-99f1-d28b7931991e
+[32m[I 10:52:39.430 NotebookApp][m Kernel shutdown: 70d4bf49-35e4-47be-b991-092c5efca282
+[32m[I 10:52:39.431 NotebookApp][m Kernel shutdown: 633741ce-87d7-40f4-b49a-ff8d77905338
+[32m[I 10:52:40.472 NotebookApp][m Kernel shutdown: 7bf0d3c4-97cf-404f-86db-27ff68984a11
+[32m[I 10:52:40.473 NotebookApp][m Kernel shutdown: 890d734d-06a5-4194-b6f1-76a83b452937
+[32m[I 10:52:40.486 NotebookApp][m Kernel shutdown: ddd8e807-9d13-4f05-8f63-849d5d9d1e3b
+[32m[I 10:52:40.487 NotebookApp][m Kernel shutdown: db5c29d4-d5de-4fed-a344-f1260c801ff0
