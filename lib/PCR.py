@@ -12,7 +12,7 @@ import pandas as pd
 import Utils
 
 
-def PCR_cycle(M_n, P_n, f_0, k):
+def PCR_cycle(M_0, P_n, f_0, k):
     """Increase in template concentratino after a PCR cycle.
     
     Parameters
@@ -30,22 +30,27 @@ def PCR_cycle(M_n, P_n, f_0, k):
     -------
     float : post-cycle template molarity 
     """
-    assert M_n >= 0, 'M_n must be >= 0'
-    if M_n == 0:
+    assert M_0 >= 0, 'M_n must be >= 0'
+    if M_0 == 0:
         return 0
 
     # calculating rxn efficiency
-    b = k * M_n + P_n
+    b = k * M_0 + P_n
     if b > 0:
         f_n = f_0 * P_n / b
     else:
         f_n = 0.0
 
-    # debug
-    #print (f_n, M_n, P_n, f_0, k, b)
-        
     # calculating resulting template molarity
-    return M_n *  math.e ** f_n
+    M_n = M_0 * math.e ** f_n
+
+    # check
+    if M_n < M_0:
+        msg = 'f_n: {}\nf_0: {}\nM_0: {}\nP_n: {}\nk: {}\nb{}' 
+        print msg.format(f_n, f_0, M_0, P_n, k, b)
+    
+    # return
+    return M_n
     
 
 def run_PCR(taxa_molarities, P_0, f_0, k, n=30):
@@ -68,9 +73,6 @@ def run_PCR(taxa_molarities, P_0, f_0, k, n=30):
     P_n = P_0 * 1e-6
     tm = list(taxa_molarities)
     for cycle in range(n):
-        # debug
-        #print "cycle:{}".format(cycle)
-
         # initial template molarity
         M_sum1 = np.sum(tm)
 
@@ -81,8 +83,16 @@ def run_PCR(taxa_molarities, P_0, f_0, k, n=30):
         # sum of new molarity
         M_sum2 = np.sum(tm)
 
+        # checking that molarity is increasing
+        if M_sum2 - M_sum1 < 0:
+            msg = 'Template molarity decreased through PCR cycle!'
+            sys.stderr.write('ERROR: ' + msg + '\n')
+            sys.exit()
+
         # change in primer molarity (inverse of template Molarity)
         P_n = P_n - (M_sum2 - M_sum1)
+        if P_n < 0:
+            P_n = 0
         
     return tm
 
