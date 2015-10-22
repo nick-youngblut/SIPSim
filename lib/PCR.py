@@ -13,7 +13,7 @@ import Utils
 
 
 def PCR_cycle(M_0, P_n, f_0, k):
-    """Increase in template concentratino after a PCR cycle.
+    """Increase in template concentration after a PCR cycle.
     
     Parameters
     ----------
@@ -53,47 +53,53 @@ def PCR_cycle(M_0, P_n, f_0, k):
     return M_n
     
 
-def run_PCR(taxa_molarities, P_0, f_0, k, n=30):
-    """PCR run simulation.
+def run_PCR(taxa_molarities, P_n, f_0, k, n_cycles=30):
+    """PCR run simulation (PCR on 1 sample)
 
     Parameters
     ----------
     taxa_molarities : list
         molarities for each taxon in community
-    P_0 : float
-        The inital primar molarity
+    P_n : float
+        The primer molarity
     f_0 : float
         The initial PCR rxn efficiency
-    k  : float 
+    k : float 
         The ratio between the rate constants of reannealing and priming rxns
+    n : int
+        The number of PCR cycles
     Returns
     -------
     float : taxa molarities post-PCR
     """
-    P_n = P_0 * 1e-6
+    P_n = P_n * 1e-6
     tm = list(taxa_molarities)
-    for cycle in range(n):
+    for cycle in range(n_cycles):
         # initial template molarity
-        M_sum1 = np.sum(tm)
+        M_init_sum = np.sum(tm)
 
         # calculating new molarity for cycle (for each taxon)
         f = lambda M_0 : PCR_cycle(M_0, P_n=P_n, f_0=f_0, k=k)
         tm = [f(x) for x in tm]
 
         # sum of new molarity
-        M_sum2 = np.sum(tm)
+        M_post_sum = np.sum(tm)
 
         # checking that molarity is increasing
-        if M_sum2 - M_sum1 < 0:
+        if M_post_sum - M_init_sum < 0:
             msg = 'Template molarity decreased through PCR cycle!'
             sys.stderr.write('ERROR: ' + msg + '\n')
             sys.exit()
 
-        # change in primer molarity (inverse of template Molarity)
-        P_n = P_n - (M_sum2 - M_sum1)
-        if P_n < 0:
-            P_n = 0
-        
+        #print (cycle, M_init_sum, M_post_sum, M_post_sum - M_init_sum, P_n)
+
+        # change in primer molarity (inverse of delta template Molarity)
+        #P_n = P_n - (M_post_sum - M_init_sum)
+        #if P_n < 0:
+        #    msg = 'Cycle {}: Primer conc = 0\n'
+        #    sys.stderr.write(msg.format(cycle + 1))
+        #    break
+    
     return tm
 
 
@@ -131,7 +137,7 @@ def PCR_sim(otu_tbl, DNA_conc_dist, DNA_conc_dist_p, primer_conc,
     otu_tbl.apply_each_comm(f, ['rel_abund'], ['init_molarity'])
 
     # PCR
-    f = lambda x : run_PCR(x, P_0=primer_conc, f_0=f_0, k=k, n=30)
+    f = lambda x : run_PCR(x, P_n=primer_conc, f_0=f_0, k=k, n_cycles=n_cycles)
     otu_tbl.apply_each_comm(f, ['init_molarity'], ['final_molarity'])
 
     # calculating new relative abundances by using final molarity as proportions
