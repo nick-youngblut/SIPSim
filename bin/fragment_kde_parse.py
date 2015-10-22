@@ -65,8 +65,7 @@ sys.path.append(libDir)
 
 # functions
 def parse_comm_by_cluster(comm, clust_col, inv=False):
-    """Parsing community file.
-    
+    """Parsing community file.    
     Parameters
     ----------
     comm : pandas.dataframe
@@ -78,9 +77,8 @@ def parse_comm_by_cluster(comm, clust_col, inv=False):
     
     Returns
     -------
-    comm
+    comm : pandas.dataframe
     """    
-
     if(inv):
         comm = comm.loc[np.isnan(comm[clust_col])]        
     else:
@@ -94,6 +92,18 @@ def parse_comm_by_cluster(comm, clust_col, inv=False):
 
 
 def parse_target_frag_kdes(frag_kdes, comm):
+    """Parsing out genome fragment KDEs for target taxa.
+    Parameters
+    ----------
+    frag_kdes : list 
+        list of frag_kde objects
+    comm : pandas.dataframe
+        community table
+    
+    Returns
+    -------
+    frag_kdes
+    """    
     # making an index for frag_kde list
     target_idx = {g[0]:i for i,g in enumerate(frag_kdes)}
     msg = 'Number of genomes with simulated fragments: {}\n'
@@ -138,6 +148,18 @@ def parse_target_frag_kdes(frag_kdes, comm):
 
 
 def parse_nontarget_frag_kdes(frag_kdes, comm): 
+    """Parsing out genome fragment KDEs for non-target taxa.
+    Parameters
+    ----------
+    frag_kdes : list 
+        list of frag_kde objects
+    comm : pandas.dataframe
+        community table
+    
+    Returns
+    -------
+    frag_kdes
+    """
     richness_needed = comm.shape[0]
     if richness_needed <= 0:
         msg = 'Nothing in the parse list!\n'
@@ -186,6 +208,19 @@ def parse_nontarget_frag_kdes(frag_kdes, comm):
 
 
 def parse_random_frag_kdes(frag_kdes, n):         
+    """Sampling genome fragment KDEs from random genomes. 
+    Subsampling at genome level; subsampling w/out replacement.
+    Parameters
+    ----------
+    frag_kdes : list 
+        list of frag_kde objects
+    n : int
+        Number of subsamples
+    
+    Returns
+    -------
+    frag_kdes
+    """
     # parsing amp frag
     ## random choice index
     r_idx = range(len(frag_kdes))
@@ -224,7 +259,7 @@ if __name__ == '__main__':
         cols2parse = [args['--name']]
         if(args['--rename'] != 'None'):
             cols2parse += [args['--rename']]
-            df_comm = df_comm.loc[:,cols2parse]
+        df_comm = df_comm.loc[:,cols2parse]
 
     # loading fragments
     sys.stderr.write('Loading fragment_kde object...\n')

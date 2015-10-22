@@ -29,10 +29,7 @@ Description:
 ## batteries
 from docopt import docopt
 import sys,os
-import copy
 import dill
-import numpy as np
-import pandas as pd
 ## application libraries
 scriptDir = os.path.dirname(__file__)
 libDir = os.path.join(scriptDir, '../lib/')
