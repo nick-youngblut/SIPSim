@@ -6,33 +6,47 @@ fragment_KDE_parse: parsing out fragment KDEs for certain genomes
 
 Usage:
   fragment_KDE_parse [options] <fragment_kde> <genome_list>
+  fragment_KDE_parse [options] --random=<rn> <fragment_kde>
   fragment_KDE_parse -h | --help
   fragment_KDE_parse --version
 
 Options:
   <fragment_kde>  Output from the fragment_kde subcommand.
   <genome_list>   Table listing genomes to parse.
-  --names=<n>     Column in genomes table that contains names of genome
+  --name=<n>      Column in genomes table that contains names of genome
                   fragment KDEs to parse out.
                   [default: genomeID]
-  --renames=<r>   Column in genomes table to rename parsed genome fragments.
+  --rename=<r>    Column in genomes table to rename parsed genome fragments.
                   [default: None]
   --cluster=<c>   Column that designates matching clusters for selecting 
                   target genomes.
                   [default: cluster]
-  --invert        Invert selection.
   --random=<rn>   Parse out <rn> randomly selected genome fragment KDEs.
                   Sampling with replacement of genome fragment KDEs.
+                  NOTE: genome_list file is ignored
                   [default: 0]
+  --invert        Invert selection.
   --debug         Debug mode (turn off parallel processing).
   --version       Show version.
   -h --help       Show this screen.
 
 Description:
+  Parsing out select fragment KDEs from the entire list of genome KDEs.
+  
+  invert
+  ------
+  Get the opposite selection of genome KDEs from what is provided in the genome
+  list.
+
+  random
+  ------
+  Get a random list of genome KDEs. KDEs are drawn from list of KDEs without
+  replacement, so you can create a list of genome KDEs as long as you want.
+  The KDEs will be named: "OTU.rand#"
 
   Output
   ------
-
+  Fragment KDE object written to STDOUT.
 """
 
 # import
@@ -51,6 +65,22 @@ sys.path.append(libDir)
 
 # functions
 def parse_comm_by_cluster(comm, clust_col, inv=False):
+    """Parsing community file.
+    
+    Parameters
+    ----------
+    comm : pandas.dataframe
+        community table
+    clust_col : str
+        column for selecting target OTUs
+    inv : bool
+        invert selection
+    
+    Returns
+    -------
+    comm
+    """    
+
     if(inv):
         comm = comm.loc[np.isnan(comm[clust_col])]        
     else:
@@ -191,9 +221,9 @@ if __name__ == '__main__':
                                             args['--cluster'], 
                                             inv=args['--invert'])
         ## parsing columns of comm file
-        cols2parse = [args['--names']]
-        if(args['--renames'] != 'None'):
-            cols2parse += [args['--renames']]
+        cols2parse = [args['--name']]
+        if(args['--rename'] != 'None'):
+            cols2parse += [args['--rename']]
             df_comm = df_comm.loc[:,cols2parse]
 
     # loading fragments

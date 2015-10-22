@@ -9212,3 +9212,26 @@ OperationalError: database is locked
 [32m[I 11:52:42.900 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
 [32m[I 11:55:20.587 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
 [32m[I 12:37:12.433 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 12:54:01.241 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 13:07:20.746 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 13:08:42.836 NotebookApp][m Kernel shutdown: c2d7b3e0-0668-45b3-9496-187137ed75a4
+[32m[I 13:08:43.239 NotebookApp][m Kernel shutdown: 10ba23e4-5dac-404b-bbc2-5d78e38cae79
+[33m[W 13:08:48.585 NotebookApp][m Notebook ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb is not trusted
+[33m[W 13:08:49.167 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/n1210/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151017082536 (127.0.0.1) 14.24ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb
+[33m[W 13:08:49.231 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151017082536 (127.0.0.1) 63.45ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb
+[33m[W 13:08:49.450 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/n1210/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151017082536 (127.0.0.1) 1.39ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb
+[33m[W 13:08:49.861 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151017082536 (127.0.0.1) 1.29ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb
+[33m[W 13:08:50.758 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151017082536 (127.0.0.1) 1.72ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb
+[33m[W 13:08:50.769 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151017082536 (127.0.0.1) 1.52ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/atomIncorp_taxaIncorp.ipynb
+[32m[I 13:08:53.683 NotebookApp][m Kernel started: 804690eb-0887-4ef4-8cc5-561be799d7cc
+[32m[I 13:10:00.065 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 13:15:20.737 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 13:15:35.705 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 13:15:42.428 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 13:17:56.187 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 13:20:40.626 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 13:21:06.742 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 13:22:14.554 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 13:31:09.358 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 14:19:19.956 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 14:20:16.283 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
