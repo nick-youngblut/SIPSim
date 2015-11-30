@@ -2,12 +2,12 @@
 
 #--- Option parsing ---#
 """
-fragment_KDE_join: parsing out fragment KDEs for certain genomes
+fragment_KDE_cat: concatenating 2 fragment_kde objects
 
 Usage:
-  fragment_KDE_join [options] <fragment_kde1> <fragment_kde2>
-  fragment_KDE_join -h | --help
-  fragment_KDE_join --version
+  fragment_KDE_cat [options] <fragment_kde1> <fragment_kde2>
+  fragment_KDE_cat -h | --help
+  fragment_KDE_cat --version
 
 Options:
   <fragment_kde1>  Output from the fragment_kde subcommand.
@@ -17,7 +17,7 @@ Options:
   -h --help        Show this screen.
 
 Description:
-  Combining fragment_kde objects produced by the fragment_kde subcommand.
+  Concatenating fragment_kde objects produced by the fragment_kde subcommand.
   One list of fragment KDEs is appended to the other.
 
   Output

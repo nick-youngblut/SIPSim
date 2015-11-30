@@ -10103,3 +10103,98 @@ Shutdown this notebook server (y/[n])? y
 [32m[I 11:16:01.165 NotebookApp][m Shutting down kernels
 [32m[I 11:16:01.781 NotebookApp][m Kernel shutdown: 78527458-0163-48bf-b7ad-7e9f0c70beac
 [32m[I 11:16:01.782 NotebookApp][m Kernel shutdown: c4444e97-d578-499e-a5fa-f2811a0b8dce
+/opt/anaconda/lib/python2.7/site-packages/path.py:121: UserWarning: Module argparse was already imported from /opt/anaconda/lib/python2.7/argparse.pyc, but /opt/anaconda/lib/python2.7/site-packages is being added to sys.path
+  import pkg_resources
+[32m[I 11:31:08.392 NotebookApp][m Serving notebooks from local directory: /home/nick/notebook/SIPSim
+[32m[I 11:31:08.392 NotebookApp][m 0 active kernels 
+[32m[I 11:31:08.392 NotebookApp][m The IPython Notebook is running at: http://localhost:7702/
+[32m[I 11:31:08.392 NotebookApp][m Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[33m[W 11:31:42.290 NotebookApp][m delete /ipynb/t/tmp.ipynb
+[33m[W 11:32:52.560 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 6.72ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[33m[W 11:32:52.593 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 0.98ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[33m[W 11:32:52.628 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 4.61ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[32m[I 11:32:53.216 NotebookApp][m Kernel started: 505d3891-1b2a-4bdc-9ff3-b52acd68cb77
+/opt/anaconda/lib/python2.7/site-packages/path.py:121: UserWarning: Module argparse was already imported from /opt/anaconda/lib/python2.7/argparse.pyc, but /opt/anaconda/lib/python2.7/site-packages is being added to sys.path
+  import pkg_resources
+[33m[W 11:32:53.459 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 2.02ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/12C-Con_bulk_OTU_seqs.ipynb
+[33m[W 11:32:53.472 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 0.99ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/12C-Con_bulk_OTU_seqs.ipynb
+[33m[W 11:32:53.475 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.24ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/12C-Con_bulk_OTU_seqs.ipynb
+[33m[W 11:32:53.479 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 1.18ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[32m[I 11:32:53.700 NotebookApp][m Kernel started: d5790ea9-aa14-470d-bfc8-71a41b76230c
+/opt/anaconda/lib/python2.7/site-packages/path.py:121: UserWarning: Module argparse was already imported from /opt/anaconda/lib/python2.7/argparse.pyc, but /opt/anaconda/lib/python2.7/site-packages is being added to sys.path
+  import pkg_resources
+[33m[W 11:32:53.904 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 2.18ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/12C-Con_bulk_OTU_seqs.ipynb
+[33m[W 11:32:53.926 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.86ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/12C-Con_bulk_OTU_seqs.ipynb
+[33m[W 11:32:53.928 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 1.81ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/12C-Con_bulk_OTU_seqs.ipynb
+[33m[W 11:32:54.405 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.93ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[33m[W 11:32:54.406 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 1.19ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[32m[I 11:32:55.230 NotebookApp][m Found 4.x extension Rubberband
+[32m[I 11:32:55.237 NotebookApp][m Found 4.x extension NbExtensions menu item
+[32m[I 11:32:55.241 NotebookApp][m Found 4.x extension Printview
+[32m[I 11:32:55.250 NotebookApp][m Found 4.x extension zenmode
+[32m[I 11:32:55.256 NotebookApp][m Found 3.x, 4.x extension AutoSaveTime
+[32m[I 11:32:55.263 NotebookApp][m Found 3.x, 4.x extension Autoscroll
+[32m[I 11:32:55.265 NotebookApp][m Found 4.x extension Chrome Clipboard
+[32m[I 11:32:55.268 NotebookApp][m Found 4.x extension Codefolding
+[32m[I 11:32:55.271 NotebookApp][m Found 3.x, 4.x extension Comment/Uncomment Hotkey
+[32m[I 11:32:55.280 NotebookApp][m Found 4.x extension datestamper
+[32m[I 11:32:55.282 NotebookApp][m Found 4.x extension Drag and Drop
+[32m[I 11:32:55.286 NotebookApp][m Found 4.x extension Equation Auto Numbering
+[32m[I 11:32:55.288 NotebookApp][m Found 4.x extension ExecuteTime
+[32m[I 11:32:55.299 NotebookApp][m Found 3.x extension Exercise
+[32m[I 11:32:55.308 NotebookApp][m Found 3.x, 4.x extension Help panel
+[32m[I 11:32:55.311 NotebookApp][m Found 3.x 4.x extension Hide input
+[32m[I 11:32:55.313 NotebookApp][m Found 3.x 4.x extension Hide input all
+[32m[I 11:32:55.315 NotebookApp][m Found 3.x, Jupyter (4.x) extension highlighter
+[32m[I 11:32:55.322 NotebookApp][m Found 3.x, 4.x extension Initialization cells
+[32m[I 11:32:55.324 NotebookApp][m Found 3.x, Jupyter (4.x) extension (some) LaTeX environments for Jupyter
+[32m[I 11:32:55.339 NotebookApp][m Found 4.x extension Limit Output
+[32m[I 11:32:55.341 NotebookApp][m Found 4.x extension Navigation-Hotkeys
+[32m[I 11:32:55.343 NotebookApp][m Found 4.x extension Python Markdown
+[32m[I 11:32:55.345 NotebookApp][m Found 4.x extension Rubberband
+[32m[I 11:32:55.356 NotebookApp][m Found 4.x extension Ruler
+[32m[I 11:32:55.358 NotebookApp][m Found 4.x extension Runtools
+[32m[I 11:32:55.360 NotebookApp][m Found 4.x extension Search-Replace
+[32m[I 11:32:55.365 NotebookApp][m Found 4.x extension Skip-Traceback
+[32m[I 11:32:55.367 NotebookApp][m Found 4.x extension Table of Content
+[32m[I 11:32:55.380 NotebookApp][m Found 3.x 4.x extension Toggle all line numbers
+[33m[W 11:34:38.952 NotebookApp][m 404 GET /notebooks/ipynb/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 1.06ms referer=http://127.0.0.1:7702/notebooks/ipynb/README.ipynb
+[33m[W 11:34:38.957 NotebookApp][m 404 GET /notebooks/ipynb/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 0.97ms referer=http://127.0.0.1:7702/notebooks/ipynb/README.ipynb
+[33m[W 11:34:38.962 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.48ms referer=http://127.0.0.1:7702/notebooks/ipynb/README.ipynb
+[32m[I 11:34:39.554 NotebookApp][m Kernel started: f9f3e34b-7dd1-430c-9d65-12c78f2bbc9f
+/opt/anaconda/lib/python2.7/site-packages/path.py:121: UserWarning: Module argparse was already imported from /opt/anaconda/lib/python2.7/argparse.pyc, but /opt/anaconda/lib/python2.7/site-packages is being added to sys.path
+  import pkg_resources
+[33m[W 11:34:39.727 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 2.24ms referer=http://127.0.0.1:7702/notebooks/ipynb/README.ipynb
+[33m[W 11:34:39.747 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.18ms referer=http://127.0.0.1:7702/notebooks/ipynb/README.ipynb
+[33m[W 11:34:39.749 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 1.75ms referer=http://127.0.0.1:7702/notebooks/ipynb/README.ipynb
+[32m[I 11:35:00.577 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[33m[W 11:35:55.995 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/sim_datasets/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 1.09ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 11:35:56.003 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/sim_datasets/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 1.62ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 11:35:56.009 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 2.04ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 11:35:57.640 NotebookApp][m Kernel started: 7f92041a-b79d-4ce5-867f-0751624c73a2
+/opt/anaconda/lib/python2.7/site-packages/path.py:121: UserWarning: Module argparse was already imported from /opt/anaconda/lib/python2.7/argparse.pyc, but /opt/anaconda/lib/python2.7/site-packages is being added to sys.path
+  import pkg_resources
+[33m[W 11:35:58.174 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 1.45ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 11:35:58.235 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 3.03ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 11:35:58.239 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 2.81ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 11:36:08.600 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 1.81ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/CD-HIT.ipynb
+[33m[W 11:36:08.604 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 0.98ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/CD-HIT.ipynb
+[33m[W 11:36:08.608 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.20ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/CD-HIT.ipynb
+[32m[I 11:36:09.242 NotebookApp][m Kernel started: 8f30bdd8-827a-4227-bc7d-d92714d1b831
+/opt/anaconda/lib/python2.7/site-packages/path.py:121: UserWarning: Module argparse was already imported from /opt/anaconda/lib/python2.7/argparse.pyc, but /opt/anaconda/lib/python2.7/site-packages is being added to sys.path
+  import pkg_resources
+[33m[W 11:36:09.582 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 1.40ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/CD-HIT.ipynb
+[33m[W 11:36:09.616 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 1.20ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/CD-HIT.ipynb
+[33m[W 11:36:09.617 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.15ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/CD-HIT.ipynb
+[32m[I 11:37:57.692 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 11:41:57.686 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 11:43:16.221 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 11:43:47.714 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 11:45:23.335 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 11:47:57.693 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 11:48:13.446 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 11:49:57.680 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 12:02:32.983 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 12:07:06.271 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/CD-HIT.ipynb
+[32m[I 12:11:01.327 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 12:13:58.278 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb

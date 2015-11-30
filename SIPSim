@@ -21,6 +21,8 @@ Commands:
     fragments -- Simulate genome fragments and calc fragment G+C content.
     fragment_kde -- make a 2D kernel density estimate of fragment buoyant 
                     density and length
+    fragment_kde_parse -- parsing out fragment KDEs for certain genomes
+    fragment_kde_cat -- concatenating 2 fragment_kde objects
   Community:
     communities -- Simulate the original communities for each isopycnic gradient
   Diffusion:
@@ -39,7 +41,7 @@ Commands:
     OTU_wideLong -- convert OTU table from wide to long or vice versa
     OTU_sampleData -- make a 'sample_data' table (phyloseq) from the OTU table
     OTU_sum -- Sum OTU counts (by group)
-  KDEs:
+  KDEs (general):
     KDE_bandwidth -- Get the bandwidth of each KDE
     KDE_plot -- plot sets of 1D or 2D KDEs
   Trees:

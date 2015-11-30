@@ -8,12 +8,17 @@ suppressPackageStartupMessages(library(docopt))
 
 'usage: phyloseq2comm.r [options] <phyloseq>
 
-options:
+Options:
   <phyloseq>   Phyloseq object file.
   <outfile>    Output file name.
   -d=<d>       Select a day.
   -s=<s>       Select a substrate.
-  -h           Help' -> doc
+  -h           Help
+
+Description:
+  Converting a phyloseq object to a community
+  table file
+' -> doc
 
 opts = docopt(doc)
 

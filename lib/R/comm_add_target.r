@@ -8,10 +8,17 @@ suppressPackageStartupMessages(library(docopt))
 
 'usage: comm_add_target.r [options] <comm> <target>
 
-options:
+Options:
   <comm>      Community file name ("-" if from stdin).
   <target>    Target taxa file name.
-  -h          Help' -> doc
+  -h          Help
+
+Description:
+  Adding list of target taxa (taxa to focus on in the
+  simulations(s)) to the community table file.
+  Joining tables on the following columns:
+    <comm>taxon_name = <target>OTU
+' -> doc
 
 opts = docopt(doc)
 
@@ -35,6 +42,9 @@ if(opts[['comm']] == '-'){
 ## loading target file
 df.target = read.delim(opts[['target']], sep='\t')
 
+## 'OTU' columns as character
+df.comm = df.comm %>% mutate(taxon_name = taxon_name %>% as.character)
+df.target = df.target %>% mutate(OTU = OTU %>% as.character)
 
 ## adding targets
 df.comm = left_join(df.comm, df.target, c('taxon_name' = 'OTU')) %>%
