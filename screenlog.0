@@ -9249,3 +9249,857 @@ OperationalError: database is locked
 [32m[I 15:03:32.635 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
 [32m[I 15:03:42.444 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
 [32m[I 15:07:20.063 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 15:10:19.667 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 15:10:32.924 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 15:10:33.858 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 15:10:42.284 NotebookApp][m Found 4.x extension Rubberband
+[32m[I 15:10:42.291 NotebookApp][m Found 4.x extension NbExtensions menu item
+[32m[I 15:10:42.310 NotebookApp][m Found 4.x extension Printview
+[32m[I 15:10:42.322 NotebookApp][m Found 4.x extension zenmode
+[32m[I 15:10:42.329 NotebookApp][m Found 3.x, 4.x extension AutoSaveTime
+[32m[I 15:10:42.336 NotebookApp][m Found 3.x, 4.x extension Autoscroll
+[32m[I 15:10:42.343 NotebookApp][m Found 4.x extension Chrome Clipboard
+[32m[I 15:10:42.357 NotebookApp][m Found 4.x extension Codefolding
+[32m[I 15:10:42.366 NotebookApp][m Found 3.x, 4.x extension Comment/Uncomment Hotkey
+[32m[I 15:10:42.376 NotebookApp][m Found 4.x extension datestamper
+[32m[I 15:10:42.384 NotebookApp][m Found 4.x extension Drag and Drop
+[32m[I 15:10:42.387 NotebookApp][m Found 4.x extension Equation Auto Numbering
+[32m[I 15:10:42.389 NotebookApp][m Found 4.x extension ExecuteTime
+[32m[I 15:10:42.394 NotebookApp][m Found 3.x extension Exercise
+[32m[I 15:10:42.407 NotebookApp][m Found 3.x, 4.x extension Help panel
+[32m[I 15:10:42.415 NotebookApp][m Found 3.x 4.x extension Hide input
+[32m[I 15:10:42.417 NotebookApp][m Found 3.x 4.x extension Hide input all
+[32m[I 15:10:42.419 NotebookApp][m Found 3.x, Jupyter (4.x) extension highlighter
+[32m[I 15:10:42.423 NotebookApp][m Found 3.x, 4.x extension Initialization cells
+[32m[I 15:10:42.425 NotebookApp][m Found 3.x, Jupyter (4.x) extension (some) LaTeX environments for Jupyter
+[32m[I 15:10:42.436 NotebookApp][m Found 4.x extension Limit Output
+[32m[I 15:10:42.438 NotebookApp][m Found 4.x extension Navigation-Hotkeys
+[32m[I 15:10:42.448 NotebookApp][m Found 4.x extension Python Markdown
+[32m[I 15:10:42.454 NotebookApp][m Found 4.x extension Rubberband
+[32m[I 15:10:42.459 NotebookApp][m Found 4.x extension Ruler
+[32m[I 15:10:42.474 NotebookApp][m Found 4.x extension Runtools
+[32m[I 15:10:42.484 NotebookApp][m Found 4.x extension Search-Replace
+[32m[I 15:10:42.494 NotebookApp][m Found 4.x extension Skip-Traceback
+[32m[I 15:10:42.496 NotebookApp][m Found 4.x extension Table of Content
+[32m[I 15:10:42.509 NotebookApp][m Found 3.x 4.x extension Toggle all line numbers
+[32m[I 15:10:42.791 NotebookApp][m Found 4.x extension Rubberband
+[32m[I 15:10:42.793 NotebookApp][m Found 4.x extension NbExtensions menu item
+[32m[I 15:10:42.796 NotebookApp][m Found 4.x extension Printview
+[32m[I 15:10:42.800 NotebookApp][m Found 4.x extension zenmode
+[32m[I 15:10:42.804 NotebookApp][m Found 3.x, 4.x extension AutoSaveTime
+[32m[I 15:10:42.810 NotebookApp][m Found 3.x, 4.x extension Autoscroll
+[32m[I 15:10:42.811 NotebookApp][m Found 4.x extension Chrome Clipboard
+[32m[I 15:10:42.814 NotebookApp][m Found 4.x extension Codefolding
+[32m[I 15:10:42.816 NotebookApp][m Found 3.x, 4.x extension Comment/Uncomment Hotkey
+[32m[I 15:10:42.817 NotebookApp][m Found 4.x extension datestamper
+[32m[I 15:10:42.819 NotebookApp][m Found 4.x extension Drag and Drop
+[32m[I 15:10:42.821 NotebookApp][m Found 4.x extension Equation Auto Numbering
+[32m[I 15:10:42.823 NotebookApp][m Found 4.x extension ExecuteTime
+[32m[I 15:10:42.824 NotebookApp][m Found 3.x extension Exercise
+[32m[I 15:10:42.826 NotebookApp][m Found 3.x, 4.x extension Help panel
+[32m[I 15:10:42.827 NotebookApp][m Found 3.x 4.x extension Hide input
+[32m[I 15:10:42.828 NotebookApp][m Found 3.x 4.x extension Hide input all
+[32m[I 15:10:42.830 NotebookApp][m Found 3.x, Jupyter (4.x) extension highlighter
+[32m[I 15:10:42.832 NotebookApp][m Found 3.x, 4.x extension Initialization cells
+[32m[I 15:10:42.833 NotebookApp][m Found 3.x, Jupyter (4.x) extension (some) LaTeX environments for Jupyter
+[32m[I 15:10:42.837 NotebookApp][m Found 4.x extension Limit Output
+[32m[I 15:10:42.838 NotebookApp][m Found 4.x extension Navigation-Hotkeys
+[32m[I 15:10:42.840 NotebookApp][m Found 4.x extension Python Markdown
+[32m[I 15:10:42.841 NotebookApp][m Found 4.x extension Rubberband
+[32m[I 15:10:42.845 NotebookApp][m Found 4.x extension Ruler
+[32m[I 15:10:42.846 NotebookApp][m Found 4.x extension Runtools
+[32m[I 15:10:42.848 NotebookApp][m Found 4.x extension Search-Replace
+[32m[I 15:10:42.849 NotebookApp][m Found 4.x extension Skip-Traceback
+[32m[I 15:10:42.851 NotebookApp][m Found 4.x extension Table of Content
+[32m[I 15:10:42.854 NotebookApp][m Found 3.x 4.x extension Toggle all line numbers
+[32m[I 15:13:35.511 NotebookApp][m 302 GET / (127.0.0.1) 0.39ms
+[33m[W 15:14:07.885 NotebookApp][m 404 GET /notebooks/ipynb/theory/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151017082536 (127.0.0.1) 1.07ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/BM_simulations.ipynb
+[33m[W 15:14:07.895 NotebookApp][m 404 GET /notebooks/ipynb/theory/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151017082536 (127.0.0.1) 0.86ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/BM_simulations.ipynb
+[33m[W 15:14:08.157 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151017082536 (127.0.0.1) 1.34ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/BM_simulations.ipynb
+[32m[I 15:14:08.250 NotebookApp][m Kernel started: 907fa382-3404-4663-802b-fe02d77485d3
+[33m[W 15:14:08.445 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151017082536 (127.0.0.1) 1.35ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/BM_simulations.ipynb
+[33m[W 15:14:08.464 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151017082536 (127.0.0.1) 1.05ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/BM_simulations.ipynb
+[33m[W 15:14:08.465 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151017082536 (127.0.0.1) 1.11ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/BM_simulations.ipynb
+[32m[I 15:14:11.184 NotebookApp][m Saving file at /ipynb/theory/BM_simulations.ipynb
+[NbConvertApp] WARNING | Collisions detected in jupyter_nbconvert_config.py and jupyter_nbconvert_config.json config files. jupyter_nbconvert_config.json has higher priority: {
+  "Exporter": {
+    "template_path": "['.', '/home/nick/.local/share/jupyter/templates'] ignored, using [u'/home/nick/.local/share/jupyter/templates']"
+  }
+}
+/opt/anaconda/lib/python2.7/site-packages/IPython/nbconvert.py:13: ShimWarning: The `IPython.nbconvert` package has been deprecated. You should import from ipython_nbconvert instead.
+  "You should import from ipython_nbconvert instead.", ShimWarning)
+[NbConvertApp] Converting notebook BM_simulations.ipynb to pdf
+[NbConvertApp] Writing 43877 bytes to notebook.tex
+[NbConvertApp] Building PDF
+[NbConvertApp] Running pdflatex 3 times: [u'pdflatex', u'notebook.tex']
+[NbConvertApp] CRITICAL | pdflatex failed: [u'pdflatex', u'notebook.tex']
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+entering extended mode
+(./notebook.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, farsi, arabic, croatian, bulgarian, ukrainian, russian, czech, slov
+ak, danish, dutch, finnish, french, basque, ngerman, german, german-x-2009-06-1
+9, ngerman-x-2009-06-19, ibycus, monogreek, greek, ancientgreek, hungarian, san
+skrit, italian, latin, latvian, lithuanian, mongolian2a, mongolian, bokmal, nyn
+orsk, romanian, irish, coptic, serbian, turkish, welsh, esperanto, uppersorbian
+, estonian, indonesian, interlingua, icelandic, kurmanji, slovenian, polish, po
+rtuguese, spanish, galician, catalan, swedish, ukenglish, pinyin, loaded.
+(/usr/share/texmf-texlive/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size10.clo))
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
+(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def)))
+
+! LaTeX Error: File `adjustbox.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+! Emergency stop.
+<read *> 
+         
+l.19     \usepackage
+                    {color} % Allow colors to be defined^^M
+!  ==> Fatal error occurred, no output PDF file produced!
+Transcript written on notebook.log.
+
+[NbConvertApp] Running bibtex 1 time: [u'bibtex', u'notebook']
+[NbConvertApp] WARNING | bibtex had problems, most likely because there were no citations
+[NbConvertApp] Running pdflatex 3 times: [u'pdflatex', u'notebook.tex']
+[NbConvertApp] CRITICAL | pdflatex failed: [u'pdflatex', u'notebook.tex']
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+entering extended mode
+(./notebook.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, farsi, arabic, croatian, bulgarian, ukrainian, russian, czech, slov
+ak, danish, dutch, finnish, french, basque, ngerman, german, german-x-2009-06-1
+9, ngerman-x-2009-06-19, ibycus, monogreek, greek, ancientgreek, hungarian, san
+skrit, italian, latin, latvian, lithuanian, mongolian2a, mongolian, bokmal, nyn
+orsk, romanian, irish, coptic, serbian, turkish, welsh, esperanto, uppersorbian
+, estonian, indonesian, interlingua, icelandic, kurmanji, slovenian, polish, po
+rtuguese, spanish, galician, catalan, swedish, ukenglish, pinyin, loaded.
+(/usr/share/texmf-texlive/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size10.clo))
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
+(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def)))
+
+! LaTeX Error: File `adjustbox.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+! Emergency stop.
+<read *> 
+         
+l.19     \usepackage
+                    {color} % Allow colors to be defined^^M
+!  ==> Fatal error occurred, no output PDF file produced!
+Transcript written on notebook.log.
+
+Traceback (most recent call last):
+  File "/opt/anaconda/bin/jupyter-nbconvert", line 6, in <module>
+    main()
+  File "/opt/anaconda/lib/python2.7/site-packages/jupyter_core/application.py", line 267, in launch_instance
+    return super(JupyterApp, cls).launch_instance(argv=argv, **kwargs)
+  File "/opt/anaconda/lib/python2.7/site-packages/traitlets/config/application.py", line 592, in launch_instance
+    app.start()
+  File "/opt/anaconda/lib/python2.7/site-packages/nbconvert/nbconvertapp.py", line 286, in start
+    self.convert_notebooks()
+  File "/opt/anaconda/lib/python2.7/site-packages/nbconvert/nbconvertapp.py", line 409, in convert_notebooks
+    self.convert_single_notebook(notebook_filename)
+  File "/opt/anaconda/lib/python2.7/site-packages/nbconvert/nbconvertapp.py", line 380, in convert_single_notebook
+    output, resources = self.export_single_notebook(notebook_filename, resources)
+  File "/opt/anaconda/lib/python2.7/site-packages/nbconvert/nbconvertapp.py", line 332, in export_single_notebook
+    output, resources = self.exporter.from_filename(notebook_filename, resources=resources)
+  File "/opt/anaconda/lib/python2.7/site-packages/nbconvert/exporters/exporter.py", line 166, in from_filename
+    return self.from_notebook_node(nbformat.read(f, as_version=4), resources=resources, **kw)
+  File "/opt/anaconda/lib/python2.7/site-packages/nbconvert/exporters/pdf.py", line 139, in from_notebook_node
+    raise RuntimeError("PDF creating failed")
+RuntimeError: PDF creating failed
+[32m[I 15:15:16.254 NotebookApp][m Saving file at /ipynb/theory/BM_simulations.ipynb
+[NbConvertApp] WARNING | Collisions detected in jupyter_nbconvert_config.py and jupyter_nbconvert_config.json config files. jupyter_nbconvert_config.json has higher priority: {
+  "Exporter": {
+    "template_path": "['.', '/home/nick/.local/share/jupyter/templates'] ignored, using [u'/home/nick/.local/share/jupyter/templates']"
+  }
+}
+/opt/anaconda/lib/python2.7/site-packages/IPython/nbconvert.py:13: ShimWarning: The `IPython.nbconvert` package has been deprecated. You should import from ipython_nbconvert instead.
+  "You should import from ipython_nbconvert instead.", ShimWarning)
+[NbConvertApp] Converting notebook BM_simulations.ipynb to pdf
+[NbConvertApp] Writing 43877 bytes to notebook.tex
+[NbConvertApp] Building PDF
+[NbConvertApp] Running pdflatex 3 times: [u'pdflatex', u'notebook.tex']
+[NbConvertApp] CRITICAL | pdflatex failed: [u'pdflatex', u'notebook.tex']
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+entering extended mode
+(./notebook.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, farsi, arabic, croatian, bulgarian, ukrainian, russian, czech, slov
+ak, danish, dutch, finnish, french, basque, ngerman, german, german-x-2009-06-1
+9, ngerman-x-2009-06-19, ibycus, monogreek, greek, ancientgreek, hungarian, san
+skrit, italian, latin, latvian, lithuanian, mongolian2a, mongolian, bokmal, nyn
+orsk, romanian, irish, coptic, serbian, turkish, welsh, esperanto, uppersorbian
+, estonian, indonesian, interlingua, icelandic, kurmanji, slovenian, polish, po
+rtuguese, spanish, galician, catalan, swedish, ukenglish, pinyin, loaded.
+(/usr/share/texmf-texlive/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size10.clo))
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
+(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def)))
+
+! LaTeX Error: File `adjustbox.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+! Emergency stop.
+<read *> 
+         
+l.19     \usepackage
+                    {color} % Allow colors to be defined^^M
+!  ==> Fatal error occurred, no output PDF file produced!
+Transcript written on notebook.log.
+
+[NbConvertApp] Running bibtex 1 time: [u'bibtex', u'notebook']
+[NbConvertApp] WARNING | bibtex had problems, most likely because there were no citations
+[NbConvertApp] Running pdflatex 3 times: [u'pdflatex', u'notebook.tex']
+[NbConvertApp] CRITICAL | pdflatex failed: [u'pdflatex', u'notebook.tex']
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+entering extended mode
+(./notebook.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, farsi, arabic, croatian, bulgarian, ukrainian, russian, czech, slov
+ak, danish, dutch, finnish, french, basque, ngerman, german, german-x-2009-06-1
+9, ngerman-x-2009-06-19, ibycus, monogreek, greek, ancientgreek, hungarian, san
+skrit, italian, latin, latvian, lithuanian, mongolian2a, mongolian, bokmal, nyn
+orsk, romanian, irish, coptic, serbian, turkish, welsh, esperanto, uppersorbian
+, estonian, indonesian, interlingua, icelandic, kurmanji, slovenian, polish, po
+rtuguese, spanish, galician, catalan, swedish, ukenglish, pinyin, loaded.
+(/usr/share/texmf-texlive/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size10.clo))
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
+(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def)))
+
+! LaTeX Error: File `adjustbox.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+! Emergency stop.
+<read *> 
+         
+l.19     \usepackage
+                    {color} % Allow colors to be defined^^M
+!  ==> Fatal error occurred, no output PDF file produced!
+Transcript written on notebook.log.
+
+Traceback (most recent call last):
+  File "/opt/anaconda/bin/jupyter-nbconvert", line 6, in <module>
+    main()
+  File "/opt/anaconda/lib/python2.7/site-packages/jupyter_core/application.py", line 267, in launch_instance
+    return super(JupyterApp, cls).launch_instance(argv=argv, **kwargs)
+  File "/opt/anaconda/lib/python2.7/site-packages/traitlets/config/application.py", line 592, in launch_instance
+    app.start()
+  File "/opt/anaconda/lib/python2.7/site-packages/nbconvert/nbconvertapp.py", line 286, in start
+    self.convert_notebooks()
+  File "/opt/anaconda/lib/python2.7/site-packages/nbconvert/nbconvertapp.py", line 409, in convert_notebooks
+    self.convert_single_notebook(notebook_filename)
+  File "/opt/anaconda/lib/python2.7/site-packages/nbconvert/nbconvertapp.py", line 380, in convert_single_notebook
+    output, resources = self.export_single_notebook(notebook_filename, resources)
+  File "/opt/anaconda/lib/python2.7/site-packages/nbconvert/nbconvertapp.py", line 332, in export_single_notebook
+    output, resources = self.exporter.from_filename(notebook_filename, resources=resources)
+  File "/opt/anaconda/lib/python2.7/site-packages/nbconvert/exporters/exporter.py", line 166, in from_filename
+    return self.from_notebook_node(nbformat.read(f, as_version=4), resources=resources, **kw)
+  File "/opt/anaconda/lib/python2.7/site-packages/nbconvert/exporters/pdf.py", line 139, in from_notebook_node
+    raise RuntimeError("PDF creating failed")
+RuntimeError: PDF creating failed
+[33m[W 15:15:16.997 NotebookApp][m 404 GET /notebooks/ipynb/theory/BM_simulations.pdf (127.0.0.1): No such file or directory: ipynb/theory/BM_simulations.pdf
+[33m[W 15:15:16.998 NotebookApp][m 404 GET /notebooks/ipynb/theory/BM_simulations.pdf (127.0.0.1) 1.54ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/BM_simulations.ipynb
+[32m[I 15:15:22.654 NotebookApp][m Saving file at /ipynb/theory/BM_simulations.ipynb
+[NbConvertApp] WARNING | Collisions detected in jupyter_nbconvert_config.py and jupyter_nbconvert_config.json config files. jupyter_nbconvert_config.json has higher priority: {
+  "Exporter": {
+    "template_path": "['.', '/home/nick/.local/share/jupyter/templates'] ignored, using [u'/home/nick/.local/share/jupyter/templates']"
+  }
+}
+/opt/anaconda/lib/python2.7/site-packages/IPython/nbconvert.py:13: ShimWarning: The `IPython.nbconvert` package has been deprecated. You should import from ipython_nbconvert instead.
+  "You should import from ipython_nbconvert instead.", ShimWarning)
+[NbConvertApp] Converting notebook BM_simulations.ipynb to pdf
+[NbConvertApp] Writing 43877 bytes to notebook.tex
+[NbConvertApp] Building PDF
+[NbConvertApp] Running pdflatex 3 times: [u'pdflatex', u'notebook.tex']
+[NbConvertApp] CRITICAL | pdflatex failed: [u'pdflatex', u'notebook.tex']
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+entering extended mode
+(./notebook.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, farsi, arabic, croatian, bulgarian, ukrainian, russian, czech, slov
+ak, danish, dutch, finnish, french, basque, ngerman, german, german-x-2009-06-1
+9, ngerman-x-2009-06-19, ibycus, monogreek, greek, ancientgreek, hungarian, san
+skrit, italian, latin, latvian, lithuanian, mongolian2a, mongolian, bokmal, nyn
+orsk, romanian, irish, coptic, serbian, turkish, welsh, esperanto, uppersorbian
+, estonian, indonesian, interlingua, icelandic, kurmanji, slovenian, polish, po
+rtuguese, spanish, galician, catalan, swedish, ukenglish, pinyin, loaded.
+(/usr/share/texmf-texlive/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size10.clo))
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
+(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def)))
+
+! LaTeX Error: File `adjustbox.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+! Emergency stop.
+<read *> 
+         
+l.19     \usepackage
+                    {color} % Allow colors to be defined^^M
+!  ==> Fatal error occurred, no output PDF file produced!
+Transcript written on notebook.log.
+
+[NbConvertApp] Running bibtex 1 time: [u'bibtex', u'notebook']
+[NbConvertApp] WARNING | bibtex had problems, most likely because there were no citations
+[NbConvertApp] Running pdflatex 3 times: [u'pdflatex', u'notebook.tex']
+[NbConvertApp] CRITICAL | pdflatex failed: [u'pdflatex', u'notebook.tex']
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+entering extended mode
+(./notebook.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, farsi, arabic, croatian, bulgarian, ukrainian, russian, czech, slov
+ak, danish, dutch, finnish, french, basque, ngerman, german, german-x-2009-06-1
+9, ngerman-x-2009-06-19, ibycus, monogreek, greek, ancientgreek, hungarian, san
+skrit, italian, latin, latvian, lithuanian, mongolian2a, mongolian, bokmal, nyn
+orsk, romanian, irish, coptic, serbian, turkish, welsh, esperanto, uppersorbian
+, estonian, indonesian, interlingua, icelandic, kurmanji, slovenian, polish, po
+rtuguese, spanish, galician, catalan, swedish, ukenglish, pinyin, loaded.
+(/usr/share/texmf-texlive/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size10.clo))
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
+(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def)))
+
+! LaTeX Error: File `adjustbox.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+! Emergency stop.
+<read *> 
+         
+l.19     \usepackage
+                    {color} % Allow colors to be defined^^M
+!  ==> Fatal error occurred, no output PDF file produced!
+Transcript written on notebook.log.
+
+Traceback (most recent call last):
+  File "/opt/anaconda/bin/jupyter-nbconvert", line 6, in <module>
+    main()
+  File "/opt/anaconda/lib/python2.7/site-packages/jupyter_core/application.py", line 267, in launch_instance
+    return super(JupyterApp, cls).launch_instance(argv=argv, **kwargs)
+  File "/opt/anaconda/lib/python2.7/site-packages/traitlets/config/application.py", line 592, in launch_instance
+    app.start()
+  File "/opt/anaconda/lib/python2.7/site-packages/nbconvert/nbconvertapp.py", line 286, in start
+    self.convert_notebooks()
+  File "/opt/anaconda/lib/python2.7/site-packages/nbconvert/nbconvertapp.py", line 409, in convert_notebooks
+    self.convert_single_notebook(notebook_filename)
+  File "/opt/anaconda/lib/python2.7/site-packages/nbconvert/nbconvertapp.py", line 380, in convert_single_notebook
+    output, resources = self.export_single_notebook(notebook_filename, resources)
+  File "/opt/anaconda/lib/python2.7/site-packages/nbconvert/nbconvertapp.py", line 332, in export_single_notebook
+    output, resources = self.exporter.from_filename(notebook_filename, resources=resources)
+  File "/opt/anaconda/lib/python2.7/site-packages/nbconvert/exporters/exporter.py", line 166, in from_filename
+    return self.from_notebook_node(nbformat.read(f, as_version=4), resources=resources, **kw)
+  File "/opt/anaconda/lib/python2.7/site-packages/nbconvert/exporters/pdf.py", line 139, in from_notebook_node
+    raise RuntimeError("PDF creating failed")
+RuntimeError: PDF creating failed
+[33m[W 15:15:23.555 NotebookApp][m 404 GET /notebooks/ipynb/theory/BM_simulations.pdf (127.0.0.1): No such file or directory: ipynb/theory/BM_simulations.pdf
+[33m[W 15:15:23.556 NotebookApp][m 404 GET /notebooks/ipynb/theory/BM_simulations.pdf (127.0.0.1) 1.54ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/BM_simulations.ipynb
+[32m[I 15:15:30.381 NotebookApp][m Found 4.x extension Rubberband
+[32m[I 15:15:30.383 NotebookApp][m Found 4.x extension NbExtensions menu item
+[32m[I 15:15:30.386 NotebookApp][m Found 4.x extension Printview
+[32m[I 15:15:30.390 NotebookApp][m Found 4.x extension zenmode
+[32m[I 15:15:30.394 NotebookApp][m Found 3.x, 4.x extension AutoSaveTime
+[32m[I 15:15:30.400 NotebookApp][m Found 3.x, 4.x extension Autoscroll
+[32m[I 15:15:30.401 NotebookApp][m Found 4.x extension Chrome Clipboard
+[32m[I 15:15:30.404 NotebookApp][m Found 4.x extension Codefolding
+[32m[I 15:15:30.406 NotebookApp][m Found 3.x, 4.x extension Comment/Uncomment Hotkey
+[32m[I 15:15:30.407 NotebookApp][m Found 4.x extension datestamper
+[32m[I 15:15:30.409 NotebookApp][m Found 4.x extension Drag and Drop
+[32m[I 15:15:30.411 NotebookApp][m Found 4.x extension Equation Auto Numbering
+[32m[I 15:15:30.413 NotebookApp][m Found 4.x extension ExecuteTime
+[32m[I 15:15:30.414 NotebookApp][m Found 3.x extension Exercise
+[32m[I 15:15:30.416 NotebookApp][m Found 3.x, 4.x extension Help panel
+[32m[I 15:15:30.417 NotebookApp][m Found 3.x 4.x extension Hide input
+[32m[I 15:15:30.418 NotebookApp][m Found 3.x 4.x extension Hide input all
+[32m[I 15:15:30.420 NotebookApp][m Found 3.x, Jupyter (4.x) extension highlighter
+[32m[I 15:15:30.421 NotebookApp][m Found 3.x, 4.x extension Initialization cells
+[32m[I 15:15:30.423 NotebookApp][m Found 3.x, Jupyter (4.x) extension (some) LaTeX environments for Jupyter
+[32m[I 15:15:30.427 NotebookApp][m Found 4.x extension Limit Output
+[32m[I 15:15:30.428 NotebookApp][m Found 4.x extension Navigation-Hotkeys
+[32m[I 15:15:30.430 NotebookApp][m Found 4.x extension Python Markdown
+[32m[I 15:15:30.431 NotebookApp][m Found 4.x extension Rubberband
+[32m[I 15:15:30.435 NotebookApp][m Found 4.x extension Ruler
+[32m[I 15:15:30.436 NotebookApp][m Found 4.x extension Runtools
+[32m[I 15:15:30.438 NotebookApp][m Found 4.x extension Search-Replace
+[32m[I 15:15:30.439 NotebookApp][m Found 4.x extension Skip-Traceback
+[32m[I 15:15:30.441 NotebookApp][m Found 4.x extension Table of Content
+[32m[I 15:15:30.444 NotebookApp][m Found 3.x 4.x extension Toggle all line numbers
+[32m[I 15:15:30.575 NotebookApp][m Found 4.x extension Rubberband
+[32m[I 15:15:30.576 NotebookApp][m Found 4.x extension NbExtensions menu item
+[32m[I 15:15:30.579 NotebookApp][m Found 4.x extension Printview
+[32m[I 15:15:30.583 NotebookApp][m Found 4.x extension zenmode
+[32m[I 15:15:30.588 NotebookApp][m Found 3.x, 4.x extension AutoSaveTime
+[32m[I 15:15:30.593 NotebookApp][m Found 3.x, 4.x extension Autoscroll
+[32m[I 15:15:30.595 NotebookApp][m Found 4.x extension Chrome Clipboard
+[32m[I 15:15:30.597 NotebookApp][m Found 4.x extension Codefolding
+[32m[I 15:15:30.600 NotebookApp][m Found 3.x, 4.x extension Comment/Uncomment Hotkey
+[32m[I 15:15:30.601 NotebookApp][m Found 4.x extension datestamper
+[32m[I 15:15:30.602 NotebookApp][m Found 4.x extension Drag and Drop
+[32m[I 15:15:30.605 NotebookApp][m Found 4.x extension Equation Auto Numbering
+[32m[I 15:15:30.606 NotebookApp][m Found 4.x extension ExecuteTime
+[32m[I 15:15:30.608 NotebookApp][m Found 3.x extension Exercise
+[32m[I 15:15:30.609 NotebookApp][m Found 3.x, 4.x extension Help panel
+[32m[I 15:15:30.611 NotebookApp][m Found 3.x 4.x extension Hide input
+[32m[I 15:15:30.612 NotebookApp][m Found 3.x 4.x extension Hide input all
+[32m[I 15:15:30.613 NotebookApp][m Found 3.x, Jupyter (4.x) extension highlighter
+[32m[I 15:15:30.615 NotebookApp][m Found 3.x, 4.x extension Initialization cells
+[32m[I 15:15:30.617 NotebookApp][m Found 3.x, Jupyter (4.x) extension (some) LaTeX environments for Jupyter
+[32m[I 15:15:30.620 NotebookApp][m Found 4.x extension Limit Output
+[32m[I 15:15:30.622 NotebookApp][m Found 4.x extension Navigation-Hotkeys
+[32m[I 15:15:30.623 NotebookApp][m Found 4.x extension Python Markdown
+[32m[I 15:15:30.625 NotebookApp][m Found 4.x extension Rubberband
+[32m[I 15:15:30.628 NotebookApp][m Found 4.x extension Ruler
+[32m[I 15:15:30.630 NotebookApp][m Found 4.x extension Runtools
+[32m[I 15:15:30.631 NotebookApp][m Found 4.x extension Search-Replace
+[32m[I 15:15:30.633 NotebookApp][m Found 4.x extension Skip-Traceback
+[32m[I 15:15:30.634 NotebookApp][m Found 4.x extension Table of Content
+[32m[I 15:15:30.637 NotebookApp][m Found 3.x 4.x extension Toggle all line numbers
+[32m[I 15:15:43.610 NotebookApp][m Found 4.x extension Rubberband
+[32m[I 15:15:43.611 NotebookApp][m Found 4.x extension NbExtensions menu item
+[32m[I 15:15:43.615 NotebookApp][m Found 4.x extension Printview
+[32m[I 15:15:43.619 NotebookApp][m Found 4.x extension zenmode
+[32m[I 15:15:43.623 NotebookApp][m Found 3.x, 4.x extension AutoSaveTime
+[32m[I 15:15:43.629 NotebookApp][m Found 3.x, 4.x extension Autoscroll
+[32m[I 15:15:43.630 NotebookApp][m Found 4.x extension Chrome Clipboard
+[32m[I 15:15:43.632 NotebookApp][m Found 4.x extension Codefolding
+[32m[I 15:15:43.635 NotebookApp][m Found 3.x, 4.x extension Comment/Uncomment Hotkey
+[32m[I 15:15:43.636 NotebookApp][m Found 4.x extension datestamper
+[32m[I 15:15:43.638 NotebookApp][m Found 4.x extension Drag and Drop
+[32m[I 15:15:43.640 NotebookApp][m Found 4.x extension Equation Auto Numbering
+[32m[I 15:15:43.642 NotebookApp][m Found 4.x extension ExecuteTime
+[32m[I 15:15:43.643 NotebookApp][m Found 3.x extension Exercise
+[32m[I 15:15:43.645 NotebookApp][m Found 3.x, 4.x extension Help panel
+[32m[I 15:15:43.646 NotebookApp][m Found 3.x 4.x extension Hide input
+[32m[I 15:15:43.647 NotebookApp][m Found 3.x 4.x extension Hide input all
+[32m[I 15:15:43.648 NotebookApp][m Found 3.x, Jupyter (4.x) extension highlighter
+[32m[I 15:15:43.650 NotebookApp][m Found 3.x, 4.x extension Initialization cells
+[32m[I 15:15:43.652 NotebookApp][m Found 3.x, Jupyter (4.x) extension (some) LaTeX environments for Jupyter
+[32m[I 15:15:43.655 NotebookApp][m Found 4.x extension Limit Output
+[32m[I 15:15:43.657 NotebookApp][m Found 4.x extension Navigation-Hotkeys
+[32m[I 15:15:43.658 NotebookApp][m Found 4.x extension Python Markdown
+[32m[I 15:15:43.660 NotebookApp][m Found 4.x extension Rubberband
+[32m[I 15:15:43.663 NotebookApp][m Found 4.x extension Ruler
+[32m[I 15:15:43.665 NotebookApp][m Found 4.x extension Runtools
+[32m[I 15:15:43.666 NotebookApp][m Found 4.x extension Search-Replace
+[32m[I 15:15:43.668 NotebookApp][m Found 4.x extension Skip-Traceback
+[32m[I 15:15:43.669 NotebookApp][m Found 4.x extension Table of Content
+[32m[I 15:15:43.672 NotebookApp][m Found 3.x 4.x extension Toggle all line numbers
+[32m[I 15:15:55.610 NotebookApp][m Found 4.x extension Rubberband
+[32m[I 15:15:55.612 NotebookApp][m Found 4.x extension NbExtensions menu item
+[32m[I 15:15:55.615 NotebookApp][m Found 4.x extension Printview
+[32m[I 15:15:55.619 NotebookApp][m Found 4.x extension zenmode
+[32m[I 15:15:55.623 NotebookApp][m Found 3.x, 4.x extension AutoSaveTime
+[32m[I 15:15:55.629 NotebookApp][m Found 3.x, 4.x extension Autoscroll
+[32m[I 15:15:55.630 NotebookApp][m Found 4.x extension Chrome Clipboard
+[32m[I 15:15:55.633 NotebookApp][m Found 4.x extension Codefolding
+[32m[I 15:15:55.635 NotebookApp][m Found 3.x, 4.x extension Comment/Uncomment Hotkey
+[32m[I 15:15:55.636 NotebookApp][m Found 4.x extension datestamper
+[32m[I 15:15:55.638 NotebookApp][m Found 4.x extension Drag and Drop
+[32m[I 15:15:55.640 NotebookApp][m Found 4.x extension Equation Auto Numbering
+[32m[I 15:15:55.642 NotebookApp][m Found 4.x extension ExecuteTime
+[32m[I 15:15:55.643 NotebookApp][m Found 3.x extension Exercise
+[32m[I 15:15:55.645 NotebookApp][m Found 3.x, 4.x extension Help panel
+[32m[I 15:15:55.646 NotebookApp][m Found 3.x 4.x extension Hide input
+[32m[I 15:15:55.647 NotebookApp][m Found 3.x 4.x extension Hide input all
+[32m[I 15:15:55.649 NotebookApp][m Found 3.x, Jupyter (4.x) extension highlighter
+[32m[I 15:15:55.650 NotebookApp][m Found 3.x, 4.x extension Initialization cells
+[32m[I 15:15:55.652 NotebookApp][m Found 3.x, Jupyter (4.x) extension (some) LaTeX environments for Jupyter
+[32m[I 15:15:55.655 NotebookApp][m Found 4.x extension Limit Output
+[32m[I 15:15:55.657 NotebookApp][m Found 4.x extension Navigation-Hotkeys
+[32m[I 15:15:55.658 NotebookApp][m Found 4.x extension Python Markdown
+[32m[I 15:15:55.660 NotebookApp][m Found 4.x extension Rubberband
+[32m[I 15:15:55.663 NotebookApp][m Found 4.x extension Ruler
+[32m[I 15:15:55.665 NotebookApp][m Found 4.x extension Runtools
+[32m[I 15:15:55.666 NotebookApp][m Found 4.x extension Search-Replace
+[32m[I 15:15:55.668 NotebookApp][m Found 4.x extension Skip-Traceback
+[32m[I 15:15:55.669 NotebookApp][m Found 4.x extension Table of Content
+[32m[I 15:15:55.672 NotebookApp][m Found 3.x 4.x extension Toggle all line numbers
+[32m[I 15:16:00.202 NotebookApp][m Kernel shutdown: 907fa382-3404-4663-802b-fe02d77485d3
+[33m[W 15:16:01.401 NotebookApp][m 404 GET /notebooks/ipynb/theory/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151017082536 (127.0.0.1) 1.15ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/BM_simulations.ipynb
+[33m[W 15:16:01.406 NotebookApp][m 404 GET /notebooks/ipynb/theory/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151017082536 (127.0.0.1) 0.90ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/BM_simulations.ipynb
+[33m[W 15:16:01.412 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151017082536 (127.0.0.1) 1.10ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/BM_simulations.ipynb
+[32m[I 15:16:01.749 NotebookApp][m Kernel started: b40c5cb7-f06a-4d5b-ad67-67a16e53a45e
+[33m[W 15:16:01.950 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151017082536 (127.0.0.1) 1.45ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/BM_simulations.ipynb
+[33m[W 15:16:02.000 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151017082536 (127.0.0.1) 1.24ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/BM_simulations.ipynb
+[33m[W 15:16:02.002 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151017082536 (127.0.0.1) 1.08ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/BM_simulations.ipynb
+[32m[I 15:16:08.815 NotebookApp][m Saving file at /ipynb/theory/BM_simulations.ipynb
+[NbConvertApp] WARNING | Collisions detected in jupyter_nbconvert_config.py and jupyter_nbconvert_config.json config files. jupyter_nbconvert_config.json has higher priority: {
+  "Exporter": {
+    "template_path": "['.', '/home/nick/.local/share/jupyter/templates'] ignored, using [u'/home/nick/.local/share/jupyter/templates']"
+  }
+}
+/opt/anaconda/lib/python2.7/site-packages/IPython/nbconvert.py:13: ShimWarning: The `IPython.nbconvert` package has been deprecated. You should import from ipython_nbconvert instead.
+  "You should import from ipython_nbconvert instead.", ShimWarning)
+[NbConvertApp] Converting notebook BM_simulations.ipynb to html
+[NbConvertApp] Writing 237219 bytes to BM_simulations.html
+[32m[I 15:16:09.530 NotebookApp][m 302 GET /notebooks/ipynb/theory/BM_simulations.html (127.0.0.1) 0.87ms
+[33m[W 15:16:09.615 NotebookApp][m 404 GET /files/ipynb/theory/custom.css (127.0.0.1): No such file or directory: ipynb/theory/custom.css
+[33m[W 15:16:09.616 NotebookApp][m 404 GET /files/ipynb/theory/custom.css (127.0.0.1) 1.34ms referer=http://127.0.0.1:7702/files/ipynb/theory/BM_simulations.html
+[33m[W 15:16:09.975 NotebookApp][m 404 GET /favicon.ico (127.0.0.1) 1.38ms referer=http://127.0.0.1:7702/files/ipynb/theory/BM_simulations.html
+[32m[I 15:16:19.876 NotebookApp][m Saving file at /ipynb/theory/BM_simulations.ipynb
+[NbConvertApp] WARNING | Collisions detected in jupyter_nbconvert_config.py and jupyter_nbconvert_config.json config files. jupyter_nbconvert_config.json has higher priority: {
+  "Exporter": {
+    "template_path": "['.', '/home/nick/.local/share/jupyter/templates'] ignored, using [u'/home/nick/.local/share/jupyter/templates']"
+  }
+}
+/opt/anaconda/lib/python2.7/site-packages/IPython/nbconvert.py:13: ShimWarning: The `IPython.nbconvert` package has been deprecated. You should import from ipython_nbconvert instead.
+  "You should import from ipython_nbconvert instead.", ShimWarning)
+[NbConvertApp] Converting notebook BM_simulations.ipynb to html
+[NbConvertApp] Writing 237219 bytes to BM_simulations.html
+[32m[I 15:16:20.483 NotebookApp][m 302 GET /notebooks/ipynb/theory/BM_simulations.html (127.0.0.1) 0.85ms
+[33m[W 15:16:20.597 NotebookApp][m 404 GET /files/ipynb/theory/custom.css (127.0.0.1): No such file or directory: ipynb/theory/custom.css
+[33m[W 15:16:20.598 NotebookApp][m 404 GET /files/ipynb/theory/custom.css (127.0.0.1) 1.32ms referer=http://127.0.0.1:7702/files/ipynb/theory/BM_simulations.html
+[32m[I 15:16:31.337 NotebookApp][m Kernel shutdown: b40c5cb7-f06a-4d5b-ad67-67a16e53a45e
+[32m[I 15:16:39.605 NotebookApp][m Found 4.x extension Rubberband
+[32m[I 15:16:39.606 NotebookApp][m Found 4.x extension NbExtensions menu item
+[32m[I 15:16:39.609 NotebookApp][m Found 4.x extension Printview
+[32m[I 15:16:39.613 NotebookApp][m Found 4.x extension zenmode
+[32m[I 15:16:39.618 NotebookApp][m Found 3.x, 4.x extension AutoSaveTime
+[32m[I 15:16:39.623 NotebookApp][m Found 3.x, 4.x extension Autoscroll
+[32m[I 15:16:39.625 NotebookApp][m Found 4.x extension Chrome Clipboard
+[32m[I 15:16:39.627 NotebookApp][m Found 4.x extension Codefolding
+[32m[I 15:16:39.629 NotebookApp][m Found 3.x, 4.x extension Comment/Uncomment Hotkey
+[32m[I 15:16:39.631 NotebookApp][m Found 4.x extension datestamper
+[32m[I 15:16:39.632 NotebookApp][m Found 4.x extension Drag and Drop
+[32m[I 15:16:39.635 NotebookApp][m Found 4.x extension Equation Auto Numbering
+[32m[I 15:16:39.636 NotebookApp][m Found 4.x extension ExecuteTime
+[32m[I 15:16:39.638 NotebookApp][m Found 3.x extension Exercise
+[32m[I 15:16:39.639 NotebookApp][m Found 3.x, 4.x extension Help panel
+[32m[I 15:16:39.641 NotebookApp][m Found 3.x 4.x extension Hide input
+[32m[I 15:16:39.642 NotebookApp][m Found 3.x 4.x extension Hide input all
+[32m[I 15:16:39.643 NotebookApp][m Found 3.x, Jupyter (4.x) extension highlighter
+[32m[I 15:16:39.645 NotebookApp][m Found 3.x, 4.x extension Initialization cells
+[32m[I 15:16:39.647 NotebookApp][m Found 3.x, Jupyter (4.x) extension (some) LaTeX environments for Jupyter
+[32m[I 15:16:39.650 NotebookApp][m Found 4.x extension Limit Output
+[32m[I 15:16:39.652 NotebookApp][m Found 4.x extension Navigation-Hotkeys
+[32m[I 15:16:39.653 NotebookApp][m Found 4.x extension Python Markdown
+[32m[I 15:16:39.655 NotebookApp][m Found 4.x extension Rubberband
+[32m[I 15:16:39.658 NotebookApp][m Found 4.x extension Ruler
+[32m[I 15:16:39.660 NotebookApp][m Found 4.x extension Runtools
+[32m[I 15:16:39.661 NotebookApp][m Found 4.x extension Search-Replace
+[32m[I 15:16:39.663 NotebookApp][m Found 4.x extension Skip-Traceback
+[32m[I 15:16:39.664 NotebookApp][m Found 4.x extension Table of Content
+[32m[I 15:16:39.667 NotebookApp][m Found 3.x 4.x extension Toggle all line numbers
+[32m[I 15:17:57.006 NotebookApp][m Found 4.x extension Rubberband
+[32m[I 15:17:57.007 NotebookApp][m Found 4.x extension NbExtensions menu item
+[32m[I 15:17:57.010 NotebookApp][m Found 4.x extension Printview
+[32m[I 15:17:57.014 NotebookApp][m Found 4.x extension zenmode
+[32m[I 15:17:57.019 NotebookApp][m Found 3.x, 4.x extension AutoSaveTime
+[32m[I 15:17:57.024 NotebookApp][m Found 3.x, 4.x extension Autoscroll
+[32m[I 15:17:57.026 NotebookApp][m Found 4.x extension Chrome Clipboard
+[32m[I 15:17:57.028 NotebookApp][m Found 4.x extension Codefolding
+[32m[I 15:17:57.030 NotebookApp][m Found 3.x, 4.x extension Comment/Uncomment Hotkey
+[32m[I 15:17:57.032 NotebookApp][m Found 4.x extension datestamper
+[32m[I 15:17:57.033 NotebookApp][m Found 4.x extension Drag and Drop
+[32m[I 15:17:57.036 NotebookApp][m Found 4.x extension Equation Auto Numbering
+[32m[I 15:17:57.037 NotebookApp][m Found 4.x extension ExecuteTime
+[32m[I 15:17:57.039 NotebookApp][m Found 3.x extension Exercise
+[32m[I 15:17:57.041 NotebookApp][m Found 3.x, 4.x extension Help panel
+[32m[I 15:17:57.042 NotebookApp][m Found 3.x 4.x extension Hide input
+[32m[I 15:17:57.043 NotebookApp][m Found 3.x 4.x extension Hide input all
+[32m[I 15:17:57.044 NotebookApp][m Found 3.x, Jupyter (4.x) extension highlighter
+[32m[I 15:17:57.046 NotebookApp][m Found 3.x, 4.x extension Initialization cells
+[32m[I 15:17:57.048 NotebookApp][m Found 3.x, Jupyter (4.x) extension (some) LaTeX environments for Jupyter
+[32m[I 15:17:57.051 NotebookApp][m Found 4.x extension Limit Output
+[32m[I 15:17:57.053 NotebookApp][m Found 4.x extension Navigation-Hotkeys
+[32m[I 15:17:57.054 NotebookApp][m Found 4.x extension Python Markdown
+[32m[I 15:17:57.056 NotebookApp][m Found 4.x extension Rubberband
+[32m[I 15:17:57.059 NotebookApp][m Found 4.x extension Ruler
+[32m[I 15:17:57.061 NotebookApp][m Found 4.x extension Runtools
+[32m[I 15:17:57.062 NotebookApp][m Found 4.x extension Search-Replace
+[32m[I 15:17:57.064 NotebookApp][m Found 4.x extension Skip-Traceback
+[32m[I 15:17:57.065 NotebookApp][m Found 4.x extension Table of Content
+[32m[I 15:17:57.069 NotebookApp][m Found 3.x 4.x extension Toggle all line numbers
+[33m[W 15:17:59.751 NotebookApp][m 404 GET /notebooks/ipynb/theory/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151017082536 (127.0.0.1) 1.00ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/BM_simulations.ipynb
+[33m[W 15:17:59.767 NotebookApp][m 404 GET /notebooks/ipynb/theory/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151017082536 (127.0.0.1) 0.90ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/BM_simulations.ipynb
+[33m[W 15:17:59.773 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151017082536 (127.0.0.1) 1.12ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/BM_simulations.ipynb
+[32m[I 15:18:00.213 NotebookApp][m Kernel started: a8225c2c-4607-4ea6-87fe-3c67194283c6
+[33m[W 15:18:00.383 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151017082536 (127.0.0.1) 1.37ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/BM_simulations.ipynb
+[33m[W 15:18:00.408 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151017082536 (127.0.0.1) 1.11ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/BM_simulations.ipynb
+[33m[W 15:18:00.409 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151017082536 (127.0.0.1) 1.06ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/BM_simulations.ipynb
+[32m[I 15:18:01.561 NotebookApp][m Saving file at /ipynb/theory/BM_simulations.ipynb
+[NbConvertApp] WARNING | Collisions detected in jupyter_nbconvert_config.py and jupyter_nbconvert_config.json config files. jupyter_nbconvert_config.json has higher priority: {
+  "Exporter": {
+    "template_path": "['.', '/home/nick/.local/share/jupyter/templates'] ignored, using [u'/home/nick/.local/share/jupyter/templates']"
+  }
+}
+/opt/anaconda/lib/python2.7/site-packages/IPython/nbconvert.py:13: ShimWarning: The `IPython.nbconvert` package has been deprecated. You should import from ipython_nbconvert instead.
+  "You should import from ipython_nbconvert instead.", ShimWarning)
+[NbConvertApp] Converting notebook BM_simulations.ipynb to pdf
+[NbConvertApp] Writing 43877 bytes to notebook.tex
+[NbConvertApp] Building PDF
+[NbConvertApp] Running pdflatex 3 times: [u'pdflatex', u'notebook.tex']
+[NbConvertApp] CRITICAL | pdflatex failed: [u'pdflatex', u'notebook.tex']
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+entering extended mode
+(./notebook.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, farsi, arabic, croatian, bulgarian, ukrainian, russian, czech, slov
+ak, danish, dutch, finnish, french, basque, ngerman, german, german-x-2009-06-1
+9, ngerman-x-2009-06-19, ibycus, monogreek, greek, ancientgreek, hungarian, san
+skrit, italian, latin, latvian, lithuanian, mongolian2a, mongolian, bokmal, nyn
+orsk, romanian, irish, coptic, serbian, turkish, welsh, esperanto, uppersorbian
+, estonian, indonesian, interlingua, icelandic, kurmanji, slovenian, polish, po
+rtuguese, spanish, galician, catalan, swedish, ukenglish, pinyin, loaded.
+(/usr/share/texmf-texlive/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size10.clo))
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
+(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def)))
+
+! LaTeX Error: File `adjustbox.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+! Emergency stop.
+<read *> 
+         
+l.19     \usepackage
+                    {color} % Allow colors to be defined^^M
+!  ==> Fatal error occurred, no output PDF file produced!
+Transcript written on notebook.log.
+
+[NbConvertApp] Running bibtex 1 time: [u'bibtex', u'notebook']
+[NbConvertApp] WARNING | bibtex had problems, most likely because there were no citations
+[NbConvertApp] Running pdflatex 3 times: [u'pdflatex', u'notebook.tex']
+[NbConvertApp] CRITICAL | pdflatex failed: [u'pdflatex', u'notebook.tex']
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+entering extended mode
+(./notebook.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, farsi, arabic, croatian, bulgarian, ukrainian, russian, czech, slov
+ak, danish, dutch, finnish, french, basque, ngerman, german, german-x-2009-06-1
+9, ngerman-x-2009-06-19, ibycus, monogreek, greek, ancientgreek, hungarian, san
+skrit, italian, latin, latvian, lithuanian, mongolian2a, mongolian, bokmal, nyn
+orsk, romanian, irish, coptic, serbian, turkish, welsh, esperanto, uppersorbian
+, estonian, indonesian, interlingua, icelandic, kurmanji, slovenian, polish, po
+rtuguese, spanish, galician, catalan, swedish, ukenglish, pinyin, loaded.
+(/usr/share/texmf-texlive/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size10.clo))
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
+(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def)))
+
+! LaTeX Error: File `adjustbox.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+! Emergency stop.
+<read *> 
+         
+l.19     \usepackage
+                    {color} % Allow colors to be defined^^M
+!  ==> Fatal error occurred, no output PDF file produced!
+Transcript written on notebook.log.
+
+Traceback (most recent call last):
+  File "/opt/anaconda/bin/jupyter-nbconvert", line 6, in <module>
+    main()
+  File "/opt/anaconda/lib/python2.7/site-packages/jupyter_core/application.py", line 267, in launch_instance
+    return super(JupyterApp, cls).launch_instance(argv=argv, **kwargs)
+  File "/opt/anaconda/lib/python2.7/site-packages/traitlets/config/application.py", line 592, in launch_instance
+    app.start()
+  File "/opt/anaconda/lib/python2.7/site-packages/nbconvert/nbconvertapp.py", line 286, in start
+    self.convert_notebooks()
+  File "/opt/anaconda/lib/python2.7/site-packages/nbconvert/nbconvertapp.py", line 409, in convert_notebooks
+    self.convert_single_notebook(notebook_filename)
+  File "/opt/anaconda/lib/python2.7/site-packages/nbconvert/nbconvertapp.py", line 380, in convert_single_notebook
+    output, resources = self.export_single_notebook(notebook_filename, resources)
+  File "/opt/anaconda/lib/python2.7/site-packages/nbconvert/nbconvertapp.py", line 332, in export_single_notebook
+    output, resources = self.exporter.from_filename(notebook_filename, resources=resources)
+  File "/opt/anaconda/lib/python2.7/site-packages/nbconvert/exporters/exporter.py", line 166, in from_filename
+    return self.from_notebook_node(nbformat.read(f, as_version=4), resources=resources, **kw)
+  File "/opt/anaconda/lib/python2.7/site-packages/nbconvert/exporters/pdf.py", line 139, in from_notebook_node
+    raise RuntimeError("PDF creating failed")
+RuntimeError: PDF creating failed
+[33m[W 15:18:02.365 NotebookApp][m 404 GET /notebooks/ipynb/theory/BM_simulations.pdf (127.0.0.1): No such file or directory: ipynb/theory/BM_simulations.pdf
+[33m[W 15:18:02.366 NotebookApp][m 404 GET /notebooks/ipynb/theory/BM_simulations.pdf (127.0.0.1) 1.67ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/BM_simulations.ipynb
+[32m[I 11:52:33.706 NotebookApp][m Saving file at /ipynb/theory/BM_simulations.ipynb
+[32m[I 11:54:56.725 NotebookApp][m 302 GET / (127.0.0.1) 0.76ms
+[33m[W 11:55:07.768 NotebookApp][m 404 GET /notebooks/ipynb/HR-SIP_example/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151017082536 (127.0.0.1) 2.55ms referer=http://127.0.0.1:7702/notebooks/ipynb/HR-SIP_example/genome_n4.ipynb
+[33m[W 11:55:07.774 NotebookApp][m 404 GET /notebooks/ipynb/HR-SIP_example/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151017082536 (127.0.0.1) 2.44ms referer=http://127.0.0.1:7702/notebooks/ipynb/HR-SIP_example/genome_n4.ipynb
+[33m[W 11:55:07.783 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151017082536 (127.0.0.1) 1.21ms referer=http://127.0.0.1:7702/notebooks/ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 11:55:08.423 NotebookApp][m Kernel started: e0c42752-5d33-4a8d-ac39-2d111af5d91c
+[33m[W 11:55:08.645 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151017082536 (127.0.0.1) 1.50ms referer=http://127.0.0.1:7702/notebooks/ipynb/HR-SIP_example/genome_n4.ipynb
+[33m[W 11:55:08.665 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151017082536 (127.0.0.1) 1.21ms referer=http://127.0.0.1:7702/notebooks/ipynb/HR-SIP_example/genome_n4.ipynb
+[33m[W 11:55:08.667 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151017082536 (127.0.0.1) 1.19ms referer=http://127.0.0.1:7702/notebooks/ipynb/HR-SIP_example/genome_n4.ipynb
+[32m[I 12:44:09.306 NotebookApp][m 302 GET / (127.0.0.1) 0.48ms
+[32m[I 19:12:41.391 NotebookApp][m Serving notebooks from local directory: /home/nick/notebook/SIPSim
+[32m[I 19:12:41.391 NotebookApp][m 0 active kernels 
+[32m[I 19:12:41.391 NotebookApp][m The IPython Notebook is running at: http://localhost:7702/
+[32m[I 19:12:41.392 NotebookApp][m Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[33m[W 19:12:52.592 NotebookApp][m 404 GET /api/kernels/0edfd047-7ae1-4dff-b8f0-852051450e24/channels?session_id=26B82A3BBED945CCBC47DA9DE63255B4 (127.0.0.1): Kernel does not exist: 0edfd047-7ae1-4dff-b8f0-852051450e24
+[33m[W 19:12:52.616 NotebookApp][m 404 GET /api/kernels/0edfd047-7ae1-4dff-b8f0-852051450e24/channels?session_id=26B82A3BBED945CCBC47DA9DE63255B4 (127.0.0.1) 64.96ms referer=None
+[33m[W 19:12:58.119 NotebookApp][m 404 GET /api/kernels/0edfd047-7ae1-4dff-b8f0-852051450e24/channels?session_id=26B82A3BBED945CCBC47DA9DE63255B4 (127.0.0.1): Kernel does not exist: 0edfd047-7ae1-4dff-b8f0-852051450e24
+[33m[W 19:12:58.121 NotebookApp][m 404 GET /api/kernels/0edfd047-7ae1-4dff-b8f0-852051450e24/channels?session_id=26B82A3BBED945CCBC47DA9DE63255B4 (127.0.0.1) 6.02ms referer=None
+[32m[I 10:00:22.500 NotebookApp][m 302 GET / (127.0.0.1) 0.90ms
+[32m[I 10:00:24.128 NotebookApp][m Found 4.x extension Rubberband
+[32m[I 10:00:24.136 NotebookApp][m Found 4.x extension NbExtensions menu item
+[32m[I 10:00:24.148 NotebookApp][m Found 4.x extension Printview
+[32m[I 10:00:24.155 NotebookApp][m Found 4.x extension zenmode
+[32m[I 10:00:24.167 NotebookApp][m Found 3.x, 4.x extension AutoSaveTime
+[32m[I 10:00:24.174 NotebookApp][m Found 3.x, 4.x extension Autoscroll
+[32m[I 10:00:24.184 NotebookApp][m Found 4.x extension Chrome Clipboard
+[32m[I 10:00:24.195 NotebookApp][m Found 4.x extension Codefolding
+[32m[I 10:00:24.198 NotebookApp][m Found 3.x, 4.x extension Comment/Uncomment Hotkey
+[32m[I 10:00:24.204 NotebookApp][m Found 4.x extension datestamper
+[32m[I 10:00:24.212 NotebookApp][m Found 4.x extension Drag and Drop
+[32m[I 10:00:24.215 NotebookApp][m Found 4.x extension Equation Auto Numbering
+[32m[I 10:00:24.217 NotebookApp][m Found 4.x extension ExecuteTime
+[32m[I 10:00:24.222 NotebookApp][m Found 3.x extension Exercise
+[32m[I 10:00:24.232 NotebookApp][m Found 3.x, 4.x extension Help panel
+[32m[I 10:00:24.239 NotebookApp][m Found 3.x 4.x extension Hide input
+[32m[I 10:00:24.242 NotebookApp][m Found 3.x 4.x extension Hide input all
+[32m[I 10:00:24.244 NotebookApp][m Found 3.x, Jupyter (4.x) extension highlighter
+[32m[I 10:00:24.251 NotebookApp][m Found 3.x, 4.x extension Initialization cells
+[32m[I 10:00:24.253 NotebookApp][m Found 3.x, Jupyter (4.x) extension (some) LaTeX environments for Jupyter
+[32m[I 10:00:24.268 NotebookApp][m Found 4.x extension Limit Output
+[32m[I 10:00:24.270 NotebookApp][m Found 4.x extension Navigation-Hotkeys
+[32m[I 10:00:24.280 NotebookApp][m Found 4.x extension Python Markdown
+[32m[I 10:00:24.292 NotebookApp][m Found 4.x extension Rubberband
+[32m[I 10:00:24.298 NotebookApp][m Found 4.x extension Ruler
+[32m[I 10:00:24.311 NotebookApp][m Found 4.x extension Runtools
+[32m[I 10:00:24.320 NotebookApp][m Found 4.x extension Search-Replace
+[32m[I 10:00:24.331 NotebookApp][m Found 4.x extension Skip-Traceback
+[32m[I 10:00:24.333 NotebookApp][m Found 4.x extension Table of Content
+[32m[I 10:00:24.345 NotebookApp][m Found 3.x 4.x extension Toggle all line numbers
+[33m[W 10:00:52.102 NotebookApp][m 404 GET /api/kernels/493d0f71-588f-41bb-880f-3fd178103ca4/channels?session_id=3CEB30B3710B492A84D7DF5C2AE0D38C (127.0.0.1): Kernel does not exist: 493d0f71-588f-41bb-880f-3fd178103ca4
+[33m[W 10:00:52.104 NotebookApp][m 404 GET /api/kernels/493d0f71-588f-41bb-880f-3fd178103ca4/channels?session_id=3CEB30B3710B492A84D7DF5C2AE0D38C (127.0.0.1) 9.98ms referer=None
+[32m[I 10:02:42.173 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/12C-Con_bulk_OTU_seqs.ipynb
+[33m[W 10:15:34.599 NotebookApp][m 404 GET /api/kernels/9e95339a-0466-46a0-9f69-d4f7a02c3fbb/channels?session_id=0B5CF85833A947578EEDD026164BCA38 (127.0.0.1): Kernel does not exist: 9e95339a-0466-46a0-9f69-d4f7a02c3fbb
+[33m[W 10:15:34.601 NotebookApp][m 404 GET /api/kernels/9e95339a-0466-46a0-9f69-d4f7a02c3fbb/channels?session_id=0B5CF85833A947578EEDD026164BCA38 (127.0.0.1) 10.16ms referer=None
+[33m[W 10:15:44.868 NotebookApp][m 404 GET /api/kernels/9e95339a-0466-46a0-9f69-d4f7a02c3fbb/channels?session_id=0B5CF85833A947578EEDD026164BCA38 (127.0.0.1): Kernel does not exist: 9e95339a-0466-46a0-9f69-d4f7a02c3fbb
+[33m[W 10:15:44.869 NotebookApp][m 404 GET /api/kernels/9e95339a-0466-46a0-9f69-d4f7a02c3fbb/channels?session_id=0B5CF85833A947578EEDD026164BCA38 (127.0.0.1) 6.44ms referer=None
+[33m[W 10:15:51.567 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151025191241 (127.0.0.1) 1.62ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[33m[W 10:15:51.590 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151025191241 (127.0.0.1) 1.95ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[33m[W 10:15:51.608 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151025191241 (127.0.0.1) 3.77ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[32m[I 10:15:52.704 NotebookApp][m Kernel started: 78527458-0163-48bf-b7ad-7e9f0c70beac
+/opt/anaconda/lib/python2.7/site-packages/path.py:121: UserWarning: Module argparse was already imported from /opt/anaconda/lib/python2.7/argparse.pyc, but /opt/anaconda/lib/python2.7/site-packages is being added to sys.path
+  import pkg_resources
+[33m[W 10:15:52.954 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151025191241 (127.0.0.1) 1.47ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[33m[W 10:15:53.078 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151025191241 (127.0.0.1) 3.06ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[33m[W 10:15:53.082 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151025191241 (127.0.0.1) 2.93ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[32m[I 10:17:52.760 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[33m[W 10:35:53.290 NotebookApp][m WebSocket ping timeout after 119974 ms.
+^C[32m[I 13:23:16.670 NotebookApp][m interrupted
+Serving notebooks from local directory: /home/nick/notebook/SIPSim
+1 active kernels 
+The IPython Notebook is running at: http://localhost:7702/
+Shutdown this notebook server (y/[n])? No answer for 5s: resuming operation...
+n
+[32m[I 13:23:47.930 NotebookApp][m 302 GET / (127.0.0.1) 1.09ms
+[32m[I 13:26:45.510 NotebookApp][m 302 GET / (127.0.0.1) 0.68ms
+[33m[W 13:26:49.737 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151025191241 (127.0.0.1) 1.51ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[33m[W 13:26:49.759 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151025191241 (127.0.0.1) 1.41ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[33m[W 13:26:49.772 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151025191241 (127.0.0.1) 2.39ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[33m[W 13:26:50.760 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151025191241 (127.0.0.1) 1.39ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[33m[W 13:26:50.821 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151025191241 (127.0.0.1) 2.83ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[33m[W 13:26:50.824 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151025191241 (127.0.0.1) 2.39ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[32m[I 13:28:50.831 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[33m[W 13:38:01.715 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151025191241 (127.0.0.1) 2.12ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[33m[W 13:38:01.729 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151025191241 (127.0.0.1) 1.15ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[33m[W 13:38:01.736 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151025191241 (127.0.0.1) 1.39ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[33m[W 13:38:02.556 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151025191241 (127.0.0.1) 1.35ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[33m[W 13:38:02.613 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151025191241 (127.0.0.1) 2.68ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[33m[W 13:38:02.616 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151025191241 (127.0.0.1) 2.09ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[32m[I 13:40:02.791 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[33m[W 15:21:32.504 NotebookApp][m WebSocket ping timeout after 119941 ms.
+[32m[I 20:32:56.936 NotebookApp][m Creating new notebook in /ipynb/t
+[32m[I 20:32:59.040 NotebookApp][m Kernel started: c4444e97-d578-499e-a5fa-f2811a0b8dce
+/opt/anaconda/lib/python2.7/site-packages/path.py:121: UserWarning: Module argparse was already imported from /opt/anaconda/lib/python2.7/argparse.pyc, but /opt/anaconda/lib/python2.7/site-packages is being added to sys.path
+  import pkg_resources
+[33m[W 20:33:00.149 NotebookApp][m 404 GET /notebooks/ipynb/t/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151025191241 (127.0.0.1) 2.14ms referer=http://127.0.0.1:7702/notebooks/ipynb/t/Untitled.ipynb?kernel_name=python2
+[33m[W 20:33:00.865 NotebookApp][m 404 GET /notebooks/ipynb/t/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151025191241 (127.0.0.1) 2.62ms referer=http://127.0.0.1:7702/notebooks/ipynb/t/Untitled.ipynb?kernel_name=python2
+[33m[W 20:33:00.873 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151025191241 (127.0.0.1) 1.75ms referer=http://127.0.0.1:7702/notebooks/ipynb/t/Untitled.ipynb?kernel_name=python2
+[33m[W 20:33:01.516 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151025191241 (127.0.0.1) 3.10ms referer=http://127.0.0.1:7702/notebooks/ipynb/t/Untitled.ipynb?kernel_name=python2
+[33m[W 20:33:01.561 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151025191241 (127.0.0.1) 3.09ms referer=http://127.0.0.1:7702/notebooks/ipynb/t/Untitled.ipynb?kernel_name=python2
+[33m[W 20:33:01.656 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151025191241 (127.0.0.1) 2.99ms referer=http://127.0.0.1:7702/notebooks/ipynb/t/Untitled.ipynb?kernel_name=python2
+[32m[I 20:33:28.403 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/dataset_info.ipynb
+[32m[I 20:34:59.424 NotebookApp][m Saving file at /ipynb/t/tmp.ipynb
+[32m[I 20:38:59.089 NotebookApp][m Saving file at /ipynb/t/tmp.ipynb
+[33m[W 12:02:49.348 NotebookApp][m 404 GET /notebooks/ipynb/t/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151025191241 (127.0.0.1) 1.19ms referer=http://127.0.0.1:7702/notebooks/ipynb/t/tmp.ipynb
+[33m[W 12:02:49.353 NotebookApp][m 404 GET /notebooks/ipynb/t/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151025191241 (127.0.0.1) 1.12ms referer=http://127.0.0.1:7702/notebooks/ipynb/t/tmp.ipynb
+[33m[W 12:02:49.359 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151025191241 (127.0.0.1) 1.43ms referer=http://127.0.0.1:7702/notebooks/ipynb/t/tmp.ipynb
+[33m[W 12:02:49.633 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151025191241 (127.0.0.1) 1.22ms referer=http://127.0.0.1:7702/notebooks/ipynb/t/tmp.ipynb
+[33m[W 12:02:49.650 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151025191241 (127.0.0.1) 1.24ms referer=http://127.0.0.1:7702/notebooks/ipynb/t/tmp.ipynb
+[33m[W 12:02:49.652 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151025191241 (127.0.0.1) 1.44ms referer=http://127.0.0.1:7702/notebooks/ipynb/t/tmp.ipynb
+^C[32m[I 11:15:57.726 NotebookApp][m interrupted
+Serving notebooks from local directory: /home/nick/notebook/SIPSim
+2 active kernels 
+The IPython Notebook is running at: http://localhost:7702/
+Shutdown this notebook server (y/[n])? y
+[C 11:16:01.165 NotebookApp] Shutdown confirmed
+[32m[I 11:16:01.165 NotebookApp][m Shutting down kernels
+[32m[I 11:16:01.781 NotebookApp][m Kernel shutdown: 78527458-0163-48bf-b7ad-7e9f0c70beac
+[32m[I 11:16:01.782 NotebookApp][m Kernel shutdown: c4444e97-d578-499e-a5fa-f2811a0b8dce
