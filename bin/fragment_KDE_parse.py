@@ -19,8 +19,11 @@ Options:
   --rename=<r>    Column in genomes table to rename parsed genome fragments.
                   [default: None]
   --cluster=<c>   Column that designates matching clusters for selecting 
-                  target genomes.
-                  [default: cluster]
+                  target genomes. 
+                  [default: None]
+  --NA-random     For NA values in --name column, parse out random 
+                  fragment KDE and rename by --rename column (must provide 
+                  --rename).
   --random=<rn>   Parse out <rn> randomly selected genome fragment KDEs.
                   Sampling with replacement of genome fragment KDEs.
                   NOTE: genome_list file is ignored
@@ -32,6 +35,7 @@ Options:
 
 Description:
   Parsing out select fragment KDEs from the entire list of genome KDEs.
+  Each '.' in the status output denotes 10 fragment_KDE objects parsed.
   
   invert
   ------
@@ -43,6 +47,11 @@ Description:
   Get a random list of genome KDEs. KDEs are drawn from list of KDEs without
   replacement, so you can create a list of genome KDEs as long as you want.
   The KDEs will be named: "OTU.rand#"
+
+  cluster
+  -------
+  All rows in genome_list that have 'NA' or equivalent in --cluster column 
+  will be skipped.
 
   Output
   ------
@@ -91,7 +100,7 @@ def parse_comm_by_cluster(comm, clust_col, inv=False):
     return(comm)
 
 
-def parse_target_frag_kdes(frag_kdes, comm):
+def parse_target_frag_kdes(frag_kdes, comm, NA_random):
     """Parsing out genome fragment KDEs for target taxa.
     Parameters
     ----------
@@ -99,15 +108,17 @@ def parse_target_frag_kdes(frag_kdes, comm):
         list of frag_kde objects
     comm : pandas.dataframe
         community table
-    
+    NA_random : NAs (non-targets) get a random fragment KDE
+   
     Returns
     -------
     frag_kdes
     """    
-    # making an index for frag_kde list
+    # making an index for frag_kde list (genomeID : list_index)
     target_idx = {g[0]:i for i,g in enumerate(frag_kdes)}
     msg = 'Number of genomes with simulated fragments: {}\n'
-    sys.stderr.write(msg.format(len(target_idx))) 
+    len_idx = len(target_idx)
+    sys.stderr.write(msg.format(len_idx))
         
     # parsing out frag_kdes
     frag_kde_target = []
@@ -116,13 +127,18 @@ def parse_target_frag_kdes(frag_kdes, comm):
         stat_cnt += 1
         if stat_cnt % 10 == 0:
             sys.stderr.write('.')
-        tg = row[0]   # genomeID
+        tg = row[0]   # genomeID by default
+        # getting index location of KDE in KDE list 
         try:
             idx = target_idx[tg]
         except KeyError:
-            idx = None
-            msg = 'Cannot find "{}" in target list'
-            print msg.format(tg)
+            if NA_random:
+                # random selection of fragment_kde 
+                idx = np.random.choice(len_idx, 1) 
+            else:
+                idx = None
+                msg = 'Cannot find "{}" in target list (check --name column)'
+                print msg.format(tg)
         try:
             frag_kde_target.append(copy.deepcopy(frag_kdes[idx]))
         except TypeError:
@@ -130,10 +146,10 @@ def parse_target_frag_kdes(frag_kdes, comm):
     sys.stderr.write('\n')
         
     # renaming genome fragment KDEs for target OTUs by target OTU-ID
+    ## skipping if no rename ID exists
     try:
         for i in range(comm.shape[0]):
-            #print '{} <-> {}'.format(frag_kde_target[i][0], comm.iloc[i,1])               
-            frag_kde_target[i][0] = comm.iloc[i,1]               
+            frag_kde_target[i][0] = comm.iloc[i,1]         
     except IndexError:
         pass
         
@@ -245,7 +261,7 @@ def parse_random_frag_kdes(frag_kdes, n):
 # main
 if __name__ == '__main__':
     args = docopt(__doc__, version='0.1')
-    args['--random'] = int(args['--random'])
+    args['--random'] = int(args['--random'])    
 
     # loading comm file
     if(args['--random'] <= 0):
@@ -274,7 +290,8 @@ if __name__ == '__main__':
     elif(args['--invert']):
         frag_kdes = parse_nontarget_frag_kdes(frag_kdes, df_comm)
     else:
-        frag_kdes = parse_target_frag_kdes(frag_kdes, df_comm)
+        frag_kdes = parse_target_frag_kdes(frag_kdes, df_comm, 
+                                           args['--NA-random'])
         
     # writing parsed fragment file
     dill.dump(frag_kdes, sys.stdout)

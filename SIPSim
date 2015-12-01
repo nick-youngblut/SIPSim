@@ -19,10 +19,10 @@ Commands:
     genome_index -- index genomes (required for amplicon-fragment simulation)
   Fragments:
     fragments -- Simulate genome fragments and calc fragment G+C content.
-    fragment_kde -- make a 2D kernel density estimate of fragment buoyant 
+    fragment_KDE -- make a 2D kernel density estimate of fragment buoyant 
                     density and length
-    fragment_kde_parse -- parsing out fragment KDEs for certain genomes
-    fragment_kde_cat -- concatenating 2 fragment_kde objects
+    fragment_KDE_parse -- parsing out fragment KDEs for certain genomes
+    fragment_KDE_cat -- concatenating 2 fragment_kde objects
   Community:
     communities -- Simulate the original communities for each isopycnic gradient
   Diffusion:

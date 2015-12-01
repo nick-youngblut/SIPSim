@@ -10198,3 +10198,66 @@ Shutdown this notebook server (y/[n])? y
 [32m[I 12:07:06.271 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/CD-HIT.ipynb
 [32m[I 12:11:01.327 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
 [32m[I 12:13:58.278 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 12:28:28.362 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 12:29:58.273 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 12:31:58.275 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 12:33:58.268 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 12:34:25.677 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 12:35:58.261 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 12:37:58.258 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 12:41:58.281 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 12:43:58.298 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 12:45:58.289 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 12:47:58.274 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 12:49:14.234 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 12:59:58.280 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 13:05:58.275 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 13:07:58.281 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 13:11:58.265 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 14:21:58.258 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 14:49:58.966 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 15:09:58.962 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 15:11:58.953 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 15:12:22.447 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 15:15:58.966 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 17:50:28.093 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 18:00:26.374 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 18:31:36.763 NotebookApp][m WebSocket ping timeout after 119518 ms.
+[32m[I 19:40:01.694 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 19:41:03.045 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 19:47:19.492 NotebookApp][m Creating new notebook in /ipynb/t
+[32m[I 19:47:23.525 NotebookApp][m Kernel started: 84c495ee-d3a8-4029-b0ca-a6a0f476e319
+[33m[W 19:47:23.528 NotebookApp][m 404 GET /notebooks/ipynb/t/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 1.30ms referer=http://127.0.0.1:7702/notebooks/ipynb/t/Untitled.ipynb?kernel_name=python2
+/opt/anaconda/lib/python2.7/site-packages/path.py:121: UserWarning: Module argparse was already imported from /opt/anaconda/lib/python2.7/argparse.pyc, but /opt/anaconda/lib/python2.7/site-packages is being added to sys.path
+  import pkg_resources
+[33m[W 19:47:23.661 NotebookApp][m 404 GET /notebooks/ipynb/t/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 1.09ms referer=http://127.0.0.1:7702/notebooks/ipynb/t/Untitled.ipynb?kernel_name=python2
+[33m[W 19:47:23.794 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.34ms referer=http://127.0.0.1:7702/notebooks/ipynb/t/Untitled.ipynb?kernel_name=python2
+[33m[W 19:47:24.571 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 2.63ms referer=http://127.0.0.1:7702/notebooks/ipynb/t/Untitled.ipynb?kernel_name=python2
+[33m[W 19:47:25.695 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 3.03ms referer=http://127.0.0.1:7702/notebooks/ipynb/t/Untitled.ipynb?kernel_name=python2
+[33m[W 19:47:25.700 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 2.74ms referer=http://127.0.0.1:7702/notebooks/ipynb/t/Untitled.ipynb?kernel_name=python2
+[32m[I 19:49:23.490 NotebookApp][m Saving file at /ipynb/t/interpolation.ipynb
+[32m[I 19:51:23.486 NotebookApp][m Saving file at /ipynb/t/interpolation.ipynb
+[32m[I 19:53:23.489 NotebookApp][m Saving file at /ipynb/t/interpolation.ipynb
+[32m[I 19:55:23.485 NotebookApp][m Saving file at /ipynb/t/interpolation.ipynb
+[32m[I 19:56:03.606 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 19:57:24.048 NotebookApp][m Saving file at /ipynb/t/interpolation.ipynb
+[33m[W 04:19:39.499 NotebookApp][m 404 GET /notebooks/ipynb/t/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 2.74ms referer=http://127.0.0.1:7702/notebooks/ipynb/t/interpolation.ipynb
+[33m[W 04:19:39.546 NotebookApp][m 404 GET /notebooks/ipynb/t/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 3.00ms referer=http://127.0.0.1:7702/notebooks/ipynb/t/interpolation.ipynb
+[33m[W 04:19:39.562 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 3.35ms referer=http://127.0.0.1:7702/notebooks/ipynb/t/interpolation.ipynb
+[33m[W 04:19:39.832 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 3.02ms referer=http://127.0.0.1:7702/notebooks/ipynb/t/interpolation.ipynb
+[33m[W 04:19:39.942 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 3.08ms referer=http://127.0.0.1:7702/notebooks/ipynb/t/interpolation.ipynb
+[33m[W 04:19:39.945 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 2.35ms referer=http://127.0.0.1:7702/notebooks/ipynb/t/interpolation.ipynb
+[32m[I 04:21:39.667 NotebookApp][m Saving file at /ipynb/t/interpolation.ipynb
+[32m[I 04:23:39.665 NotebookApp][m Saving file at /ipynb/t/interpolation.ipynb
+[33m[W 04:28:09.730 NotebookApp][m WebSocket ping timeout after 119949 ms.
+[33m[W 06:57:03.540 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/sim_datasets/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 2.05ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 06:57:03.602 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/sim_datasets/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 2.02ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 06:57:03.609 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.28ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 06:57:06.958 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 1.70ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 06:57:07.030 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 3.06ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 06:57:07.034 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 3.03ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 07:05:06.694 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 07:07:06.681 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 07:09:06.694 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 07:31:06.672 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 07:33:06.658 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb

@@ -2,13 +2,13 @@
 
 #--- Option parsing ---#
 """
-fragment_kde: make a 2d kernel density estimate of fragment 
+fragment_KDE: make a 2d kernel density estimate of fragment 
               buoyant density and length
 
 Usage:
-  fragments [options] <fragment_table> 
-  fragments -h | --help
-  fragments --version
+  fragment_KDE [options] <fragment_table> 
+  fragment_KDE -h | --help
+  fragment_KDE --version
 
 Options:
   <fragment_table>  A (pickled) table of fragment GC and lengths.
