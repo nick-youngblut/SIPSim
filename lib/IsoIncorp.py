@@ -164,9 +164,6 @@ def _add_comm_to_kde(KDE_BD, comm=None):
     KDE_BD : KDE object       
     comm : gradient community object
     """
-    print len(KDE_BD);
-    print KDE_BD; sys.exit();
-
     try:
         libIDs = comm.get_unique_libIDs()
     except AttributeError:
