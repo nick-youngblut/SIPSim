@@ -24,6 +24,7 @@ Description:
   richness table:
     2-column tab-delimited table: library_id(TAB)richness
     No header!
+    "richness" indicates total community richness needed.
 ' -> doc
 
 opts = docopt(doc)
@@ -112,6 +113,14 @@ for (i in 1:nrow(df.rich)){
   # curve fitting relative abundance
   df.comm.p = filter(df.comm, library == lib)
   abund.dist.func = fit_dist(df.comm.p$rel_abund_perc)
+
+  # richness accounting for existing taxa
+  richness = richness - nrow(df.comm.p)
+  if(richness <= 0){
+    msg = paste0('Richness for Library ', lib, ' is <= 0. Skipping')
+    write(msg, stderr())
+    next
+  }
   
   # adding random taxa
   df.rand = make_rand_comm(df.comm.cols, abund.dist.func, lib, richness)
@@ -121,7 +130,7 @@ for (i in 1:nrow(df.rich)){
 ## adjusting rank
 df.comm = df.comm %>%
   group_by(library) %>%
-    mutate(rank = row_number(rel_abund_perc))
+    mutate(rank = row_number(-rel_abund_perc))
 
 
 ## writing table
