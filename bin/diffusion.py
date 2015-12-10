@@ -74,6 +74,7 @@ import Diffusion
 # main
 if __name__ == '__main__':
     args = docopt(__doc__, version='0.1')            
+    args['-n'] = float(args['-n'])
     Diffusion.main(args)
     
 
