@@ -11656,3 +11656,20 @@ WARNING:root:kernel 24de6b80-7146-46ae-9dda-490cb1efebe9 restarted
 [33m[W 11:17:45.147 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_sandbox.ipynb
 [32m[I 12:03:10.322 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_Sandbox.ipynb
 [33m[W 12:03:10.326 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[33m[W 12:05:40.498 NotebookApp][m Notebook ipynb/theory/diff_bound_layer_Sandbox.ipynb is not trusted
+[33m[W 12:05:40.760 NotebookApp][m 404 GET /notebooks/ipynb/theory/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 2.51ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[33m[W 12:05:40.800 NotebookApp][m 404 GET /notebooks/ipynb/theory/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 1.81ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[33m[W 12:05:40.808 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.84ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[33m[W 12:05:44.557 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 1.27ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[33m[W 12:05:49.085 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 3.28ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[33m[W 12:05:49.088 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 2.33ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[33m[W 12:05:49.589 NotebookApp][m Notebook ipynb/theory/diff_bound_layer_sandbox.ipynb is not trusted
+[33m[W 12:05:49.748 NotebookApp][m 404 GET /notebooks/ipynb/theory/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 1.98ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_sandbox.ipynb
+[33m[W 12:05:49.765 NotebookApp][m 404 GET /notebooks/ipynb/theory/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 2.29ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_sandbox.ipynb
+[33m[W 12:05:49.772 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 2.09ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_sandbox.ipynb
+[32m[I 12:05:52.174 NotebookApp][m Kernel started: 2075428f-452f-4989-9a45-9608e39dc923
+/opt/anaconda/lib/python2.7/site-packages/path.py:121: UserWarning: Module argparse was already imported from /opt/anaconda/lib/python2.7/argparse.pyc, but /opt/anaconda/lib/python2.7/site-packages is being added to sys.path
+  import pkg_resources
+[33m[W 12:05:53.013 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 2.36ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_sandbox.ipynb
+[33m[W 12:05:53.087 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.19ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_sandbox.ipynb
+[33m[W 12:05:53.090 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 2.29ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_sandbox.ipynb
