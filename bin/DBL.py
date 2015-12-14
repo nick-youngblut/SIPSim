@@ -10,26 +10,38 @@ Usage:
   fragments --version
 
 Options:
-  <fragment_kde>    Output from the fragment_kde subcommand.
-                    ('-' if input from STDIN) 
-  -T=<T>            Ultracentrifugation run temperature (kelvin).
-                    [default: 293.15]
-  --tube-diam=<td>  
-  --tube-height=<th>
-  --r_min=<rm>
-  --r_max=<rx>
-  --r_angle=<ra>
-  --frac-abs=<fa>  
-  -n=<n>            Number of Monte Carlo replicates to estimate
-                    G+C error due to DBL. 
-                    [default: 100000]
-  --bw=<bw>         The bandwidth scalar or function passed to
-                    scipy.stats.gaussian_kde().
-  --np=<np>         Number of parallel processes.
-                    [default: 1]
-  -h --help         Show this screen.
-  --version         Show version.
-  --debug           Debug mode (no parallel processes)
+  <fragment_kde>      Output from the fragment_kde subcommand.
+                      ('-' if input from STDIN) 
+  -T=<T>              Ultracentrifugation run temperature (kelvin).
+                      [default: 293.15]
+  -w=<w>              Angular velocity of rotor (omega^2).
+                      [default: 17545933.74]
+  -B=<B>              Beta coefficient.
+                      [default: 1.14e9]
+  -D=<D>              Average particle density in gradient.
+                      [default: 1.7]
+  --DBL-size=<ds>     Diffusive boundary layer size (uM).
+                      [default: 300]
+  --tube-diam=<td>    cfg tube diameter (cm).
+                      [default: 1.3]
+  --tube-height=<th>  cfg tube height (cm).
+                      [default: 4.8]
+  --r_min=<rm>        radius min from axis of rotation (cm).
+                      [default: 2.6]
+  --r_max=<rx>        radius max from axis of rotation (cm).
+                      [default: 4.85]
+  --frac-abs=<fa>     Fraction of DNA absorbed to the cfg tube wall.
+                      [default: 0.1]
+  -n=<n>              Number of Monte Carlo replicates to estimate
+                      G+C error due to DBL. 
+                      [default: 100000]
+  --bw=<bw>           The bandwidth scalar or function passed to
+                      scipy.stats.gaussian_kde().
+  --np=<np>           Number of parallel processes.
+                      [default: 1]
+  -h --help           Show this screen.
+  --version           Show version.
+  --debug             Debug mode (no parallel processes)
 
 Description:
   In isopycnic centrifugation, the gradient forms perpendicular to the
@@ -38,9 +50,10 @@ Description:
   The gradient formed during ultracentrifugation will rotate once the tube
   is placed in a vertical orientation for fractionation.
   For more info, see: 
-      Fisher WD, Cline GB, Anderson NG. (1964). 
-      Density gradient centrifugation in angle-head rotors. 
-      Analytical Biochemistry 9: 477–482.
+      Flamm WG, Bond HE, Burr HE. (1966). 
+      Density-Gradient centrifugation of DNA in a fixed-angle rotor. 
+      Biochimica et Biophysica Acta (BBA) - 
+      Nucleic Acids and Protein Synthesis 129: 310–317.
 
   This difference in gradient orientation between centrifugation and 
   fractionation may result in gradient 'smearing' if DNA binds to the tube
@@ -85,14 +98,14 @@ scriptDir = os.path.dirname(__file__)
 libDir = os.path.join(scriptDir, '../lib/')
 sys.path.append(libDir)
 
-import DBL
+import DiffBoundLayer
 
         
 # main
 if __name__ == '__main__':
     args = docopt(__doc__, version='0.1')            
     args['-n'] = float(args['-n'])
-    DBL.main(args)
+    DiffBoundLayer.main(args)
     
 
         

@@ -11673,3 +11673,86 @@ WARNING:root:kernel 24de6b80-7146-46ae-9dda-490cb1efebe9 restarted
 [33m[W 12:05:53.013 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 2.36ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_sandbox.ipynb
 [33m[W 12:05:53.087 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.19ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_sandbox.ipynb
 [33m[W 12:05:53.090 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 2.29ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_sandbox.ipynb
+[32m[I 12:09:25.391 NotebookApp][m Copying ipynb/theory/diff_bound_layer_Sandbox.ipynb to /ipynb/theory
+[33m[W 12:09:25.564 NotebookApp][m Notebook ipynb/theory/diff_bound_layer_Sandbox.ipynb is not trusted
+[33m[W 12:09:25.713 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_Sandbox-Copy1.ipynb
+[33m[W 12:09:27.683 NotebookApp][m Notebook ipynb/theory/diff_bound_layer_Sandbox-Copy1.ipynb is not trusted
+[33m[W 12:09:27.995 NotebookApp][m 404 GET /notebooks/ipynb/theory/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 2.43ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_Sandbox-Copy1.ipynb
+[33m[W 12:09:28.013 NotebookApp][m 404 GET /notebooks/ipynb/theory/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 1.39ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_Sandbox-Copy1.ipynb
+[33m[W 12:09:28.017 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.64ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_Sandbox-Copy1.ipynb
+[32m[I 12:09:31.317 NotebookApp][m Kernel started: af93e4a0-1906-484f-b1ad-313bbdfeb0ae
+/opt/anaconda/lib/python2.7/site-packages/path.py:121: UserWarning: Module argparse was already imported from /opt/anaconda/lib/python2.7/argparse.pyc, but /opt/anaconda/lib/python2.7/site-packages is being added to sys.path
+  import pkg_resources
+[33m[W 12:09:31.630 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 3.45ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_Sandbox-Copy1.ipynb
+[33m[W 12:09:32.189 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 3.47ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_Sandbox-Copy1.ipynb
+[33m[W 12:09:32.193 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.30ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_Sandbox-Copy1.ipynb
+[32m[I 12:09:52.472 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_sandbox_SAM.ipynb
+[33m[W 12:09:52.474 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_sandbox_SAM.ipynb
+[32m[I 12:11:31.363 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_calc.ipynb
+[33m[W 12:11:31.366 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_calc.ipynb
+[32m[I 12:13:31.312 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_calc.ipynb
+[33m[W 12:13:31.312 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_calc.ipynb
+[32m[I 12:15:31.313 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_calc.ipynb
+[33m[W 12:15:31.313 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_calc.ipynb
+[32m[I 12:17:31.310 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_calc.ipynb
+[33m[W 12:17:31.311 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_calc.ipynb
+[32m[I 12:19:31.305 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_calc.ipynb
+[33m[W 12:19:31.306 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_calc.ipynb
+[32m[I 12:21:31.295 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_calc.ipynb
+[33m[W 12:21:31.296 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_calc.ipynb
+[32m[I 12:27:31.286 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_calc.ipynb
+[33m[W 12:27:31.287 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_calc.ipynb
+[32m[I 12:27:44.941 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[33m[W 12:27:44.943 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[32m[I 12:29:31.278 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_calc.ipynb
+[33m[W 12:29:31.280 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_calc.ipynb
+[32m[I 12:31:31.280 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_calc.ipynb
+[33m[W 12:31:31.282 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_calc.ipynb
+[32m[I 12:33:31.267 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_calc.ipynb
+[33m[W 12:33:31.268 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_calc.ipynb
+[32m[I 12:35:31.266 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_calc.ipynb
+[33m[W 12:35:31.268 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_calc.ipynb
+[32m[I 12:36:00.001 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_calc.ipynb
+[33m[W 12:36:00.002 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_calc.ipynb
+[32m[I 12:37:31.264 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_calc.ipynb
+[33m[W 12:37:31.266 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_calc.ipynb
+[32m[I 12:39:31.259 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_calc.ipynb
+[33m[W 12:39:31.260 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_calc.ipynb
+[32m[I 12:39:44.184 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[33m[W 12:39:44.186 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[32m[I 12:41:31.254 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_calc.ipynb
+[33m[W 12:41:31.256 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_calc.ipynb
+[32m[I 12:43:32.209 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_calc.ipynb
+[33m[W 12:43:32.211 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_calc.ipynb
+[32m[I 12:43:44.193 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[33m[W 12:43:44.196 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[32m[I 12:44:37.041 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[33m[W 12:44:37.043 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[32m[I 12:45:44.172 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[33m[W 12:45:44.175 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[32m[I 12:47:44.170 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[33m[W 12:47:44.172 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[32m[I 12:49:44.169 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[33m[W 12:49:44.172 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[32m[I 12:51:44.167 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[33m[W 12:51:44.170 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[32m[I 12:53:44.160 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[33m[W 12:53:44.162 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[32m[I 12:55:44.153 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[33m[W 12:55:44.156 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[32m[I 12:57:44.148 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[33m[W 12:57:44.151 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[32m[I 12:59:44.141 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[33m[W 12:59:44.143 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[32m[I 13:01:44.159 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[33m[W 13:01:44.162 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[32m[I 13:02:09.405 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[33m[W 13:02:09.408 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[32m[I 13:02:11.434 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[33m[W 13:02:11.437 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[32m[I 13:07:22.010 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_calc.ipynb
+[33m[W 13:07:22.011 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_calc.ipynb
+[32m[I 13:09:33.329 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_calc.ipynb
+[33m[W 13:09:33.330 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_calc.ipynb
+[32m[I 13:27:29.173 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[33m[W 13:27:29.176 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_Sandbox.ipynb
