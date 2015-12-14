@@ -16,7 +16,7 @@ Options:
                     G+C error due to diffusion. 
                     [default: 100000]
   -T=<T>            Ultracentrifugation run temperature (kelvin).
-                    [default: 298]
+                    [default: 293.15]
   -B=<B>            Beta coefficient based on gradient salt density.
                     [default: 1.195e9] 
   -G=<G>            G coefficient (see Clay et al., 2003). 
