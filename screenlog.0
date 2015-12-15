@@ -11756,3 +11756,46 @@ WARNING:root:kernel 24de6b80-7146-46ae-9dda-490cb1efebe9 restarted
 [33m[W 13:09:33.330 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_calc.ipynb
 [32m[I 13:27:29.173 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_Sandbox.ipynb
 [33m[W 13:27:29.176 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[33m[W 17:51:20.742 NotebookApp][m Notebook ipynb/theory/diff_bound_layer_calc.ipynb is not trusted
+[33m[W 17:51:20.894 NotebookApp][m 404 GET /notebooks/ipynb/theory/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 2.71ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_calc.ipynb
+[33m[W 17:51:20.958 NotebookApp][m 404 GET /notebooks/ipynb/theory/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 2.36ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_calc.ipynb
+[33m[W 17:51:20.970 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.63ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_calc.ipynb
+[33m[W 17:51:21.500 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 2.60ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_calc.ipynb
+[33m[W 17:51:21.509 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 1.27ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_calc.ipynb
+[33m[W 17:51:21.517 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 2.51ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_calc.ipynb
+[32m[I 17:53:21.403 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_calc.ipynb
+[33m[W 17:53:21.404 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_calc.ipynb
+[32m[I 18:09:21.314 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_calc.ipynb
+[33m[W 18:09:21.315 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_calc.ipynb
+[32m[I 18:21:13.791 NotebookApp][m Found 4.x extension Rubberband
+[32m[I 18:21:13.796 NotebookApp][m Found 4.x extension NbExtensions menu item
+[32m[I 18:21:13.802 NotebookApp][m Found 4.x extension Printview
+[32m[I 18:21:13.816 NotebookApp][m Found 4.x extension zenmode
+[32m[I 18:21:13.824 NotebookApp][m Found 3.x, 4.x extension AutoSaveTime
+[32m[I 18:21:13.831 NotebookApp][m Found 3.x, 4.x extension Autoscroll
+[32m[I 18:21:13.840 NotebookApp][m Found 4.x extension Chrome Clipboard
+[32m[I 18:21:13.849 NotebookApp][m Found 4.x extension Codefolding
+[32m[I 18:21:13.860 NotebookApp][m Found 3.x, 4.x extension Comment/Uncomment Hotkey
+[32m[I 18:21:13.866 NotebookApp][m Found 4.x extension datestamper
+[32m[I 18:21:13.874 NotebookApp][m Found 4.x extension Drag and Drop
+[32m[I 18:21:13.878 NotebookApp][m Found 4.x extension Equation Auto Numbering
+[32m[I 18:21:13.880 NotebookApp][m Found 4.x extension ExecuteTime
+[32m[I 18:21:13.890 NotebookApp][m Found 3.x extension Exercise
+[32m[I 18:21:13.904 NotebookApp][m Found 3.x, 4.x extension Help panel
+[32m[I 18:21:13.912 NotebookApp][m Found 3.x 4.x extension Hide input
+[32m[I 18:21:13.914 NotebookApp][m Found 3.x 4.x extension Hide input all
+[32m[I 18:21:13.917 NotebookApp][m Found 3.x, Jupyter (4.x) extension highlighter
+[32m[I 18:21:13.925 NotebookApp][m Found 3.x, 4.x extension Initialization cells
+[32m[I 18:21:13.927 NotebookApp][m Found 3.x, Jupyter (4.x) extension (some) LaTeX environments for Jupyter
+[32m[I 18:21:13.938 NotebookApp][m Found 4.x extension Limit Output
+[32m[I 18:21:13.940 NotebookApp][m Found 4.x extension Navigation-Hotkeys
+[32m[I 18:21:13.948 NotebookApp][m Found 4.x extension Python Markdown
+[32m[I 18:21:13.956 NotebookApp][m Found 4.x extension Rubberband
+[32m[I 18:21:13.961 NotebookApp][m Found 4.x extension Ruler
+[32m[I 18:21:13.976 NotebookApp][m Found 4.x extension Runtools
+[32m[I 18:21:13.982 NotebookApp][m Found 4.x extension Search-Replace
+[32m[I 18:21:13.993 NotebookApp][m Found 4.x extension Skip-Traceback
+[32m[I 18:21:13.995 NotebookApp][m Found 4.x extension Table of Content
+[32m[I 18:21:14.007 NotebookApp][m Found 3.x 4.x extension Toggle all line numbers
+[32m[I 18:23:21.231 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_calc.ipynb
+[33m[W 18:23:21.232 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_calc.ipynb

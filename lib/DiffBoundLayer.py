@@ -17,37 +17,129 @@ sys.path.append(libDir)
 import SIPSimCython as SSC
 import Utils
 
+
 # functions
-def BD2DBL_index(BD, step=0.1):
-    """Based on provided gradient params, make a dict that
-    relates DNA fragment GC to the GC span equilent for the DBL.
-    For instance, a GC of 50 (%) may make a DBL spanning the gradient
-    location equivalent of 30-70% GC, and thus the 50% GC fragments
-    in the DBL may end up anywhere in 30-70% GC.
+# def rad2deg(radian):
+#     degree = (180 * radian) / np.pi
+#     return degree
 
-    Returns
-    -------
-    dict : (BD : DBL)
-           DBL = uniform distribution function that returns new BD value
+# def deg2rad(degree)
+#     radian = degree * np.pi / 180
+#     return radian
+
+# functions for trig with angle in degrees
+cos_d = lambda d : np.cos(np.deg2rad(d))
+sin_d = lambda d : np.sin(np.deg2rad(d))
+asin_d = lambda d : np.arcsin(np.deg2rad(d))
+acos_d = lambda d : np.arccos(np.deg2rad(d))
+
+
+def calc_tube_angle(r_min, r_max, tube_height):
+    """Convert min/max distance from axis of rotation
+    (+ tube height) to angle of tube (units = degrees).
+    
+    Parameters
+    ----------
+    r_min : float
+            Min distance to axis of rotation (cm)
+    r_max : float
+            Max distance to axis of rotation (cm)    
+    tube_height : float
+            Height of cfg tube (cm)
     """
-#    GCs = np.arange(0,100,step)  # GC range
-#    BDs = GC2BD(GCs)
-    BDs = np.arange(BD_min, BD_max, BD_step)
-    angle_tube_pos = BD2angleTubePos(BDs)
-    angle_tube_vol = BD2angledTubeVol(BDs)
-    vert_tube_pos = angledTubeVol2vertTubeHeight(angle_tube_vols)    
-    VTP2BD_func = vertTubePos_fit(vert_tube_pos, BDs)
-    DBL = get_DBL(angle_tube_pos, BDs, VTP2BD_func)
-    #DBL = DBL_BD2GC(DBL)
-  
+    x = r_max - r_min
+    hyp = tube_height
+    rotor_angle = np.rad2deg(np.arcsin(x / hyp))
+    return rotor_angle
 
-def BD2angleTubePos(BD):
-    """Convert BD to angled tube position
+
+def calc_isoconc_point(r_min, r_max):
+    """Convert min/max distance from axis of rotation
+    to the isoconcentration point of the gradient
+    (units = cm).
+    
+    Parameters
+    ----------
+    r_min : float
+            min distance to axis of rotation (cm)
+    r_max : float
+            max distance to axis of rotation (cm)    
     """
-    pass
+    I = np.sqrt((r_min**2 + r_min * r_max + r_max**2)/3)
+    if not isinstance(I, float):
+        msg = 'isoconcentration point calc error: {} is not a float.'
+        raise TypeError, msg.format(I)
+    return I
 
-def BD2angledTubeVol(BD):
-    """Convert BD to volume of gradient where the BD is >= to the provided BD.
+
+def BD2distFromAxis(BD, D, B, w, I):
+    """Convert buoyant density (BD) to distance from axis of 
+    rotation (units = cm).
+    
+    Parameters
+    ----------
+    BD : float
+        Buoyant density of particle
+    D : float
+        Average density of the gradient
+    B : float
+        Beta coefficient (Beta^o) 
+    w : float
+        Angular velocity (omega^2)
+    I : float
+        Isoconcentration point (cm)
+    """
+    X = np.sqrt(((BD-D)*2*B/w) + I**2)
+    if not isinstance(X, float):
+        msg = 'distFromAxis calc error: {} is not a float.'
+        raise TypeError, msg.format(X)
+    return X
+    
+
+def axisDist2angledTubePos(x, tube_radius, r_max, A):
+    """Convert distance from axis of rotation to angled tube position
+    
+    Parameters
+    ----------
+    x : float
+        Distance from axis of rotation for a particle (cm)
+    tube_radius : float
+        Radius of cfg tube (cm)
+    r_max : float
+        Max cfg tube distance from axis of rotation (cm)
+    A : angle of tube to axis of rotation (degrees)
+    """
+    if(x >= r_max - (tube_radius * cos_d(A)) - tube_radius):
+        # band in rounded bottom of cfg tube
+        d = x - (r_max - tube_radius)
+        a = A - asin_d(d / tube_radius)
+        LowH = tube_radius - tube_radius * cos_d(a)
+        #print LowH
+    else:
+        # band in cylinder of cfg tube
+        d = r_max - (tube_radius * cos_d(A)) - tube_radius - x
+        h_c = d/sin_d(A)
+        LowH = tube_radius + h_c
+        # print LowH
+
+    if(x > r_max - (tube_radius - tube_radius * cos_d(A))):
+        # Equation for finding the upper band
+        d = x - (r_max - tube_radius)
+        a = A - (180 - asin_d(d/tube_radius))
+        HighH = tube_radius - tube_radius * cos_d(a)
+        #print HighH
+    else:
+        # This band will be in the cylinder part
+        d = r_max - (tube_radius - tube_radius * cos_d(A)) - x
+        h_c = d/sin_d(A)
+        HighH = tube_radius + h_c
+        #print(HighH)     
+    return(LowH, HighH)
+
+
+def axisDist2angledTubeVol(axisDist):
+    """Convert distance from axis of rotation to volume of gradient
+    where the BD is >= to the provided BD.
     """
     pass
 
@@ -94,21 +186,20 @@ def KDE_with_DBL(BD_KDE, DBL_index, n, frac):
         msg = '"x" must be (taxon_name, kde)'
         raise ValueError, msg   
     try:
-        bw_method = float(bw_method)                                            |
+        bw_method = float(bw_method)
     except (TypeError, ValueError) as e:
-        pass                                                                    |
+        pass
     try:
-        bw_method = bw_method.lower()                                           |
+        bw_method = bw_method.lower()
     except AttributeError:
         pass
 
-
     # status
     msg = 'Processing: {}\n'
-    sys.stderr.write(msg.format(taxon_name))                                    |
+    sys.stderr.write(msg.format(taxon_name)) 
       
     # if no KDE
-    if kde is None: 
+    if kde is None:
         return (taxon_name, None)
         
     # sampling fraction for DBL
@@ -119,14 +210,71 @@ def KDE_with_DBL(BD_KDE, DBL_index, n, frac):
     #kdeBD = stats.gaussian_kde(BD_vals, bw_method=bw_method)
 
 
+def BD2DBL_index(r_min, r_max, D, B, w,
+                 tube_diam, tube_height,
+                 BD_min=1.67, BD_max=1.78, BD_step=0.001):
+    """Based on provided gradient params, make a dict that
+    relates DNA fragment GC to the GC span equilent for the DBL.
+    For instance, a GC of 50 (%) may make a DBL spanning the gradient
+    location equivalent of 30-70% GC, and thus the 50% GC fragments
+    in the DBL may end up anywhere in 30-70% GC.
+
+    Returns
+    -------
+    dict : (BD : DBL)
+           DBL = uniform distribution function that returns new BD value
+    """
+    # vectorizing functions
+    BD2distFromAxisV = np.vectorize(BD2distFromAxis)
+    axisDist2angledTubePosV = np.vectorize(axisDist2angledTubePos)
+    axisDist2angledTubeVolV = np.vectorize(axisDist2angledTubeVol)
+
+    # calculate gradient/cfg_tube params
+    tube_radius = tube_diam / 2
+    I = calc_isoconc_point(r_min, r_max)    
+    A = calc_tube_angle(r_min, r_max, tube_height)
+
+    # BD value range
+    BDs = np.arange(BD_min, BD_max, BD_step)
+
+    # convert to distance from axis of rotation
+    axisDists = BD2distFromAxisV(BDs, D, B, w, I)
+        
+    # angle tube position/volume info
+    angle_tube_pos = axisDist2angledTubePosV(axisDists, 
+                                             tube_radius, 
+                                             r_min, A)
+    print angle_tube_pos
+    exit();
+    angle_tube_vol = axisDist2angledTubeVolV(axisDists)
+    
+    # determine the continuous function: BD_vertTube ~ vert_tube_height
+    vert_tube_pos = angledTubeVol2vertTubeHeight(angle_tube_vols)    
+    VTP2BD_func = vertTubePos_fit(vert_tube_pos, BDs)
+
+    # convert angle tube position info to BD range of DBL
+    DBL_index = get_DBL(angle_tube_pos, BDs, VTP2BD_func)
+    return DBL_index
+
+
 def main(args):    
     """Main function for adding G+C value error due to DBL
     Parameters:
     args : dict
         See ``DBL`` subcommand
     """
+
     # making BD2DBL index
-    
+    DBL_index = BD2DBL_index(r_min = float(args['--r_min']),
+                             r_max = float(args['--r_max']),
+                             D = float(args['-D']),
+                             B = float(args['-B']),
+                             w = float(args['-w']),
+                             tube_diam = float(args['--tube_diam']),
+                             tube_height = float(args['--tube_height']),
+                             BD_min = float(args['--BD_min']),
+                             BD_max = float(args['--BD_max']))
+
 
     # loading fragment KDEs of each genome
     kde2d = Utils.load_kde(args['<fragment_kde>'])

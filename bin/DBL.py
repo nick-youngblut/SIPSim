@@ -20,23 +20,27 @@ Options:
                       [default: 1.14e9]
   -D=<D>              Average particle density in gradient.
                       [default: 1.7]
-  --DBL-size=<ds>     Diffusive boundary layer size (uM).
+  --DBL_size=<ds>     Diffusive boundary layer size (uM).
                       [default: 300]
-  --tube-diam=<td>    cfg tube diameter (cm).
+  --tube_diam=<td>    cfg tube diameter (cm).
                       [default: 1.3]
-  --tube-height=<th>  cfg tube height (cm).
+  --tube_height=<th>  cfg tube height (cm).
                       [default: 4.8]
   --r_min=<rm>        radius min from axis of rotation (cm).
                       [default: 2.6]
   --r_max=<rx>        radius max from axis of rotation (cm).
                       [default: 4.85]
-  --frac-abs=<fa>     Fraction of DNA absorbed to the cfg tube wall.
+  --frac_abs=<fa>     Fraction of DNA absorbed to the cfg tube wall.
                       [default: 0.1]
   -n=<n>              Number of Monte Carlo replicates to estimate
                       G+C error due to DBL. 
                       [default: 100000]
   --bw=<bw>           The bandwidth scalar or function passed to
-                      scipy.stats.gaussian_kde().
+                      scipy.stats.gaussian_kde(). 
+  --BD_min=<bm>       Min BD used to determine the DBL.
+                      [default: 1.67]
+  --BD_max=<bx>       Max BD used to determine the DBL.
+                      [default: 1.78]
   --np=<np>           Number of parallel processes.
                       [default: 1]
   -h --help           Show this screen.
@@ -52,8 +56,8 @@ Description:
   For more info, see: 
       Flamm WG, Bond HE, Burr HE. (1966). 
       Density-Gradient centrifugation of DNA in a fixed-angle rotor. 
-      Biochimica et Biophysica Acta (BBA) - 
-      Nucleic Acids and Protein Synthesis 129: 310–317.
+      Biochimica et Biophysica Acta (BBA) -
+      Nucleic Acids and Protein Synthesis 129: 310-317.
 
   This difference in gradient orientation between centrifugation and 
   fractionation may result in gradient 'smearing' if DNA binds to the tube
