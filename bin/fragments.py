@@ -66,6 +66,7 @@ Description:
 
   Distributions
   -------------
+  * distribution functions from modules: np.random or skew_normal
   normal:
     Parameters: 
      * location (mean)

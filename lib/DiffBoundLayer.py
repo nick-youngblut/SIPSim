@@ -18,15 +18,6 @@ import SIPSimCython as SSC
 import Utils
 
 
-# functions
-# def rad2deg(radian):
-#     degree = (180 * radian) / np.pi
-#     return degree
-
-# def deg2rad(degree)
-#     radian = degree * np.pi / 180
-#     return radian
-
 # functions for trig with angle in degrees
 cos_d = lambda d : np.cos(np.deg2rad(d))
 sin_d = lambda d : np.sin(np.deg2rad(d))
@@ -156,58 +147,29 @@ def angledTubeVol2vertTubeHeight(v):
 
 
 def vertTubePos_BD_fit(vert_tube_pos, BDs):
-    """Making a function: vert_tube_pos ~ BD.
+    """Making a continuous function: vert_tube_pos ~ BD.
     Using curve fit to define function.
     This function will be used to convert angle_tube_pos to 
     vert_tube_BD
     """
+
+    # scipy curve_fit
+    ## http://www2.mpia-hd.mpg.de/~robitaille/PY4SCI_SS_2014/_static/15.%20Fitting%20models%20to%20data.html
+    ## lm_func = lambda x,a,b : a*x + b
+    ## pm2_func = lambda x,a,b,c : a*x**2 + b*x + c
+    ## pm3_func = lambda x,a,b,c,d : a*x**3 + b*x**2 + c*x + d
+    # np.polyfit?
+
     pass
+
 
 def get_DBL(angle_tube_pos, BDs, VTP2BD_func):
     """Converting angle_tube_pos (min/max) to vertical tube BD
     min/max (span of DBL), converting span to uniform distribution
     function (min/max of DBL), then making index: (BD : uniform_dist_func)
     """
+    # np.random.uniform
     pass
-
-
-def KDE_with_DBL(BD_KDE, DBL_index, n, frac):
-    """Sample <frac> from BD_KDE and convert values to DBL BD values
-    and sample 1 - <frac> from BD_KDE; combine all BD values and make a KDE
-    
-    Returns
-    -------
-    KDE
-    """
-    # input unpacking a type checking                          
-    try:
-        taxon_name,kde = x   
-    except ValueError:
-        msg = '"x" must be (taxon_name, kde)'
-        raise ValueError, msg   
-    try:
-        bw_method = float(bw_method)
-    except (TypeError, ValueError) as e:
-        pass
-    try:
-        bw_method = bw_method.lower()
-    except AttributeError:
-        pass
-
-    # status
-    msg = 'Processing: {}\n'
-    sys.stderr.write(msg.format(taxon_name)) 
-      
-    # if no KDE
-    if kde is None:
-        return (taxon_name, None)
-        
-    # sampling fraction for DBL
-
-    # sampling 1-DBL-fraction for non-DBL
-    
-    # making new KDE from samplings
-    #kdeBD = stats.gaussian_kde(BD_vals, bw_method=bw_method)
 
 
 def BD2DBL_index(r_min, r_max, D, B, w,
@@ -217,8 +179,7 @@ def BD2DBL_index(r_min, r_max, D, B, w,
     relates DNA fragment GC to the GC span equilent for the DBL.
     For instance, a GC of 50 (%) may make a DBL spanning the gradient
     location equivalent of 30-70% GC, and thus the 50% GC fragments
-    in the DBL may end up anywhere in 30-70% GC.
-
+    in the DBL may end up anywhere in 30-70% GC. 
     Returns
     -------
     dict : (BD : DBL)
@@ -244,8 +205,10 @@ def BD2DBL_index(r_min, r_max, D, B, w,
     angle_tube_pos = axisDist2angledTubePosV(axisDists, 
                                              tube_radius, 
                                              r_min, A)
-    print angle_tube_pos
-    exit();
+    #-- debug
+    return None
+    #print angle_tube_pos
+    
     angle_tube_vol = axisDist2angledTubeVolV(axisDists)
     
     # determine the continuous function: BD_vertTube ~ vert_tube_height
@@ -255,6 +218,66 @@ def BD2DBL_index(r_min, r_max, D, B, w,
     # convert angle tube position info to BD range of DBL
     DBL_index = get_DBL(angle_tube_pos, BDs, VTP2BD_func)
     return DBL_index
+
+
+
+def KDE_with_DBL(BD_kde, DBL_index, n, frac_abs, bw_method):
+    """Sample <frac> from BD_KDE and convert values to DBL BD values
+    and sample 1 - <frac> from BD_KDE; combine all BD values and make a KDE
+    
+    Returns
+    -------
+    KDE of BD values
+    """
+    # input unpacking a type checking                          
+    try:
+        taxon_name,kde = BD_kde
+    except ValueError:
+        msg = '"BD_kde" must be (taxon_name, kde)'
+        raise ValueError, msg   
+    try:
+        bw_method = float(bw_method)
+    except (TypeError, ValueError) as e:
+        pass
+    try:
+        bw_method = bw_method.lower()
+    except AttributeError:
+        pass
+    msg = '"frac_abs" must be a fraction (0-1)'
+    assert 0 <= frac_abs <= 1, msg
+    msg = 'DBL_index must be a vectorized function'
+    assert isinstance(DBL_index, np.lib.function_base.vectorize), msg
+    
+
+    # status
+    msg = 'Processing: {}\n'
+    sys.stderr.write(msg.format(taxon_name)) 
+      
+    # if no KDE
+    if kde is None:
+        return (taxon_name, None)
+
+    # sampling fraction for DBL
+    n_DBL = int(n * frac_abs)
+    roundV = np.vectorize(round)
+    DBL_frags = roundV(kde.resample(size=n_DBL), 3)    
+    DBL = DBL_index(DBL_frags)    
+
+    # sampling (1 - DBL_fraction) for non-DBL
+    n_nonDBL = int(n - n_DBL)
+    x = kde.resample(size=n_nonDBL)
+    print DBL.shape
+    print x.shape
+    #exit()
+    BD_new = np.concatenate((DBL, kde.resample(size=n_nonDBL)), axis=1)
+
+    print BD_new; exit()
+ 
+    # making new KDE from samplings
+#    kdeBD = stats.gaussian_kde(np.concatenate(
+#                                               kde.resample(size=n_nonDBL))),
+#                               bw_method=bw_method)
+#    print kdeBD; exit()
 
 
 def main(args):    
@@ -275,6 +298,21 @@ def main(args):
                              BD_min = float(args['--BD_min']),
                              BD_max = float(args['--BD_max']))
 
+    #--debug--#
+    ## pseudo DBL_index
+    BDs = np.arange(1.64, 1.78, 0.001)
+    DBL_index = {}
+    for x, y, z in zip(BDs, BDs, BDs):
+        x = round(x, 3)
+        DBL_index[x] = partial(np.random.uniform,
+                               low = y,
+                               high = z + 0.001,
+                               size=1)
+        
+    #for x in BDs:
+    #    x = round(x, 3)
+    #    print DBL_index[x](**{'size' : 2})
+
 
     # loading fragment KDEs of each genome
     kde2d = Utils.load_kde(args['<fragment_kde>'])
@@ -284,20 +322,19 @@ def main(args):
     ### for DBL fraction, sampling from KDE, get new BD values
     ### for non-DBL fraction, sampling from KDE, append to DBL BD values
     ## make a new KDE of BD values
-
-#    pfunc = partial(KDE_with_DBL, 
-#                    n = int(args['-n']),
-#                    T = float(args['-T']),
-#                    B = float(args['-B']),
-#                    G = float(args['-G']),
-#                    bw_method=args['--bw'])
+    DBL_indexV = np.vectorize(lambda x : DBL_index[x]())
+    pfunc = partial(KDE_with_DBL, 
+                    DBL_index = DBL_indexV,
+                    n = int(args['-n']),
+                    frac_abs = float(args['--frac_abs']),
+                    bw_method = args['--bw'])
     
     # difussion calc in parallel
-#    pool = ProcessingPool(nodes=int(args['--np']))
-#    if args['--debug']:
-#        KDE_BD = map(pfunc, kde2d.items())
-#    else:
-#        KDE_BD = pool.map(pfunc, kde2d.items())
+    pool = ProcessingPool(nodes=int(args['--np']))
+    if args['--debug']:
+        KDE_BD = map(pfunc, kde2d.items())
+    else:
+        KDE_BD = pool.map(pfunc, kde2d.items())
 
     # pickling output
 #    dill.dump({taxon:KDE for taxon,KDE in KDE_BD}, sys.stdout)
