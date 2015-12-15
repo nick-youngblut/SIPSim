@@ -38,9 +38,9 @@ Options:
   --bw=<bw>           The bandwidth scalar or function passed to
                       scipy.stats.gaussian_kde(). 
   --BD_min=<bm>       Min BD used to determine the DBL.
-                      [default: 1.67]
+                      [default: 1.5]
   --BD_max=<bx>       Max BD used to determine the DBL.
-                      [default: 1.78]
+                      [default: 1.9]
   --np=<np>           Number of parallel processes.
                       [default: 1]
   -h --help           Show this screen.

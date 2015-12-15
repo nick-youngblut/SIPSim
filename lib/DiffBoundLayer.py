@@ -220,7 +220,6 @@ def BD2DBL_index(r_min, r_max, D, B, w,
     return DBL_index
 
 
-
 def KDE_with_DBL(BD_kde, DBL_index, n, frac_abs, bw_method):
     """Sample <frac> from BD_KDE and convert values to DBL BD values
     and sample 1 - <frac> from BD_KDE; combine all BD values and make a KDE
@@ -248,7 +247,6 @@ def KDE_with_DBL(BD_kde, DBL_index, n, frac_abs, bw_method):
     msg = 'DBL_index must be a vectorized function'
     assert isinstance(DBL_index, np.lib.function_base.vectorize), msg
     
-
     # status
     msg = 'Processing: {}\n'
     sys.stderr.write(msg.format(taxon_name)) 
@@ -261,23 +259,30 @@ def KDE_with_DBL(BD_kde, DBL_index, n, frac_abs, bw_method):
     n_DBL = int(n * frac_abs)
     roundV = np.vectorize(round)
     DBL_frags = roundV(kde.resample(size=n_DBL), 3)    
-    DBL = DBL_index(DBL_frags)    
+    DBL_frags = DBL_index(DBL_frags)    
 
     # sampling (1 - DBL_fraction) for non-DBL
     n_nonDBL = int(n - n_DBL)
-    x = kde.resample(size=n_nonDBL)
-    print DBL.shape
-    print x.shape
-    #exit()
-    BD_new = np.concatenate((DBL, kde.resample(size=n_nonDBL)), axis=1)
-
-    print BD_new; exit()
  
     # making new KDE from samplings
-#    kdeBD = stats.gaussian_kde(np.concatenate(
-#                                               kde.resample(size=n_nonDBL))),
-#                               bw_method=bw_method)
-#    print kdeBD; exit()
+    kdeBD = stats.gaussian_kde(np.concatenate((DBL_frags, 
+                                               kde.resample(size=n_nonDBL)), 
+                                              axis=1)[0,],
+                               bw_method=bw_method)
+    return (taxon_name, kdeBD)
+
+
+def _fake_DBL_index(BD_min, BD_max, BD_step=0.001):
+    # pseudo DBL_index
+    BDs = np.arange(BD_min, BD_max, BD_step)
+    DBL_index = {}
+    for x, y, z in zip(BDs, BDs, BDs):
+        x = round(x, 3)
+        DBL_index[x] = partial(np.random.uniform,
+                               low = y,
+                               high = z + 0.001,
+                               size=1)
+    return DBL_index
 
 
 def main(args):    
@@ -299,21 +304,9 @@ def main(args):
                              BD_max = float(args['--BD_max']))
 
     #--debug--#
-    ## pseudo DBL_index
-    BDs = np.arange(1.64, 1.78, 0.001)
-    DBL_index = {}
-    for x, y, z in zip(BDs, BDs, BDs):
-        x = round(x, 3)
-        DBL_index[x] = partial(np.random.uniform,
-                               low = y,
-                               high = z + 0.001,
-                               size=1)
+    DBL_index = _fake_DBL_index(BD_min = float(args['--BD_min']),
+                                BD_max = float(args['--BD_max']))
         
-    #for x in BDs:
-    #    x = round(x, 3)
-    #    print DBL_index[x](**{'size' : 2})
-
-
     # loading fragment KDEs of each genome
     kde2d = Utils.load_kde(args['<fragment_kde>'])
 
@@ -321,15 +314,24 @@ def main(args):
     ## for '-n' selecting fraction to be in DBL, other is in standard
     ### for DBL fraction, sampling from KDE, get new BD values
     ### for non-DBL fraction, sampling from KDE, append to DBL BD values
-    ## make a new KDE of BD values
-    DBL_indexV = np.vectorize(lambda x : DBL_index[x]())
+    def DBL_indexF(x):
+        msg = 'WARNING: "{}" not found in DBL\n'
+        try:
+            y = DBL_index[x]()
+        except KeyError:
+            sys.stderr.write(msg.format(x))
+            x = np.random.choice(DBL_index.keys())
+            y = DBL_index[x]()
+        return y
+    
+    DBL_indexFV = np.vectorize(DBL_indexF)                              
     pfunc = partial(KDE_with_DBL, 
-                    DBL_index = DBL_indexV,
+                    DBL_index = DBL_indexFV,
                     n = int(args['-n']),
                     frac_abs = float(args['--frac_abs']),
                     bw_method = args['--bw'])
     
-    # difussion calc in parallel
+    # DBL KDE calc in parallel (per taxon)
     pool = ProcessingPool(nodes=int(args['--np']))
     if args['--debug']:
         KDE_BD = map(pfunc, kde2d.items())
@@ -337,8 +339,7 @@ def main(args):
         KDE_BD = pool.map(pfunc, kde2d.items())
 
     # pickling output
-#    dill.dump({taxon:KDE for taxon,KDE in KDE_BD}, sys.stdout)
-    
+    dill.dump({taxon:KDE for taxon,KDE in KDE_BD}, sys.stdout)    
 
 
         
