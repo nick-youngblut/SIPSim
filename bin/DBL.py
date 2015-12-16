@@ -38,9 +38,9 @@ Options:
   --bw=<bw>           The bandwidth scalar or function passed to
                       scipy.stats.gaussian_kde(). 
   --BD_min=<bm>       Min BD used to determine the DBL.
-                      [default: 1.5]
+                      [default: 1.59]
   --BD_max=<bx>       Max BD used to determine the DBL.
-                      [default: 1.9]
+                      [default: 1.77]
   --np=<np>           Number of parallel processes.
                       [default: 1]
   -h --help           Show this screen.
@@ -86,6 +86,9 @@ Description:
 
   The error in 'true' G+C values caused by the DBL is estimated
   by Monte Carlo simulation. 
+
+  The default rotor & tube parameters are for a Beckman TLA-110 and 
+  Beckman tubes (ref# 361621)
 
   Output
   ------

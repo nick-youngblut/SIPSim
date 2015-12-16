@@ -6,6 +6,8 @@ import sys,os
 from functools import partial
 ## 3rd party
 import scipy.stats as stats
+from scipy.integrate import quad
+from scipy.optimize import brentq
 import numpy as np
 import dill
 from pathos.multiprocessing import ProcessingPool
@@ -13,8 +15,6 @@ from pathos.multiprocessing import ProcessingPool
 scriptDir = os.path.dirname(__file__)
 libDir = os.path.join(scriptDir, '../lib/')
 sys.path.append(libDir)
-
-import SIPSimCython as SSC
 import Utils
 
 
@@ -79,8 +79,16 @@ def BD2distFromAxis(BD, D, B, w, I):
         Angular velocity (omega^2)
     I : float
         Isoconcentration point (cm)
+
+    Returns
+    -------
+    float : distance from axis (cm)
+            Note: 
     """
-    X = np.sqrt(((BD-D)*2*B/w) + I**2)
+    X2 = ((BD - D) * 2*B/w) + I**2
+    if X2 < 0:
+        return np.nan
+    X = np.sqrt(X2)
     if not isinstance(X, float):
         msg = 'distFromAxis calc error: {} is not a float.'
         raise TypeError, msg.format(X)
@@ -99,7 +107,15 @@ def axisDist2angledTubePos(x, tube_radius, r_max, A):
     r_max : float
         Max cfg tube distance from axis of rotation (cm)
     A : angle of tube to axis of rotation (degrees)
+
+    Returns
+    -------
+    tuple of lowest & highest positions in tube vertical height that the 
+    band extends to. Note: nan returned if x = nan
     """
+    if np.isnan(x):
+        return (x, x)
+
     if(x >= r_max - (tube_radius * cos_d(A)) - tube_radius):
         # band in rounded bottom of cfg tube
         d = x - (r_max - tube_radius)
@@ -128,48 +144,191 @@ def axisDist2angledTubePos(x, tube_radius, r_max, A):
     return(LowH, HighH)
 
 
-def axisDist2angledTubeVol(axisDist):
+def _SphVol(t, r, p2, R12):
+    # helper function for axisDist2angledTubeVol
+    v1 = t*((2*r)-t)/2
+    v2 = 2*np.pi*((p2-t)/R12)
+    v3 = np.sin(2*np.pi*((p2-t)/R12))
+    return v1 * (v2 - v3)
+    
+def _CylWedVol(t, r, b, h):
+    # helper function for axisDist2angledTubeVol
+    return 2*(h*(t-r+b)/ b) * np.sqrt(r**2-t**2)
+
+def axisDist2angledTubeVol(x, r, D, A):
     """Convert distance from axis of rotation to volume of gradient
     where the BD is >= to the provided BD.
+    
+    Parameters
+    ----------
+    x : float
+        distance from axis of rotation (cm)    
+    r : float
+        cfg tube radius (cm)
+    D : float
+        max distance from axis of rotation (cm)
+    A : float
+        cdf tube angle in rotor (degrees)
+    
+    Returns
+    -------
+    volume (ml) occupied by gradient heavier or as heavy as at that point.
+    Note: nan returned if x = nan
     """
-    pass
+    # return nan if nan provided
+    if np.isnan(x):
+        return x
 
-def angledTubeVol2vertTubeHeight(v):
-    """Convert angled tube volume (see BD2angledTubeVol) to height in the
+    a = np.deg2rad(A)
+    p1 = r-(r*np.cos(a))
+    p2 = r+(r*np.cos(a))
+    R12 = p2-p1
+    d = D-x
+    D1 = D-p1
+    D2 = D-p2        
+    msg = ' '.join(['WARNING: Cannot compute angled tube volume!', 
+                    '{} is beyond end of tube.\n'])
+
+    if x < D2:
+        h1 = (D2-x)/np.sin(a)
+        h2 = (D1-x)/np.sin(a)
+        volume1 = (2/3.0)*np.pi*r**3
+        volume2 = (0.5)*np.pi*r**2*(h1+h2)
+        volume = volume1+volume2
+    elif D1 >= x >= D2:
+        volume1 = (1/3.0)*np.pi*p1**2*(3*r-p1)
+        volume2 = quad(_SphVol, p1, d, args=(r, p2, R12))
+        b = (d-p1)/np.cos(a)
+        h = b/np.tan(a)
+        volume3 = quad(_CylWedVol, r-b, r, args=(r, b, h))
+        volume = volume1+volume2[0]+volume3[0]
+    elif D >= x > D1:
+        volume = (1/3.0)*np.pi*d**2*(3*r-d)
+    elif x > D:
+        sys.stderr.write(msg.format(x))
+        volume = np.nan
+        #raise ValueError, msg.format(x)
+    else:
+        sys.stderr.write(msg.format(x))
+        volume = np.nan
+        #raise ValueError, msg.format(x)
+        
+    return volume
+
+
+def _cylVol2height(v, r): 
+    # v = volume (ml)
+    # r = tube radius (cm)
+    h = v / (np.pi * r**2)
+    return h
+
+def _sphereCapVol2height(v, r):
+    # v = volume (ml)
+    # r = tube radius (cm)
+    # height = h**3 - 3*r*h**2 + (3v / pi) = 0
+    f = lambda x : x**3 - 3*r*x**2 + 3*v/np.pi
+    try:
+        root = brentq(f, 0, r*2, maxiter=1000)
+    except ValueError:
+        msg = 'WARNING: not roots for volume {}\n'
+        sys.stderr.write(msg.format(v))
+        root = np.nan
+    return(root)
+
+
+def tubeVol2vertTubeHeight(v, r):
+    """Convert angled tube volume (see axisDist2angledTubeVol) to height in the
     vertical tube.
+    
+    Parameters
+    ----------
+    v : float
+        Volume (ml)
+    r : float
+        Tube radius (cm)
     """
-    pass
+    sphere_cap_vol = (4/3 * np.pi * r**3)/2
+    
+    if v <= sphere_cap_vol:
+        # height does not extend to cylinder
+        h = _sphereCapVol2height(v, r)
+    else:
+        # height = sphere_cap + cylinder
+        sphere_cap_height = _sphereCapVol2height(sphere_cap_vol, r)
+        h =  sphere_cap_height + _cylVol2height(v - sphere_cap_vol, r)
 
-#def make_BD_pos_index(BDs, angle_tube_pos, vert_tube_pos):
-#    """Make index for each BD (BD : (angle|vert) : [min_pos/max_pos | pos])
-#    """
-#    pass
+    return(h)
 
 
-def vertTubePos_BD_fit(vert_tube_pos, BDs):
-    """Making a continuous function: vert_tube_pos ~ BD.
-    Using curve fit to define function.
+def vertTubePos_BD_fit(BDs, vert_tube_pos, deg=3):
+    """Making a continuous function: BD ~ vert_tube_pos.
     This function will be used to convert angle_tube_pos to 
-    vert_tube_BD
+    the BD in the vertical tube gradient. Using polynomial curve fit to 
+    define function.
+    
+    Parameters
+    ----------
+    BDs : 1d array
+         Buoyant density values
+    vert_tube_pos : 1d array
+         Vertical tube height corresponding to BD at same index
+    deg : int
+         Degree of the fitting polynomial
+    
+    Returns
+    -------
+    numpy.poly1d instance
     """
+    deg = int(deg)
+    # must have equal length arrays
+    msg = 'Number of vertical tube positions != number of BD values'
+    assert len(vert_tube_pos) == len(BDs), msg
+    
+    # trimming NA values
+    vert_tube_pos = vert_tube_pos[~np.isnan(vert_tube_pos)]
+    BDs = BDs[~np.isnan(vert_tube_pos)]
 
-    # scipy curve_fit
-    ## http://www2.mpia-hd.mpg.de/~robitaille/PY4SCI_SS_2014/_static/15.%20Fitting%20models%20to%20data.html
-    ## lm_func = lambda x,a,b : a*x + b
-    ## pm2_func = lambda x,a,b,c : a*x**2 + b*x + c
-    ## pm3_func = lambda x,a,b,c,d : a*x**3 + b*x**2 + c*x + d
-    # np.polyfit?
-
-    pass
+    # fitting variables (polynomial fitting)
+    fit = np.polyfit(vert_tube_pos, BDs, deg=deg)
+    return  np.poly1d(fit)
 
 
-def get_DBL(angle_tube_pos, BDs, VTP2BD_func):
+def make_DBL_index(angle_tube_pos, BDs, VTP2BD_func):
     """Converting angle_tube_pos (min/max) to vertical tube BD
     min/max (span of DBL), converting span to uniform distribution
     function (min/max of DBL), then making index: (BD : uniform_dist_func)
+    
+    Parameters
+    ----------
+    angle_tube_pos : tuple of 1d arrays
+         ([array_of_lowest_angled_tube_pos],[array_of_highest_angled_tube_pos]).
+    BDs : 1d array
+         Buoyant density values corresponding to angle_tube_pos at each index.
+    VTP2BD_func : callable
+         Function that accepts a 1d array (angle_tube_pos) and returns BD values
+         for same tube position in vertical tube gradient.
     """
-    # np.random.uniform
-    pass
+    # must have equal length arrays
+    msg = 'Number of angle tube positions != number of BD values'
+    assert len(angle_tube_pos) == 2, 'Formatting error: angled tube positions'
+    assert len(angle_tube_pos[0]) == len(BDs), msg
+    assert len(angle_tube_pos[1]) == len(BDs), msg
+
+    # converting angle_tube_pos values to BD values
+    low_pos_BD = VTP2BD_func(angle_tube_pos[0])
+    high_pos_BD = VTP2BD_func(angle_tube_pos[1])
+    
+    # making a dict of BD : np.random.uniform(low_pos_BD, high_pos_BD)
+    DBL_index = {}
+    for i in xrange(len(low_pos_BD)):
+        BD = round(BDs[i], 3)
+        if np.isnan(low_pos_BD[i]) or np.isnan(high_pos_BD[i]):
+            pass
+        else:
+            DBL_index[BD] = partial(np.random.uniform,
+                                    low = low_pos_BD[i],
+                                    high = high_pos_BD[i])
+    return DBL_index
 
 
 def BD2DBL_index(r_min, r_max, D, B, w,
@@ -180,6 +339,10 @@ def BD2DBL_index(r_min, r_max, D, B, w,
     For instance, a GC of 50 (%) may make a DBL spanning the gradient
     location equivalent of 30-70% GC, and thus the 50% GC fragments
     in the DBL may end up anywhere in 30-70% GC. 
+
+    Parameters
+    ----------
+
     Returns
     -------
     dict : (BD : DBL)
@@ -189,6 +352,7 @@ def BD2DBL_index(r_min, r_max, D, B, w,
     BD2distFromAxisV = np.vectorize(BD2distFromAxis)
     axisDist2angledTubePosV = np.vectorize(axisDist2angledTubePos)
     axisDist2angledTubeVolV = np.vectorize(axisDist2angledTubeVol)
+    tubeVol2vertTubeHeightV = np.vectorize(tubeVol2vertTubeHeight)
 
     # calculate gradient/cfg_tube params
     tube_radius = tube_diam / 2
@@ -202,21 +366,28 @@ def BD2DBL_index(r_min, r_max, D, B, w,
     axisDists = BD2distFromAxisV(BDs, D, B, w, I)
         
     # angle tube position/volume info
-    angle_tube_pos = axisDist2angledTubePosV(axisDists, 
-                                             tube_radius, 
-                                             r_min, A)
-    #-- debug
-    return None
-    #print angle_tube_pos
-    
-    angle_tube_vol = axisDist2angledTubeVolV(axisDists)
+    angle_tube_pos = axisDist2angledTubePosV(axisDists, tube_radius, r_max, A)
+    angle_tube_vol = axisDist2angledTubeVolV(axisDists, tube_radius, r_max, A)
     
     # determine the continuous function: BD_vertTube ~ vert_tube_height
-    vert_tube_pos = angledTubeVol2vertTubeHeight(angle_tube_vols)    
-    VTP2BD_func = vertTubePos_fit(vert_tube_pos, BDs)
+    vert_tube_pos = tubeVol2vertTubeHeightV(angle_tube_vol, tube_radius)    
+    VTP2BD_func = vertTubePos_BD_fit(BDs, vert_tube_pos)
 
     # convert angle tube position info to BD range of DBL
-    DBL_index = get_DBL(angle_tube_pos, BDs, VTP2BD_func)
+    DBL_index = make_DBL_index(angle_tube_pos, BDs, VTP2BD_func)
+    return DBL_index
+
+
+def _fake_DBL_index(BD_min, BD_max, BD_step=0.001):
+    # pseudo DBL_index
+    BDs = np.arange(BD_min, BD_max, BD_step)
+    DBL_index = {}
+    for x, y, z in zip(BDs, BDs, BDs):
+        x = round(x, 3)
+        DBL_index[x] = partial(np.random.uniform,
+                               low = y,
+                               high = z + 0.001,
+                               size=1)
     return DBL_index
 
 
@@ -224,10 +395,24 @@ def KDE_with_DBL(BD_kde, DBL_index, n, frac_abs, bw_method):
     """Sample <frac> from BD_KDE and convert values to DBL BD values
     and sample 1 - <frac> from BD_KDE; combine all BD values and make a KDE
     
+    Parameters
+    ----------
+    BD_kde : list
+         [taxon_name, scipy_gausiuan_kde_object]
+    DBL_index : dict
+         {BD : distribution_function_that_returns_a_value}
+    n : int
+         Total number of subsampling from KDE + DBL
+    frac_abs : float 
+         Fraction of DNA fragments in DBL.  range = (0-1)
+    bw_method : see stats.gaussian_kde
+
     Returns
     -------
-    KDE of BD values
+    stats.gaussian_kde object describing distribution of fragment BD values 
+    (DBL 'smearing' included)
     """
+    n = int(n)
     # input unpacking a type checking                          
     try:
         taxon_name,kde = BD_kde
@@ -257,8 +442,7 @@ def KDE_with_DBL(BD_kde, DBL_index, n, frac_abs, bw_method):
 
     # sampling fraction for DBL
     n_DBL = int(n * frac_abs)
-    roundV = np.vectorize(round)
-    DBL_frags = roundV(kde.resample(size=n_DBL), 3)    
+    DBL_frags = np.round(kde.resample(size=n_DBL), 3)    
     DBL_frags = DBL_index(DBL_frags)    
 
     # sampling (1 - DBL_fraction) for non-DBL
@@ -272,22 +456,12 @@ def KDE_with_DBL(BD_kde, DBL_index, n, frac_abs, bw_method):
     return (taxon_name, kdeBD)
 
 
-def _fake_DBL_index(BD_min, BD_max, BD_step=0.001):
-    # pseudo DBL_index
-    BDs = np.arange(BD_min, BD_max, BD_step)
-    DBL_index = {}
-    for x, y, z in zip(BDs, BDs, BDs):
-        x = round(x, 3)
-        DBL_index[x] = partial(np.random.uniform,
-                               low = y,
-                               high = z + 0.001,
-                               size=1)
-    return DBL_index
-
-
 def main(args):    
-    """Main function for adding G+C value error due to DBL
-    Parameters:
+    """Main function for adding DBL 'smearning' to fragment distribution in
+    the CsCl gradient.
+
+    Parameters
+    ----------
     args : dict
         See ``DBL`` subcommand
     """
@@ -301,21 +475,19 @@ def main(args):
                              tube_diam = float(args['--tube_diam']),
                              tube_height = float(args['--tube_height']),
                              BD_min = float(args['--BD_min']),
-                             BD_max = float(args['--BD_max']))
+                             BD_max = float(args['--BD_max'])) 
+
 
     #--debug--#
-    DBL_index = _fake_DBL_index(BD_min = float(args['--BD_min']),
-                                BD_max = float(args['--BD_max']))
+    #DBL_index = _fake_DBL_index(BD_min = float(args['--BD_min']),
+    #                            BD_max = float(args['--BD_max']))
         
     # loading fragment KDEs of each genome
     kde2d = Utils.load_kde(args['<fragment_kde>'])
 
     # for each genome KDE, making new KDE with DBL 'smearing'
-    ## for '-n' selecting fraction to be in DBL, other is in standard
-    ### for DBL fraction, sampling from KDE, get new BD values
-    ### for non-DBL fraction, sampling from KDE, append to DBL BD values
     def DBL_indexF(x):
-        msg = 'WARNING: "{}" not found in DBL\n'
+        msg = 'WARNING: BD value "{}" not found in DBL\n'
         try:
             y = DBL_index[x]()
         except KeyError:
@@ -340,7 +512,6 @@ def main(args):
 
     # pickling output
     dill.dump({taxon:KDE for taxon,KDE in KDE_BD}, sys.stdout)    
-
 
         
 if __name__ == '__main__':
