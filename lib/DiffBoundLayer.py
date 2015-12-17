@@ -21,8 +21,8 @@ import Utils
 # functions for trig with angle in degrees
 cos_d = lambda d : np.cos(np.deg2rad(d))
 sin_d = lambda d : np.sin(np.deg2rad(d))
-asin_d = lambda d : np.arcsin(np.deg2rad(d))
-acos_d = lambda d : np.arccos(np.deg2rad(d))
+asin_d = lambda x : np.arcsin(x) * 180/np.pi  
+acos_d = lambda x : np.arccos(x) * 180/np.pi  
 
 
 def calc_tube_angle(r_min, r_max, tube_height):
@@ -56,16 +56,16 @@ def calc_isoconc_point(r_min, r_max):
     r_max : float
             max distance to axis of rotation (cm)    
     """
-    I = np.sqrt((r_min**2 + r_min * r_max + r_max**2)/3)
+    I = np.sqrt((r_min**2.0 + r_min * r_max + r_max**2.0)/3.0)
     if not isinstance(I, float):
         msg = 'isoconcentration point calc error: {} is not a float.'
         raise TypeError, msg.format(I)
     return I
 
 
-def BD2distFromAxis(BD, D, B, w, I):
+def BD2distFromAxis(BD, D, B, w, I, r_max):
     """Convert buoyant density (BD) to distance from axis of 
-    rotation (units = cm).
+    rotation (units = cm). If distance > r_max, nan is returned.
     
     Parameters
     ----------
@@ -79,19 +79,22 @@ def BD2distFromAxis(BD, D, B, w, I):
         Angular velocity (omega^2)
     I : float
         Isoconcentration point (cm)
-
+    r_max : float
+        radius max from axis of rotation (cm).
     Returns
     -------
     float : distance from axis (cm)
-            Note: 
     """
-    X2 = ((BD - D) * 2*B/w) + I**2
+    X2 = ((BD - D) * 2.0*B/w) + I**2
     if X2 < 0:
         return np.nan
     X = np.sqrt(X2)
     if not isinstance(X, float):
         msg = 'distFromAxis calc error: {} is not a float.'
         raise TypeError, msg.format(X)
+    if X > r_max:
+        X = np.nan
+        #assert X <= r_max, 'distFromAxis is > --r_max. value={}'.format(X)
     return X
     
 
@@ -212,7 +215,7 @@ def axisDist2angledTubeVol(x, r, D, A):
         sys.stderr.write(msg.format(x))
         volume = np.nan
         #raise ValueError, msg.format(x)
-        
+
     return volume
 
 
@@ -247,15 +250,15 @@ def tubeVol2vertTubeHeight(v, r):
     r : float
         Tube radius (cm)
     """
-    sphere_cap_vol = (4/3 * np.pi * r**3)/2
-    
-    if v <= sphere_cap_vol:
+    sphere_half_vol = (4.0/3.0 * np.pi * r**3)/2.0
+
+    if v <= sphere_half_vol:
         # height does not extend to cylinder
         h = _sphereCapVol2height(v, r)
     else:
-        # height = sphere_cap + cylinder
-        sphere_cap_height = _sphereCapVol2height(sphere_cap_vol, r)
-        h =  sphere_cap_height + _cylVol2height(v - sphere_cap_vol, r)
+        # height = sphere_cap_height (r) + cylinder_height
+        #sphere_cap_height = r #_sphereCapVol2height(sphere_half_vol, r)
+        h =  r + _cylVol2height(v - sphere_half_vol, r)
 
     return(h)
 
@@ -325,10 +328,45 @@ def make_DBL_index(angle_tube_pos, BDs, VTP2BD_func):
         if np.isnan(low_pos_BD[i]) or np.isnan(high_pos_BD[i]):
             pass
         else:
+            # note: lower tube position = higher BD 
             DBL_index[BD] = partial(np.random.uniform,
-                                    low = low_pos_BD[i],
-                                    high = high_pos_BD[i])
+                                    high = low_pos_BD[i], 
+                                    low = high_pos_BD[i], 
+                                    size=1)
     return DBL_index
+
+
+def _fake_DBL_index(BD_min, BD_max, BD_step=0.001):
+    # make pseudo DBL_index
+    BDs = np.arange(BD_min, BD_max, BD_step)
+    DBL_index = {}
+    for x, y, z in zip(BDs, BDs, BDs):
+        x = round(x, 3)
+        DBL_index[x] = partial(np.random.uniform,
+                               low = y,
+                               high = z + 0.001,
+                               size=1)
+    return DBL_index
+
+
+def write_DBL_index(DBL_index, outFile):
+    """
+    Parameters
+    ----------
+    DBL_index : dict
+        {BD : DBL}, DBL = uniform distribution function that returns new 
+        BD value
+    outFile : string
+        Name of output file
+    """
+    with open(outFile, 'wb') as outFH:
+        x = '\t'.join(['DBL_BD','vert_gradient_BD_low','vert_gradient_BD_high'])
+        outFH.write(x + '\n')
+        for BD, f in DBL_index.items():
+            x = '\t'.join([str(x) for x in 
+                           [BD, f.keywords['low'], f.keywords['high']]])
+            outFH.write(x + '\n')
+    sys.stderr.write('DBL_index file written: "{}"\n'.format(outFile))
 
 
 def BD2DBL_index(r_min, r_max, D, B, w,
@@ -363,8 +401,8 @@ def BD2DBL_index(r_min, r_max, D, B, w,
     BDs = np.arange(BD_min, BD_max, BD_step)
 
     # convert to distance from axis of rotation
-    axisDists = BD2distFromAxisV(BDs, D, B, w, I)
-        
+    axisDists = BD2distFromAxisV(BDs, D, B, w, I, r_max)
+
     # angle tube position/volume info
     angle_tube_pos = axisDist2angledTubePosV(axisDists, tube_radius, r_max, A)
     angle_tube_vol = axisDist2angledTubeVolV(axisDists, tube_radius, r_max, A)
@@ -375,19 +413,6 @@ def BD2DBL_index(r_min, r_max, D, B, w,
 
     # convert angle tube position info to BD range of DBL
     DBL_index = make_DBL_index(angle_tube_pos, BDs, VTP2BD_func)
-    return DBL_index
-
-
-def _fake_DBL_index(BD_min, BD_max, BD_step=0.001):
-    # pseudo DBL_index
-    BDs = np.arange(BD_min, BD_max, BD_step)
-    DBL_index = {}
-    for x, y, z in zip(BDs, BDs, BDs):
-        x = round(x, 3)
-        DBL_index[x] = partial(np.random.uniform,
-                               low = y,
-                               high = z + 0.001,
-                               size=1)
     return DBL_index
 
 
@@ -481,6 +506,10 @@ def main(args):
     #--debug--#
     #DBL_index = _fake_DBL_index(BD_min = float(args['--BD_min']),
     #                            BD_max = float(args['--BD_max']))
+
+    ## writing DBL_index
+    if args['--DBL_out']:
+        write_DBL_index(DBL_index, args['--DBL_out'])
         
     # loading fragment KDEs of each genome
     kde2d = Utils.load_kde(args['<fragment_kde>'])

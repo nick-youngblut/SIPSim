@@ -43,6 +43,7 @@ Options:
                       [default: 1.77]
   --np=<np>           Number of parallel processes.
                       [default: 1]
+  --DBL_out=<z>       Write the DBL index to file named <z>.
   -h --help           Show this screen.
   --version           Show version.
   --debug             Debug mode (no parallel processes)
