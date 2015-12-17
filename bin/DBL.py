@@ -31,7 +31,7 @@ Options:
   --r_max=<rx>        radius max from axis of rotation (cm).
                       [default: 4.85]
   --frac_abs=<fa>     Fraction of DNA absorbed to the cfg tube wall.
-                      [default: 0.1]
+                      [default: 0.01]
   -n=<n>              Number of Monte Carlo replicates to estimate
                       G+C error due to DBL. 
                       [default: 100000]
@@ -44,8 +44,6 @@ Options:
   --np=<np>           Number of parallel processes.
                       [default: 1]
   --DBL_out=<z>       Write the DBL index to file named <z>.
-  --log=<lg>          Log file name.
-                      [default: DBL.log]
   -h --help           Show this screen.
   --version           Show version.
   --debug             Debug mode (no parallel processes)

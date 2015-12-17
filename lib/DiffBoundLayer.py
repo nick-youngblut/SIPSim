@@ -63,7 +63,7 @@ def calc_isoconc_point(r_min, r_max):
     return I
 
 
-def BD2distFromAxis(BD, D, B, w, I, r_max, log=None):
+def BD2distFromAxis(BD, D, B, w, I, r_max):
     """Convert buoyant density (BD) to distance from axis of 
     rotation (units = cm). If distance > r_max, nan is returned.
     
@@ -95,12 +95,11 @@ def BD2distFromAxis(BD, D, B, w, I, r_max, log=None):
         raise TypeError, msg.format(X)
     if X > r_max:        
         X = np.nan
-        if log:
-            log.write(lmsg.format(BD))
+        sys.stderr.write(lmsg.format(BD))
     return X
     
 
-def axisDist2angledTubePos(x, tube_radius, r_max, A, log=None):
+def axisDist2angledTubePos(x, tube_radius, r_max, A):
     """Convert distance from axis of rotation to angled tube position
     
     Parameters
@@ -160,7 +159,7 @@ def _CylWedVol(t, r, b, h):
     # helper function for axisDist2angledTubeVol
     return 2*(h*(t-r+b)/ b) * np.sqrt(r**2-t**2)
 
-def axisDist2angledTubeVol(x, r, D, A, log=None):
+def axisDist2angledTubeVol(x, r, D, A):
     """Convert distance from axis of rotation to volume of gradient
     where the BD is >= to the provided BD.
     
@@ -191,7 +190,6 @@ def axisDist2angledTubeVol(x, r, D, A, log=None):
     d = D-x
     D1 = D-p1
     D2 = D-p2        
-    lmsg = 'axisDist2angledTubeVol: nan returned for x value: {}\n'
 
     
     if x < D2:
@@ -214,9 +212,10 @@ def axisDist2angledTubeVol(x, r, D, A, log=None):
     else:
         volume = np.nan
         
-    # logging
+    # status
     if np.isnan(volume):
-        lmsg.write(lmsg.format(x))        
+        lmsg = 'axisDist2angledTubeVol: nan returned for x value: {}\n'
+        sys.stderr.write(lmsg.format(x))        
 
     return volume
 
@@ -227,7 +226,7 @@ def _cylVol2height(v, r):
     h = v / (np.pi * r**2)
     return h
 
-def _sphereCapVol2height(v, r, log=None):
+def _sphereCapVol2height(v, r):
     # v = volume (ml)
     # r = tube radius (cm)
     # height = h**3 - 3*r*h**2 + (3v / pi) = 0
@@ -237,12 +236,11 @@ def _sphereCapVol2height(v, r, log=None):
     except ValueError:
         root = np.nan
         lmsg = 'sphereCapVol2height: no roots for volume value: {}\n'
-        if log:
-            log.write(lmsg.format(v))
+        sys.stderr.write(lmsg.format(v))
     return(root)
 
 
-def tubeVol2vertTubeHeight(v, r, log=None):
+def tubeVol2vertTubeHeight(v, r):
     """Convert angled tube volume (see axisDist2angledTubeVol) to height in the
     vertical tube.
     
@@ -257,7 +255,7 @@ def tubeVol2vertTubeHeight(v, r, log=None):
 
     if v <= sphere_half_vol:
         # height does not extend to cylinder
-        h = _sphereCapVol2height(v, r, log)
+        h = _sphereCapVol2height(v, r)
     else:
         # height = sphere_cap_height (r) + cylinder_height
         #sphere_cap_height = r #_sphereCapVol2height(sphere_half_vol, r)
@@ -373,7 +371,7 @@ def write_DBL_index(DBL_index, outFile):
 
 
 def BD2DBL_index(r_min, r_max, D, B, w, tube_diam, tube_height, 
-                 BD_min=1.67, BD_max=1.78, BD_step=0.001, log=None):
+                 BD_min=1.67, BD_max=1.78, BD_step=0.001):
     """Based on provided gradient params, make a dict that
     relates DNA fragment GC to the GC span equilent for the DBL.
     For instance, a GC of 50 (%) may make a DBL spanning the gradient
@@ -403,16 +401,14 @@ def BD2DBL_index(r_min, r_max, D, B, w, tube_diam, tube_height,
     BDs = np.arange(BD_min, BD_max, BD_step)
 
     # convert to distance from axis of rotation
-    axisDists = BD2distFromAxisV(BDs, D, B, w, I, r_max, log)
+    axisDists = BD2distFromAxisV(BDs, D, B, w, I, r_max)
 
     # angle tube position/volume info
-    angle_tube_pos = axisDist2angledTubePosV(axisDists, tube_radius, 
-                                             r_max, A, log)
-    angle_tube_vol = axisDist2angledTubeVolV(axisDists, tube_radius, 
-                                             r_max, A, log)
+    angle_tube_pos = axisDist2angledTubePosV(axisDists, tube_radius, r_max, A)
+    angle_tube_vol = axisDist2angledTubeVolV(axisDists, tube_radius, r_max, A)
     
     # determine the continuous function: BD_vertTube ~ vert_tube_height
-    vert_tube_pos = tubeVol2vertTubeHeightV(angle_tube_vol, tube_radius, log)    
+    vert_tube_pos = tubeVol2vertTubeHeightV(angle_tube_vol, tube_radius)    
     VTP2BD_func = vertTubePos_BD_fit(BDs, vert_tube_pos)
 
     # convert angle tube position info to BD range of DBL
@@ -420,7 +416,7 @@ def BD2DBL_index(r_min, r_max, D, B, w, tube_diam, tube_height,
     return DBL_index
 
 
-def KDE_with_DBL(BD_kde, DBL_index, n, frac_abs, bw_method, log=None):
+def KDE_with_DBL(BD_kde, DBL_index, n, frac_abs, bw_method):
     """Sample <frac> from BD_KDE and convert values to DBL BD values
     and sample 1 - <frac> from BD_KDE; combine all BD values and make a KDE
     
@@ -472,7 +468,7 @@ def KDE_with_DBL(BD_kde, DBL_index, n, frac_abs, bw_method, log=None):
     # sampling fraction for DBL
     n_DBL = int(n * frac_abs)
     DBL_frags = np.round(kde.resample(size=n_DBL), 3)    
-    DBL_frags = DBL_index(DBL_frags, log)    
+    DBL_frags = DBL_index(DBL_frags)    
 
     # sampling (1 - DBL_fraction) for non-DBL
     n_nonDBL = int(n - n_DBL)
@@ -494,11 +490,6 @@ def main(args):
     args : dict
         See ``DBL`` subcommand
     """
-    # opening log 
-    if args['--log']:
-        logFH = open(args['--log'], 'wb')
-
-
     # making BD2DBL index
     DBL_index = BD2DBL_index(r_min = float(args['--r_min']),
                              r_max = float(args['--r_max']),
@@ -508,8 +499,7 @@ def main(args):
                              tube_diam = float(args['--tube_diam']),
                              tube_height = float(args['--tube_height']),
                              BD_min = float(args['--BD_min']),
-                             BD_max = float(args['--BD_max']), 
-                             log=logFH) 
+                             BD_max = float(args['--BD_max'])) 
 
 
     #--debug--#
@@ -524,16 +514,14 @@ def main(args):
     kde2d = Utils.load_kde(args['<fragment_kde>'])
 
     # for each genome KDE, making new KDE with DBL 'smearing'
-    def DBL_indexF(x, log=None):
+    def DBL_indexF(x):
         try:
             y = DBL_index[x]()
         except KeyError:
-            lmsg = 'WARNING: BD value "{}" not found in DBL\n'
-            if log:
-                log.write(lmsg.format(x))
-            #sys.stderr.write(msg.format(x))
             x = np.random.choice(DBL_index.keys())
             y = DBL_index[x]()
+            lmsg = 'WARNING: BD value "{}" not found in DBL\n'
+            sys.stderr.write(lmsg.format(x))
         return y
     
     DBL_indexFV = np.vectorize(DBL_indexF)                              
@@ -541,8 +529,7 @@ def main(args):
                     DBL_index = DBL_indexFV,
                     n = int(args['-n']),
                     frac_abs = float(args['--frac_abs']),
-                    bw_method = args['--bw'], 
-                    log=logFH)
+                    bw_method = args['--bw'])
     
     # DBL KDE calc in parallel (per taxon)
     pool = ProcessingPool(nodes=int(args['--np']))
@@ -554,9 +541,6 @@ def main(args):
     # pickling output
     dill.dump({taxon:KDE for taxon,KDE in KDE_BD}, sys.stdout)    
 
-    # log file
-    logFH.close()
-    sys.stderr.write('log file written: "{}"\n'.format(args['--log']))
 
         
 if __name__ == '__main__':
