@@ -5,9 +5,9 @@
 DBL: include diffusion boundary layer contamination into G+C variance
 
 Usage:
-  fragments [options] <fragment_kde>
-  fragments -h | --help
-  fragments --version
+  DBL [options] <fragment_kde>
+  DBL -h | --help
+  DBL --version
 
 Options:
   <fragment_kde>      Output from the fragment_kde subcommand.
@@ -44,6 +44,8 @@ Options:
   --np=<np>           Number of parallel processes.
                       [default: 1]
   --DBL_out=<z>       Write the DBL index to file named <z>.
+  --log=<lg>          Log file name.
+                      [default: DBL.log]
   -h --help           Show this screen.
   --version           Show version.
   --debug             Debug mode (no parallel processes)
@@ -83,7 +85,7 @@ Description:
 
   Based on information on the rotor and cfg run conditions, this script
   models the gradient 'smearing' that would result from a diffusive boundary
-  layer (contaminating DNA diffusing back into the gradient from the tube wall).  
+  layer (contaminating DNA diffusing back into the gradient from the tube wall).
 
   The error in 'true' G+C values caused by the DBL is estimated
   by Monte Carlo simulation. 

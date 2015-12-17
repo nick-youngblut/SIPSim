@@ -12039,3 +12039,60 @@ WARNING:root:kernel 24de6b80-7146-46ae-9dda-490cb1efebe9 restarted
 [33m[W 18:55:02.688 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_Sandbox.ipynb
 [32m[I 18:55:08.784 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_Sandbox.ipynb
 [33m[W 18:55:08.786 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_Sandbox.ipynb
+[33m[W 08:17:50.213 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/sim_datasets/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 1.93ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 08:17:50.236 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/sim_datasets/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 1.99ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 08:17:50.243 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.23ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 08:17:53.995 NotebookApp][m 404 GET /notebooks/ipynb/theory/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 1.96ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/Gaussian_diff_limits.ipynb
+[33m[W 08:17:54.008 NotebookApp][m 404 GET /notebooks/ipynb/theory/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 1.23ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/Gaussian_diff_limits.ipynb
+[33m[W 08:17:54.011 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.44ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/Gaussian_diff_limits.ipynb
+[33m[W 08:17:54.857 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 1.22ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/Gaussian_diff_limits.ipynb
+[33m[W 08:17:54.902 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 3.06ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/Gaussian_diff_limits.ipynb
+[33m[W 08:17:54.906 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 3.00ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/Gaussian_diff_limits.ipynb
+[33m[W 08:17:55.683 NotebookApp][m 404 GET /notebooks/ipynb/theory/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 1.00ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_uniform.ipynb
+[33m[W 08:17:55.691 NotebookApp][m 404 GET /notebooks/ipynb/theory/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 1.16ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_uniform.ipynb
+[33m[W 08:17:55.694 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.39ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_uniform.ipynb
+[33m[W 08:17:56.108 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 1.23ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_uniform.ipynb
+[33m[W 08:17:57.237 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 1.22ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_uniform.ipynb
+[33m[W 08:17:57.239 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.15ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_uniform.ipynb
+[33m[W 08:17:57.731 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 3.01ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 08:17:57.992 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 0.98ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/detection_threshold.ipynb
+[33m[W 08:17:57.999 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 1.20ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/detection_threshold.ipynb
+[33m[W 08:17:58.001 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.45ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/detection_threshold.ipynb
+[33m[W 08:17:58.262 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 3.04ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 08:17:58.266 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 2.96ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 08:17:58.461 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 1.18ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/detection_threshold.ipynb
+[33m[W 08:17:58.486 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 1.19ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/detection_threshold.ipynb
+[33m[W 08:17:58.489 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.86ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/detection_threshold.ipynb
+[32m[I 08:18:21.839 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/detection_threshold.ipynb
+[33m[W 08:18:29.011 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/n3/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 1.76ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 08:18:29.015 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/n3/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 0.95ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 08:18:29.019 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.20ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 08:18:30.213 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 3.05ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 08:18:30.237 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 3.02ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 08:18:30.242 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 2.89ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 08:19:37.589 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/n3/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 2.59ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 08:19:37.594 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/n3/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 0.97ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 08:19:37.598 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.21ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 08:19:38.931 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 3.01ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 08:19:38.982 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 3.05ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 08:19:38.986 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 2.84ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[32m[I 08:20:29.905 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[33m[W 08:20:40.094 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/n3/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 1.47ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 08:20:40.105 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/n3/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 1.01ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 08:20:40.110 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.23ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 08:20:42.203 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 1.20ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 08:20:42.246 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 3.07ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 08:20:42.250 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.57ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[32m[I 08:20:54.332 NotebookApp][m Kernel restarted: b1e4ac3e-eb37-4fb3-b7dd-d63311deec00
+/opt/anaconda/lib/python2.7/site-packages/path.py:121: UserWarning: Module argparse was already imported from /opt/anaconda/lib/python2.7/argparse.pyc, but /opt/anaconda/lib/python2.7/site-packages is being added to sys.path
+  import pkg_resources
+[32m[I 08:22:41.818 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 08:24:41.798 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 08:26:41.811 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 08:46:41.763 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 08:48:41.757 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 08:50:41.746 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 08:52:41.747 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 08:54:41.744 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 08:56:41.734 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 08:58:41.735 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
