@@ -29,7 +29,7 @@ Options:
   --DBL_size=<ds>     Diffusive boundary layer size (uM).
                       [default: 300]
   --frac_abs=<fa>     Fraction of DNA absorbed to the cfg tube wall.
-                      [default: 0.01]
+                      [default: 0.005]
   --BD_min=<bm>       Min BD used to determine the DBL.
                       [default: 1.59]
   --BD_max=<bx>       Max BD used to determine the DBL.
