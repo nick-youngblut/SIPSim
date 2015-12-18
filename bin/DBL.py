@@ -12,16 +12,12 @@ Usage:
 Options:
   <fragment_kde>      Output from the fragment_kde subcommand.
                       ('-' if input from STDIN) 
-  -T=<T>              Ultracentrifugation run temperature (kelvin).
-                      [default: 293.15]
-  -w=<w>              Angular velocity of rotor (omega^2).
-                      [default: 17545933.74]
   -B=<B>              Beta coefficient.
                       [default: 1.14e9]
   -D=<D>              Average particle density in gradient.
                       [default: 1.7]
-  --DBL_size=<ds>     Diffusive boundary layer size (uM).
-                      [default: 300]
+  -w=<w>              Angular velocity of rotor (omega^2).
+                      [default: 33172781]
   --tube_diam=<td>    cfg tube diameter (cm).
                       [default: 1.3]
   --tube_height=<th>  cfg tube height (cm).
@@ -30,20 +26,23 @@ Options:
                       [default: 2.6]
   --r_max=<rx>        radius max from axis of rotation (cm).
                       [default: 4.85]
+  --DBL_size=<ds>     Diffusive boundary layer size (uM).
+                      [default: 300]
   --frac_abs=<fa>     Fraction of DNA absorbed to the cfg tube wall.
                       [default: 0.01]
+  --BD_min=<bm>       Min BD used to determine the DBL.
+                      [default: 1.59]
+  --BD_max=<bx>       Max BD used to determine the DBL.
+                      [default: 1.77]
+  --DBL_out=<z>       Write the DBL index to file named <z>.
+                      [default: DBL_index.txt]
   -n=<n>              Number of Monte Carlo replicates to estimate
                       G+C error due to DBL. 
                       [default: 100000]
   --bw=<bw>           The bandwidth scalar or function passed to
                       scipy.stats.gaussian_kde(). 
-  --BD_min=<bm>       Min BD used to determine the DBL.
-                      [default: 1.59]
-  --BD_max=<bx>       Max BD used to determine the DBL.
-                      [default: 1.77]
   --np=<np>           Number of parallel processes.
                       [default: 1]
-  --DBL_out=<z>       Write the DBL index to file named <z>.
   -h --help           Show this screen.
   --version           Show version.
   --debug             Debug mode (no parallel processes)
@@ -88,8 +87,8 @@ Description:
   The error in 'true' G+C values caused by the DBL is estimated
   by Monte Carlo simulation. 
 
-  The default rotor & tube parameters are for a Beckman TLA-110 and 
-  Beckman tubes (ref# 361621)
+  The default rotor & tube parameters are for a Beckman tubes (ref# 361621) 
+  in a Beckman TLA-110 rotor spinning at 55000 rpm . 
 
   Output
   ------

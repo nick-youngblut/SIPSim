@@ -85,11 +85,12 @@ def BD2distFromAxis(BD, D, B, w, I, r_max):
     -------
     float : distance from axis (cm)
     """
+    lmsg = 'BD2distFromAxis: nan returned for BD value: {}\n'
     X2 = ((BD - D) * 2.0*B/w) + I**2
-    if X2 < 0:
+    if X2 < 0:        
+        sys.stderr.write(lmsg.format(BD))
         return np.nan
     X = np.sqrt(X2)
-    lmsg = 'BD2distFromAxis: nan returned for BD value: {}\n'
     if not isinstance(X, float):
         msg = 'distFromAxis calc error: {} is not a float.'
         raise TypeError, msg.format(X)
@@ -380,7 +381,7 @@ def BD2DBL_index(r_min, r_max, D, B, w, tube_diam, tube_height,
 
     Parameters
     ----------
-
+    
     Returns
     -------
     dict : (BD : DBL)
