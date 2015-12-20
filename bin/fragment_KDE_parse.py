@@ -29,6 +29,8 @@ Options:
                   NOTE: genome_list file is ignored
                   [default: 0]
   --invert        Invert selection.
+  --log=<l>       Name of log file.
+                  [default: KDE_parse.log]
   --debug         Debug mode (turn off parallel processing).
   --version       Show version.
   -h --help       Show this screen.
@@ -100,7 +102,7 @@ def parse_comm_by_cluster(comm, clust_col, inv=False):
     return(comm)
 
 
-def parse_target_frag_kdes(frag_kdes, comm, NA_random):
+def parse_target_frag_kdes(frag_kdes, comm, NA_random, log):
     """Parsing out genome fragment KDEs for target taxa.
     Parameters
     ----------
@@ -108,8 +110,11 @@ def parse_target_frag_kdes(frag_kdes, comm, NA_random):
         list of frag_kde objects
     comm : pandas.dataframe
         community table
-    NA_random : NAs (non-targets) get a random fragment KDE
-   
+    NA_random : bool
+        NAs (non-targets) get a random fragment KDE
+    log : buffer
+        Log file buffer
+
     Returns
     -------
     frag_kdes
@@ -134,36 +139,41 @@ def parse_target_frag_kdes(frag_kdes, comm, NA_random):
         except KeyError:
             if NA_random:
                 # random selection of fragment_kde 
-                idx = np.random.choice(len_idx, 1) 
+                idx = np.random.choice(len_idx,1)[0]
             else:
                 idx = None
                 msg = 'Cannot find "{}" in target list (check --name column)'
                 print msg.format(tg)
+        # copy KDE 
         try:
             frag_kde_target.append(copy.deepcopy(frag_kdes[idx]))
         except TypeError:
-            pass
+            continue
+        # renaming KDE from rename column in comm file
+        ## skipping if no rename ID exists
+        try:
+            idx2 = len(frag_kde_target)-1
+            oldname = frag_kde_target[idx2][0]
+            newname = row[1]   # --rename column in comm file
+            frag_kde_target[idx2][0] = newname
+            msg = 'Renamed fragment KDE: old={}, new={}\n'
+            log.write(msg.format(oldname, newname))
+        except IndexError:
+            continue
+            
     sys.stderr.write('\n')
-        
-    # renaming genome fragment KDEs for target OTUs by target OTU-ID
-    ## skipping if no rename ID exists
-    try:
-        for i in range(comm.shape[0]):
-            frag_kde_target[i][0] = comm.iloc[i,1]         
-    except IndexError:
-        pass
-        
-    # check that all were found
+                
+    # check that all KDEs were found
     x_len = len(frag_kde_target)
     y_len = comm.shape[0]
     if(x_len != y_len):
-        msg = 'No matching genomes for {} OTUs!\n'.format(y_len - x_len)
-        sys.stderr.write(msg)
+        msg = 'WARNING: No matching genomes for {} OTUs!\n'
+        sys.stderr.write(msg.format(y_len - x_len))
 
     return(frag_kde_target)   
 
 
-def parse_nontarget_frag_kdes(frag_kdes, comm): 
+def parse_nontarget_frag_kdes(frag_kdes, comm, log): 
     """Parsing out genome fragment KDEs for non-target taxa.
     Parameters
     ----------
@@ -171,6 +181,8 @@ def parse_nontarget_frag_kdes(frag_kdes, comm):
         list of frag_kde objects
     comm : pandas.dataframe
         community table
+    log : buffer
+        log file buffer
     
     Returns
     -------
@@ -209,8 +221,11 @@ def parse_nontarget_frag_kdes(frag_kdes, comm):
     # renaming randomly selected KDEs by random OTU_IDs
     try:
         for i in range(richness_needed):
-            #print '{} <-> {}'.format(frag_kde_rand[i][0], comm.iloc[i,1])               
-            frag_kde_rand[i][0] = comm.iloc[i,1]
+            oldname = frag_kde_rand[i][0]
+            newname = comm.iloc[i,1]
+            frag_kde_rand[i][0] = newname
+            msg = 'Renamed fragment KDE: old={}, new={}\n'
+            log.write(msg.format(oldname, newname))
     except IndexError:
         pass
         
@@ -223,7 +238,7 @@ def parse_nontarget_frag_kdes(frag_kdes, comm):
     return frag_kde_rand
 
 
-def parse_random_frag_kdes(frag_kdes, n):         
+def parse_random_frag_kdes(frag_kdes, n, log):         
     """Sampling genome fragment KDEs from random genomes. 
     Subsampling at genome level; subsampling w/out replacement.
     Parameters
@@ -232,7 +247,9 @@ def parse_random_frag_kdes(frag_kdes, n):
         list of frag_kde objects
     n : int
         Number of subsamples
-    
+    log : buffer
+        Log file 
+
     Returns
     -------
     frag_kdes
@@ -253,7 +270,11 @@ def parse_random_frag_kdes(frag_kdes, n):
             
     # renaming randomly selected KDEs by random OTU_IDs
     for i in range(richness_needed):
-        frag_kde_rand[i][0] = 'OTU.rand{}'.format(i) 
+        oldname = frag_kde_rand[i][0]
+        newname = 'OTU.rand{}'.format(i) 
+        frag_kde_rand[i][0] = newname
+        msg = 'Renamed fragment KDE: old={}, new={}\n'
+        log.write(msg.format(oldname, newname))
 
     return frag_kde_rand
             
@@ -262,6 +283,9 @@ def parse_random_frag_kdes(frag_kdes, n):
 if __name__ == '__main__':
     args = docopt(__doc__, version='0.1')
     args['--random'] = int(args['--random'])    
+
+    # open log file
+    logFH = open(args['--log'], 'wb') 
 
     # loading comm file
     if(args['--random'] <= 0):
@@ -286,12 +310,17 @@ if __name__ == '__main__':
     # parsing fragments
     sys.stderr.write('Parsing fragments...\n')
     if(args['--random'] > 0):
-        frag_kdes = parse_rand_frag_kdes(frag_kdes, args['--random'])
+        frag_kdes = parse_rand_frag_kdes(frag_kdes, args['--random'], logFH)
     elif(args['--invert']):
-        frag_kdes = parse_nontarget_frag_kdes(frag_kdes, df_comm)
+        frag_kdes = parse_nontarget_frag_kdes(frag_kdes, df_comm, logFH)
     else:
         frag_kdes = parse_target_frag_kdes(frag_kdes, df_comm, 
-                                           args['--NA-random'])
+                                           args['--NA-random'], logFH)
         
     # writing parsed fragment file
     dill.dump(frag_kdes, sys.stdout)
+
+    # closing log file
+    logFH.close()
+    msg = 'Log file written: {}\n'
+    sys.stderr.write(msg.format(args['--log']))

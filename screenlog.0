@@ -12367,3 +12367,51 @@ Keyboard interrupt.
 [33m[W 12:44:36.500 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_Sandbox.ipynb
 [32m[I 12:44:46.578 NotebookApp][m Saving file at /ipynb/theory/diff_bound_layer_theory.ipynb
 [33m[W 12:44:46.580 NotebookApp][m Saving untrusted notebook ipynb/theory/diff_bound_layer_theory.ipynb
+[32m[I 12:46:24.238 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 12:46:37.151 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 12:49:29.283 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[33m[W 12:53:26.754 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/sim_datasets/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 2.59ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_greater_richness.ipynb
+[33m[W 12:53:26.763 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/sim_datasets/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 1.00ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_greater_richness.ipynb
+[33m[W 12:53:26.767 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.21ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_greater_richness.ipynb
+[33m[W 12:53:27.321 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 1.35ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_greater_richness.ipynb
+[33m[W 12:53:27.393 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 3.04ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_greater_richness.ipynb
+[33m[W 12:53:27.396 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 2.93ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_greater_richness.ipynb
+[32m[I 12:53:30.237 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 12:55:29.276 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 09:18:03.501 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 09:20:03.628 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 09:22:03.606 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 09:24:03.568 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 09:26:03.602 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 09:32:03.689 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 09:34:03.565 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[33m[W 15:32:47.526 NotebookApp][m WebSocket ping timeout after 119927 ms.
+[33m[W 09:08:34.816 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/sim_datasets/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 17.47ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[33m[W 09:08:34.827 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/sim_datasets/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 0.99ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[33m[W 09:08:34.864 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 32.39ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[33m[W 09:08:36.009 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 1.24ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[33m[W 09:08:36.041 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 2.26ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[33m[W 09:08:36.045 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.17ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 09:10:35.707 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 09:12:35.722 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 09:14:35.721 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 09:16:35.695 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 09:27:17.182 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[33m[W 09:28:07.167 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/sim_datasets/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 2.72ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL.ipynb
+[33m[W 09:28:07.176 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/sim_datasets/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 1.20ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL.ipynb
+[33m[W 09:28:07.181 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.52ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL.ipynb
+[33m[W 09:28:09.199 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 3.05ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL.ipynb
+[33m[W 09:28:09.257 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 3.02ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL.ipynb
+[33m[W 09:28:09.261 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.66ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL.ipynb
+[32m[I 09:30:08.778 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL.ipynb
+[33m[W 09:30:33.838 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/sim_datasets/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 1.05ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 09:30:33.881 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 2.46ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 09:30:33.883 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/sim_datasets/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 1.90ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 09:30:41.114 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 3.47ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 09:30:41.512 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 3.09ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 09:30:41.517 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.76ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 09:32:21.117 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL.ipynb
+[32m[I 09:32:35.719 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 09:36:35.673 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 09:38:35.620 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 09:40:35.669 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
