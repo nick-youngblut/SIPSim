@@ -252,8 +252,7 @@ def by_genome(x, args):
     
     # input check
     assert 'scriptDir' in args, '"scriptDir" not in args'
-    
-    
+        
     # checking for MFEprimer.py executable
     MFEprimerExe = os.path.join(args['scriptDir'], 'MFEprimer.py')
     if not os.path.isfile(MFEprimerExe):

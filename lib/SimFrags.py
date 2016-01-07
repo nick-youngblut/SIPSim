@@ -82,14 +82,17 @@ class SimFrags(object):
         -------
         list : [scaffold,fragStart,fragLen,fragSequence]
         """        
+
         tryCnt = 0
         while 1:
             # get read template position
-            try:
-               readTempPos = self._get_randPos_amp(genome)
-            except AttributeError:
+            if genome.primerFile is not None:  # amplicon
+                readTempPos = self._get_randPos_amp(genome)
+            else:   # shotgun
                 readTempPos = self._get_randPos_shotgun(genome)
-            assert len(readTempPos) == 3, 'readTempPos should be: "scaf,start,end"'
+            #msg = 'readTempPos should be: "scaf,start,end"'
+            #assert len(readTempPos) == 3, msg
+            
 
             # if no read template position (no amplicon): return None
             if readTempPos[0] is None:
@@ -256,14 +259,15 @@ class SimFrags(object):
         -------
         list : [read_scaffold_ID,start,end] 
         """
-        nAmps = genome.get_nAmplicons()
+        nAmps = genome.nAmplicons        
+        
         if nAmps <= 0:
             return [None] * 3
         elif nAmps == 1:
             i = 0
         else:
             i = np.random.randint(0, nAmps-1)
-        row = genome.get_MFEprimerRes().iloc[i]
+        row = genome.MFEprimerRes.iloc[i]
         row = row[['HitID','BindingStart','BindingStop']]        
         return [x for x in row]
         

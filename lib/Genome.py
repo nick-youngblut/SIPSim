@@ -150,7 +150,9 @@ class Genome(object):
             
             # removing all substantially overlapping intervals with lower PPC
             if len(overlaps) > 1:
-                overlaps = sorted(overlaps, key=lambda x: x.data[1], reverse=True)
+                overlaps = sorted(overlaps, 
+                                  key=lambda x: x.data[1], 
+                                  reverse=True)
                 for o in overlaps[1:]:
                     if o in tree2:
                         tree2.remove(o)
@@ -242,7 +244,8 @@ class Genome(object):
         except AttributeError:
             raise AttributeError('No fastaIdx attribute for genome object')
         except KeyError:
-            raise KeyError('ScaffoldID "{}" not found in genome fasta index'.format(scaffold))
+            msg = 'ScaffoldID "{}" not found in genome fasta index'
+            raise KeyError(msg.format(scaffold))
 
 
     def get_seq_len(self, seqID):
@@ -258,7 +261,8 @@ class Genome(object):
         int : sequence length
         """
         if not hasattr(self, '_fastaIdx_lens'):
-            self._fastaIdx_lens = {seqID:len(seq) for seqID,seq in self.fastaIdx.items()}
+            self._fastaIdx_lens = {seqID:len(seq) for seqID,seq 
+                                   in self.fastaIdx.items()}
         
         try:
             return self._fastaIdx_lens[seqID]
@@ -301,8 +305,9 @@ class Genome(object):
 
     @primerFile.setter
     def primerFile(self, value):
+        if (value is not None) and (not os.path.exists(value)):
+            raise IOError, 'Primer file not found!'
         self._primerFile = value
-
             
     @property
     def length(self):

@@ -12415,3 +12415,374 @@ Keyboard interrupt.
 [32m[I 09:36:35.673 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
 [32m[I 09:38:35.620 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
 [32m[I 09:40:35.669 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[33m[W 09:18:18.464 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/sim_datasets/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 1.19ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[33m[W 09:18:18.504 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/sim_datasets/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 1.00ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[33m[W 09:18:18.524 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.32ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[33m[W 09:18:19.838 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 1.44ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[33m[W 09:18:19.897 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 3.05ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[33m[W 09:18:19.901 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 3.02ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 09:20:19.377 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 09:22:19.363 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 09:24:19.344 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 09:26:19.348 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 09:28:19.341 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 09:30:19.331 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 09:31:50.002 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 10:56:19.155 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 10:58:19.153 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 11:00:19.134 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 11:02:19.149 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 11:04:19.136 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 11:06:19.113 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 11:08:19.137 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 11:10:19.130 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 11:12:19.124 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 11:14:19.127 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 11:16:19.095 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 11:17:45.840 NotebookApp][m Kernel interrupted: c67ed9c5-f0a3-414e-ab02-d02fe14dae56
+[32m[I 11:18:19.093 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 11:20:19.114 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 11:21:10.781 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 11:21:44.195 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 11:27:21.237 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[33m[W 14:55:49.538 NotebookApp][m WebSocket ping timeout after 119970 ms.
+[33m[W 07:34:19.507 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/sim_datasets/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 1.13ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[33m[W 07:34:19.559 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/sim_datasets/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 2.45ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[33m[W 07:34:19.597 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 2.43ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[33m[W 07:34:20.962 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 1.33ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[33m[W 07:34:21.008 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 3.05ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[33m[W 07:34:21.016 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 3.02ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 07:38:20.457 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 08:20:20.362 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 08:22:20.357 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 08:24:20.353 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 08:26:20.350 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 08:28:20.350 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 08:30:20.340 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 08:34:20.337 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 08:36:20.336 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 08:36:52.639 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 08:38:20.318 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 08:38:38.910 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 08:40:20.324 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 08:42:20.340 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 08:44:20.386 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 08:46:20.303 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 08:48:20.314 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 08:48:34.580 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 08:58:20.759 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[32m[I 08:59:09.735 NotebookApp][m Creating new directory in /ipynb/bac_genome
+[32m[I 08:59:23.726 NotebookApp][m Creating new file in /ipynb/bac_genome/sim_genomes
+[32m[I 09:00:20.994 NotebookApp][m Saving file at /ipynb/bac_genome/sim_genomes/README.md
+[32m[I 09:55:07.875 NotebookApp][m Creating new notebook in /ipynb/bac_genome/sim_genomes
+[32m[I 09:55:08.594 NotebookApp][m Kernel started: be72ca5a-76a0-4cf2-b7f6-9c2f20233fc9
+[33m[W 09:55:08.606 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/sim_genomes/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 1.05ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/sim_genomes/Untitled.ipynb?kernel_name=python2
+[33m[W 09:55:08.613 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/sim_genomes/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 0.91ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/sim_genomes/Untitled.ipynb?kernel_name=python2
+[33m[W 09:55:08.616 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.11ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/sim_genomes/Untitled.ipynb?kernel_name=python2
+/opt/anaconda/lib/python2.7/site-packages/path.py:121: UserWarning: Module argparse was already imported from /opt/anaconda/lib/python2.7/argparse.pyc, but /opt/anaconda/lib/python2.7/site-packages is being added to sys.path
+  import pkg_resources
+[33m[W 09:55:08.758 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 1.18ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/sim_genomes/Untitled.ipynb?kernel_name=python2
+[33m[W 09:55:08.772 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 1.12ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/sim_genomes/Untitled.ipynb?kernel_name=python2
+[33m[W 09:55:08.773 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.07ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/sim_genomes/Untitled.ipynb?kernel_name=python2
+[32m[I 09:55:23.004 NotebookApp][m Creating new notebook in /ipynb/sandbox
+[32m[I 09:55:23.449 NotebookApp][m Kernel started: ccc25cbd-9b93-4645-baf8-5218811f2ebd
+[33m[W 09:55:23.464 NotebookApp][m 404 GET /notebooks/ipynb/sandbox/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 1.10ms referer=http://127.0.0.1:7702/notebooks/ipynb/sandbox/Untitled.ipynb?kernel_name=python2
+[33m[W 09:55:23.472 NotebookApp][m 404 GET /notebooks/ipynb/sandbox/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 0.92ms referer=http://127.0.0.1:7702/notebooks/ipynb/sandbox/Untitled.ipynb?kernel_name=python2
+[33m[W 09:55:23.474 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.11ms referer=http://127.0.0.1:7702/notebooks/ipynb/sandbox/Untitled.ipynb?kernel_name=python2
+/opt/anaconda/lib/python2.7/site-packages/path.py:121: UserWarning: Module argparse was already imported from /opt/anaconda/lib/python2.7/argparse.pyc, but /opt/anaconda/lib/python2.7/site-packages is being added to sys.path
+  import pkg_resources
+[33m[W 09:55:23.570 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 1.23ms referer=http://127.0.0.1:7702/notebooks/ipynb/sandbox/Untitled.ipynb?kernel_name=python2
+[33m[W 09:55:23.589 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 1.44ms referer=http://127.0.0.1:7702/notebooks/ipynb/sandbox/Untitled.ipynb?kernel_name=python2
+[33m[W 09:55:23.590 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.06ms referer=http://127.0.0.1:7702/notebooks/ipynb/sandbox/Untitled.ipynb?kernel_name=python2
+[32m[I 09:57:23.464 NotebookApp][m Saving file at /ipynb/sandbox/genome_download.ipynb
+[32m[I 13:45:22.966 NotebookApp][m Saving file at /ipynb/sandbox/genome_download.ipynb
+[32m[I 13:47:22.953 NotebookApp][m Saving file at /ipynb/sandbox/genome_download.ipynb
+[32m[I 13:49:22.950 NotebookApp][m Saving file at /ipynb/sandbox/genome_download.ipynb
+[32m[I 13:51:22.944 NotebookApp][m Saving file at /ipynb/sandbox/genome_download.ipynb
+[33m[W 15:01:20.639 NotebookApp][m WebSocket ping timeout after 119997 ms.
+[33m[W 15:01:23.847 NotebookApp][m WebSocket ping timeout after 119997 ms.
+[32m[I 18:30:59.258 NotebookApp][m Saving file at /ipynb/sandbox/genome_download.ipynb
+[32m[I 18:32:59.169 NotebookApp][m Saving file at /ipynb/sandbox/genome_download.ipynb
+[32m[I 18:34:59.218 NotebookApp][m Saving file at /ipynb/sandbox/genome_download.ipynb
+[33m[W 18:35:42.839 NotebookApp][m Notebook ipynb/bac_genome/n1210/dataset.ipynb is not trusted
+[33m[W 18:35:43.398 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/n1210/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 11.80ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/dataset.ipynb
+[33m[W 18:35:43.459 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/n1210/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 0.93ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/dataset.ipynb
+[33m[W 18:35:43.567 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 60.13ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/dataset.ipynb
+[32m[I 18:35:44.342 NotebookApp][m Kernel started: 2b7040b3-cab4-4cfe-86da-3743db9cd2c3
+/opt/anaconda/lib/python2.7/site-packages/path.py:121: UserWarning: Module argparse was already imported from /opt/anaconda/lib/python2.7/argparse.pyc, but /opt/anaconda/lib/python2.7/site-packages is being added to sys.path
+  import pkg_resources
+[33m[W 18:35:44.512 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 1.30ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/dataset.ipynb
+[33m[W 18:35:44.674 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 1.14ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/dataset.ipynb
+[33m[W 18:35:44.702 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.37ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/dataset.ipynb
+[32m[I 18:36:41.593 NotebookApp][m Creating new notebook in /ipynb/bac_genome
+[32m[I 18:36:42.506 NotebookApp][m Kernel started: 85a74b43-0d0d-4bab-96af-5950ca15f1c2
+[33m[W 18:36:42.577 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 1.07ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Untitled.ipynb?kernel_name=python2
+/opt/anaconda/lib/python2.7/site-packages/path.py:121: UserWarning: Module argparse was already imported from /opt/anaconda/lib/python2.7/argparse.pyc, but /opt/anaconda/lib/python2.7/site-packages is being added to sys.path
+  import pkg_resources
+[33m[W 18:36:42.707 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 0.93ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Untitled.ipynb?kernel_name=python2
+[33m[W 18:36:42.752 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 1.32ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Untitled.ipynb?kernel_name=python2
+[33m[W 18:36:42.772 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.04ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Untitled.ipynb?kernel_name=python2
+[33m[W 18:36:42.837 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.16ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Untitled.ipynb?kernel_name=python2
+[33m[W 18:36:42.839 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 1.07ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/Untitled.ipynb?kernel_name=python2
+[32m[I 18:36:59.886 NotebookApp][m Saving file at /ipynb/sandbox/genome_download.ipynb
+[32m[I 18:38:42.569 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 18:40:42.565 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 18:42:42.639 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 18:44:44.013 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 18:46:44.503 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 18:48:44.106 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 18:49:24.548 NotebookApp][m Kernel interrupted: 85a74b43-0d0d-4bab-96af-5950ca15f1c2
+[32m[I 18:50:44.073 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 18:52:43.056 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 18:54:42.603 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[33m[W 18:55:04.984 NotebookApp][m 404 GET /notebooks/ipynb/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 1.14ms referer=http://127.0.0.1:7702/notebooks/ipynb/README.ipynb
+[33m[W 18:55:05.053 NotebookApp][m 404 GET /notebooks/ipynb/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 0.89ms referer=http://127.0.0.1:7702/notebooks/ipynb/README.ipynb
+[33m[W 18:55:05.106 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.14ms referer=http://127.0.0.1:7702/notebooks/ipynb/README.ipynb
+[33m[W 18:55:05.705 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 1.16ms referer=http://127.0.0.1:7702/notebooks/ipynb/README.ipynb
+[33m[W 18:55:05.824 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 1.13ms referer=http://127.0.0.1:7702/notebooks/ipynb/README.ipynb
+[33m[W 18:55:05.829 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.13ms referer=http://127.0.0.1:7702/notebooks/ipynb/README.ipynb
+[33m[W 18:55:08.010 NotebookApp][m 404 GET /notebooks/ipynb/theory/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 1.03ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/Gaussian_diff_limits.ipynb
+[33m[W 18:55:08.069 NotebookApp][m 404 GET /notebooks/ipynb/theory/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 0.93ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/Gaussian_diff_limits.ipynb
+[33m[W 18:55:08.138 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.09ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/Gaussian_diff_limits.ipynb
+[33m[W 18:55:08.776 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 1.13ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/Gaussian_diff_limits.ipynb
+[33m[W 18:55:08.847 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.10ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/Gaussian_diff_limits.ipynb
+[33m[W 18:55:08.848 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 1.08ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/Gaussian_diff_limits.ipynb
+[33m[W 18:55:10.256 NotebookApp][m Notebook ipynb/theory/diff_bound_layer_theory.ipynb is not trusted
+[33m[W 18:55:10.992 NotebookApp][m 404 GET /notebooks/ipynb/theory/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 1.05ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_theory.ipynb
+[33m[W 18:55:11.050 NotebookApp][m 404 GET /notebooks/ipynb/theory/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 0.89ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_theory.ipynb
+[33m[W 18:55:11.056 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.11ms referer=http://127.0.0.1:7702/notebooks/ipynb/theory/diff_bound_layer_theory.ipynb
+[33m[W 18:55:13.071 NotebookApp][m Notebook ipynb/bac_genome/n3/validation.ipynb is not trusted
+[33m[W 18:55:13.920 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/n3/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 1.01ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 18:55:13.985 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/n3/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 1.62ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 18:55:13.988 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.92ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 18:55:17.539 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 1.30ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 18:55:17.644 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.14ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 18:55:17.646 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 1.07ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 18:55:30.050 NotebookApp][m Notebook ipynb/bac_genome/n1210/dataset.ipynb is not trusted
+[33m[W 18:55:30.853 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/n1210/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 1.01ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/dataset.ipynb
+[33m[W 18:55:30.918 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/n1210/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 0.95ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/dataset.ipynb
+[33m[W 18:55:30.972 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.12ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/dataset.ipynb
+[33m[W 18:55:33.028 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 1.28ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/dataset.ipynb
+[33m[W 18:55:33.051 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 1.12ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/dataset.ipynb
+[33m[W 18:55:33.057 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.10ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/dataset.ipynb
+[32m[I 19:52:42.806 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 19:54:42.588 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 19:56:42.588 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 19:58:42.567 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 19:59:45.068 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 20:00:42.446 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 20:04:42.566 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 20:05:07.049 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 20:06:42.405 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 20:08:42.414 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 20:10:42.568 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 20:12:42.731 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 20:13:27.506 NotebookApp][m KernelRestarter: restarting kernel (1/5)
+WARNING:root:kernel 85a74b43-0d0d-4bab-96af-5950ca15f1c2 restarted
+/opt/anaconda/lib/python2.7/site-packages/path.py:121: UserWarning: Module argparse was already imported from /opt/anaconda/lib/python2.7/argparse.pyc, but /opt/anaconda/lib/python2.7/site-packages is being added to sys.path
+  import pkg_resources
+[32m[I 20:14:06.187 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 20:14:18.576 NotebookApp][m Kernel shutdown: 85a74b43-0d0d-4bab-96af-5950ca15f1c2
+[33m[W 20:14:20.695 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 0.99ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[33m[W 20:14:20.768 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 0.86ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[33m[W 20:14:20.834 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.13ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 20:14:21.069 NotebookApp][m Kernel started: 226169f8-b37d-44e8-8a4b-4ca94d349fcc
+/opt/anaconda/lib/python2.7/site-packages/path.py:121: UserWarning: Module argparse was already imported from /opt/anaconda/lib/python2.7/argparse.pyc, but /opt/anaconda/lib/python2.7/site-packages is being added to sys.path
+  import pkg_resources
+[33m[W 20:14:21.220 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 1.37ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[33m[W 20:14:21.313 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.20ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[33m[W 20:14:21.314 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 1.08ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 20:14:53.414 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 20:16:21.469 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 20:18:19.115 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 20:18:21.259 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 20:18:22.219 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 20:22:45.907 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 09:35:12.798 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 09:39:12.739 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 09:41:12.737 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 09:43:12.726 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 09:45:12.725 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 09:46:56.777 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 09:49:12.724 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 09:51:12.716 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 09:53:12.713 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 09:55:12.738 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 09:57:12.708 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 09:57:47.697 NotebookApp][m Kernel interrupted: 226169f8-b37d-44e8-8a4b-4ca94d349fcc
+[32m[I 09:58:00.367 NotebookApp][m Kernel interrupted: 226169f8-b37d-44e8-8a4b-4ca94d349fcc
+[32m[I 09:58:16.135 NotebookApp][m Kernel interrupted: 226169f8-b37d-44e8-8a4b-4ca94d349fcc
+[32m[I 09:59:12.709 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 10:00:13.561 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 10:00:15.963 NotebookApp][m Kernel interrupted: 226169f8-b37d-44e8-8a4b-4ca94d349fcc
+[32m[I 10:01:12.689 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 10:51:12.592 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 12:01:12.443 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 12:02:33.404 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 12:03:33.881 NotebookApp][m Kernel interrupted: 226169f8-b37d-44e8-8a4b-4ca94d349fcc
+[32m[I 12:05:12.827 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[33m[W 12:05:14.464 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/sim_datasets/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 16.44ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL.ipynb
+[33m[W 12:05:14.469 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/sim_datasets/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 1.03ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL.ipynb
+[33m[W 12:05:14.521 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 26.49ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL.ipynb
+[33m[W 12:05:15.779 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 1.65ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL.ipynb
+[33m[W 12:05:15.811 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 1.46ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL.ipynb
+[33m[W 12:05:15.813 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.11ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL.ipynb
+[33m[W 12:06:52.474 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/sim_datasets/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 1.13ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 12:06:52.502 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/fullCyc/sim_datasets/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 0.94ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 12:06:52.504 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.18ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 12:06:59.947 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 1.50ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 12:07:00.899 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.27ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[33m[W 12:07:00.901 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 1.10ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 12:07:38.505 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/dataset.ipynb
+[33m[W 12:07:38.506 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/dataset.ipynb
+[32m[I 12:08:46.254 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/dataset.ipynb
+[33m[W 12:08:46.255 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/dataset.ipynb
+[32m[I 12:09:12.478 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/dataset.ipynb
+[33m[W 12:09:12.480 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/dataset.ipynb
+[32m[I 12:09:12.823 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 12:11:12.415 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[33m[W 12:11:12.416 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 12:12:17.606 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 12:12:37.876 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 12:15:06.673 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 12:16:07.714 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_dev.ipynb
+[32m[I 12:16:25.801 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/dataset.ipynb
+[33m[W 12:16:25.803 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/dataset.ipynb
+[32m[I 12:16:50.898 NotebookApp][m Saving file at /ipynb/bac_genome/fullCyc/sim_datasets/gradient_sim_wDBL_xRich.ipynb
+[33m[W 12:17:20.938 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/n1210/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 1.10ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 12:17:20.971 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/n1210/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 1.05ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 12:17:20.980 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.20ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 12:17:23.799 NotebookApp][m Kernel started: e5a62b53-9542-4aab-9d00-3fd5dc345691
+/opt/anaconda/lib/python2.7/site-packages/path.py:121: UserWarning: Module argparse was already imported from /opt/anaconda/lib/python2.7/argparse.pyc, but /opt/anaconda/lib/python2.7/site-packages is being added to sys.path
+  import pkg_resources
+[33m[W 12:17:23.964 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 2.38ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 12:17:24.078 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.54ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 12:17:24.079 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 1.09ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 12:19:23.925 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 12:21:23.903 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 12:23:12.782 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 12:23:23.900 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 12:25:12.389 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 12:27:44.318 NotebookApp][m Kernel interrupted: 226169f8-b37d-44e8-8a4b-4ca94d349fcc
+[32m[I 12:29:12.384 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 12:31:12.374 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 12:31:45.073 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 12:33:21.450 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 12:35:23.875 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 12:37:23.867 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 12:43:12.746 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 12:45:12.880 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 13:07:24.083 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 13:13:12.284 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 13:14:53.166 NotebookApp][m Kernel interrupted: 226169f8-b37d-44e8-8a4b-4ca94d349fcc
+[32m[I 13:15:12.277 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 13:16:09.549 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 13:27:24.743 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 13:30:39.812 NotebookApp][m Kernel interrupted: 226169f8-b37d-44e8-8a4b-4ca94d349fcc
+[32m[I 13:31:12.244 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 13:31:20.066 NotebookApp][m Kernel interrupted: 226169f8-b37d-44e8-8a4b-4ca94d349fcc
+[32m[I 13:33:12.249 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 13:33:24.754 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 13:35:12.240 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 13:36:11.798 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 13:37:23.848 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 13:39:23.792 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 13:41:23.736 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 13:43:24.690 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 13:45:12.229 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 13:45:24.671 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 13:47:12.211 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 13:47:29.936 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 13:49:23.700 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 13:51:23.726 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 13:52:23.018 NotebookApp][m Kernel interrupted: e5a62b53-9542-4aab-9d00-3fd5dc345691
+[32m[I 13:52:50.153 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 13:53:41.618 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 13:58:57.615 NotebookApp][m Found 4.x extension Rubberband
+[32m[I 13:58:57.625 NotebookApp][m Found 4.x extension NbExtensions menu item
+[32m[I 13:58:57.637 NotebookApp][m Found 4.x extension Printview
+[32m[I 13:58:57.643 NotebookApp][m Found 4.x extension zenmode
+[32m[I 13:58:57.651 NotebookApp][m Found 3.x, 4.x extension AutoSaveTime
+[32m[I 13:58:57.657 NotebookApp][m Found 3.x, 4.x extension Autoscroll
+[32m[I 13:58:57.679 NotebookApp][m Found 4.x extension Chrome Clipboard
+[32m[I 13:58:57.692 NotebookApp][m Found 4.x extension Codefolding
+[32m[I 13:58:57.696 NotebookApp][m Found 3.x, 4.x extension Comment/Uncomment Hotkey
+[32m[I 13:58:57.699 NotebookApp][m Found 4.x extension datestamper
+[32m[I 13:58:57.708 NotebookApp][m Found 4.x extension Drag and Drop
+[32m[I 13:58:57.710 NotebookApp][m Found 4.x extension Equation Auto Numbering
+[32m[I 13:58:57.712 NotebookApp][m Found 4.x extension ExecuteTime
+[32m[I 13:58:57.720 NotebookApp][m Found 3.x extension Exercise
+[32m[I 13:58:57.735 NotebookApp][m Found 3.x, 4.x extension Help panel
+[32m[I 13:58:57.742 NotebookApp][m Found 3.x 4.x extension Hide input
+[32m[I 13:58:57.744 NotebookApp][m Found 3.x 4.x extension Hide input all
+[32m[I 13:58:57.746 NotebookApp][m Found 3.x, Jupyter (4.x) extension highlighter
+[32m[I 13:58:57.752 NotebookApp][m Found 3.x, 4.x extension Initialization cells
+[32m[I 13:58:57.754 NotebookApp][m Found 3.x, Jupyter (4.x) extension (some) LaTeX environments for Jupyter
+[32m[I 13:58:57.774 NotebookApp][m Found 4.x extension Limit Output
+[32m[I 13:58:57.776 NotebookApp][m Found 4.x extension Navigation-Hotkeys
+[32m[I 13:58:57.783 NotebookApp][m Found 4.x extension Python Markdown
+[32m[I 13:58:57.792 NotebookApp][m Found 4.x extension Rubberband
+[32m[I 13:58:57.796 NotebookApp][m Found 4.x extension Ruler
+[32m[I 13:58:57.803 NotebookApp][m Found 4.x extension Runtools
+[32m[I 13:58:57.807 NotebookApp][m Found 4.x extension Search-Replace
+[32m[I 13:58:57.818 NotebookApp][m Found 4.x extension Skip-Traceback
+[32m[I 13:58:57.820 NotebookApp][m Found 4.x extension Table of Content
+[32m[I 13:58:57.832 NotebookApp][m Found 3.x 4.x extension Toggle all line numbers
+[32m[I 14:03:12.619 NotebookApp][m Saving file at /ipynb/bac_genome/all_complete_NCBI_bac_genomes.ipynb
+[32m[I 14:03:23.676 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 14:05:23.669 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 14:07:23.684 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 14:09:23.693 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[33m[W 14:11:07.123 NotebookApp][m Notebook ipynb/bac_genome/n3/validation.ipynb is not trusted
+[33m[W 14:11:07.250 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/n3/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 1.05ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 14:11:07.266 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/n3/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 0.91ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 14:11:07.283 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 14.30ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 14:11:10.788 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 1.34ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 14:11:10.860 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 1.17ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[33m[W 14:11:10.862 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.04ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/validation.ipynb
+[32m[I 14:11:25.151 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 14:13:10.296 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[33m[W 14:13:10.298 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n3/validation.ipynb
+[32m[I 14:15:10.303 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[33m[W 14:15:10.305 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n3/validation.ipynb
+[32m[I 14:17:10.309 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[33m[W 14:17:10.310 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n3/validation.ipynb
+[32m[I 14:19:10.275 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[33m[W 14:19:10.277 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n3/validation.ipynb
+[32m[I 14:20:15.542 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 14:21:10.283 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 14:23:10.272 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 14:25:10.297 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 14:27:10.300 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 14:27:51.055 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 14:28:15.607 NotebookApp][m Creating new notebook in /ipynb/bac_genome/n3
+[32m[I 14:28:16.364 NotebookApp][m Kernel started: 6f50686e-9d22-4e96-9824-06be350b4382
+[33m[W 14:28:16.380 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/n3/nbextensions//home/nick/install/IPython-notebook-extensions/usability/codefolding/main.js?v=20151130113108 (127.0.0.1) 1.35ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/Untitled.ipynb?kernel_name=python2
+[33m[W 14:28:16.391 NotebookApp][m 404 GET /notebooks/ipynb/bac_genome/n3/nbextensions//home/nick/install/IPython-notebook-extensions/usability/rubberband/main.js?v=20151130113108 (127.0.0.1) 0.93ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/Untitled.ipynb?kernel_name=python2
+[33m[W 14:28:16.395 NotebookApp][m 404 GET /nbextensions/usability/datestamper/datestamper.js?v=20151130113108 (127.0.0.1) 1.15ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/Untitled.ipynb?kernel_name=python2
+/opt/anaconda/lib/python2.7/site-packages/path.py:121: UserWarning: Module argparse was already imported from /opt/anaconda/lib/python2.7/argparse.pyc, but /opt/anaconda/lib/python2.7/site-packages is being added to sys.path
+  import pkg_resources
+[33m[W 14:28:16.556 NotebookApp][m 404 GET /nbextensions/foldgutter.css?v=20151130113108 (127.0.0.1) 1.47ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/Untitled.ipynb?kernel_name=python2
+[33m[W 14:28:16.572 NotebookApp][m 404 GET /nbextensions/firstline-fold.js?v=20151130113108 (127.0.0.1) 1.17ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/Untitled.ipynb?kernel_name=python2
+[33m[W 14:28:16.573 NotebookApp][m 404 GET /nbextensions/magic-fold.js?v=20151130113108 (127.0.0.1) 1.08ms referer=http://127.0.0.1:7702/notebooks/ipynb/bac_genome/n3/Untitled.ipynb?kernel_name=python2
+[32m[I 14:30:16.383 NotebookApp][m Saving file at /ipynb/bac_genome/n3/probability_of_frag_detect.ipynb
+[32m[I 14:32:16.387 NotebookApp][m Saving file at /ipynb/bac_genome/n3/probability_of_frag_detect.ipynb
+[32m[I 14:34:16.382 NotebookApp][m Saving file at /ipynb/bac_genome/n3/probability_of_frag_detect.ipynb
+[32m[I 14:34:29.312 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 14:34:30.226 NotebookApp][m Saving file at /ipynb/bac_genome/n3/probability_of_frag_detect.ipynb
+[32m[I 14:35:14.412 NotebookApp][m Saving file at /ipynb/bac_genome/n3/validation.ipynb
+[32m[I 14:35:23.626 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 14:37:23.772 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 14:38:25.204 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/dataset.ipynb
+[33m[W 14:38:25.209 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/dataset.ipynb
+[32m[I 14:38:32.419 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/dataset.ipynb
+[33m[W 14:38:32.428 NotebookApp][m Saving untrusted notebook ipynb/bac_genome/n1210/dataset.ipynb
+[32m[I 14:39:23.642 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 14:41:21.628 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 14:41:54.961 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 14:43:23.624 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 14:45:23.538 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 14:47:23.542 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 14:51:23.523 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 14:53:23.514 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
+[32m[I 14:55:23.513 NotebookApp][m Saving file at /ipynb/bac_genome/n1210/validation.ipynb
