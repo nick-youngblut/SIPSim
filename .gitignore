@@ -1,6 +1,6 @@
 .DS_Store
 ._.DS_Store
-screenlog.0
+screenlog.*
 *.pyc
 dev/
 t/

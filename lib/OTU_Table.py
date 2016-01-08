@@ -449,7 +449,7 @@ class OTU_table(_table):
         all_taxa = Counter({x:0 for x in self.iter_taxa()})        
 
         # subsampling
-        samp_cnt = 0
+        #samp_cnt = 0
         df_sub = pd.DataFrame(columns=self.df.columns)
         for libID in self.iter_libraries():
             # making list of fraction sizes 
@@ -458,9 +458,15 @@ class OTU_table(_table):
             # applying autocorrleation via random walk (if needed)
             if walk > 0:
                 samp_sizes = random_walk_var_step(samp_sizes, walk)
+                
+            # assertion on number of fractions
+            nfracs = len([x for x in self.iter_fractions(libID=libID)])
+            msg = 'Number of sample sizes ({}) != number of fractions ({})'
+            assert len(samp_sizes) == nfracs, msg.format(len(samp_sizes),
+                                                             nfracs)
 
             # subsampling; weighted by relative abundances
-            for fracID in self.iter_fractions(libID=libID):
+            for samp_cnt, fracID in enumerate(self.iter_fractions(libID=libID)):
                 # single community
                 comm = self.get_comm(libID, fracID)
                 sub_comm = None
@@ -501,7 +507,7 @@ class OTU_table(_table):
                         comm.loc[:,'count'] = 0
 
                 df_sub = pd.concat([df_sub, sub_comm])
-                samp_cnt += 1
+                #samp_cnt += 1
                         
         df_sub['count'] = df_sub['count'].astype(int)
         df_sub['rel_abund'] = self._norm_counts(df_sub)
