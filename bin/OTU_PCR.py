@@ -13,22 +13,24 @@ Options:
   <OTU_table>              OTU table file.
   --n_cycles=<n>           Number of PCR cycles.
                            [Default: 30]
-  --DNA_conc_dist=<dc>     Distribution of starting DNA molarities (units = uM).
-                           Use 'uniform' if all reactions used the same amount
-                           of input DNA.
-                           (see numpy.random for a list of distributions)
+  --DNA_conc_dist=<dc>     Distribution of starting DNA molarities for each
+                           sample (units = uM).
+                           Note: Use 'uniform' if all reactions used the same
+                           amount of input DNA.
                            [Default: uniform]
   --DNA_conc_dist_p=<dp>   Distribution parameters.
                            (see numpy.random for a list of parameters)
                            [Default: low:0.3,high:0.3]
   --primer_conc=<pc>       Molarity of forward and reverse primers (units = uM).
                            [Default: 1]
+  --ratio=<r>              Amplicon to primer length ratio.
+                           [Default: 10]
   -f=<f>                   The theoretical maximum PCR efficiency.
                            [Default: 1]
   -k=<k>                   k parameter used in Suzuki & Giovannoni (1996).
                            [Default: 5]
   --version                Show version.
-  --debug                  Debug mode (turns off parallel processing)
+  --debug                  Debug mode (verbose output)
   -h --help                Show this screen.
 
 
@@ -78,7 +80,8 @@ def main(Uargs):
             primer_conc = float(Uargs['--primer_conc']),
             n_cycles = int(Uargs['--n_cycles']),
             f_0 = float(Uargs['-f']),
-            k = float(Uargs['-k']), 
+            k = float(Uargs['-k']),
+            ratio = float(Uargs['--ratio']),
             debug=Uargs['--debug'])
 
     # writing out file

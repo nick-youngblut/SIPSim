@@ -18,7 +18,7 @@ def PCR_cycle(M_0, P_n, f_0, k):
     Parameters
     ----------
     M_0 : float
-        The template molarity at PCR cycle 0
+        The template molarity at the start of the PCR cycle
     P_n : float
         The primer molarity 
     f_0 : float
@@ -31,29 +31,27 @@ def PCR_cycle(M_0, P_n, f_0, k):
     float : post-cycle template molarity 
     """
     assert M_0 >= 0, 'M_n must be >= 0'
-    if M_0 == 0:
-        return 0
 
     # calculating rxn efficiency
-    b = k * M_0 + P_n
+    b = k * M_0 + P_n 
     if b > 0:
-        f_n = f_0 * P_n / b
+        f_n = f_0 * (P_n / b) 
     else:
         f_n = 0.0
 
     # calculating resulting template molarity
-    M_n = M_0 * math.e ** f_n
-
-    # check
+    M_n = M_0 * math.e ** f_n 
+    
+    # assert
     if M_n < M_0:
-        msg = 'f_n: {}\nf_0: {}\nM_0: {}\nP_n: {}\nk: {}\nb{}' 
-        print msg.format(f_n, f_0, M_0, P_n, k, b)
+        msg = 'ERROR: M_n < M_0; f_n: {}\nf_0: {}\nM_0: {}\nP_n: {}\nk: {}\nb{}' 
+        sys.exit(msg.format(f_n, f_0, M_0, P_n, k, b))
     
     # return
     return M_n
     
 
-def run_PCR(taxa_molarities, P_n, f_0, k, n_cycles=30):
+def run_PCR(taxa_molarities, P_n, f_0, k, n_cycles=30, ratio=10):
     """PCR run simulation (PCR on 1 sample)
 
     Parameters
@@ -68,6 +66,8 @@ def run_PCR(taxa_molarities, P_n, f_0, k, n_cycles=30):
         The ratio between the rate constants of reannealing and priming rxns
     n : int
         The number of PCR cycles
+    ratio : float
+        Amplicon to primer length ratio.
     Returns
     -------
     float : taxa molarities post-PCR
@@ -78,8 +78,11 @@ def run_PCR(taxa_molarities, P_n, f_0, k, n_cycles=30):
         # initial template molarity
         M_init_sum = np.sum(tm)
 
+        # calculating efficiency
+        f_n = f_0 * (P_n / (k * M_init_sum + P_n)) *2
+        
         # calculating new molarity for cycle (for each taxon)
-        f = lambda M_0 : PCR_cycle(M_0, P_n=P_n, f_0=f_0, k=k)
+        f = lambda M_0 : PCR_cycle(M_0, P_n=P_n, f_0=f_n, k=k)
         tm = [f(x) for x in tm]
 
         # sum of new molarity
@@ -91,20 +94,18 @@ def run_PCR(taxa_molarities, P_n, f_0, k, n_cycles=30):
             sys.stderr.write('ERROR: ' + msg + '\n')
             sys.exit()
 
-        #print (cycle, M_init_sum, M_post_sum, M_post_sum - M_init_sum, P_n)
-
         # change in primer molarity (inverse of delta template Molarity)
-        #P_n = P_n - (M_post_sum - M_init_sum)
-        #if P_n < 0:
-        #    msg = 'Cycle {}: Primer conc = 0\n'
-        #    sys.stderr.write(msg.format(cycle + 1))
-        #    break
-    
+        P_n = P_n - (M_post_sum - M_init_sum) / ratio
+        if P_n <= 0:
+            msg = 'Cycle {}: Primer conc = 0 uM\n'
+            sys.stderr.write(msg.format(cycle + 1))
+            break
+
     return tm
 
 
 def PCR_sim(otu_tbl, DNA_conc_dist, DNA_conc_dist_p, primer_conc, 
-            n_cycles=30, f_0=1, k=5, debug=0):
+            n_cycles=30, f_0=1, k=5, ratio=10, debug=0):
     """Simulate PCR on each gradient fraction sample.
     In-place edit of OTU table.
 
@@ -137,7 +138,8 @@ def PCR_sim(otu_tbl, DNA_conc_dist, DNA_conc_dist_p, primer_conc,
     otu_tbl.apply_each_comm(f, ['rel_abund'], ['init_molarity'])
 
     # PCR
-    f = lambda x : run_PCR(x, P_n=primer_conc, f_0=f_0, k=k, n_cycles=n_cycles)
+    f = lambda x : run_PCR(x, P_n=primer_conc, f_0=f_0, k=k, 
+                           n_cycles=n_cycles, ratio=ratio)
     otu_tbl.apply_each_comm(f, ['init_molarity'], ['final_molarity'])
 
     # calculating new relative abundances by using final molarity as proportions
