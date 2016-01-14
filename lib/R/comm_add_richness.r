@@ -49,11 +49,17 @@ fit_dist = function(x){
   names = c('normal', 'exponential', 'lognormal', 'gamma')
   # best fit (via AIC)
   stat.res = gofstat(f.list, fitnames=names)
-  max.AIC = which(stat.res$aic == min(stat.res$aic))
-  max.AIC.func = f.list[[max.AIC[1]]]
-  msg = paste0('Best curve fit of abundances: ', names[max.AIC[1]])
+  best.AIC = which(stat.res$aic == min(stat.res$aic))
+  best.AIC.func = f.list[[best.AIC[1]]]
+  
+  if (length(best.AIC.func$estimate) > 1){
+    best.AIC.func$estimate = best.AIC.func$estimate[1]
+  }
+  msg = paste0('Best curve fit of abundances: ', names[best.AIC[1]])
   write(msg, stderr())
-  return(max.AIC.func)
+  msg = paste0('  Estimate: ', best.AIC.func$estimate)
+  write(msg, stderr())
+  return(best.AIC.func)
 }
 
 
@@ -110,6 +116,11 @@ df.comm.cols = colnames(df.comm)
 for (i in 1:nrow(df.rich)){
   lib = as.character(df.rich[i,1])
   richness = df.rich[i,2]
+
+  # status
+  msg = paste0('Library: ', lib, ', Richness: ', richness)
+  write(msg, stderr())
+  
   # curve fitting relative abundance
   df.comm.p = filter(df.comm, library == lib)
   abund.dist.func = fit_dist(df.comm.p$rel_abund_perc)
@@ -119,12 +130,11 @@ for (i in 1:nrow(df.rich)){
   if(richness <= 0){
     msg = paste0('Richness for Library ', lib, ' is <= 0. Skipping')
     write(msg, stderr())
-    next
+  } else {  
+    # adding random taxa
+    df.rand = make_rand_comm(df.comm.cols, abund.dist.func, lib, richness)
+    df.comm = rbind(df.comm, df.rand)
   }
-  
-  # adding random taxa
-  df.rand = make_rand_comm(df.comm.cols, abund.dist.func, lib, richness)
-  df.comm = rbind(df.comm, df.rand)
 }
 
 ## adjusting rank

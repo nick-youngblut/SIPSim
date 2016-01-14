@@ -5,19 +5,28 @@
 genome_rename: formatting genome sequences in a multi-fasta file for SIPSim
 
 Usage:
-  genome_rename [options] <genome_fasta>
+  genome_rename [options] <genome_fasta>...
   genome_rename -h | --help
   genome_rename --version
 
 Options:
-  <genome_fasta>  Fasta file containing genome sequences ('-' if from STDIN).
-  --quiet         Limit stderr output. 
+  <genome_fasta>  Fasta file(s) containing genome sequences.
+                  ('-' if from STDIN)
+  --prefix=<p>    Output file prefix. 
+                  It must differ from the input file paths.
+                  The path will be created if it doesn't exist.
+                  [Default: .]
+  -n=<n>          Number of cpus. 
+                  [Default: 1]
+  --debug         Debug mode (no multiprocessing).
   -h --help       Show this screen.
   --version       Show version.
 
 Description:
   Reformating the sequence names so that they work with SIPSim.
-
+  The sequence names are reformated to conform to naming rules
+  for the downstream analyses.
+ 
   Output
   ------
   Edited fasta written to STDOUT.
@@ -33,14 +42,23 @@ Description:
 from docopt import docopt
 import sys,os
 import re
+from functools import partial
+import multiprocessing as mp
 
 
-def main(Uargs):
-    # input
-    if Uargs['<genome_fasta>'] == '-':
-        inFH = sys.stdin
-    else:
-        inFH = open(Uargs['<genome_fasta>'], 'rb')         
+def seq_rename(inFile, prefix='.'):
+    (inFileDir, inFileName) = os.path.split(inFile)
+    inFileDir = os.path.abspath(inFileDir)
+    prefix = os.path.abspath(prefix)
+
+    if inFileDir == prefix:
+        msg = 'ERROR: input and output directories are the same'
+        sys.stderr.write(msg + '\n')
+        return None
+
+    inFH = open(inFile, 'rb')             
+    outFile = os.path.join(prefix, inFileName)
+    outFH = open(outFile, 'wb')
 
     # regexes
     re1 = re.compile(r'\W')
@@ -52,8 +70,7 @@ def main(Uargs):
     seq_names = dict()
     for line in inFH:
         line = line.rstrip()
-        if line.startswith('>'):
-
+        if line.startswith('>'):  # seq name
             line = re1.sub('_', line)
             line = re2.sub(r'>\1', line)
             line = re3.sub('', line)
@@ -63,14 +80,34 @@ def main(Uargs):
                 line = '_'.join(line, str(len(seq_names.keys())))
             except KeyError:
                 pass
-
-            seq_names[line] = 1
-                
-        print line
+            seq_names[line] = 1                
+        outFH.write(line + '\n')
 
     # end
     inFH.close()
-    
+    outFH.close()
+    msg = 'File written: {}\n'
+    sys.stderr.write(msg.format(outFile))
+
+
+def main(Uargs):
+    # input
+    if Uargs['<genome_fasta>'][0] == '-':
+        Uargs['<genome_fasta>'] = [x.rstrip() for x in sys.stdin]
+
+    # output
+    Uargs['--prefix'] = os.path.abspath(Uargs['--prefix'])
+    if not os.path.isdir(Uargs['--prefix']):
+        os.makedirs(Uargs['--prefix'])
+
+    # rename
+    if Uargs['--debug']:
+        for f in Uargs['<genome_fasta>']:
+            seq_rename(f, prefix=Uargs['--prefix'])
+    else:
+        p = mp.Pool(int(Uargs['-n']))
+        seq_rename_p = partial(seq_rename, prefix=Uargs['--prefix'])
+        p.map(seq_rename_p, Uargs['<genome_fasta>'])
     
 # main
 if __name__ == '__main__':

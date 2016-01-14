@@ -101,6 +101,13 @@ def checkExists(f):
         raise IOError(msg.format(f))
 
 
+def checkEmpty(f):
+    """ Check that the file `f` is not empty"""
+    if os.stat(f).st_size == 0:
+        msg = '"{}" is empty!'
+        raise IOError(msg.format(f))
+
+
 def parseGenomeList(inFile, filePath=None, check_exists=True):
     """Parsing the genome list file.
 

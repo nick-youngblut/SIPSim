@@ -41,8 +41,9 @@ class Genome(object):
         self._nAmplicons = None
         self._length = None
         
-        # checking that the genome files exist
+        # checking that the genome files exist & not empty
         Utils.checkExists(self.fileName)
+        Utils.checkEmpty(self.fileName)
         
         # create fasta index
         self.fastaIdx = pyfasta.Fasta(self.get_fileName())

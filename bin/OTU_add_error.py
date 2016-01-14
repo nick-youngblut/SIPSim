@@ -30,8 +30,9 @@ Description:
   Error distributions
   -------------------
     neg_binom : negative binomial distribution (params: alpha)
-        alpha param sets distribution shape.
-    others : all other distributions and parameters are obtained from numpy.random
+                alpha param sets distribution shape.
+    others : all other distributions and parameters are obtained from 
+             numpy.random
 
   Output
   ------
