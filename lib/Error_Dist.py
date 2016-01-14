@@ -11,32 +11,6 @@ import pandas as pd
 
 
 class error_dist(object):
-
-    @staticmethod
-    def neg_binom(mu, alpha=0.5, size=1):
-        """Sample from a negative binomial distribution.
-        mu is multiple by a value drawn from a gamma distribution.
-        The resulting value (lambda) is used to draw values from a
-        poisson distribution.
-
-        Parameters
-        ----------
-        mu : float
-            mu parameter
-        alpha : float, optional
-            shape parameter
-        size : int, optional
-            Number of values to draw from the distribution.
-        
-        Returns
-        -------
-        values : list
-            Values drawn from the distribution.
-        """
-        mu = mu * np.random.gamma(shape=alpha, scale=alpha, size=size)
-        f = lambda x: np.random.poisson(size=1, lam=x)[0]
-        return [f(x) for x in mu]
-
     
     def __init__(self, dist, params):
         """
@@ -107,12 +81,9 @@ class error_dist(object):
             self._dist = lambda size: [self._samp_n] * size
         else:
             ## set function
-            try: 
-                setattr(self, '_dist', getattr(self, x))            
+            try:
+                setattr(self, '_dist', getattr(np.random, x))            
             except AttributeError:
-                try:
-                    setattr(self, '_dist', getattr(np.random, x))            
-                except AttributeError:
-                    msg = 'Distribution "{}" not supported\n'
-                    raise AttributeError(msg.format(x))
+                msg = 'Distribution "{}" not supported\n'
+                raise AttributeError(msg.format(x))
             self._dist = partial(self._dist, **self.params)

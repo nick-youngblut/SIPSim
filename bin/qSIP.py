@@ -15,14 +15,15 @@ Options:
                                            relative abundances).
   --copies=<c>            Total gene copy number.
                           [Default: 1e9]
-  --reps=<r>              Number of qPCR replicates.
+  --reps=<rp>             Number of qPCR replicates.
                           [Default: 3]
+  -r=<r>                  Dispersion parameter.
+                          [Default: 10]
   --error_dist=<dc>       Distribution to use. 
-                          (see Description for possible distributions)
-                          [Default: neg_binom]
-  --error_dist_p=<dp>     Distribution parameters.
-                          (see Description for possible distributions)
-                          [Default: alpha:0.5]
+                          (see numpy.random for possible distributions)
+                          [Default: negative_binomial]
+  --error_dist_p=<dp>     Distribution parameters (see numpy.random).
+                          [Default: p:0.5]
   --version               Show version.
   --debug                 Debug mode.
   -h --help               Show this screen.
@@ -34,7 +35,7 @@ Description:
 References:
   Hungate BA, Mau RL, Schwartz E, Caporaso JG, Dijkstra P, Gestel N van, et
   al. (2015). Quantitative Microbial Ecology Through Stable Isotope Probing.
-  Appl Environ Microbiol AEM.02280–15.
+  Appl Environ Microbiol AEM.02280-15.
 """
 
 # import
@@ -42,6 +43,9 @@ References:
 from docopt import docopt
 import sys
 import os
+from functools import partial
+## 3rd party
+import numpy as np
 ## application libraries
 scriptDir = os.path.dirname(__file__)
 libDir = os.path.join(scriptDir, '../lib/')
@@ -49,7 +53,17 @@ sys.path.append(libDir)
 
 from Utils import parseKeyValueString as distParamParse
 from OTU_Table import OTU_table
+from Error_Dist import error_dist
 import QSIP
+
+
+
+def neg_binom_err(x, r, negs=False):
+    sigma = np.sqrt(x + x**2 / r)
+    x =  np.random.normal(x, sigma)
+    if negs==False and x < 0:
+        x = 0
+    return x
     
 
 def main(Uargs):
@@ -76,27 +90,27 @@ def main(Uargs):
     ## Calc: density_shift = (mean_density__treat - mean_density__control)
     ## Calc: atom_fraction_excess = see Hungate et al., AEM
 
-    # parsing dist params
-    Uargs['--error_dist_p'] = distParamParse(Uargs['--error_dist_p'])
-
-    # error distribution function
-    e_dist = error_dist(Uargs['--error_dist'],
-                        Uargs['--error_dist_p'])
 
     # loading OTU table (s)
     otu_abs = OTU_table.from_csv(Uargs['<OTU_table>'], sep='\t')
     otu_rel = OTU_table.from_csv(Uargs['<OTU_subsample_table>'], sep='\t')
 
     # getting total absolute abunds for each sample
-    #total_abs = otu_abs.apply_each_sample(sum, 'count')
+    total_cnt = otu_abs.apply_each_comm(sum, 
+                                        'count', 
+                                        'total_count', 
+                                        agg=True)
     
     # drawing error from OTU counts
-#    f = lambda x : e_dist.sample(1, x)[0]
-#   total_abs_err = [f(x) for x in total_abs] 
+    f = partial(neg_binom_err, r=float(Uargs['-r']))
+    f = np.vectorize(f)
+    total_cnt['total_count_err'] =  f(total_cnt['total_count'])
 
+    
     # Transforming relative abunds to abs abunds
     ## determining the proportional absolute abundances
     ## = total_gene_copies * taxon_rel_abundance
+    
     
     # writing out transformed OTU (rel->abs) table
 #    otu_tbl.to_csv(sys.stdout, sep='\t', index=False)

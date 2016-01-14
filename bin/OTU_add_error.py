@@ -2,21 +2,20 @@
 
 #--- Option parsing ---#
 """
-OTU_PCR: simulate PCR of gradient fraction DNA samples
+OTU_add_error: adding error to abundance values
 
 Usage:
-  OTU_PCR [options] <OTU_table>
-  OTU_PCR -h | --help
-  OTU_PCR --version
+  OTU_add_error [options] <OTU_table>
+  OTU_add_error -h | --help
+  OTU_add_error --version
 
 Options:
   <OTU_table>           OTU table file.
   --error_dist=<dc>     Distribution to use. 
-                        (see Description for possible distributions)
-                        [Default: neg_binom]
-  --error_dist_p=<dp>   Distribution parameters.
-                        (see Description for possible distributions)
-                        [Default: alpha:0.5]
+                        (see numpy.random for possible distributions)
+                        [Default: negative_binomial]
+  --error_dist_p=<dp>   Distribution parameters (see numpy.random).
+                        [Default: p:0.5]
   --version             Show version.
   --debug               Debug mode.
   -h --help             Show this screen.
@@ -26,13 +25,6 @@ Description:
   OTU counts are used to set the distribution mean parameter (eg., lambda or mu)
   so that each OTU count (with error) is drawn from a distinct error
   distribution determined by the OTU's original count value.
-
-  Error distributions
-  -------------------
-    neg_binom : negative binomial distribution (params: alpha)
-                alpha param sets distribution shape.
-    others : all other distributions and parameters are obtained from 
-             numpy.random
 
   Output
   ------

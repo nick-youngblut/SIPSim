@@ -11,13 +11,20 @@ suppressPackageStartupMessages(library(docopt))
 Options:
   <comm>      Community file name ("-" if from stdin).
   <richness>  A table of richness for each community (library).
+  -s          Get abundances from subsampling existing taxa abundances.
   -h          Help
 
 Description:
   Adding random OTUs (taxa) to community table
   to reach the richness as specified in the <richness> table.
-  Abundances of new random taxa are obtained from curve-fitting
-  on the abundances in the provided comm file (rel_abund_perc).
+
+  Abundances of new "random" taxa: 
+    Abundances of new random taxa are obtained by either:
+      i) curve-fitting on the abundances in the provided comm
+         file (rel_abund_perc)
+      ii) if "-s": selecting abundances from subsampling
+          (with replacement) of the abundances in the comm file
+
   The random taxa will be appended to the end of the provided
   community table and written to STDOUT.
 
@@ -38,6 +45,7 @@ for(x in pkgs){
 
 # functions
 fit_dist = function(x){
+  # fitting a distribution to the taxon relative abundances
   x = as.numeric(as.vector(x))
   # fit
   f.norm = fitdist(x, 'norm')
@@ -64,6 +72,7 @@ fit_dist = function(x){
 
 
 get_rel_abunds = function(abund.dist.func, richness){
+  # sampling from the fitted abundance distribution
   func.l = list(
     'norm' = rnorm,
     'exp' = rexp,
@@ -82,21 +91,38 @@ get_rel_abunds = function(abund.dist.func, richness){
 }
 
 make_rand_comm = function(comm.cols, abund.dist.func, lib, richness){
-  # matrix of random taxa
+  # getting random taxa abundances from abundance distribution
+  ## matrix of random taxa
   m = matrix(ncol=length(comm.cols),
     nrow=richness,
     dimnames=list(c(), comm.cols))
-  # lib
+  ## lib
   m[,'library'] = lib
-  # OTU IDs
+  ## OTU IDs
   m[,'taxon_name'] = gsub('^', 'rand.', 1:richness)
-  # relative abundances
+  ## relative abundances
   m[,'rel_abund_perc'] = get_rel_abunds(abund.dist.func, richness)
   m = as.data.frame(m)
   m$rel_abund_perc = as.numeric(as.vector(m$rel_abund_perc))
   return(m)
 }
 
+make_rand_comm_subsample = function(comm.cols, abunds,  lib, richness){
+  # getting random taxa abundances from subsampling of other taxa
+  m = matrix(ncol=length(comm.cols),
+    nrow=richness,
+    dimnames=list(c(), comm.cols))
+    
+  ## lib
+  m[,'library'] = lib
+  ## OTU IDs
+  m[,'taxon_name'] = gsub('^', 'rand.', 1:richness)
+  ## relative abundances
+  m[,'rel_abund_perc'] = sample(abunds, richness, replace=TRUE)
+  m = as.data.frame(m)
+  m$rel_abund_perc = as.numeric(as.vector(m$rel_abund_perc))
+  return(m)
+}
 
 
 # main
@@ -122,18 +148,24 @@ for (i in 1:nrow(df.rich)){
   write(msg, stderr())
   
   # curve fitting relative abundance
-  df.comm.p = filter(df.comm, library == lib)
-  abund.dist.func = fit_dist(df.comm.p$rel_abund_perc)
-
-  # richness accounting for existing taxa
-  richness = richness - nrow(df.comm.p)
-  if(richness <= 0){
-    msg = paste0('Richness for Library ', lib, ' is <= 0. Skipping')
-    write(msg, stderr())
-  } else {  
-    # adding random taxa
-    df.rand = make_rand_comm(df.comm.cols, abund.dist.func, lib, richness)
+  if (opts[['-s']] == TRUE){
+    abunds = df.comm[df.comm[,'library'] == lib,'rel_abund_perc']
+    df.rand = make_rand_comm_subsample(df.comm.cols, abunds, lib, richness)
     df.comm = rbind(df.comm, df.rand)
+  } else {
+    df.comm.p = filter(df.comm, library == lib)
+    abund.dist.func = fit_dist(df.comm.p$rel_abund_perc)
+
+    # richness accounting for existing taxa
+    richness = richness - nrow(df.comm.p)
+    if(richness <= 0){
+      msg = paste0('Richness for Library ', lib, ' is <= 0. Skipping')
+      write(msg, stderr())
+    } else {  
+       # adding random taxa
+      df.rand = make_rand_comm(df.comm.cols, abund.dist.func, lib, richness)
+      df.comm = rbind(df.comm, df.rand)      
+    }
   }
 }
 

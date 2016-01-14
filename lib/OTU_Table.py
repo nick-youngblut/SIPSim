@@ -536,9 +536,9 @@ class OTU_table(_table):
             return False
 
             
-    def apply_each_comm(self, f, sel_index, val_index):
-        """Apply a function to each taxon in OTU table.
-        In-place edit of OTU table.
+    def apply_each_comm(self, f, sel_index, val_index, agg=False):
+        """Apply a function to each community in OTU table.
+        In-place edit of OTU table (unless agg=True).
         
         Parameters
         ----------
@@ -548,13 +548,20 @@ class OTU_table(_table):
             column(s) use for for calculations
         val_index : pandas column index
             column(s) of resulting values        
+        agg : bool
+            aggregate the table (1 value per community)
         """
         g = ['library', 'fraction']
-        self.df[val_index] =  self.df.groupby(g)[sel_index].transform(f)
+        if agg:
+            x = self.df.groupby(g)[sel_index].agg([f])
+            x.columns = [val_index]
+            return x
+        else:
+            self.df[val_index] =  self.df.groupby(g)[sel_index].transform(f)
       
 
     def apply_each_taxon(self, f, val_index):
-        """Apply a function to each taxon in OTU table.
+        """Apply a function to each taxon (all entries) in OTU table.
         In-place edit of OTU table.
 
         Parameters
