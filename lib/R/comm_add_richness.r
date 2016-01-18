@@ -141,38 +141,48 @@ df.rich = read.delim(opts[['richness']], sep='\t', header=FALSE)
 df.comm.cols = colnames(df.comm)
 for (i in 1:nrow(df.rich)){
   lib = as.character(df.rich[i,1])
-  richness = df.rich[i,2]
+  need_richness = df.rich[i,2]
 
+  # current community richness
+  curr_richness = length(unique(df.comm[df.comm[,'library'] == lib,'taxon_name']))
+  diff_richness = need_richness - curr_richness
+  
   # status
-  msg = paste0('Library: ', lib, ', Richness: ', richness)
+  msg = paste0('Library: ', lib,
+    '\n  Current richness: ', curr_richness,
+    '\n  Richness needed: ', need_richness,
+    '\n  Additional taxa needed: ', diff_richness)
   write(msg, stderr())
+
+  if (diff_richness <= 0){
+    msg = paste0('    Additional taxa needed <= 0. Skipping')
+    write(msg, stderr())
+    next
+  }
   
   # curve fitting relative abundance
   if (opts[['-s']] == TRUE){
     abunds = df.comm[df.comm[,'library'] == lib,'rel_abund_perc']
-    df.rand = make_rand_comm_subsample(df.comm.cols, abunds, lib, richness)
+    df.rand = make_rand_comm_subsample(df.comm.cols, abunds, lib, diff_richness)
     df.comm = rbind(df.comm, df.rand)
   } else {
     df.comm.p = filter(df.comm, library == lib)
     abund.dist.func = fit_dist(df.comm.p$rel_abund_perc)
 
     # richness accounting for existing taxa
-    richness = richness - nrow(df.comm.p)
-    if(richness <= 0){
-      msg = paste0('Richness for Library ', lib, ' is <= 0. Skipping')
-      write(msg, stderr())
-    } else {  
-       # adding random taxa
-      df.rand = make_rand_comm(df.comm.cols, abund.dist.func, lib, richness)
-      df.comm = rbind(df.comm, df.rand)      
-    }
+    df.rand = make_rand_comm(df.comm.cols, abund.dist.func, lib, diff_richness)
+    df.comm = rbind(df.comm, df.rand)      
   }
+  ## status
+  msg = paste0('  CHECK: final richness: ', length(df.comm$taxon_name))
+  write(msg, stderr())
 }
 
 ## adjusting rank
 df.comm = df.comm %>%
   group_by(library) %>%
     mutate(rank = row_number(-rel_abund_perc))
+
 
 
 ## writing table

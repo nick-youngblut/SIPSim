@@ -536,28 +536,49 @@ class OTU_table(_table):
             return False
 
             
-    def apply_each_comm(self, f, sel_index, val_index, agg=False):
-        """Apply a function to each community in OTU table.
-        In-place edit of OTU table (unless agg=True).
-        
+    def apply_by_group(self, f, val_index='values', 
+                       groups=['library','fraction'], 
+                       inplace=True):
+        """Apply a function to each grouping in OTU table.
+        By default, the function will be applied to each community (sample).
+
+        Apply will pass each row of the grouped dataframes to the function.
+        To select columns, use something like: `lambda x: x['A'] + x['B']`
+
         Parameters
         ----------
         f : function
             Applied function
-        sel_index : pandas column index
-            column(s) use for for calculations
-        val_index : pandas column index
-            column(s) of resulting values        
-        agg : bool
-            aggregate the table (1 value per community)
+        val_index : string
+            column name for assigning resulting values.
+        groups : pandas column index (list)
+            Which columns to use for grouping. 
+            By community(sample) = ['library', 'fraction']
+            By taxon (& library) = ['library', 'taxon']
+        inplace : bool
+            in-place edit of the OTU table.
+            The function must not be aggregating (eg., `sum`)
         """
-        g = ['library', 'fraction']
-        if agg:
-            x = self.df.groupby(g)[sel_index].agg([f])
-            x.columns = [val_index]
-            return x
+        try:
+            self.df.groupby(groups)
+        except KeyError:
+            msg = "You must select columns in the OTU table:\n  {}"
+            cols = '\n  '.join(self.df.columns)
+            sys.exit(msg.format(cols))
+            
+        x = self.df.groupby(groups).apply(f)
+
+        if inplace == True:
+            self.df[val_index] = x.tolist()
         else:
-            self.df[val_index] =  self.df.groupby(g)[sel_index].transform(f)
+            try:
+                x.index.names = list(groups) + [val_index]
+                x = x.reset_index()
+            except ValueError:
+                x = x.reset_index()
+                ncol = len(x.columns)
+                x.columns = x.columns[:ncol-1].tolist() + [val_index]
+        return x
       
 
     def apply_each_taxon(self, f, val_index):
@@ -572,6 +593,55 @@ class OTU_table(_table):
             column(s) of resulting values        
         """
         self.df[val_index] = self.df[val_index].apply(f)
+
+
+    def apply_by_OLD(self, f, sel_index, val_index, df_by, df_params=None):
+        """Apply a function to each community, where the function
+        input parameters for each community can be different.
+        Note: parameters supplied as positional arguments, so the
+              final args will be those selected from the `sel_index`
+        # legacy name = 'apply_by_comm'
+        Parameters
+        ----------
+        f : function
+            Applied to each community.
+        val_index : pandas column index
+            column(s) of resulting values (eg., ['total_count'])
+        sel_index : pandas column index
+            column(s) use for for calculations (eg., ['count'])
+        df_by : pandas.DataFrame
+            n-column dataframe for subsetting 
+            (eg., 'library' & 'fraction' columns)
+            The number of rows must match `df_params`
+        df_params : pandas.DataFrame
+            dataframe containing parameters applied to each community.        
+        """
+        msg = 'The number of rows for _comm and df_params must match!'
+        assert df_comm.shape[0] == df_params.shape[0], msg
+
+        dfs = []
+        for i in xrange(df_comm.shape[0]):
+            groups = df_comm.loc[i,:].tolist()
+            # params into function
+            try:
+                params = df_params.loc[i,:].tolist()
+            except pd.core.indexing.IndexingError:
+                params = [df_params.loc[i]]        
+            if params is not None:
+                f_p = partial(f, *params)
+            else:
+                f_p = f
+            # parsing dataframe
+            #df_p = self.df.loc[(self.df['library'] == groups[0]) &
+            #                   (self.df['fraction'] == groups[1])].reset_index()
+            ## TEST:
+            df_p = self.df
+            for i,col in enumerate(df_by.columns):
+                df_p = df_p.loc[df_p[col] == df_by[i]]            
+            # applying function
+            df_p.loc[:,val_index] = df_p.loc[:,sel_index].apply(f_p)
+            dfs.append(df_p)
+        self.df = pd.concat(dfs)
 
 
     def _norm_counts(self, df, sel_index='count'):
@@ -602,9 +672,6 @@ class OTU_table(_table):
         val_index : pandas column index
             column(s) of resulting values        
         """        
-        # assertions
-#        for x in (sel_index, val_index):
-#            assert isinstance(x, basestring)
         self.df[val_index] = self._norm_counts(self.df, sel_index)    
 
 
@@ -696,7 +763,18 @@ class OTU_table(_table):
         df_sub = self.df.loc[self.df['library'] == libID]
         for fracID in df_sub['fraction'].unique():
             yield fracID
-        
+
+
+    def merge(self, *args, **kwargs):
+        """pandas `merge` for the OTU table dataframe.
+        WARNING: in-place edit.
+        """
+        self.df = self.df.merge(*args, **kwargs)
+
+    def drop(self, *args, **kwargs):
+        """Remove rows/colums; WARNING: in-place edit
+        """
+        self.df = self.df.drop(*args, **kwargs)
     
     # properties/setters
     @property 

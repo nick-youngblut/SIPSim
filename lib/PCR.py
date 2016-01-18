@@ -135,12 +135,12 @@ def PCR_sim(otu_tbl, DNA_conc_dist, DNA_conc_dist_p, primer_conc,
 
     # adding partial template molarities for each community
     f = lambda x : x * dist_func(size=1)[0] * 1e-6
-    otu_tbl.apply_each_comm(f, ['rel_abund'], ['init_molarity'])
+    otu_tbl.apply_each(f, ['rel_abund'], ['init_molarity'])
 
     # PCR
     f = lambda x : run_PCR(x, P_n=primer_conc, f_0=f_0, k=k, 
                            n_cycles=n_cycles, ratio=ratio)
-    otu_tbl.apply_each_comm(f, ['init_molarity'], ['final_molarity'])
+    otu_tbl.apply_each(f, ['init_molarity'], ['final_molarity'])
 
     # calculating new relative abundances by using final molarity as proportions
     otu_tbl.add_rel_abund(sel_index=['final_molarity'], 

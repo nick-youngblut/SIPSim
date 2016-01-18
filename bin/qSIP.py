@@ -12,25 +12,37 @@ Usage:
 Options:
   <OTU_table>             OTU table file ('true abundances').
   <OTU_subsample_table>   OTU table file (post-sequencing abundances;
-                                           relative abundances).
-  --copies=<c>            Total gene copy number.
-                          [Default: 1e9]
+                                          relative abundances).
   --reps=<rp>             Number of qPCR replicates.
                           [Default: 3]
-  -r=<r>                  Dispersion parameter.
-                          [Default: 10]
-  --error_dist=<dc>       Distribution to use. 
-                          (see numpy.random for possible distributions)
-                          [Default: negative_binomial]
-  --error_dist_p=<dp>     Distribution parameters (see numpy.random).
-                          [Default: p:0.5]
+  -r=<r>                  Binomial distribution dispersion parameter.
+                          [Default: 100]
+  -o=<o>                  Output table of qPCR values. 
+                          [Default: qPCR_values.txt]
   --version               Show version.
   --debug                 Debug mode.
   -h --help               Show this screen.
 
 
 Description:
-  Simulate quantitative stable isotope probing (qSIP) data.
+  Simulate quantitative stable isotope probing (qSIP) data (Hungate et al.,)
+  qPCR copy number values are derived from the absolute ('true') taxon
+  abundances in the OTU_table file. Error is added to the qPCR values
+  by scaling variance with the mean as from a binomial distribution:
+  (m_err = m + m**/r), where 'm' = mean, and 'r' = the dispersion parameter
+  ('-r'). The lower the '-r' value, the more heteroskedasticity.
+
+  qPCR value table (output)
+  -------------------------
+  The 'total_count' column contains the total counts in the <otu_table> file.
+  The 'total_count_qPCR" column contains the total counts with simulated
+  qPCR error. 
+
+  Edited OTU table output
+  -----------------------
+  The 'prop_abs_abund' column contains the proportional absolute abundances
+  values for each taxon (prop_abs_abund = rel_abund * qPCR_total_copy_number).
+
 
 References:
   Hungate BA, Mau RL, Schwartz E, Caporaso JG, Dijkstra P, Gestel N van, et
@@ -45,88 +57,20 @@ import sys
 import os
 from functools import partial
 ## 3rd party
-import numpy as np
 ## application libraries
 scriptDir = os.path.dirname(__file__)
 libDir = os.path.join(scriptDir, '../lib/')
 sys.path.append(libDir)
 
-from Utils import parseKeyValueString as distParamParse
-from OTU_Table import OTU_table
-from Error_Dist import error_dist
 import QSIP
 
-
-
-def neg_binom_err(x, r, negs=False):
-    sigma = np.sqrt(x + x**2 / r)
-    x =  np.random.normal(x, sigma)
-    if negs==False and x < 0:
-        x = 0
-    return x
-    
-
-def main(Uargs):
-    # METHOD (step 1: apply qPCR data)
-    # get total 'true' sample abundances from OTU table
-    # calculate qPCR values
-    ## get value(s) from neg-binom distribution
-    ### `from Error_Dist import error_dist`
-    #### alpha = ?
-    ## [aside] write qPCR value table
-    ## get mean of replicates 
-    ### used to extrapolate abundances
-    # transform rel-abundances 
-    # write table of transformed values
-
-    # METHOD (step 2: calculate % atom incorp)
-    # NOTE: need to specify which libraries are control vs treatment
-    ## comm or incorp file?
-    # per taxon:
-    ## Calc: total gradient copy number per taxon
-    ## Calc: taxon_density = weighted average of density 
-    ###      (weights=copy numbers by fraction)
-    ## Calc: mean_taxon_density (summed across rep gradients)
-    ## Calc: density_shift = (mean_density__treat - mean_density__control)
-    ## Calc: atom_fraction_excess = see Hungate et al., AEM
-
-
-    # loading OTU table (s)
-    otu_abs = OTU_table.from_csv(Uargs['<OTU_table>'], sep='\t')
-    otu_rel = OTU_table.from_csv(Uargs['<OTU_subsample_table>'], sep='\t')
-
-    # getting total absolute abunds for each sample
-    total_cnt = otu_abs.apply_each_comm(sum, 
-                                        'count', 
-                                        'total_count', 
-                                        agg=True)
-    
-    # drawing error from OTU counts
-    f = partial(neg_binom_err, r=float(Uargs['-r']))
-    f = np.vectorize(f)
-    total_cnt['total_count_err'] =  f(total_cnt['total_count'])
-
-    
-    # Transforming relative abunds to abs abunds
-    ## determining the proportional absolute abundances
-    ## = total_gene_copies * taxon_rel_abundance
-    
-    
-    # writing out transformed OTU (rel->abs) table
-#    otu_tbl.to_csv(sys.stdout, sep='\t', index=False)
-
-
-    # qSIP simulation
-#    qSIP_sim()
-
-    # writing out file
-    #otu_tbl.to_csv(sys.stdout, sep='\t', index=False)
     
 
 # main
 if __name__ == '__main__':
     Uargs = docopt(__doc__, version='0.1')
-    main(Uargs)
+    otu = QSIP.qSIP(Uargs)
+    otu.to_csv(sys.stdout, sep='\t', index=False)
 
     
 
