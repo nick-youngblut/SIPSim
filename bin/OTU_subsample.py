@@ -13,12 +13,12 @@ Options:
   --dist=<nd>         Distribution used to select number of samples per community.
                       See numpy.random for possible distributions.
                       For the same number of samples per community, use 'uniform'.
-                      [default: uniform]
+                      [Default: normal]
   --dist_params=<dp>  Parameters for the distribution used to select the number. 
                       of samples per community.
                       Input format: 'key1:value1,key2:value2,keyN:valueN'
                       To sample exactly X from each community, use: 'low:X,high:X'
-                      [default: low:10000,high:10000]
+                      [Default: loc:20000,scale:5000]
   --min_size=<m>      Minimum sample size (truncates distribution).
   --max_size=<n>      Maximum sample size (truncates distribution). 
   --samp_min          Use the minimum number of taxa in any community as the

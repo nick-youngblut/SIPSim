@@ -37,8 +37,7 @@ Options:
   --config=<c>        Config file for setting community-specific parameters
                       (& global params).
                       Community-specific parameters can include:
-                        * richness
-                        * abund_dist
+                      (n_comm, richness, abund_dist)
   --debug             Debug mode
   --version           Show version.
   -h --help           Show this screen.

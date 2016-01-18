@@ -60,7 +60,8 @@ def get_basicConfig(strIO=True):
     basicConfig = """
     [1]
       # baseline: no incorporation
-    
+      treatment = control
+
       [[intraPopDist 1]]
       distribution = uniform
     
@@ -80,8 +81,8 @@ def get_basicConfig(strIO=True):
     
     [2]
       # 'treatment' community: possible incorporation
-    
-      max_perc_taxa_incorp = 50
+      treatment = labeled
+      max_perc_taxa_incorp = 100
     
       [[intraPopDist 1]]
       distribution = uniform
@@ -173,7 +174,9 @@ class ExampleConfig(ConfigObj):
                 'end' : percIncorpSD
             }
         }
-        
+    
+    def rename(self, oldname, newname):
+        self[newname] = self.pop(oldname)
 
     @property
     def treatment_intraPopDistDist(self):

@@ -86,7 +86,9 @@ Description:
     * NOTE: the goal is to set INTRA-population parameters, which is why 
       intra-population is higher in the hierarchy than inter-population
     ------ START ------
-  [library1]
+
+  # top level is 'library' (gradient); this must be an integer 
+  [1]
     max_perc_taxa_incorp = 100  #<- max percent of taxa with any isotope incorp
 
     [[intraPopDist1]]  # <- intra-population isotope distrubution
@@ -105,6 +107,7 @@ Description:
         distribution = normal
         loc = 10
         scale = 2
+
     ------  END  ------
 
      * Multiple intraPopDist or interPopDist:

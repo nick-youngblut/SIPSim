@@ -14,6 +14,8 @@ Options:
   --percIncorpUnif=<piu>   Percent incorporation (uniform distribution)
   --percIncorpMean=<pim>   Mean percent incorp (normal distribution)
   --percIncorpSD=<pis>     Stdev percent incorp (normal distribution)
+  --n_reps=<nr>            Number of replicates per control/treatment community
+                           [Default: 1]
   -h --help                Show this screen.
   --version                Show version.
   --debug                  Debug mode
@@ -52,26 +54,31 @@ from Config import ExampleConfig
 # main
 if __name__ == '__main__':
     args = docopt(__doc__, version='0.1')    
-    
-    # creating basic config object
-    basicConfig = Config.get_basicConfig()
-    cfg = ExampleConfig(basicConfig)
 
-    # editing config object
-    if args['--percTaxa']:
-        cfg.set_percTaxa(args['--percTaxa'])
-    if args['--percIncorpUnif']:
-        cfg.set_percIncorpUnif(args['--percIncorpUnif'])
-    if args['--percIncorpMean'] or args['--percIncorpSD']:
-        if args['--percIncorpMean'] is None:
-            args['--percIncorpMean'] = 90
-        if args['--percIncorpSD'] is None:
-            args['--percIncorpSD'] = 1
-        cfg.set_percIncorpNorm(args['--percIncorpMean'],
-                               args['--percIncorpSD'])
+    n_reps = int(args['--n_reps'])    
+    for i in xrange(n_reps):
+        # creating basic config object
+        basicConfig = Config.get_basicConfig()
+        cfg = ExampleConfig(basicConfig)
 
-    # writing config file
-    print '\n'.join(cfg.write())
+        # editing config object
+        if args['--percTaxa']:
+            cfg.set_percTaxa(args['--percTaxa'])
+        if args['--percIncorpUnif']:
+            cfg.set_percIncorpUnif(args['--percIncorpUnif'])
+        if args['--percIncorpMean']:
+            if args['--percIncorpSD'] is None:
+                args['--percIncorpSD'] = 0.1
+            cfg.set_percIncorpNorm(args['--percIncorpMean'],
+                                   args['--percIncorpSD'])
+
+        # renaming keys & adding to cfgs collection
+        for k in cfg.keys():
+            newname = str(int(k) + i * 2)
+            cfg.rename(k, newname)
+
+        # writing config file
+        print '\n'.join(cfg.write())
 
     
 

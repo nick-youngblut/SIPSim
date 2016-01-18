@@ -26,6 +26,13 @@ Description:
   -----------------------
   2-column table: <library><tab><control|treatment>
 
+  __Example-start__
+  1<tab>control
+  2<tab>treatment
+  3<tab>control
+  4<tab>treatment
+  --Example-end--
+
 References:
   Hungate BA, Mau RL, Schwartz E, Caporaso JG, Dijkstra P, Gestel N van, et
   al. (2015). Quantitative Microbial Ecology Through Stable Isotope Probing.
