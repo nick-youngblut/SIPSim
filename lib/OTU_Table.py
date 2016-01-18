@@ -535,6 +535,44 @@ class OTU_table(_table):
         except AttributeError:
             return False
 
+    def transform_by_group(self, f, sel_index, val_index=['values'], 
+                           groups=['library','fraction'], inplace=True):
+        """Use the pandas.DataFrame.groupby.transform() function
+        to apply a function to the column(s) selected ('sel_index').
+        The function must return the same sized object.
+        By default, the function will be applied to each community (sample).
+
+        Parameters
+        ----------
+        f : function
+            Applied function
+        sel_index : pandas column index
+            column name(s) for apply the function to.
+        val_index : pandas column index
+            column name(s) for assigning resulting values.
+        groups : pandas column index (list)
+            Which columns to use for grouping. 
+            By community(sample) = ['library', 'fraction']
+            By taxon (& library) = ['library', 'taxon']
+        inplace : bool
+            in-place edit of the OTU table.
+            The function must not be aggregating (eg., `sum`)
+        """
+        try:
+            self.df.groupby(groups)
+        except KeyError:
+            msg = "You must select columns in the OTU table:\n  {}"
+            cols = '\n  '.join(self.df.columns)
+            sys.exit(msg.format(cols))
+            
+        x = self.df.groupby(groups)[sel_index].transform(f)        
+
+        if inplace == True:
+            self.df[val_index] = x
+            return None
+        else:
+            return x.reset_index()
+
             
     def apply_by_group(self, f, val_index='values', 
                        groups=['library','fraction'], 
@@ -570,6 +608,7 @@ class OTU_table(_table):
 
         if inplace == True:
             self.df[val_index] = x.tolist()
+            return None
         else:
             try:
                 x.index.names = list(groups) + [val_index]
@@ -578,7 +617,7 @@ class OTU_table(_table):
                 x = x.reset_index()
                 ncol = len(x.columns)
                 x.columns = x.columns[:ncol-1].tolist() + [val_index]
-        return x
+            return x
       
 
     def apply_each_taxon(self, f, val_index):
