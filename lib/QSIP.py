@@ -30,6 +30,21 @@ def neg_binom_err(m, r, negs=False):
         x = 0
     return x
 
+
+def ave_neg_binom_err(m, r, negs=False, tech_reps=1):
+    """Wrapper for neg_binom_err(). which will find the mean
+    of multiple replicate error calculations (qPCR technical reps).
+
+    Parameters
+    ----------
+    tech_reps : int
+        Number of qPCR technical replicates.
+    other_parameters : NA
+        See neg_binom_err
+    """
+    errs = [neg_binom_err(m, r, negs) for i in xrange(tech_reps)]
+    return np.mean(errs)
+
     
 def write_qPCR(df, outFile):
     """Write out qPCR value table.
@@ -68,33 +83,28 @@ def qSIP(Uargs):
     otu_abs = OTU_table.from_csv(Uargs['<OTU_table>'], sep='\t')
     otu_rel = OTU_table.from_csv(Uargs['<OTU_subsample_table>'], sep='\t')
 
-    # getting total absolute abunds for each sample
-    f = lambda x : sum(x['count'])
-    total_cnt = otu_abs.apply_by_group(f, 'total_count', 
-                                       inplace=False).reset_index()
-    
-    # drawing error from OTU counts
-    f = partial(neg_binom_err, r=float(Uargs['-r']))
-    f = np.vectorize(f)
-    total_cnt['total_count_qPCR'] =  f(total_cnt['total_count'])
 
-    # writing out total count table
-    write_qPCR(total_cnt, Uargs['-o'])
+    # getting error from total OTU counts
+    r = float(Uargs['-r'])
+    reps = int(Uargs['--reps'])
+    f = lambda x : ave_neg_binom_err(sum(x), r=r, tech_reps=reps)
+    otu_abs.transform_by_group(f, ['count'], ['total_qPCR_copies'])
 
-    # Transforming relative abunds to abs abunds for each taxon (in each sample)
-    ## determining the proportional absolute abundances (y)
-    ## y = total_gene_copies * taxon_rel_abundance
-    otu_rel.merge(total_cnt, how='inner', on=['library','fraction'])
+
+    # adding 'qPCR' values to subsampled (relative abundance) OTU table
+    cols = ['library', 'fraction', 'taxon', 'total_qPCR_copies']
+    otu_rel.merge(otu_abs.select(cols), how='inner', 
+                  on=['library','fraction','taxon'])
+
+
+    # Determining the proportional absolute abundances (y)
+    ## y = total_16S_copies * taxon_rel_abundance
     groups = ['library', 'fraction', 'taxon']
     def _prop_abund(x):
-        y = x['rel_abund'] * x['total_count_qPCR']
+        y = x['rel_abund'] * x['total_qPCR_copies']
         return  np.round(y, 0).astype(int)
     otu_rel.apply_by_group(_prop_abund, 'prop_abs_abund', groups)
 
-    # deleting 'temporary' calculation columns
-    otu_rel.drop('index',1)
-    otu_rel.drop('total_count',1)
-    otu_rel.drop('total_count_qPCR',1)
-
+    # return
     return otu_rel
 

@@ -634,55 +634,6 @@ class OTU_table(_table):
         self.df[val_index] = self.df[val_index].apply(f)
 
 
-    def apply_by_OLD(self, f, sel_index, val_index, df_by, df_params=None):
-        """Apply a function to each community, where the function
-        input parameters for each community can be different.
-        Note: parameters supplied as positional arguments, so the
-              final args will be those selected from the `sel_index`
-        # legacy name = 'apply_by_comm'
-        Parameters
-        ----------
-        f : function
-            Applied to each community.
-        val_index : pandas column index
-            column(s) of resulting values (eg., ['total_count'])
-        sel_index : pandas column index
-            column(s) use for for calculations (eg., ['count'])
-        df_by : pandas.DataFrame
-            n-column dataframe for subsetting 
-            (eg., 'library' & 'fraction' columns)
-            The number of rows must match `df_params`
-        df_params : pandas.DataFrame
-            dataframe containing parameters applied to each community.        
-        """
-        msg = 'The number of rows for _comm and df_params must match!'
-        assert df_comm.shape[0] == df_params.shape[0], msg
-
-        dfs = []
-        for i in xrange(df_comm.shape[0]):
-            groups = df_comm.loc[i,:].tolist()
-            # params into function
-            try:
-                params = df_params.loc[i,:].tolist()
-            except pd.core.indexing.IndexingError:
-                params = [df_params.loc[i]]        
-            if params is not None:
-                f_p = partial(f, *params)
-            else:
-                f_p = f
-            # parsing dataframe
-            #df_p = self.df.loc[(self.df['library'] == groups[0]) &
-            #                   (self.df['fraction'] == groups[1])].reset_index()
-            ## TEST:
-            df_p = self.df
-            for i,col in enumerate(df_by.columns):
-                df_p = df_p.loc[df_p[col] == df_by[i]]            
-            # applying function
-            df_p.loc[:,val_index] = df_p.loc[:,sel_index].apply(f_p)
-            dfs.append(df_p)
-        self.df = pd.concat(dfs)
-
-
     def _norm_counts(self, df, sel_index='count'):
         """Normalize OTU counts by total count for community.
 
@@ -774,7 +725,17 @@ class OTU_table(_table):
         """
         return self.df.loc[(self.df['library'] == libID) &
                            (self.df['fraction'] == fracID),:]
+
+
+
+    def select(self, columns):
+        """Get certain columns from the OTU table.
         
+        Parameters
+        ----------
+        columns : pandas column index
+        """
+        return self.df[columns]
 
     def to_csv(self, *args, **kwargs):
         """Write OTU table as CSV.

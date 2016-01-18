@@ -17,8 +17,6 @@ Options:
                           [Default: 3]
   -r=<r>                  Binomial distribution dispersion parameter.
                           [Default: 100]
-  -o=<o>                  Output table of qPCR values. 
-                          [Default: qPCR_values.txt]
   --version               Show version.
   --debug                 Debug mode.
   -h --help               Show this screen.
