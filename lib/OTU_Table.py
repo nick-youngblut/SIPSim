@@ -564,7 +564,7 @@ class OTU_table(_table):
             msg = "You must select columns in the OTU table:\n  {}"
             cols = '\n  '.join(self.df.columns)
             sys.exit(msg.format(cols))
-            
+
         x = self.df.groupby(groups)[sel_index].transform(f)        
 
         if inplace == True:

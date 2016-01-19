@@ -41,8 +41,10 @@ def _calc_wAve_density(x):
     # x = row in OTU table dataframe
     rel_abunds = x['prop_abs_abund_frac']
     BD = x['BD_mid']
-    W = np.average(BD, weights=rel_abunds)
-    return W
+    if np.sum(rel_abunds) <= 0:
+        return np.nan
+    else:
+        return np.average(BD, weights=rel_abunds)
 
 def calc_wAverage_density(otu, groups):
     """Calculated the weighted average density (W_ij), where weights are defined

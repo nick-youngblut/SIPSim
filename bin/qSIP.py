@@ -15,8 +15,9 @@ Options:
                                           relative abundances).
   --reps=<rp>             Number of qPCR replicates.
                           [Default: 3]
-  -r=<r>                  Binomial distribution dispersion parameter.
-                          [Default: 100]
+  -f=<f>                  Formula describing qPCR value error.
+                          Relating mean values to variance (var ~ mean).
+                          [Default: 5889 + 1*x + 0.714*x**2]
   --version               Show version.
   --debug                 Debug mode.
   -h --help               Show this screen.
@@ -26,15 +27,9 @@ Description:
   Simulate quantitative stable isotope probing (qSIP) data (Hungate et al.,)
   qPCR copy number values are derived from the absolute ('true') taxon
   abundances in the OTU_table file. Error is added to the qPCR values
-  by scaling variance with the mean as from a binomial distribution:
-  (m_err = m + m**/r), where 'm' = mean, and 'r' = the dispersion parameter
-  ('-r'). The lower the '-r' value, the more heteroskedasticity.
-
-  qPCR value table (output)
-  -------------------------
-  The 'total_count' column contains the total counts in the <otu_table> file.
-  The 'total_count_qPCR" column contains the total counts with simulated
-  qPCR error. 
+  according to the formula describing how variance relates to the mean 
+  (var ~ mean). The default function was derived from the qPCR data in 
+  Hungate et al., 2015. 
 
   Edited OTU table output
   -----------------------
@@ -61,12 +56,14 @@ libDir = os.path.join(scriptDir, '../lib/')
 sys.path.append(libDir)
 
 import QSIP
-
+import Utils
     
 
 # main
 if __name__ == '__main__':
     Uargs = docopt(__doc__, version='0.1')
+    #Uargs['-p'] = Utils.parseKeyValueString(Uargs['-p'])
+
     otu = QSIP.qSIP(Uargs)
     otu.to_csv(sys.stdout, sep='\t', index=False)
 

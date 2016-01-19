@@ -195,7 +195,7 @@ def parseKeyValueString(x):
     Parameters
     ----------
     x : string
-        Required format: 'key:value,key:value,...'
+        Required format: 'key:value,key:value,...' or 'key=value,key=value,...'
 
     Returns
     -------
@@ -204,7 +204,7 @@ def parseKeyValueString(x):
     if x is None or x == 'None':
         return {}
     x = x.replace(' ','')
-    l = re.split('[:,]', x)
+    l = re.split('[=:,]', x)
     return {k.lower():float(v) for k,v in zip(l[::2],l[1::2])}
 
 
