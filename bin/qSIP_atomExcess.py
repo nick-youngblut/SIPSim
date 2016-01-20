@@ -15,6 +15,10 @@ Options:
   <exp_design>    Experimental design table. (See Description)
   -i=<i>          Isotope (13C or 18O).
                   [Default: 13C]
+  -n=<n>          Number of bootstrap replicates to calculate CIs.
+                  [Default: 1000]
+  -a=<a>          Alpha for confidence interval.
+                  [Default: 0.1] 
   --version       Show version.
   --debug         Debug mode.
   -h --help       Show this screen.

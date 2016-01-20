@@ -705,7 +705,8 @@ class OTU_table(_table):
         self.df.rename(*args, **kwargs)
 
     def reset_columns(self):
-        """Reseting OTU table column order based on initial ordering."""
+        """Reseting OTU table column order based on initial ordering.
+        """
         self.df = self.df[self._table_columns]
 
 
@@ -725,7 +726,6 @@ class OTU_table(_table):
         """
         return self.df.loc[(self.df['library'] == libID) &
                            (self.df['fraction'] == fracID),:]
-
 
 
     def select(self, columns):

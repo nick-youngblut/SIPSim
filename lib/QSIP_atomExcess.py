@@ -59,7 +59,7 @@ def calc_wAverage_density(otu, groups):
     return otu.apply_by_group(_calc_wAve_density, 'density', 
                               groups=groups, inplace=False)
 
-def calc_mean_density(densities, exp_design):
+def calc_mean_density(densities, exp_design=None):
     """Calculate mean densities (W_LIGHTi & W_LABi) for control/treatment 
     libraries.
 
@@ -73,9 +73,10 @@ def calc_mean_density(densities, exp_design):
     """
     # calculating means of W for control/treatment
     ## join densities with exp_design
-    densities['library'] = densities['library'].astype(str)
-    exp_design['library'] = exp_design['library'].astype(str)
-    densities = pd.merge(densities, exp_design, how='inner', on='library')
+    if exp_design is not None:
+        densities['library'] = densities['library'].astype(str)
+        exp_design['library'] = exp_design['library'].astype(str)
+        densities = pd.merge(densities, exp_design, how='inner', on='library')
     ## groupby, then apply (mean)
     groups = ['taxon', 'sample_type']
     f = lambda x : np.mean(x['density'])
@@ -88,19 +89,22 @@ def calc_mean_density(densities, exp_design):
     mean_densities = mean_densities.pivot('taxon', 
                                           'sample_type', 
                                           'mean_density').reset_index()
+    if mean_densities.shape[1] != 3:
+        print mean_densities
+        assert mean_densities.shape[1] == 3
     mean_densities.columns = ['taxon', 'control', 'treatment']
     return mean_densities
 
-def calc_density_shift(mean_densities):
+def calc_density_shift(df):
     """Calculate density shift (Z_i) between mean densities (W_LABi - W_LIGHTi).
     
     Parameters
     ----------
-    mean_densities : pandas.DataFrame
+    df : pandas.DataFrame
         output of calc_mean_density
     """
     f = lambda x : x['treatment'] - x['control']
-    mean_densities['BD_diff'] = mean_densities.apply(f, axis=1)
+    df['BD_diff'] = df.apply(f, axis=1)
 
 def BD2GC(BD):
     """buoyant density to G+C (fraction). 
@@ -187,6 +191,116 @@ def calc_atomFracExcess(M_lab, M_light, M_heavyMax, isotope='13C'):
     return x / y * (1 - a)
 
 
+def atomFracExcess(mean_densities, isotope='13C'):
+    #-- calculating atom excess --#
+    ## control GC
+    BD2GC_v = np.vectorize(BD2GC)
+    f = lambda x : BD2GC_v(x['control'])
+    mean_densities['control_GC'] = mean_densities.apply(f, axis=1)
+
+    ## control molecular weight    
+    GC2M_light_v = np.vectorize(GC2M_light)
+    f = lambda x : GC2M_light_v(x['control_GC'])
+    mean_densities['control_MW'] = mean_densities.apply(f, axis=1)
+        
+    ## max heavy molecular weight
+    M_light2heavyMax_v = partial(M_light2heavyMax, isotope=isotope)
+    M_light2heavyMax_v = np.vectorize(M_light2heavyMax_v)
+    f = lambda x : M_light2heavyMax_v(x['control_MW'])
+    mean_densities['treatment_max_MW'] = mean_densities.apply(f, axis=1)
+    
+    ## molecular weight of labeled DNA
+    calc_M_lab_v = np.vectorize(calc_M_lab)
+    f = lambda x : calc_M_lab_v(x['BD_diff'], x['control'], x['control_MW'])
+    mean_densities['treatment_MW'] = mean_densities.apply(f, axis=1)
+        
+    ## % atom excess
+    # M_lab, M_light, M_heavyMax, isotope='13C'):
+    calc_atomFracExcess_v = partial(calc_atomFracExcess, isotope=isotope)
+    calc_atomFracExcess_v = np.vectorize(calc_atomFracExcess_v)
+    f = lambda x : calc_atomFracExcess_v(x['treatment_MW'], 
+                                         x['control_MW'],
+                                         x['treatment_max_MW'])
+    mean_densities['atom_fraction_excess'] = mean_densities.apply(f, axis=1)
+
+
+def subsample_densities(df, sample_type):
+    size = df.loc[df['sample_type'] == sample_type].shape[0]
+    subsamps = np.random.choice(df.index, size, replace=True)
+    x = df.loc[subsamps,:].reset_index()
+    x['sample_type'] = sample_type
+    return x
+
+
+def _bootstrap(df, isotope):
+    # subsample with replacement
+    ## control
+    idx = df['sample_type'] == 'control'
+    df_cont = subsample_densities(df, 'control')
+    ## treatment
+    idx = df['sample_type'] == 'treatment'
+    df_treat = subsample_densities(df, 'treatment')
+    ## cat
+    df_i = pd.concat([df_cont, df_treat])
+    
+    # calculate weighted-mean density (wmd)
+    df_i_wmd = calc_mean_density(df_i)
+    
+    # calculating density shifts 
+    calc_density_shift(df_i_wmd)
+    
+    # calculating atom fraction excess 
+    atomFracExcess(df_i_wmd, isotope=isotope)
+    
+    # return
+    assert df_i_wmd.shape[0] == 1
+    return df_i_wmd.loc[0,:]
+
+def _bootstrap_CI(df, n=1000, a=0.1, isotope='13C'):
+    # bootstrapping
+    boot_res = [_bootstrap(df, isotope) for i in xrange(n)]
+    boot_res = pd.concat(boot_res, axis=1) 
+    boot_res.columns = range(boot_res.shape[1])
+    boot_res = boot_res.transpose()
+        
+    # calculating deltas [true_value - bootstrap_value] 
+    #idx = mean_densities['taxon'] == 'Acaryochloris_marina_MBIC11017'
+    true_A = df.reset_index().loc[0,'atom_fraction_excess']
+    f = lambda x : true_A - x['atom_fraction_excess']
+    #f = partial(f, true_A=true_A)
+    A_delta = boot_res.apply(f, axis=1).tolist()
+    
+    # calculating CI
+    CI_low = true_A + np.percentile(A_delta, a / 2 * 100)
+    CI_high = true_A + np.percentile(A_delta, (1 - a / 2) * 100)
+    assert CI_low <= CI_high, 'CI_low is > CI_high'
+    
+    return pd.Series({'atom_CI_low' : CI_low, 'atom_CI_high' : CI_high})
+
+
+def bootstrap_CI(densities, mean_densities, exp_design,
+                 n=1000, a=0.1, isotope='13C'):
+    """
+    Parameters
+    ----------
+    densities : pandas.DataFrame
+        Table of all weighted mean densities for each library-taxon.
+    mean_densities : pandas.DataFrame
+        Table of library-averaged densities for each taxon.
+    """    
+    # add: mean_densities
+    cols = ['taxon', 'BD_diff', 'atom_fraction_excess']
+    densities = densities.merge(mean_densities[cols], on=['taxon'], how='inner')
+    # add: experimental design
+    densities = densities.merge(exp_design, on=['library'], how='inner')
+
+    # calculate CI
+    f = lambda x : _bootstrap_CI(x, n=n, a=a, isotope=isotope)
+    CIs = densities.groupby(['taxon']).apply(f).reset_index()
+    cols = ['taxon', 'atom_CI_low', 'atom_CI_high']
+    return CIs[cols]
+
+
 
 def qSIP_atomExcess(Uargs):
     """METHOD (Calculate % atom incorp)
@@ -206,14 +320,17 @@ def qSIP_atomExcess(Uargs):
         See qSIP_atomExcess.py
     """
     # loading tables
+    sys.stderr.write('Loading files...\n')
     ## experimental design
     exp_design = pd.read_csv(Uargs['<exp_design>'], sep='\t', header=None)
     exp_design.columns = ['library', 'sample_type']
-    
+    ## TODO: assert for 'control' and 'treatment' entries
+        
     ## OTU table 
     otu = OTU_table.from_csv(Uargs['<OTU_table>'], sep='\t')
     
     #-- calculating BD shift (Z) --#
+    sys.stderr.write('Calculating density shifts (Z)...\n')
     # getting proportional absolute abundancs for each taxon
     groups = ('library', 'taxon',)
     calc_prop_abs_abund(otu, groups)
@@ -227,35 +344,20 @@ def qSIP_atomExcess(Uargs):
     # calculating density shifts 
     calc_density_shift(mean_densities)
 
-    #-- calculating atom excess --#
-    ## control GC
-    BD2GC_v = np.vectorize(BD2GC)
-    f = lambda x : BD2GC_v(x['control'])
-    mean_densities['control_GC'] = mean_densities.apply(f, axis=1)
+    #-- calculating atom fraction excess --#
+    sys.stderr.write('Calculating atom fraction excess (A)...\n')
+    atomFracExcess(mean_densities, isotope=Uargs['-i'])
 
-    ## control molecular weight    
-    GC2M_light_v = np.vectorize(GC2M_light)
-    f = lambda x : GC2M_light_v(x['control_GC'])
-    mean_densities['control_MW'] = mean_densities.apply(f, axis=1)
-        
-    ## max heavy molecular weight
-    M_light2heavyMax_v = partial(M_light2heavyMax, isotope=Uargs['-i'])
-    M_light2heavyMax_v = np.vectorize(M_light2heavyMax_v)
-    f = lambda x : M_light2heavyMax_v(x['control_MW'])
-    mean_densities['treatment_max_MW'] = mean_densities.apply(f, axis=1)
+    #-- calculating CIs --#
+    sys.stderr.write('Calculating bootstrap CIs...\n')
+    if Uargs['--debug']:
+        taxa = mean_densities['taxon'].tolist()
+        densities = densities.loc[densities['taxon'].isin(taxa[:20])]
+    CIs = bootstrap_CI(densities, mean_densities, exp_design, 
+                       n=int(Uargs['-n']), 
+                       a=float(Uargs['-a']), 
+                       isotope=Uargs['-i'])
+    mean_densities = mean_densities.merge(CIs, on=['taxon'], how='inner')
     
-    ## molecular weight of labeled DNA
-    calc_M_lab_v = np.vectorize(calc_M_lab)
-    f = lambda x : calc_M_lab_v(x['BD_diff'], x['control'], x['control_MW'])
-    mean_densities['treatment_MW'] = mean_densities.apply(f, axis=1)
-        
-    ## % atom excess
-    # M_lab, M_light, M_heavyMax, isotope='13C'):
-    calc_atomFracExcess_v = partial(calc_atomFracExcess, isotope=Uargs['-i'])
-    calc_atomFracExcess_v = np.vectorize(calc_atomFracExcess_v)
-    f = lambda x : calc_atomFracExcess_v(x['treatment_MW'], 
-                                         x['control_MW'],
-                                         x['treatment_max_MW'])
-    mean_densities['atom_fraction_excess'] = mean_densities.apply(f, axis=1)
-    
+    # return
     return mean_densities
