@@ -19,8 +19,10 @@ Options:
                   [Default: 1000]
   -a=<a>          Alpha for confidence interval.
                   [Default: 0.1] 
+  --np=<np>       Number of processors.
+                  [Default: 1]
   --version       Show version.
-  --debug         Debug mode.
+  --debug         Debug mode (no multiprocessing).
   -h --help       Show this screen.
 
 

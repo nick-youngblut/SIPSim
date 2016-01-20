@@ -7,6 +7,7 @@ from functools import partial
 ## 3rd party
 import numpy as np
 import pandas as pd
+from pathos.multiprocessing import ProcessingPool
 ## application
 from OTU_Table import OTU_table
 
@@ -256,30 +257,42 @@ def _bootstrap(df, isotope):
     assert df_i_wmd.shape[0] == 1
     return df_i_wmd.loc[0,:]
 
-def _bootstrap_CI(df, n=1000, a=0.1, isotope='13C'):
+
+def _bootstrap_CI(df, n=1000, a=0.1, isotope='13C', pool=None):
+    # status
+    taxon = df['taxon'].unique()[0]
+    sys.stderr.write('Processing taxon: {}\n'.format(taxon))
+
     # bootstrapping
-    boot_res = [_bootstrap(df, isotope) for i in xrange(n)]
+    if pool is None:        
+        boot_res = [_bootstrap(df, isotope) for i in xrange(n)]
+    else:
+        dfs = [df for i in xrange(n)]
+        _bootstrap_p = partial(_bootstrap, isotope=isotope)
+        boot_res = pool.map(_bootstrap_p, dfs)
     boot_res = pd.concat(boot_res, axis=1) 
     boot_res.columns = range(boot_res.shape[1])
     boot_res = boot_res.transpose()
         
     # calculating deltas [true_value - bootstrap_value] 
-    #idx = mean_densities['taxon'] == 'Acaryochloris_marina_MBIC11017'
     true_A = df.reset_index().loc[0,'atom_fraction_excess']
     f = lambda x : true_A - x['atom_fraction_excess']
-    #f = partial(f, true_A=true_A)
     A_delta = boot_res.apply(f, axis=1).tolist()
     
     # calculating CI
     CI_low = true_A + np.percentile(A_delta, a / 2 * 100)
     CI_high = true_A + np.percentile(A_delta, (1 - a / 2) * 100)
-    assert CI_low <= CI_high, 'CI_low is > CI_high'
+    CI_low = np.round(CI_low, 6)
+    CI_high = np.round(CI_high, 6)
+    msg = 'WARNING: CI_low ({}) is > CI_high ({})\n'
+    if CI_low > CI_high:
+        sys.stderr.write(msg.format(CI_low, CI_high))
     
     return pd.Series({'atom_CI_low' : CI_low, 'atom_CI_high' : CI_high})
 
 
 def bootstrap_CI(densities, mean_densities, exp_design,
-                 n=1000, a=0.1, isotope='13C'):
+                 n=1000, a=0.1, isotope='13C', nodes=1):
     """
     Parameters
     ----------
@@ -288,6 +301,12 @@ def bootstrap_CI(densities, mean_densities, exp_design,
     mean_densities : pandas.DataFrame
         Table of library-averaged densities for each taxon.
     """    
+    # multiprocessing
+    if nodes is None:
+        pool = None
+    else:
+        pool = ProcessingPool(nodes=nodes)
+
     # add: mean_densities
     cols = ['taxon', 'BD_diff', 'atom_fraction_excess']
     densities = densities.merge(mean_densities[cols], on=['taxon'], how='inner')
@@ -295,7 +314,7 @@ def bootstrap_CI(densities, mean_densities, exp_design,
     densities = densities.merge(exp_design, on=['library'], how='inner')
 
     # calculate CI
-    f = lambda x : _bootstrap_CI(x, n=n, a=a, isotope=isotope)
+    f = lambda x : _bootstrap_CI(x, n=n, a=a, isotope=isotope, pool=pool)
     CIs = densities.groupby(['taxon']).apply(f).reset_index()
     cols = ['taxon', 'atom_CI_low', 'atom_CI_high']
     return CIs[cols]
@@ -350,12 +369,18 @@ def qSIP_atomExcess(Uargs):
 
     #-- calculating CIs --#
     sys.stderr.write('Calculating bootstrap CIs...\n')
+    #taxa = mean_densities['taxon'].tolist()
+    #densities = densities.loc[densities['taxon'].isin(taxa[:20])]
     if Uargs['--debug']:
         taxa = mean_densities['taxon'].tolist()
         densities = densities.loc[densities['taxon'].isin(taxa[:20])]
+        Uargs['--np'] = None
+    else:
+        Uargs['--np'] = int(Uargs['--np'])
     CIs = bootstrap_CI(densities, mean_densities, exp_design, 
                        n=int(Uargs['-n']), 
                        a=float(Uargs['-a']), 
+                       nodes=Uargs['--np'],
                        isotope=Uargs['-i'])
     mean_densities = mean_densities.merge(CIs, on=['taxon'], how='inner')
     
