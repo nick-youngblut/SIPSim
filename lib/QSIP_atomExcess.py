@@ -39,7 +39,9 @@ def calc_prop_abs_abund(otu, groups):
     otu.apply_by_group(_prop_abund, 'prop_abs_abund_frac', groups=groups)
 
 def _calc_wAve_density(x):
-    # x = row in OTU table dataframe
+    """Calculate weighted avareage density.
+    x : row in OTU table dataframe
+    """
     rel_abunds = x['prop_abs_abund_frac']
     BD = x['BD_mid']
     if np.sum(rel_abunds) <= 0:
@@ -48,8 +50,8 @@ def _calc_wAve_density(x):
         return np.average(BD, weights=rel_abunds)
 
 def calc_wAverage_density(otu, groups):
-    """Calculated the weighted average density (W_ij), where weights are defined
-    by taxon proportional absolute abundance.
+    """Calculated the weighted average density (W_ij), where weights are 
+    defined by taxon proportional absolute abundance.
     
     Parameters
     ----------
@@ -142,7 +144,8 @@ def M_light2heavyMax(M_light, isotope='13C'):
         13C or 18O isotope?
     """
     if isotope == '13C':        
-        M = -0.4987282 * M_light2GC(M_light) + 9.974564 + M_light
+        G = M_light2GC(M_light)
+        M = -0.4987282 * G + 9.974564 + M_light
     elif isotope == '18O':
         M = 12.07747 + M_light
     else:
@@ -193,7 +196,15 @@ def calc_atomFracExcess(M_lab, M_light, M_heavyMax, isotope='13C'):
 
 
 def atomFracExcess(mean_densities, isotope='13C'):
-    #-- calculating atom excess --#
+    """Calculate atom fraction excess.
+
+    Parameters
+    ----------
+    mean_densities : pandas.DataFrame
+        Dataframe of weighted mean densities averaged across gradients.
+    isotope : string
+        Which isotope to calculate?
+    """
     ## control GC
     BD2GC_v = np.vectorize(BD2GC)
     f = lambda x : BD2GC_v(x['control'])
@@ -216,7 +227,6 @@ def atomFracExcess(mean_densities, isotope='13C'):
     mean_densities['treatment_MW'] = mean_densities.apply(f, axis=1)
         
     ## % atom excess
-    # M_lab, M_light, M_heavyMax, isotope='13C'):
     calc_atomFracExcess_v = partial(calc_atomFracExcess, isotope=isotope)
     calc_atomFracExcess_v = np.vectorize(calc_atomFracExcess_v)
     f = lambda x : calc_atomFracExcess_v(x['treatment_MW'], 
@@ -226,6 +236,15 @@ def atomFracExcess(mean_densities, isotope='13C'):
 
 
 def subsample_densities(df, sample_type):
+    """Subsampling density values for bootstrapping.
+    
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        DataFrame that contains 'sample_type'  (values: control or treatment)
+    sample_type : string
+        Which sample type (control|treatment) to sub-sample for.
+    """
     size = df.loc[df['sample_type'] == sample_type].shape[0]
     subsamps = np.random.choice(df.index, size, replace=True)
     x = df.loc[subsamps,:].reset_index()
@@ -280,8 +299,14 @@ def _bootstrap_CI(df, n=1000, a=0.1, isotope='13C', pool=None):
     A_delta = boot_res.apply(f, axis=1).tolist()
     
     # calculating CI
-    CI_low = true_A + np.percentile(A_delta, a / 2 * 100)
-    CI_high = true_A + np.percentile(A_delta, (1 - a / 2) * 100)
+    perc_low = np.percentile(A_delta, a / 2 * 100)
+    perc_high = np.percentile(A_delta, (1 - a / 2) * 100)
+    if perc_low > true_A:
+        perc_low = true_A
+    if perc_high < true_A:
+        perc_high = true_A
+    CI_low = true_A - np.abs(perc_low)
+    CI_high = true_A + np.abs(perc_high)
     CI_low = np.round(CI_low, 6)
     CI_high = np.round(CI_high, 6)
     msg = 'WARNING: CI_low ({}) is > CI_high ({})\n'
@@ -293,13 +318,25 @@ def _bootstrap_CI(df, n=1000, a=0.1, isotope='13C', pool=None):
 
 def bootstrap_CI(densities, mean_densities, exp_design,
                  n=1000, a=0.1, isotope='13C', nodes=1):
-    """
+    """Calculate qSIP bootstraped confidence intervals.
+    Reference: Hungate et al., 2015.
+
     Parameters
     ----------
     densities : pandas.DataFrame
         Table of all weighted mean densities for each library-taxon.
     mean_densities : pandas.DataFrame
         Table of library-averaged densities for each taxon.
+    exp_design : pandas.DataFrame
+        Table with 'library' and 'sample_type' columns (control|treatment)
+    n : int
+        Number of bootstrap replicates
+    a : float
+        Alpha for confidence interval calculation
+    isotope : str
+        Which isotope to calculate atom fraction excess?
+    nodes : int
+        Number of parallel processes.    
     """    
     # multiprocessing
     if nodes is None:
@@ -320,18 +357,25 @@ def bootstrap_CI(densities, mean_densities, exp_design,
     return CIs[cols]
 
 
+def load_exp_design(inFile):
+    exp_design = pd.read_csv(inFile, sep='\t', header=None)
+    exp_design.columns = ['library', 'sample_type']
+    # formatting
+    f = lambda x : x.lower()
+    exp_design['sample_type'] = exp_design['sample_type'].apply(f)
+    # assert 
+    x = exp_design['sample_type'].isin(['control','treatment'])
+    msg = 'Only ("control" or "treatment" allowed in 2nd-column' + \
+          'of <exp_design> table'
+    assert all(x) == True, msg
+    # return
+    return exp_design
+
 
 def qSIP_atomExcess(Uargs):
-    """METHOD (Calculate % atom incorp)
-    # NOTE: need to specify which libraries are control vs treatment
-    ## comm or incorp file?
-    # per taxon:
-    ## Calc: total gradient copy number per taxon
-    ## Calc: taxon_density = weighted average of density 
-    ###      (weights=copy numbers by fraction)
-    ## Calc: mean_taxon_density (summed across rep gradients)
-    ## Calc: density_shift = (mean_density__treat - mean_density__control)
-    ## Calc: atom_fraction_excess = see Hungate et al., AEM
+    """Main function for calculating atom fraction excess (and density shift)
+    for qSIP data (OTU table where relative abundances were multipled by qPCR
+    values (total gene copies) to get proportinoal absolute abundances).
 
     Parameters
     ----------
@@ -341,9 +385,7 @@ def qSIP_atomExcess(Uargs):
     # loading tables
     sys.stderr.write('Loading files...\n')
     ## experimental design
-    exp_design = pd.read_csv(Uargs['<exp_design>'], sep='\t', header=None)
-    exp_design.columns = ['library', 'sample_type']
-    ## TODO: assert for 'control' and 'treatment' entries
+    exp_design = load_exp_design(Uargs['<exp_design>'])
         
     ## OTU table 
     otu = OTU_table.from_csv(Uargs['<OTU_table>'], sep='\t')
