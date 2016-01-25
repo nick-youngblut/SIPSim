@@ -118,6 +118,4 @@ if __name__ == '__main__':
                     KDE_dataset_stats(x[1], x[0])
                 else:
                     print x[0]
-    
-        
-        
+                            

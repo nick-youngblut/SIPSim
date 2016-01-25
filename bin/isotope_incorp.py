@@ -10,24 +10,26 @@ Usage:
   isotope_incorp --version
 
 Options:
-  <BD_KDE>           Buoyant Density KDE object file ('-' if from STDIN).
-  <config_file>      Config file setting inter-population-level incorporation
-                     distribution (see Description).
-  --comm=<cf>        Community file used set abundance-weighting of isotope.
-  -n=<n>             Number of Monte Carlo replicates to estimate
-                     G+C error due to diffusion. 
-                     [default: 100000]
-  --isotope=<is>     Isotope incorporated by taxa (13C or 15N).
-                     [default: 13C]
-  --phylo=<phy>      Newick phylogeny of taxa used for brownian motion evolution 
-                     of distribution parameters.
-  --bw=<bw>          The bandwidth scalar or function passed to
-                     scipy.stats.gaussian_kde().
-  --np=<np>          Number of parallel processes.
-                     [default: 1]
-  -h --help          Show this screen.
-  --version          Show version.
-  --debug            Debug mode
+  <BD_KDE>          Buoyant Density KDE object file ('-' if from STDIN).
+  <config_file>     Config file setting inter-population-level incorporation
+                    distribution (see Description).
+  --comm=<cf>       Community file used set abundance-weighting of isotope.
+  --taxa=<t>        A file listing taxa that incorporated isotope 
+                    (instead of selecting taxa at random for each library).
+  -n=<n>            Number of Monte Carlo replicates to estimate
+                    G+C error due to diffusion. 
+                    [default: 100000]
+  --isotope=<is>    Isotope incorporated by taxa (13C or 15N).
+                    [default: 13C]
+  --phylo=<phy>     Newick phylogeny of taxa used for brownian motion evolution 
+                    of distribution parameters.
+  --bw=<bw>         The bandwidth scalar or function passed to
+                    scipy.stats.gaussian_kde().
+  --np=<np>         Number of parallel processes.
+                    [default: 1]
+  -h --help         Show this screen.
+  --version         Show version.
+  --debug           Debug mode
 
 Description:
   For each population (taxon), there is a distribution of how much

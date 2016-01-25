@@ -49,15 +49,22 @@ def main(args):
     # loading the config file
     config = Config.load_config(args['<config_file>'],
                                 phylo=args['--phylo'])
-     
 
+    ## taxa list (if provided
+    if args['--taxa'] is not None:
+        taxa_incorp_list = _load_taxa_incorp_list(args['--taxa'])
+    else:
+        taxa_incorp_list = None
+     
     # creating kde of BD distributions with BD shift from isotope
     KDE_BD_iso = dict()
     for libID in config.keys():        
-        # making a list of taxa that can incorporate 
+        # if needed: making a list of taxa that can incorporate 
+        ## (unique to this library)
         # TODO: abundance cutoff: 
-        ##       taxa must have abundance > threshold to incorporate
-        taxa_incorp_list = _taxon_incorp_list(libID, config, KDE_BD)
+        ## taxa must have abundance > threshold to incorporate
+        if taxa_incorp_list is None:
+            taxa_incorp_list = _taxon_incorp_list(libID, config, KDE_BD)
 
         # TODO: abundance weighting with less incorp for less taxa
 
@@ -179,7 +186,8 @@ def _add_comm_to_kde(KDE_BD, comm=None):
 
 
 def _taxon_incorp_list(libID, config, KDE_BD):
-    # perc incorp from config
+    """Make a list of taxa that incorporated isotope.
+    """
     try:
         max_perc_taxa_incorp = config.get_max_perc_taxa_incorp(libID) 
     except KeyError:
@@ -342,7 +350,8 @@ def _start_lt_end(params):
 
 
 def isotopeMaxBD(isotope):
-    """Setting the theoretical max BD shift of an isotope (if 100% incorporation).
+    """Setting the theoretical max BD shift of an isotope 
+    (if 100% incorporation).
 
     Parameters
     ----------
@@ -360,3 +369,14 @@ def isotopeMaxBD(isotope):
     except KeyError:
         raise KeyError('Isotope "{}" not supported.'.format(isotope))
 
+
+def _load_taxa_incorp_list(inFile):
+    """Loading list of taxa that incorporate isotope.
+    """
+    taxa = []
+    with open(inFile, 'rb') as inFH:
+        for line in inFH:
+            line = line.rstrip()
+            if len(line) > 0:
+                taxa.append(line)
+    return taxa
