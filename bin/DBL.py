@@ -26,6 +26,7 @@ Options:
                       [default: 2.6]
   --r_max=<rx>        radius max from axis of rotation (cm).
                       [default: 4.85]
+  --vertical          Vertical rotor (instead of fixed angle).
   --DBL_size=<ds>     Diffusive boundary layer size (uM).
                       [default: 300]
   --frac_abs=<fa>     Fraction of DNA absorbed to the cfg tube wall.
@@ -88,7 +89,9 @@ Description:
   by Monte Carlo simulation. 
 
   The default rotor & tube parameters are for a Beckman tubes (ref# 361621) 
-  in a Beckman TLA-110 rotor spinning at 55000 rpm . 
+  in a Beckman TLA-110 rotor spinning at 55000 rpm. 
+
+  Vertical rotors: use the `vertical` option.
 
   Output
   ------

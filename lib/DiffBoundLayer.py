@@ -121,31 +121,32 @@ def axisDist2angledTubePos(x, tube_radius, r_max, A):
     if np.isnan(x):
         return (x, x)
 
+    # low position
     if(x >= r_max - (tube_radius * cos_d(A)) - tube_radius):
         # band in rounded bottom of cfg tube
         d = x - (r_max - tube_radius)
         a = A - asin_d(d / tube_radius)
         LowH = tube_radius - tube_radius * cos_d(a)
-        #print LowH
     else:
         # band in cylinder of cfg tube
         d = r_max - (tube_radius * cos_d(A)) - tube_radius - x
         h_c = d/sin_d(A)
         LowH = tube_radius + h_c
-        # print LowH
-
+    # high position
     if(x > r_max - (tube_radius - tube_radius * cos_d(A))):
         # Equation for finding the upper band
         d = x - (r_max - tube_radius)
         a = A - (180 - asin_d(d/tube_radius))
         HighH = tube_radius - tube_radius * cos_d(a)
-        #print HighH
     else:
-        # This band will be in the cylinder part
+        # This band will be in the cylinder part        
         d = r_max - (tube_radius - tube_radius * cos_d(A)) - x
-        h_c = d/sin_d(A)
+        if A == 0:
+            h_c = d
+        else:
+            h_c = d/sin_d(A)
         HighH = tube_radius + h_c
-        #print(HighH)     
+        
     return(LowH, HighH)
 
 
@@ -184,6 +185,7 @@ def axisDist2angledTubeVol(x, r, D, A):
     if np.isnan(x):
         return x
 
+
     a = np.deg2rad(A)
     p1 = r-(r*np.cos(a))
     p2 = r+(r*np.cos(a))
@@ -194,8 +196,12 @@ def axisDist2angledTubeVol(x, r, D, A):
 
     
     if x < D2:
-        h1 = (D2-x)/np.sin(a)
-        h2 = (D1-x)/np.sin(a)
+        if a == 0:
+            z = 1
+        else:
+            z = np.sin(a)
+        h1 = (D2-x)/z
+        h2 = (D1-x)/z
         volume1 = (2/3.0)*np.pi*r**3
         volume2 = (0.5)*np.pi*r**2*(h1+h2)
         volume = volume1+volume2
@@ -203,7 +209,10 @@ def axisDist2angledTubeVol(x, r, D, A):
         volume1 = (1/3.0)*np.pi*p1**2*(3*r-p1)
         volume2 = quad(_SphVol, p1, d, args=(r, p2, R12))
         b = (d-p1)/np.cos(a)
-        h = b/np.tan(a)
+        if a == 0:
+            h = b
+        else:
+            h = b/np.tan(a)
         volume3 = quad(_CylWedVol, r-b, r, args=(r, b, h))
         volume = volume1+volume2[0]+volume3[0]
     elif D >= x > D1:
@@ -372,7 +381,7 @@ def write_DBL_index(DBL_index, outFile):
 
 
 def BD2DBL_index(r_min, r_max, D, B, w, tube_diam, tube_height, 
-                 BD_min=1.67, BD_max=1.78, BD_step=0.001):
+                 BD_min=1.67, BD_max=1.78, BD_step=0.001, vertical=False):
     """Based on provided gradient params, make a dict that
     relates DNA fragment GC to the GC span equilent for the DBL.
     For instance, a GC of 50 (%) may make a DBL spanning the gradient
@@ -381,7 +390,7 @@ def BD2DBL_index(r_min, r_max, D, B, w, tube_diam, tube_height,
 
     Parameters
     ----------
-    
+
     Returns
     -------
     dict : (BD : DBL)
@@ -396,14 +405,17 @@ def BD2DBL_index(r_min, r_max, D, B, w, tube_diam, tube_height,
     # calculate gradient/cfg_tube params
     tube_radius = tube_diam / 2
     I = calc_isoconc_point(r_min, r_max)    
-    A = calc_tube_angle(r_min, r_max, tube_height)
+    if vertical:
+        A = 0
+    else:
+        A = calc_tube_angle(r_min, r_max, tube_height)
 
     # BD value range
     BDs = np.arange(BD_min, BD_max, BD_step)
 
     # convert to distance from axis of rotation
     axisDists = BD2distFromAxisV(BDs, D, B, w, I, r_max)
-
+    
     # angle tube position/volume info
     angle_tube_pos = axisDist2angledTubePosV(axisDists, tube_radius, r_max, A)
     angle_tube_vol = axisDist2angledTubeVolV(axisDists, tube_radius, r_max, A)
@@ -411,7 +423,7 @@ def BD2DBL_index(r_min, r_max, D, B, w, tube_diam, tube_height,
     # determine the continuous function: BD_vertTube ~ vert_tube_height
     vert_tube_pos = tubeVol2vertTubeHeightV(angle_tube_vol, tube_radius)    
     VTP2BD_func = vertTubePos_BD_fit(BDs, vert_tube_pos)
-
+    
     # convert angle tube position info to BD range of DBL
     DBL_index = make_DBL_index(angle_tube_pos, BDs, VTP2BD_func)
     return DBL_index
@@ -491,7 +503,7 @@ def main(args):
     args : dict
         See ``DBL`` subcommand
     """
-    # making BD2DBL index
+    # making BD2DBL index 
     DBL_index = BD2DBL_index(r_min = float(args['--r_min']),
                              r_max = float(args['--r_max']),
                              D = float(args['-D']),
@@ -500,7 +512,8 @@ def main(args):
                              tube_diam = float(args['--tube_diam']),
                              tube_height = float(args['--tube_height']),
                              BD_min = float(args['--BD_min']),
-                             BD_max = float(args['--BD_max'])) 
+                             BD_max = float(args['--BD_max']),
+                             vertical = args['--vertical'])
 
 
     #--debug--#
