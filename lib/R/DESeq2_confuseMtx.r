@@ -18,6 +18,8 @@ options:
   --log2=<l>       Min log2FoldChange (log2fc). 
   --log2neg=<ln>   Min log2FoldChange based on negative log2fc values
                    (see below).
+  --BD=<b>         BD shift cutoff for identifying isotope incorporators.
+                   [Default: 0.05]
   -h               Help
 description:
   Use caret to make a confusion matrix comparing
@@ -37,6 +39,7 @@ description:
 
 opts = docopt(doc)
 padj.cut = as.numeric(opts[['--padj']])
+BD_shift.cut = as.numeric(opts[['--BD']])
 
 # packages
 pkgs <- c('dplyr', 'caret')
@@ -99,7 +102,7 @@ if(! is.null(opts[['--padjBH']])){
 ### BD-shift table (reference)
 BD.shift = BD.shift %>%
   filter(lib2 == '2') %>%
-      mutate(incorp = BD_shift > 0.05)
+      mutate(incorp = BD_shift > BD_shift.cut)
 
 # making factors of incorporation status
 order_incorp = function(x){

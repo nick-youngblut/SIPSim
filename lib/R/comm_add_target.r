@@ -14,8 +14,11 @@ Options:
   -h          Help
 
 Description:
-  Adding list of target taxa (taxa to focus on in the
-  simulations(s)) to the community table file.
+  Joining a list of target taxa (taxa to focus on in the
+  simulations(s)) to the community table file (left join
+  on community file, so non-target taxa will have "NA" for
+  new columns in output table).
+
   Joining tables on the following columns:
     <comm>taxon_name = <target>OTU
 ' -> doc
