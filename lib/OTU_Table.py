@@ -411,7 +411,7 @@ class OTU_table(_table):
         
     def subsample(self, no_replace=False, walk=0, 
                   min_size=0, max_size=None, base=None):
-        """Subsample from each community.
+        """Subsample from each community (fraction).
         Using numpy.random.choice with taxon abundances as weights
 
         Parameters
@@ -465,7 +465,7 @@ class OTU_table(_table):
             assert len(samp_sizes) == nfracs, msg.format(len(samp_sizes),
                                                              nfracs)
 
-            # subsampling; weighted by relative abundances
+            # subsampling; weighted by relative abundances in sample
             for samp_cnt, fracID in enumerate(self.iter_fractions(libID=libID)):
                 # single community
                 comm = self.get_comm(libID, fracID)
