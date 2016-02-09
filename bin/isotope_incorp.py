@@ -18,7 +18,7 @@ Options:
                     (instead of selecting taxa at random for each library).
   -n=<n>            Number of Monte Carlo replicates to estimate
                     G+C error due to diffusion. 
-                    [default: 100000]
+                    [default: 500000]
   --isotope=<is>    Isotope incorporated by taxa (13C or 15N).
                     [default: 13C]
   --phylo=<phy>     Newick phylogeny of taxa used for brownian motion evolution 

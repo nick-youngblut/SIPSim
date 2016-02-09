@@ -37,7 +37,7 @@ Options:
                       [default: DBL_index.txt]
   -n=<n>              Number of Monte Carlo replicates to estimate
                       G+C error due to DBL. 
-                      [default: 100000]
+                      [default: 500000]
   --bw=<bw>           The bandwidth scalar or function passed to
                       scipy.stats.gaussian_kde(). 
   --np=<np>           Number of parallel processes.

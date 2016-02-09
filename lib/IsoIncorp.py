@@ -119,6 +119,10 @@ def _make_kde(x, libID, config, taxa_incorp_list,
         *Note: KDE object may be None    
     """
     taxon_name,x = x
+    try:
+        bw_method = float(bw_method)
+    except (TypeError, ValueError) as e:
+        pass
 
     # status
     sys.stderr.write('Processing: {}\n'.format(taxon_name))
