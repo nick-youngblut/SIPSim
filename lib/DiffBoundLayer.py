@@ -16,6 +16,7 @@ scriptDir = os.path.dirname(__file__)
 libDir = os.path.join(scriptDir, '../lib/')
 sys.path.append(libDir)
 import Utils
+from CommTable import CommTable
 
 
 # functions for trig with angle in degrees
@@ -429,7 +430,8 @@ def BD2DBL_index(r_min, r_max, D, B, w, tube_diam, tube_height,
     return DBL_index
 
 
-def KDE_with_DBL(BD_kde, DBL_index, n, frac_abs, bw_method):
+def KDE_with_DBL(BD_kde, DBL_index, n, frac_abs, bw_method, 
+                 comm=None, commx=None, libID=None):
     """Sample <frac> from BD_KDE and convert values to DBL BD values
     and sample 1 - <frac> from BD_KDE; combine all BD values and make a KDE
     
@@ -444,7 +446,12 @@ def KDE_with_DBL(BD_kde, DBL_index, n, frac_abs, bw_method):
     frac_abs : float 
          Fraction of DNA fragments in DBL.  range = (0-1)
     bw_method : see stats.gaussian_kde
-
+    comm : commTable object
+         Community table object used for scaling fraction absorbed
+    commx : float
+         Scaling factor for fraction_absorbed ~ pre-fractionation_abundance
+    libID : str
+         Library ID (community/fraction ID) 
     Returns
     -------
     stats.gaussian_kde object describing distribution of fragment BD values 
@@ -478,6 +485,12 @@ def KDE_with_DBL(BD_kde, DBL_index, n, frac_abs, bw_method):
     if kde is None:
         return (taxon_name, None)
 
+    # if comm: scaling frac_abs
+    if comm is not None:    
+        preFrac_abund = comm.get_taxonAbund(taxon_name, libID=libID)[0]
+        # scaling 
+        frac_abs = preFrac_abund / 100 * commx + frac_abs
+
     # sampling fraction for DBL
     n_DBL = int(n * frac_abs)
     DBL_frags = np.round(kde.resample(size=n_DBL), 3)    
@@ -492,6 +505,41 @@ def KDE_with_DBL(BD_kde, DBL_index, n, frac_abs, bw_method):
                                               axis=1)[0,],
                                bw_method=bw_method)
     return (taxon_name, kdeBD)
+
+
+def KDE_by_lib(DBL_index, kde2d, n, frac_abs, bw_method,
+               nprocs=1, debug=False, comm=None, commx=None, libID=None):
+
+    # for each genome KDE, making new KDE with DBL 'smearing'    
+    def _DBL_indexF(x):
+        """Wrapper around DBL_index. Provides KeyError handling
+        """
+        try:
+            y = DBL_index[x]()
+        except KeyError:
+            x = np.random.choice(DBL_index.keys())
+            y = DBL_index[x]()
+            lmsg = 'WARNING: BD value "{}" not found in DBL\n'
+            sys.stderr.write(lmsg.format(x))
+        return y
+
+    DBL_indexFV = np.vectorize(_DBL_indexF)                              
+    pfunc = partial(KDE_with_DBL, 
+                    DBL_index = DBL_indexFV,
+                    n = n,
+                    frac_abs = frac_abs,
+                    bw_method = bw_method,
+                    comm = comm,
+                    commx = commx, 
+                    libID = libID)
+
+    # DBL KDE calc in parallel (per taxon)
+    pool = ProcessingPool(nodes=nprocs)
+    if debug:
+        KDE_BD = map(pfunc, kde2d.items())
+    else:
+        KDE_BD = pool.map(pfunc, kde2d.items())
+    return KDE_BD
 
 
 def main(args):    
@@ -523,38 +571,47 @@ def main(args):
     ## writing DBL_index
     if args['--DBL_out']:
         write_DBL_index(DBL_index, args['--DBL_out'])
+
+
+    # comm file (if provided)
+    try:
+        comm = CommTable.from_csv(args['--comm'], sep='\t')
+    except IOError:
+        comm = None
         
     # loading fragment KDEs of each genome
     kde2d = Utils.load_kde(args['<fragment_kde>'])
 
-    # for each genome KDE, making new KDE with DBL 'smearing'
-    def DBL_indexF(x):
-        try:
-            y = DBL_index[x]()
-        except KeyError:
-            x = np.random.choice(DBL_index.keys())
-            y = DBL_index[x]()
-            lmsg = 'WARNING: BD value "{}" not found in DBL\n'
-            sys.stderr.write(lmsg.format(x))
-        return y
-    
-    DBL_indexFV = np.vectorize(DBL_indexF)                              
-    pfunc = partial(KDE_with_DBL, 
-                    DBL_index = DBL_indexFV,
-                    n = int(args['-n']),
-                    frac_abs = float(args['--frac_abs']),
-                    bw_method = args['--bw'])
-    
-    # DBL KDE calc in parallel (per taxon)
-    pool = ProcessingPool(nodes=int(args['--np']))
-    if args['--debug']:
-        KDE_BD = map(pfunc, kde2d.items())
+    # making new KDEs {libID:{taxon:kde}}
+    KDEs = {}
+    if comm is not None:
+        for libID in comm.get_unique_libIDs():            
+            tmp =  KDE_by_lib(DBL_index, kde2d,
+                              n = int(args['-n']),
+                              frac_abs = float(args['--frac_abs']),
+                              bw_method = args['--bw'],
+                              nprocs = int(args['--np']),
+                              debug = args['--debug'],
+                              comm = comm,
+                              commx = float(args['--commx']),
+                              libID=libID)
+            KDEs[libID] = {taxon:KDE for taxon,KDE in tmp}
+            tmp = None            
+            
     else:
-        KDE_BD = pool.map(pfunc, kde2d.items())
+        libID = '1'
+        tmp = KDE_by_lib(DBL_index, kde2d,
+                         n = int(args['-n']),
+                         frac_abs = float(args['--frac_abs']),
+                         bw_method = args['--bw'],
+                         nprocs = int(args['--np']),
+                         debug = args['--debug'])
+        KDEs[libID] = {taxon:KDE for taxon,KDE in tmp}
+        tmp = None
 
+                             
     # pickling output
-    dill.dump({taxon:KDE for taxon,KDE in KDE_BD}, sys.stdout)    
-
+    dill.dump(KDEs, sys.stdout)    
 
         
 if __name__ == '__main__':

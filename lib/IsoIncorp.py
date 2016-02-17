@@ -36,37 +36,55 @@ def main(args):
     """
     # loading input
     ## kde_bd
-    KDE_BD = Utils.load_kde(args['<BD_KDE>'])
+    sys.stderr.write('Loading KDE object...\n')
+    KDEs = Utils.load_kde(args['<BD_KDE>'])
     ## comm (optional)
     if args['--comm'] is not None:
         comm = CommTable.from_csv(args['--comm'], sep='\t')
     else:
         comm = None
-        
-    # combining kde and comm
-    _add_comm_to_kde(KDE_BD, comm)
-    
+            
     # loading the config file
     config = Config.load_config(args['<config_file>'],
                                 phylo=args['--phylo'])
+
+    # adding comm info to KDEs 
+    _add_comm_to_kde(KDEs, comm)
 
     ## taxa list (if provided
     if args['--taxa'] is not None:
         taxa_incorp_list = _load_taxa_incorp_list(args['--taxa'])
     else:
-        taxa_incorp_list = None
-     
+        taxa_incorp_list = None     
+        
+    # which depth of KDE object
+    KDE_dim = get_KDE_dim(KDEs)
+
     # creating kde of BD distributions with BD shift from isotope
-    KDE_BD_iso = dict()
+    KDEs_iso = dict()
     for libID in config.keys():        
+        sys.stderr.write('Processing library: {}\n'.format(libID))
+        if KDE_dim == 1:
+            KDE = KDEs
+        elif KDE_dim == 2:
+            try: 
+                KDE = KDEs[libID]
+            except KeyError:
+                ## kde library not found, duplicating KDE
+                msg = 'WARNING: config library {} not found in KDEs.' + \
+                      'Using a different KDE object\n'
+                sys.stderr.write(msg.format(libID))
+                KDE = KDEs[KDEs.keys()[0]]
+        else:
+            raise ValueError, 'KDE_dim not recognized'
+
         # if needed: making a list of taxa that can incorporate 
         ## (unique to this library)
-        # TODO: abundance cutoff: 
-        ## taxa must have abundance > threshold to incorporate
+        ## TODO: abundance cutoff: 
+        ### taxa must have abundance > threshold to incorporate
+        ## TODO: abundance weighting with less incorp for less taxa
         if taxa_incorp_list is None:
-            taxa_incorp_list = _taxon_incorp_list(libID, config, KDE_BD)
-
-        # TODO: abundance weighting with less incorp for less taxa
+            taxa_incorp_list = _taxon_incorp_list(libID, config, KDE)
 
         # setting params for parallelized function
         pfunc = partial(_make_kde, 
@@ -80,15 +98,15 @@ def main(args):
         # parallel by taxon
         pool = ProcessingPool(nodes=int(args['--np']))
         if args['--debug']:
-            tmp = map(pfunc, KDE_BD.items())
+            tmp = map(pfunc, KDE.items())
         else:
-            tmp = pool.map(pfunc, KDE_BD.items())
+            tmp = pool.map(pfunc, KDE.items())
 
-        KDE_BD_iso[libID] = {taxon:KDE for taxon,KDE in tmp}
+        KDEs_iso[libID] = {taxon:kde for taxon,kde in tmp}
     
 
     # writing pickled BD-KDE with BD shift from isotope incorp
-    dill.dump(KDE_BD_iso, sys.stdout)
+    dill.dump(KDEs_iso, sys.stdout)
         
 
 def _make_kde(x, libID, config, taxa_incorp_list, 
@@ -165,7 +183,28 @@ def _make_kde(x, libID, config, taxa_incorp_list,
     return (taxon_name, kdeBD)
 
 
-def _add_comm_to_kde(KDE_BD, comm=None):
+def get_KDE_dim(KDEs):
+    """Determine which KDE object: {libID:{taxon:kde}} or {taxon:kde}
+    """
+    try: 
+        for x,y in KDEs.items():
+            y['kde']
+            break
+        KDE_dim = 1
+    except KeyError:
+        KDE_dim = 2
+    return KDE_dim
+
+
+def __add_comm_to_kdes(taxon_name, kde, comm, libIDs):    
+    d = {'kde':kde, 'abundances':{}}                                         
+    for libID in libIDs:                                                        
+        abund = comm.get_taxonAbund(taxon_name, libID=libID)
+        d['abundances'][libID] = abund[0]
+    return d
+
+
+def _add_comm_to_kde(KDEs, comm):
     """Adding comm data for each taxon to each KDE.
     'abundances' will be an empty dict if comm is not provided.
     In-place edit of KDE_BD {taxon_name:{kde|abundances}}
@@ -178,15 +217,16 @@ def _add_comm_to_kde(KDE_BD, comm=None):
     try:
         libIDs = comm.get_unique_libIDs()
     except AttributeError:
-        libIDs = [None]
-    for taxon_name,kde in KDE_BD.items():
-        d = {'kde':kde, 'abundances':{}}
-        for libID in libIDs:
-            if libID is None:
-                continue
-            abund = comm.get_taxonAbund(taxon_name, libID=libID)
-            d['abundances'][libID] = abund[0]
-        KDE_BD[taxon_name] = d    
+        libIDs = []
+
+    for x,y in KDEs.items():        
+        try: 
+            d = {}
+            for xx,yy in y.items():                
+                d[xx] =  __add_comm_to_kdes(xx, yy, comm, libIDs)
+            KDEs[x] = d
+        except AttributeError:
+            KDEs[x] = __add_comm_to_kdes(x, y, comm, libIDs)
 
 
 def _taxon_incorp_list(libID, config, KDE_BD):

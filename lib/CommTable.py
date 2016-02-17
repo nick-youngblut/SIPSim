@@ -70,6 +70,15 @@ class CommTable(_table):
         """Get all unique taxon names from the community table."""
         return self.df['taxon_name'].unique()        
 
+    def get_total_abund(self, libID=None, abs_abund=False):
+        """Get total abundance of each library or all libraries"""
+        retCol = 'abs_abund' if abs_abund else 'rel_abund_perc'
+        if libID is not None:
+            return self.df.loc[self.df['library'] == libID][retCol].sum()
+        else:
+            return self.df[retCol].sum()
+
+
     @property
     def abs_abund(self):
         """The absolute abundance of each taxon based on user-value.
@@ -83,6 +92,7 @@ class CommTable(_table):
 
     @abs_abund.setter
     def abs_abund(self, abs_abund):
+        """rel_abund_perc stored as a percent"""
         try:
             x = self.df['rel_abund_perc']
             self.df['abs_abund'] = x / 100 * int(abs_abund)

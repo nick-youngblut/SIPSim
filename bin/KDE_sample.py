@@ -40,6 +40,12 @@ sys.path.append(libDir)
 # application
 import Utils
     
+
+
+def to_df(x, libID):
+    df = pd.DataFrame(x)
+    df['libID'] = libID
+    return df
     
 # main
 if __name__ == '__main__':
@@ -48,10 +54,18 @@ if __name__ == '__main__':
     
     n = int(args['-n'])
 
-    vals = {taxon:kde.resample(n)[0,] for taxon,kde in KDEs.items() \
-            if kde is not None}
-    tbl = pd.DataFrame(vals)
+    vals = {}
+    try:
+        vals['1'] = {taxon:kde.resample(n)[0,] for taxon,kde in KDEs.items() \
+                if kde is not None}
+    except AttributeError:
+        for x,y in KDEs.items():
+            vals[x] = {taxon:kde.resample(n)[0,] for taxon,kde in y.items() \
+                       if kde is not None}
+
+
+    tbl = pd.concat([to_df(y,x) for x,y in vals.items()])
     tbl.to_csv(sys.stdout, sep='\t')
-        
+            
 
         

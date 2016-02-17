@@ -42,7 +42,7 @@ import Utils
     
 
 # functions
-def KDE_dataset_stats(kde, ID):
+def KDE_dataset_stats(kde, ID, libID='1'):
     """summary stats on kde.dataset attribute
     """
     try:
@@ -78,7 +78,7 @@ def KDE_dataset_stats(kde, ID):
 
     # output
     for i in xrange(stats.shape[0]):
-        print '\t'.join([str(x) for x in stats[i,]])
+        print '\t'.join([libID] + [str(x) for x in stats[i,]])
     
 
 
@@ -106,14 +106,21 @@ if __name__ == '__main__':
     # listing KDEs 
     if args['-t'] or args['-s']:
         try:            
-            for x in KDEs.keys():
-                if args['-s']:
-                    KDE_dataset_stats(KDEs[x], x)
-                else:
-                    print x
+            for x,y in KDEs.items():
+                try: 
+                    for xx,yy in y.items():  # {libID:{taxon:kde}}
+                        if args['-s']:
+                            KDE_dataset_stats(yy, xx, libID=x)
+                        else:
+                            print '\t'.join([x,xx])
+                except AttributeError:       # {taxon:kde}
+                    if args['-s']:
+                        KDE_dataset_stats(y, x)
+                    else:
+                        print x
                 
         except AttributeError:
-            for x in KDEs:
+            for x in KDEs:   # [taxon,kde]
                 if args['-s']:
                     KDE_dataset_stats(x[1], x[0])
                 else:
