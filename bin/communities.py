@@ -10,12 +10,12 @@ Usage:
   communities --version
 
 Options:
-  <genomeList>        A file listing: taxonName<tab>genomeSeqFileName
+  <genomeList>        A file listing: taxon_name (see description).
   --n_comm=<nc>       Number of communities to simulate.
                       [default: 1]
   --richness=<r>      The number of taxa in each library.
                       Values of 0-1 will be interpreted as a fraction of the 
-                      total taxa pool.
+                      total taxon pool.
                       [default: 1]
   --abund_dist=<a>    The statistical distribution used for selecting relative
                       abundances.
@@ -45,6 +45,11 @@ Options:
 Description:
   Simulating the alpha and and beta diversities of >=1 community.
 
+  genomeList
+  ----------
+    A text file listing one taxon name per line. 
+    Anything after a <tab> will be ignored. 
+
   Output
   ------
     A tab-delimited table of taxon abundances for each library is written to
@@ -68,7 +73,7 @@ from SimComms import SimComms
 
 # functions
 def main(uargs):
-    # init
+    # init    
     SC = SimComms(taxon_list = uargs['<genomeList>'],
                   perm_perc = uargs['--perm_perc'],
                   shared_perc = uargs['--shared_perc'],
