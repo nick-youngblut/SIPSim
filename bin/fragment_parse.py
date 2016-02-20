@@ -2,19 +2,19 @@
 
 #--- Option parsing ---#
 """
-fragment_KDE_parse: parsing out fragment KDEs for certain genomes
+fragment_parse: parsing out fragment objects for certain genomes
 
 Usage:
-  fragment_KDE_parse [options] <fragment_kde> <genome_list>
-  fragment_KDE_parse [options] --random=<rn> <fragment_kde>
-  fragment_KDE_parse -h | --help
-  fragment_KDE_parse --version
+  fragment_parse [options] <fragments> <genome_list>
+  fragment_parse [options] --random=<rn> <fragment_kde>
+  fragment_parse -h | --help
+  fragment_parse --version
 
 Options:
-  <fragment_kde>  Output from the fragment_kde subcommand.
+  <fragments>     Simulate fragment file.
   <genome_list>   Table listing genomes to parse.
   --name=<n>      Column in genomes table that contains names of genome
-                  fragment KDEs to parse out.
+                  fragments to parse out.
                   [default: genomeID]
   --rename=<r>    Column in genomes table to rename parsed genome fragments.
                   [default: None]
@@ -22,33 +22,33 @@ Options:
                   target genomes. 
                   [default: None]
   --NA-random     For NA values in --name column, parse out random 
-                  fragment KDE and rename by --rename column (must provide 
+                  fragments and rename by --rename column (must provide 
                   --rename).
-  --random=<rn>   Parse out <rn> randomly selected genome fragment KDEs.
-                  Sampling with replacement of genome fragment KDEs.
+  --random=<rn>   Parse out <rn> randomly selected genome fragments.
+                  Sampling with replacement of genome fragments.
                   NOTE: genome_list file is ignored
                   [default: 0]
   --invert        Invert selection.
   --log=<l>       Name of log file.
-                  [default: KDE_parse.log]
-  --debug         Debug mode (turn off parallel processing).
+                  [default: fragment_parse.log]
+  --debug         Debug mode.
   --version       Show version.
   -h --help       Show this screen.
 
 Description:
-  Parsing out select fragment KDEs from the entire list of genome KDEs.
-  Each '.' in the status output denotes 10 fragment_KDE objects parsed.
+  Parsing out fragments from select genomes.
+  Each '.' in the status output denotes 10 fragment objects parsed.
   
   invert
   ------
-  Get the opposite selection of genome KDEs from what is provided in the genome
-  list.
+  Get the opposite selection of genome fragments from what is provided in the 
+  genome list.
 
   random
   ------
-  Get a random list of genome KDEs. KDEs are drawn from list of KDEs without
-  replacement, so you can create a list of genome KDEs as long as you want.
-  The KDEs will be named: "OTU.rand#"
+  Get a random list of genome fragments. Fragments are drawn from list of 
+  fragments without replacement, so you can create a list of genome fragmentss as 
+  long as you want. The fragemnts will be named: "OTU.rand#"
 
   cluster
   -------
@@ -57,7 +57,7 @@ Description:
 
   Output
   ------
-  Fragment KDE object written to STDOUT.
+  Fragments object written to STDOUT.
 """
 
 # import
@@ -301,10 +301,11 @@ if __name__ == '__main__':
             cols2parse += [args['--rename']]
         df_comm = df_comm.loc[:,cols2parse]
 
+
     # loading fragments
-    sys.stderr.write('Loading fragment_kde object...\n')
+    sys.stderr.write('Loading fragments object...\n')
     frag_kdes = []
-    with open(args['<fragment_kde>'], 'rb') as iFH:
+    with open(args['<fragments>'], 'rb') as iFH:
         frag_kdes = dill.load(iFH)
 
     # parsing fragments

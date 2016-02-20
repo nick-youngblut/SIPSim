@@ -92,6 +92,43 @@ def load_kde(fileName):
         raise dill.UnpicklingError, msg.format(fileName)
 
     return kde
+
+
+def KDE_type(KDE_obj):
+    """Determining the KDE object structure. Possible type:
+    1) [taxon,kde]
+    2) {taxon:kde}
+    3) {libID:{taxon:kde}}
+    
+    Args
+    ----
+    KDE_obj : interable
+        Some sort of KDE object used by SIPSim
+    
+    Returns
+    -------
+    int : number corresponding to KDE object type
+    """
+    kde_type = None
+    try:            
+        for x,y in KDE_obj.items():
+            try: 
+                for xx,yy in y.items():  # {libID:{taxon:kde}}
+                    kde_type = 3
+                    break
+            except AttributeError:       # {taxon:kde}                
+                kde_type = 2
+                break
+    except AttributeError:  # [taxon,kde]
+        for x in KDE_obj:   
+            try:
+                for y in x:
+                    kde_type = 1
+                    break
+            except TypeError:
+                raise TypeError, 'KDE object type not recognized'
+            break
+    return kde_type
     
 
 def checkExists(f):

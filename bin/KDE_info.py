@@ -90,39 +90,47 @@ if __name__ == '__main__':
     sys.stderr.write('Loading KDEs...\n')
     KDEs = Utils.load_kde(args['<kde>'])
     
-    # number of KDEs
-    if args['-n']:
-        try:
-            print len(KDEs.keys())
-        except AttributeError:
-            print len(KDEs)
-
     # header
     if args['-s']:
-        print '\t'.join(['taxon_ID', 'KDE_ID', 'min', 'percentile_5', 
+        print '\t'.join(['lib_ID', 'taxon_ID', 'KDE_ID', 'min', 'percentile_5', 
                          'percentile_25', 'mean', 'median', 'percentile_75', 
                          'percentile_95', 'max', 'stdev'])
-            
-    # listing KDEs 
-    if args['-t'] or args['-s']:
-        try:            
-            for x,y in KDEs.items():
-                try: 
-                    for xx,yy in y.items():  # {libID:{taxon:kde}}
-                        if args['-s']:
-                            KDE_dataset_stats(yy, xx, libID=x)
-                        else:
-                            print '\t'.join([x,xx])
-                except AttributeError:       # {taxon:kde}
-                    if args['-s']:
-                        KDE_dataset_stats(y, x)
-                    else:
-                        print x
-                
-        except AttributeError:
-            for x in KDEs:   # [taxon,kde]
+
+
+    # parsing KDEs 
+    kde_type = Utils.KDE_type(KDEs)
+
+    # parsing KDE
+    if kde_type == 1: 
+        if args['-n']:
+            print len(KDEs)
+            sys.exit()
+        for x in KDEs:   
+            if args['-s']:
+                KDE_dataset_stats(x[1], x[0])
+            else:
+                print x[0]        
+    elif kde_type == 2:
+        if args['-n']:
+            print len(KDEs.keys())
+            sys.exit()
+        for x,y in KDEs.items():
+            if args['-s']:
+                KDE_dataset_stats(y, x)
+            else:
+                print x
+    elif kde_type == 3:
+        if args['-n']:
+            for libID,v in KDEs.items():
+                print '\t'.join([str(x) for x in [libID, len(v.keys())]])
+            sys.exit()
+        for x,y in KDEs.items():
+            for xx,yy in y.items(): 
                 if args['-s']:
-                    KDE_dataset_stats(x[1], x[0])
+                    KDE_dataset_stats(yy, xx, libID=x)
                 else:
-                    print x[0]
-                            
+                    print '\t'.join([x,xx])        
+    else:
+        raise TypeError, 'KDE object type not recognized'
+
+            
