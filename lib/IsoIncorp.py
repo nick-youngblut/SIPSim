@@ -58,15 +58,17 @@ def main(args):
         taxa_incorp_list = None     
         
     # which depth of KDE object
-    KDE_dim = get_KDE_dim(KDEs)
+    KDE_type = Utils.KDE_type(KDEs)
 
     # creating kde of BD distributions with BD shift from isotope
     KDEs_iso = dict()
     for libID in config.keys():        
         sys.stderr.write('Processing library: {}\n'.format(libID))
-        if KDE_dim == 1:
+        if KDE_type == 1:
+            KDE = {t:k for t,k in KDEs}
+        elif KDE_type == 2:
             KDE = KDEs
-        elif KDE_dim == 2:
+        elif KDE_type == 3:
             try: 
                 KDE = KDEs[libID]
             except KeyError:
@@ -76,7 +78,7 @@ def main(args):
                 sys.stderr.write(msg.format(libID))
                 KDE = KDEs[KDEs.keys()[0]]
         else:
-            raise ValueError, 'KDE_dim not recognized'
+            raise ValueError, 'KDE object type not recognized'
 
         # if needed: making a list of taxa that can incorporate 
         ## (unique to this library)
@@ -181,19 +183,6 @@ def _make_kde(x, libID, config, taxa_incorp_list,
         bw_method=bw_method)
 
     return (taxon_name, kdeBD)
-
-
-def get_KDE_dim(KDEs):
-    """Determine which KDE object: {libID:{taxon:kde}} or {taxon:kde}
-    """
-    try: 
-        for x,y in KDEs.items():
-            y['kde']
-            break
-        KDE_dim = 1
-    except KeyError:
-        KDE_dim = 2
-    return KDE_dim
 
 
 def __add_comm_to_kdes(taxon_name, kde, comm, libIDs):    

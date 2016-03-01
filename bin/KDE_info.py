@@ -97,7 +97,7 @@ if __name__ == '__main__':
                          'percentile_95', 'max', 'stdev'])
 
 
-    # parsing KDEs 
+    # KDE type
     kde_type = Utils.KDE_type(KDEs)
 
     # parsing KDE

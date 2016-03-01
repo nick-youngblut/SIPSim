@@ -50,20 +50,29 @@ def to_df(x, libID):
 # main
 if __name__ == '__main__':
     args = docopt(__doc__, version='0.1')            
+    # input
     KDEs = Utils.load_kde(args['<kde>'])
-    
     n = int(args['-n'])
 
+    # KDE object type
+    kde_type = Utils.KDE_type(KDEs)
+
+    # sampling from KDEs
     vals = {}
-    try:
+    if kde_type == 1: 
+        vals['1'] = {taxon:kde.resample(n)[0,] for taxon,kde in KDEs \
+                if kde is not None}
+    elif kde_type == 2:
         vals['1'] = {taxon:kde.resample(n)[0,] for taxon,kde in KDEs.items() \
                 if kde is not None}
-    except AttributeError:
+    elif kde_type == 3:
         for x,y in KDEs.items():
             vals[x] = {taxon:kde.resample(n)[0,] for taxon,kde in y.items() \
                        if kde is not None}
+    else:
+        raise TypeError, 'KDE object type not recognized'
 
-
+    # writing out results
     tbl = pd.concat([to_df(y,x) for x,y in vals.items()])
     tbl.to_csv(sys.stdout, sep='\t')
             

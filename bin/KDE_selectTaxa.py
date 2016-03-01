@@ -48,7 +48,7 @@ import Utils
     
 
 # functions
-def get_taxa(KDEs, all_taxa=None):
+def get_taxa_OLD(KDEs, all_taxa=None):
     if all_taxa is not None:
         try: 
             taxa = [k for k,v in KDEs.items()]
@@ -59,6 +59,34 @@ def get_taxa(KDEs, all_taxa=None):
             taxa = [k for k,v in KDEs.items() if v is not None]
         except AttributeError:
             taxa = [k[0] for k in KDEs if k[1] is not None]
+    return taxa
+
+
+def get_taxa(KDEs, kde_type, all_taxa=None):
+    """Getting taxa names from KDE object.
+    """
+    # parsing KDE
+    if kde_type == 1: 
+        if all_taxa is not None:
+            taxa = [k[0] for k in KDEs]            
+        else:
+            taxa = [k[0] for k in KDEs if k[1] is not None]
+    elif kde_type == 2:
+        if all_taxa is not None:
+            taxa = KDEs.keys()        
+        else:
+            taxa = [k for k,v in KDEs.items() if v is not None]
+    elif kde_type == 3:
+        taxa = []
+        for libID,v in KDEs.items():
+            if all_taxa is not None:
+                taxa += v.keys()  
+            else:
+                taxa += [k for k,vv in v.items() if v is not None]
+        taxa = list(set(taxa))            
+    else:
+        raise TypeError, 'KDE object type not recognized'
+
     return taxa
 
 
@@ -73,9 +101,12 @@ if __name__ == '__main__':
     # load KDEs object
     sys.stderr.write('Loading KDEs...\n')
     KDEs = Utils.load_kde(args['<kde>'])
-    
+
+    # KDE type
+    kde_type = Utils.KDE_type(KDEs)            
+        
     # all taxa names in KDEs
-    taxa = get_taxa(KDEs, args['-a'])
+    taxa = get_taxa(KDEs, kde_type, args['-a'])
     ntaxa = len(taxa)
 
     # subsampling (if needed)
