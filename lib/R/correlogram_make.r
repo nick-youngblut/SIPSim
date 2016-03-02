@@ -18,6 +18,12 @@ description:
   Calulcate a correlogram assessing community compostion
   autocorrelations as a function on difference in
   gradient buoyant density. 
+
+  Input should either be 1) a SIPSim OTU table
+  from a single SIPSim simulation 2) a list of phyloseq
+  objects (eg., communities from multiple days).
+
+  The output is written to STDOUT.
 ' -> doc
 
 opts = docopt(doc)
