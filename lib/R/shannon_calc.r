@@ -152,6 +152,7 @@ shannon.long = function(df, abundance_col, ...){
 
 # calculating shannon index
 df.shan = shannon.long(df, 'abundance', 'library', 'sample') %>%
+  filter(Buoyant_density >= BD[1], Buoyant_density <= BD[2]) %>%
   select(-abundance)
 
 

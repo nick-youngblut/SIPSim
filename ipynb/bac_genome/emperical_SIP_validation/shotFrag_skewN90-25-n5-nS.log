@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/nick/notebook/SIPSim/bin/fragments.py", line 129, in <module>
+    Fragments.main(args)
+  File "/home/nick/notebook/SIPSim/bin/../lib/Fragments.py", line 37, in main
+    filePath=args['--fp'])
+  File "/home/nick/notebook/SIPSim/bin/../lib/Utils.py", line 165, in parseGenomeList
+    with open(inFile, 'rb') as inF:
+IOError: [Errno 2] No such file or directory: 'genome_index.txt'

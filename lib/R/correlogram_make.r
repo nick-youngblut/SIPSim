@@ -153,8 +153,6 @@ m.corr = function(X, D, ...){
 }
 
 
-
-
 # calc.corr
 calc.corr = function(df, min_BD, max_BD){
   df.corr = df %>%
