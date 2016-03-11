@@ -110,6 +110,9 @@ class Fractions(object):
             else:
                 continue
 
+        # flipping values around so that lightest fraction is truncated
+        BD_vals.reverse()
+
         # making BD-min-max for each fraction
         ## cumulative addition
         BD_vals_cumsum = np.array(BD_vals).cumsum()

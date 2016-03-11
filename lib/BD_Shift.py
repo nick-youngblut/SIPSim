@@ -163,7 +163,7 @@ def main(args):
     print '\t'.join(['lib1','lib2','taxon','BD_shift'])
     for libID1,d1 in kde1.items():
         for libID2,d2 in kde2.items():
-            msg = '  Comparing libraries; "{}", "{}"\n'
+            msg = '  Comparing libraries: "{}", "{}"\n'
             sys.stderr.write(msg.format(libID1, libID2))
 
             # overlap of taxa btw libraries

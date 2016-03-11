@@ -5,9 +5,9 @@
 BD_shift: Determine the shift in BD based on KDE overlap
 
 Usage:
-  fragments [options] <kde1> <kde2>
-  fragments -h | --help
-  fragments --version
+  BD_shift [options] <kde1> <kde2>
+  BD_shift -h | --help
+  BD_shift --version
 
 Options:
   <kde1>         KDE object
