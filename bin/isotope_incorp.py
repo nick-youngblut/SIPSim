@@ -16,6 +16,7 @@ Options:
   --comm=<cf>       Community file used set abundance-weighting of isotope.
   --taxa=<t>        A file listing taxa that incorporated isotope 
                     (instead of selecting taxa at random for each library).
+                    File format: "library_ID<tab>taxon_name"
   -n=<n>            Number of Monte Carlo replicates to estimate
                     G+C error due to diffusion. 
                     [default: 500000]
@@ -25,6 +26,9 @@ Options:
                     of distribution parameters.
   --bw=<bw>         The bandwidth scalar or function passed to
                     scipy.stats.gaussian_kde().
+  --shift=<sh>      File name for output on BD shift for fragment from each
+                    taxon (BD shift from isotope incorporation).
+                    [default: BD-shift_stats.txt]
   --np=<np>         Number of parallel processes.
                     [default: 1]
   -h --help         Show this screen.

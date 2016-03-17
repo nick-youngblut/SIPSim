@@ -5,6 +5,9 @@ import re
 from functools import partial
 import types
 import logging
+import tempfile
+import shutil
+import glob
 from collections import defaultdict
 from random import shuffle
 from StringIO import StringIO
@@ -55,10 +58,13 @@ def main(args):
     if args['--taxa'] is not None:
         taxa_incorp_list = _load_taxa_incorp_list(args['--taxa'])
     else:
-        taxa_incorp_list = None     
+        taxa_incorp_list = {k:[] for k in config.keys()}
         
     # which depth of KDE object
     KDE_type = Utils.KDE_type(KDEs)
+
+    # temporary directory for BD shift stats
+    tmpdirpath = tempfile.mkdtemp()    
 
     # creating kde of BD distributions with BD shift from isotope
     KDEs_iso = dict()
@@ -85,15 +91,21 @@ def main(args):
         ## TODO: abundance cutoff: 
         ### taxa must have abundance > threshold to incorporate
         ## TODO: abundance weighting with less incorp for less taxa
-        if taxa_incorp_list is None:
-            taxa_incorp_list = _taxon_incorp_list(libID, config, KDE)
-
+        try:
+            incorp_list_len = len(taxa_incorp_list[libID])
+        except KeyError:
+            msg = 'Library "{}" not found'.format(libID)
+            raise KeyError, msg
+        if incorp_list_len == 0:
+            taxa_incorp_list[libID] = _taxon_incorp_list(libID, config, KDE)
+            
         # setting params for parallelized function
         pfunc = partial(_make_kde, 
                         config = config,
                         libID = libID,
+                        stat_dir = tmpdirpath,
                         n = args['-n'],
-                        taxa_incorp_list = taxa_incorp_list,
+                        taxa_incorp_list = taxa_incorp_list[libID],
                         isotope = args['--isotope'],
                         bw_method = args['--bw'])                    
 
@@ -106,13 +118,16 @@ def main(args):
 
         KDEs_iso[libID] = {taxon:kde for taxon,kde in tmp}
     
+    # combine stats
+    _write_stats(args['--shift'], tmpdirpath)
+    shutil.rmtree(tmpdirpath)
 
     # writing pickled BD-KDE with BD shift from isotope incorp
     dill.dump(KDEs_iso, sys.stdout)
-        
+
 
 def _make_kde(x, libID, config, taxa_incorp_list, 
-             isotope='13C', n=10000, bw_method=None): 
+              isotope='13C', n=10000, bw_method=None, stat_dir=None): 
     """Making new KDE of BD value distribution which includes
     BD shift due to isotope incorporation. 
 
@@ -132,7 +147,8 @@ def _make_kde(x, libID, config, taxa_incorp_list,
         distribution
     bw_method : str or function
         bandwidth scalar or function passed to scipy.stats.gaussian_kde().
-
+    stat_dir : str
+        directory path for writing BD shift stats. Nothing written if None
     Returns
     -------
     tuple -- (taxon_name, KDE*)
@@ -156,6 +172,8 @@ def _make_kde(x, libID, config, taxa_incorp_list,
     # can taxon incorporate any isotope?
     ## if not, return 'raw' BD KDE 
     if taxon_name not in taxa_incorp_list:
+        shift_stats = [libID, taxon_name] + [float(0)] * 6
+        _write_tmp_stats(shift_stats, stat_dir)
         return (taxon_name, kde)
 
     # taxon abundance for library
@@ -175,14 +193,31 @@ def _make_kde(x, libID, config, taxa_incorp_list,
     ## mix_model => distribution of % incorporation for taxon population
     mix_model = make_incorp_model(taxon_name, libID, config)
 
+    # BD shift stats
+    BDs = kde.resample(n)[0]
+    BDs_wIncorp = add_incorp(np.copy(BDs), mix_model, maxIsotopeBD)
+    shift_stats = _calc_BD_shift_stats(libID, taxon_name, BDs, BDs_wIncorp)
+    _write_tmp_stats(shift_stats, stat_dir)
+    
     # making KDE of BD + BD_isotope_incorp
-    kdeBD = stats.gaussian_kde( 
-        add_incorp(kde.resample(n)[0], 
-                   mix_model, 
-                   maxIsotopeBD),
-        bw_method=bw_method)
+    kdeBD = stats.gaussian_kde(BDs_wIncorp, bw_method=bw_method)
 
+    # return
     return (taxon_name, kdeBD)
+
+
+def _calc_BD_shift_stats(libID, taxon_name, BDs, BDs_wIncorp):
+    BD_shift = BDs_wIncorp - BDs
+    BDs = None
+    shift_stats = [libID, taxon_name, 
+                   np.min(BD_shift), 
+                   np.percentile(BD_shift, 25),
+                   np.mean(BD_shift),
+                   np.median(BD_shift), 
+                   np.percentile(BD_shift, 75), 
+                   np.max(BD_shift)]
+    BD_shift = None
+    return shift_stats
 
 
 def __add_comm_to_kdes(taxon_name, kde, comm, libIDs):    
@@ -218,6 +253,36 @@ def _add_comm_to_kde(KDEs, comm):
             KDEs[x] = __add_comm_to_kdes(x, y, comm, libIDs)
 
 
+def _write_tmp_stats(stats, dirpath):
+    if dirpath is None:
+        return 0
+    outfn = tempfile.NamedTemporaryFile()
+    outfn = os.path.split(outfn.name)[1]
+    outfn = os.path.join(dirpath, outfn + '_stats.txt')
+    stats = [str(x) for x in stats]
+    with open(outfn, 'wb') as outfh:
+        outfh.write('\t'.join(stats) + '\n')
+
+    
+def _write_stats(outfn, tmpdirpath):
+    tmpfiles = glob.glob(os.path.join(tmpdirpath, '*_stats.txt'))
+    if len(tmpfiles) == 0:
+        return 0
+    header = ['library', 'taxon', 'min', 'q25', 'mean', 'median', 
+              'q75', 'max']
+    df = [] 
+    for F in tmpfiles:
+        with open(F, 'rb') as infh:
+            for line in infh:
+                line = line.rstrip().split('\t')
+                df.append(line)
+
+    df = pd.DataFrame(df, columns=header)
+    df = df.sort(['library', 'taxon'])
+    df.to_csv(outfn, sep='\t', index=False)
+    sys.stderr.write('File written: {}\n'.format(outfn))
+
+
 def _taxon_incorp_list(libID, config, KDE_BD):
     """Make a list of taxa that incorporated isotope.
     """
@@ -233,6 +298,7 @@ def _taxon_incorp_list(libID, config, KDE_BD):
 
     # set of taxa that incorporate any isotope
     n_incorp = int(round(len(taxon_names) * max_perc_taxa_incorp, 0))
+
     return taxon_names[:n_incorp]
 
     
@@ -406,10 +472,14 @@ def isotopeMaxBD(isotope):
 def _load_taxa_incorp_list(inFile):
     """Loading list of taxa that incorporate isotope.
     """
-    taxa = []
+    taxa = {}
     with open(inFile, 'rb') as inFH:
         for line in inFH:
-            line = line.rstrip()
-            if len(line) > 0:
-                taxa.append(line)
+            line = line.rstrip().split('\t')
+            try:
+                taxa[line[0]].append(line[1])
+            except KeyError:
+                taxa[line[0]] = [line[1]]
+#            if len(line) > 1:
+#                taxa.append(line)
     return taxa

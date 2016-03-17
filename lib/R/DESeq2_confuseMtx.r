@@ -63,10 +63,9 @@ BD.shift = read.delim(opts[['BD_shift']], sep='\t')
 deseq.res = as.data.frame(deseq.res)
 deseq.res$taxon = rownames(deseq.res)
 
-#deseq.res %>% head %>% print; stop()
 
 ### log2fold cutoff & padj cutoff
-log2.cut = -1/0   # -negInfinity (ie., no cutoff)
+log2.cut = -1/0      # -negInfinity (ie., no cutoff)
 padj.cut = 1/0       # Infinity (ie., no cutoff)
 
 #### log2.cutoff
@@ -124,10 +123,9 @@ tbl.c = tbl.c %>%
   mutate(incorp.known = incorp.x,
          incorp.pred = incorp.y) %>%
            select(-incorp.x, -incorp.y)
-#    rename(c('incorp.x' = 'incorp.known', 'incorp.y' = 'incorp.pred'))
 c.mtx = confusionMatrix(tbl.c$incorp.pred, tbl.c$incorp.known)
 
-## writing
+## writing output
 outFile = paste(c(opts[['-o']], 'data.csv'), collapse='_')
 write.csv(tbl.c, outFile, quote=F, row.names=F)
 message('File written: ', outFile)
