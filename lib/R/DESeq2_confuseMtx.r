@@ -19,7 +19,7 @@ options:
   --log2neg=<ln>   Min log2FoldChange based on negative log2fc values
                    (see below).
   --BD=<b>         BD shift cutoff for identifying isotope incorporators.
-                   [Default: 0.05]
+                   [Default: 0.001]
   -h               Help
 description:
   Use caret to make a confusion matrix comparing
@@ -42,7 +42,7 @@ padj.cut = as.numeric(opts[['--padj']])
 BD_shift.cut = as.numeric(opts[['--BD']])
 
 # packages
-pkgs <- c('dplyr', 'caret')
+pkgs <- c('dplyr', 'tidyr', 'caret')
 for(x in pkgs){
   suppressPackageStartupMessages(library(x, character.only=TRUE))
 }
@@ -99,10 +99,15 @@ if(! is.null(opts[['--padjBH']])){
 }
 
 ### BD-shift table (reference)
-BD.shift = BD.shift %>%
-  filter(lib2 == '2') %>%
-      mutate(incorp = BD_shift > BD_shift.cut)
-
+if (ncol(BD.shift) == 8){
+  BD.shift = BD.shift %>%
+    mutate(incorp = median > BD_shift.cut)
+} else {
+  BD.shift = BD.shift %>%
+    filter(lib2 == '2') %>%
+      dplyr::rename('library' = lib2) %>%
+        mutate(incorp = BD_shift > BD_shift.cut)
+}
 # making factors of incorporation status
 order_incorp = function(x){
   x$incorp = factor(x$incorp, levels=c(TRUE, FALSE))
@@ -114,34 +119,70 @@ deseq.res = order_incorp(deseq.res)
 # joining tables
 BD.shift$taxon = as.character(BD.shift$taxon)
 deseq.res$taxon = as.character(deseq.res$taxon)
-tbl.c = inner_join(BD.shift, deseq.res, c('taxon' = 'taxon'))
+df.j = inner_join(BD.shift, deseq.res, c('taxon' = 'taxon'))
 
 # making confusion matrix
 ## incorp.x = BD.shift  (KNOWN)
 ## incorp.y = deseq.res  (PREDICTED)
-tbl.c = tbl.c %>%
+df.j = df.j %>%
   mutate(incorp.known = incorp.x,
          incorp.pred = incorp.y) %>%
            select(-incorp.x, -incorp.y)
-c.mtx = confusionMatrix(tbl.c$incorp.pred, tbl.c$incorp.known)
+
+cfs.mtx = function(x){
+  mtx = confusionMatrix(x$incorp.pred, x$incorp.known)
+  return(mtx)
+}
+
+df.j.cmtx = df.j %>%
+  group_by(library) %>%
+    nest() %>%
+      mutate(c.mtx = lapply(data, cfs.mtx)) 
+
+
+get_tbl = function(obj, key){
+  obj[[key]] %>% as.data.frame
+}
+
+
+conv = function(df){
+  df = df %>% as.data.frame
+  x = rownames(df) %>% as.data.frame
+  df = cbind(x, df)
+  colnames(df)[1] = 'variables'
+  colnames(df)[2] = 'values'
+  return(df)
+}
+
+df.j.table = df.j.cmtx %>%
+  unnest(purrr::map(c.mtx, function(x) x[['table']] %>% as.data.frame)) %>%
+    as.data.frame
+
+df.j.overall = df.j.cmtx %>%
+  unnest(purrr::map(c.mtx, function(x) x[['overall']] %>% conv)) %>%
+    as.data.frame
+
+df.j.byClass = df.j.cmtx %>%
+  unnest(purrr::map(c.mtx, function(x) x[['byClass']] %>% conv)) %>%
+    as.data.frame
+
 
 ## writing output
-outFile = paste(c(opts[['-o']], 'data.csv'), collapse='_')
-write.csv(tbl.c, outFile, quote=F, row.names=F)
-message('File written: ', outFile)
-saveRDS(c.mtx, opts[['-o']])
+### raw data
+saveRDS(df.j.cmtx, opts[['-o']])
 message('File written: ', opts[['-o']])
+outFile = paste(c(opts[['-o']], 'data.txt'), collapse='_')
+write.table(df.j, outFile, sep='\t', quote=F, row.names=F)
+message('File written: ', outFile)
 
-write_tbl = function(obj, key, outFile){
-  x = obj[[key]] %>% as.data.frame()
-  colnames(x)[1] = key
-  write.csv(x, file=outFile, quote=F)
+## confusion matrix data
+write_tbl = function(df, outPrefix, outFile){
+  outFile = paste(c(outPrefix, outFile), collapse='_')
+  write.table(df, file=outFile, sep='\t', quote=FALSE, row.names=FALSE)
   message('File written: ', outFile)
 }
-outFile = paste(c(opts[['-o']], 'table.csv'), collapse='_')
-write_tbl(c.mtx, 'table', outFile)
-outFile = paste(c(opts[['-o']], 'overall.csv'), collapse='_')
-write_tbl(c.mtx, 'overall', outFile)
-outFile = paste(c(opts[['-o']], 'byClass.csv'), collapse='_')
-write_tbl(c.mtx, 'byClass', outFile)
+write_tbl(df.j.table, opts[['-o']], 'table.txt')
+write_tbl(df.j.overall, opts[['-o']], 'overall.txt')
+write_tbl(df.j.byClass, opts[['-o']], 'byClass.txt')
+
 
