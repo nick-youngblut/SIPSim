@@ -121,6 +121,7 @@ if __name__ == '__main__':
                 print x
     elif kde_type == 3:
         if args['-n']:
+            print '\t'.join(['library', 'N'])
             for libID,v in KDEs.items():
                 print '\t'.join([str(x) for x in [libID, len(v.keys())]])
             sys.exit()

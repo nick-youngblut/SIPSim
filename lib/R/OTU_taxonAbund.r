@@ -102,10 +102,11 @@ if(! is.null(opts[['-t']])){
 
 ## plotting
 BD.GCp0 = 0 * 0.098 + 1.66
+BD.GCp50 = 0.5 * 0.098 + 1.66
 BD.GCp100 = 1 * 0.098 + 1.66
 
 ## making plots
-make_frac_plot = function(tbl, BD.GCp0, BD.GCp100, rel=FALSE, legend=FALSE){
+make_frac_plot = function(tbl, BD.GCp50, rel=FALSE, legend=FALSE){
   p = ggplot(tbl, aes(x=BD_mid, fill=taxon))
   if(rel==TRUE){
     p = p + geom_area(aes(y=rel_count), stat='identity', alpha=1, position='stack') +
@@ -114,7 +115,7 @@ make_frac_plot = function(tbl, BD.GCp0, BD.GCp100, rel=FALSE, legend=FALSE){
     p = p + geom_area(aes(y=count), stat='identity', alpha=0.5, position='dodge') +
       labs(y='Absolute abundance')    
   }  
-  p = p + geom_vline(xintercept=c(BD.GCp0, BD.GCp100), linetype='dashed', alpha=0.5) +
+  p = p + geom_vline(xintercept=c(BD.GCp50), linetype='dashed', alpha=0.5) +
       labs(x='Buoyant density') +
         scale_x_continuous(expand=c(0.01,0)) +
           scale_y_continuous(expand=c(0,0.01)) +
@@ -135,8 +136,8 @@ make_frac_plot = function(tbl, BD.GCp0, BD.GCp100, rel=FALSE, legend=FALSE){
   return(p)
 }
 
-p.dodge = make_frac_plot(tbl, BD.GCp0, BD.GCp100, legend=opts[['-l']])
-p.fill = make_frac_plot(tbl, BD.GCp0, BD.GCp100, legend=opts[['-l']], rel=TRUE)
+p.dodge = make_frac_plot(tbl, BD.GCp50, legend=opts[['-l']])
+p.fill = make_frac_plot(tbl, BD.GCp50, legend=opts[['-l']], rel=TRUE)
 
 
 ### writing plots

@@ -2,7 +2,7 @@
 
 #--- Option parsing ---#
 """
-KDE_selectTaxa: Select a set of taxa to be incorporat
+KDE_selectTaxa: Select a set of taxa to be incorporators
 
 Usage:
   KDE_selectTaxa [options] <kde>
@@ -12,7 +12,8 @@ Usage:
 Options:
   <kde>         Pickled KDE object
                 ('-' if input from STDIN) 
-  -s=<s>        Subsample from taxa names.
+  -s=<s>        Subsample `s` number of taxa.
+  -f=<f>        Subsample `f` fraction of taxa. 
   -r            Subsample with replacement.
   -a            Select taxa if if they are missing 
                 in some libraries (gradients).
@@ -25,12 +26,14 @@ Description:
   This is useful for selecting consistent set of taxa to be incorporators 
   for replicate simulations (ie., `taxa` option in isotope_incorp subcommand).
   
-  Note: if -s > total_number_taxa, then subsampling will be done with 
-  replacement.
+  If -s > total_number_taxa or -f is > 1, then subsampling will be done 
+  with replacement.
+
+  -s takes precedent over -f. 
 
   Output
   ------
-  Values written to STDOUT
+  Taxon names written to STDOUT (1 per line)
 """
 
 # import
@@ -110,8 +113,14 @@ if __name__ == '__main__':
     ntaxa = len(taxa)
 
     # subsampling (if needed)
+    nsub = None
     if args['-s'] is not None:
         nsub = int(args['-s'])
+    elif args['-f'] is not None:
+        nsub = float(args['-f']) * ntaxa
+        nsub = int(nsub)
+
+    if nsub is not None:
         if nsub > ntaxa:
             args['-r'] = True
         taxa = np.random.choice(taxa, size=nsub, replace=args['-r'])

@@ -280,7 +280,8 @@ def _bootstrap(df, isotope):
 def _bootstrap_CI(df, n=1000, a=0.1, isotope='13C', pool=None):
     # status
     taxon = df['taxon'].unique()[0]
-    sys.stderr.write('Processing taxon: {}\n'.format(taxon))
+    msg = 'Bootstrap CI (n={}); processing taxon: {}\n'
+    sys.stderr.write(msg.format(n, taxon))
 
     # bootstrapping
     if pool is None:        
@@ -411,8 +412,6 @@ def qSIP_atomExcess(Uargs):
 
     #-- calculating CIs --#
     sys.stderr.write('Calculating bootstrap CIs...\n')
-    #taxa = mean_densities['taxon'].tolist()
-    #densities = densities.loc[densities['taxon'].isin(taxa[:20])]
     if Uargs['--debug']:
         taxa = mean_densities['taxon'].tolist()
         densities = densities.loc[densities['taxon'].isin(taxa[:20])]

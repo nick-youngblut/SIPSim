@@ -38,27 +38,29 @@ def main(args):
         See ``isotope_incorp`` subcommand.
     """
     # loading input
-    ## kde_bd
-    sys.stderr.write('Loading KDE object...\n')
-    KDEs = Utils.load_kde(args['<BD_KDE>'])
+    ## config file
+    config = Config.load_config(args['<config_file>'],
+                                phylo=args['--phylo'])
+
     ## comm (optional)
     if args['--comm'] is not None:
         comm = CommTable.from_csv(args['--comm'], sep='\t')
     else:
         comm = None
+
+    ## taxa list (optional
+    if args['--taxa'] is not None:
+        taxa_incorp_list = _load_taxa_incorp_list(args['--taxa'], config)
+    else:
+        taxa_incorp_list = {k:[] for k in config.keys()}
             
-    # loading the config file
-    config = Config.load_config(args['<config_file>'],
-                                phylo=args['--phylo'])
+    ## kde_bd
+    sys.stderr.write('Loading KDE object...\n')
+    KDEs = Utils.load_kde(args['<BD_KDE>'])
+
 
     # adding comm info to KDEs 
     _add_comm_to_kde(KDEs, comm)
-
-    ## taxa list (if provided
-    if args['--taxa'] is not None:
-        taxa_incorp_list = _load_taxa_incorp_list(args['--taxa'])
-    else:
-        taxa_incorp_list = {k:[] for k in config.keys()}
         
     # which depth of KDE object
     KDE_type = Utils.KDE_type(KDEs)
@@ -469,17 +471,32 @@ def isotopeMaxBD(isotope):
         raise KeyError('Isotope "{}" not supported.'.format(isotope))
 
 
-def _load_taxa_incorp_list(inFile):
+def _load_taxa_incorp_list(inFile, config):
     """Loading list of taxa that incorporate isotope.
+    Parameters
+    ----------
+    inFile : str
+        File name of taxon list
+    config : config object
+
+    Returns
+    -------
+    {library:[taxon1, ...]}
     """
     taxa = {}
     with open(inFile, 'rb') as inFH:
         for line in inFH:
             line = line.rstrip().split('\t')
-            try:
-                taxa[line[0]].append(line[1])
-            except KeyError:
-                taxa[line[0]] = [line[1]]
-#            if len(line) > 1:
-#                taxa.append(line)
+            # if 1 column, using config-defined libraries
+            if len(line) == 1:
+                line = [[x,line[0]] for x in config.keys()]
+            else:
+                line = [line]
+            
+            for x in line:
+                try:
+                    taxa[x[0]].append(x[1])
+                except KeyError:
+                    taxa[x[0]] = [x[1]]
+
     return taxa
