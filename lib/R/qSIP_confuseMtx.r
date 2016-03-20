@@ -6,102 +6,140 @@ rm(list=ls())
 # opt parsing
 suppressPackageStartupMessages(library(docopt))
 
-'usage: qSIP_confuseMtx.r [options] <BD_shift> <qSIP_atomX> <exp_design>
+'usage: qSIP_confuseMtx.r [options] <BD_shift> <qSIP_atomExcess>
 
-Options:
-  <BD_shift>     BD_shift file.
-  <qSIP_atomX>   qSIP table with atom fraction excess confidence
-                 intervals ("-" if from STDIN).
-  <exp_design>   Experimental design file (see qSIP_atomExcess).
-  --CI=<c>       Confidence interval cutoff for identifying
-                 isotope incorporators.
-                 [Default: 0]
-  --BD=<b>       BD shift cutoff for identifying isotope
-                 incorporators.
-                 [Default: 0.05]
-  -o=<o>         Basename for output files.
-                 [Default: qSIP-cMtx]
-  -h             Help
-Description:
-  Use caret to make a confusion matrix comparing KNOWN isotope
-  incorporation (based on BD distribution shift between pre-incorp
-  and post-incorp BD KDEs) and PREDICTED isotope incorporation
-  (based on qSIP method; Hungate et al., 2015).
-
-References
-  Hungate BA, Mau RL, Schwartz E, Caporaso JG, Dijkstra P, Gestel N van, et
-  al. (2015). Quantitative Microbial Ecology Through Stable Isotope Probing.
-  Appl Environ Microbiol AEM.02280-15
+options:
+  <BD_shift>         BD_shift file.
+  <qSIP_atomExcess>  Output table from qSIP_atomExcess subcommand.
+                     ("-" if from STDIN)
+  -o=<o>             Basename for output files.
+                     [Default: qSIP-cMtx]
+  --BD=<b>           BD shift cutoff for identifying isotope incorporators.
+                     [Default: 0.001]
+  --libs=<l>         Libraries that are 13C treatments. (comma-separated list).
+                     [Default: 2]
+  -h                 Help
+description: 
+  Use caret to make a confusion matrix comparing
+  KNOWN isotope incorporation (based on BD distribution
+  shift between pre-incorp and post-incorp BD KDEs) and
+  PREDICTED isotope incorporation (based on qSIP method).
 ' -> doc
 
 opts = docopt(doc)
-CI.cut = as.numeric(opts[['--CI']])
 BD_shift.cut = as.numeric(opts[['--BD']])
-
+libs = strsplit(opts[['--libs']], split=',')
+libs = unlist(libs)
 
 # packages
-pkgs <- c('dplyr', 'caret')
+pkgs <- c('dplyr', 'tidyr', 'caret')
 for(x in pkgs){
   suppressPackageStartupMessages(library(x, character.only=TRUE))
 }
 
 # main
-
 ## import
-### atom excess
-if(opts[['<qSIP_atomX>']] == '-'){
+if(opts[['<qSIP_atomExcess>']] == '-'){
   con = pipe("cat", "rb")
-  df.atom = read.delim(con, sep='\t')
+  df_qSIP = read.delim(con, sep='\t')
 } else {
-  df.atom = read.delim(opts[['<qSIP_atomX>']], sep='\t')
+  df_qSIP = read.delim(opts[['<qSIP_atomExcess>']], sep='\t')
 }
-### BD shift
-df.shift = read.delim(opts[['<BD_shift>']], sep='\t')
-### exp. design
-df.design = read.delim(opts[['<exp_design>']], sep='\t', header=FALSE)
+df_shift = read.delim(opts[['BD_shift']], sep='\t')
 
 
-##summarizing BD shift for treatments
-df.design$V1 = sapply(df.design$V1, tolower)
-treatments = df.design %>%
-  filter(V2 == 'treatment')
-treatments = treatments$V1
+## calling qSIP incorporators
+### qSIP
+df_qSIP = df_qSIP %>%
+  mutate(incorp = ifelse(atom_CI_low > 0, TRUE, FALSE))
+        
+### BD-shift table (reference)
+if (ncol(df_shift) == 8){
+  df_shift = df_shift %>%
+    mutate(incorp = median > BD_shift.cut)
+} else {
+  df_shift = df_shift %>%
+    filter(lib2 == '2') %>%
+      dplyr::rename('library' = lib2) %>%
+        mutate(incorp = BD_shift > BD_shift.cut)
+}
+df_shift = df_shift %>%
+  filter(library %in% libs)
 
-df.shift.s = df.shift %>%
-  filter(lib2 %in% treatments) %>%
-    group_by(taxon) %>%
-      summarize(mean_BD_shift = mean(BD_shift, na.rm=TRUE))
+# making factors of incorporation status
+order_incorp = function(x){
+  x$incorp = factor(x$incorp, levels=c(TRUE, FALSE))
+  return(x)
+}
+df_shift = order_incorp(df_shift)
+df_qSIP = order_incorp(df_qSIP)
 
-## table join
-df.j = inner_join(df.atom, df.shift.s, c('taxon' = 'taxon'))
+# joining tables
+df_shift$taxon = as.character(df_shift$taxon)
+df_qSIP$taxon = as.character(df_qSIP$taxon)
+df.j = inner_join(df_shift, df_qSIP, c('taxon' = 'taxon'))
 
 
-## identifying incorporators
+# making confusion matrix
+## incorp.x = df_shift  (KNOWN)
+## incorp.y = qSIP      (PREDICTED)
 df.j = df.j %>%
-  mutate(qSIP_incorper = ifelse(atom_CI_low > CI.cut, TRUE, FALSE),
-         hrSIP_incorper = ifelse(mean_BD_shift > BD_shift.cut, TRUE, FALSE))
+  mutate(incorp.known = incorp.x,
+         incorp.pred = incorp.y) %>%
+           select(-incorp.x, -incorp.y)
+
+cfs.mtx = function(x){
+  mtx = confusionMatrix(x$incorp.pred, x$incorp.known)
+  return(mtx)
+}
+
+df.j.cmtx = df.j %>%
+  group_by(library) %>%
+    nest() %>%
+      mutate(c.mtx = lapply(data, cfs.mtx)) 
 
 
-## confusion matrix
-c.mtx = confusionMatrix(df.j$qSIP_incorper, df.j$hrSIP_incorper)
+get_tbl = function(obj, key){
+  obj[[key]] %>% as.data.frame
+}
+
+conv = function(df){
+  df = df %>% as.data.frame
+  x = rownames(df) %>% as.data.frame
+  df = cbind(x, df)
+  colnames(df)[1] = 'variables'
+  colnames(df)[2] = 'values'
+  return(df)
+}
+
+df.j.table = df.j.cmtx %>%
+  unnest(purrr::map(c.mtx, function(x) x[['table']] %>% as.data.frame)) %>%
+    as.data.frame
+
+df.j.overall = df.j.cmtx %>%
+  unnest(purrr::map(c.mtx, function(x) x[['overall']] %>% conv)) %>%
+    as.data.frame
+
+df.j.byClass = df.j.cmtx %>%
+  unnest(purrr::map(c.mtx, function(x) x[['byClass']] %>% conv)) %>%
+    as.data.frame
 
 
-## writing
-outFile = paste(c(opts[['-o']], 'data.csv'), collapse='_')
-write.csv(df.j, outFile, quote=F, row.names=F)
-message('File written: ', outFile)
-saveRDS(c.mtx, opts[['-o']])
+## writing output
+### raw data
+saveRDS(df.j.cmtx, opts[['-o']])
 message('File written: ', opts[['-o']])
+outFile = paste(c(opts[['-o']], 'data.txt'), collapse='_')
+write.table(df.j, outFile, sep='\t', quote=F, row.names=F)
+message('File written: ', outFile)
 
-write_tbl = function(obj, key, outFile){
-  x = obj[[key]] %>% as.data.frame()
-  colnames(x)[1] = key
-  write.csv(x, file=outFile, quote=F)
+## confusion matrix data
+write_tbl = function(df, outPrefix, outFile){
+  outFile = paste(c(outPrefix, outFile), collapse='_')
+  write.table(df, file=outFile, sep='\t', quote=FALSE, row.names=FALSE)
   message('File written: ', outFile)
 }
-outFile = paste(c(opts[['-o']], 'table.csv'), collapse='_')
-write_tbl(c.mtx, 'table', outFile)
-outFile = paste(c(opts[['-o']], 'overall.csv'), collapse='_')
-write_tbl(c.mtx, 'overall', outFile)
-outFile = paste(c(opts[['-o']], 'byClass.csv'), collapse='_')
-write_tbl(c.mtx, 'byClass', outFile)
+write_tbl(df.j.table, opts[['-o']], 'table.txt')
+write_tbl(df.j.overall, opts[['-o']], 'overall.txt')
+write_tbl(df.j.byClass, opts[['-o']], 'byClass.txt')
+

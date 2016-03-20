@@ -8,8 +8,10 @@ export PATH="$PATH:$BINDIR"
 BINDIR=$BINDIR'/bin/'
 
 
+
+#####################
 #--- do not edit ---#
-subcmds=`find $BINDIR -maxdepth 1 -name '*.py' | perl -pe 's/.+\/|\.py//g'`
+subcmdsPY=`find $BINDIR -maxdepth 1 -name '*.py' | perl -pe 's/.+\/|\.py//g'`
 
 _SIPSim ()  
 {          
@@ -24,7 +26,7 @@ _SIPSim ()
   dirNames=''
 
   if [[ ${cur} == * && ${prev} == *SIPSim ]]; then
-      COMPREPLY=( $( compgen -W '$subcmds' ${cur} ) )     
+      COMPREPLY=( $( compgen -W '$subcmdsPY' ${cur} ) )     
   else
       # no hiddne files/directories
       fileNames=$( compgen -f -X '.*' -- "$cur" )
@@ -38,3 +40,37 @@ _SIPSim ()
 }
 
 complete -o default -F _SIPSim SIPSim
+
+
+
+#-- R code --#
+BINDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+RDIR=$BINDIR'/lib/R/'
+subcmdsR=`find $RDIR -maxdepth 1 -iname '*.r' | perl -pe 's/.+\/|\.r//gi'`
+
+_SIPSimR ()  
+{          
+  local fileNames dirNames cur prev
+
+  cur=${COMP_WORDS[COMP_CWORD]}
+  prev=${COMP_WORDS[COMP_CWORD-1]}
+
+  COMPREPLY=()   
+
+  fileNames=''
+  dirNames=''
+
+  if [[ ${cur} == * && ${prev} == *SIPSimR ]]; then
+      COMPREPLY=( $( compgen -W '$subcmdsR' ${cur} ) )     
+  else
+      # no hiddne files/directories
+      fileNames=$( compgen -f -X '.*' -- "$cur" )
+      dirNames=$( compgen -d -X '.*' -- "$cur" )
+      
+      COMPREPLY=(
+          $( compgen -W "$fileNames $dirNames" -- ${cur} )
+      )
+  fi
+}
+
+complete -o default -F _SIPSimR SIPSimR
