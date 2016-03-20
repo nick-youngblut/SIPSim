@@ -10,6 +10,7 @@ import pandas as pd
 from pathos.multiprocessing import ProcessingPool
 ## application
 from OTU_Table import OTU_table
+import SIPSimCython as SSC
 
 
 def _prop_abund(x):
@@ -98,141 +99,36 @@ def calc_mean_density(densities, exp_design=None):
     mean_densities.columns = ['taxon', 'control', 'treatment']
     return mean_densities
 
-def calc_density_shift(df):
-    """Calculate density shift (Z_i) between mean densities (W_LABi - W_LIGHTi).
-    
-    Parameters
-    ----------
-    df : pandas.DataFrame
-        output of calc_mean_density
-    """
-    f = lambda x : x['treatment'] - x['control']
-    df['BD_diff'] = df.apply(f, axis=1)
 
-def BD2GC(BD):
-    """buoyant density to G+C (fraction). 
-    Ref: Birnie and Rickwood, 1978
-    """
-    return (BD - 1.66) / 0.098
-
-def BD2GC_hungate(BD):
-    """buoyant density to G+C (fraction). 
-    Ref: Hungate et al., 2015. AEM
-    """    
-    return (1/0.083506) * (BD - 1.646057)
-
-def GC2M_light(GC):
-    """G+C to M_light (molecular weight of 'light' DNA).
-    Ref: Hungate et al., 2015. AEM
-    """
-    return 0.496 * GC + 307.691
-
-def M_light2GC(M_light):
-    """The inverse of GC2M_light.
-    """
-    return (M_light - 307.691) / 0.496
-    
-def M_light2heavyMax(M_light, isotope='13C'):
-    """G+C to theoretical molecular weight of fully-labeled DNA (M_HEAVYMAXi).
-    Ref: Hungate et al., 2015. AEM.
-    
-    Parameters
-    ----------
-    M_light : float
-        Molecular weight of DNA in control gradients (light DNA)
-    isotope : str
-        13C or 18O isotope?
-    """
-    if isotope == '13C':        
-        G = M_light2GC(M_light)
-        M = -0.4987282 * G + 9.974564 + M_light
-    elif isotope == '18O':
-        M = 12.07747 + M_light
-    else:
-        msg = '"{}" Isotope not supported; only: "13C" or "18O"'
-        raise TypeError, msg.format(isotope)
-    return M
-    
-def calc_M_lab(Z, W_light, M_light):        
-    """Calculate the molecular weight of DNA in labeled treatments.
-    Ref: Hungate et al., 2015. AEM.
-    
-    Parameters
-    ----------
-    Z : float
-        Difference in mean densities between labeled and control gradients
-    W_light : float
-        Mean density of all control gradients
-    M_light : float
-        Molecular weight of DNA in control gradients
-    """
-    return (Z / W_light + 1) * M_light 
-
-def calc_atomFracExcess(M_lab, M_light, M_heavyMax, isotope='13C'):
-    """Calculate atom fraction excess from qSIP data.
-    
-    Parameters
-    ----------
-    M_lab : float
-        Molecular weight of DNA in labeled treatment gradients
-    M_light : float
-        Molecular weight of DNA in control treatment gradients       
-    M_heavyMax : float
-        Theoretical molecular weight of fully-labeled DNA
-    isotope : str
-        13C or 18O isotope?
-    """
-    if isotope == '13C':
-        a = 0.01111233
-    elif isotope == '18O':
-        a = 0.002000429
-    else:
-        msg = '"{}" Isotope not supported; only: "13C" or "18O"'
-        raise TypeError, msg.format(isotope)
-
-    x = M_lab - M_light
-    y = M_heavyMax - M_light
-    return x / y * (1 - a)
-
-
-def atomFracExcess(mean_densities, isotope='13C'):
+def atomFracExcess(df, isotope='13C'):
     """Calculate atom fraction excess.
 
     Parameters
     ----------
-    mean_densities : pandas.DataFrame
+    df : pandas.DataFrame
         Dataframe of weighted mean densities averaged across gradients.
     isotope : string
         Which isotope to calculate?
     """
     ## control GC
-    BD2GC_v = np.vectorize(BD2GC)
-    f = lambda x : BD2GC_v(x['control'])
-    mean_densities['control_GC'] = mean_densities.apply(f, axis=1)
+    df['control_GC'] = SSC.BD2GC(df['control'].values)
 
     ## control molecular weight    
-    GC2M_light_v = np.vectorize(GC2M_light)
-    f = lambda x : GC2M_light_v(x['control_GC'])
-    mean_densities['control_MW'] = mean_densities.apply(f, axis=1)
+    df['control_MW'] = SSC.GC2M_light(df['control_GC'].values)
         
     ## max heavy molecular weight
-    M_light2heavyMax_v = partial(M_light2heavyMax, isotope=isotope)
-    M_light2heavyMax_v = np.vectorize(M_light2heavyMax_v)
-    f = lambda x : M_light2heavyMax_v(x['control_MW'])
-    mean_densities['treatment_max_MW'] = mean_densities.apply(f, axis=1)
+    df['treatment_max_MW'] = SSC.M_light2heavyMax(df['control_MW'].values)
     
     ## molecular weight of labeled DNA
-    calc_M_lab_v = np.vectorize(calc_M_lab)
-    f = lambda x : calc_M_lab_v(x['BD_diff'], x['control'], x['control_MW'])
-    mean_densities['treatment_MW'] = mean_densities.apply(f, axis=1)
+    df['treatment_MW'] = SSC.calc_M_lab(df['BD_diff'].values,
+                                        df['control'].values,
+                                        df['control_MW'].values)
         
     ## % atom excess
-    calc_atomFracExcess_v = partial(calc_atomFracExcess, isotope=isotope)
-    calc_atomFracExcess_v = np.vectorize(calc_atomFracExcess_v)
-    f = lambda x : calc_atomFracExcess_v(x['treatment_MW'], 
-                                         x['control_MW'],
-                                         x['treatment_max_MW'])
-    mean_densities['atom_fraction_excess'] = mean_densities.apply(f, axis=1)
+    df['atom_fraction_excess'] = SSC.atomFracExcess(df['treatment_MW'].values,
+                                                    df['control_MW'].values,
+                                                    df['treatment_max_MW'].values,
+                                                    isotope=isotope)
 
 
 def subsample_densities(df, sample_type):
@@ -269,7 +165,8 @@ def _bootstrap(df, isotope):
     df_i_wmd = calc_mean_density(df_i)
     
     # calculating density shifts 
-    calc_density_shift(df_i_wmd)
+    df_i_wmd['BD_diff'] = SSC.calc_density_shift(df_i_wmd['treatment'].values,
+                                                 df_i_wmd['control'].values)
     
     # calculating atom fraction excess 
     atomFracExcess(df_i_wmd, isotope=isotope)
@@ -285,7 +182,7 @@ def _bootstrap_CI(df, n=1000, a=0.1, isotope='13C', pool=None, name=None):
     msg = 'Bootstrap CI (n={}); processing taxon: {}\n'
     sys.stderr.write(msg.format(n, taxon))
 
-    # bootstrapping
+    # bootstrapping (in parallel)
     if pool is None:        
         boot_res = [_bootstrap(df, isotope) for i in xrange(n)]
     else:
@@ -320,10 +217,7 @@ def _bootstrap_CI(df, n=1000, a=0.1, isotope='13C', pool=None, name=None):
         ret = pd.Series({'taxon':name, 'atom_CI_low':CI_low, 
                          'atom_CI_high':CI_high})
     else:
-        ret  = pd.Series({'atom_CI_low' : CI_low, 'atom_CI_high' : CI_high})
-
-
-    sys.exit();
+        ret = pd.Series({'atom_CI_low' : CI_low, 'atom_CI_high' : CI_high})
 
     return ret
 
@@ -427,7 +321,11 @@ def qSIP_atomExcess(Uargs):
     mean_densities = calc_mean_density(densities, exp_design)
 
     # calculating density shifts 
-    calc_density_shift(mean_densities)
+    #func = lambda x: SSC.calc_density_shift(x['treatment'], x['control'])
+    #mean_densities['BD_diff'] = mean_densities.apply(func, axis=1)
+    mean_densities['BD_diff'] = SSC.calc_density_shift(mean_densities['treatment'].values,
+                                                       mean_densities['control'].values)
+    #calc_density_shift(mean_densities)
 
     #-- calculating atom fraction excess --#
     sys.stderr.write('Calculating atom fraction excess (A)...\n')
