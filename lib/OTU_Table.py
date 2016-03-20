@@ -111,18 +111,23 @@ def _bin_BD(BD_KDE, libFracBins, taxonAbsAbund, libID, taxon_name,
 
     Returns
     -------
-    Counter object : {fraction_ID : count}
+    Counter object : {fraction_ID : count}; empty Counter if KDE is None
     """
     abund_remain = taxonAbsAbund
     frag_BD_bins = Counter()
     while abund_remain > 0:
         if abund_remain < maxsize:
             maxsize = abund_remain
-        frag_BD_bins.update(Counter(np.digitize(
-            _sample_BD_kde(BD_KDE, libID, taxon_name, maxsize), 
-            libFracBins)))        
-        abund_remain -= maxsize
+            
+        vals = _sample_BD_kde(BD_KDE, libID, taxon_name, maxsize)
         
+        if vals is not None:
+            frag_BD_bins.update(Counter(np.digitize(vals, libFracBins)))        
+        else:
+            break
+
+        abund_remain -= maxsize
+        vals = None
     return frag_BD_bins
 
 
@@ -202,9 +207,11 @@ def _get_BD_range(x):
         
     if start.startswith('-inf'):
         end = round(float(end),3) - 0.001
+        end = round(end,3)
         mid = end
     elif end.endswith('inf'):
         start = round(float(start),3) + 0.001
+        start = round(start, 3)
         mid = start
     else:
         start = round(float(start),3)
@@ -290,7 +297,7 @@ def main(uargs):
         df = pd.concat([df, x], axis=2)
         df = df[['library','taxon','fraction',
                  'BD_min','BD_mid','BD_max','count']]
-        df.sort(['taxon', 'fraction'], inplace=True)
+        df.sort_values(by=['taxon', 'fraction'], inplace=True)
 
         # Adding to dataframe of all libraries
         OTU_counts.append(df)
@@ -305,6 +312,7 @@ def main(uargs):
     df_comb['rel_abund'] = df_comb.groupby(cols).transform(f)['count']
 
     # writing out long form of table
+    df_comb.sort_values(by=['library','taxon','BD_mid'], inplace=True)
     df_comb.to_csv(sys.stdout, sep='\t', index=False)
 
 
@@ -507,7 +515,6 @@ class OTU_table(_table):
                         comm.loc[:,'count'] = 0
 
                 df_sub = pd.concat([df_sub, sub_comm])
-                #samp_cnt += 1
                         
         df_sub['count'] = df_sub['count'].astype(int)
         df_sub['rel_abund'] = self._norm_counts(df_sub)
@@ -515,8 +522,8 @@ class OTU_table(_table):
         cols = ['library','fraction','taxon',
                 'BD_min','BD_mid','BD_max',
                 'count', 'rel_abund']
-        sort_cols = ['taxon','fraction','library']
-        return df_sub.reindex_axis(cols, axis=1).sort(sort_cols)
+        sort_cols = ['library','taxon','BD_mid']
+        return df_sub.reindex_axis(cols, axis=1).sort_values(by=sort_cols)
                 
         
     def _same_low_high(self, ret=False):
@@ -736,6 +743,10 @@ class OTU_table(_table):
         columns : pandas column index
         """
         return self.df[columns]
+
+    def sort_values(self, **kwargs):
+        self.df.sort_values(**kwargs)
+
 
     def to_csv(self, *args, **kwargs):
         """Write OTU table as CSV.

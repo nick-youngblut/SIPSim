@@ -21,6 +21,8 @@ Options:
                   [Default: 0.1] 
   --np=<np>       Number of processors.
                   [Default: 1]
+  --byBoot        Parallelization by bootstrap replicate instead of taxon.
+                  (useful if running many bootstrap reps on few taxa)
   --version       Show version.
   --debug         Debug mode (no multiprocessing).
   -h --help       Show this screen.
@@ -63,7 +65,6 @@ from OTU_Table import OTU_table
 import QSIP_atomExcess
 
     
-
 
 # main
 if __name__ == '__main__':

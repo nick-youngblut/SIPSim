@@ -85,6 +85,7 @@ def main(Uargs):
             debug=Uargs['--debug'])
 
     # writing out file
+    otu_tbl.sort_values(by=['library','taxon','BD_mid'], inplace=True)
     otu_tbl.to_csv(sys.stdout, sep='\t', index=False)
     
 

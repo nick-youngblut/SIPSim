@@ -94,11 +94,9 @@ def qSIP(Uargs):
 
     # Determining the proportional absolute abundances (y)
     ## y = total_16S_copies * taxon_rel_abundance
-    groups = ['library', 'fraction', 'taxon']
-    def _prop_abund(x):
-        y = x['rel_abund'] * x['total_qPCR_copies']
-        return  np.round(y, 0).astype(int)
-    otu_rel.apply_by_group(_prop_abund, 'prop_abs_abund', groups)
+    otu_rel.df['prop_abs_abund'] = otu_rel.df['rel_abund'] * otu_rel.df['total_qPCR_copies']
+    otu_rel.df['prop_abs_abund'] = otu_rel.df['prop_abs_abund'].astype(int)
+    otu_rel.sort_values(by=['library', 'taxon', 'BD_mid'], inplace=True)
 
     # return
     return otu_rel

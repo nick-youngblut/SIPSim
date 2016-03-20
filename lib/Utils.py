@@ -454,7 +454,7 @@ class _table(object):
             l = ['library','fractions','taxon','count']
             self.df = self.df\
                           .reindex_axis(l, axis=1)\
-                          .sort(['taxon', 'fraction', 'library'])            
+                          .sort_values(by=['taxon', 'fraction', 'library'])
         except KeyError:
             pass
 

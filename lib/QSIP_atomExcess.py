@@ -20,7 +20,7 @@ def _prop_abund(x):
         x = x['prop_abs_abund']
     except KeyError:
         msg = '"prop_abs_abund" column not found!' + \
-              ' Check out qPCR subcommand.'
+              ' Check out the `qPCR` subcommand.'
         sys.exit(msg)
     return (x / float(sum(x))).fillna(0)
 
@@ -253,6 +253,8 @@ def subsample_densities(df, sample_type):
 
 
 def _bootstrap(df, isotope):
+    """Subsampling with replacement
+    """
     # subsample with replacement
     ## control
     idx = df['sample_type'] == 'control'
@@ -277,7 +279,7 @@ def _bootstrap(df, isotope):
     return df_i_wmd.loc[0,:]
 
 
-def _bootstrap_CI(df, n=1000, a=0.1, isotope='13C', pool=None):
+def _bootstrap_CI(df, n=1000, a=0.1, isotope='13C', pool=None, name=None):
     # status
     taxon = df['taxon'].unique()[0]
     msg = 'Bootstrap CI (n={}); processing taxon: {}\n'
@@ -314,11 +316,20 @@ def _bootstrap_CI(df, n=1000, a=0.1, isotope='13C', pool=None):
     if CI_low > CI_high:
         sys.stderr.write(msg.format(CI_low, CI_high))
     
-    return pd.Series({'atom_CI_low' : CI_low, 'atom_CI_high' : CI_high})
+    if name is not None:
+        ret = pd.Series({'taxon':name, 'atom_CI_low':CI_low, 
+                         'atom_CI_high':CI_high})
+    else:
+        ret  = pd.Series({'atom_CI_low' : CI_low, 'atom_CI_high' : CI_high})
+
+
+    sys.exit();
+
+    return ret
 
 
 def bootstrap_CI(densities, mean_densities, exp_design,
-                 n=1000, a=0.1, isotope='13C', nodes=1):
+                 n=1000, a=0.1, isotope='13C', nodes=1, byBoot=False):
     """Calculate qSIP bootstraped confidence intervals.
     Reference: Hungate et al., 2015.
 
@@ -351,9 +362,21 @@ def bootstrap_CI(densities, mean_densities, exp_design,
     # add: experimental design
     densities = densities.merge(exp_design, on=['library'], how='inner')
 
-    # calculate CI
-    f = lambda x : _bootstrap_CI(x, n=n, a=a, isotope=isotope, pool=pool)
-    CIs = densities.groupby(['taxon']).apply(f).reset_index()
+    # calculate CI: parallel by taxon
+    if byBoot:
+        func = lambda x : _bootstrap_CI(x, n=n, a=a, isotope=isotope, pool=pool)
+        CIs = densities.groupby(['taxon']).apply(func).reset_index()
+    else:
+        func = lambda x : _bootstrap_CI(x[1], n=n, a=a, isotope=isotope, 
+                                        pool=None, name=x[0])
+        if pool is None:        
+            CIs = map(func, [(name,group) for name,group 
+                             in densities.groupby(['taxon'])])
+        else:
+            CIs = pool.map(func, [(name,group) for name,group 
+                                  in densities.groupby(['taxon'])])
+        CIs = pd.DataFrame(CIs)
+
     cols = ['taxon', 'atom_CI_low', 'atom_CI_high']
     return CIs[cols]
 
@@ -422,7 +445,8 @@ def qSIP_atomExcess(Uargs):
                        n=int(Uargs['-n']), 
                        a=float(Uargs['-a']), 
                        nodes=Uargs['--np'],
-                       isotope=Uargs['-i'])
+                       isotope=Uargs['-i'], 
+                       byBoot=Uargs['--byBoot'])
     mean_densities = mean_densities.merge(CIs, on=['taxon'], how='inner')
     
     # return

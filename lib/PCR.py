@@ -156,3 +156,4 @@ def PCR_sim(otu_tbl, DNA_conc_dist, DNA_conc_dist_p, primer_conc,
     if not debug:
         cols2rm = ['init_molarity', 'final_molarity']
         otu_tbl.rm_columns(cols2rm)
+

@@ -99,4 +99,5 @@ class CommTable(_table):
         except KeyError:
             raise KeyError('"rel_abund_perc" column not found in comm file')
 
-        self.df['abs_abund'] = np.round(self.df['abs_abund'], 0)
+        self.df['abs_abund'] = np.round(self.df['abs_abund'].tolist(), 0)
+        self.df['abs_abund'] = self.df['abs_abund'].astype(int)

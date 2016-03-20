@@ -272,7 +272,8 @@ class SimComms(_Comm):
             # ordering columns
             df.columns = ['taxon_name', 'library', 'rel_abund_perc']            
             # sorting 
-            df = df.sort(['library','rel_abund_perc'], ascending=[1,0])
+            df = df.sort_values(by=['library','rel_abund_perc'], 
+                                ascending=[1,0])
             # getting rank by community (grouping by community)
             df['rank'] = df.groupby(['library'])['rel_abund_perc']\
                            .rank(method='first',ascending=False).astype('int')

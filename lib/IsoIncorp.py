@@ -280,7 +280,8 @@ def _write_stats(outfn, tmpdirpath):
                 df.append(line)
 
     df = pd.DataFrame(df, columns=header)
-    df = df.sort(['library', 'taxon'])
+    #df = df.sort(['library', 'taxon'])
+    df = df.sort_values(by=['library','taxon'])
     df.to_csv(outfn, sep='\t', index=False)
     sys.stderr.write('File written: {}\n'.format(outfn))
 
