@@ -14,6 +14,7 @@ Options:
                 ('-' if input from STDIN) 
   -s=<s>        Subsample `s` number of taxa.
   -f=<f>        Subsample `f` fraction of taxa. 
+  -p=<p>        Subsample `p` percentage of taxa.
   -r            Subsample with replacement.
   -a            Select taxa if if they are missing 
                 in some libraries (gradients).
@@ -26,10 +27,10 @@ Description:
   This is useful for selecting consistent set of taxa to be incorporators 
   for replicate simulations (ie., `taxa` option in isotope_incorp subcommand).
   
-  If -s > total_number_taxa or -f is > 1, then subsampling will be done 
-  with replacement.
+  If -s > total_number_taxa or -f is > 1 or -p is > 100, then subsampling will 
+  be done with replacement.
 
-  -s takes precedent over -f. 
+  -s takes precedent over -f & -p. 
 
   Output
   ------
@@ -51,20 +52,6 @@ import Utils
     
 
 # functions
-def get_taxa_OLD(KDEs, all_taxa=None):
-    if all_taxa is not None:
-        try: 
-            taxa = [k for k,v in KDEs.items()]
-        except AttributeError:
-            taxa = [k[0] for k in KDEs if k[1]]
-    else:
-        try: 
-            taxa = [k for k,v in KDEs.items() if v is not None]
-        except AttributeError:
-            taxa = [k[0] for k in KDEs if k[1] is not None]
-    return taxa
-
-
 def get_taxa(KDEs, kde_type, all_taxa=None):
     """Getting taxa names from KDE object.
     """
@@ -119,6 +106,9 @@ if __name__ == '__main__':
     elif args['-f'] is not None:
         nsub = float(args['-f']) * ntaxa
         nsub = int(nsub)
+    elif args['-p'] is not None:
+        nsub = float(args['-p']) / 100 * ntaxa
+        nsub = int(nsub)        
 
     if nsub is not None:
         if nsub > ntaxa:

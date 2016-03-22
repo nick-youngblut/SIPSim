@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-#--- Option parsing ---#
 """
 isotope_incorp: set taxon isotope incorporation distributions
 

@@ -2,7 +2,7 @@
 
 #--- Option parsing ---#
 """
-OTU_sampleData -- make a 'sample_data' table (phyloseq) from the OTU table
+OTU_sampleData: make a 'sample_data' table (phyloseq) from the OTU table
 
 Usage:
   OTU_sampleData [options] <OTU_table_file>
@@ -55,7 +55,7 @@ if __name__ == '__main__':
     cols = df.columns.tolist()
     cols = ['sample'] + [x for x in cols if x != 'sample']
     df = df[cols]
-    df.sort(['sample'], inplace=True)    
+    df.sort_values(by=['sample'], inplace=True)    
 
     # writing otu table
     df.to_csv(sys.stdout, sep='\t', index=False)                 

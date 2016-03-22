@@ -15,10 +15,15 @@ options:
   --hypo=<h>   altHypothesis tested by DESeq
                ("greaterAbs","greater","less")
                [Default: NULL]
+  --cont=<c>   Control libraries. (comma-separated list)
+               [Default: 1]
+  --treat=<t>  Treatment libraries. (comma-separated list)
+               [Default: 2]
   -h           Help' -> doc
 
 opts = docopt(doc)
-
+cont = unlist(strsplit(opts[['--cont']], split=','))
+treat = unlist(strsplit(opts[['--treat']], split=','))
 
 # packages
 pkgs <- c('phyloseq', 'DESeq2')
@@ -38,12 +43,27 @@ if(opts[['<phyloseq>']] == '-'){
 
 ## library must be a character
 physeq.sd = sample_data(physeq)
-physeq.sd$library = as.character(physeq.sd$library)
+physeq.sd$library = as.factor(as.character(physeq.sd$library))
+physeq.sd$condition = physeq.sd$library
 sample_data(physeq) = physeq.sd
 
 ## making deseq2 object
-dds = phyloseq_to_deseq2(physeq, ~library)
-dds$library = relevel(as.factor(dds$library), 1)
+dds = phyloseq_to_deseq2(physeq, ~condition)
+
+### making 'condition' factor
+condition = as.character(dds$condition)
+for (x in cont){
+  condition = ifelse(condition == x, 'control', condition)
+}
+for (x in treat){
+  condition = ifelse(condition == x, 'treatment', condition)
+}
+dds$condition = factor(condition, levels=c('control', 'treatment'))
+
+if(any(is.na(dds$condition))){
+  stop('\nSome control/treatments are NA. Check --cont & --treat.\n')
+}
+
 
 # calculate geometric means prior to estimate size factors
 ## This method is not sensitive to zeros

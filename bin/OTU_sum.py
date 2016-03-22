@@ -2,12 +2,12 @@
 
 #--- Option parsing ---#
 """
-OTU_sum -- Sum OTU counts (by group)
+OTU_sum: Sum OTU counts (by group)
 
 Usage:
-  OTU_summary [options] <OTU_table_file>
-  OTU_summary -h | --help
-  OTU_summary --version
+  OTU_sum [options] <OTU_table_file>
+  OTU_sum -h | --help
+  OTU_sum --version
 
 Options:
   <OTU_table_file>  OTU table file.

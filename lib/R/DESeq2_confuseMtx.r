@@ -128,6 +128,7 @@ BD.shift$taxon = as.character(BD.shift$taxon)
 deseq.res$taxon = as.character(deseq.res$taxon)
 df.j = inner_join(BD.shift, deseq.res, c('taxon' = 'taxon'))
 
+
 # making confusion matrix
 ## incorp.x = BD.shift  (KNOWN)
 ## incorp.y = deseq.res  (PREDICTED)

@@ -6,7 +6,7 @@ SIPSim: simulate gradient fractionation of microbial community DNA
 
 Usage:
   SIPSim <command> [<args>...]
-  SIPSimR -l | --list
+  SIPSim -l | --list
   SIPSim -h | --help
   SIPSim --version
 
@@ -16,39 +16,7 @@ Options:
   --version     Show version.
 
 Commands:
-  Genomes:
-    genome_rename -- formatting genome sequence names for SIPSim
-    genome_index -- index genomes (required for amplicon-fragment simulation)
-  Fragments:
-    fragments -- Simulate genome fragments and calc fragment G+C content.
-    fragment_KDE -- make a 2D kernel density estimate of fragment buoyant 
-                    density and length
-    fragment_KDE_parse -- parsing out fragment KDEs for certain genomes
-    fragment_KDE_cat -- concatenating 2 fragment_kde objects
-  Community:
-    communities -- Simulate the original communities for each isopycnic gradient
-  Diffusion:
-    diffusion -- Incorporate gradient diffusion in G+C variance
-  Isotope:
-    incorpConfigExample -- create example isotope incorporation config file
-    isotope_incorp -- Simulate the amount of isotope incorporation for each
-                      taxon in each isopycnic gradient
-    BD_shift -- Determine the shift in buoyant density based on KDE overlap
-  Gradient fractions:
-    gradient_fractions -- Simulate taxon abundances in each fraction of each
-                          isopycnic gradient
-  OTUs:
-    OTU_table -- simulate OTU table
-    OTU_subsample -- simulate sequencing by subsampling from an OTU table
-    OTU_wideLong -- convert OTU table from wide to long or vice versa
-    OTU_sampleData -- make a 'sample_data' table (phyloseq) from the OTU table
-    OTU_sum -- Sum OTU counts (by group)
-  KDEs (general):
-    KDE_bandwidth -- Get the bandwidth of each KDE
-    KDE_plot -- plot sets of 1D or 2D KDEs
-  Trees:
-    tree_sim -- Simulate a phylogeny for a specified set of taxa
-
+  Use the `list` option.
 Description:
   Simulate how taxa would be distributed in isopycnic gradients as assessed by
   high throughput sequencing.

@@ -2,7 +2,7 @@
 
 #--- Option parsing ---#
 """
-tree_sim -- Simulate a phylogeny for a specified set of taxa
+tree_sim: Simulate a phylogeny for a specified set of taxa
 
 Usage:
   tree_sim [options] list <genome_list>

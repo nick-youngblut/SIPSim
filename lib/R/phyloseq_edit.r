@@ -19,7 +19,13 @@ options:
                      [Default: 1]
   --BD_max=<max>     Maximum sample buoyant density.
                      [Default: 2]
-  -h                 Help' -> doc
+  -h                 Help
+
+description:
+  Filter a phyloseq object to just sample/taxa of interest.
+
+  Output: written to STDOUT.
+' -> doc
 
 opts = docopt(doc)
 
@@ -46,6 +52,11 @@ BD_min = as.numeric(opts[['--BD_min']])
 BD_max = as.numeric(opts[['--BD_max']])
 
 ## Pruning samples
+msg = paste0('pre-filter: number of samples:', nsamples(physeq))
+write(msg, stderr())
+msg = paste0('pre-filter: number of taxa:', ntaxa(physeq))
+write(msg, stderr())
+
 ### sampleSum
 if(! is.null(sampleSum)){
   physeq = prune_samples(sample_sums(physeq) >= sampleSum, physeq)
@@ -54,12 +65,20 @@ if(! is.null(sampleSum)){
 if(! is.null(occur)){
   physeq = filter_taxa(physeq, function(x) sum(x > 0) > (occur * length(x)), TRUE)
 }
+
 ### BD min-max
 if(! is.null(BD_min) & ! is.null(BD_max)){
   physeq.sd = sample_data(physeq)
   physeq = prune_samples((physeq.sd$BD_mid >= BD_min) &
                            (physeq.sd$BD_mid <= BD_max), physeq)                            
   }
+
+# status
+msg = paste0('post-filter: number of samples:', nsamples(physeq))
+write(msg, stderr())
+msg = paste0('post-filter: number of taxa:', ntaxa(physeq))
+write(msg, stderr())
+
 
 ## writing
 con = pipe("cat", "wb")
