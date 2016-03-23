@@ -10,7 +10,7 @@ import pandas as pd
 from pathos.multiprocessing import ProcessingPool
 ## application
 from OTU_Table import OTU_table
-import SIPSimCython as SSC
+import QSIPCython as SSC
 
 
 def _prop_abund(x):

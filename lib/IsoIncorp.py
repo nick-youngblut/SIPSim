@@ -20,9 +20,8 @@ import dill
 from pathos.multiprocessing import ProcessingPool
 ## application
 import Utils
-import SIPSimCython
 from CommTable import CommTable
-from SIPSimCython import add_incorp
+from IsoIncorpCython import add_incorp
 from Config import Config
 
 # logging

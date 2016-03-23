@@ -22,7 +22,7 @@ setup(
     description = 'Simulate Hi Res Stable Isotope Datasets',
     author = 'Nick Youngblut',
     author_email = 'nyoungb2@gmail.com',
-    ext_modules = cythonize('./lib/SIPSimCython.pyx'),
+    ext_modules = cythonize('./lib/*.pyx'),
     include_dirs = [numpy.get_include()]
 )
 
