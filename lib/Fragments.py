@@ -15,7 +15,7 @@ import mixture
 import dill
 from pathos.multiprocessing import ProcessingPool
 # amplication
-import QSimCython
+from QSIPCython import GC2BD
 from Genome import Genome
 from SimFrags import SimFrags
 import Utils
@@ -215,7 +215,7 @@ def fit_kde(frag_data, bw_method=None):
             raise KeyError, msg.format(taxon_name)
 
         # GC2BD
-        frag_BD = QSimCython.GC2BD(np.array(frag_GC))
+        frag_BD = GC2BD(np.array(frag_GC))
 
         # kde fitting
         try:

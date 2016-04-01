@@ -49,7 +49,8 @@ if __name__ == '__main__':
     df = otu_tbl.df[['library','fraction']].drop_duplicates()
     L = lambda x: x['library'] + '__' + x['fraction']
     df['sample'] = df.apply(L, 1)
-    df[['BD_min','BD_max']] = df['fraction'].str.extract('(.+)-(.+)')
+    df[['BD_min','BD_max']] = df['fraction'].str.extract('(.+)-(.+)', 
+                                                         expand=False)
     L = lambda x: round((float(x['BD_min']) + float(x['BD_max'])) / 2, 4)
     df['BD_mid'] = df.apply(L, 1)
     cols = df.columns.tolist()

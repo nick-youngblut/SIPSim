@@ -266,6 +266,10 @@ class Config(ConfigObj):
 
         cfg = cls(config_file, configspec=configspec, phylo=phylo)
 
+        # checking file
+        if len(cfg) <= 0:
+            raise IOError, 'Config file is empty!'
+
         # checking keys
         msg = 'Library IDs must be a continuous set of integers starting from 1'
         def is_int(x):

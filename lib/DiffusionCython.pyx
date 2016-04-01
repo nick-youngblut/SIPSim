@@ -73,10 +73,10 @@ def calc_sigma_Clay(double frag_BD, double frag_len,
     BD error due to diffusion value drawn from a normal distribution with a
     standard deviation determined by calculated diffusion
     """
-    cdef double R
+    cdef double R = 8.3145e7
     cdef double sigma
-    R = 8.3145e7;
-    sigma = np.sqrt((frag_BD*R*T)/(np.power(B,2)*G*M*frag_len));
+    
+    sigma = np.sqrt((frag_BD * R * T)/(B**2 * G * M * frag_len));
     return sigma
 
 
@@ -96,6 +96,7 @@ def calc_sigma_Mes(double p_p, double l, int t, double r_t, double r_b,
     B = beta coef. of salt forming the density gradient
     w = angular velocity 
     """
+    cdef float GC
     cdef float S 
     cdef float r_c
     cdef float r_p
@@ -103,7 +104,8 @@ def calc_sigma_Mes(double p_p, double l, int t, double r_t, double r_b,
     cdef float sigma_BD
     cdef float L = r_b - r_t
 
-    S = calc_S(l)
+    GC = _BD2GC(p_p) * 100
+    S = calc_S(l, GC)
     r_c = calc_R_c(r_t, r_b)
     r_p = calc_R_p(p_p, p_m, B, w, r_c)
     sigma = calc_diff_sigma(L, w, r_p, S, t, B, p_p, p_m)
@@ -161,6 +163,19 @@ def BD2GC(np.ndarray[DTYPE_t, ndim=1] col_BD):
         out[i] = (col_BD[i] - x) / y
     return out
 
+
+def _BD2GC(double GC):
+    """buoyant density to G+C (fraction). 
+    Ref: Birnie and Rickwood, 1978
+
+    Returns
+    -------
+    float : G+C molar fraction
+    """
+    cdef double x = 1.66
+    cdef double y = 0.098
+
+    return (GC - x) / y 
 
 
 def calc_R_c(float r_t, float r_b):

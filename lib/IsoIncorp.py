@@ -225,7 +225,12 @@ def __add_comm_to_kdes(taxon_name, kde, comm, libIDs):
     d = {'kde':kde, 'abundances':{}}                                         
     for libID in libIDs:                                                        
         abund = comm.get_taxonAbund(taxon_name, libID=libID)
-        d['abundances'][libID] = abund[0]
+        try:
+            d['abundances'][libID] = abund[0]
+        except IndexError:
+            msg = 'WARNING; no abundance data for: lib={}, taxon={}\n'
+            sys.stderr.write(msg.format(libID, taxon_name))
+            d['abundances'][libID] = 0
     return d
 
 

@@ -225,7 +225,7 @@ def main(args):
                                    G=float(args['-G']), 
                                    M=float(args['-M']))
 
-    diff_index_file = 'diffusion_index'
+    diff_index_file = 'diffusion_index.txt'
     with open(diff_index_file, 'wb') as outFH:
         dill.dump(diff_index, outFH)
 

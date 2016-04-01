@@ -487,7 +487,12 @@ def KDE_with_DBL(BD_kde, DBL_index, n, frac_abs, bw_method,
 
     # if comm: scaling frac_abs
     if comm is not None:    
-        preFrac_abund = comm.get_taxonAbund(taxon_name, libID=libID)[0]
+        try:
+            preFrac_abund = comm.get_taxonAbund(taxon_name, libID=libID)[0]
+        except IndexError:
+            msg = 'WARNING: no abundance information for: lib={}, taxon={}\n'
+            sys.stderr.write(msg.format(libID, taxon_name))
+            return(taxon_name, None)
         # scaling 
         frac_abs = preFrac_abund / 100 * commx + frac_abs
 
