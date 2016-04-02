@@ -115,6 +115,26 @@ def load_kde(fileName):
     return kde
 
 
+def write_lib_kde(kde, outname, libID):
+    """Write a dict of KDE objects for one library.    
+    Parameters
+    ----------
+    kde : {taxon:kde}
+    outname : str
+        output file name
+    libID : int|str
+        library ID
+    Returns
+    -------
+    str : file name of output.
+    """
+    prefix = os.path.splitext(outname)[0]
+    outFile = ''.join([prefix, '_', 'libID', str(libID), '.pkl'])
+    with open(outFile, 'wb') as outFH:
+        dill.dump(kde, outFH)
+    return outFile
+
+
 def write_kde_sep(kde, outname):
     """Separate serialization of each {taxon:kde} dict.
     Each {taxon:kde} written to a separate file,

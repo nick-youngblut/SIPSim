@@ -600,7 +600,12 @@ def main(args):
                               comm = comm,
                               commx = float(args['--commx']),
                               libID=libID)
-            KDEs[libID] = {taxon:KDE for taxon,KDE in tmp}
+            if args['-o'].lower() == 'none':            
+                KDEs[libID] = {taxon:KDE for taxon,KDE in tmp}
+            else:
+                KDEs[libID] = Utils.write_lib_kde({taxon:KDE for taxon,KDE in tmp},
+                                                  args['-o'], 
+                                                  libID)                                                  
             tmp = None            
             
     else:
@@ -618,7 +623,8 @@ def main(args):
     if args['-o'].lower() == 'none':
         dill.dump(KDEs, sys.stdout)    
     else:
-        Utils.write_kde_sep(KDEs, args['-o'])
+        with open(args['-o'], 'wb') as outFH:
+            dill.dump(KDEs, outFH)
 
         
 if __name__ == '__main__':

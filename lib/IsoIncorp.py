@@ -102,8 +102,15 @@ def main(args):
             tmp = map(pfunc, KDE.items())
         else:
             tmp = pool.map(pfunc, KDE.items())
-
-        KDEs_iso[libID] = {taxon:kde for taxon,kde in tmp}
+        KDE = None
+        # storing dict of KDEs 
+        if args['-o'].lower() == 'none':            
+            KDEs_iso[libID] = {taxon:kde for taxon,kde in tmp}
+        else:
+            KDEs_iso[libID] = Utils.write_lib_kde({taxon:kde for taxon,kde in tmp},
+                                                  args['-o'], 
+                                                  libID)
+        tmp = None
     
     # combine stats
     _write_stats(args['--shift'], tmpdirpath)
@@ -113,8 +120,8 @@ def main(args):
     if args['-o'].lower() == 'none':
         dill.dump(KDEs_iso, sys.stdout)    
     else:
-        Utils.write_kde_sep(KDEs_iso, args['-o'])
-
+        with open(args['-o'], 'wb') as outFH:
+            dill.dump(KDEs_iso, outFH)
 
 
 def _get_KDEs_for_libID(KDEs, KDE_type, libID, comm=None):
@@ -148,7 +155,6 @@ def _get_KDEs_for_libID(KDEs, KDE_type, libID, comm=None):
     else:
         raise ValueError, 'KDE object type not recognized'
     return KDE
-
 
 
 def _make_kde(x, libID, config, taxa_incorp_list, 
