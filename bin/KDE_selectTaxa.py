@@ -74,6 +74,14 @@ def get_taxa(KDEs, kde_type, all_taxa=None):
             else:
                 taxa += [k for k,vv in v.items() if v is not None]
         taxa = list(set(taxa))            
+    elif kde_type == 4:
+        taxa = []
+        for libID,filename in KDEs.items(): 
+            KDE_bylib = Utils.load_kde(filename)
+            if all_taxa is not None:
+                taxa += KDE_bylib.keys()        
+            else:
+                taxa += [k for k,v in KDE_bylib.items() if v is not None]
     else:
         raise TypeError, 'KDE object type not recognized'
 

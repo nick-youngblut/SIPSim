@@ -115,11 +115,38 @@ def load_kde(fileName):
     return kde
 
 
+def write_kde_sep(kde, outname):
+    """Separate serialization of each {taxon:kde} dict.
+    Each {taxon:kde} written to a separate file,
+    and dict of KDE file names written to STDOUT
+    
+    Parameters
+    ----------
+    kde : {libID:{taxon:kde}}
+    outname : str
+        output file name
+    """
+    assert KDE_type(kde) == 3, 'Wrong KDE object type!'
+    prefix = os.path.splitext(outname)[0]
+    
+    kde_index = {}
+    for libID,K in kde.items():
+        outFile = ''.join([prefix, '_', 'libID', str(libID), '.pkl'])
+        with open(outFile, 'wb') as outFH:
+            dill.dump(K, outFH)
+        kde_index[libID] = outFile
+
+    # writing main file
+    with open(outname, 'wb') as outFH:
+        dill.dump(kde_index, outFH)
+
+
 def KDE_type(KDE_obj):
     """Determining the KDE object structure. Possible type:
     1) [taxon,kde]
     2) {taxon:kde}
     3) {libID:{taxon:kde}}
+    4) {libID:filename}
     
     Args
     ----
@@ -138,7 +165,10 @@ def KDE_type(KDE_obj):
                     kde_type = 3
                     break
             except AttributeError:       # {taxon:kde}                
-                kde_type = 2
+                if isinstance(y, basestring):
+                    kde_type = 4
+                else:
+                    kde_type = 2
                 break
     except AttributeError:  # [taxon,kde]
         for x in KDE_obj:   

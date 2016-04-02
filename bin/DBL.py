@@ -12,6 +12,8 @@ Usage:
 Options:
   <fragment_kde>      Output from the fragment_kde subcommand.
                       ('-' if input from STDIN) 
+  -o=<o>              File name for output. Use 'None' to write to STDOUT.
+                      [default: None]
   -B=<B>              Beta coefficient.
                       [default: 1.14e9]
   -D=<D>              Average particle density in gradient.
@@ -100,7 +102,8 @@ Description:
   Output
   ------
   A pickled python object {taxon_name:buoyant_density_kde} is
-  written to STDOUT.
+  written to STDOUT by default. Use `o` option to reduce memory usage in
+  downstream SIPSim pipeline steps.
 """
 
 # import

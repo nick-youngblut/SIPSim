@@ -57,13 +57,13 @@ def main(args):
     sys.stderr.write('Loading KDE object...\n')
     KDEs = Utils.load_kde(args['<BD_KDE>'])
 
-
-    # adding comm info to KDEs 
-    _add_comm_to_kde(KDEs, comm)
-        
     # which depth of KDE object
     KDE_type = Utils.KDE_type(KDEs)
 
+    # adding comm info to KDEs 
+    if KDE_type < 4:
+        _add_comm_to_kde(KDEs, comm)
+        
     # temporary directory for BD shift stats
     tmpdirpath = tempfile.mkdtemp()    
 
@@ -71,21 +71,7 @@ def main(args):
     KDEs_iso = dict()
     for libID in config.keys():        
         sys.stderr.write('Processing library: {}\n'.format(libID))
-        if KDE_type == 1:
-            KDE = {t:k for t,k in KDEs}
-        elif KDE_type == 2:
-            KDE = KDEs
-        elif KDE_type == 3:
-            try: 
-                KDE = KDEs[libID]
-            except KeyError:
-                ## kde library not found, duplicating KDE
-                msg = 'WARNING: config library {} not found in KDEs.' + \
-                      'Using a different KDE object\n'
-                sys.stderr.write(msg.format(libID))
-                KDE = KDEs[KDEs.keys()[0]]
-        else:
-            raise ValueError, 'KDE object type not recognized'
+        KDE = _get_KDEs_for_libID(KDEs, KDE_type, libID, comm)
 
         # if needed: making a list of taxa that can incorporate 
         ## (unique to this library)
@@ -124,7 +110,45 @@ def main(args):
     shutil.rmtree(tmpdirpath)
 
     # writing pickled BD-KDE with BD shift from isotope incorp
-    dill.dump(KDEs_iso, sys.stdout)
+    if args['-o'].lower() == 'none':
+        dill.dump(KDEs_iso, sys.stdout)    
+    else:
+        Utils.write_kde_sep(KDEs_iso, args['-o'])
+
+
+
+def _get_KDEs_for_libID(KDEs, KDE_type, libID, comm=None):
+    """Parse out dict of KDE objects for just libID.
+    Parsing depends on the KDE type
+    """
+    if KDE_type == 1:
+        KDE = {t:k for t,k in KDEs}
+    elif KDE_type == 2:
+        KDE = KDEs
+    elif KDE_type == 3:
+        try: 
+            KDE = KDEs[libID]
+        except KeyError:
+            ## kde library not found, duplicating KDE
+            msg = 'WARNING: config library {} not found in KDEs.' + \
+                  'Using a different KDE object\n'
+            sys.stderr.write(msg.format(libID))
+            KDE = KDEs[KDEs.keys()[0]]
+    elif KDE_type == 4:
+        try:
+            KDE = Utils.load_kde(KDEs[libID])
+        except KeyError:
+            ## kde library not found, duplicating KDE
+            msg = 'WARNING: config library {} not found in KDEs.' + \
+                  'Using a different KDE object\n'
+            sys.stderr.write(msg.format(libID))
+            KDE = Utils.load_kde(KDEs[KDEs.keys()[0]])
+            # adding comm info to KDEs 
+        _add_comm_to_kde(KDE, comm)
+    else:
+        raise ValueError, 'KDE object type not recognized'
+    return KDE
+
 
 
 def _make_kde(x, libID, config, taxa_incorp_list, 

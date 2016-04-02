@@ -12,6 +12,8 @@ Options:
   <BD_KDE>          Buoyant Density KDE object file ('-' if from STDIN).
   <config_file>     Config file setting inter-population-level incorporation
                     distribution (see Description).
+  -o=<o>            File name for output. Use 'None' to write to STDOUT.
+                    [default: None]
   --comm=<cf>       Community file used set abundance-weighting of isotope.
   --taxa=<t>        A file listing taxa that incorporated isotope 
                     (instead of selecting taxa at random for each library).
@@ -79,7 +81,8 @@ Description:
 
   Output
   ------
-  An updated BD KDE object file is written to STDOUT.
+  An updated BD KDE object file is written to STDOUT by default. 
+  Use `o` option to reduce memory usage in downstream SIPSim pipeline steps.
 
   Notes
   -----

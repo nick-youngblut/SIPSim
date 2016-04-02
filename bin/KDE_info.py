@@ -131,6 +131,17 @@ if __name__ == '__main__':
                     KDE_dataset_stats(yy, xx, libID=x)
                 else:
                     print '\t'.join([x,xx])        
+    elif kde_type == 4:
+        for libID,filename in KDEs.items(): 
+            KDE_bylib = Utils.load_kde(filename)
+            if args['-n']:
+                print len(KDE_bylib.keys())
+                sys.exit()
+            for x,y in KDE_bylib.items():
+                if args['-s']:
+                    KDE_dataset_stats(y, x)
+                else:
+                    print x
     else:
         raise TypeError, 'KDE object type not recognized'
 

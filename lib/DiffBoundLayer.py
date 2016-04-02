@@ -613,10 +613,12 @@ def main(args):
                          debug = args['--debug'])
         KDEs[libID] = {taxon:KDE for taxon,KDE in tmp}
         tmp = None
-
                              
     # pickling output
-    dill.dump(KDEs, sys.stdout)    
+    if args['-o'].lower() == 'none':
+        dill.dump(KDEs, sys.stdout)    
+    else:
+        Utils.write_kde_sep(KDEs, args['-o'])
 
         
 if __name__ == '__main__':

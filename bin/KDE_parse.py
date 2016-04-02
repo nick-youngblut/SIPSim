@@ -81,10 +81,16 @@ if __name__ == '__main__':
             KDEs_pp = {t:k for t,k in v.items() if t in taxa}
             KDEs_p[libID] = KDEs_pp
             KDEs_pp = None
+    elif kde_type == 4:
+        KDEs_p = {}
+        for libID,filename in KDEs.items(): 
+            KDE_bylib = Utils.load_kde(filename)
+            KDE_bylib = {t:k for t,k in KDE_bylib.items() if t in taxa}
+            KDEs_p[libID] = KDE_bylib
+            KDE_bylib = None
     else:
         raise TypeError, 'KDE object type not recognized'
 
     # writing
     dill.dump(KDEs_p, sys.stdout)
 
-        

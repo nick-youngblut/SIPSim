@@ -221,6 +221,31 @@ def _get_BD_range(x):
     return start, mid, end
     
 
+def _get_KDEs_for_libID(KDEs, KDE_type, libID ):
+    """Parse out dict of KDE objects for just libID.
+    Parsing depends on the KDE type
+    """
+    err_msg = 'Cannot find KDEs for library->"{}"'
+    if KDE_type == 1:
+        KDE = {t:k for t,k in KDEs}
+    elif KDE_type == 2:
+        KDE = KDEs
+    elif KDE_type == 3:
+        try: 
+            KDE = KDEs[libID]
+        except KeyError:
+            ## kde library not found, duplicating KDE
+            raise KeyError, err_msg.format(libID)            
+    elif KDE_type == 4:
+        try:
+            KDE = Utils.load_kde(KDEs[libID])
+        except KeyError:
+            ## kde library not found, duplicating KDE
+            raise KeyError, err_msg.format(libID)            
+    else:
+        raise ValueError, 'KDE object type not recognized'
+    return KDE
+
     
 def main(uargs):
     """Main function for making OTU table.
@@ -244,12 +269,12 @@ def main(uargs):
     sys.stderr.write('Loading files...\n')
     ## BD kde 
     BD_KDE_all = Utils.load_kde(uargs['<BD_KDE>'])    
+    BD_KDE_all_type = Utils.KDE_type(BD_KDE_all)
     ## community file
     comm_tbl = CommTable.from_csv(uargs['<communities>'], sep='\t')
     comm_tbl.abs_abund = uargs['--abs']
     ## fraction file
     frac_tbl = FracTable.from_csv(uargs['<fractions>'], sep='\t')
-
     
     # iter by library:
     sys.stderr.write('Simulating OTUs...\n')
@@ -258,15 +283,13 @@ def main(uargs):
     for libID in comm_tbl.iter_libraries():
         sys.stderr.write('Processing library: "{}"\n'.format(libID))            
         
-        # KDEs for library
-        try:
-            BD_KDE = BD_KDE_all[libID] 
-        except KeyError:        
-            msg = 'Cannot find KDEs for library->"{}"'
-            raise KeyError, msg.format(libID)            
+        # dict of KDEs for library (libID)
+        BD_KDE = _get_KDEs_for_libID(BD_KDE_all, BD_KDE_all_type, libID)
 
         # fraction bin list for library
-        libFracBins = [x for x in frac_tbl.BD_bins(libID)]
+        frac_bins = frac_tbl.BD_bins(libID)
+        assert len(frac_bins) > 0, 'No fractions for library "{}"'.format(libID)
+        libFracBins = [x for x in frac_bins]
         
         # iter of taxa in parallel
         pfunc = partial(sim_OTU, 
