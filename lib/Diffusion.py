@@ -23,57 +23,6 @@ from itertools import cycle, izip
 import collections
 
 # functions
-def make_kde_OLD(x, n, bw_method, **kwargs):
-    """Make a scipy.stats.gaussian_kde from BD values.
-    
-    Parameters
-    ----------
-    x : list
-        [taxon_name, kde]
-        taxon_name -- taxon name
-        kde -- scipy.stats kde object of BD values or None
-    n : int
-        sample size
-    bw_method : str or function
-         KDE bandwidth method (see scipy.stats)
-
-    Returns
-    -------
-    k : tuple 
-        (taxon_name, kde object of BD values)
-    """
-    # input unpacking a type checking
-    try:
-        taxon_name,kde = x
-    except ValueError:
-        msg = '"x" must be (taxon_name, kde)'
-        raise ValueError, msg
-    try:
-        bw_method = float(bw_method)
-    except (TypeError, ValueError) as e:
-        pass 
-    try: 
-        bw_method = bw_method.lower()
-    except AttributeError:
-        pass
-
-    # status
-    msg = 'Processing: {}\n'
-    sys.stderr.write(msg.format(taxon_name))
-    
-    if kde is None:
-        return (taxon_name, None)
-
-    # adding diffusion
-    BD_wDiff = SSC.add_diffusion(kde.resample(size=n),
-                                 **kwargs)
-
-    # making new kde
-    kdeBD = stats.gaussian_kde(BD_wDiff,
-                               bw_method=bw_method)
-
-    return (taxon_name, kdeBD)
-
     
 def make_kde(x, diff_index, BD_bins, len_bins, n, bw_method):
     """Make a scipy.stats.gaussian_kde from BD values.
@@ -151,7 +100,7 @@ def create_diff_index(BD_bins, len_bins, method,
                       B, D, w, r_min, r_max, t, T, G, M):
     """Creating an index of normal distributions for determining error.
     Apply error distribution to all fragments that fall into that particular
-    BD+length bin.
+    BD+length bin. Each normal has a mean of 0; just sigma varies.
     
     Parameters
     ----------

@@ -12,6 +12,9 @@ from pathos.multiprocessing import ProcessingPool
 from OTU_Table import OTU_table
 import QSIPCython as SSC
 
+# numpy error settings
+np.seterr(invalid='ignore')
+
 
 def _prop_abund(x):
     """Calculate proportional absolute abundances.
