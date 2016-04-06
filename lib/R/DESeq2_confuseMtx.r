@@ -65,8 +65,9 @@ BD.shift = read.delim(opts[['BD_shift']], sep='\t')
 ## edit
 ### DESeq2 object
 deseq.res = as.data.frame(deseq.res)
-deseq.res$taxon = rownames(deseq.res)
-
+if(! 'taxon' %in% colnames(deseq.res)){
+  deseq.res$taxon = rownames(deseq.res)
+}
 
 ### log2fold cutoff & padj cutoff
 log2.cut = -1/0      # -negInfinity (ie., no cutoff)

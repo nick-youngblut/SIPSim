@@ -15,7 +15,6 @@ import QSIPCython as SSC
 # numpy error settings
 np.seterr(invalid='ignore')
 
-
 def _prop_abund(x):
     """Calculate proportional absolute abundances.
     x = row in OTU dataframe
@@ -182,7 +181,7 @@ def _bootstrap(df, isotope):
 def _bootstrap_CI(df, n=1000, a=0.1, isotope='13C', pool=None, name=None):
     # status
     taxon = df['taxon'].unique()[0]
-    msg = 'Bootstrap CI (n={}); processing taxon: {}\n'
+    msg = 'Bootstrap CI (n={}), processing taxon: {}\n'
     sys.stderr.write(msg.format(n, taxon))
 
     # bootstrapping (in parallel)
@@ -303,6 +302,9 @@ def qSIP_atomExcess(Uargs):
     Uargs : dict
         See qSIP_atomExcess.py
     """
+    # setting numpy parameters
+    np.seterr(invalid='ignore')
+
     # loading tables
     sys.stderr.write('Loading files...\n')
     ## experimental design
