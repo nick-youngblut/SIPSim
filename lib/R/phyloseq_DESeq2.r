@@ -9,17 +9,20 @@ suppressPackageStartupMessages(library(docopt))
 'usage: phyloseq_DESeq2.r [options] <phyloseq>
 
 options:
-  <phyloseq>   Phyloseq object file.
-  --log2=<l>   Log2 fold change cutoff.
-               [Default: 0.25]
-  --hypo=<h>   altHypothesis tested by DESeq
-               ("greaterAbs","greater","less")
-               [Default: NULL]
-  --cont=<c>   Control libraries. (comma-separated list)
-               [Default: 1]
-  --treat=<t>  Treatment libraries. (comma-separated list)
-               [Default: 2]
-  -h           Help' -> doc
+  <phyloseq>    Phyloseq object file.
+  --log2=<l>    Log2 fold change cutoff.
+                [Default: 0.25]
+  --hypo=<h>    altHypothesis tested by DESeq
+                ("greaterAbs","greater","less")
+                [Default: NULL]
+  --cont=<c>    Control libraries. (comma-separated list)
+                [Default: 1]
+  --treat=<t>   Treatment libraries. (comma-separated list)
+                [Default: 2]
+  --label=<x>   Add a label to the DESeq2 object, which is
+                useful if combining multiple DESeq2 objects.
+                [Default: NULL]
+  -h            Help' -> doc
 
 opts = docopt(doc)
 cont = unlist(strsplit(opts[['--cont']], split=','))
@@ -90,6 +93,8 @@ beta = res$log2FoldChange
 betaSE = res$lfcSE
 res$p = pnorm(beta, log2.cut, betaSE, lower.tail = FALSE)
 res$padj.BH = p.adjust(res$p, "BH")
+res$label = opts[['--label']]
+
 
 ## writing
 con = pipe("cat", "wb")

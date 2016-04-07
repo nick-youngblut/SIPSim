@@ -19,10 +19,12 @@ options:
                      [Default: 1]
   --BD_max=<max>     Maximum sample buoyant density.
                      [Default: 2]
+  --taxa=<t>         A file listing taxa to keep (and remove
+                     the rest). One taxon per line.
   -h                 Help
 
 description:
-  Filter a phyloseq object to just sample/taxa of interest.
+  Filter a phyloseq object to just samples/taxa of interest.
 
   Output: written to STDOUT.
 ' -> doc
@@ -50,11 +52,29 @@ sampleSum = as.numeric(opts[['--sampleSum']])
 occur = as.numeric(opts[['--occur']])
 BD_min = as.numeric(opts[['--BD_min']])
 BD_max = as.numeric(opts[['--BD_max']])
+taxa_file = opts[['--taxa']]
+
+
+## Prune to select taxa (if needed
+if(! is.null(taxa_file)){
+  write('Pruning taxa...', stderr())
+  taxa_to_keep = read.table(taxa_file, sep='\t')
+  taxa_to_keep = as.character(taxa_to_keep[,1])
+  preFilt_ntaxa = ntaxa(physeq)
+  physeq = prune_taxa(taxa_to_keep, physeq)
+  postFile_ntaxa = ntaxa(physeq)
+  msg = paste0(' pre-filter: number of taxa:', preFilt_ntaxa)
+  write(msg, stderr())
+  msg = paste0(' post-filter: number of taxa:', postFile_ntaxa)
+  write(msg, stderr())
+}
+
 
 ## Pruning samples
-msg = paste0('pre-filter: number of samples:', nsamples(physeq))
+write('Pruning samples...', stderr())
+msg = paste0(' pre-filter: number of samples:', nsamples(physeq))
 write(msg, stderr())
-msg = paste0('pre-filter: number of taxa:', ntaxa(physeq))
+msg = paste0(' pre-filter: number of taxa:', ntaxa(physeq))
 write(msg, stderr())
 
 ### sampleSum
@@ -74,9 +94,9 @@ if(! is.null(BD_min) & ! is.null(BD_max)){
   }
 
 # status
-msg = paste0('post-filter: number of samples:', nsamples(physeq))
+msg = paste0(' post-filter: number of samples:', nsamples(physeq))
 write(msg, stderr())
-msg = paste0('post-filter: number of taxa:', ntaxa(physeq))
+msg = paste0(' post-filter: number of taxa:', ntaxa(physeq))
 write(msg, stderr())
 
 

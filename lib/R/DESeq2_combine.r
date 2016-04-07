@@ -15,11 +15,14 @@ options:
   -h               Help
 description:
   Combining >1 DESeq2 objects. P-values will be globally
-  adjusted. 
+  adjusted. For each taxon, the max log2 fold change (l2fc)
+  of any DESeq2 object will be used. A "file" column
+  will indicate which file was used for selecting l2fc.
 ' -> doc
 
 opts = docopt(doc)
 
+#print(padj_cut ); stop()
 
 # packages
 pkgs <- c('dplyr', 'tidyr')
@@ -40,7 +43,27 @@ deseqs = do.call(rbind, deseqs)
 deseqs$taxon = gsub('.+_DESeq2\\.', '', rownames(deseqs))
 rownames(deseqs) = 1:nrow(deseqs)
 
-## global adjustment of p-values
+
+#print(deseqs %>% head); stop()
+
+## [optional] hierarchical selection of taxa passing test in each window
+#as.Num = function(x) x %>% as.character %>% as.numeric
+#deseqs %>%
+#  mutate(label = label %>% as.Num,
+#         TO_RM = FALSE) %>%
+#    arrange(label) %>%
+#      mutate(TMP_INC = padj < padj_cut) %>%
+#        group_by(taxon) %>%
+#          mutate(TO_RM = lag(TMP_INC) == TRUE) %>%
+#            ungroup() %>%
+#            filter(TO_RM != TRUE) %>%
+#        mutate(FILE_NUM = FILE_NUM + 1,
+#               TMP_INC = TMP_INC + (padj < padj_cut)) %>%
+#                   tail %>% as.data.frame %>% print
+#stop()
+
+
+## global adjustment of p-values; using max log2FoldChange value
 deseqs = deseqs %>%
   mutate(padj = p.adjust(p, 'BH')) %>%
     group_by(taxon) %>%
@@ -48,8 +71,6 @@ deseqs = deseqs %>%
         ungroup() %>%
           filter(log2FoldChange == log2FoldChange_Max) %>%
             select(-log2FoldChange_Max)
-
-#deseqs %>% head %>% as.data.frame %>% print; stop()
 
 ## writing output
 con = pipe("cat", "wb")

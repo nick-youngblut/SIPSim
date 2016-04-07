@@ -49,10 +49,13 @@ df_shift = read.delim(opts[['BD_shift']], sep='\t')
 
 
 ## calling qSIP incorporators
+### Note: if atom_CI_low is NA, then calling non-incorporator
 ### qSIP
 df_qSIP = df_qSIP %>%
-  mutate(incorp = ifelse(atom_CI_low > 0, TRUE, FALSE))
-        
+  mutate(incorp = ifelse(atom_CI_low > 0, TRUE, FALSE),
+         incorp = ifelse(is.na(incorp), FALSE, incorp))
+
+
 ### BD-shift table (reference)
 if (ncol(df_shift) == 8){
   df_shift = df_shift %>%

@@ -7,13 +7,12 @@ from functools import partial
 ## 3rd party
 import numpy as np
 import pandas as pd
+import scipy.stats as st
 from pathos.multiprocessing import ProcessingPool
 ## application
 from OTU_Table import OTU_table
 import QSIPCython as SSC
 
-# numpy error settings
-np.seterr(invalid='ignore')
 
 def _prop_abund(x):
     """Calculate proportional absolute abundances.
@@ -134,7 +133,9 @@ def atomFracExcess(df, isotope='13C'):
 
 
 def subsample_densities(df, sample_type):
-    """Subsampling density values for bootstrapping.
+    """Subsampling buoyant density values for bootstrapping. 
+    (e.g., shuffling samplings). Subsampling with replacment from
+    density values of `sample_type`.
     
     Parameters
     ----------
@@ -143,8 +144,8 @@ def subsample_densities(df, sample_type):
     sample_type : string
         Which sample type (control|treatment) to sub-sample for.
     """
-    size = df.loc[df['sample_type'] == sample_type].shape[0]
-    subsamps = np.random.choice(df.index, size, replace=True)
+    idx = df.loc[df['sample_type'] == sample_type].index.tolist()
+    subsamps = np.random.choice(idx, len(idx), replace=True)
     x = df.loc[subsamps,:].reset_index()
     x['sample_type'] = sample_type
     return x
@@ -153,6 +154,10 @@ def subsample_densities(df, sample_type):
 def _bootstrap(df, isotope):
     """Subsampling with replacement
     """
+    # checking for NAs in densities; if so, returning NA
+    if pd.isnull(df['density']).any():
+        return np.nan
+
     # subsample with replacement
     ## control
     idx = df['sample_type'] == 'control'
@@ -174,8 +179,7 @@ def _bootstrap(df, isotope):
     atomFracExcess(df_i_wmd, isotope=isotope)
     
     # return
-    assert df_i_wmd.shape[0] == 1
-    return df_i_wmd.loc[0,:]
+    return df_i_wmd.loc[0,'atom_fraction_excess']
 
 
 def _bootstrap_CI(df, n=1000, a=0.1, isotope='13C', pool=None, name=None):
@@ -186,35 +190,30 @@ def _bootstrap_CI(df, n=1000, a=0.1, isotope='13C', pool=None, name=None):
 
     # bootstrapping (in parallel)
     if pool is None:        
-        boot_res = [_bootstrap(df, isotope) for i in xrange(n)]
+        boot_afx = [_bootstrap(df, isotope) for i in xrange(n)]
     else:
         dfs = [df for i in xrange(n)]
         _bootstrap_p = partial(_bootstrap, isotope=isotope)
-        boot_res = pool.map(_bootstrap_p, dfs)
-    boot_res = pd.concat(boot_res, axis=1) 
-    boot_res.columns = range(boot_res.shape[1])
-    boot_res = boot_res.transpose()
+        boot_afx = pool.map(_bootstrap_p, dfs)
+
+    # returning CI of nan if atom_fraction_excess is nan
+    msg = 'WARNING! "{}" --> NAs in bootstrap values.' \
+          ' CI values set to nan.' \
+          ' This is probably due to a very low abundance in >=1 library.\n'
+    if np.isnan(boot_afx).any():
+        sys.stderr.write(msg.format(taxon))
+        if name is not None:
+            return pd.Series({'taxon':name, 'atom_CI_low':np.nan, 
+                             'atom_CI_high':np.nan})
+        else:
+            return pd.Series({'atom_CI_low':np.nan, 'atom_CI_high':np.nan})
         
-    # calculating deltas [true_value - bootstrap_value] 
-    true_A = df.reset_index().loc[0,'atom_fraction_excess']
-    f = lambda x : true_A - x['atom_fraction_excess']
-    A_delta = boot_res.apply(f, axis=1).tolist()
-    
-    # calculating CI
-    perc_low = np.percentile(A_delta, a / 2 * 100)
-    perc_high = np.percentile(A_delta, (1 - a / 2) * 100)
-    if perc_low > true_A:
-        perc_low = true_A
-    if perc_high < true_A:
-        perc_high = true_A
-    CI_low = true_A - np.abs(perc_low)
-    CI_high = true_A + np.abs(perc_high)
-    CI_low = np.round(CI_low, 6)
-    CI_high = np.round(CI_high, 6)
-    msg = 'WARNING: CI_low ({}) is > CI_high ({})\n'
-    if CI_low > CI_high:
-        sys.stderr.write(msg.format(CI_low, CI_high))
-    
+    # calculating CIs
+    CI_low = np.percentile(boot_afx, a / 2.0 * 100)
+    CI_high = np.percentile(boot_afx, (1 - a / 2.0) * 100)
+    assert CI_low <= CI_high, 'CI_low is > CI_high'
+
+    # formating & returning
     if name is not None:
         ret = pd.Series({'taxon':name, 'atom_CI_low':CI_low, 
                          'atom_CI_high':CI_high})
@@ -302,9 +301,6 @@ def qSIP_atomExcess(Uargs):
     Uargs : dict
         See qSIP_atomExcess.py
     """
-    # setting numpy parameters
-    np.seterr(invalid='ignore')
-
     # loading tables
     sys.stderr.write('Loading files...\n')
     ## experimental design
@@ -326,11 +322,8 @@ def qSIP_atomExcess(Uargs):
     mean_densities = calc_mean_density(densities, exp_design)
 
     # calculating density shifts 
-    #func = lambda x: SSC.calc_density_shift(x['treatment'], x['control'])
-    #mean_densities['BD_diff'] = mean_densities.apply(func, axis=1)
     mean_densities['BD_diff'] = SSC.calc_density_shift(mean_densities['treatment'].values,
                                                        mean_densities['control'].values)
-    #calc_density_shift(mean_densities)
 
     #-- calculating atom fraction excess --#
     sys.stderr.write('Calculating atom fraction excess (A)...\n')
