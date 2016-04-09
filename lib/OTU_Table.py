@@ -888,3 +888,5 @@ class OTU_table(_table):
             self._base = None
         else:
             self._base = float(x)
+
+    

@@ -12,7 +12,7 @@ from pathos.multiprocessing import ProcessingPool
 ## application
 from OTU_Table import OTU_table
 import QSIPCython as SSC
-
+import Utils
 
 def _prop_abund(x):
     """Calculate proportional absolute abundances.
@@ -276,21 +276,6 @@ def bootstrap_CI(densities, mean_densities, exp_design,
     return CIs[cols]
 
 
-def load_exp_design(inFile):
-    exp_design = pd.read_csv(inFile, sep='\t', header=None)
-    exp_design.columns = ['library', 'sample_type']
-    # formatting
-    f = lambda x : x.lower()
-    exp_design['sample_type'] = exp_design['sample_type'].apply(f)
-    # assert 
-    x = exp_design['sample_type'].isin(['control','treatment'])
-    msg = 'Only ("control" or "treatment" allowed in 2nd-column' + \
-          'of <exp_design> table'
-    assert all(x) == True, msg
-    # return
-    return exp_design
-
-
 def qSIP_atomExcess(Uargs):
     """Main function for calculating atom fraction excess (and density shift)
     for qSIP data (OTU table where relative abundances were multipled by qPCR
@@ -304,7 +289,7 @@ def qSIP_atomExcess(Uargs):
     # loading tables
     sys.stderr.write('Loading files...\n')
     ## experimental design
-    exp_design = load_exp_design(Uargs['<exp_design>'])
+    exp_design = Utils.load_exp_design(Uargs['<exp_design>'])
         
     ## OTU table 
     otu = OTU_table.from_csv(Uargs['<OTU_table>'], sep='\t')

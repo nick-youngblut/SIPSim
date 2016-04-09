@@ -427,6 +427,21 @@ def part_dist_func(dist, dist_params):
 
     return part_dist_func
 
+
+def load_exp_design(inFile):
+    exp_design = pd.read_csv(inFile, sep='\t', header=None)
+    exp_design.columns = ['library', 'sample_type']
+    # formatting
+    f = lambda x : x.lower()
+    exp_design['sample_type'] = exp_design['sample_type'].apply(f)
+    # assert 
+    x = exp_design['sample_type'].isin(['control','treatment'])
+    msg = 'Only ("control" or "treatment" allowed in 2nd-column' + \
+          'of <exp_design> table'
+    assert all(x) == True, msg
+    # return
+    return exp_design
+
         
 
 class Status(object):
@@ -629,3 +644,4 @@ class _table(object):
     def __repr__(self):
         return self.df.__repr__()
         
+

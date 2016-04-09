@@ -188,10 +188,6 @@ df.j = inner_join(df, df.preFrac, c('OTU' = 'OTU', 'library' = 'library'))
 
 
 # calculating BD span
-#df.j.BDr = BD_span(df.j) %>%
-#  group_by(library, preFrac_abund_bin = ntile(mean_preFrac_abund, n.tile)) %>%
-#    summarize(mean_preFrac_abund = mean(mean_preFrac_abund),
-#              var_BD_range = log10(var(BD_range) + 1e-10))
 df.j.BDspan = BD_span(df.j)
 
 
