@@ -28,6 +28,11 @@ Options:
   --padj=<pa>    Adjusted P-value cutoff for calling incorporators.
                  NOTE: only used for hierarchial HR-SIP.
                  [Default: 0.1]
+  --occur=<oc>   Minimum fraction of samples that a taxon must be found 
+                 (ie., sparcity threshold). If a comma-separated list is 
+                 provided, each cutoff is tested and the cutoff with the most
+                 rejected hypotheses is used.
+                 [Default: 0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5]
   --version      Show version.
   --debug        Debug mode.
   -h --help      Show this screen.

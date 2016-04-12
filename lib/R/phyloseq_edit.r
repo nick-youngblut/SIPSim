@@ -14,7 +14,7 @@ options:
                      [Default: 100]
   --occur=<oc>       Minimum fraction of samples that a taxon must
                      be found (ie., sparcity threshold).
-                     [Default: 0.25]
+                     [Default: 0]
   --BD_min=<min>     Minimum sample buoyant density.
                      [Default: 1]
   --BD_max=<max>     Maximum sample buoyant density.

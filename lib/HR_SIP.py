@@ -35,9 +35,11 @@ def _HRSIP_by_window(BD_min, BD_max, prefix, Uargs):
     # calling DESeq2                                                      
     exe = os.path.join(libDir, 'R', 'phyloseq_DESeq2.r')
     outFile = os.path.splitext(editFile)[0] + '_DESeq2'
-    cmd = '{} --log2 {} --hypo {} --cont {} --treat {} --label {} {} > {}'
+    cmd = '{} --log2 {} --hypo {} --cont {} --treat {} --label {} --occur {}' \
+          ' --padj {} {} > {}'
     cmd = cmd.format(exe, Uargs['--log2'], Uargs['--hypo'], Uargs['--cont'],
-                     Uargs['--treat'], BD_min, editFile, outFile)
+                     Uargs['--treat'], BD_min, Uargs['--occur'], 
+                     Uargs['--padj'], editFile, outFile)
     Utils.sys_call(cmd)
     
     # returning output file
@@ -75,9 +77,11 @@ def _HRSIP_hierarchical(BD_min, BD_max, prefix, Uargs, tmpFile, i):
     # calling DESeq2                                                      
     exe = os.path.join(libDir, 'R', 'phyloseq_DESeq2.r')
     outFile = os.path.splitext(editFile)[0] + '_DESeq2'
-    cmd = '{} --log2 {} --hypo {} --cont {} --treat {} --label {} {} > {}'
+    cmd = '{} --log2 {} --hypo {} --cont {} --treat {} --label {}' \
+          ' --occur {} --padj {} {} > {}'
     cmd = cmd.format(exe, Uargs['--log2'], Uargs['--hypo'], Uargs['--cont'],
-                     Uargs['--treat'], BD_min, editFile, outFile)
+                     Uargs['--treat'], BD_min, Uargs['--occur'], 
+                     Uargs['--padj'], editFile, outFile)
     Utils.sys_call(cmd)
 
     # updating list of non-incorporators
@@ -126,11 +130,11 @@ def HR_SIP(Uargs):
     BD_windows = parse_BD_windows(Uargs['-w'])
 
     # ordering by heaviest BD window (based on mean BD of range)
-    if Uargs['--hier'] is not None:
+    if Uargs['--hier'] == True:
         BD_windows.sort(key=lambda x: -np.mean(x))
     
     # HR-SIP on each BD window
-    if Uargs['--hier'] is not None:
+    if Uargs['--hier'] == True:
         res_files = HRSIP_hierarchical(BD_windows, prefix, Uargs)    
     else:
         res_files = HRSIP_by_window(BD_windows, prefix, Uargs)
@@ -146,6 +150,6 @@ def HR_SIP(Uargs):
         os.rename(outFile, outFileNew)
 
     # status
-    print 'File written: {}'.format(outFile)
+    print '\nFile written: {}'.format(outFile)
 
     
