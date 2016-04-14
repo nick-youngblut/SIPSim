@@ -533,5 +533,5 @@ def _load_taxa_incorp_list(inFile, config):
                     taxa[x[0]].append(x[1])
                 except KeyError:
                     taxa[x[0]] = [x[1]]
-
+                    
     return taxa

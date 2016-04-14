@@ -9,76 +9,91 @@ suppressPackageStartupMessages(library(docopt))
 'usage: phyloseq_DESeq2.r [options] <phyloseq>
 
 options:
-  <phyloseq>     Phyloseq object file.
-  --log2=<l>     Log2 fold change cutoff.
-                 [Default: 0.25]
-  --hypo=<h>     Alternative hypothesis tested by DESeq
-                 ("greaterAbs","greater","less")
-                 [Default: NULL]
-  --cont=<c>     Control libraries. (comma-separated list)
-                 [Default: 1]
-  --treat=<t>    Treatment libraries. (comma-separated list)
-                 [Default: 2]
-  --label=<x>    Add a label to the DESeq2 object, which is
-                 useful if combining multiple DESeq2 objects.
-                 [Default: NULL]
-  --occur=<oc>   Minimum fraction of samples that a taxon must
-                 be found (ie., sparcity threshold).
-                 If a comma-separated list is provided, each
-                 cutoff is tested and the cutoff with the most
-                 rejected hypotheses is used.
-                 [Default: 0]
-  --padj=<p>     Adjusted P-value cutoff for determining rejected
-                 hypotheses (see `occur` option).
-                 [Default: 0.1]
-  --nrej=<nr>    Output file name for table with number of rejected
-                 hypotheses per `occur` cutoff.
-                 NOTE: DESeq2 output written to STDOUT.
-                 [Default: DESeq2_n-rejectHypos.txt]
-  -h             Help
+  <phyloseq>          Phyloseq object file.
+  -w=<w>              "heavy" BD window(s). (omma separated list)
+                      [Default: 1.71-1.75]
+  --log2=<l>          Log2 fold change cutoff.
+                      [Default: 0.25]
+  --hypo=<h>          Alternative hypothesis tested by DESeq
+                      ("greaterAbs","greater","less")
+                      [Default: greater]
+  --cont=<c>          Control libraries. (comma-separated list)
+                      [Default: 1]
+  --treat=<t>         Treatment libraries. (comma-separated list)
+                      [Default: 2]
+  --occur_all=<oa>    Minimum fraction of samples that a taxon must
+                      be found (ie., sparcity threshold).
+                      If a comma-separated list is provided, each
+                      cutoff is tested and the cutoff with the most
+                      rejected hypotheses is used. Cutoff applied
+                      to ALL samples.
+                      [Default: 0]
+  --occur_heavy=<oh>  Minimum fraction of samples that a taxon must
+                      be found (ie., sparcity threshold).
+                      If a comma-separated list is provided, each
+                      cutoff is tested and the cutoff with the most
+                      rejected hypotheses is used. Cutoff applied
+                      to JUST HEAVY samples.
+                      [Default: 0]
+  --padj=<p>          Adjusted P-value cutoff for determining rejected
+                      hypotheses (see the `occur` options).
+                      [Default: 0.1]
+  --all=<a>           Output file name for table with all DESeq2 results
+                      for all DESeq2 runs.
+                      [Default: DESeq2_all_runs.txt]
+  -h                  Help
 
 description:
   Run DESeq2 on a phyloseq file produced in the SIPSim pipeline.
-  DESeq2 output written to STDOUT.
+
+  If multiple "heavy" windows provided, then DESeq2 is run
+  on samples from each window. For each taxon, the window with
+  the highest log2 fold change is used.
+
+  An occurance (sparsity) cutoff can be applied before and/or
+  after pruning samples to just "heavy" gradient fraction samples.
+  If multiple occurance cutoffs are provided, then the ocurrance
+  cutoff with the greatest number of rejected hypotheses is used.
+
+  OUTPUT:
+    A table of all DESeq2 results is written to a file (see `all` option).
+    A DESeq2 results table of just the "best" occurance cutoff and BD
+    window log2 fold change values is written to STDOUT.
+
 ' -> doc
 
 opts = docopt(doc)
-cont = unlist(strsplit(opts[['--cont']], split=','))
-treat = unlist(strsplit(opts[['--treat']], split=','))
-occurs = unlist(strsplit(opts[['--occur']], split=','))
-occurs = as.vector(sapply(occurs, as.numeric))
-padj.cut = as.numeric(opts[['--padj']])
-log2.cut = as.numeric(opts[['--log2']])
-nrej_out_file = opts[['--nrej']]
+opts[['--cont']] = unlist(strsplit(opts[['--cont']], split=','))
+opts[['--treat']] = unlist(strsplit(opts[['--treat']], split=','))
+opts[['--padj']] = as.numeric(opts[['--padj']])
+opts[['--log2']] = as.numeric(opts[['--log2']])
+
+# occurance (sparsity)
+opts[['--occur_all']] = unlist(strsplit(opts[['--occur_all']], split=','))
+opts[['--occur_heavy']] = unlist(strsplit(opts[['--occur_heavy']], split=','))
+
+# BD windows
+opts[['-w']] = unlist(strsplit(opts[['-w']], split=','))
+
 
 # packages
-pkgs <- c('phyloseq', 'DESeq2')
+pkgs <- c('phyloseq', 'DESeq2', 'dplyr')
 for(x in pkgs){
   suppressPackageStartupMessages(library(x, character.only=TRUE))
 }
 
 
 #-- functions --#
-prune_by_occur = function(physeq, occur){
-  # taxa must be in `occur` number of gradient fractions
-  if(is.null(occur)){
-    occur = 0
-  }
-  msg = paste0(' pre-filter: number of taxa:', ntaxa(physeq))
-  write(msg, stderr())
-  physeq.prn = filter_taxa(physeq, function(x) sum(x > 0) > (occur * length(x)), TRUE)
-  msg = paste0(' post-filter: number of taxa:', ntaxa(physeq.prn))
-  write(msg, stderr())
-  return(physeq.prn)
-}
-
 gm_mean = function(x, na.rm=TRUE){
   # calculate the geometric mean
     exp(sum(log(x[x > 0]), na.rm=na.rm) / length(x))
   }
 
 
-make_condition = function(dds){
+set_condition = function(dds, opts){
+  cont = opts[['--cont']]
+  treat = opts[['--treat']]
+  
   # making 'condition' factor for DESeq2
   condition = as.character(dds$condition)
   for (x in cont){
@@ -93,25 +108,80 @@ make_condition = function(dds){
   if(any(is.na(dds$condition))){
     stop('\nSome control/treatments are NA. Check --cont & --treat.\n')
   }
-  return(condition)
+  return(dds)
+}
+
+prune_by_BD_window = function(BD_min, BD_max, physeq){
+
+  # status
+  msg = paste0('# "heavy" BD window: ', BD_min, '-', BD_max)
+  write(msg, stderr())  
+  msg = paste0(' pre-filter: number of samples: ', nsamples(physeq))
+  write(msg, stderr())
+
+  # pruning to heavy window samples
+  physeq.sd = sample_data(physeq)
+  physeq.prn = prune_samples((physeq.sd$BD_mid >= BD_min) &
+                               (physeq.sd$BD_mid <= BD_max), physeq)  
+
+  # status
+  msg = paste0(' post-filter: number of samples: ', nsamples(physeq.prn))
+  write(msg, stderr())
+
+  
+  return(physeq.prn)
 }
 
 
-deseq_run = function(occur, physeq, opts){
+prune_by_occur = function(occur_cut, physeq){
+  # pruning taxa by occurance
+  msg = paste0('# occurance cutoff: ', occur_cut)
+  write(msg, stderr())  
+
+  msg = paste0(' pre-filter: number of taxa: ', ntaxa(physeq))
+  write(msg, stderr())
+  
+  func = function(x) sum(x > 0) > (occur_cut * length(x))
+  physeq.prn = filter_taxa(physeq, func, TRUE)
+
+  msg = paste0(' post-filter: number of taxa: ', ntaxa(physeq.prn))
+  write(msg, stderr())
+  
+  return(physeq.prn)
+}
+
+
+deseq_run = function(params, physeq, opts){
+  # unpacking parameters
+  occur_all = as.numeric(params[1])
+  occur_heavy = as.numeric(params[2])
+  BD_min = as.numeric(params[3])
+  BD_max = as.numeric(params[4])
+  
+  # prune taxa by occurance cutoff (all samples)
+  physeq.prn = prune_by_occur(occur_all, physeq)
+
+  # prune sample to just BD window
+  physeq.prn = prune_by_BD_window(BD_min, BD_max, physeq.prn)
+
+  # prune taxa by occurance cutoff (heavy window samples)
+  physeq.prn = prune_by_occur(occur_heavy, physeq.prn)
+      
   # deseq analysis on samples
   ## status
-  msg = paste0('\n### DESeq2 with occurance cutoff: ', occur)
-  write(msg, stderr())  
+  write('# DESeq2 run', stderr())  
   
-  ## prune physeq by occurance
-  physeq.prn = prune_by_occur(physeq, occur)
-
   ## making deseq2 object
   dds = phyloseq_to_deseq2(physeq.prn, ~condition)
   physeq.prn = NA
 
   ## making/setting 'condition' factor
-  condition = make_condition(dds)
+  dds = set_condition(dds, opts)
+  if(dds$condition %>% unique %>% length == 1){
+    msg = 'WARNING: no taxa present for either control or treatment. Skipping'
+    write(msg, stderr())  
+    return(NA)
+  }
   
   ## calculate geometric means prior to estimate size factors
   ### This method is not sensitive to zeros
@@ -122,7 +192,7 @@ deseq_run = function(occur, physeq, opts){
   dds = DESeq(dds, fitType='local', test='Wald')
   if(opts[['--hypo']] != 'NULL'){
     res = results(dds,
-      lfcThreshold=log2.cut,
+      lfcThreshold=opts[['--log2']],
       altHypothesis=opts[['--hypo']],
       independentFiltering=FALSE)  
   } else {
@@ -132,18 +202,31 @@ deseq_run = function(occur, physeq, opts){
   ## p-adjust as in Pepe-Ranney et al. (2015)
   beta = res$log2FoldChange
   betaSE = res$lfcSE
-  res$p = pnorm(beta, log2.cut, betaSE, lower.tail = FALSE)
+  res$p = pnorm(beta, opts[['--log2']], betaSE, lower.tail = FALSE)
   res$padj.BH = p.adjust(res$p, "BH")
-  res$label = opts[['--label']]
 
+  # setting all NA padj to 1 
+  res$padj = ifelse(is.na(res$padj), 1, res$padj)
+  res$padj.BH = ifelse(is.na(res$padj.BH), 1, res$padj.BH)
+  
+  ## adding pruning info to object
+  res$occur_all = occur_all
+  res$occur_heavy = occur_heavy
+  res$heavy_BD_min = BD_min
+  res$heavy_BD_max = BD_max
+  res$taxon = rownames(res)
+  rownames(res) = 1:nrow(res)
+
+  # providing status on number of rejected hypothese
+  n_rej_hypo = sum(res$padj < opts[['--padj']], na.rm=TRUE)
+  msg = paste0('# Number of rejected hypotheses: ', n_rej_hypo)
+  write(msg, stderr())  
+  
   ## return
+  write('', stderr())
   return(res)
 }
 
-n_reject = function(dds_res, padj.cut){
-  # finding the number of hypotheses rejected
-  length(dds_res$padj[dds_res$padj < padj.cut])
-}
 
 
 #-- main --#
@@ -161,36 +244,70 @@ physeq.sd$library = as.factor(as.character(physeq.sd$library))
 physeq.sd$condition = physeq.sd$library
 sample_data(physeq) = physeq.sd
 
-# DESeq2 runs for each occurance (sparsity) cutoff
-## returns a list of DESeq2 results objects
-res_all = sapply(occurs, deseq_run, physeq=physeq, opts=opts)
+# all pairwise of occur_all, BD_window, post-occur
+var_params = expand.grid(opts[['--occur_all']],
+  opts[['-w']],
+  opts[['--occur_heavy']])
+colnames(var_params) = c('occur_all', 'BD_window', 'occur_heavy')
+var_params$BD_min = gsub('-.+', '', var_params$BD_window) %>% as.numeric
+var_params$BD_max = gsub('.+-', '', var_params$BD_window) %>% as.numeric
+var_params$BD_window = NULL
 
-# Finding number of hypotheses rejected
-n_rej = lapply(res_all, n_reject, padj.cut=padj.cut)
-n_rej = unlist(n_rej)
-df_n_rej = data.frame(occur = occurs, n_hypo_rejected = n_rej)
-write.table(df_n_rej, nrej_out_file, sep='\t', quote=FALSE, row.names=FALSE)
-msg = paste0('\n# N-rejected hypothesis table written: ', nrej_out_file)
+# DESeq2 call
+deseq_res = apply(var_params, 1, deseq_run, physeq=physeq, opts=opts)
+deseq_res = deseq_res[!is.na(deseq_res)]
+deseq_res = do.call(rbind, deseq_res) %>%
+  as.data.frame %>%
+    filter(!is.na(taxon))
+
+# write out full table of all DESeq2 data
+write.table(deseq_res, opts[['--all']], sep='\t', quote=FALSE, row.names=FALSE)
+msg = paste0('# A file of all DESeq2 run results was written to: ', opts[['--all']])
 write(msg, stderr())
 
 
-# selecting DESeq2 results with most number of rejected Hs
-max_n_rej = max(n_rej)
-max_n_rej_i = which(n_rej == max_n_rej)
-if(length(max_n_rej_i) > 1){
-  max_n_rej_i = max_n_rej_i[1]
-}
-res = res_all[[max_n_rej_i]]
-## status
-occur_best = occurs[max_n_rej_i]
-msg = paste0('# `occur` cutoff with max number of rejected hypotheses: ',
-  occur_best)
-write(msg, stderr())
-msg = paste0('# The max number of rejected hypotheses: ',
-  max_n_rej, '\n')
-write(msg, stderr())
+# Finding number of hypotheses rejected; selecting occurances with most rejects
+## occur cutoffs with max number of rejected hypos
+deseq_res = deseq_res %>%
+  group_by(occur_all, occur_heavy, heavy_BD_min, heavy_BD_max) %>%
+    mutate(n_rej_hypo = sum(padj < opts[['--padj']], na.rm=TRUE)) %>%
+      group_by(heavy_BD_min, heavy_BD_max) %>%
+        mutate(max_n_rej_hypo = max(n_rej_hypo)) %>%
+          filter(n_rej_hypo == max_n_rej_hypo) %>%
+            ungroup()
+
+deseq_res = deseq_res %>%
+  group_by(heavy_BD_min, heavy_BD_max) %>%
+    filter(occur_all == first(occur_all),
+           occur_heavy == first(occur_heavy)) 
 
 
-## writing
+# writing table of max number of rejected hypos per BD window
+deseq_res_max = deseq_res %>%
+  group_by(heavy_BD_min, heavy_BD_max) %>%
+    summarize(max_n_rej_hypo = max(n_rej_hypo)) %>%
+      ungroup %>% as.data.frame
+
+msg = paste0('\n#- Greatest number of rejected hypotheses for each BD window -#')
+write(msg, stderr())
+msg = paste0(c('heavy_BD_min', 'heavy_BD_max', 'max_n_rej_hypo'), collapse='\t')
+write(msg, stderr())
+df_to_stderr = function(x) write(paste0(x, collapse='\t'), stderr())
+blnk = apply(deseq_res_max, 1, df_to_stderr)
+write('', stderr())
+
+
+## for each taxon, selecting heavy window with the highest l2fc
+deseq_res = deseq_res %>%
+  group_by(taxon) %>%
+    filter(log2FoldChange == max(log2FoldChange)) %>%
+      ungroup() %>%
+        distinct(taxon) %>%
+          select(-n_rej_hypo, -max_n_rej_hypo) %>%
+            as.data.frame
+
+## writing table of results
 con = pipe("cat", "wb")
-saveRDS(res, con)
+write.table(deseq_res, con, sep='\t', quote=FALSE, row.names=FALSE)
+#saveRDS(deseq_res, con)
+

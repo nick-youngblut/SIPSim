@@ -33,6 +33,10 @@ Options:
                  provided, each cutoff is tested and the cutoff with the most
                  rejected hypotheses is used.
                  [Default: 0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5]
+  --post         Apply `occur` pruning after trimming dataset to "heavy"
+                 BD window. Thus `occur` would only apply to gradient
+                 fraction samples in the "heavy" window instead of all samples.
+                 NOT IMPLEMENTED
   --version      Show version.
   --debug        Debug mode.
   -h --help      Show this screen.
