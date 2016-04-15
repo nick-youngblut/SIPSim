@@ -44,9 +44,11 @@ abund.cut = as.numeric(opts[['-c']])
 ## import
 if(opts[['<DESeq2>']] == '-'){
   con = pipe("cat", "rb")
-  deseq.res = readRDS(con)
+#  deseq.res = readRDS(con)
+  deseq.res = read.delim(con, sep='\t')
 } else {
-  deseq.res = readRDS(opts[['<DESeq2>']])
+#  deseq.res = readRDS(opts[['<DESeq2>']])
+  deseq.res = read.delim(opts[['<DESeq2>']], sep='\t')  
 }
 x = suppressPackageStartupMessages(as.data.frame(deseq.res))
 comm = read.delim(opts[['comm']], sep='\t')

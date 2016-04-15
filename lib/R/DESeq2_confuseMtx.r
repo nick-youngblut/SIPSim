@@ -14,7 +14,7 @@ options:
   -o=<o>           Basename for output files.
                    [Default: DESeq2-cMtx]
   --padj=<q>       Max adjusted P-value (value < padj_cutoff).
-  --padjBH=<qq>    Max adjusted P-value (BH method).
+                   [Default: 0.1]
   --log2=<l>       Min log2FoldChange (log2fc). 
   --log2neg=<ln>   Min log2FoldChange based on negative log2fc values
                    (see below).
@@ -73,9 +73,10 @@ if(! 'taxon' %in% colnames(deseq.res)){
 
 ### log2fold cutoff & padj cutoff
 log2.cut = -1/0      # -negInfinity (ie., no cutoff)
-padj.cut = 1/0       # Infinity (ie., no cutoff)
 
 #### log2.cutoff
+message('Log2Fold cutoff: ', log2.cut)
+message('padj cutoff: ', padj.cut)
 if(! is.null(opts[['--log2neg']])){
   log2neg = as.numeric(opts[['--log2neg']])
   x = deseq.res %>%
@@ -87,23 +88,12 @@ if(! is.null(opts[['--log2neg']])){
 if(! is.null(opts[['--log2']])){
   log2.cut = as.numeric(opts[['--log2']])
 }
-message('Log2Fold cutoff: ', log2.cut)
-padj.cut = opts[['--padj']]
+
 #### padj.cut
-if(! is.null(opts[['--padj']])){
-  padj.cut = as.numeric(opts[['--padj']])
-  message('padj cutoff: ', padj.cut)
-  deseq.res = deseq.res %>% 
-    mutate(incorp = (padj < padj.cut) & (log2FoldChange >= log2.cut))
-} else
-if(! is.null(opts[['--padjBH']])){
-  padj.cut = as.numeric(opts[['--padjBH']])
-  message('padj cutoff: ', padj.cut)
-  deseq.res = deseq.res %>% 
-    mutate(incorp = (padj.BH < padj.cut) & (log2FoldChange >= log2.cut))
-} else {
-  stop('Provide either --padj or --padjBH')
-}
+deseq.res = deseq.res %>% 
+  mutate(incorp = (padj < padj.cut) & (log2FoldChange >= log2.cut))
+
+
 
 ### BD-shift table (reference)
 if (ncol(BD.shift) == 8){

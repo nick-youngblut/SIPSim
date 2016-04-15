@@ -189,25 +189,23 @@ deseq_run = function(params, physeq, opts){
   dds = estimateSizeFactors(dds, geoMeans=geoMeans)
 
   ## DESeq2 call
-  dds = DESeq(dds, fitType='local', test='Wald')
-  if(opts[['--hypo']] != 'NULL'){
-    res = results(dds,
-      lfcThreshold=opts[['--log2']],
-      altHypothesis=opts[['--hypo']],
-      independentFiltering=FALSE)  
-  } else {
-    res = results(dds, independentFiltering=FALSE)
-  }
+  dds = DESeq(dds, fitType='local')
+#  if(opts[['--hypo']] != 'NULL'){
+#    res = results(dds,
+#      lfcThreshold=opts[['--log2']],
+#      altHypothesis=opts[['--hypo']],
+#      independentFiltering=FALSE)  
+#  } else {
+  res = results(dds, independentFiltering=FALSE)
+#  }
 
   ## p-adjust as in Pepe-Ranney et al. (2015)
   beta = res$log2FoldChange
   betaSE = res$lfcSE
-  res$p = pnorm(beta, opts[['--log2']], betaSE, lower.tail = FALSE)
-  res$padj.BH = p.adjust(res$p, "BH")
-
-  # setting all NA padj to 1 
+  res$p = pnorm(beta, opts[['--log2']], betaSE, lower.tail=FALSE)
+  res$padj = p.adjust(res$p, "BH")
+  ## setting all NA padj to 1 
   res$padj = ifelse(is.na(res$padj), 1, res$padj)
-  res$padj.BH = ifelse(is.na(res$padj.BH), 1, res$padj.BH)
   
   ## adding pruning info to object
   res$occur_all = occur_all
@@ -226,7 +224,6 @@ deseq_run = function(params, physeq, opts){
   write('', stderr())
   return(res)
 }
-
 
 
 #-- main --#
@@ -276,11 +273,12 @@ deseq_res = deseq_res %>%
           filter(n_rej_hypo == max_n_rej_hypo) %>%
             ungroup()
 
+## just a single occur_heavy-occur_all set if multiple w/ max rejHypo
 deseq_res = deseq_res %>%
   group_by(heavy_BD_min, heavy_BD_max) %>%
     filter(occur_all == first(occur_all),
-           occur_heavy == first(occur_heavy)) 
-
+           occur_heavy == first(occur_heavy)) %>%
+             ungroup()
 
 # writing table of max number of rejected hypos per BD window
 deseq_res_max = deseq_res %>%
@@ -296,18 +294,38 @@ df_to_stderr = function(x) write(paste0(x, collapse='\t'), stderr())
 blnk = apply(deseq_res_max, 1, df_to_stderr)
 write('', stderr())
 
+# global P-value adjustment for all BD windows
+msg = '# Global adjustment of p-values for all BW windows with "best" occurance cutoff'
+write(msg, stderr())
+deseq_res = deseq_res %>%
+  mutate(padj_global = p.adjust(deseq_res$pvalue, method = "BH"),
+         padj = ifelse(padj_global >= padj, padj_global, padj)) %>%
+           select(-padj_global)
+
+# writing a summary table post-global adjustment
+deseq_res_s = deseq_res %>%
+  group_by(heavy_BD_min, heavy_BD_max) %>%
+    summarize(n_rej_hypo = sum(padj < opts[['--padj']], na.rm=TRUE)) %>%
+      ungroup()
+msg = paste0('\n#- Number of rejected hypotheses for each BD window (post global p-value adjustment-#')
+write(msg, stderr())
+msg = paste0(c('heavy_BD_min', 'heavy_BD_max', 'n_rej_hypo'), collapse='\t')
+write(msg, stderr())
+blnk = apply(deseq_res_s, 1, df_to_stderr)
+write('', stderr())
+
 
 ## for each taxon, selecting heavy window with the highest l2fc
 deseq_res = deseq_res %>%
   group_by(taxon) %>%
-    filter(log2FoldChange == max(log2FoldChange)) %>%
+    filter(log2FoldChange == max(log2FoldChange, na.rm=TRUE)) %>%
       ungroup() %>%
         distinct(taxon) %>%
           select(-n_rej_hypo, -max_n_rej_hypo) %>%
             as.data.frame
 
+
 ## writing table of results
 con = pipe("cat", "wb")
 write.table(deseq_res, con, sep='\t', quote=FALSE, row.names=FALSE)
-#saveRDS(deseq_res, con)
 

@@ -32,7 +32,7 @@ for(x in pkgs){
 
 # main
 ## import DESeq objects as a list
-deseqs = sapply(opts[['<DESeq2>']], readRDS)
+deseqs = sapply(opts[['<DESeq2>']], function(x) read.delim(x, sep='\t'))
 deseqs = lapply(deseqs, function(x) suppressPackageStartupMessages(as.data.frame(x)))
 
 ## combing objects
@@ -42,25 +42,6 @@ for (n in names(deseqs)){
 deseqs = do.call(rbind, deseqs)
 deseqs$taxon = gsub('.+_DESeq2\\.', '', rownames(deseqs))
 rownames(deseqs) = 1:nrow(deseqs)
-
-
-#print(deseqs %>% head); stop()
-
-## [optional] hierarchical selection of taxa passing test in each window
-#as.Num = function(x) x %>% as.character %>% as.numeric
-#deseqs %>%
-#  mutate(label = label %>% as.Num,
-#         TO_RM = FALSE) %>%
-#    arrange(label) %>%
-#      mutate(TMP_INC = padj < padj_cut) %>%
-#        group_by(taxon) %>%
-#          mutate(TO_RM = lag(TMP_INC) == TRUE) %>%
-#            ungroup() %>%
-#            filter(TO_RM != TRUE) %>%
-#        mutate(FILE_NUM = FILE_NUM + 1,
-#               TMP_INC = TMP_INC + (padj < padj_cut)) %>%
-#                   tail %>% as.data.frame %>% print
-#stop()
 
 
 ## global adjustment of p-values; using max log2FoldChange value
