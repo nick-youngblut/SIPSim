@@ -107,14 +107,19 @@ class SimComms(_Comm):
         self.abund_dist = abund_dist
         self.abund_dist_params = str2dict(abund_dist_params)
         self.config = config
-        self.n_comm = n_comm
-                    
+        self.n_comm = n_comm    
+
         # loading config; setting community parameters
         if config is not None:
             self.comm_params = self._load_config()
         else:
             self.comm_params = dict()
         self._set_comm_params()
+
+        # lowering comm richness if taxon pool is limiting
+        ## otherwise, shared_perc option throws and error
+        if self.shared_perc < 100:
+            self._lower_richness()
 
         # shared taxa
         self._set_shared_taxa()
@@ -225,7 +230,39 @@ class SimComms(_Comm):
         self.taxon_pool = self.taxon_pool[n:]
         return taxa
 
-                
+
+    def _lower_richness(self):
+        """Lowering the richness of each community if the number of
+        unique taxa (un-shared) + shared taxa is greater than the taxon
+        pool from which to draw taxa.
+        """
+        rich = []
+        for k,v in self.comm_params.items():
+            try:
+                rich.append(v['richness'])
+            except KeyError:
+                msg = 'Cannot find "richness" attribute for Comm {}'
+                raise KeyError, msg.format(k)
+        n_unique = np.sum([x - self.n_shared for x in rich])
+        n_taxa_pool = len(self.taxon_pool)
+        n_comm = len(rich)
+        n_less = 0
+        if n_unique + self.n_shared > n_taxa_pool:
+            n_less = n_unique + self.n_shared - n_taxa_pool
+            n_less = np.ceil(n_less/ n_comm) 
+            n_less = int(n_less) + 1
+        else:
+            return 0
+        for k,v in self.comm_params.items():
+            new_rich = v['richness'] - n_less
+            msg = 'WARNING: lowering richness ({} -> {}) for Community {}\n' + \
+                  '  because the taxon pool is not large enough for the\n' + \
+                  '  amount of un-shared taxa (set by --shared_perc)\n'
+            sys.stderr.write(msg.format(v['richness'], new_rich, k))
+            v['richness'] = new_rich
+        self._n_shared = None
+
+               
     def make_comm(self, comm_id):
         """Make a Comm object.
         
@@ -274,6 +311,10 @@ class SimComms(_Comm):
             # sorting 
             df = df.sort_values(by=['library','rel_abund_perc'], 
                                 ascending=[1,0])
+
+            # converting any NAs to zeros
+            df.fillna(0, inplace=True)
+
             # getting rank by community (grouping by community)
             df['rank'] = df.groupby(['library'])['rel_abund_perc']\
                            .rank(method='first',ascending=False).astype('int')
@@ -282,8 +323,7 @@ class SimComms(_Comm):
         # writing dataframe
         df.to_csv(sys.stdout, sep='\t', na_rep=0,
                   float_format='%.9f', index=write_index)
-        
-        
+                
     @staticmethod
     def permute(comm, perm_perc):
         """Permute a certain percentage of the taxa abundances.
@@ -378,7 +418,7 @@ class SimComms(_Comm):
                                    'comm_id "{}"'.format(k))
             self._min_richness = min(richness_vals)
         return self._min_richness
-                            
+
     @property
     def n_shared(self):
         """The number of taxa that should be shared;
@@ -418,6 +458,14 @@ class Comm(_Comm):
         self.taxon_pool = GradientComms.taxon_pool
         self.richness = self.params['richness']
 
+#        print '--start--'
+#        print self.richness;
+#        print self.n_shared;
+#        print GradientComms.n_taxa_remaining;
+#        print self.n_shared + GradientComms.n_taxa_remaining; 
+#        print '--end--'
+#        sys.exit();
+
         # assertions
         if self.richness > self.n_shared + GradientComms.n_taxa_remaining:
             sys.exit('ERROR: Comm_ID {}\n'\
@@ -444,7 +492,6 @@ class Comm(_Comm):
     
         # making a series for the taxa
         self.taxa = pd.Series(rel_abunds, index=self.taxa)        
-
 
     def __repr__(self):
         return self.taxa.__repr__()
