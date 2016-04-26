@@ -24,6 +24,9 @@ description:
   KNOWN isotope incorporation (based on BD distribution
   shift between pre-incorp and post-incorp BD KDEs) and
   PREDICTED isotope incorporation (based on qSIP method).
+
+  NOTE: all taxa with NA (or blank) in the `atom_CI_low` column,
+  will be identified as non-incorporators.
 ' -> doc
 
 opts = docopt(doc)
