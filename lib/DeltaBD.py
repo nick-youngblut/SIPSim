@@ -12,8 +12,25 @@ from OTU_Table import OTU_table
 import Utils
 
 
+def BD_overlap(df_OTU):
+    """Getting the max BD range where all gradient libraries overlap
+    df_OTU : OTU_table object
+    """
+    # min BD for each library
+    func = lambda x: np.min(x['BD_mid'])
+    BD_mins = df_OTU.apply_by_group(func,groups=['library'],inplace=False)
+    # max BD for each library
+    func = lambda x: np.max(x['BD_mid'])
+    BD_maxs = df_OTU.apply_by_group(func,groups=['library'],inplace=False)
+    
+    # overlap: max of BD_mins, min of BD_maxs
+    BD_overlap_min = np.max(BD_mins['values'].values)
+    BD_overlap_max = np.min(BD_maxs['values'].values)
+    
+    return BD_overlap_min, BD_overlap_max
 
-def evenly_spaced_BDs(BDs, n):
+
+def evenly_spaced_BDs_OLD(BDs, n):
     """Interplate evenly spaced BDs
     BDs : iterable
        BDs for which to find min/max for setting BD range
@@ -67,21 +84,24 @@ def deltaBD(Uargs):
     Uargs : dict
         See deltaBD.py
     """
-    # loading OTU tables
+    # loading tables
     sys.stderr.write('Loading OTU tables...\n')    
     df_otu = OTU_table.from_csv(Uargs['<OTU_table>'], sep='\t')
     exp_design = Utils.load_exp_design(Uargs['<exp_design>'])
 
+    # determining the max overlap of BD among all libraries
+    BD_overlap_min,BD_overlap_max = BD_overlap(df_otu)
+
     # setting evenly-spaced BDs for interpolation
     sys.stderr.write('Calculating delta BD...\n')        
-    BD_intv = evenly_spaced_BDs(df_otu.select(['BD_mid']), int(Uargs['-b']))
+    BD_intv = np.linspace(BD_overlap_min, BD_overlap_max, int(Uargs['-b']))
     
     # Linear interpolation
     func = lambda x : center_of_mass(x, BD_intv)
     df_cm = df_otu.apply_by_group(func, 
                                   val_index='CM', 
                                   groups=['taxon', 'library'], 
-                                  inplace=False)                                                    
+                                  inplace=False)
 
     # Adding exp_design to OTU_table
     df_cm['library'] = df_cm['library'].astype(str)
@@ -100,11 +120,9 @@ def deltaBD(Uargs):
     df_cm.columns = groups + ['mean_CM']
     df_cm['stdev_CM'] = stdev_CM
 
-
     # making table wide for sample_type
     df_cm = df_cm.pivot(index='taxon', columns='sample_type').reset_index()
     df_cm.columns = df_cm.columns.map(flattenHierarchicalCol)
-#    print df_cm
 
     # Calculating delta BD 
     func = lambda x : x['mean_CM_treatment'] - x['mean_CM_control']
