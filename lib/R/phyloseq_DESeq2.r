@@ -62,6 +62,11 @@ description:
   An occurance (sparsity) cutoff can be applied before and/or
   after pruning samples to just "heavy" gradient fraction samples.
 
+  CONT,TREAT:
+    To use all libraries for the control and treatment, provide them all.
+    If not all libraries are provided, the phyloseq object will be
+    subsetted to just the user-provided libraries.
+
   OUTPUT:
     A table of all DESeq2 results is written to a file (see `all` option).
     A DESeq2 results table of just the "best" occurance cutoff and BD
@@ -273,6 +278,23 @@ physeq.sd = sample_data(physeq)
 physeq.sd$library = as.factor(as.character(physeq.sd$library))
 physeq.sd$condition = physeq.sd$library
 sample_data(physeq) = physeq.sd
+
+# filtering to user-porvided control/treatment libraries
+physeq.libs = physeq.sd$library %>% unique %>% as.vector
+user.libs = c(opts[['--cont']], opts[['--treat']])
+user.libs.only = setdiff(user.libs, physeq.libs)
+if(length(user.libs.only) > 0){
+  y = paste(user.libs.only, collapse=',')
+  x = paste(c('Cannot find libraries:',y,'in the phyloseq object'), collapse=' ')
+  stop(x)
+}
+physeq.libs.only = setdiff(physeq.libs, user.libs)
+if(length(physeq.libs.only) > 0){
+  y = paste(intersect(user.libs, physeq.libs), collapse=',')
+  msg = paste(c('NOTE: filtering phyloseq to libraries: ', y, '\n'), collapse=' ')
+  write(msg, stderr())
+  physeq = subset_samples(physeq, library %in% user.libs)
+}
 
 # all pairwise of occur_all, BD_window, post-occur
 var_params = expand.grid(opts[['--occur_all']],
