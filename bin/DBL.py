@@ -29,7 +29,7 @@ Options:
   --r_max=<rx>        radius max from axis of rotation (cm).
                       [default: 4.85]
   --vertical          Vertical rotor (instead of fixed angle).
-  --frac_abs=<fa>     Fraction of DNA absorbed to the cfg tube wall.
+  --frac_abs=<fa>     Fraction of DNA fragments in DBL.
                       [default: 0.001]
   --BD_min=<bm>       Min BD used to determine the DBL.
                       [default: 1.59]
@@ -40,10 +40,11 @@ Options:
   -n=<n>              Number of Monte Carlo replicates to estimate
                       G+C error due to DBL. 
                       [default: 500000]
-  --comm=<c>          Community file. Used for scaling fraction absorbed
-                      by the pre-fraction abundance.
-                      Fraction absorbed will be constant if `comm` not provieded.
-  --commx=<cx>        Scaling factor for fraction_absorbed ~ pre-fraction_abund.
+  --comm=<c>          Community file. Used for scaling the fraction of fragments
+                      in DBL by the pre-fraction abundances of each taxon.
+                      Fraction in DBL will be constant if `comm` not provieded.
+  --commx=<cx>        Scaling factor for fraction in the DBL 
+                      as a function of pre-fraction abundance.
                       The intercept is set by the `frac_abs` option.
                       [default: 0.8]
   --bw=<bw>           The bandwidth scalar or function passed to
