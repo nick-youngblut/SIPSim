@@ -3,9 +3,14 @@ SIPSim
 SIPSim is a pipeline for simulating data from high resolution 
 stable isotope probing (HR-SIP).
 
+### Reference 
 
-INSTALLATION
-============
+* If you use SIPSim, please cite:
+
+
+
+
+# INSTALLATION
 
 ## DEPENENCIES
 
@@ -14,7 +19,7 @@ INSTALLATION
 * [pyfasta](https://pypi.python.org/pypi/pyfasta/)
 * [intervaltree](https://github.com/chaimleib/intervaltree)
 
-## Install of SIPSim
+## Installation of SIPSim
 
 ### Clone the repo
 
@@ -31,3 +36,10 @@ python setup.py install --prefix=~
 echo 'source '`pwd`'/sourceMe' >> ~/.bashrc
 
 ~~~
+
+
+# TUTORIALS
+
+* [An example with 3 genomes](./ipynb/example/1_dataset.ipynb)
+* [Recreating Fig 1 from Lueders et al., 2004](./ipynb/example/Lueders2004.ipynb)
+

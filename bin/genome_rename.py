@@ -61,6 +61,7 @@ def seq_rename(inFile, prefix='.'):
     outFH = open(outFile, 'wb')
 
     # regexes
+    re0 = re.compile(r'.+ complete genome. ')  # added for tutorial
     re1 = re.compile(r'\W')
     re2 = re.compile(r'^_*(.*?)_*$')
     re3 = re.compile(r'_*complete_genome')
@@ -71,6 +72,7 @@ def seq_rename(inFile, prefix='.'):
     for line in inFH:
         line = line.rstrip()
         if line.startswith('>'):  # seq name
+            line = re0.sub('', line)
             line = re1.sub('_', line)
             line = re2.sub(r'>\1', line)
             line = re3.sub('', line)
