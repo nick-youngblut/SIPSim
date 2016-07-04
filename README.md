@@ -34,7 +34,6 @@ cd SIPSim
 python setup.py build
 python setup.py install --prefix=~
 echo 'source '`pwd`'/sourceMe' >> ~/.bashrc
-
 ~~~
 
 
