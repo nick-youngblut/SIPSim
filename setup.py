@@ -9,6 +9,7 @@ from distutils.extension import Extension
 from Cython.Build import cythonize
 import numpy
 
+
 setup(name="SIPSim_cpp",
       ext_modules=[
           Extension('SIPSimCpp', ['./src/SIPSimCpp.cpp'],
@@ -19,7 +20,7 @@ setup(name="SIPSim_cpp",
 setup(
     name = 'SIPSim',
     version = '0.1',
-    description = 'Simulate Hi Res Stable Isotope Datasets',
+    description = 'Simulate High Resolution Stable Isotope Probing Datasets',
     author = 'Nick Youngblut',
     author_email = 'nyoungb2@gmail.com',
     ext_modules = cythonize('./lib/*.pyx'),

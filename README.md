@@ -1,13 +1,14 @@
 SIPSim
 ======
-SIPSim is a pipeline for simulating data from high resolution 
-stable isotope probing (HR-SIP).
+SIPSim is a toolset for simulating data from high resolution 
+stable isotope probing (HR-SIP) experiments.
 
 ### Reference 
 
 * If you use SIPSim, please cite:
 
-
+Youngblut, ND, Buckley DH. Evaluating the accuracy of DNA stable
+isotope probing. submitted.
 
 
 # INSTALLATION
@@ -42,3 +43,7 @@ echo 'source '`pwd`'/sourceMe' >> ~/.bashrc
 * [An example with 3 genomes](./ipynb/example/1_dataset.ipynb)
 * [Recreating Fig 1 from Lueders et al., 2004](./ipynb/example/Lueders2004.ipynb)
 
+
+# WORKFLOW
+
+![simulation pipeline](img/simulation_pipeline.png)
