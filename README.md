@@ -3,7 +3,20 @@ SIPSim
 SIPSim is a toolset for simulating data from high resolution 
 stable isotope probing (HR-SIP) experiments.
 
-0;95;0c### Reference 
+
+#### Sections
+
+- [REFERENCE](#reference)
+- [INSTALLATION](#installation)
+- [TUTORIALS](#tutorials)
+- [SIULATION WORKFLOW](#workflow)
+- [CHANGELOG](#changelog)
+- [License](#license)
+
+
+# REFERENCE
+
+[[top](#sections)]
 
 If you use SIPSim, please cite:
 
@@ -12,6 +25,8 @@ isotope probing. submitted.
 
 
 # INSTALLATION
+
+[[top](#sections)]
 
 ## DEPENENCIES
 
@@ -40,10 +55,26 @@ echo 'source '`pwd`'/sourceMe' >> ~/.bashrc
 
 # TUTORIALS
 
+[[top](#sections)]
+
 * [An example with 3 genomes](./ipynb/example/1_dataset.ipynb)
 * [Recreating Fig 1 from Lueders et al., 2004](./ipynb/example/Lueders2004.ipynb)
 
 
 # SIULATION WORKFLOW
 
+[[top](#sections)]
+
 ![simulation pipeline](img/simulation_pipeline.png)
+
+
+# CHANGELOG
+
+[[top](#sections)]
+
+
+# LICENSE
+
+[[top](#sections)]
+
+* Free software: MIT license
