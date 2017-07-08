@@ -38,26 +38,6 @@ def is_file(fileName):
     if os.path.isfile(fileName) is False:
         raise IOError('"{}" does not exist'.format(fileName))
 
-
-def list_subcmds(subCmdDir, ext, desc_line=None):
-    F = os.path.join(subCmdDir, '*' + ext)
-    subCmds = glob.glob(F)
-    for sc in sorted(subCmds, key=lambda s: s.lower()):
-        desc = os.path.split(sc)[1]
-        if desc_line == None:
-            chk = desc.rstrip(ext) + ':'
-        else:
-            chk = desc_line
-        with open(sc, 'rb') as inFH:
-            for line in inFH:
-                line = line.rstrip().lstrip('\'').lstrip('"')
-                if line.startswith(chk):
-                    if desc_line is not None:
-                        line = line.lstrip(chk).lstrip()
-                    desc = line
-                    break
-        print desc            
-    
         
 def sys_call(cmd, quiet=False):
     """System call of command.

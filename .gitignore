@@ -8,3 +8,8 @@ screenlog.*
 dev/
 t/
 figures/
+dist/
+build/
+*_OLD/
+*_OLD
+*.egg-info/

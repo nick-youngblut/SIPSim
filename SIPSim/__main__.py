@@ -8,8 +8,14 @@ import sys
 from docopt import docopt
 #import Utils
 ## application
-from SIPSim import BD_Shift
-
+from SIPSim.Commands import BD_Shift
+from SIPSim.Commands import Communities
+from SIPSim.Commands import DBL
+from SIPSim.Commands import DeltaBD
+from SIPSim.Commands import Diffusion
+from SIPSim.Commands import Fragment_KDE_cat
+from SIPSim.Commands import Fragment_KDE
+from SIPSim.Commands import Fragment_parse
 
 def main(args=None):
     """Main entry point for application
@@ -42,14 +48,19 @@ Description:
                   version='0.1',
                   options_first=True)
 
-
     # dict of all subcommands
-    cmds = {'BD_shift' : BD_Shift}
+    cmds = {'BD_shift' : BD_Shift,
+            'communities' : Communities,
+            'DBL' : DBL,
+            'deltaBD' : DeltaBD,
+            'Difusion' : Diffusion,
+            'fragment_KDE_cat' : Fragment_KDE_cat,
+            'fragment_KDE' : Fragment_KDE,
+            'fragment_parse' : Fragment_parse}
     
     # list subcommands
     if args['--list']:
-        #Utils.list_subcmds(subcmdDir, '.py')
-        cmd_list = ',\n'.join(cmds.keys())
+        cmd_list = '\n'.join(sorted(cmds.keys()))
         print('#-- Commands --#')
         print(cmd_list)
         exit()
@@ -58,21 +69,10 @@ Description:
     try:
         cmds[args['<command>']].opt_parse(args['<args>'])
     except KeyError:
-        msg = 'Command "{}" does not exist'
+        msg = 'ERROR: command "{}" does not exist'
         print(msg.format(args['<command>']))
         exit()
         
-#    if args['<command>'] == 'BD_shift':
-#        print(args['<args>'])
-#        BD_Shift.opt_parse(args['<args>'])
-        
-    # calling subcommand scripts
-    #scriptFile = os.path.join(subcmdDir, args['<command>'] + '.py')
-    #if os.path.isfile(scriptFile):
-    #    exit(call(['python', scriptFile] + args['<args>']))    
-    #else:
-    #    msg = '"{}" is not a SIPSim command. See "SIPSim -h".'
-    #    exit(msg.format(args['<command>']))
     
 if __name__ == '__main__':
     main()
