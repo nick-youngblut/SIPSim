@@ -9,7 +9,7 @@ stable isotope probing (HR-SIP) experiments.
 - [REFERENCE](#reference)
 - [INSTALLATION](#installation)
 - [TUTORIALS](#tutorials)
-- [SIULATION WORKFLOW](#workflow)
+- [SIULATION WORKFLOW](#simulation workflow)
 - [CHANGE LOG](#changelog)
 - [LICENSE](#license)
 
@@ -20,7 +20,7 @@ stable isotope probing (HR-SIP) experiments.
 
 If you use SIPSim, please cite:
 
-> Youngblut, ND, Buckley DH. Evaluating the accuracy of DNA stable isotope probing. submitted.
+> Youngblut, ND, Buckley DH. Evaluating the accuracy of DNA stable isotope probing. doi: https://doi.org/10.1101/138719
 
 
 # INSTALLATION
