@@ -19,7 +19,7 @@ install_reqs = [
     'scipy',
     'pathos',
     'configobj',
-    'Bio'
+    'biopython'
 ]
 
 #scripts = [

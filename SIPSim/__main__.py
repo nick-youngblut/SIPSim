@@ -16,6 +16,8 @@ from SIPSim.Commands import Diffusion
 from SIPSim.Commands import Fragment_KDE_cat
 from SIPSim.Commands import Fragment_KDE
 from SIPSim.Commands import Fragment_parse
+from SIPSim.Commands import Fragments
+from SIPSim.Commands import Genome_index
 
 def main(args=None):
     """Main entry point for application
@@ -24,7 +26,7 @@ def main(args=None):
         args = sys.argv[1:]
     
     docs = """
-SIPSim: simulate gradient fractionation of microbial community DNA
+SIPSim: simulate isopycnic gradient fractionation of microbial community DNA
 
 Usage:
   SIPSim <command> [<args>...]
@@ -56,7 +58,9 @@ Description:
             'Difusion' : Diffusion,
             'fragment_KDE_cat' : Fragment_KDE_cat,
             'fragment_KDE' : Fragment_KDE,
-            'fragment_parse' : Fragment_parse}
+            'fragment_parse' : Fragment_parse,
+            'fragments' : Fragments,
+            'genome_index' : Genome_index}
     
     # list subcommands
     if args['--list']:
