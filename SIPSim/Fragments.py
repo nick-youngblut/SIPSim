@@ -148,7 +148,6 @@ def load_frags_pickle(inFH):
     return d
 
 
-
 def load_frags(fileName):
     """Load fragment data (pickled) table.
     
@@ -169,8 +168,13 @@ def load_frags(fileName):
 
     try:
         frag_data = load_frags_pickle(inFH)
-    except pickle.UnpicklingError:
-        inFH.seek(0)
+    except (pickle.UnpicklingError, EOFError):
+        try:
+            inFH.seek(0)
+        except IOError:
+            msg = ('Illegal seek; either you piped in a non-pickled table or'
+                   'your file name is incorrect')
+            raise IOError(msg)
         frag_data = load_frags_table(inFH)            
 
     inFH.close()
@@ -226,9 +230,7 @@ def fit_kde(frag_data, bw_method=None):
 
     return kdes
 
-
      
-# functions
 def by_genome(x, args):
     """All processing conducted per genome.
 

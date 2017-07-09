@@ -31,15 +31,9 @@ Description:
 ## batteries
 from docopt import docopt
 import sys,os
-
 ## 3rd party
 import dill
-
-## application libraries
-#scriptDir = os.path.dirname(__file__)
-#libDir = os.path.join(scriptDir, '../lib/')
-#sys.path.append(libDir)
-
+# application
 from SIPSim import Fragments as Frags
 
 
@@ -50,11 +44,6 @@ def main(args):
     dill.dump(frag_kde, sys.stdout)
 
     
-# main
-#if __name__ == '__main__':
-#    args = docopt(__doc__, version='0.1')            
-#    main(args)
-
 def opt_parse(args=None):
     if args is None:        
         args = docopt(__doc__, version='0.1')

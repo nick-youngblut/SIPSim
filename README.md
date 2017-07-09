@@ -38,12 +38,15 @@ See setup.py for a list of python package dependences.
   * This is a modified version of [MFEprimer-2.0](https://github.com/quwubin/MFEprimer)
     * It has been modified for installation into a linux environment via `python setup.py install`
 
-### Dependency install issues
+### Dependency install issues (using Anaconda)
 
 * scipy libgrfortran issues
   * See https://github.com/ilastik/ilastik-build-conda/issues/17
-  
-
+* scipy MKL issues
+  * See https://github.com/BVLC/caffe/issues/3884
+  * MKL can be shut down. See [this blog post](https://www.continuum.io/blog/developer-blog/anaconda-25-release-now-mkl-optimizations)
+    * This can be done by: `conda install nomkl`
+    
 ## Installation of SIPSim
 
 ### Clone the repo
@@ -60,6 +63,11 @@ python setup.py build
 python setup.py install --prefix=~
 echo 'source '`pwd`'/sourceMe' >> ~/.bashrc
 ~~~
+
+## Installation of SIPSimR
+
+[SIPSimR](https://github.com/nick-youngblut/SIPSimR) contains R scripts for data
+analysis and plotting of data produced by SIPSim. See the README for more information.
 
 
 # TUTORIALS

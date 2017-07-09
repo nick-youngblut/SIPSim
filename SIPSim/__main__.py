@@ -33,7 +33,9 @@ from SIPSim.Commands import OTU_add_error
 from SIPSim.Commands import OTU_PCR
 from SIPSim.Commands import OTU_sampleData
 from SIPSim.Commands import OTU_subsample
+from SIPSim.Commands import OTU_sum
 from SIPSim.Commands import OTU_table
+from SIPSim.Commands import OTU_wideLong
 from SIPSim.Commands import qSIP_atomExcess
 from SIPSim.Commands import qSIP
 from SIPSim.Commands import Tree_sim
@@ -95,7 +97,9 @@ Description:
             'OTU_PCR' : OTU_PCR,
             'OTU_sample_data' : OTU_sampleData,
             'OTU_subsample' : OTU_subsample,
+            'OTU_sum' : OTU_sum,
             'OTU_table' : OTU_table,
+            'OTU_wide_long' : OTU_wideLong,
             'qSIP_atom_excess' : qSIP_atomExcess,
             'qSIP' : qSIP,
             'tree_sim' : Tree_sim}
