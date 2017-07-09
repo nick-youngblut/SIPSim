@@ -9,7 +9,7 @@ import pandas as pd
 import sympy as sy
 import numpy as np
 ## application
-from OTU_Table import OTU_table
+from SIPSim.OTU_Table import OTU_table
 
     
 def write_qPCR(df, outFile):

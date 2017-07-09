@@ -17,9 +17,12 @@ install_reqs = [
     'numpy',
     'pandas',
     'scipy',
+    'sympy',
+    'pymix',
     'pathos',
     'configobj',
-    'biopython'
+    'biopython',
+    'dendropy'
 ]
 
 #scripts = [

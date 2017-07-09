@@ -34,6 +34,12 @@ If you use SIPSim, please cite:
 * [pyfasta](https://pypi.python.org/pypi/pyfasta/)
 * [intervaltree](https://github.com/chaimleib/intervaltree)
 
+### Dependency install issues
+
+* scipy libgrfortran issues
+  * See https://github.com/ilastik/ilastik-build-conda/issues/17
+  
+
 ## Installation of SIPSim
 
 ### Clone the repo

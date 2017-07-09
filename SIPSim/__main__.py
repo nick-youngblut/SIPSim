@@ -18,6 +18,25 @@ from SIPSim.Commands import Fragment_KDE
 from SIPSim.Commands import Fragment_parse
 from SIPSim.Commands import Fragments
 from SIPSim.Commands import Genome_index
+from SIPSim.Commands import Genome_rename
+from SIPSim.Commands import Gradient_fractions
+from SIPSim.Commands import HRSIP
+from SIPSim.Commands import IncorpConfigExample
+from SIPSim.Commands import Isotope_incorp
+from SIPSim.Commands import KDE_bandwidth
+from SIPSim.Commands import KDE_info 
+from SIPSim.Commands import KDE_parse
+from SIPSim.Commands import KDE_plot
+from SIPSim.Commands import KDE_sample
+from SIPSim.Commands import KDE_selectTaxa
+from SIPSim.Commands import OTU_add_error
+from SIPSim.Commands import OTU_PCR
+from SIPSim.Commands import OTU_sampleData
+from SIPSim.Commands import OTU_subsample
+from SIPSim.Commands import OTU_table
+from SIPSim.Commands import qSIP_atomExcess
+from SIPSim.Commands import qSIP
+from SIPSim.Commands import Tree_sim
 
 def main(args=None):
     """Main entry point for application
@@ -55,16 +74,35 @@ Description:
             'communities' : Communities,
             'DBL' : DBL,
             'deltaBD' : DeltaBD,
-            'Difusion' : Diffusion,
+            'diffusion' : Diffusion,
             'fragment_KDE_cat' : Fragment_KDE_cat,
             'fragment_KDE' : Fragment_KDE,
             'fragment_parse' : Fragment_parse,
             'fragments' : Fragments,
-            'genome_index' : Genome_index}
+            'genome_index' : Genome_index,
+            'genome_rename' : Genome_rename,
+            'gradient_fractions' : Gradient_fractions,
+            'HRSIP' : HRSIP,
+            'incorp_config_example' : IncorpConfigExample,
+            'isotope_incorp' : Isotope_incorp,
+            'KDE_bandwidth' : KDE_bandwidth,
+            'KDE_info' : KDE_info,
+            'KDE_parse' : KDE_parse,
+            'KDE_plot' : KDE_plot,
+            'KDE_sample' : KDE_sample,
+            'KDE_select_taxa' : KDE_selectTaxa,
+            'OTU_add_error' : OTU_add_error,
+            'OTU_PCR' : OTU_PCR,
+            'OTU_sample_data' : OTU_sampleData,
+            'OTU_subsample' : OTU_subsample,
+            'OTU_table' : OTU_table,
+            'qSIP_atom_excess' : qSIP_atomExcess,
+            'qSIP' : qSIP,
+            'tree_sim' : Tree_sim}
     
     # list subcommands
     if args['--list']:
-        cmd_list = '\n'.join(sorted(cmds.keys()))
+        cmd_list = '\n'.join(sorted(cmds.keys(), key=str.lower))
         print('#-- Commands --#')
         print(cmd_list)
         exit()
