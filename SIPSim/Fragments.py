@@ -249,21 +249,13 @@ def by_genome(x, args):
     taxonName,inFile = x
     # status
     sys.stderr.write('Processing: "{}"\n'.format(taxonName))
-    
-    # input check
-    #assert 'scriptDir' in args, '"scriptDir" not in args'
-        
-    # checking for MFEprimer.py executable
-    #MFEprimerExe = os.path.join(args['scriptDir'], 'MFEprimer.py')
-    MFEprimerExe = args['--MFE']
-    if not os.path.isfile(MFEprimerExe):
-        raise IOError('Cannot find executable "{}"'.format(MFEprimerExe))
-
 
     # making genome object
     assert '--fr' in args, '"--fr" must be provided in args'
     genome = Genome(inFile, taxonName, args['--fr'])
     
+    # MFEprimer.py executable
+    MFEprimerExe = args['--MFE']
     
     # sequenced read template location: amplicons
     if genome.primerFile is not None:

@@ -137,8 +137,6 @@ def opt_parse(args=None):
     sp = re.compile(' *, *')    
     args = {k:sp.split(str(v)) if sp.search(str(v)) 
             else v for k,v in args.items()}
-    #args['scriptDir'] = libDir
-
     Fragments.main(args)
         
     
