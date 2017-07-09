@@ -3,7 +3,7 @@ SIPSim
 SIPSim is a toolset for simulating data from high resolution 
 stable isotope probing (HR-SIP) experiments.
 
-
+0;95;0c
 #### Sections
 
 - [REFERENCE](#reference)
@@ -29,10 +29,15 @@ If you use SIPSim, please cite:
 
 ## DEPENENCIES
 
-* [pathos](https://github.com/uqfoundation/pathos)
-  * [pathos external dependencies](https://github.com/uqfoundation/pathos/tree/master/external)
-* [pyfasta](https://pypi.python.org/pypi/pyfasta/)
-* [intervaltree](https://github.com/chaimleib/intervaltree)
+### Python
+
+See setup.py for a list of python package dependences.
+
+### Other
+
+* [MFEprimer_linux](https://github.com/nick-youngblut/MFEprimer_linux)
+  * This is a modified version of [MFEprimer-2.0](https://github.com/quwubin/MFEprimer)
+    * It has been modified for installation into a linux environment via `python setup.py install`
 
 ### Dependency install issues
 

@@ -11,26 +11,22 @@ import numpy
 
 
 install_reqs = [
-    'docopt',
-    'cython',
-    'dill',
-    'numpy',
-    'pandas',
-    'scipy',
-    'sympy',
-    'pymix',
-    'pathos',
-    'configobj',
-    'biopython',
-    'dendropy'
+    'docopt>=0.6.2',
+    'cython>=0.25.2',
+    'dill>=0.2.6',
+    'numpy>=1.10.2',
+    'pandas>=0.18.1',
+    'scipy>=0.17.1',
+    'sympy>=1.0',
+    'pymix>=0.6',
+    'pathos>=0.2.0',
+    'configobj>=5.0.6',
+    'biopython>=1.68',
+    'dendropy>=4.2.0'
 ]
 
-#scripts = [
-#    'scripts/SIPSim',
-#    'scripts/SIPSimR'
-#]
 
-# note: include R scripts
+# TODO: include R scripts
 
 ## install cpp 
 setup(name="SIPSim_cpp",
@@ -61,7 +57,6 @@ setup(
     packages = find_packages(),
     package_dir={'SIPSim':
                  'SIPSim'},
-#    scripts = scripts,
     url = 'https://github.com/nick-youngblut/SIPSim'
 )
 
