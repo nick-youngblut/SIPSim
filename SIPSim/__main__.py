@@ -17,6 +17,7 @@ from SIPSim.Commands import Fragment_KDE_cat
 from SIPSim.Commands import Fragment_KDE
 from SIPSim.Commands import Fragment_parse
 from SIPSim.Commands import Fragments
+from SIPSim.Commands import Genome_download
 from SIPSim.Commands import Genome_index
 from SIPSim.Commands import Genome_rename
 from SIPSim.Commands import Gradient_fractions
@@ -39,6 +40,7 @@ from SIPSim.Commands import OTU_wideLong
 from SIPSim.Commands import qSIP_atomExcess
 from SIPSim.Commands import qSIP
 from SIPSim.Commands import Tree_sim
+
 
 def main(args=None):
     """Main entry point for application
@@ -81,6 +83,7 @@ Description:
             'fragment_KDE' : Fragment_KDE,
             'fragment_parse' : Fragment_parse,
             'fragments' : Fragments,
+            'genome_download' : Genome_download,
             'genome_index' : Genome_index,
             'genome_rename' : Genome_rename,
             'gradient_fractions' : Gradient_fractions,
@@ -111,14 +114,15 @@ Description:
         print(cmd_list)
         exit()
 
-    # running subcommand
+    # running subcommand    
     try:
-        cmds[args['<command>']].opt_parse(args['<args>'])
+        func = cmds[args['<command>']]
     except KeyError:
         msg = 'ERROR: command "{}" does not exist'
         print(msg.format(args['<command>']))
-        exit()
-        
+        exit()        
+    func.opt_parse(args['<args>'])
+
     
 if __name__ == '__main__':
     main()
