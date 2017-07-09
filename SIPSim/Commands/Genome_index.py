@@ -14,6 +14,9 @@ Options:
   --fp=<fp>       Full path to genomeSeqFiles (if not in genomeList file).
   --K_value=<kv>  Kvalue for indexing. [Default: 9]
   --np=<np>       Number of genomes to process in parallel. [Default: 1]
+  --twobit=<tb>   faToTwoBit executable. [Default: faToTwoBit]
+  --fmt=<fm>      UniFastaFormat.py executable. [Default: UniFastaFormat.py]
+  --idx=<id>      mfe_index_db.py executable. [Default: mfe_index_db.py]
   --quiet         Limit stderr output. 
   -h --help       Show this screen.
   --version       Show version.
@@ -35,18 +38,9 @@ Description:
 ## batteries
 from docopt import docopt
 ## 3rd party
-## application libraries
-#scriptDir = os.path.abspath(os.path.dirname(__file__))
-#libDir = os.path.join(scriptDir, '../lib/')
-#sys.path.append(libDir)
-
+## application
 from SIPSim import IndexGenomes
     
-
-# main
-#if __name__ == '__main__':
-#    Uargs = docopt(__doc__, version='0.1')
-#    IndexGenomes.main(Uargs)
 
 def opt_parse(args=None):
     if args is None:        

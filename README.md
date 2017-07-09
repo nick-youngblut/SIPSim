@@ -3,7 +3,6 @@ SIPSim
 SIPSim is a toolset for simulating data from high resolution 
 stable isotope probing (HR-SIP) experiments.
 
-0;95;0c
 #### Sections
 
 - [REFERENCE](#reference)

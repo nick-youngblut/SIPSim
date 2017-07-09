@@ -9,17 +9,13 @@ import functools
 import dill
 from pathos.multiprocessing import ProcessingPool
 ## application libraries
-#scriptDir = os.path.abspath(os.path.dirname(__file__))
-#libDir = os.path.join(scriptDir, '../lib/')
-#sys.path.append(libDir)
-
 from Genome import Genome
 import Utils
 
     
-def index_genome(x, chilliDir, faToTwoBitExe, K_value, quiet=False):
+def index_genome(x, faToTwoBitExe, fmtExe, idxExe, K_value, quiet=False):
     """index a genome with MFEprimer indexing scripts. 
-    This is just making system calls.
+    This function is just making system calls.
     
     Parameters
     ----------
@@ -27,10 +23,12 @@ def index_genome(x, chilliDir, faToTwoBitExe, K_value, quiet=False):
         (taxonName, genomeFile)
         taxonName -- taxon name of genome fasta
         genomeFile -- file name of genome fasta
-    chilliDir : str
-        'chilli' directory path
     faToTwoBitExe : str
-        path of faToTwoBit
+        path of faToTwoBit executable
+    fmtExe : str
+        path of UniFastaFormat.py executable
+    idxExe : str
+        path of mfe_index_db.py executable
     K_value : int
         k value used for indexing
     quiet : bool
@@ -42,21 +40,17 @@ def index_genome(x, chilliDir, faToTwoBitExe, K_value, quiet=False):
         sys.stderr.write('Indexing: "{}"\n'.format(taxonName))
         
     # begin indexing
-    formatExe = os.path.join(chilliDir, 'UniFastaFormat.py')
-    Utils.is_file(formatExe)
-    cmd = '{} -i {}'.format(formatExe, genomeFile)
+    cmd = '{} -i {}'.format(fmtExe, genomeFile)
     Utils.sys_call(cmd)    
     
     # faToTwoBit
-    Utils.is_file(faToTwoBitExe)
-    cmd = '{} {} {}'.format(faToTwoBitExe,genomeFile + '.unifasta',
+    cmd = '{} {} {}'.format(faToTwoBitExe,
+                            genomeFile + '.unifasta',
                             genomeFile + '.2bit')
     Utils.sys_call(cmd)
     
     # index
-    indexExe = os.path.join(chilliDir, 'mfe_index_db.py')
-    Utils.is_file(indexExe)
-    cmd = '{} -f {} -k {}'.format(indexExe,
+    cmd = '{} -f {} -k {}'.format(idxExe,
                                   genomeFile + '.unifasta',
                                   K_value)
     Utils.sys_call(cmd)
@@ -65,43 +59,28 @@ def index_genome(x, chilliDir, faToTwoBitExe, K_value, quiet=False):
     os.remove(genomeFile + '.unifasta')
 
 
-
-def main(Uargs):
+def main(args):
     """
     Parameters
     ----------
-    Uargs : dict
+    args : dict
         See ``genome_index`` subcommand
-    """
-
-    # NOTE: UPDATE THIS FOR EXTERNAL INSTALL OF MFEPRIMER
-    
-    # machine info
-    OS = Utils.get_os()
-    machine = platform.machine()
-    
-    # dirs
-    chilliDir = os.path.join(libDir, 'chilli')
-    if machine.endswith('_64'):
-        faToTwoBitExe = os.path.join(libDir, 'bin', OS, '64/faToTwoBit')
-    else:
-        faToTwoBitExe = os.path.join(libDir, 'bin', OS, '32/faToTwoBit')        
-
-        
+    """    
     # loading genome list
-    genomeList = Utils.parseGenomeList(Uargs['<genomeList>'], filePath=Uargs['--fp'])
-
+    genomeList = Utils.parseGenomeList(args['<genomeList>'], filePath=args['--fp'])
+                         
     # setting function for parallel calling
-    pfunc = functools.partial(index_genome,
-                              chilliDir=chilliDir,
-                              faToTwoBitExe=faToTwoBitExe,
-                              K_value=Uargs['--K_value'],
-                              quiet=Uargs['--quiet'])                                         
+    pfunc = functools.partial(index_genome,                              
+                              faToTwoBitExe=args['--twobit'],
+                              fmtExe=args['--fmt'],
+                              idxExe=args['--idx'],
+                              K_value=args['--K_value'],
+                              quiet=args['--quiet'])                                         
 
 
     # indexing genomes in parallel
-    pool = ProcessingPool(nodes=int(Uargs['--np']))
-    if Uargs['--debug']:
+    pool = ProcessingPool(nodes=int(args['--np']))
+    if args['--debug']:
         KDE_BD = map(pfunc, genomeList)
     else:
         KDE_BD = pool.map(pfunc, genomeList)
@@ -110,8 +89,3 @@ def main(Uargs):
     sys.stderr.write('#-- All genomes indexed --#\n')
 
         
-# main
-#if __name__ == '__main__':
-#    Uargs = docopt(__doc__, version='0.1')
-#    main(Uargs)
-    

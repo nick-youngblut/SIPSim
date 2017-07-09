@@ -13,3 +13,5 @@ build/
 *_OLD/
 *_OLD
 *.egg-info/
+
+tests/
