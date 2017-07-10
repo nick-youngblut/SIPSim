@@ -11,7 +11,7 @@ stable isotope probing (HR-SIP) experiments.
 - [REFERENCE](#reference)
 - [INSTALLATION](#installation)
 - [TUTORIALS](#tutorials)
-- [SIMULATION WORKFLOW](#simulation workflow)
+- [SIMULATION WORKFLOW](#simulation_workflow)
 - [CHANGE LOG](#changelog)
 - [LICENSE](#license)
 
@@ -81,7 +81,7 @@ analysis and plotting of data produced by SIPSim. See the SIPSimR README for mor
 * [Recreating Fig 1 from Lueders et al., 2004](./ipynb/example/Lueders2004.ipynb)
 
 
-# SIMULATION WORKFLOW
+# SIMULATION_WORKFLOW
 
 [[top](#sections)]
 
