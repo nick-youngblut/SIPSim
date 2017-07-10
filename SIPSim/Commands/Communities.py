@@ -60,13 +60,7 @@ Description:
 ## batteries
 from docopt import docopt
 import sys,os
-
-
-## application libraries
-#scriptDir = os.path.dirname(__file__)
-#libDir = os.path.join(scriptDir, '../lib/')
-#sys.path.append(libDir)
-
+## application
 from SIPSim.SimComms import SimComms
 
 
@@ -95,10 +89,6 @@ def main(uargs):
     SC.write_comm_table()
 
         
-#if __name__ == '__main__':
-#    uargs = docopt(__doc__, version='0.1')
-#    main(uargs)
-
 def opt_parse(args=None):
     if args is None:        
         args = docopt(__doc__, version='0.1')

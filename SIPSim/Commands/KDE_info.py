@@ -33,10 +33,6 @@ import sys,os
 import pandas as pd
 import numpy as np
 ## application libraries
-#scriptDir = os.path.dirname(__file__)
-#libDir = os.path.join(scriptDir, '../lib/')
-#sys.path.append(libDir)
-# application
 from SIPSim import Utils
     
 

@@ -49,9 +49,6 @@ except ImportError:
     from dendropy.simulate.treesim import star_tree
     from dendropy.model.birthdeath import birth_death_tree as birth_death
 ## application libraries
-#scriptDir = os.path.dirname(__file__)
-#libDir = os.path.join(scriptDir, '../lib/')
-#sys.path.append(libDir)
 from SIPSim import Utils
 from SIPSim.CommTable import CommTable
 

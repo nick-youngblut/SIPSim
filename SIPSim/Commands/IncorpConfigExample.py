@@ -41,16 +41,11 @@ import sys,os
 import dill
 
 ## application libraries
-scriptDir = os.path.dirname(__file__)
-libDir = os.path.join(scriptDir, '../lib/')
-sys.path.append(libDir)
-
 from SIPSim import Config
 from SIPSim.Config import ExampleConfig
 
 
     
-# main
 def main(args=None):
     """Main entry point for command
     """

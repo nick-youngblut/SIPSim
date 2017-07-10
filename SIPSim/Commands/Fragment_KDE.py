@@ -37,7 +37,6 @@ import dill
 from SIPSim import Fragments as Frags
 
 
-# functions
 def main(args):    
     frag_tbl = Frags.load_frags(args['<fragment_table>'])    
     frag_kde = Frags.fit_kde(frag_tbl, bw_method=args['--bw'])

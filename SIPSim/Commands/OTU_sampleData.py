@@ -25,16 +25,11 @@ Description:
 from docopt import docopt
 import os, sys
 ## application libraries
-#scriptDir = os.path.dirname(__file__)
-#libDir = os.path.join(scriptDir, '../lib/')
-#sys.path.append(libDir)
 import numpy as np
 from SIPSim.OTU_Table import OTU_table
 
 
-# main
-def main(args=None):
-    
+def main(args=None):    
     # loading otu table
     otu_tbl = OTU_table.from_csv(args['<OTU_table_file>'], sep='\t')
 

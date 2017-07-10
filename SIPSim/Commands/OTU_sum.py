@@ -25,14 +25,9 @@ Description:
 from docopt import docopt
 import os, sys
 ## application libraries
-#scriptDir = os.path.dirname(__file__)
-#libDir = os.path.join(scriptDir, '../lib/')
-#sys.path.append(libDir)
-
 from SIPSim.OTU_Table import OTU_table
 
 
-# main
 def main(args=None):
     groupby = args['--groupby'].replace(' ','').split(',')
     

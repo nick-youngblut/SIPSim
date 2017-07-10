@@ -3,6 +3,9 @@ SIPSim
 SIPSim is a toolset for simulating data from high resolution 
 stable isotope probing (HR-SIP) experiments.
 
+>Note: currently SIPSim is only Python 2.7 compatable, mainly because MFEprimer is used for simulating sequences from genomes. I recommend using an anaconda environment, which will also help with installing the dependencies.
+
+
 #### Sections
 
 - [REFERENCE](#reference)
@@ -46,7 +49,8 @@ See setup.py for a list of python package dependences.
   * See https://github.com/BVLC/caffe/issues/3884
   * MKL can be shut down. See [this blog post](https://www.continuum.io/blog/developer-blog/anaconda-25-release-now-mkl-optimizations)
     * This can be done by: `conda install nomkl`
-    
+
+
 ## Installation of SIPSim
 
 ### Clone the repo
@@ -56,18 +60,17 @@ git clone https:github.com/nyoungb2/SIPSim.git
 cd SIPSim
 ~~~
 
-### Compile C code; set up paths; add bash completion
+### Install the python package
 
 ~~~
 python setup.py build
-python setup.py install --prefix=~
-echo 'source '`pwd`'/sourceMe' >> ~/.bashrc
+python setup.py install
 ~~~
 
 ## Installation of SIPSimR
 
 [SIPSimR](https://github.com/nick-youngblut/SIPSimR) contains R scripts for data
-analysis and plotting of data produced by SIPSim. See the README for more information.
+analysis and plotting of data produced by SIPSim. See the SIPSimR README for more information.
 
 
 # TUTORIALS
@@ -88,6 +91,11 @@ analysis and plotting of data produced by SIPSim. See the README for more inform
 # CHANGELOG
 
 [[top](#sections)]
+
+## v0.2
+
+* Restructered SIPSim to be fully installable via `setup.py`. This involved spliting the
+software into 3 repositories (SIPSim, SIPSimR, and MFEprimer-linux).
 
 
 # LICENSE

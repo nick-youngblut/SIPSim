@@ -50,10 +50,6 @@ import os
 from functools import partial
 ## 3rd party
 ## application libraries
-#scriptDir = os.path.dirname(__file__)
-#libDir = os.path.join(scriptDir, '../lib/')
-#sys.path.append(libDir)
-
 from SIPSim import QSIP
 from SIPSim import Utils
     

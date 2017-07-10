@@ -91,29 +91,25 @@ def seq_rename(inFile, prefix='.'):
     sys.stderr.write(msg.format(outFile))
 
 
-def main(Uargs):
+def main(args):
     # input
-    if Uargs['<genome_fasta>'][0] == '-':
-        Uargs['<genome_fasta>'] = [x.rstrip() for x in sys.stdin]
+    if args['<genome_fasta>'][0] == '-':
+        args['<genome_fasta>'] = [x.rstrip() for x in sys.stdin]
 
     # output
-    Uargs['--prefix'] = os.path.abspath(Uargs['--prefix'])
-    if not os.path.isdir(Uargs['--prefix']):
-        os.makedirs(Uargs['--prefix'])
+    args['--prefix'] = os.path.abspath(args['--prefix'])
+    if not os.path.isdir(args['--prefix']):
+        os.makedirs(args['--prefix'])
 
     # rename
-    if Uargs['--debug']:
-        for f in Uargs['<genome_fasta>']:
-            seq_rename(f, prefix=Uargs['--prefix'])
+    if args['--debug']:
+        for f in args['<genome_fasta>']:
+            seq_rename(f, prefix=args['--prefix'])
     else:
-        p = mp.Pool(int(Uargs['-n']))
-        seq_rename_p = partial(seq_rename, prefix=Uargs['--prefix'])
-        p.map(seq_rename_p, Uargs['<genome_fasta>'])
+        p = mp.Pool(int(args['-n']))
+        seq_rename_p = partial(seq_rename, prefix=args['--prefix'])
+        p.map(seq_rename_p, args['<genome_fasta>'])
     
-# main
-#if __name__ == '__main__':
-#    Uargs = docopt(__doc__, version='0.1')
-#    main(Uargs)
 
 def opt_parse(args=None):
     if args is None:        

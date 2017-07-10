@@ -34,10 +34,6 @@ import sys,os
 import pandas as pd
 import dill
 ## application libraries
-#scriptDir = os.path.dirname(__file__)
-#libDir = os.path.join(scriptDir, '../lib/')
-#sys.path.append(libDir)
-# application
 from SIPSim import Utils
     
 
@@ -56,7 +52,6 @@ def load_taxa(inFile):
     return kde_type
 
 
-# main
 def main(args=None):
     # loading taxa names
     taxa = load_taxa(args['<taxa>'])

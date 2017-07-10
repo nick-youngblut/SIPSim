@@ -35,10 +35,6 @@ Description:
 from docopt import docopt
 import os, sys
 ## application libraries
-#scriptDir = os.path.dirname(__file__)
-#libDir = os.path.join(scriptDir, '../lib/')
-#sys.path.append(libDir)
-
 from SIPSim.Utils import parseKeyValueString as distParamParse
 from SIPSim.OTU_Table import OTU_table
 from SIPSim.Error_Dist import error_dist

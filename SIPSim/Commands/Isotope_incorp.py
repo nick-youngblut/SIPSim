@@ -137,18 +137,9 @@ from docopt import docopt
 import sys,os
 
 ## application libraries
-#scriptDir = os.path.dirname(__file__)
-#libDir = os.path.join(scriptDir, '../lib/')
-#sys.path.append(libDir)
-
-##import IsoIncorp
 from SIPSim import IsoIncorp
 
     
-# main
-#if __name__ == '__main__':
-#    args = docopt(__doc__, version='0.1')    
-#    IsoIncorp.main(args)
 
 def opt_parse(args=None):
     if args is None:        

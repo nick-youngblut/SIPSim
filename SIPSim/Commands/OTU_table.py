@@ -55,18 +55,9 @@ Description:
 from docopt import docopt
 import os, sys
 ## application libraries
-#scriptDir = os.path.dirname(__file__)
-#libDir = os.path.join(scriptDir, '../lib/')
-#sys.path.append(libDir)
-
 from SIPSim import OTU_Table
     
 
-# main
-#if __name__ == '__main__':
-#    args = docopt(__doc__, version='0.1')
-#    OTU_Table.main(args)
-    
 def opt_parse(args=None):
     if args is None:        
         args = docopt(__doc__, version='0.1')

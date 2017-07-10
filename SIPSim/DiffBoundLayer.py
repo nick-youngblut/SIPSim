@@ -556,6 +556,9 @@ def main(args):
     args : dict
         See ``DBL`` subcommand
     """
+    # setting numpy error handling
+    np.seterr(invalid='warn')
+    
     # making BD2DBL index 
     DBL_index = BD2DBL_index(r_min = float(args['--r_min']),
                              r_max = float(args['--r_max']),
@@ -576,7 +579,6 @@ def main(args):
     ## writing DBL_index
     if args['--DBL_out']:
         write_DBL_index(DBL_index, args['--DBL_out'])
-
 
     # comm file (if provided)
     try:

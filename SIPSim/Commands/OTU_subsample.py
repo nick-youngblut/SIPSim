@@ -61,10 +61,6 @@ Description:
 from docopt import docopt
 import os, sys
 ## application libraries
-#scriptDir = os.path.dirname(__file__)
-#libDir = os.path.join(scriptDir, '../lib/')
-#sys.path.append(libDir)
-
 from SIPSim.OTU_Table import OTU_table
 from SIPSim import Utils
 
@@ -97,11 +93,6 @@ def main(args=None):
     # writing out table
     df.to_csv(sys.stdout, sep='\t', index=False)
     
-
-# main
-#if __name__ == '__main__':
-#    args = docopt(__doc__, version='0.1')
-#    main(args)
     
 def opt_parse(args=None):
     if args is None:        

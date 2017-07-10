@@ -39,16 +39,10 @@ import os, sys
 import re
 
 ## application libraries
-scriptDir = os.path.dirname(__file__)
-libDir = os.path.join(scriptDir, '../lib/')
-sys.path.append(libDir)
-
-
 from SIPSim.Fractions import Fractions
 from SIPSim.CommTable import CommTable
 
 
-# functinos
 def main(Uargs):    
     # load comm file
     comm = CommTable.from_csv(Uargs['<comm_file>'], sep='\t')
@@ -78,11 +72,6 @@ def main(Uargs):
             frac_str = [str(round(x, 3)) for x in frac]
             print '\t'.join([libID, str(frac_cnt)] + frac_str)
     
-    
-# main
-#if __name__ == '__main__':
-#    Uargs = docopt(__doc__, version='0.1')
-#    main(Uargs)
     
 def opt_parse(args=None):
     if args is None:        

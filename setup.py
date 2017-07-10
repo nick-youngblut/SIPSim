@@ -14,7 +14,7 @@ install_reqs = [
     'docopt>=0.6.2',
     'cython>=0.25.2',
     'dill>=0.2.6',
-    'numpy>=1.10.2',
+    'numpy>=1.10.4',
     'pandas>=0.18.1',
     'scipy>=0.17.1',
     'sympy>=1.0',
@@ -25,8 +25,6 @@ install_reqs = [
     'dendropy>=4.2.0'
 ]
 
-
-# TODO: include R scripts
 
 ## install cpp 
 setup(name="SIPSim_cpp",

@@ -110,23 +110,8 @@ from docopt import docopt
 import sys,os
 import re
 ## application libraries
-#scriptDir = os.path.dirname(__file__)
-#libDir = os.path.join(scriptDir, '../lib/')
-#sys.path.append(libDir)
-
 from SIPSim import Fragments
 
-
-# main
-#if __name__ == '__main__':
-#    args = docopt(__doc__, version='0.1')
-#    
-#    sp = re.compile(' *, *')    
-#    args = {k:sp.split(str(v)) if sp.search(str(v)) 
-#            else v for k,v in args.items()}
-#    args['scriptDir'] = libDir#
-#
-#    Fragments.main(args)
 
 def opt_parse(args=None):
     if args is None:        

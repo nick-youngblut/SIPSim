@@ -29,10 +29,6 @@ Description:
 from docopt import docopt
 import sys,os
 ## application libraries
-#scriptDir = os.path.dirname(__file__)
-#libDir = os.path.join(scriptDir, '../lib/')
-#sys.path.append(libDir)
-# application
 from SIPSim import Utils
     
 

@@ -67,13 +67,8 @@ import copy
 import dill
 import numpy as np
 import pandas as pd
-## application libraries
-#scriptDir = os.path.dirname(__file__)
-#libDir = os.path.join(scriptDir, '../lib/')
-#sys.path.append(libDir)
 
 
-# functions
 def parse_comm_by_cluster(comm, clust_col, inv=False):
     """Parsing community file.    
     Parameters
@@ -278,10 +273,7 @@ def parse_random_frag_kdes(frag_kdes, n, log):
     return frag_kde_rand
             
 
-# main
-#if __name__ == '__main__':
 def main(args):
-
     # open log file
     logFH = open(args['--log'], 'wb') 
 
@@ -298,7 +290,6 @@ def main(args):
         if(args['--rename'] != 'None'):
             cols2parse += [args['--rename']]
         df_comm = df_comm.loc[:,cols2parse]
-
 
     # loading fragments
     sys.stderr.write('Loading fragments object...\n')
@@ -326,9 +317,6 @@ def main(args):
 
 
 def opt_parse(args=None):
-#    args = docopt(__doc__, version='0.1')
-#    args['--random'] = int(args['--random'])    
-
     if args is None:        
         args = docopt(__doc__, version='0.1')
     else:

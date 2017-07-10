@@ -29,21 +29,6 @@ Description:
 from docopt import docopt
 import sys,os
 import dill
-## application libraries
-#scriptDir = os.path.dirname(__file__)
-#libDir = os.path.join(scriptDir, '../lib/')
-#sys.path.append(libDir)
-
-
-
-# main
-#if __name__ == '__main__':
-#    args = docopt(__doc__, version='0.1')
-
-#    with open(args['<fragment_kde1>'], 'rb') as iFH1:
-#        frag_kdes = dill.load(iFH1)
-#    with open(args['<fragment_kde2>'], 'rb') as iFH2:
-#        dill.dump(frag_kdes + dill.load(iFH2), sys.stdout)        
 
 
 def opt_parse(args=None):

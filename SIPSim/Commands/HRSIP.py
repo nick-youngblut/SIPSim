@@ -66,17 +66,9 @@ import sys
 import os
 ## 3rd party
 ## application libraries
-#scriptDir = os.path.dirname(__file__)
-#libDir = os.path.join(scriptDir, '../lib/')
-#sys.path.append(libDir)
-
 from SIPSim import HR_SIP
     
 
-# main
-#if __name__ == '__main__':
-#    Uargs = docopt(__doc__, version='0.1')
-#    HR_SIP.HR_SIP(Uargs)
 
 def opt_parse(args=None):
     if args is None:        

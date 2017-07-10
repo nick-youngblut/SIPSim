@@ -56,10 +56,6 @@ from functools import partial
 import numpy as np
 import pandas as pd
 ## application libraries
-#scriptDir = os.path.dirname(__file__)
-#libDir = os.path.join(scriptDir, '../lib/')
-#sys.path.append(libDir)
-
 from SIPSim.OTU_Table import OTU_table
 from SIPSim import QSIP_atomExcess
     

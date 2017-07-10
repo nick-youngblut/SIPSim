@@ -56,10 +56,6 @@ from docopt import docopt
 import sys
 import os
 ## application libraries
-#scriptDir = os.path.dirname(__file__)
-#libDir = os.path.join(scriptDir, '../lib/')
-#sys.path.append(libDir)
-
 from SIPSim.Utils import parseKeyValueString as distParamParse
 from SIPSim.OTU_Table import OTU_table
 from SIPSim.PCR import PCR_sim
@@ -88,10 +84,6 @@ def main(args):
     otu_tbl.to_csv(sys.stdout, sep='\t', index=False)
     
 
-# main
-#if __name__ == '__main__':
-#    args = docopt(__doc__, version='0.1')
-#    main(args)
 
 def opt_parse(args=None):
     if args is None:        

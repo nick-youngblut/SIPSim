@@ -111,25 +111,14 @@ Description:
 from docopt import docopt
 import sys,os
 ## application libraries
-#scriptDir = os.path.dirname(__file__)
-#libDir = os.path.join(scriptDir, '../lib/')
-#sys.path.append(libDir)
-
 from SIPSim import DiffBoundLayer
 
-        
-# main
-#if __name__ == '__main__':
-#    args = docopt(__doc__, version='0.1')            
-#    args['-n'] = float(args['-n'])
-#    DiffBoundLayer.main(args)
-    
+            
 def opt_parse(args=None):
     if args is None:        
         args = docopt(__doc__, version='0.1')
     else:
         args = docopt(__doc__, version='0.1', argv=args)
-    #BD_Shift.main(args)
     args['-n'] = float(args['-n'])
     DiffBoundLayer.main(args)
 

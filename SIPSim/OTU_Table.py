@@ -330,16 +330,23 @@ def main(uargs):
 
     # calculating taxon relative abundances 
     df_comb['count'] = df_comb['count'].astype('int')
-    f = lambda x: x / x.sum()
     cols = ['library','fraction']
-    df_comb['rel_abund'] = df_comb.groupby(cols).transform(f)['count']
+    df_comb['rel_abund'] = df_comb.groupby(cols).transform(tss)['count']
 
     # writing out long form of table
     df_comb.sort_values(by=['library','taxon','BD_mid'], inplace=True)
     df_comb.to_csv(sys.stdout, sep='\t', index=False)
 
 
+def tss(x):
+    """ Total sum scaling"""
+    y = x.sum()
+    if np.isinf(y) or np.isnan(y) or y == 0:
+        return 0
+    else:
+        return x / y
 
+    
 class OTU_table(_table):
     """Subclass of pandas DataFrame.
     """
