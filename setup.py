@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 
-# SETUP:
-## python setup.py build_ext --inplace
-
 from setuptools import setup, find_packages
 from distutils.core import setup
 from distutils.extension import Extension
@@ -12,17 +9,21 @@ import numpy
 
 install_reqs = [
     'docopt>=0.6.2',
-    'cython>=0.25.2',
-    'dill>=0.2.6',
-    'numpy>=1.10.4',
-    'pandas>=0.18.1',
-    'scipy>=0.17.1',
+    'cython>=0.25',
+    'dill>=0.2',
+    'numpy>=1.10',
+    'pandas>=0.18',
+    'scipy>=0.17',
     'sympy>=1.0',
     'pymix>=0.6',
+    'multiprocess>=0.70',
+    'pox>=0.2',
     'pathos>=0.2.0',
     'configobj>=5.0.6',
     'biopython>=1.68',
-    'dendropy>=4.2.0'
+    'dendropy>=4.2.0',
+    'intervaltree>=2.1',
+    'pyfasta>=0.5'
 ]
 
 
@@ -38,7 +39,7 @@ setup(name="SIPSim_cpp",
 desc = 'Simulate High Resolution Stable Isotope Probing Datasets'
 setup(
     name = 'SIPSim',
-    version = '0.2',
+    version = '0.2.1',
     description = desc,
     long_description = desc + '\n See README for more information.',
     author = 'Nick Youngblut',
