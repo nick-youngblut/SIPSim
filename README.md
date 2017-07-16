@@ -35,6 +35,10 @@ If you use SIPSim, please cite:
 
 See setup.py for a list of python package dependences.
 
+#### Anaconda environment
+
+You can use the `SIPSim_conda_env.yml` file to create an Anaconda environment for running `SIPSim`
+
 ### Other
 
 * [MFEprimer_linux](https://github.com/nick-youngblut/MFEprimer_linux)

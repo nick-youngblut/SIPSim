@@ -78,9 +78,13 @@ class Genome(object):
         
         # load results as dataframe
         self.MFEprimerRes = pd.read_csv(StringIO(ret), sep='\t')
-
+        
         # editing values
-        self.MFEprimerRes.BindingStart.astype(int)
+        try:
+            self.MFEprimerRes.BindingStart.astype(int)
+        except AttributeError:
+            msg = 'MFEprimerRes attribute error. Was genome indexing successful?'
+            raise AttributeError(msg)
         self.MFEprimerRes.BindingStop.astype(int)        
 
         # checking values
