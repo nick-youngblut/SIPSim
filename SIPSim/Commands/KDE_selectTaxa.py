@@ -84,10 +84,11 @@ def get_taxa(KDEs, kde_type, all_taxa=None):
 
 
 def main(args=None):
-    if args['-r'] is not None:
-        args['-r'] = True
-    else:
-        args['-r'] = False
+    # subsample with replacement arg
+    #if args['-r'] is not None:
+    #    args['-r'] = True
+    #else:
+    #    args['-r'] = False
 
     # load KDEs object
     sys.stderr.write('Loading KDEs...\n')
@@ -101,6 +102,7 @@ def main(args=None):
     ntaxa = len(taxa)
 
     # subsampling (if needed)
+    ## number to subsample
     nsub = None
     if args['-s'] is not None:
         nsub = int(args['-s'])
@@ -110,15 +112,17 @@ def main(args=None):
     elif args['-p'] is not None:
         nsub = float(args['-p']) / 100 * ntaxa
         nsub = int(nsub)        
-
+    ## subsampling
     if nsub is not None:
         if nsub > ntaxa:
             args['-r'] = True
+            msg = 'WARNING: nsub > ntaxa, sub-sampling with replacement!'
+            sys.stderr.write(msg + '\n')
         taxa = np.random.choice(taxa, size=nsub, replace=args['-r'])
         msg = 'Subsampled {} taxa'
         sys.stderr.write(msg.format(nsub) + '\n')
     
-    # writing
+    # writing to STDOUT
     for x in taxa:
         print x
 
