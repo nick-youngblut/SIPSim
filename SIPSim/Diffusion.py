@@ -5,22 +5,20 @@
 import sys,os
 import cPickle as pickle 
 from functools import partial
+from itertools import cycle, izip
+import collections
 ## 3rd party
 import scipy.stats as stats
 import numpy as np
 import dill
 from pathos.multiprocessing import ProcessingPool
 ## application libraries
-scriptDir = os.path.dirname(__file__)
-libDir = os.path.join(scriptDir, '../lib/')
-sys.path.append(libDir)
-
+#scriptDir = os.path.dirname(__file__)
+#libDir = os.path.join(scriptDir, '../lib/')
+#sys.path.append(libDir)
 import DiffusionCython as DC
 import Utils
 
-import numpy as np
-from itertools import cycle, izip
-import collections
 
 # functions
     
