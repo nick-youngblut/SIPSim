@@ -75,8 +75,3 @@ dependencies:
   - configobj==5.0.6
   - dendropy==4.3.0
   - ghmmwrapper==0.8
-  - mfeprimer==2.1
-  - sipsim==0.2
-  - sipsim-cpp==0.0.0
-prefix: /home/nick/bin/anaconda3/envs/SIPSim
-

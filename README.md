@@ -47,13 +47,14 @@ You can use the `SIPSim_conda_env.yml` file to create an Anaconda environment fo
 
 ### Dependency install issues (using Anaconda)
 
+* boost-python
+  * install via conda or see [boost.org](http://www.boost.org/doc/libs/1_64_0/libs/python/doc/html/index.html) on other methods to install
 * scipy libgrfortran issues
   * See https://github.com/ilastik/ilastik-build-conda/issues/17
 * scipy MKL issues
   * See https://github.com/BVLC/caffe/issues/3884
   * MKL can be shut down. See [this blog post](https://www.continuum.io/blog/developer-blog/anaconda-25-release-now-mkl-optimizations)
     * This can be done by: `conda install nomkl`
-
 
 ## Installation of SIPSim
 
