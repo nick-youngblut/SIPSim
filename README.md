@@ -55,6 +55,7 @@ You can use the `SIPSim_conda_env.yml` file to create an Anaconda environment fo
   * See https://github.com/BVLC/caffe/issues/3884
   * MKL can be shut down. See [this blog post](https://www.continuum.io/blog/developer-blog/anaconda-25-release-now-mkl-optimizations)
     * This can be done by: `conda install nomkl`
+    * NOTE: OpenBlas will try to use all threads. To limit threads, use `export OMP_NUM_THREADS=N`, where `N` is the number of threads to use.
 
 ## Installation of SIPSim
 
