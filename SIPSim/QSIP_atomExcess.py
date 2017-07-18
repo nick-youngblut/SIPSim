@@ -18,13 +18,20 @@ def _prop_abund(x):
     """Calculate proportional absolute abundances.
     x = row in OTU dataframe
     """
+    # does 'prop_abs_abund' column exist?
     try:
         x = x['prop_abs_abund']
     except KeyError:
         msg = '"prop_abs_abund" column not found!' + \
               ' Check out the `qPCR` subcommand.'
         sys.exit(msg)
-    return (x / float(sum(x))).fillna(0)
+    # dividing by total abundance; if div by zero, return zero 
+    if np.sum(x) == 0:
+        y = (x / np.nan).fillna(0)
+    else:
+        y = (x / float(np.sum(x))).fillna(0)
+    # ret
+    return y
 
 def calc_prop_abs_abund(otu, groups):
     """Calculate the proporitonal absolute abundance (see Hungate et al., 2015)
@@ -285,7 +292,7 @@ def qSIP_atomExcess(Uargs):
     ----------
     Uargs : dict
         See qSIP_atomExcess.py
-    """
+    """    
     # loading tables
     sys.stderr.write('Loading files...\n')
     ## experimental design

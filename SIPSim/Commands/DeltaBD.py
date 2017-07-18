@@ -62,6 +62,6 @@ def opt_parse(args=None):
     else:
         args = docopt(__doc__, version='0.1', argv=args)
           
-    df_deltaBD = DeltaBD.deltaBD(Uargs)
+    df_deltaBD = DeltaBD.deltaBD(args)
     df_deltaBD.to_csv(sys.stdout, sep='\t', index=False)
 
