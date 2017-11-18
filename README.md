@@ -39,6 +39,8 @@ See setup.py for a list of python package dependences.
 
 You can use the `SIPSim_conda_env.yml` file to create an Anaconda environment for running `SIPSim`
 
+> Note: this environment just helps with dependencies. You will still need to install other software into this environment (see below)
+
 ### Other
 
 * [MFEprimer_linux](https://github.com/nick-youngblut/MFEprimer_linux)
@@ -49,6 +51,7 @@ You can use the `SIPSim_conda_env.yml` file to create an Anaconda environment fo
 
 * boost-python
   * install via conda or see [boost.org](http://www.boost.org/doc/libs/1_64_0/libs/python/doc/html/index.html) on other methods to install
+    * Note: there's currently no official conda channel for boost-python
 * scipy libgrfortran issues
   * See https://github.com/ilastik/ilastik-build-conda/issues/17
 * scipy MKL issues
@@ -61,17 +64,17 @@ You can use the `SIPSim_conda_env.yml` file to create an Anaconda environment fo
 
 ### Clone the repo
 
-~~~
+```
 git clone https:github.com/nyoungb2/SIPSim.git
 cd SIPSim
-~~~
+```
 
 ### Install the python package
 
-~~~
+```
 python setup.py build
 python setup.py install
-~~~
+```
 
 ## Installation of SIPSimR
 
