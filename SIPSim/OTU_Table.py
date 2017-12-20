@@ -317,7 +317,7 @@ def main(uargs):
         df['library'] = libID
         x = df['fraction'].apply(_get_BD_range).apply(pd.Series)
         x.columns = ['BD_min','BD_mid','BD_max']
-        df = pd.concat([df, x], axis=2)
+        df = pd.concat([df, x], axis=1)
         df = df[['library','taxon','fraction',
                  'BD_min','BD_mid','BD_max','count']]
         df.sort_values(by=['taxon', 'fraction'], inplace=True)
