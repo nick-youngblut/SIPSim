@@ -15,7 +15,6 @@ install_reqs = [
     'pandas>=0.18',
     'scipy>=0.17',
     'sympy>=1.0',
-    'pymix>=0.6',
     'multiprocess>=0.70',
     'pox>=0.2',
     'pathos>=0.2.0',
@@ -23,23 +22,33 @@ install_reqs = [
     'biopython>=1.68',
     'dendropy>=4.2.0',
     'intervaltree>=2.1',
-    'pyfasta>=0.5'
+    'pyfasta>=0.5',
+    'matplotlib>=2.1',
+    'SIPSim_pymix>=0.1'
 ]
 
 
 ## install cpp 
-setup(name="SIPSim_cpp",
-      ext_modules=[
-          Extension('SIPSimCpp', ['./src/SIPSimCpp.cpp'],
-                    libraries = ["boost_python"]),
-      ]
-)
+# desc = 'Simulate High Resolution Stable Isotope Probing Datasets (cpp)'
+# setup(name="SIPSim_cpp",
+#       version = '0.2.2',
+#       description = desc,
+#       long_description = desc + '\n See README for more information.',
+#       author = 'Nick Youngblut',
+#       author_email = 'nyoungb2@gmail.com',
+#       ext_modules=[
+#           Extension('SIPSimCpp', ['./src/SIPSimCpp.cpp'],
+#                     libraries = ["boost_python"]),
+#       ],
+#       license = "MIT license",
+#       url = 'https://github.com/nick-youngblut/SIPSim'
+# )
 
 ## install main application
 desc = 'Simulate High Resolution Stable Isotope Probing Datasets'
 setup(
     name = 'SIPSim',
-    version = '0.2.1',
+    version = '0.3.0',
     description = desc,
     long_description = desc + '\n See README for more information.',
     author = 'Nick Youngblut',

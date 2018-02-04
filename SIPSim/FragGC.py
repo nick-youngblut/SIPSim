@@ -15,7 +15,7 @@ import cPickle as pickle
 import numpy as np
 import pandas as pd
 import scipy.stats as stats
-import mixture
+from SIPSim_pymix import mixture
 
 # logging
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)

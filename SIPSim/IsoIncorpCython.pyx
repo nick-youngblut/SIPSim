@@ -4,8 +4,6 @@ import random
 import numpy as np
 cimport numpy as np
 
-import SIPSimCpp
-
 DTYPE = np.float
 ctypedef np.float_t DTYPE_t
 

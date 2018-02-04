@@ -3,7 +3,7 @@
 import os,sys
 ## 3rd party
 import numpy as np
-import mixture
+from SIPSim_pymix import mixture
 
 class Fractions(object):
     """Simulated gradient fractions based on theoretical min-max of BD 

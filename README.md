@@ -1,9 +1,11 @@
 SIPSim
 ======
+
 SIPSim is a toolset for simulating data from high resolution 
 stable isotope probing (HR-SIP) experiments.
 
->Note: currently SIPSim is only Python 2.7 compatable, mainly because MFEprimer is used for simulating sequences from genomes. I recommend using an anaconda environment, which will also help with installing the dependencies.
+>Note: currently SIPSim is only Python 2.7 compatable, mainly because MFEprimer is used for simulating sequences from genomes.
+We recommend using an anaconda environment, which will also help with installing the dependencies.
 
 
 #### Sections

@@ -12,7 +12,7 @@ from configobj import ConfigObj, flatten_errors
 from validate import Validator
 import numpy as np
 import pandas as pd
-import mixture
+from SIPSim_pymix import mixture
 ## application
 import TraitEvo
 from TraitEvo import BrownianMotion

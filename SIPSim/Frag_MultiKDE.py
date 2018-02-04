@@ -11,7 +11,7 @@ import numpy as np
 import pandas as pd
 import scipy.stats as stats
 #from sklearn.neighbors.kde import KernelDensity
-import mixture
+from SIPSim_pymix import mixture
 # amplication
 import SIPSimCython
 

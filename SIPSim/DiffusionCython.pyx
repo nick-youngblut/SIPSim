@@ -4,7 +4,7 @@ import random
 import numpy as np
 cimport numpy as np
 
-import SIPSimCpp
+#import SIPSimCpp
 
 DTYPE = np.float
 ctypedef np.float_t DTYPE_t
@@ -47,13 +47,35 @@ def add_diffusion_Clay(np.ndarray[DTYPE_t, ndim=2] arr,
                 break
 
         # error from true BD due to diffusion
-        diff_error = SIPSimCpp.calc_diffusion_BD(arr[0,i], arr[1,i], T, B, G, M)
+        diff_error = calc_diffusion_BD(arr[0,i], arr[1,i], T, B, G, M)
 
         # true_BD + diffusion_error_BD
         out[i] = arr[0,i] + diff_error
         
     return out
 
+
+def calc_diffusion_BD(double frag_BD, double frag_len, double T, double B, double G, int M):
+    """Calculating diffusion in standard deviation of buoyant_density equivalents (rho).
+    Paramters
+    ---------
+    frag_BD : rho (buoyant density)
+    frag_len : fragment length (bp)
+    T : absolute temperature
+    B : beta
+    G : G coefficient (see Clay et al., 2003)
+    M : molecular weight per base pair of dry cesium DNA
+
+    Returns
+    -------
+    float : BD error due to diffusion value drawn from a normal distribution with 
+            a standard deviation determined by calculated diffusion
+    """    
+    cdef double R = 8.3145e7
+    cdef double sd_BD
+    
+    sd_BD = np.sqrt((frag_BD * R * T)/(np.power(B,2) * G * M * frag_len))
+    return np.random.normal(0, scale=sd_BD)
 
 
 def calc_sigma_Clay(double frag_BD, double frag_len,

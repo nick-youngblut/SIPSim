@@ -14,7 +14,7 @@ from StringIO import StringIO
 ## 3rd party
 import numpy as np
 import pandas as pd
-import mixture
+from SIPSim_pymix import mixture
 import scipy.stats as stats
 import dill
 from pathos.multiprocessing import ProcessingPool
