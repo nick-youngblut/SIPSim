@@ -1,0 +1,5 @@
+library	taxon_name	rel_abund_perc	rank
+1	Methanosarcina_barkeri_MS	100.0	1
+1	Methylobacterium_extorquens_AM1	0.0	2
+2	Methylobacterium_extorquens_AM1	100.0	1
+2	Methanosarcina_barkeri_MS	0.0	2
