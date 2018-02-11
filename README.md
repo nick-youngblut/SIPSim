@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/nick-youngblut/SIPSim.svg?branch=master)](https://travis-ci.org/nick-youngblut/SIPSim)
+
 SIPSim
 ======
 

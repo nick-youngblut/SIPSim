@@ -3,7 +3,20 @@ language: python
 python:
   - "2.7"
 
+before_install:
+  - wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh
+  - chmod +x miniconda.sh							 
+  - ./miniconda.sh -b
+  - export PATH=$HOME/miniconda2/bin:$PATH
+  - conda update --yes conda
+  - conda config --add channels defaults
+  - conda config --add channels conda-forge
+  - conda config --add channels bioconda
+  
 install:
+  - conda install --yes numpy
+  - conda install --yes pandas
+  - conda install --yes cython
   - pip install .
 
 script:
