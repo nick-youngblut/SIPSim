@@ -17,6 +17,8 @@ install:
   - conda install --yes numpy
   - conda install --yes pandas
   - conda install --yes cython
+  - conda install --yes gsl
+  - conda install --yes pytest
   - pip install .
 
 script:
