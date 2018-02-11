@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
 from setuptools import setup, find_packages
-from distutils.core import setup
+#from distutils.core import setup
 from distutils.extension import Extension
 from Cython.Build import cythonize
 import numpy
 
-
+# dependencies
 install_reqs = [
     'docopt>=0.6.2',
     'cython>=0.25',
@@ -26,23 +26,6 @@ install_reqs = [
     'matplotlib>=2.1',
     'SIPSim_pymix>=0.1'
 ]
-
-
-## install cpp 
-# desc = 'Simulate High Resolution Stable Isotope Probing Datasets (cpp)'
-# setup(name="SIPSim_cpp",
-#       version = '0.2.2',
-#       description = desc,
-#       long_description = desc + '\n See README for more information.',
-#       author = 'Nick Youngblut',
-#       author_email = 'nyoungb2@gmail.com',
-#       ext_modules=[
-#           Extension('SIPSimCpp', ['./src/SIPSimCpp.cpp'],
-#                     libraries = ["boost_python"]),
-#       ],
-#       license = "MIT license",
-#       url = 'https://github.com/nick-youngblut/SIPSim'
-# )
 
 ## install main application
 desc = 'Simulate High Resolution Stable Isotope Probing Datasets'
