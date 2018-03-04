@@ -39,7 +39,3 @@ def test_kde():
     kde_type = Utils.KDE_type(kde)
     assert kde_type == 2
     
-# def test_exp_design():
-#     f = os.path.join(data_dir, 'comm-n2-unif.txt')
-#     x = Utils.load_exp_design(f)
-#     assert isinstance(x, pd.dataframe)

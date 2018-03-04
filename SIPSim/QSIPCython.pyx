@@ -8,7 +8,6 @@ DTYPE = np.float
 ctypedef np.float_t DTYPE_t
 
     
-
 def GC2BD(np.ndarray[DTYPE_t, ndim=1] arr):
     """Convert G+C (% from 0-100) to buoyant density (BD)
     Equation: (GC / 100) * 0.098 + 1.66

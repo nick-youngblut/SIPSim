@@ -31,7 +31,7 @@ install_reqs = [
 desc = 'Simulate High Resolution Stable Isotope Probing Datasets'
 setup(
     name = 'SIPSim',
-    version = '0.3.0',
+    version = '0.3.1',
     description = desc,
     long_description = desc + '\n See README for more information.',
     author = 'Nick Youngblut',

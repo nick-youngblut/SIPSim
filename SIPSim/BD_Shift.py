@@ -190,10 +190,10 @@ def main(args):
             # writing out table
             for line in res:
                 print '\t'.join([libID1, libID2] + \
-                                [str(x) for x in line])
-                            
+                                [str(x) for x in line])                            
 
-def opt_parse(args=None):   
+
+def opt_parse_OLD(args=None):   
     docs = """
 BD_shift: Determine the shift in BD based on KDE overlap
 

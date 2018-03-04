@@ -10,6 +10,8 @@ t/
 figures/
 dist/
 build/
+tests/data/*flat
+tests/data/*gdx
 *_OLD/
 *_OLD
 *.egg-info/
