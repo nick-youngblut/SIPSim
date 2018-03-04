@@ -30,7 +30,7 @@ def KDE3():
     kde = Utils.load_kde('ampFrag_skewN90-25-n5-nS_dif_kde_DBL_incorp.pkl')
     return kde
 
-def test_main():
+def test_cmd():
     f1 = os.path.join(data_dir, 'ampFrag_skewN90-25-n5-nS_dif_kde.pkl')
     f2 = os.path.join(data_dir, 'ampFrag_skewN90-25-n5-nS_dif_kde_DBL.pkl')
     args = [f1, f2, '--debug']
