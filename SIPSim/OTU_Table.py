@@ -553,7 +553,7 @@ class OTU_table(_table):
                 'BD_min','BD_mid','BD_max',
                 'count', 'rel_abund']
         sort_cols = ['library','taxon','BD_mid']
-        return df_sub.reindex_axis(cols, axis=1).sort_values(by=sort_cols)
+        return df_sub.reindex(cols, axis=1).sort_values(by=sort_cols)
                 
         
     def _same_low_high(self, ret=False):

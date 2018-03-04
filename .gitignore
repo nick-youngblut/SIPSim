@@ -12,6 +12,9 @@ dist/
 build/
 tests/data/*flat
 tests/data/*gdx
+tests/data/*.db
+tests/data/*.2bit
+tests/data/*.uni
 *_OLD/
 *_OLD
 *.egg-info/

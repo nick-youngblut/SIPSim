@@ -40,16 +40,19 @@ class error_dist(object):
         dist_vals : list
             Values drawn from the distribution function.
         """
+        assert isinstance(size, int)
+        assert size > 0
         try:
             x = self._dist(size=size, *params, **kparams)
-            #print [int(y).__class__ for y in x]; sys.exit()
             return [int(y) for y in x]
         except TypeError:
             params = self.params.update(**kparams)
             params = ','.join([str(x) + ':' + str(y)  for x,y 
                                in params.items()])
             msg = 'Params "{}" do not work with distribution "{}"\n'
-            raise TypeError(msg.format(params, self._dist_name))        
+            raise TypeError(msg.format(params, self._dist_name))
+        except ValueError:
+            return [np.nan for i in range(size)]
         
 
     def _same_low_high(self, ret=False):

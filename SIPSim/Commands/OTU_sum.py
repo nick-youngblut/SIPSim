@@ -11,7 +11,7 @@ Usage:
 Options:
   <OTU_table_file>  OTU table file.
   --groupby=<gb>    Comma-delimited list of columns to group by.
-                    [default: library,fractions]
+                    [default: library,fraction]
   --version         Show version.
   --debug           Debug mode
 

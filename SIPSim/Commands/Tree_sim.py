@@ -66,7 +66,8 @@ def main(args=None):
         comm = CommTable.from_csv(args['<comm_file>'], sep='\t')
         taxa = comm.get_unique_taxon_names()
 
-    taxa = dendropy.TaxonSet(taxa)
+    # init dendropy taxon namespace
+    taxa = dendropy.TaxonNamespace(taxa, label='taxa')
 
     # simulating tree
     if args['--star']:
@@ -76,7 +77,7 @@ def main(args=None):
                            args['--death_rate'],
                            birth_rate_sd=args['--birth_rate_sd'],
                            death_rate_sd=args['--death_rate_sd'],
-                           taxon_set=taxa)
+                           num_extant_tips=len(taxa))
         
     # writing tree
     outfmt = args['--outfmt'].lower()

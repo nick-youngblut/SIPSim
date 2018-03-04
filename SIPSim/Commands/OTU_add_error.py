@@ -46,7 +46,7 @@ def main(args=None):
 
     # loading OTU table 
     otu_tbl = OTU_table.from_csv(args['<OTU_table>'], sep='\t')
-
+    
     # error distribution function
     e_dist = error_dist(args['--error_dist'],
                         args['--error_dist_p'])
