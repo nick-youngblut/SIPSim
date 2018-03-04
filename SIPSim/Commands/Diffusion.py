@@ -41,6 +41,8 @@ Options:
                       [default: 200,75000,100]
   --bw=<bw>           The bandwidth scalar or function passed to
                       scipy.stats.gaussian_kde().
+  --index_out=<io>    Output file name for diffusion index.
+                      [default: diffusion_index.txt]
   --np=<np>           Number of parallel processes.
                       [default: 1]
   -h --help           Show this screen.

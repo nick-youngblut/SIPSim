@@ -20,5 +20,6 @@ data_dir = os.path.join(test_dir, 'data')
 # tests
 def test_main():
     kde_file = os.path.join(data_dir, 'ampFrag_skewN90-25-n5-nS_kde.pkl')
-    args = [kde_file]
+    diff_idx_file = os.path.join(data_dir, 'diffusion_index.txt')
+    args = ['--index_out', diff_idx_file, kde_file]
     Diffusion_CMD.opt_parse(args)
