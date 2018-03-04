@@ -44,6 +44,12 @@ def kde_intersect(x, **kwargs):
     return [taxon, 1 - y]
 
 
+def kde_from_1d(kde, idx=0):
+    """Create a new kde from just 1 dimension of 2d kde.
+    New kde instance class determined by class of kde object.
+    """
+    return getattr(stats, type(kde).__name__)(kde.dataset[idx])
+
 def _kde_intersect(kde1, kde2, start=1.66, end=1.85, step=0.001):
     """Calculating the intersection of 2 KDE objects.
     np.trapz is used for integration.
@@ -66,10 +72,14 @@ def _kde_intersect(kde1, kde2, start=1.66, end=1.85, step=0.001):
     """
     if kde1 is None or kde2 is None:
         return np.NAN
-
+    
     # evalution grid
     x = np.arange(start,end,step)
     # calculate intersection densities
+    if kde1.d == 2:
+        kde1 = kde_from_1d(kde1)
+    if kde2.d == 2:
+        kde1 = kde_from_1d(kde2)        
     pmin = np.min(np.c_[kde1(x),kde2(x)], axis=1)
     # integrate areas under curves
     total = np.trapz(y=kde1(x), x=x) + \

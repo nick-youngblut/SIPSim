@@ -18,7 +18,7 @@ data_dir = os.path.join(test_dir, 'data')
 
 # load kde
 def test_cmd():
-    f1 = os.path.join(data_dir, 'ampFrag_skewN90-25-n5-nS_dif_kde.pkl')
-    f2 = os.path.join(data_dir, 'ampFrag_skewN90-25-n5-nS_dif_kde_DBL.pkl')
+    f1 = os.path.join(data_dir, 'ampFrag_skewN90-25-n5-nS_kde.pkl')
+    f2 = os.path.join(data_dir, 'ampFrag_skewN90-25-n5-nS_dif_kde.pkl')
     args = [f1, f2]
     Fragment_KDE_cat_CMD.opt_parse(args)

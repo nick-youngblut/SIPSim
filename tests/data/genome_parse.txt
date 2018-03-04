@@ -1,0 +1,2 @@
+genomeID	fasta_file
+Methanosarcina_barkeri_MS	Methanosarcina_barkeri_MS.fna
