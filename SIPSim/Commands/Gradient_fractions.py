@@ -9,7 +9,7 @@ Usage:
   gradient_fractions --version
 
 Options:
-  <comm_file>       Name of file produced by gradientComms subcommand.
+  <comm_file>       Name of file produced by the communities subcommand.
   --dist=<d>        Distribution used to select gradient sizes.
                     [default: normal]
   --params=<p>      Params passed to distribution 

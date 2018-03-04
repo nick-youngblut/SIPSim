@@ -583,7 +583,7 @@ def main(args):
     # comm file (if provided)
     try:
         comm = CommTable.from_csv(args['--comm'], sep='\t')
-    except IOError:
+    except ValueError:
         comm = None
         
     # loading fragment KDEs of each genome
