@@ -1,10 +1,15 @@
 #!/usr/bin/env python
 
-from setuptools import setup, find_packages
+from setuptools import setup, find_packages, Extension
 #from distutils.core import setup
 from distutils.extension import Extension
-from Cython.Build import cythonize
+#from Cython.Build import cythonize
 import numpy
+
+try:
+    from Cython.Build import cythonize
+except ImportError:
+    cythonize = lambda x: None
 
 # dependencies
 install_reqs = [
@@ -48,6 +53,9 @@ setup(
     packages = find_packages(),
     package_dir={'SIPSim':
                  'SIPSim'},
+    setup_requires=[
+        'cython>=0.27',
+    ],
     url = 'https://github.com/nick-youngblut/SIPSim'
 )
 
