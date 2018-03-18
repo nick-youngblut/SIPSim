@@ -3,13 +3,28 @@
 from setuptools import setup, find_packages, Extension
 #from distutils.core import setup
 from distutils.extension import Extension
-#from Cython.Build import cythonize
+import os
+import glob
 import numpy
 
+
+# cython
+## don't cythonize if no cython dependency
 try:
     from Cython.Build import cythonize
+    ext = '.pyx'
 except ImportError:
-    cythonize = lambda x: None
+    ext = '.c'
+## cython extensions
+extensions = []
+cython_files = glob.glob('./SIPSim/*Cython.pyx')
+for f in cython_files:
+    x = os.path.splitext(os.path.split(f)[1])
+    x = 'SIPSim.{}'.format(x[0])
+    y = os.path.splitext(f)[0]
+    extensions.append(Extension(x, [y + ext]))
+if ext == '.pyx':
+    extensions = cythonize(extensions)
 
 # dependencies
 install_reqs = [
@@ -46,7 +61,7 @@ setup(
             'SIPSim = SIPSim.__main__:main'
         ]
     },
-    ext_modules = cythonize('./SIPSim/*.pyx'),
+    ext_modules = extensions,
     install_requires = install_reqs,
     include_dirs = [numpy.get_include()],
     license = "MIT license",
