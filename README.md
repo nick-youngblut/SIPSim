@@ -6,8 +6,10 @@ SIPSim
 SIPSim is a toolset for simulating data from high resolution 
 stable isotope probing (HR-SIP) experiments.
 
->Note: currently SIPSim is only Python 2.7 compatable, mainly because MFEprimer is used for simulating sequences from genomes.
-We recommend using an anaconda environment, which will also help with installing the dependencies.
+>Note: currently SIPSim is only Python 2.7 compatable,
+mainly because MFEprimer is used for simulating sequences from genomes.
+We recommend using an anaconda environment,
+which will also help with installing the dependencies.
 
 
 #### Sections
@@ -26,7 +28,8 @@ We recommend using an anaconda environment, which will also help with installing
 
 If you use SIPSim, please cite:
 
-> Youngblut, ND, Buckley DH. Evaluating the accuracy of DNA stable isotope probing. doi: https://doi.org/10.1101/138719
+> Youngblut, ND, Buckley DH. Evaluating the accuracy of DNA stable isotope probing.
+doi: https://doi.org/10.1101/138719
 
 
 # INSTALLATION
@@ -41,9 +44,11 @@ See setup.py for a list of python package dependences.
 
 #### Anaconda environment
 
-You can use the `SIPSim_conda_env.yml` file to create an Anaconda environment for running `SIPSim`
+You can use the `SIPSim_conda_env.yml` file to create an Anaconda
+environment for running `SIPSim`
 
-> Note: this environment just helps with dependencies. You will still need to install other software into this environment (see below)
+> Note: this environment just helps with dependencies.
+You will still need to install other software into this environment (see below)
 
 ### Other
 
@@ -69,7 +74,7 @@ You can use the `SIPSim_conda_env.yml` file to create an Anaconda environment fo
 ### Clone the repo
 
 ```
-git clone https:github.com/nyoungb2/SIPSim.git
+git clone https:github.com/nick-youngblut/SIPSim.git
 cd SIPSim
 ```
 
@@ -104,6 +109,10 @@ analysis and plotting of data produced by SIPSim. See the SIPSimR README for mor
 # CHANGELOG
 
 [[top](#sections)]
+
+## v0.3
+
+* Added many unit tests and created SIPSim-specific dependency packages.
 
 ## v0.2
 
