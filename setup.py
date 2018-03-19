@@ -1,7 +1,6 @@
 #!/usr/bin/env python
-from setuptools import setup, find_packages, Extension
-#from distutils.core import setup
-#from distutils.extension import Extension
+from setuptools import setup, find_packages
+from distutils.extension import Extension
 import os
 import glob
 import numpy
