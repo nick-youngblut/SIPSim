@@ -42,7 +42,8 @@ install_reqs = [
     'intervaltree>=2.1',
     'pyfasta>=0.5',
     'matplotlib>=2.1',
-    'SIPSim_pymix>=0.1'
+    'SIPSim_pymix>=0.1.2',
+    'MFEprimer_linux>=2.1.1'
 ]
 
 ## install main application

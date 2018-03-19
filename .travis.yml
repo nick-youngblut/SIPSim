@@ -17,6 +17,7 @@ install:
   - conda install --yes numpy
   - conda install --yes gsl
   - conda install --yes pytest
+  - python setup.py build_ext --inplace
   - python setup.py build
   - python setup.py install
 
