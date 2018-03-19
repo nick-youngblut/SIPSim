@@ -19,5 +19,6 @@ tests/data/*.log
 *_OLD/
 *_OLD
 *.egg-info/
+*.eggs/
 .pytest_*
 __pycache__

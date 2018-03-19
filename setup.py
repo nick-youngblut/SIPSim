@@ -1,12 +1,10 @@
 #!/usr/bin/env python
-
 from setuptools import setup, find_packages, Extension
 #from distutils.core import setup
-from distutils.extension import Extension
+#from distutils.extension import Extension
 import os
 import glob
 import numpy
-
 
 # cython
 ## don't cythonize if no cython dependency
@@ -15,6 +13,7 @@ try:
     ext = '.pyx'
 except ImportError:
     ext = '.c'
+
 ## cython extensions
 extensions = []
 cython_files = glob.glob('./SIPSim/*Cython.pyx')
@@ -25,11 +24,10 @@ for f in cython_files:
     extensions.append(Extension(x, [y + ext]))
 if ext == '.pyx':
     extensions = cythonize(extensions)
-
+    
 # dependencies
 install_reqs = [
     'docopt>=0.6.2',
-    'cython>=0.25',
     'dill>=0.2',
     'numpy>=1.10',
     'pandas>=0.18',
@@ -68,9 +66,6 @@ setup(
     packages = find_packages(),
     package_dir={'SIPSim':
                  'SIPSim'},
-    setup_requires=[
-        'cython>=0.27',
-    ],
     url = 'https://github.com/nick-youngblut/SIPSim'
 )
 
