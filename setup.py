@@ -7,22 +7,25 @@ import numpy
 
 # cython
 ## don't cythonize if no cython dependency
+cmdclass = {}
 try:
     from Cython.Build import cythonize
     ext = '.pyx'
+    cmdclass = {'build_ext' : Cython.Distutils.build_ext}
 except ImportError:
     ext = '.c'
 
 ## cython extensions
-extensions = []
+ext_modules = [ ]
 cython_files = glob.glob('./SIPSim/*Cython.pyx')
 for f in cython_files:
     x = os.path.splitext(os.path.split(f)[1])
     x = 'SIPSim.{}'.format(x[0])
     y = os.path.splitext(f)[0]
-    extensions.append(Extension(x, [y + ext]))
+    ext_modules.append(Extension(x, [y + ext]))
 if ext == '.pyx':
-    extensions = cythonize(extensions)
+    ext_modules = cythonize(ext_modules)
+    
     
 # dependencies
 install_reqs = [
@@ -59,7 +62,8 @@ setup(
             'SIPSim = SIPSim.__main__:main'
         ]
     },
-    ext_modules = extensions,
+    cmdclass = cmdclass,
+    ext_modules = ext_modules,
     install_requires = install_reqs,
     include_dirs = [numpy.get_include()],
     license = "MIT license",

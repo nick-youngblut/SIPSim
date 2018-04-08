@@ -12,7 +12,6 @@ We recommend using an anaconda environment,
 which will also help with installing the dependencies.
 
 
-
 #### Sections
 
 - [REFERENCE](#reference)
@@ -29,29 +28,19 @@ which will also help with installing the dependencies.
 
 If you use SIPSim, please cite:
 
-> Youngblut, ND, Buckley DH. Evaluating the accuracy of DNA stable isotope probing.
-doi: https://doi.org/10.1101/138719
-
+> Youngblut, Nicholas D., Samuel E. Barnett, and Daniel H. Buckley. 2018. "SIPSim: A Modeling Toolkit to Predict Accuracy and Aid Design of DNA-SIP Experiments." Frontiers in Microbiology 9: 570.
 
 # INSTALLATION
 
 [[top](#sections)]
 
+See the "before_install:" and "install:" sections in `.travis.yml` file for installation instructions. If the travisCI tests are passing, then these instructions should work on a linux machine.
+
 ## DEPENENCIES
 
-### Python
-
-See setup.py for a list of python package dependences.
-
-#### Anaconda environment
-
-You can use the `SIPSim_conda_env.yml` file to create an Anaconda
-environment for running `SIPSim`
-
-> Note: this environment just helps with dependencies.
-You will still need to install other software into this environment (see below)
-
-### Other
+* [SIPSim_pymix](https://github.com/nick-youngblut/SIPSim_pymix)
+  * This is a modified version of [pymix](http://www.pymix.org/pymix/)
+     * It has been modified to fix bugs resulting from the integration with SIPSim
 
 * [MFEprimer_linux](https://github.com/nick-youngblut/MFEprimer_linux)
   * This is a modified version of [MFEprimer-2.0](https://github.com/quwubin/MFEprimer)
