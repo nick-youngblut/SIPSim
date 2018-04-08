@@ -34,8 +34,6 @@ If you use SIPSim, please cite:
 
 [[top](#sections)]
 
-See the "before_install:" and "install:" sections in `.travis.yml` file for installation instructions. If the travisCI tests are passing, then these instructions should work on a linux machine.
-
 ## DEPENENCIES
 
 * [SIPSim_pymix](https://github.com/nick-youngblut/SIPSim_pymix)
@@ -63,17 +61,7 @@ See the "before_install:" and "install:" sections in `.travis.yml` file for inst
 
 ### Clone the repo
 
-```
-git clone https:github.com/nick-youngblut/SIPSim.git
-cd SIPSim
-```
-
-### Install the python package
-
-```
-python setup.py build
-python setup.py install
-```
+See the "before_install:" and "install:" sections in `.travis.yml` file for installation instructions. If the travisCI tests are passing, then these instructions should work on a linux machine.
 
 ## Installation of SIPSimR
 
