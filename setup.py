@@ -43,7 +43,7 @@ install_reqs = [
     'dendropy>=4.2.0',
     'intervaltree>=2.1',
     'pyfasta>=0.5',
-    'matplotlib>=2.1',
+    'matplotlib>=2.1,<3',
     'SIPSim_pymix>=0.1.2',
     'MFEprimer_linux>=2.1.1'
 ]
