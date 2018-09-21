@@ -28,7 +28,8 @@ which will also help with installing the dependencies.
 
 If you use SIPSim, please cite:
 
-> Youngblut, Nicholas D., Samuel E. Barnett, and Daniel H. Buckley. 2018. "SIPSim: A Modeling Toolkit to Predict Accuracy and Aid Design of DNA-SIP Experiments." Frontiers in Microbiology 9: 570.
+> Youngblut, Nicholas D., Samuel E. Barnett, and Daniel H. Buckley. 2018. "SIPSim: A Modeling Toolkit to Predict Accuracy and Aid Design of DNA-SIP Experiments." Frontiers in Microbiology 9: 570. doi: 10.3389/fmicb.2018.00570
+
 
 # INSTALLATION
 
@@ -61,7 +62,8 @@ If you use SIPSim, please cite:
 
 ### Clone the repo
 
-See the "before_install:" and "install:" sections in `.travis.yml` file for installation instructions. If the travisCI tests are passing, then these instructions should work on a linux machine.
+See the "before_install:" and "install:" sections in `.travis.yml` file for installation instructions.
+If the travisCI tests are passing, then these instructions should work on a linux machine.
 
 ## Installation of SIPSimR
 
